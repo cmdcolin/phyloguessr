@@ -209,6 +209,16 @@ export default function Game({ mode }: { mode: GameMode }) {
           orgs.map((o) => getOrganismImage(o.wikiTitle, o.scientificName)),
         );
 
+        const taxIds: [number, number, number] = [
+          orgs[0].ncbiTaxId,
+          orgs[1].ncbiTaxId,
+          orgs[2].ncbiTaxId,
+        ];
+        const pair = findClosestPairFromData(taxIds, data);
+        if (pair.isPolytomy) {
+          continue;
+        }
+
         finalOrgs = orgs;
         finalImages = images;
         finalClade = attemptClade;
