@@ -1,0 +1,576 @@
+:root {
+  color-scheme: light dark;
+  --success: #2a7a2a;
+  --success-bg: #eef6ee;
+  --success-bg-strong: #e0f0e0;
+  --error: #a33;
+  --accent-tree: #4a9;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --success: #4caf6f;
+    --success-bg: #1a2d1f;
+    --success-bg-strong: #1f3525;
+    --error: #e06060;
+    --accent-tree: #5bc48a;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --success: #4caf6f;
+  --success-bg: #1a2d1f;
+  --success-bg-strong: #1f3525;
+  --error: #e06060;
+  --accent-tree: #5bc48a;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: Canvas;
+  color: CanvasText;
+  min-height: 100vh;
+}
+
+#root {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+.game-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: Canvas;
+  border-bottom: 1px solid ButtonBorder;
+  margin: -24px -16px 24px;
+  padding: 14px 20px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.game-header h1 {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.home-btn {
+  background: none;
+  border: none;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  color: inherit;
+  padding: 0;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.score {
+  font-size: 0.85rem;
+  color: GrayText;
+}
+
+.streak {
+  font-size: 0.8rem;
+  color: var(--success);
+  font-weight: 600;
+}
+
+.start-screen {
+  text-align: center;
+  padding: 48px 16px;
+}
+
+.start-screen p {
+  margin-bottom: 20px;
+  color: GrayText;
+}
+
+.mode-selector {
+  display: flex;
+  gap: 0;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.mode-btn {
+  padding: 10px 32px;
+  font-size: 1rem;
+  border: 1px solid ButtonBorder;
+  background: ButtonFace;
+  color: ButtonText;
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.mode-btn:first-child {
+  border-radius: 4px 0 0 4px;
+}
+
+.mode-btn:not(:first-child) {
+  border-left: none;
+}
+
+.mode-btn:last-child {
+  border-radius: 0 4px 4px 0;
+}
+
+.mode-btn.active {
+  background: CanvasText;
+  color: Canvas;
+  border-color: CanvasText;
+}
+
+.distance-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: center;
+  font-size: 0.85rem;
+  color: GrayText;
+  cursor: pointer;
+  margin-bottom: 4px;
+}
+
+.distance-toggle input {
+  cursor: pointer;
+}
+
+.clade-filter {
+  margin-bottom: 8px;
+}
+
+.clade-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.clade-preset-btn {
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  border: 1px solid ButtonBorder;
+  border-radius: 12px;
+  background: ButtonFace;
+  color: ButtonText;
+  cursor: pointer;
+}
+
+.clade-preset-btn:hover {
+  border-color: GrayText;
+}
+
+.clade-preset-btn.active {
+  background: CanvasText;
+  color: Canvas;
+  border-color: CanvasText;
+}
+
+.clade-input {
+  width: 220px;
+  padding: 6px 10px;
+  font-size: 0.85rem;
+  border: 1px solid ButtonBorder;
+  border-radius: 4px;
+  text-align: center;
+  background: Field;
+  color: FieldText;
+}
+
+.clade-input:focus {
+  outline: none;
+  border-color: GrayText;
+}
+
+.clade-error {
+  color: var(--error);
+  font-size: 0.8rem;
+  margin-top: 4px;
+}
+
+.clade-filter-label {
+  font-size: 0.85rem;
+  color: GrayText;
+  margin-bottom: 8px;
+}
+
+.custom-screen {
+  text-align: center;
+  padding: 32px 16px;
+}
+
+.custom-screen h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.custom-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.back-btn {
+  background: none;
+  border: 1px solid ButtonBorder;
+  padding: 12px 28px;
+  font-size: 0.95rem;
+  border-radius: 4px;
+  cursor: pointer;
+  color: GrayText;
+  min-height: 44px;
+}
+
+.back-btn:hover {
+  border-color: GrayText;
+  color: CanvasText;
+}
+
+.mode-description {
+  font-size: 0.8rem;
+  color: GrayText;
+}
+
+.start-btn,
+.submit-btn,
+.play-again-btn {
+  background: CanvasText;
+  color: Canvas;
+  border: none;
+  padding: 12px 28px;
+  font-size: 0.95rem;
+  border-radius: 4px;
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.start-btn:hover,
+.submit-btn:hover,
+.play-again-btn:hover {
+  opacity: 0.8;
+}
+
+.loading {
+  text-align: center;
+  padding: 48px;
+  color: GrayText;
+}
+
+.prompt {
+  text-align: center;
+  margin-bottom: 20px;
+  color: GrayText;
+}
+
+.cards {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.organism-card {
+  background: Canvas;
+  border: 2px solid ButtonBorder;
+  border-radius: 6px;
+  padding: 0;
+  flex: 0 0 min(200px, calc(50% - 8px));
+  cursor: pointer;
+  overflow: hidden;
+  text-align: left;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.organism-card:hover:not(:disabled) {
+  border-color: GrayText;
+}
+
+.organism-card.selected {
+  border-color: var(--success);
+  background: var(--success-bg);
+  box-shadow: 0 0 0 2px var(--success);
+}
+
+.organism-card.selected .organism-info {
+  background: var(--success-bg-strong);
+}
+
+.organism-card:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.organism-image {
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
+  background: ButtonFace;
+}
+
+.organism-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.no-image {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: GrayText;
+}
+
+.organism-info {
+  padding: 10px;
+}
+
+.common-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.scientific-name {
+  font-size: 0.75rem;
+  color: GrayText;
+  font-style: italic;
+}
+
+.selecting .submit-btn {
+  display: block;
+  margin: 0 auto;
+}
+
+.result-screen {
+  text-align: center;
+}
+
+.result-banner {
+  font-size: 1.3rem;
+  font-weight: 600;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+.result-banner.correct {
+  color: var(--success);
+}
+
+.result-banner.wrong {
+  color: var(--error);
+}
+
+.result-explanation {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  color: GrayText;
+}
+
+.result-explanation p {
+  margin-bottom: 4px;
+}
+
+.fun-fact {
+  background: var(--success-bg);
+  border-left: 3px solid var(--success);
+  padding: 12px 16px;
+  margin: 0 auto 20px;
+  max-width: 500px;
+  text-align: left;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  border-radius: 0 4px 4px 0;
+}
+
+.fun-fact p {
+  margin-bottom: 6px;
+}
+
+.fun-fact-source {
+  font-size: 0.8rem;
+  color: var(--success);
+  text-decoration: none;
+}
+
+.fun-fact-source:hover {
+  text-decoration: underline;
+}
+
+.phylo-tree {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto 20px;
+  display: block;
+}
+
+.lineage-breadcrumbs {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  column-gap: 8px;
+  align-items: baseline;
+  text-align: left;
+  margin: 16px auto 20px;
+  font-size: 0.8rem;
+  line-height: 1.8;
+}
+
+.breadcrumb-path {
+  white-space: nowrap;
+}
+
+@media (max-width: 719px) {
+  .lineage-breadcrumbs {
+    overflow-x: auto;
+  }
+}
+
+@media (min-width: 720px) {
+  .lineage-breadcrumbs {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
+    max-width: calc(100vw - 32px);
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+.breadcrumb-label {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.breadcrumb-sep {
+  color: GrayText;
+}
+
+.breadcrumb-link {
+  color: var(--success);
+  text-decoration: none;
+}
+
+.breadcrumb-link:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb-rank {
+  color: GrayText;
+  font-size: 0.75rem;
+}
+
+.view-tree-btn,
+.dark-mode-btn {
+  background: none;
+  border: 1px solid ButtonBorder;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  color: GrayText;
+  line-height: 1;
+}
+
+.view-tree-btn:hover,
+.dark-mode-btn:hover {
+  border-color: GrayText;
+  color: CanvasText;
+}
+
+.full-tree-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.full-tree-panel {
+  background: Canvas;
+  border-radius: 8px;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  min-width: min(400px, 90vw);
+}
+
+.full-tree-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px 16px;
+  border-bottom: 1px solid ButtonBorder;
+}
+
+.tree-header-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tree-layout-toggle {
+  display: flex;
+  gap: 0;
+}
+
+.full-tree-header h2 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.close-btn {
+  background: none;
+  border: 1px solid ButtonBorder;
+  padding: 4px 12px;
+  font-size: 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  color: GrayText;
+}
+
+.close-btn:hover {
+  border-color: GrayText;
+  color: CanvasText;
+}
+
+.full-tree-scroll {
+  overflow: auto;
+  padding: 20px;
+}
