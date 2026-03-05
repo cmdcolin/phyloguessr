@@ -1,12 +1,17 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import Button from "./Button.tsx";
+import HeaderAuth from "./HeaderAuth.tsx";
+import Leaderboard from "./Leaderboard.tsx";
+import OnlinePlayers from "./OnlinePlayers.tsx";
 import OrganismCard from "./OrganismCard.tsx";
 import ResultScreen from "./ResultScreen.tsx";
 import TreeIcon from "./TreeIcon.tsx";
 import { getOrganismImage } from "../api/wikipedia.ts";
 import { pickThreeOrganisms } from "../data/organisms.ts";
 import { surprisingScenarios } from "../data/surprisingFacts.ts";
+import { recordRound, startPresence } from "../firebase.ts";
+import { getCurrentStreak, loadHistory, saveHistory } from "../utils/history.ts";
 import {
   findClosestPairFromData,
   findTaxId,
@@ -20,14 +25,16 @@ import {
 
 import type { Organism } from "../data/organisms.ts";
 import type { SurprisingScenario } from "../data/surprisingFacts.ts";
-import type {
-  HardModeResult,
-  SpeciesPoolEntry,
-  TaxonomyData,
-} from "../utils/taxonomy.ts";
+import type { SpeciesPoolEntry, TaxonomyData } from "../utils/taxonomy.ts";
 import type { MrcaInfo } from "../utils/format.ts";
+import type { HistoryEntry } from "../utils/history.ts";
 
-type GameState = "customizing" | "loading" | "selecting" | "result";
+type GameState =
+  | "needs-nickname"
+  | "customizing"
+  | "loading"
+  | "selecting"
+  | "result";
 type GameMode = "easy" | "random" | "custom";
 
 interface RoundData {
@@ -46,33 +53,36 @@ interface ResultData {
   isPolytomy: boolean;
 }
 
-interface HistoryEntry {
-  correct: boolean;
-  organisms: string[];
-  sister: string[];
-  mode: GameMode;
-  timestamp: number;
-}
-
-function loadHistory(): HistoryEntry[] {
-  const saved = localStorage.getItem("phyloHistory");
-  if (saved) {
-    return JSON.parse(saved) as HistoryEntry[];
-  }
-  return [];
+function comboKey(orgs: { ncbiTaxId: number }[]) {
+  return orgs
+    .map((o) => o.ncbiTaxId)
+    .sort((a, b) => a - b)
+    .join(",");
 }
 
 export default function Game({ mode }: { mode: GameMode }) {
   const hasQueryParams =
-    typeof window !== "undefined" && window.location.search.includes("id=");
-  const [state, setState] = useState<GameState>(
-    mode === "custom" && !hasQueryParams ? "customizing" : "loading",
-  );
+    typeof window !== "undefined" &&
+    new URLSearchParams(window.location.search).has("id");
+  const hasNickname =
+    typeof window !== "undefined" &&
+    !!localStorage.getItem("phyloLeaderboardName");
+  const [state, setState] = useState<GameState>(() => {
+    if (!hasNickname) {
+      return "needs-nickname";
+    }
+    if (mode === "custom" && !hasQueryParams) {
+      return "customizing";
+    }
+    return "loading";
+  });
   const [round, setRound] = useState<RoundData | null>(null);
   const [selected, setSelected] = useState<number[]>([]);
   const [result, setResult] = useState<ResultData | null>(null);
   const [history, setHistory] = useState<HistoryEntry[]>(loadHistory);
   const [showHistory, setShowHistory] = useState(false);
+  const [showLeaderboard, setShowLeaderboard] = useState(false);
+  const [nicknameInput, setNicknameInput] = useState("");
 
   const [taxonomyData, setTaxonomyData] = useState<TaxonomyData | null>(null);
   const [speciesPool, setSpeciesPool] = useState<SpeciesPoolEntry[] | null>(
@@ -103,6 +113,29 @@ export default function Game({ mode }: { mode: GameMode }) {
   );
   const [cladeError, setCladeError] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [seenCombos, setSeenCombos] = useState<Set<string>>(() => {
+    const saved = sessionStorage.getItem("phyloSeenCombos");
+    if (saved) {
+      return new Set(JSON.parse(saved) as string[]);
+    }
+    return new Set();
+  });
+
+  const shownScenarioIndicesRef = useRef(shownScenarioIndices);
+  shownScenarioIndicesRef.current = shownScenarioIndices;
+
+  const seenCombosRef = useRef(seenCombos);
+  seenCombosRef.current = seenCombos;
+
+  const recordCombo = (orgs: { ncbiTaxId: number }[]) => {
+    const key = comboKey(orgs);
+    setSeenCombos((prev) => {
+      const next = new Set(prev);
+      next.add(key);
+      sessionStorage.setItem("phyloSeenCombos", JSON.stringify([...next]));
+      return next;
+    });
+  };
 
   const startRound = useCallback(async () => {
     setState("loading");
@@ -118,26 +151,36 @@ export default function Game({ mode }: { mode: GameMode }) {
 
     if (mode === "easy") {
       setLoadingMessage("Loading organisms...");
+      const shownIndices = shownScenarioIndicesRef.current;
       const unshown = surprisingScenarios
         .map((s, i) => ({ s, i }))
-        .filter(({ i }) => !shownScenarioIndices.has(i));
+        .filter(
+          ({ s, i }) =>
+            !shownIndices.has(i) &&
+            !seenCombosRef.current.has(comboKey(s.organisms)),
+        );
       let orgs;
       if (unshown.length > 0) {
         const pick = unshown[Math.floor(Math.random() * unshown.length)];
         setCurrentScenario(pick.s);
-        const next = new Set(shownScenarioIndices);
+        const next = new Set(shownIndices);
         next.add(pick.i);
         setShownScenarioIndices(next);
         sessionStorage.setItem("shownScenarios", JSON.stringify([...next]));
         orgs = [...pick.s.organisms];
       } else {
         setCurrentScenario(null);
-        orgs = pickThreeOrganisms();
+        let picked = pickThreeOrganisms();
+        for (let i = 0; i < 20 && seenCombosRef.current.has(comboKey(picked)); i++) {
+          picked = pickThreeOrganisms();
+        }
+        orgs = picked;
       }
       const shuffled = orgs.sort(() => Math.random() - 0.5);
       const images = await Promise.all(
         shuffled.map((o) => getOrganismImage(o.wikiTitle, o.scientificName)),
       );
+      recordCombo(shuffled);
       setRound({ organisms: shuffled, images });
       setState("selecting");
     } else {
@@ -215,7 +258,7 @@ export default function Game({ mode }: { mode: GameMode }) {
           orgs[2].ncbiTaxId,
         ];
         const pair = findClosestPairFromData(taxIds, data);
-        if (pair.isPolytomy) {
+        if (pair.isPolytomy || seenCombosRef.current.has(comboKey(orgs))) {
           continue;
         }
 
@@ -228,9 +271,20 @@ export default function Game({ mode }: { mode: GameMode }) {
         }
       }
 
+      if (finalOrgs.length === 0) {
+        if (mode === "custom") {
+          setCladeError("Couldn't find a valid set of species — try again");
+          setState("customizing");
+        } else {
+          setLoadingMessage("Retrying...");
+          startRound();
+        }
+        return;
+      }
       if (finalClade) {
         setRandomClade(finalClade);
       }
+      recordCombo(finalOrgs);
       setRound({ organisms: finalOrgs, images: finalImages });
       setState("selecting");
     }
@@ -240,10 +294,13 @@ export default function Game({ mode }: { mode: GameMode }) {
     speciesPool,
     distanceMode,
     cladeFilter,
-    shownScenarioIndices,
   ]);
 
   useEffect(() => {
+    startPresence();
+    if (!hasNickname) {
+      return;
+    }
     if (mode !== "custom" || hasQueryParams) {
       startRound();
     } else {
@@ -306,11 +363,12 @@ export default function Game({ mode }: { mode: GameMode }) {
       mode,
       timestamp: Date.now(),
     };
-    setHistory((prev) => {
-      const next = [...prev, entry];
-      localStorage.setItem("phyloHistory", JSON.stringify(next));
-      return next;
-    });
+    setHistory((prev) => saveHistory([...prev, entry]));
+
+    const leaderboardName = localStorage.getItem("phyloLeaderboardName");
+    if (leaderboardName) {
+      recordRound(leaderboardName, correct).catch(console.error);
+    }
 
     setResult({
       correct,
@@ -369,6 +427,15 @@ export default function Game({ mode }: { mode: GameMode }) {
           />
         </div>
         <div className="header-right">
+          <HeaderAuth />
+          <OnlinePlayers />
+          <button
+            className="leaderboard-btn"
+            title="Leaderboard"
+            onClick={() => setShowLeaderboard((s) => !s)}
+          >
+            LB
+          </button>
           <a
             href={`${import.meta.env.BASE_URL}about`}
             className="about-btn"
@@ -380,14 +447,7 @@ export default function Game({ mode }: { mode: GameMode }) {
             (() => {
               const wins = history.filter((h) => h.correct).length;
               const losses = history.length - wins;
-              let streak = 0;
-              for (let i = history.length - 1; i >= 0; i--) {
-                if (history[i].correct) {
-                  streak++;
-                } else {
-                  break;
-                }
-              }
+              const streak = getCurrentStreak(history);
               return (
                 <>
                   <button
@@ -448,6 +508,61 @@ export default function Game({ mode }: { mode: GameMode }) {
               </li>
             ))}
           </ul>
+        </div>
+      )}
+
+      {showLeaderboard && (
+        <Leaderboard
+          history={history}
+          onClose={() => setShowLeaderboard(false)}
+        />
+      )}
+
+      {state === "needs-nickname" && (
+        <div className="nickname-screen">
+          <h2>Choose a nickname</h2>
+          <p>Pick a name for the leaderboard before you start playing.</p>
+          <div className="nickname-form">
+            <input
+              type="text"
+              className="leaderboard-name-input"
+              placeholder="Nickname (max 20 chars)"
+              maxLength={20}
+              value={nicknameInput}
+              onChange={(e) => setNicknameInput(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && nicknameInput.trim()) {
+                  localStorage.setItem(
+                    "phyloLeaderboardName",
+                    nicknameInput.trim(),
+                  );
+                  if (mode === "custom" && !hasQueryParams) {
+                    setState("customizing");
+                    loadTaxonomyData().then((data) => setTaxonomyData(data));
+                  } else {
+                    startRound();
+                  }
+                }
+              }}
+            />
+            <Button
+              disabled={!nicknameInput.trim()}
+              onClick={() => {
+                localStorage.setItem(
+                  "phyloLeaderboardName",
+                  nicknameInput.trim(),
+                );
+                if (mode === "custom" && !hasQueryParams) {
+                  setState("customizing");
+                  loadTaxonomyData().then((data) => setTaxonomyData(data));
+                } else {
+                  startRound();
+                }
+              }}
+            >
+              Start playing
+            </Button>
+          </div>
         </div>
       )}
 

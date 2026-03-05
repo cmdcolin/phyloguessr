@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro'
+import TreeIcon from '../components/TreeIcon.tsx'
+import SignInPage from '../components/SignInPage.tsx'
+import '../index.css'
+---
+
+<Layout title="Sign In - PhyloGuessr">
+  <div class="game">
+    <header class="game-header">
+      <div class="header-left">
+        <TreeIcon />
+        <h1>
+          <a class="home-btn" href={import.meta.env.BASE_URL}>PhyloGuessr</a>
+        </h1>
+      </div>
+      <div class="header-right">
+        <a href={import.meta.env.BASE_URL} class="about-link">Play</a>
+      </div>
+    </header>
+    <div class="about-page">
+      <h2>Sign In</h2>
+      <SignInPage client:load />
+    </div>
+  </div>
+</Layout>

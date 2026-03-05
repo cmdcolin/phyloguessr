@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import TreeIcon from '../components/TreeIcon.tsx'
+import HeaderAuth from '../components/HeaderAuth.tsx'
 import '../index.css'
 ---
 
@@ -22,6 +23,7 @@ import '../index.css'
         <img class="header-animal animal-horseshoecrab" src="https://images.phylopic.org/images/38c82deb-b187-4e85-a9f8-dba2794b42d0/thumbnail/128x128.png" alt="" />
       </div>
       <div class="header-right">
+        <HeaderAuth client:load />
         <a href={`${import.meta.env.BASE_URL}about`} class="about-btn" title="About">?</a>
       </div>
     </header>

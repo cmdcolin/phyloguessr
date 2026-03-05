@@ -239,6 +239,14 @@ export default function ResultScreen({
         <Breadcrumbs organism={sister2} taxonomyData={taxonomyData} />
         <Breadcrumbs organism={outgroup} taxonomyData={taxonomyData} />
       </div>
+      <a
+        className="report-issue-link"
+        href={`https://github.com/cmdcolin/phyloguessr/issues/new?title=${encodeURIComponent(`Issue with: ${sister1.commonName}, ${sister2.commonName}, ${outgroup.commonName}`)}&body=${encodeURIComponent(`Organisms: ${sister1.commonName} (${sister1.scientificName}), ${sister2.commonName} (${sister2.scientificName}), ${outgroup.commonName} (${outgroup.scientificName})\n\nDescribe the issue:\n`)}`}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Report issue with this answer
+      </a>
     </div>
   );
 }

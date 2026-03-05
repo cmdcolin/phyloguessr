@@ -166,7 +166,8 @@ body {
   font-weight: 600;
 }
 
-.history-panel {
+.history-panel,
+.leaderboard-panel {
   max-width: 600px;
   margin: 0 auto var(--space-lg);
   padding: var(--space-lg);
@@ -175,14 +176,16 @@ body {
   background: Canvas;
 }
 
-.history-header {
+.history-header,
+.leaderboard-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: var(--space-md);
 }
 
-.history-header h3 {
+.history-header h3,
+.leaderboard-header h3 {
   font-size: 1rem;
 }
 
@@ -364,6 +367,33 @@ body {
   border-color: #4d0000;
 }
 
+.nickname-screen {
+  text-align: center;
+  padding: var(--space-3xl) var(--space-lg);
+}
+
+.nickname-screen h2 {
+  font-size: 1.3rem;
+  margin-bottom: var(--space-sm);
+}
+
+.nickname-screen p {
+  color: GrayText;
+  font-size: 0.9rem;
+  margin-bottom: var(--space-lg);
+}
+
+.nickname-form {
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: center;
+  align-items: center;
+}
+
+.nickname-form .leaderboard-name-input {
+  max-width: 220px;
+}
+
 .custom-screen {
   text-align: center;
   padding: var(--space-2xl) var(--space-lg);
@@ -423,7 +453,6 @@ body {
   text-align: left;
   margin: 0 0 10px;
   padding-left: 1.5em;
-  /* list-style: disc; */
 }
 
 .clade-preset-item {
@@ -526,11 +555,11 @@ body {
 }
 
 .clade-check {
-  color: #4caf50;
+  color: var(--success);
 }
 
 .clade-x {
-  color: #e53935;
+  color: var(--error);
 }
 
 .custom-actions {
@@ -597,22 +626,14 @@ body {
   color: GrayText;
 }
 
-.easy-disclaimer {
-  text-align: center;
-  margin-top: calc(-1 * var(--space-md));
-  margin-bottom: var(--space-lg);
-  font-size: 0.85rem;
-  font-style: italic;
-  color: var(--accent-tree);
-}
-
+.easy-disclaimer,
 .clade-label {
   text-align: center;
   margin-top: calc(-1 * var(--space-md));
   margin-bottom: var(--space-lg);
   font-size: 0.85rem;
-  color: var(--accent-tree);
   font-style: italic;
+  color: var(--accent-tree);
 }
 
 .cards {
@@ -850,6 +871,13 @@ body {
   white-space: nowrap;
 }
 
+.report-issue-link {
+  display: inline-block;
+  margin-top: var(--space-md);
+  font-size: 0.85rem;
+  color: var(--error);
+}
+
 @media (max-width: 719px) {
   .lineage-breadcrumbs {
     overflow-x: auto;
@@ -982,6 +1010,132 @@ body {
   padding: var(--space-lg);
 }
 
+.header-signin-btn {
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  border: 1px solid ButtonBorder;
+  border-radius: 4px;
+  background: Canvas;
+  color: CanvasText;
+  cursor: pointer;
+  font-family: inherit;
+  text-decoration: none;
+}
+
+.header-signin-btn:hover {
+  border-color: GrayText;
+}
+
+.header-signed-in {
+  font-size: 0.75rem;
+  color: GrayText;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.header-signed-in:hover {
+  color: CanvasText;
+}
+
+.header-user-menu {
+  position: relative;
+}
+
+.header-user-btn {
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  border: 1px solid ButtonBorder;
+  border-radius: 4px;
+  background: Canvas;
+  color: CanvasText;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.header-user-btn:hover {
+  border-color: GrayText;
+}
+
+.header-user-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 4px;
+  background: Canvas;
+  border: 1px solid ButtonBorder;
+  border-radius: 4px;
+  min-width: 140px;
+  z-index: 20;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.header-dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 0.8rem;
+  border: none;
+  background: none;
+  color: CanvasText;
+  text-align: left;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: inherit;
+}
+
+.header-dropdown-item:hover {
+  background: ButtonFace;
+}
+
+.signin-note {
+  color: GrayText;
+  font-style: italic;
+}
+
+.signin-error {
+  color: var(--error);
+  font-size: 0.9rem;
+}
+
+.signin-success {
+  color: var(--success);
+  font-size: 1.1rem;
+}
+
+.signin-detail {
+  color: GrayText;
+}
+
+.signin-prompt h3,
+.signin-status h3 {
+  font-size: 1rem;
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-sm);
+}
+
+.signin-prompt h3:first-child {
+  margin-top: 0;
+}
+
+.signin-nickname-form {
+  display: flex;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.signin-actions {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: center;
+  margin-top: var(--space-lg);
+}
+
+.signin-actions .btn {
+  font-size: 1rem;
+}
+
+
+.leaderboard-btn,
 .about-btn {
   display: inline-flex;
   align-items: center;
@@ -992,16 +1146,244 @@ body {
   border: 1px solid ButtonBorder;
   background: none;
   color: GrayText;
-  font-size: 0.9rem;
   font-weight: 700;
-  text-decoration: none;
   line-height: 1;
 }
 
+.leaderboard-btn {
+  font-size: 0.65rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.about-btn {
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.leaderboard-btn:hover,
 .about-btn:hover {
   border-color: GrayText;
   color: CanvasText;
 }
+
+.leaderboard-loading,
+.leaderboard-empty,
+.leaderboard-error {
+  color: GrayText;
+  font-size: 0.9rem;
+  text-align: center;
+  padding: var(--space-md) 0;
+}
+
+.leaderboard-error {
+  color: var(--error);
+}
+
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  margin-bottom: var(--space-md);
+}
+
+.leaderboard-table th {
+  text-align: left;
+  font-size: 0.75rem;
+  color: GrayText;
+  padding: 4px 8px;
+  border-bottom: 1px solid color-mix(in srgb, CanvasText 15%, transparent);
+}
+
+.leaderboard-table td {
+  padding: 6px 8px;
+  border-bottom: 1px solid color-mix(in srgb, CanvasText 8%, transparent);
+}
+
+.lb-rank {
+  color: GrayText;
+  width: 30px;
+}
+
+.lb-name {
+  font-weight: 600;
+}
+
+.lb-streak {
+  color: var(--success);
+  font-weight: 600;
+}
+
+.leaderboard-submit {
+  border-top: 1px solid color-mix(in srgb, CanvasText 15%, transparent);
+  padding-top: var(--space-md);
+}
+
+.leaderboard-your-stats {
+  font-size: 0.85rem;
+  color: GrayText;
+  margin-bottom: var(--space-sm);
+}
+
+.leaderboard-form {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.leaderboard-name-input {
+  flex: 1;
+  padding: 6px 10px;
+  font-size: 0.85rem;
+  border: 1px solid ButtonBorder;
+  border-radius: 4px;
+  background: Field;
+  color: FieldText;
+  font-family: inherit;
+}
+
+.leaderboard-name-input:focus {
+  outline: none;
+  border-color: GrayText;
+}
+
+.leaderboard-submit-btn {
+  padding: 6px 16px;
+  font-size: 0.85rem;
+  border: none;
+  border-radius: 4px;
+  background: CanvasText;
+  color: Canvas;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.leaderboard-submit-btn:hover {
+  opacity: 0.8;
+}
+
+.leaderboard-submit-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.leaderboard-nickname {
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid color-mix(in srgb, CanvasText 15%, transparent);
+}
+
+.leaderboard-name-display {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: 0.85rem;
+  margin-bottom: var(--space-xs);
+}
+
+.leaderboard-change-btn {
+  font-size: 0.75rem;
+  color: GrayText;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  font-family: inherit;
+}
+
+.leaderboard-change-btn:hover {
+  color: CanvasText;
+}
+
+.lb-you {
+  background: var(--success-bg);
+}
+
+.leaderboard-auth {
+  margin-top: var(--space-sm);
+  font-size: 0.8rem;
+}
+
+.google-signin-btn {
+  padding: 5px 12px;
+  font-size: 0.8rem;
+  border: 1px solid ButtonBorder;
+  border-radius: 4px;
+  background: Canvas;
+  color: CanvasText;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.google-signin-btn:hover {
+  border-color: GrayText;
+}
+
+.google-signin-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.google-signed-in {
+  color: GrayText;
+  font-size: 0.8rem;
+}
+
+.online-counter {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  color: GrayText;
+}
+
+.online-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--success);
+  flex-shrink: 0;
+  display: inline-block;
+}
+
+.online-players {
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid color-mix(in srgb, CanvasText 15%, transparent);
+}
+
+.online-players h4 {
+  font-size: 0.8rem;
+  color: GrayText;
+  margin-bottom: var(--space-xs);
+}
+
+.online-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs) var(--space-sm);
+}
+
+.online-player {
+  font-size: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.online-player::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--success);
+  flex-shrink: 0;
+}
+
+.online-you {
+  font-weight: 600;
+}
+
 
 .about-link {
   font-size: 0.85rem;
