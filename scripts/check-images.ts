@@ -36,7 +36,9 @@ async function main() {
       continue
     }
 
-    console.log(`✗ ${org.commonName} (wiki: ${org.wikiTitle}, sci: ${org.scientificName}) — NO IMAGE`)
+    console.log(
+      `✗ ${org.commonName} (wiki: ${org.wikiTitle}, sci: ${org.scientificName}) — NO IMAGE`,
+    )
     missing.push(org)
 
     await new Promise(r => setTimeout(r, 100))
@@ -48,7 +50,9 @@ async function main() {
   } else {
     console.log(`${missing.length} organisms missing images:`)
     for (const org of missing) {
-      console.log(`  - ${org.commonName} (${org.scientificName}) [wiki: ${org.wikiTitle}] [group: ${org.group}]`)
+      console.log(
+        `  - ${org.commonName} (${org.scientificName}) [wiki: ${org.wikiTitle}] [group: ${org.group}]`,
+      )
     }
   }
 }

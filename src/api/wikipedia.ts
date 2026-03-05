@@ -35,7 +35,10 @@ async function getINaturalistPhoto(scientificName: string) {
   return null
 }
 
-export async function getOrganismImage(wikiTitle: string, scientificName: string) {
+export async function getOrganismImage(
+  wikiTitle: string,
+  scientificName: string,
+) {
   const wikiImg = await getWikiThumbnail(wikiTitle)
   if (wikiImg) {
     return wikiImg

@@ -1,7 +1,8 @@
+import PhyloTree from './PhyloTree.tsx'
+import { getLineageFromParents } from '../utils/taxonomy.ts'
+
 import type { Organism } from '../data/organisms.ts'
 import type { TaxonomyData } from '../utils/taxonomy.ts'
-import { getLineageFromParents } from '../utils/taxonomy.ts'
-import PhyloTree from './PhyloTree.tsx'
 
 interface MrcaInfo {
   taxId: number
@@ -18,6 +19,7 @@ interface ResultScreenProps {
   sisterMrca?: MrcaInfo
   overallMrca?: MrcaInfo
   taxonomyData: TaxonomyData
+  images: Record<number, string | null>
   funFact?: string
   sourceUrl?: string
   sourceLabel?: string
@@ -51,7 +53,16 @@ function getFullLineage(taxId: number, data: TaxonomyData) {
   return steps
 }
 
-const importantRanks = new Set(['species', 'genus', 'family', 'order', 'class', 'phylum', 'kingdom', 'domain'])
+const importantRanks = new Set([
+  'species',
+  'genus',
+  'family',
+  'order',
+  'class',
+  'phylum',
+  'kingdom',
+  'domain',
+])
 
 function filterToImportantRanks(steps: BreadcrumbStep[]) {
   return steps.filter(s => importantRanks.has(s.rank))
@@ -85,8 +96,16 @@ function buildExplanation(
   return lines
 }
 
-function Breadcrumbs({ organism, taxonomyData }: { organism: Organism; taxonomyData: TaxonomyData }) {
-  const steps = filterToImportantRanks(getFullLineage(organism.ncbiTaxId, taxonomyData)).reverse()
+function Breadcrumbs({
+  organism,
+  taxonomyData,
+}: {
+  organism: Organism
+  taxonomyData: TaxonomyData
+}) {
+  const steps = filterToImportantRanks(
+    getFullLineage(organism.ncbiTaxId, taxonomyData),
+  ).reverse()
   if (steps.length === 0) {
     return null
   }
@@ -123,12 +142,19 @@ export default function ResultScreen({
   sisterMrca,
   overallMrca,
   taxonomyData,
+  images,
   funFact,
   sourceUrl,
   sourceLabel,
   onPlayAgain,
 }: ResultScreenProps) {
-  const explanation = buildExplanation(sister1, sister2, outgroup, sisterMrca, overallMrca)
+  const explanation = buildExplanation(
+    sister1,
+    sister2,
+    outgroup,
+    sisterMrca,
+    overallMrca,
+  )
 
   return (
     <div className="result-screen">
@@ -144,7 +170,12 @@ export default function ResultScreen({
         <div className="fun-fact">
           <p>{funFact}</p>
           {sourceUrl && (
-            <a className="fun-fact-source" href={sourceUrl} target="_blank" rel="noopener noreferrer">
+            <a
+              className="fun-fact-source"
+              href={sourceUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {sourceLabel || 'Learn more'}
             </a>
           )}
@@ -155,6 +186,7 @@ export default function ResultScreen({
         sister2={sister2}
         outgroup={outgroup}
         cladeLabel={cladeLabel}
+        images={images}
       />
       <div className="lineage-breadcrumbs">
         <Breadcrumbs organism={sister1} taxonomyData={taxonomyData} />

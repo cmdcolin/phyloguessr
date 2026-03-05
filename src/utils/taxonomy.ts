@@ -28,7 +28,10 @@ export interface TaxonomyData {
 
 export type SpeciesPoolEntry = [number, string, string]
 
-export function getLineageFromParents(taxId: number, parents: Record<string, number>) {
+export function getLineageFromParents(
+  taxId: number,
+  parents: Record<string, number>,
+) {
   const lineage: number[] = []
   let current = taxId
   const seen = new Set<number>()
@@ -63,7 +66,10 @@ function getLcaFromParents(a: number, b: number, data: TaxonomyData) {
   return { taxId: 1, name: 'root', rank: 'no rank', depth: 0 }
 }
 
-export function findClosestPairFromData(taxIds: [number, number, number], data: TaxonomyData) {
+export function findClosestPairFromData(
+  taxIds: [number, number, number],
+  data: TaxonomyData,
+) {
   const [a, b, c] = taxIds
 
   const lcaAB = getLcaFromParents(a, b, data)
@@ -83,9 +89,10 @@ export function findClosestPairFromData(taxIds: [number, number, number], data: 
     }
   }
 
-  const overallLca = best.otherLcas[0].depth < best.otherLcas[1].depth
-    ? best.otherLcas[0]
-    : best.otherLcas[1]
+  const overallLca =
+    best.otherLcas[0].depth < best.otherLcas[1].depth
+      ? best.otherLcas[0]
+      : best.otherLcas[1]
 
   return {
     sister1TaxId: best.s1,
@@ -123,7 +130,11 @@ export function loadSpeciesPool() {
   return speciesPoolPromise
 }
 
-function isDescendantOf(taxId: number, ancestorId: number, parents: Record<string, number>) {
+function isDescendantOf(
+  taxId: number,
+  ancestorId: number,
+  parents: Record<string, number>,
+) {
   let current = taxId
   const seen = new Set<number>()
   while (current !== 1 && !seen.has(current)) {
@@ -140,6 +151,17 @@ function isDescendantOf(taxId: number, ancestorId: number, parents: Record<strin
   return current === ancestorId
 }
 
+export function findTaxId(query: string, data: TaxonomyData) {
+  const trimmed = query.trim()
+  if (/^\d+$/.test(trimmed)) {
+    const id = Number(trimmed)
+    if (data.parents[id] !== undefined || data.names[id] !== undefined) {
+      return id
+    }
+  }
+  return findTaxIdByName(trimmed, data)
+}
+
 export function findTaxIdByName(query: string, data: TaxonomyData) {
   const lower = query.toLowerCase()
   for (const [id, name] of Object.entries(data.names)) {
@@ -150,7 +172,38 @@ export function findTaxIdByName(query: string, data: TaxonomyData) {
   return undefined
 }
 
-function pickFromAncestor(ancestorId: number, pool: SpeciesPoolEntry[], data: TaxonomyData) {
+const speciesRanks = new Set(['species', 'subspecies', 'varietas', 'forma'])
+
+export function searchTaxonNames(query: string, data: TaxonomyData, limit = 8) {
+  const lower = query.toLowerCase()
+  if (lower.length < 2) {
+    return []
+  }
+  const prefixMatches: { id: string; name: string; rank: string }[] = []
+  const containsMatches: { id: string; name: string; rank: string }[] = []
+  for (const [id, name] of Object.entries(data.names)) {
+    const rank = data.ranks[id] ?? ''
+    if (speciesRanks.has(rank)) {
+      continue
+    }
+    const nameLower = name.toLowerCase()
+    if (nameLower.startsWith(lower)) {
+      prefixMatches.push({ id, name, rank })
+      if (prefixMatches.length >= limit) {
+        break
+      }
+    } else if (nameLower.includes(lower) && containsMatches.length < limit) {
+      containsMatches.push({ id, name, rank })
+    }
+  }
+  return [...prefixMatches, ...containsMatches].slice(0, limit)
+}
+
+function pickFromAncestor(
+  ancestorId: number,
+  pool: SpeciesPoolEntry[],
+  data: TaxonomyData,
+) {
   const matches: SpeciesPoolEntry[] = []
   const sampleSize = Math.min(pool.length, 5000)
   const sampled = new Set<number>()
@@ -204,7 +257,11 @@ function pickFromAncestor(ancestorId: number, pool: SpeciesPoolEntry[], data: Ta
   return undefined
 }
 
-export function pickThreeFromClade(ancestorTaxId: number, pool: SpeciesPoolEntry[], data: TaxonomyData) {
+export function pickThreeFromClade(
+  ancestorTaxId: number,
+  pool: SpeciesPoolEntry[],
+  data: TaxonomyData,
+) {
   for (let attempt = 0; attempt < 5; attempt++) {
     const result = pickFromAncestor(ancestorTaxId, pool, data)
     if (result) {
@@ -214,7 +271,10 @@ export function pickThreeFromClade(ancestorTaxId: number, pool: SpeciesPoolEntry
   return pickThreeHardMode(pool, data)
 }
 
-export function pickThreeHardModeDistance(pool: SpeciesPoolEntry[], data: TaxonomyData) {
+export function pickThreeHardModeDistance(
+  pool: SpeciesPoolEntry[],
+  data: TaxonomyData,
+) {
   const targetRanks = ['genus', 'family', 'order', 'class', 'phylum']
 
   for (let attempt = 0; attempt < 20; attempt++) {
@@ -231,7 +291,8 @@ export function pickThreeHardModeDistance(pool: SpeciesPoolEntry[], data: Taxono
       continue
     }
 
-    const ancestorId = rankedAncestors[Math.floor(Math.random() * rankedAncestors.length)]
+    const ancestorId =
+      rankedAncestors[Math.floor(Math.random() * rankedAncestors.length)]
     const result = pickFromAncestor(ancestorId, pool, data)
     if (result) {
       return result
@@ -241,7 +302,10 @@ export function pickThreeHardModeDistance(pool: SpeciesPoolEntry[], data: Taxono
   return pickThreeHardMode(pool, data)
 }
 
-export function pickThreeHardMode(pool: SpeciesPoolEntry[], data: TaxonomyData) {
+export function pickThreeHardMode(
+  pool: SpeciesPoolEntry[],
+  data: TaxonomyData,
+) {
   for (let attempt = 0; attempt < 100; attempt++) {
     const indices = new Set<number>()
     while (indices.size < 3) {
@@ -279,13 +343,24 @@ export function pickThreeHardMode(pool: SpeciesPoolEntry[], data: TaxonomyData) 
 }
 
 export function buildTreeFromLineages(
-  organisms: { ncbiTaxId: number, commonName: string, scientificName: string }[],
-  nameMap: Record<number, { name: string, rank: string }>,
+  organisms: {
+    ncbiTaxId: number
+    commonName: string
+    scientificName: string
+  }[],
+  nameMap: Record<number, { name: string; rank: string }>,
   lineageMap?: Record<number, number[]>,
   taxonomyData?: TaxonomyData,
 ) {
   const importantRanks = new Set([
-    'domain', 'kingdom', 'phylum', 'class', 'order', 'family', 'genus', 'species',
+    'domain',
+    'kingdom',
+    'phylum',
+    'class',
+    'order',
+    'family',
+    'genus',
+    'species',
   ])
 
   const orgTaxIds = new Set(organisms.map(o => o.ncbiTaxId))
@@ -294,7 +369,10 @@ export function buildTreeFromLineages(
     if (lineageMap && lineageMap[org.ncbiTaxId]) {
       orgLineages.set(org.ncbiTaxId, lineageMap[org.ncbiTaxId])
     } else if (taxonomyData) {
-      orgLineages.set(org.ncbiTaxId, getLineageFromParents(org.ncbiTaxId, taxonomyData.parents))
+      orgLineages.set(
+        org.ncbiTaxId,
+        getLineageFromParents(org.ncbiTaxId, taxonomyData.parents),
+      )
     }
   }
 
@@ -329,10 +407,11 @@ export function buildTreeFromLineages(
     }
 
     const info = nameMap[taxId] ?? taxonomyData?.names[String(taxId)]
-    const name = typeof info === 'string' ? info : info?.name ?? String(taxId)
-    const rank = typeof info === 'string'
-      ? (taxonomyData?.ranks[String(taxId)] ?? 'no rank')
-      : (info?.rank ?? 'no rank')
+    const name = typeof info === 'string' ? info : (info?.name ?? String(taxId))
+    const rank =
+      typeof info === 'string'
+        ? (taxonomyData?.ranks[String(taxId)] ?? 'no rank')
+        : (info?.rank ?? 'no rank')
 
     return { taxId, label: name, rank, children }
   }
@@ -346,9 +425,9 @@ export function buildTreeFromLineages(
     const collapsedChildren = node.children.map(collapse)
 
     if (
-      collapsedChildren.length === 1
-      && !orgTaxIds.has(node.taxId)
-      && !importantRanks.has(node.rank)
+      collapsedChildren.length === 1 &&
+      !orgTaxIds.has(node.taxId) &&
+      !importantRanks.has(node.rank)
     ) {
       return collapsedChildren[0]
     }

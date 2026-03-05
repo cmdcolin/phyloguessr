@@ -11,40 +11,35 @@ import { execSync } from 'child_process'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
-const DUMP_URL = 'https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/new_taxdump/new_taxdump.tar.gz'
+const DUMP_URL =
+  'https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/new_taxdump/new_taxdump.tar.gz'
 const WORK_DIR = join(ROOT, '.taxonomy-build')
 const OUT_DIR = join(ROOT, 'public', 'taxonomy')
 
 const CURATED_TAX_IDS = [
-  9689, 9685, 9612, 9644, 9796, 9785, 9771, 9606, 9598, 9258, 9321, 59463,
-  9807, 9813, 9913, 69293, 46004, 9818, 9778, 9361, 9720, 42254, 10090,
-  9833, 9739, 28737, 9365, 9371, 9654, 9649, 9678,
-  10116, 9986, 1868482, 9447, 9601, 9593,
-  8932, 9214, 7899,
-  52644, 9031, 9233, 8801, 190676, 85066,
-  61221, 8496, 8469, 8665,
-  8296, 8407, 92724,
-  13397, 80972, 7897, 109280, 8030,
-  7460, 13037, 7227, 258706, 41139, 214820,
-  6645, 6535, 34573, 80829,
-  7604, 7668,
-  6145, 6130,
-  6049, 45351, 27849,
-  7719, 7739, 10224,
-  6850, 232323, 55084,
-  3702, 38942, 3663, 3349, 29780, 52860, 4081,
-  13533, 69266, 4442, 3635, 3641, 4355, 3562, 167676, 4432, 4411, 57918, 32247, 74632,
-  4232, 4362, 4530, 3218, 99814,
-  4932, 41956, 5076,
-  5775, 5885, 5833,
-  562, 1148,
-  2173,
+  9689, 9685, 9612, 9644, 9796, 9785, 9771, 9606, 9598, 9258, 9321, 59463, 9807,
+  9813, 9913, 69293, 46004, 9818, 9778, 9361, 9720, 42254, 10090, 9833, 9739,
+  28737, 9365, 9371, 9654, 9649, 9678, 10116, 9986, 1868482, 9447, 9601, 9593,
+  9974, 9937, 9646, 9801, 8932, 9214, 7899, 52644, 9031, 9233, 8801, 190676,
+  85066, 61221, 8496, 8469, 8665, 8296, 8407, 92724, 13397, 80972, 7897, 109280,
+  8030, 7757, 7460, 13037, 7227, 258706, 41139, 214820, 6645, 6535, 34573,
+  80829, 34559, 7604, 7668, 6145, 6130, 6398, 6204, 307972, 6049, 45351, 27849,
+  7719, 7739, 10224, 6850, 232323, 55084, 110365, 6706, 6730, 111074, 6763,
+  96821, 3702, 38942, 3663, 3349, 29780, 52860, 4081, 13533, 69266, 4442, 3635,
+  3641, 4355, 3562, 167676, 4432, 4411, 57918, 32247, 74632, 38705, 3359, 38739,
+  4472, 13894, 35122, 4232, 4362, 4530, 3218, 99814, 4932, 41956, 5076, 5775,
+  5885, 5833, 562, 1148, 2173,
 ]
 
 const EXCLUDE_PATTERNS = [
-  /unidentified/i, /uncultured/i, /environmental/i,
-  /unclassified/i, /incertae sedis/i, /\bsp\.\b/,
-  /\bcf\.\b/, /\baff\.\b/,
+  /unidentified/i,
+  /uncultured/i,
+  /environmental/i,
+  /unclassified/i,
+  /incertae sedis/i,
+  /\bsp\.\b/,
+  /\bcf\.\b/,
+  /\baff\.\b/,
 ]
 
 async function downloadAndExtract() {
@@ -111,14 +106,19 @@ async function parseNames() {
 
     if (nameClass === 'scientific name') {
       scientificNames.set(taxId, name)
-    } else if (nameClass === 'genbank common name' || nameClass === 'common name') {
+    } else if (
+      nameClass === 'genbank common name' ||
+      nameClass === 'common name'
+    ) {
       if (!commonNames.has(taxId)) {
         commonNames.set(taxId, name)
       }
     }
   }
 
-  console.log(`  ${scientificNames.size} scientific names, ${commonNames.size} common names`)
+  console.log(
+    `  ${scientificNames.size} scientific names, ${commonNames.size} common names`,
+  )
   return { scientificNames, commonNames }
 }
 
@@ -174,7 +174,13 @@ function buildSpeciesPool(parents, ranks, scientificNames, commonNames) {
   return pool
 }
 
-function buildPrunedAncestorTree(pool, curatedIds, parents, ranks, scientificNames) {
+function buildPrunedAncestorTree(
+  pool,
+  curatedIds,
+  parents,
+  ranks,
+  scientificNames,
+) {
   console.log('Building pruned ancestor tree...')
   const neededNodes = new Set()
 
@@ -255,7 +261,13 @@ async function main() {
   const pool = buildSpeciesPool(parents, ranks, scientificNames, commonNames)
 
   // Build pruned ancestor tree
-  const ancestorTree = buildPrunedAncestorTree(pool, CURATED_TAX_IDS, parents, ranks, scientificNames)
+  const ancestorTree = buildPrunedAncestorTree(
+    pool,
+    CURATED_TAX_IDS,
+    parents,
+    ranks,
+    scientificNames,
+  )
 
   // Write output files
   mkdirSync(OUT_DIR, { recursive: true })
@@ -267,7 +279,12 @@ async function main() {
   await writeFile(join(OUT_DIR, 'parents.json'), JSON.stringify(ancestorTree))
 
   // Build curated lineages for organisms.ts
-  const { lineages, nodeNames } = buildCuratedLineages(CURATED_TAX_IDS, parents, ranks, scientificNames)
+  const { lineages, nodeNames } = buildCuratedLineages(
+    CURATED_TAX_IDS,
+    parents,
+    ranks,
+    scientificNames,
+  )
 
   // Print lineage data to paste into organisms.ts
   console.log('\n// === PASTE INTO organisms.ts ===\n')
@@ -283,22 +300,36 @@ async function main() {
   console.log('}\n')
 
   console.log('// Node names for all ancestors of curated organisms')
-  console.log('export const nodeNames: Record<number, { name: string, rank: string }> = {')
-  const sortedIds = Object.keys(nodeNames).map(Number).sort((a, b) => a - b)
+  console.log(
+    'export const nodeNames: Record<number, { name: string, rank: string }> = {',
+  )
+  const sortedIds = Object.keys(nodeNames)
+    .map(Number)
+    .sort((a, b) => a - b)
   for (const taxId of sortedIds) {
     const entry = nodeNames[taxId]
     const nameEscaped = entry.name.replace(/'/g, "\\'")
-    console.log(`  ${taxId}: { name: '${nameEscaped}', rank: '${entry.rank}' },`)
+    console.log(
+      `  ${taxId}: { name: '${nameEscaped}', rank: '${entry.rank}' },`,
+    )
   }
   console.log('}')
 
   console.log('\n// === END PASTE ===')
 
-  const poolStats = await import('fs').then(fs => fs.statSync(join(OUT_DIR, 'species-pool.json')))
-  const parentsStats = await import('fs').then(fs => fs.statSync(join(OUT_DIR, 'parents.json')))
+  const poolStats = await import('fs').then(fs =>
+    fs.statSync(join(OUT_DIR, 'species-pool.json')),
+  )
+  const parentsStats = await import('fs').then(fs =>
+    fs.statSync(join(OUT_DIR, 'parents.json')),
+  )
   console.log(`\nOutput sizes:`)
-  console.log(`  species-pool.json: ${(poolStats.size / 1024 / 1024).toFixed(1)} MB`)
-  console.log(`  parents.json: ${(parentsStats.size / 1024 / 1024).toFixed(1)} MB`)
+  console.log(
+    `  species-pool.json: ${(poolStats.size / 1024 / 1024).toFixed(1)} MB`,
+  )
+  console.log(
+    `  parents.json: ${(parentsStats.size / 1024 / 1024).toFixed(1)} MB`,
+  )
 }
 
 main().catch(err => {
