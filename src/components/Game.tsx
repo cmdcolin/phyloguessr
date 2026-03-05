@@ -288,7 +288,7 @@ const [dark, setDark] = useState(() => {
             </button>
             <button
               className={`mode-btn ${mode === 'custom' ? 'active' : ''}`}
-              onClick={() => { switchMode('custom'); setState('customizing') }}
+              onClick={() => switchMode('custom')}
             >
               Custom
             </button>
@@ -300,12 +300,9 @@ const [dark, setDark] = useState(() => {
                 ? 'Random species from a random clade'
                 : 'Configure your own species pool'}
           </p>
-          {mode !== 'custom' && (
-            <button className="start-btn" onClick={startRound}>Play</button>
-          )}
-          {mode === 'custom' && (
-            <button className="start-btn" onClick={() => setState('customizing')}>Configure</button>
-          )}
+          <button className="start-btn" onClick={mode === 'custom' ? () => setState('customizing') : startRound}>
+            Play
+          </button>
         </div>
       )}
 
