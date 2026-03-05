@@ -1,60 +1,74 @@
-import { organisms } from '../src/data/organisms.ts'
+import { organisms } from "../src/data/organisms.ts";
 
-async function hasWikiThumbnail(wikiTitle: string) {
+async function getWikiThumbnail(wikiTitle: string) {
   const res = await fetch(
     `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(wikiTitle)}`,
-    { method: 'HEAD' },
-  )
-  return res.ok
+  );
+  if (!res.ok) {
+    return null;
+  }
+  const data = await res.json();
+  return (data.thumbnail?.source as string) ?? null;
 }
 
-async function hasINaturalistPhoto(scientificName: string) {
+async function getINaturalistPhoto(scientificName: string) {
   const res = await fetch(
     `https://api.inaturalist.org/v1/taxa?q=${encodeURIComponent(scientificName)}&per_page=1`,
-  )
+  );
   if (!res.ok) {
-    return false
+    return null;
   }
-  const data = await res.json()
-  const taxon = data.results?.[0]
-  return !!taxon?.default_photo?.medium_url
+  const data = await res.json();
+  const taxon = data.results?.[0];
+  return (taxon?.default_photo?.medium_url as string) ?? null;
 }
 
-async function main() {
-  const missing: typeof organisms = []
+async function checkOrganism(org: (typeof organisms)[number]) {
+  const wikiImg = await getWikiThumbnail(org.wikiTitle);
+  if (wikiImg) {
+    return { org, source: "wiki" as const };
+  }
+  const inatImg = await getINaturalistPhoto(org.scientificName);
+  if (inatImg) {
+    return { org, source: "inat" as const };
+  }
+  return { org, source: "none" as const };
+}
 
-  for (const org of organisms) {
-    const wikiOk = await hasWikiThumbnail(org.wikiTitle)
-    if (wikiOk) {
-      console.log(`✓ ${org.commonName} (wiki)`)
-      continue
-    }
+const BATCH_SIZE = 5;
+const results: Awaited<ReturnType<typeof checkOrganism>>[] = [];
 
-    const inatOk = await hasINaturalistPhoto(org.scientificName)
-    if (inatOk) {
-      console.log(`~ ${org.commonName} (iNaturalist)`)
-      continue
-    }
+console.log(`Checking ${organisms.length} organisms for images...\n`);
 
+for (let i = 0; i < organisms.length; i += BATCH_SIZE) {
+  const batch = organisms.slice(i, i + BATCH_SIZE);
+  const batchResults = await Promise.all(batch.map(checkOrganism));
+  for (const r of batchResults) {
+    results.push(r);
+    const icon = r.source === "wiki" ? "✓" : r.source === "inat" ? "~" : "✗";
+    const label = r.source === "none" ? "NO IMAGE" : r.source;
+    console.log(`${icon} ${r.org.commonName} (${label})`);
+  }
+  if (i + BATCH_SIZE < organisms.length) {
+    await new Promise((r) => setTimeout(r, 200));
+  }
+}
+
+const wikiCount = results.filter((r) => r.source === "wiki").length;
+const inatCount = results.filter((r) => r.source === "inat").length;
+const missing = results.filter((r) => r.source === "none");
+
+console.log(`\n--- Summary ---`);
+console.log(`Wikipedia: ${wikiCount}`);
+console.log(`iNaturalist fallback: ${inatCount}`);
+console.log(`No image: ${missing.length}`);
+
+if (missing.length > 0) {
+  console.log(`\nMissing images:`);
+  for (const r of missing) {
     console.log(
-      `✗ ${org.commonName} (wiki: ${org.wikiTitle}, sci: ${org.scientificName}) — NO IMAGE`,
-    )
-    missing.push(org)
-
-    await new Promise(r => setTimeout(r, 100))
+      `  - ${r.org.commonName} (${r.org.scientificName}) [wiki: ${r.org.wikiTitle}]`,
+    );
   }
-
-  console.log('\n--- Summary ---')
-  if (missing.length === 0) {
-    console.log('All organisms have images!')
-  } else {
-    console.log(`${missing.length} organisms missing images:`)
-    for (const org of missing) {
-      console.log(
-        `  - ${org.commonName} (${org.scientificName}) [wiki: ${org.wikiTitle}] [group: ${org.group}]`,
-      )
-    }
-  }
+  process.exit(1);
 }
-
-main()

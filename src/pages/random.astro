@@ -1,0 +1,9 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Game from '../components/Game.tsx'
+import '../index.css'
+---
+
+<Layout title="Random Mode - PhyloGuessr">
+  <Game mode="random" client:only="preact" />
+</Layout>

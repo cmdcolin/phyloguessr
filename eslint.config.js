@@ -1,21 +1,19 @@
-import js from '@eslint/js'
-import { defineConfig, globalIgnores } from 'eslint/config'
-import importPlugin from 'eslint-plugin-import'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
-import globals from 'globals'
-import tseslint from 'typescript-eslint'
+import js from "@eslint/js";
+import { defineConfig, globalIgnores } from "eslint/config";
+import importPlugin from "eslint-plugin-import";
+import reactHooks from "eslint-plugin-react-hooks";
+import globals from "globals";
+import tseslint from "typescript-eslint";
 
 export default defineConfig([
-  globalIgnores(['dist', 'scripts']),
+  globalIgnores(["dist", "scripts", ".astro"]),
   importPlugin.flatConfigs.recommended,
   {
-    files: ['**/*.{ts,tsx}'],
+    files: ["**/*.{ts,tsx}"],
     extends: [
       js.configs.recommended,
       tseslint.configs.recommended,
       reactHooks.configs.flat.recommended,
-      reactRefresh.configs.vite,
     ],
     languageOptions: {
       ecmaVersion: 2020,
@@ -24,24 +22,24 @@ export default defineConfig([
   },
   {
     rules: {
-      'import/extensions': ['error', 'ignorePackages'],
-      'import/no-unresolved': 'off',
-      'import/order': [
-        'error',
+      "import/extensions": ["error", "ignorePackages"],
+      "import/no-unresolved": "off",
+      "import/order": [
+        "error",
         {
           named: true,
-          'newlines-between': 'always',
+          "newlines-between": "always",
           alphabetize: {
-            order: 'asc',
+            order: "asc",
           },
           groups: [
-            'builtin',
-            ['external', 'internal'],
-            ['parent', 'sibling', 'index', 'object'],
-            'type',
+            "builtin",
+            ["external", "internal"],
+            ["parent", "sibling", "index", "object"],
+            "type",
           ],
         },
       ],
     },
   },
-])
+]);
