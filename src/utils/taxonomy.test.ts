@@ -215,7 +215,13 @@ describe("buildTreeFromLineages", () => {
     const tree = buildTreeFromLineages(organisms, {}, undefined, extData);
 
     // The unranked "Subgroup" node should be collapsed
-    function findNode(node: { label: string; children: { label: string; children: unknown[] }[] }, label: string): boolean {
+    function findNode(
+      node: {
+        label: string;
+        children: { label: string; children: unknown[] }[];
+      },
+      label: string,
+    ): boolean {
       if (node.label === label) {
         return true;
       }
@@ -255,7 +261,10 @@ describe("compact format round-trip", () => {
     const parents: Record<string, number> = {};
     const names: Record<string, string> = {};
     const ranks: Record<string, string> = {};
-    for (const [id, [parent, name, rankIdx]] of Object.entries(compact.D) as [string, [number, string, number]][]) {
+    for (const [id, [parent, name, rankIdx]] of Object.entries(compact.D) as [
+      string,
+      [number, string, number],
+    ][]) {
       parents[id] = parent;
       if (name) {
         names[id] = name;
@@ -281,7 +290,10 @@ describe("all curated organisms have valid taxonomy data", () => {
       const parents: Record<string, number> = {};
       const names: Record<string, string> = {};
       const ranks: Record<string, string> = {};
-      for (const [id, [parent, name, rankIdx]] of Object.entries(raw.D) as [string, [number, string, number]][]) {
+      for (const [id, [parent, name, rankIdx]] of Object.entries(raw.D) as [
+        string,
+        [number, string, number],
+      ][]) {
         parents[id] = parent;
         if (name) {
           names[id] = name;

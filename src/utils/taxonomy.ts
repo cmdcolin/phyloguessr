@@ -88,8 +88,7 @@ export function findClosestPairFromData(
     { lca: lcaBC, s1: b, s2: c, out: a, otherLcas: [lcaAB, lcaAC] },
   ];
 
-  const isPolytomy =
-    lcaAB.taxId === lcaAC.taxId && lcaAC.taxId === lcaBC.taxId;
+  const isPolytomy = lcaAB.taxId === lcaAC.taxId && lcaAC.taxId === lcaBC.taxId;
 
   let best = pairs[0];
   for (let i = 1; i < pairs.length; i++) {
@@ -141,12 +140,14 @@ export function loadTaxonomyData() {
   if (!taxonomyDataPromise) {
     taxonomyDataPromise = fetch(
       `${import.meta.env.BASE_URL}taxonomy/parents.json`,
-    ).then((r) => {
-      if (!r.ok) {
-        throw new Error(`Failed to load taxonomy data: ${r.status}`);
-      }
-      return r.json() as Promise<CompactTaxonomyData>;
-    }).then(unpackTaxonomyData);
+    )
+      .then((r) => {
+        if (!r.ok) {
+          throw new Error(`Failed to load taxonomy data: ${r.status}`);
+        }
+        return r.json() as Promise<CompactTaxonomyData>;
+      })
+      .then(unpackTaxonomyData);
   }
   return taxonomyDataPromise;
 }
@@ -307,15 +308,14 @@ export function pickThreeFromClade(
 
 const targetRankList = ["genus", "family", "order", "class", "phylum"] as const;
 
-let cladeIndexCache: {
-  pool: SpeciesPoolEntry[];
-  byRank: Map<string, { taxId: number; name: string; rank: string }[]>;
-} | undefined;
+let cladeIndexCache:
+  | {
+      pool: SpeciesPoolEntry[];
+      byRank: Map<string, { taxId: number; name: string; rank: string }[]>;
+    }
+  | undefined;
 
-function buildCladeIndex(
-  pool: SpeciesPoolEntry[],
-  data: TaxonomyData,
-) {
+function buildCladeIndex(pool: SpeciesPoolEntry[], data: TaxonomyData) {
   if (cladeIndexCache && cladeIndexCache.pool === pool) {
     return cladeIndexCache.byRank;
   }
@@ -333,7 +333,10 @@ function buildCladeIndex(
     }
   }
 
-  const byRank = new Map<string, { taxId: number; name: string; rank: string }[]>();
+  const byRank = new Map<
+    string,
+    { taxId: number; name: string; rank: string }[]
+  >();
   for (const r of targetRankList) {
     byRank.set(r, []);
   }
@@ -366,7 +369,8 @@ export function pickThreeHardModeDistance(
   );
 
   for (let attempt = 0; attempt < 20; attempt++) {
-    const rank = nonEmptyRanks[Math.floor(Math.random() * nonEmptyRanks.length)];
+    const rank =
+      nonEmptyRanks[Math.floor(Math.random() * nonEmptyRanks.length)];
     const bucket = byRank.get(rank)!;
     const clade = bucket[Math.floor(Math.random() * bucket.length)];
     const result = pickFromAncestor(clade.taxId, pool, data);

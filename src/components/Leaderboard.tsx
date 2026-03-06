@@ -1,60 +1,60 @@
-import { useEffect, useState } from "react"
-import { getTopStreaks, getUid, isNameTaken } from "../firebase.ts"
-import type { LeaderboardEntry } from "../firebase.ts"
+import { useEffect, useState } from "react";
+import { getTopStreaks, getUid, isNameTaken } from "../firebase.ts";
+import type { LeaderboardEntry } from "../firebase.ts";
 
 export default function Leaderboard() {
-  const [mounted, setMounted] = useState(false)
-  const [entries, setEntries] = useState<LeaderboardEntry[]>([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState("")
-  const [uid, setUid] = useState<string | null>(null)
-  const [name, setName] = useState("")
-  const [editingName, setEditingName] = useState(true)
+  const [mounted, setMounted] = useState(false);
+  const [entries, setEntries] = useState<LeaderboardEntry[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [uid, setUid] = useState<string | null>(null);
+  const [name, setName] = useState("");
+  const [editingName, setEditingName] = useState(true);
 
-  const [nameError, setNameError] = useState("")
-  const [checking, setChecking] = useState(false)
+  const [nameError, setNameError] = useState("");
+  const [checking, setChecking] = useState(false);
 
   useEffect(() => {
-    const saved = localStorage.getItem("phyloLeaderboardName") ?? ""
-    setName(saved)
-    setEditingName(!saved)
-    setMounted(true)
+    const saved = localStorage.getItem("phyloLeaderboardName") ?? "";
+    setName(saved);
+    setEditingName(!saved);
+    setMounted(true);
     getTopStreaks(20)
       .then((data) => {
-        setEntries(data)
-        setLoading(false)
+        setEntries(data);
+        setLoading(false);
       })
       .catch((err) => {
-        setError("Failed to load leaderboard")
-        setLoading(false)
-        console.error(err)
-      })
-    getUid().then(setUid)
-  }, [])
+        setError("Failed to load leaderboard");
+        setLoading(false);
+        console.error(err);
+      });
+    getUid().then(setUid);
+  }, []);
 
   const handleSetName = async () => {
-    const trimmed = name.trim()
+    const trimmed = name.trim();
     if (!trimmed || trimmed.length > 20) {
-      return
+      return;
     }
-    setNameError("")
-    setChecking(true)
+    setNameError("");
+    setChecking(true);
     try {
-      const taken = await isNameTaken(trimmed)
+      const taken = await isNameTaken(trimmed);
       if (taken) {
-        setNameError("That name is already taken")
-        setChecking(false)
+        setNameError("That name is already taken");
+        setChecking(false);
       } else {
-        localStorage.setItem("phyloLeaderboardName", trimmed)
-        window.dispatchEvent(new Event("nickname-changed"))
-        setEditingName(false)
-        setChecking(false)
+        localStorage.setItem("phyloLeaderboardName", trimmed);
+        window.dispatchEvent(new Event("nickname-changed"));
+        setEditingName(false);
+        setChecking(false);
       }
     } catch {
-      setNameError("Could not check name availability")
-      setChecking(false)
+      setNameError("Could not check name availability");
+      setChecking(false);
     }
-  }
+  };
 
   return (
     <div className="leaderboard-page">
@@ -74,7 +74,7 @@ export default function Leaderboard() {
                   onChange={(e) => setName(e.target.value)}
                   onKeyDown={(e) => {
                     if (e.key === "Enter") {
-                      handleSetName()
+                      handleSetName();
                     }
                   }}
                 />
@@ -85,9 +85,7 @@ export default function Leaderboard() {
                 >
                   {checking ? "Checking..." : "Save"}
                 </button>
-                {nameError && (
-                  <p className="leaderboard-error">{nameError}</p>
-                )}
+                {nameError && <p className="leaderboard-error">{nameError}</p>}
               </div>
             ) : (
               <div className="leaderboard-name-display">
@@ -144,5 +142,5 @@ export default function Leaderboard() {
         </>
       )}
     </div>
-  )
+  );
 }

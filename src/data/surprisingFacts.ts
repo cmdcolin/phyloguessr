@@ -1300,7 +1300,11 @@ export const surprisingScenarios: SurprisingScenario[] = [
     sourceLabel: "Archelosauria - Wikipedia",
   },
   {
-    organisms: [org("Emperor penguin"), org("Snapping turtle"), org("Corn snake")],
+    organisms: [
+      org("Emperor penguin"),
+      org("Snapping turtle"),
+      org("Corn snake"),
+    ],
     funFact:
       'A penguin is more closely related to a snapping turtle than a snake is — because birds are reptiles. "Reptilia" is not a valid group unless you include birds. The reptile family tree splits into two main branches: lizards and snakes on one side, turtles, dinosaurs, birds, and crocs on the other. The snake is the odd one out.',
     sourceUrl: "https://en.wikipedia.org/wiki/Reptile#Phylogenetics",
@@ -1364,7 +1368,11 @@ export const surprisingScenarios: SurprisingScenario[] = [
     sourceLabel: "Catarrhini - Wikipedia",
   },
   {
-    organisms: [org("Human"), org("Australian lungfish"), org("Atlantic salmon")],
+    organisms: [
+      org("Human"),
+      org("Australian lungfish"),
+      org("Atlantic salmon"),
+    ],
     funFact:
       'You are more closely related to a lungfish than a salmon is. Both are called "fish," but "fish" is not a real evolutionary group. Lungfish have fleshy, limb-like fins and are on the same branch as all land animals — the lineage that crawled onto shore. Salmon are ray-finned fish, a completely separate branch. You are literally inside the fish family tree.',
     sourceUrl: "https://en.wikipedia.org/wiki/Sarcopterygii",

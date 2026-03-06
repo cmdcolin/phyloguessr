@@ -1,20 +1,20 @@
-import { useEffect, useState } from "react"
-import { getOnlineCount } from "../firebase.ts"
+import { useEffect, useState } from "react";
+import { getOnlineCount } from "../firebase.ts";
 
 export default function OnlinePlayers() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     const poll = () => {
-      getOnlineCount().then(setCount).catch(console.error)
-    }
-    poll()
-    const id = setInterval(poll, 30_000)
-    return () => clearInterval(id)
-  }, [])
+      getOnlineCount().then(setCount).catch(console.error);
+    };
+    poll();
+    const id = setInterval(poll, 30_000);
+    return () => clearInterval(id);
+  }, []);
 
   if (count === 0) {
-    return null
+    return null;
   }
 
   return (
@@ -22,5 +22,5 @@ export default function OnlinePlayers() {
       <span className="online-dot" />
       {count} online
     </span>
-  )
+  );
 }

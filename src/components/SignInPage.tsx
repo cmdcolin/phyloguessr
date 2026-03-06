@@ -1,104 +1,104 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 import {
   getCurrentUser,
   isNameTaken,
   signInWithGoogle,
   signOut,
-} from "../firebase.ts"
+} from "../firebase.ts";
 
 export default function SignInPage() {
-  const [mounted, setMounted] = useState(false)
-  const [signedIn, setSignedIn] = useState(false)
-  const [googleName, setGoogleName] = useState<string | null>(null)
-  const [signingIn, setSigningIn] = useState(false)
-  const [error, setError] = useState("")
-  const [nickname, setNickname] = useState("")
-  const [nicknameSaved, setNicknameSaved] = useState(false)
-  const [nameError, setNameError] = useState("")
-  const [checking, setChecking] = useState(false)
+  const [mounted, setMounted] = useState(false);
+  const [signedIn, setSignedIn] = useState(false);
+  const [googleName, setGoogleName] = useState<string | null>(null);
+  const [signingIn, setSigningIn] = useState(false);
+  const [error, setError] = useState("");
+  const [nickname, setNickname] = useState("");
+  const [nicknameSaved, setNicknameSaved] = useState(false);
+  const [nameError, setNameError] = useState("");
+  const [checking, setChecking] = useState(false);
 
   useEffect(() => {
-    const saved = localStorage.getItem("phyloLeaderboardName") ?? ""
-    setNickname(saved)
-    setNicknameSaved(!!saved)
-    setMounted(true)
+    const saved = localStorage.getItem("phyloLeaderboardName") ?? "";
+    setNickname(saved);
+    setNicknameSaved(!!saved);
+    setMounted(true);
     getCurrentUser().then((user) => {
       if (user) {
-        setSignedIn(true)
+        setSignedIn(true);
         if (user.displayName) {
-          setGoogleName(user.displayName)
+          setGoogleName(user.displayName);
         }
       }
-    })
-  }, [])
+    });
+  }, []);
 
   const handleSaveNickname = async () => {
-    const trimmed = nickname.trim()
+    const trimmed = nickname.trim();
     if (!trimmed || trimmed.length > 20) {
-      return
+      return;
     }
-    setNameError("")
-    setChecking(true)
+    setNameError("");
+    setChecking(true);
     try {
-      const taken = await isNameTaken(trimmed)
+      const taken = await isNameTaken(trimmed);
       if (taken) {
-        setNameError("That name is already taken")
+        setNameError("That name is already taken");
       } else {
-        localStorage.setItem("phyloLeaderboardName", trimmed)
-        window.dispatchEvent(new Event("nickname-changed"))
-        setNicknameSaved(true)
+        localStorage.setItem("phyloLeaderboardName", trimmed);
+        window.dispatchEvent(new Event("nickname-changed"));
+        setNicknameSaved(true);
       }
     } catch {
-      setNameError("Could not check name availability")
+      setNameError("Could not check name availability");
     }
-    setChecking(false)
-  }
+    setChecking(false);
+  };
 
   const handleSignIn = async () => {
-    const trimmed = nickname.trim()
+    const trimmed = nickname.trim();
     if (!trimmed || trimmed.length > 20) {
-      setNameError("Please choose a nickname first")
-      return
+      setNameError("Please choose a nickname first");
+      return;
     }
-    setNameError("")
-    setSigningIn(true)
-    setError("")
+    setNameError("");
+    setSigningIn(true);
+    setError("");
     try {
-      const taken = await isNameTaken(trimmed)
+      const taken = await isNameTaken(trimmed);
       if (taken) {
-        setNameError("That name is already taken")
-        setSigningIn(false)
-        return
+        setNameError("That name is already taken");
+        setSigningIn(false);
+        return;
       }
     } catch {
-      setNameError("Could not check name availability")
-      setSigningIn(false)
-      return
+      setNameError("Could not check name availability");
+      setSigningIn(false);
+      return;
     }
     try {
-      const user = await signInWithGoogle()
-      localStorage.setItem("phyloLeaderboardName", trimmed)
-      window.dispatchEvent(new Event("nickname-changed"))
-      setNicknameSaved(true)
-      setSignedIn(true)
+      const user = await signInWithGoogle();
+      localStorage.setItem("phyloLeaderboardName", trimmed);
+      window.dispatchEvent(new Event("nickname-changed"));
+      setNicknameSaved(true);
+      setSignedIn(true);
       if (user.displayName) {
-        setGoogleName(user.displayName)
+        setGoogleName(user.displayName);
       }
     } catch (err) {
-      console.error(err)
-      setError("Sign-in failed. Please try again.")
+      console.error(err);
+      setError("Sign-in failed. Please try again.");
     }
-    setSigningIn(false)
-  }
+    setSigningIn(false);
+  };
 
   const handleSignOut = async () => {
-    await signOut()
-    setSignedIn(false)
-    setGoogleName(null)
-  }
+    await signOut();
+    setSignedIn(false);
+    setGoogleName(null);
+  };
 
   if (!mounted) {
-    return <div className="loading">Loading...</div>
+    return <div className="loading">Loading...</div>;
   }
 
   if (signedIn) {
@@ -130,12 +130,12 @@ export default function SignInPage() {
               maxLength={20}
               value={nickname}
               onChange={(e) => {
-                setNickname(e.target.value)
-                setNameError("")
+                setNickname(e.target.value);
+                setNameError("");
               }}
               onKeyDown={(e) => {
                 if (e.key === "Enter" && nickname.trim()) {
-                  handleSaveNickname()
+                  handleSaveNickname();
                 }
               }}
             />
@@ -158,7 +158,7 @@ export default function SignInPage() {
           </button>
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -176,12 +176,12 @@ export default function SignInPage() {
           maxLength={20}
           value={nickname}
           onChange={(e) => {
-            setNickname(e.target.value)
-            setNameError("")
+            setNickname(e.target.value);
+            setNameError("");
           }}
           onKeyDown={(e) => {
             if (e.key === "Enter" && nickname.trim()) {
-              handleSignIn()
+              handleSignIn();
             }
           }}
         />
@@ -201,5 +201,5 @@ export default function SignInPage() {
         </a>
       </div>
     </div>
-  )
+  );
 }

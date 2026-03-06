@@ -128,7 +128,12 @@ async function parseNcbiNames() {
   return { scientificNames, commonNames };
 }
 
-function buildSpeciesPool(ncbiParents, ncbiRanks, scientificNames, commonNames) {
+function buildSpeciesPool(
+  ncbiParents,
+  ncbiRanks,
+  scientificNames,
+  commonNames,
+) {
   console.log("Building species pool...");
   const pool = [];
 
@@ -346,7 +351,13 @@ function buildOtlAncestorTree(
   ott,
   ncbiScientificNames,
 ) {
-  const { ncbiToOtt, ottToNcbi, ottNames, ottRanks, ottParents: ottTaxParents } = ott;
+  const {
+    ncbiToOtt,
+    ottToNcbi,
+    ottNames,
+    ottRanks,
+    ottParents: ottTaxParents,
+  } = ott;
   console.log("Building pruned ancestor tree from OTL...");
 
   // Map from OTL label (e.g. "ott770315") to a stable numeric ID.
@@ -442,8 +453,7 @@ function buildOtlAncestorTree(
     if (m) {
       const ottId = parseInt(m[1], 10);
       const ncbiId = ottToNcbi.get(ottId);
-      const name =
-        ncbiScientificNames.get(ncbiId) || ottNames.get(ottId);
+      const name = ncbiScientificNames.get(ncbiId) || ottNames.get(ottId);
       if (name) {
         prunedNames[id] = name;
       }
@@ -470,7 +480,13 @@ function buildOtlAncestorTree(
 
 // --- NCBI-only fallback ancestor tree (for species not in OTL) ---
 
-function buildNcbiAncestorTree(pool, curatedIds, ncbiParents, ncbiRanks, ncbiNames) {
+function buildNcbiAncestorTree(
+  pool,
+  curatedIds,
+  ncbiParents,
+  ncbiRanks,
+  ncbiNames,
+) {
   console.log("Building NCBI fallback ancestor tree...");
   const neededNodes = new Set();
 
@@ -588,7 +604,14 @@ function mergeAncestorTrees(otlTree, ncbiTree) {
 // --- Compress single-child intermediate nodes ---
 
 const importantRanks = new Set([
-  "species", "genus", "family", "order", "class", "phylum", "kingdom", "domain",
+  "species",
+  "genus",
+  "family",
+  "order",
+  "class",
+  "phylum",
+  "kingdom",
+  "domain",
 ]);
 
 function compressChains(tree) {
@@ -628,7 +651,9 @@ function compressChains(tree) {
     }
   }
 
-  console.log(`  Removed ${removed} intermediate nodes (${Object.keys(parents).length} remaining)`);
+  console.log(
+    `  Removed ${removed} intermediate nodes (${Object.keys(parents).length} remaining)`,
+  );
   return tree;
 }
 
@@ -641,11 +666,7 @@ function toCompactFormat(tree) {
 
   const data = {};
   for (const id of Object.keys(parents)) {
-    data[id] = [
-      parents[id],
-      names[id] || "",
-      rankMap[ranks[id]] ?? -1,
-    ];
+    data[id] = [parents[id], names[id] || "", rankMap[ranks[id]] ?? -1];
   }
   return { R: rankList, D: data };
 }
@@ -662,7 +683,12 @@ async function main() {
   const { scientificNames, commonNames } = await parseNcbiNames();
 
   // Build species pool from NCBI
-  const pool = buildSpeciesPool(ncbiParents, ncbiRanks, scientificNames, commonNames);
+  const pool = buildSpeciesPool(
+    ncbiParents,
+    ncbiRanks,
+    scientificNames,
+    commonNames,
+  );
 
   // Parse OTL data
   const ott = await parseOttTaxonomy(ottFile);

@@ -1,29 +1,31 @@
-import { useEffect, useState } from "react"
-import { getCurrentStreak, loadHistory } from "../utils/history.ts"
-import type { HistoryEntry } from "../utils/history.ts"
+import { useEffect, useState } from "react";
+import { getCurrentStreak, loadHistory } from "../utils/history.ts";
+import type { HistoryEntry } from "../utils/history.ts";
 
 export default function History() {
-  const [history, setHistory] = useState<HistoryEntry[]>([])
+  const [history, setHistory] = useState<HistoryEntry[]>([]);
 
   useEffect(() => {
-    setHistory(loadHistory())
-  }, [])
+    setHistory(loadHistory());
+  }, []);
 
-  const wins = history.filter((h) => h.correct).length
-  const losses = history.length - wins
-  const streak = getCurrentStreak(history)
+  const wins = history.filter((h) => h.correct).length;
+  const losses = history.length - wins;
+  const streak = getCurrentStreak(history);
 
   return (
     <div className="history-page">
       {history.length > 0 && (
         <div className="history-stats">
-          <span>{wins}W / {losses}L</span>
+          <span>
+            {wins}W / {losses}L
+          </span>
           {streak > 1 && <span className="streak">{streak} streak</span>}
           <button
             className="reset-btn"
             onClick={() => {
-              localStorage.removeItem("phyloHistory")
-              setHistory([])
+              localStorage.removeItem("phyloHistory");
+              setHistory([]);
             }}
           >
             Reset
@@ -55,5 +57,5 @@ export default function History() {
         </ul>
       )}
     </div>
-  )
+  );
 }

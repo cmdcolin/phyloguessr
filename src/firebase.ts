@@ -1,11 +1,11 @@
-import { initializeApp } from "firebase/app"
+import { initializeApp } from "firebase/app";
 import {
   getAuth,
   signInWithPopup,
   onAuthStateChanged,
   GoogleAuthProvider,
-} from "firebase/auth"
-import type { User } from "firebase/auth"
+} from "firebase/auth";
+import type { User } from "firebase/auth";
 import {
   getFirestore,
   getCountFromServer,
@@ -19,7 +19,7 @@ import {
   limit,
   getDocs,
   runTransaction,
-} from "firebase/firestore"
+} from "firebase/firestore";
 
 const app = initializeApp({
   apiKey: "AIzaSyBmY2MC3gACK-Q6DtMmn1jCY7OVI-RF-aU",
@@ -29,90 +29,94 @@ const app = initializeApp({
   messagingSenderId: "482031111716",
   appId: "1:482031111716:web:1de25af2d6f4f3e7b752b1",
   measurementId: "G-H60S7BXHPJ",
-})
+});
 
-const auth = getAuth(app)
-const db = getFirestore(app)
-const scoresRef = collection(db, "scores")
-const googleProvider = new GoogleAuthProvider()
+const auth = getAuth(app);
+const db = getFirestore(app);
+const scoresRef = collection(db, "scores");
+const googleProvider = new GoogleAuthProvider();
 
-let currentUser: User | null = null
-let resolveAuthReady: () => void
+let currentUser: User | null = null;
+let resolveAuthReady: () => void;
 let authReady = new Promise<void>((resolve) => {
-  resolveAuthReady = resolve
-})
+  resolveAuthReady = resolve;
+});
 
 onAuthStateChanged(auth, (user) => {
-  currentUser = user
-  resolveAuthReady()
-})
+  currentUser = user;
+  resolveAuthReady();
+});
 
 export async function getUid() {
-  await authReady
-  return currentUser?.uid ?? null
+  await authReady;
+  return currentUser?.uid ?? null;
 }
 
 export async function getCurrentUser() {
-  await authReady
-  return currentUser
+  await authReady;
+  return currentUser;
 }
 
 export async function signInWithGoogle() {
-  const result = await signInWithPopup(auth, googleProvider)
-  return result.user
+  const result = await signInWithPopup(auth, googleProvider);
+  return result.user;
 }
 
 export async function signOut() {
-  stopPresence()
+  stopPresence();
   if (currentUser) {
-    await deleteDoc(doc(presenceRef, currentUser.uid)).catch(() => {})
+    await deleteDoc(doc(presenceRef, currentUser.uid)).catch(() => {});
   }
-  await auth.signOut()
+  await auth.signOut();
 }
 
 export interface LeaderboardEntry {
-  uid: string
-  name: string
-  bestStreak: number
-  currentStreak: number
-  totalWins: number
-  totalPlayed: number
-  timestamp: number
+  uid: string;
+  name: string;
+  bestStreak: number;
+  currentStreak: number;
+  totalWins: number;
+  totalPlayed: number;
+  timestamp: number;
 }
 
-function toLeaderboardEntry(uid: string, data: Record<string, unknown>): LeaderboardEntry {
+function toLeaderboardEntry(
+  uid: string,
+  data: Record<string, unknown>,
+): LeaderboardEntry {
   return {
     uid: typeof data.uid === "string" ? data.uid : uid,
     name: typeof data.name === "string" ? data.name : "Anonymous",
     bestStreak: typeof data.bestStreak === "number" ? data.bestStreak : 0,
-    currentStreak: typeof data.currentStreak === "number" ? data.currentStreak : 0,
+    currentStreak:
+      typeof data.currentStreak === "number" ? data.currentStreak : 0,
     totalWins: typeof data.totalWins === "number" ? data.totalWins : 0,
     totalPlayed: typeof data.totalPlayed === "number" ? data.totalPlayed : 0,
     timestamp: typeof data.timestamp === "number" ? data.timestamp : 0,
-  }
+  };
 }
 
 export async function isNameTaken(name: string) {
-  await authReady
-  const q = query(scoresRef, where("name", "==", name), limit(1))
-  const snap = await getDocs(q)
-  return snap.docs.some((d) => d.id !== currentUser?.uid)
+  await authReady;
+  const q = query(scoresRef, where("name", "==", name), limit(1));
+  const snap = await getDocs(q);
+  return snap.docs.some((d) => d.id !== currentUser?.uid);
 }
 
 export async function recordRound(name: string, correct: boolean) {
-  await authReady
+  await authReady;
   if (!currentUser) {
-    return
+    return;
   }
-  const uid = currentUser.uid
-  const docRef = doc(scoresRef, uid)
+  const uid = currentUser.uid;
+  const docRef = doc(scoresRef, uid);
 
   await runTransaction(db, async (transaction) => {
-    const existing = await transaction.get(docRef)
+    const existing = await transaction.get(docRef);
 
     if (existing.exists()) {
-      const prev = toLeaderboardEntry(uid, existing.data())
-      const currentStreak = correct ? prev.currentStreak + 1 : 0
+      const prev = toLeaderboardEntry(uid, existing.data());
+      const currentStreak = correct ? prev.currentStreak + 1 : 0;
       transaction.set(docRef, {
         uid,
         name,
@@ -121,7 +125,7 @@ export async function recordRound(name: string, correct: boolean) {
         totalWins: prev.totalWins + (correct ? 1 : 0),
         totalPlayed: prev.totalPlayed + 1,
         timestamp: Date.now(),
-      } satisfies LeaderboardEntry)
+      } satisfies LeaderboardEntry);
     } else {
       transaction.set(docRef, {
         uid,
@@ -131,73 +135,71 @@ export async function recordRound(name: string, correct: boolean) {
         totalWins: correct ? 1 : 0,
         totalPlayed: 1,
         timestamp: Date.now(),
-      } satisfies LeaderboardEntry)
+      } satisfies LeaderboardEntry);
     }
-  })
+  });
 }
 
 export async function getTopStreaks(count = 20) {
-  const q = query(scoresRef, orderBy("bestStreak", "desc"), limit(count))
-  const snap = await getDocs(q)
-  const all = snap.docs.map((d) => toLeaderboardEntry(d.id, d.data()))
-  return all
-    .sort((a, b) => b.bestStreak - a.bestStreak)
-    .slice(0, count)
+  const q = query(scoresRef, orderBy("bestStreak", "desc"), limit(count));
+  const snap = await getDocs(q);
+  const all = snap.docs.map((d) => toLeaderboardEntry(d.id, d.data()));
+  return all.sort((a, b) => b.bestStreak - a.bestStreak).slice(0, count);
 }
 
-const presenceRef = collection(db, "presence")
-const PRESENCE_TIMEOUT_MS = 2 * 60 * 1000
+const presenceRef = collection(db, "presence");
+const PRESENCE_TIMEOUT_MS = 2 * 60 * 1000;
 
 export interface PresenceEntry {
-  uid: string
-  name: string
-  lastSeen: number
+  uid: string;
+  name: string;
+  lastSeen: number;
 }
 
 async function updatePresence() {
-  await authReady
+  await authReady;
   if (!currentUser) {
-    return
+    return;
   }
-  const name = localStorage.getItem("phyloLeaderboardName") ?? "Anonymous"
+  const name = localStorage.getItem("phyloLeaderboardName") ?? "Anonymous";
   await setDoc(doc(presenceRef, currentUser.uid), {
     uid: currentUser.uid,
     name,
     lastSeen: Date.now(),
-  } satisfies PresenceEntry)
+  } satisfies PresenceEntry);
 }
 
-let heartbeatId: ReturnType<typeof setInterval> | null = null
-let visibilityHandler: (() => void) | null = null
+let heartbeatId: ReturnType<typeof setInterval> | null = null;
+let visibilityHandler: (() => void) | null = null;
 
 export function startPresence() {
   if (heartbeatId !== null) {
-    return
+    return;
   }
-  updatePresence()
-  heartbeatId = setInterval(() => updatePresence(), 60_000)
+  updatePresence();
+  heartbeatId = setInterval(() => updatePresence(), 60_000);
   visibilityHandler = () => {
     if (document.visibilityState === "visible") {
-      updatePresence()
+      updatePresence();
     }
-  }
-  document.addEventListener("visibilitychange", visibilityHandler)
+  };
+  document.addEventListener("visibilitychange", visibilityHandler);
 }
 
 export function stopPresence() {
   if (heartbeatId !== null) {
-    clearInterval(heartbeatId)
-    heartbeatId = null
+    clearInterval(heartbeatId);
+    heartbeatId = null;
   }
   if (visibilityHandler) {
-    document.removeEventListener("visibilitychange", visibilityHandler)
-    visibilityHandler = null
+    document.removeEventListener("visibilitychange", visibilityHandler);
+    visibilityHandler = null;
   }
 }
 
 export async function getOnlineCount() {
-  const cutoff = Date.now() - PRESENCE_TIMEOUT_MS
-  const q = query(presenceRef, where("lastSeen", ">", cutoff))
-  const snap = await getCountFromServer(q)
-  return snap.data().count
+  const cutoff = Date.now() - PRESENCE_TIMEOUT_MS;
+  const q = query(presenceRef, where("lastSeen", ">", cutoff));
+  const snap = await getCountFromServer(q);
+  return snap.data().count;
 }

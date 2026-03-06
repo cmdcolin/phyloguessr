@@ -212,9 +212,24 @@ export default function PhyloTree({
       })}
 
       {/* Leaf dots */}
-      <circle cx={leafX} cy={y1} r={4} fill={organismColors?.[sister1.ncbiTaxId] ?? "var(--accent-tree)"} />
-      <circle cx={leafX} cy={y2} r={4} fill={organismColors?.[sister2.ncbiTaxId] ?? "var(--accent-tree)"} />
-      <circle cx={leafX} cy={y3} r={4} fill={organismColors?.[outgroup.ncbiTaxId] ?? "GrayText"} />
+      <circle
+        cx={leafX}
+        cy={y1}
+        r={4}
+        fill={organismColors?.[sister1.ncbiTaxId] ?? "var(--accent-tree)"}
+      />
+      <circle
+        cx={leafX}
+        cy={y2}
+        r={4}
+        fill={organismColors?.[sister2.ncbiTaxId] ?? "var(--accent-tree)"}
+      />
+      <circle
+        cx={leafX}
+        cy={y3}
+        r={4}
+        fill={organismColors?.[outgroup.ncbiTaxId] ?? "GrayText"}
+      />
 
       {/* User selection arrows */}
       {[
@@ -235,15 +250,15 @@ export default function PhyloTree({
               x={arrowBase - 3}
               y={arrowY + 3.5}
               fontSize={9}
-              fill={color}
+              fill={"white"}
               fontWeight="bold"
               textAnchor="end"
             >
-              you
+              your choice
             </text>
             <polygon
               points={`${arrowBase},${arrowY - 5} ${arrowBase},${arrowY + 5} ${arrowTip},${arrowY}`}
-              fill={color}
+              fill={"white"}
               opacity={0.85}
             />
           </g>
