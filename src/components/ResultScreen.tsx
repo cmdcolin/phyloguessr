@@ -1,6 +1,7 @@
 import Button from "./Button.tsx";
 import { ShareButton } from "./Game.tsx";
 import PhyloTree from "./PhyloTree.tsx";
+import SpeciesMap from "./SpeciesMap.tsx";
 import { capitalize } from "../utils/format.ts";
 import { getLineageFromParents } from "../utils/taxonomy.ts";
 
@@ -67,7 +68,10 @@ function filterToImportantRanks(steps: BreadcrumbStep[]) {
   return steps.filter((s) => importantRanks.has(s.rank));
 }
 
-function TaxLink({ name, taxId }: { name: string; taxId: number }) {
+export function TaxLink({ name, taxId }: { name: string; taxId: number }) {
+  if (taxId < 0) {
+    return <strong>{name}</strong>;
+  }
   return (
     <a
       className="breadcrumb-link"
@@ -123,14 +127,16 @@ function Explanation({
           {capitalize(outgroup.commonName)}.
         </p>
       )}
-      {overallMrca && sisterMrca && (
-        <p>
-          To include {capitalize(outgroup.commonName)}, you have to go back
-          further to{" "}
-          <TaxLink name={overallMrca.name} taxId={overallMrca.taxId} /> (
-          {formatRank(overallMrca.rank)}).
-        </p>
-      )}
+      {overallMrca &&
+        sisterMrca &&
+        overallMrca.name !== sisterMrca.name && (
+          <p>
+            To include {capitalize(outgroup.commonName)}, you have to go back
+            further to{" "}
+            <TaxLink name={overallMrca.name} taxId={overallMrca.taxId} /> (
+            {formatRank(overallMrca.rank)}).
+          </p>
+        )}
     </div>
   );
 }
@@ -177,14 +183,7 @@ function Breadcrumbs({
         {steps.map((step, i) => (
           <span key={step.taxId}>
             {i > 0 && <span className="breadcrumb-sep">{" \u203a "}</span>}
-            <a
-              className="breadcrumb-link"
-              href={`https://www.ncbi.nlm.nih.gov/datasets/taxonomy/${step.taxId}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {step.name}
-            </a>
+            <TaxLink name={step.name} taxId={step.taxId} />
             <span className="breadcrumb-rank"> ({formatRank(step.rank)})</span>
           </span>
         ))}
@@ -240,6 +239,7 @@ export default function ResultScreen({
         images={images}
         userSelectedTaxIds={userSelectedTaxIds}
       />
+      <SpeciesMap organisms={[sister1, sister2, outgroup]} />
       <div className="lineage-breadcrumbs">
         <Breadcrumbs organism={sister1} taxonomyData={taxonomyData} />
         <Breadcrumbs organism={sister2} taxonomyData={taxonomyData} />

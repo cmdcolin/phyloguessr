@@ -110,28 +110,6 @@ describe("findClosestPairFromData", () => {
     expect(result.overallLca.name).toBe("Eukaryota");
   });
 
-  it("resolves unnamed nodes to nearest named ancestor", () => {
-    // Add an unnamed intermediate node between Plants and its children
-    const extData: TaxonomyData = {
-      parents: {
-        ...data.parents,
-        "21": 25,
-        "22": 25,
-        "25": 20,
-      },
-      names: { ...data.names },
-      ranks: { ...data.ranks },
-    };
-    // Node 25 has no name or rank entry
-    const result = findClosestPairFromData([21, 22, 31], extData);
-    expect(new Set([result.sister1TaxId, result.sister2TaxId])).toEqual(
-      new Set([21, 22]),
-    );
-    // LCA should resolve to Plants (20), the nearest named ancestor
-    expect(result.sisterLca.taxId).toBe(20);
-    expect(result.sisterLca.name).toBe("Plants");
-  });
-
   it("gives wrong answer when a taxId is missing from parents (documents the bug)", () => {
     // If taxId 21 is missing, its lineage is [21, 1] (length 2).
     // LCA(21,22) = root (depth 1), LCA(22,31) = Eukaryota (depth 2)

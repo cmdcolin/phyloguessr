@@ -3,7 +3,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import Button from './Button.tsx'
 import Header from './Header.tsx'
 import OrganismCard from './OrganismCard.tsx'
-import ResultScreen from './ResultScreen.tsx'
+import ResultScreen, { TaxLink } from './ResultScreen.tsx'
 import { getOrganismImage } from '../api/wikipedia.ts'
 import {
   organisms as allOrganisms,
@@ -725,13 +725,7 @@ export default function Game({ mode }: { mode: GameMode }) {
           {randomClade && (
             <p className="clade-label">
               Group:{' '}
-              <a
-                href={`https://www.ncbi.nlm.nih.gov/datasets/taxonomy/${randomClade.taxId}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {randomClade.name}
-              </a>
+              <TaxLink name={randomClade.name} taxId={randomClade.taxId} />
               {randomClade.rank ? ` (${randomClade.rank})` : ''}
             </p>
           )}

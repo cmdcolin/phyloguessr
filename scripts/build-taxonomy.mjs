@@ -343,13 +343,10 @@ function buildOtlAncestorTree(
   pool,
   curatedIds,
   otlParents,
-  ncbiToOtt,
-  ottToNcbi,
-  ottNames,
-  ottRanks,
-  ottTaxParents,
+  ott,
   ncbiScientificNames,
 ) {
+  const { ncbiToOtt, ottToNcbi, ottNames, ottRanks, ottParents: ottTaxParents } = ott;
   console.log("Building pruned ancestor tree from OTL...");
 
   // Map from OTL label (e.g. "ott770315") to a stable numeric ID.
@@ -566,8 +563,7 @@ async function main() {
   const pool = buildSpeciesPool(ncbiParents, ncbiRanks, scientificNames, commonNames);
 
   // Parse OTL data
-  const { ncbiToOtt, ottToNcbi, ottNames, ottRanks, ottParents: ottTaxParents } =
-    await parseOttTaxonomy(ottFile);
+  const ott = await parseOttTaxonomy(ottFile);
   const otlParents = parseOtlTree(treeFile);
 
   // Build ancestor tree from OTL (primary, better phylogenetic resolution)
@@ -575,11 +571,7 @@ async function main() {
     pool,
     CURATED_TAX_IDS,
     otlParents,
-    ncbiToOtt,
-    ottToNcbi,
-    ottNames,
-    ottRanks,
-    ottTaxParents,
+    ott,
     scientificNames,
   );
 
