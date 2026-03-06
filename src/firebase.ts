@@ -137,7 +137,7 @@ export async function recordRound(name: string, correct: boolean) {
 }
 
 export async function getTopStreaks(count = 20) {
-  const q = query(scoresRef, orderBy("bestStreak", "desc"), limit(count * 2))
+  const q = query(scoresRef, orderBy("bestStreak", "desc"), limit(count))
   const snap = await getDocs(q)
   const all = snap.docs.map((d) => toLeaderboardEntry(d.id, d.data()))
   return all

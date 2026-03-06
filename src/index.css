@@ -557,7 +557,6 @@ body {
   border: none;
 }
 
-.result-screen .btn-primary,
 .selecting .btn-primary {
   margin-bottom: var(--space-lg);
 }
@@ -688,6 +687,12 @@ body {
   margin: 0 auto;
 }
 
+.selecting-prompt {
+  text-align: center;
+  font-size: 0.85rem;
+  padding: 0.5rem 0;
+}
+
 .selecting-actions,
 .result-actions {
   display: flex;
@@ -697,18 +702,29 @@ body {
 }
 
 .share-btn {
-  padding: 6px 14px;
-  font-size: 0.85rem;
+  appearance: none;
+  padding: var(--btn-padding);
+  font-size: var(--btn-font-size);
+  min-height: var(--btn-min-height);
   border: 1px solid ButtonBorder;
-  border-radius: 6px;
+  border-radius: 4px;
   background: Canvas;
   color: CanvasText;
   cursor: pointer;
   font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .share-btn:hover {
   border-color: GrayText;
+}
+
+.result-actions .btn,
+.result-actions .share-btn {
+  flex: 1;
+  max-width: 160px;
 }
 
 .result-screen {
@@ -1344,7 +1360,13 @@ body {
 
 .about-page h2 {
   font-size: 1.3rem;
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-xl);
+}
+
+.about-page h3 {
+  font-size: 1.05rem;
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-sm);
 }
 
 .about-page p {
@@ -1352,6 +1374,17 @@ body {
   line-height: 1.6;
   margin-bottom: var(--space-md);
   color: CanvasText;
+}
+
+.about-page ul {
+  padding-left: 1.5em;
+  margin-bottom: var(--space-md);
+}
+
+.about-page li {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: var(--space-xs);
 }
 
 .about-page a {
