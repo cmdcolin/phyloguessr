@@ -329,33 +329,6 @@ body {
   border-color: #4d0000;
 }
 
-.nickname-screen {
-  text-align: center;
-  padding: var(--space-3xl) var(--space-lg);
-}
-
-.nickname-screen h2 {
-  font-size: 1.3rem;
-  margin-bottom: var(--space-sm);
-}
-
-.nickname-screen p {
-  color: GrayText;
-  font-size: 0.9rem;
-  margin-bottom: var(--space-lg);
-}
-
-.nickname-form {
-  display: flex;
-  gap: var(--space-sm);
-  justify-content: center;
-  align-items: center;
-}
-
-.nickname-form .leaderboard-name-input {
-  max-width: 220px;
-}
-
 .custom-screen {
   text-align: center;
   padding: var(--space-2xl) var(--space-lg);

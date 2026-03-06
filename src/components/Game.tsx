@@ -10,7 +10,7 @@ import {
   pickThreeOrganisms,
 } from '../data/organisms.ts'
 import { surprisingScenarios } from '../data/surprisingFacts.ts'
-import { isNameTaken, recordRound, startPresence } from '../firebase.ts'
+import { recordRound, startPresence } from '../firebase.ts'
 import { saveHistory, loadHistory } from '../utils/history.ts'
 import type { HistoryEntry } from '../utils/history.ts'
 import {
@@ -28,12 +28,7 @@ import type { SurprisingScenario } from '../data/surprisingFacts.ts'
 import type { SpeciesPoolEntry, TaxonomyData } from '../utils/taxonomy.ts'
 import type { MrcaInfo } from '../utils/format.ts'
 
-type GameState =
-  | 'needs-nickname'
-  | 'customizing'
-  | 'loading'
-  | 'selecting'
-  | 'result'
+type GameState = 'customizing' | 'loading' | 'selecting' | 'result'
 type GameMode = 'easy' | 'random' | 'custom'
 
 interface RoundData {
@@ -160,13 +155,7 @@ export default function Game({ mode }: { mode: GameMode }) {
   const hasQueryParams =
     typeof window !== 'undefined' &&
     new URLSearchParams(window.location.search).has('id')
-  const hasNickname =
-    typeof window !== 'undefined' &&
-    !!localStorage.getItem('phyloLeaderboardName')
   const [state, setState] = useState<GameState>(() => {
-    if (!hasNickname) {
-      return 'needs-nickname'
-    }
     if (mode === 'custom' && !hasQueryParams) {
       return 'customizing'
     }
@@ -175,10 +164,6 @@ export default function Game({ mode }: { mode: GameMode }) {
   const [round, setRound] = useState<RoundData | null>(null)
   const [selected, setSelected] = useState<number[]>([])
   const [result, setResult] = useState<ResultData | null>(null)
-  const [nicknameInput, setNicknameInput] = useState('')
-  const [nicknameError, setNicknameError] = useState('')
-  const [checkingNickname, setCheckingNickname] = useState(false)
-
   const [taxonomyData, setTaxonomyData] = useState<TaxonomyData | null>(null)
   const [speciesPool, setSpeciesPool] = useState<SpeciesPoolEntry[] | null>(
     null,
@@ -442,9 +427,6 @@ export default function Game({ mode }: { mode: GameMode }) {
 
   useEffect(() => {
     startPresence()
-    if (!hasNickname) {
-      return
-    }
     const sharedIds = parseSharedQuestion()
     if (sharedIds) {
       loadSharedQuestion(sharedIds)
@@ -454,36 +436,6 @@ export default function Game({ mode }: { mode: GameMode }) {
       loadTaxonomyData().then(data => setTaxonomyData(data))
     }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
-
-  const handleSetNickname = async () => {
-    const trimmed = nicknameInput.trim()
-    if (!trimmed || trimmed.length > 20) {
-      return
-    }
-    setNicknameError('')
-    setCheckingNickname(true)
-    try {
-      const taken = await isNameTaken(trimmed)
-      if (taken) {
-        setNicknameError('That name is already taken')
-        setCheckingNickname(false)
-        return
-      }
-    } catch {
-      setNicknameError('Could not check name availability')
-      setCheckingNickname(false)
-      return
-    }
-    setCheckingNickname(false)
-    localStorage.setItem('phyloLeaderboardName', trimmed)
-    window.dispatchEvent(new Event('nickname-changed'))
-    if (mode === 'custom' && !hasQueryParams) {
-      setState('customizing')
-      loadTaxonomyData().then(data => setTaxonomyData(data))
-    } else {
-      startRound()
-    }
-  }
 
   const toggleSelect = (idx: number) => {
     setSelected(prev => {
@@ -572,40 +524,6 @@ export default function Game({ mode }: { mode: GameMode }) {
   return (
     <div className="game">
       <Header />
-
-      {state === 'needs-nickname' && (
-        <div className="nickname-screen">
-          <h2>Choose a nickname</h2>
-          <p>Pick a name for the leaderboard before you start playing.</p>
-          <div className="nickname-form">
-            <input
-              type="text"
-              className="leaderboard-name-input"
-              placeholder="Nickname (max 20 chars)"
-              maxLength={20}
-              value={nicknameInput}
-              onChange={e => {
-                setNicknameInput(e.target.value)
-                setNicknameError('')
-              }}
-              onKeyDown={e => {
-                if (e.key === 'Enter' && nicknameInput.trim()) {
-                  handleSetNickname()
-                }
-              }}
-            />
-            <Button
-              disabled={!nicknameInput.trim() || checkingNickname}
-              onClick={handleSetNickname}
-            >
-              {checkingNickname ? 'Checking...' : 'Start playing'}
-            </Button>
-            {nicknameError && (
-              <p className="leaderboard-error">{nicknameError}</p>
-            )}
-          </div>
-        </div>
-      )}
 
       {state === 'customizing' && (
         <div className="custom-screen">

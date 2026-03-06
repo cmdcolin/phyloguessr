@@ -55,10 +55,31 @@ export default function SignInPage() {
   }
 
   const handleSignIn = async () => {
+    const trimmed = nickname.trim()
+    if (!trimmed || trimmed.length > 20) {
+      setNameError("Please choose a nickname first")
+      return
+    }
+    setNameError("")
     setSigningIn(true)
     setError("")
     try {
+      const taken = await isNameTaken(trimmed)
+      if (taken) {
+        setNameError("That name is already taken")
+        setSigningIn(false)
+        return
+      }
+    } catch {
+      setNameError("Could not check name availability")
+      setSigningIn(false)
+      return
+    }
+    try {
       const user = await signInWithGoogle()
+      localStorage.setItem("phyloLeaderboardName", trimmed)
+      window.dispatchEvent(new Event("nickname-changed"))
+      setNicknameSaved(true)
       setSignedIn(true)
       if (user.displayName) {
         setGoogleName(user.displayName)
@@ -91,7 +112,7 @@ export default function SignInPage() {
           different devices and your leaderboard entry will stay connected.
         </p>
         <p>
-          Leaderboard nickname: <strong>{nickname || "not set"}</strong>
+          Leaderboard nickname: <strong>{nickname}</strong>
           {" \u2014 "}
           <button
             className="leaderboard-change-btn"
@@ -105,12 +126,15 @@ export default function SignInPage() {
             <input
               type="text"
               className="leaderboard-name-input"
-              placeholder="Choose a nickname (max 20 chars)"
+              placeholder="Nickname (max 20 chars)"
               maxLength={20}
               value={nickname}
-              onChange={(e) => setNickname(e.target.value)}
+              onChange={(e) => {
+                setNickname(e.target.value)
+                setNameError("")
+              }}
               onKeyDown={(e) => {
-                if (e.key === "Enter") {
+                if (e.key === "Enter" && nickname.trim()) {
                   handleSaveNickname()
                 }
               }}
@@ -139,16 +163,35 @@ export default function SignInPage() {
 
   return (
     <div className="signin-prompt">
-      <h3>Sign in with Google</h3>
+      <h3>Create an account</h3>
       <p>
-        Sign in to save your scores to the leaderboard. Your scores will
-        persist across devices and browsers.
+        Choose a nickname and sign in with Google to save your scores to the
+        leaderboard.
       </p>
+      <div className="signin-nickname-form">
+        <input
+          type="text"
+          className="leaderboard-name-input"
+          placeholder="Nickname (max 20 chars)"
+          maxLength={20}
+          value={nickname}
+          onChange={(e) => {
+            setNickname(e.target.value)
+            setNameError("")
+          }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && nickname.trim()) {
+              handleSignIn()
+            }
+          }}
+        />
+        {nameError && <p className="signin-error">{nameError}</p>}
+      </div>
       {error && <p className="signin-error">{error}</p>}
       <div className="signin-actions">
         <button
           className="btn btn-primary"
-          disabled={signingIn}
+          disabled={signingIn || !nickname.trim()}
           onClick={handleSignIn}
         >
           {signingIn ? "Signing in..." : "Sign in with Google"}

@@ -1226,6 +1226,13 @@ export const surprisingScenarios: SurprisingScenario[] = [
     sourceLabel: "Batrachia - Wikipedia",
   },
   {
+    organisms: [org("Human"), org("Olive baboon"), org("Capuchin monkey")],
+    funFact:
+      'You are more closely related to a baboon than a capuchin monkey is. Humans and baboons are both catarrhines — "Old World" primates — while capuchins are platyrrhines, "New World" monkeys that split off over 40 million years ago. The word "monkey" is not a valid evolutionary group unless you include apes and humans in it.',
+    sourceUrl: "https://en.wikipedia.org/wiki/Catarrhini",
+    sourceLabel: "Catarrhini - Wikipedia",
+  },
+  {
     organisms: [org("Three-toed sloth"), org("Rock hyrax"), org("Gray wolf")],
     funFact:
       "A sloth and a hyrax are more closely related to each other than either is to a wolf! Under the Atlantogenata hypothesis (supported by most large-scale genomic studies), Xenarthra (sloths, armadillos, anteaters) and Afrotheria (elephants, hyraxes, manatees) form a single supergroup. Wolves and all Boreoeutheria (including primates and rodents) are on the other side of the placental mammal tree.",
