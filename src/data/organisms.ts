@@ -1059,6 +1059,13 @@ export const organisms: Organism[] = [
     group: "invertebrate",
   },
   {
+    commonName: "Milky ribbon worm",
+    scientificName: "Cerebratulus lacteus",
+    ncbiTaxId: 6221,
+    wikiTitle: "Cerebratulus_lacteus",
+    group: "invertebrate",
+  },
+  {
     commonName: "Nautilus",
     scientificName: "Nautilus pompilius",
     ncbiTaxId: 34573,
@@ -1716,12 +1723,3 @@ export const organisms: Organism[] = [
     group: "invertebrate",
   },
 ];
-
-export function pickThreeOrganisms() {
-  const groups = [...new Set(organisms.map((o) => o.group))];
-  const shuffledGroups = groups.sort(() => Math.random() - 0.5).slice(0, 3);
-  return shuffledGroups.map((group) => {
-    const inGroup = organisms.filter((o) => o.group === group);
-    return inGroup[Math.floor(Math.random() * inGroup.length)];
-  });
-}

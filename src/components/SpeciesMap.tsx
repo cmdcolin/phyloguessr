@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "preact/hooks";
+import { useEffect, useRef, useState, useMemo } from "preact/hooks";
 import { getGbifTaxonKey } from "../api/gbif.ts";
 import { capitalize } from "../utils/format.ts";
 import type { Organism } from "../data/organisms.ts";
@@ -21,10 +21,20 @@ const FULL_SIZE = TILE_SIZE * 2;
 const SAMPLE_STEP = 4;
 const DOT_RADIUS = 4;
 
-// Crop the Mercator square to cut polar regions (~72N to ~60S)
-const CROP_TOP = Math.round(FULL_SIZE * 0.12);
-const CROP_BOTTOM = Math.round(FULL_SIZE * 0.82);
-const CROP_HEIGHT = CROP_BOTTOM - CROP_TOP;
+// Crop region in the full Mercator square (~70N to ~58S)
+const CROP_TOP = Math.round(FULL_SIZE * 0.13);
+const CROP_BOTTOM = Math.round(FULL_SIZE * 0.8);
+const SRC_CROP_HEIGHT = CROP_BOTTOM - CROP_TOP;
+
+// Display dimensions: full width, squished height
+const DISPLAY_W = FULL_SIZE;
+const DISPLAY_H = 400;
+
+// Reusable offscreen canvas for reading tile pixels
+const scratchCanvas = document.createElement("canvas");
+scratchCanvas.width = TILE_SIZE;
+scratchCanvas.height = TILE_SIZE;
+const scratchCtx = scratchCanvas.getContext("2d")!;
 
 function baseTileUrl(x: number, y: number, sub: string) {
   return `https://${sub}.basemaps.cartocdn.com/light_nolabels/1/${x}/${y}@2x.png`;
@@ -45,16 +55,11 @@ function loadImage(url: string) {
 }
 
 function findOccurrencePoints(img: HTMLImageElement) {
-  const offscreen = document.createElement("canvas");
-  offscreen.width = TILE_SIZE;
-  offscreen.height = TILE_SIZE;
-  const offCtx = offscreen.getContext("2d")!;
-  offCtx.drawImage(img, 0, 0, TILE_SIZE, TILE_SIZE);
-  const imageData = offCtx.getImageData(0, 0, TILE_SIZE, TILE_SIZE);
-  const pixels = imageData.data;
+  scratchCtx.clearRect(0, 0, TILE_SIZE, TILE_SIZE);
+  scratchCtx.drawImage(img, 0, 0, TILE_SIZE, TILE_SIZE);
+  const pixels = scratchCtx.getImageData(0, 0, TILE_SIZE, TILE_SIZE).data;
 
   const points: { cx: number; cy: number }[] = [];
-
   for (let py = 0; py < TILE_SIZE; py += SAMPLE_STEP) {
     for (let px = 0; px < TILE_SIZE; px += SAMPLE_STEP) {
       if (pixels[(py * TILE_SIZE + px) * 4 + 3] > 0) {
@@ -62,8 +67,21 @@ function findOccurrencePoints(img: HTMLImageElement) {
       }
     }
   }
-
   return points;
+}
+
+function mapToDisplay(
+  tx: number,
+  ty: number,
+  cx: number,
+  cy: number,
+) {
+  const srcX = tx * TILE_SIZE + cx;
+  const srcY = ty * TILE_SIZE + cy;
+  return {
+    dx: (srcX / FULL_SIZE) * DISPLAY_W,
+    dy: ((srcY - CROP_TOP) / SRC_CROP_HEIGHT) * DISPLAY_H,
+  };
 }
 
 interface SpeciesLayer {
@@ -77,11 +95,16 @@ export default function SpeciesMap({
 }: {
   organisms: Organism[];
 }) {
-  const fullCanvasRef = useRef<HTMLCanvasElement | null>(null);
+  const basemapCanvasRef = useRef<HTMLCanvasElement | null>(null);
   const displayCanvasRef = useRef<HTMLCanvasElement>(null);
   const [layers, setLayers] = useState<SpeciesLayer[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+
+  const taxIdKey = useMemo(
+    () => organisms.map((o) => o.ncbiTaxId).join(","),
+    [organisms],
+  );
 
   useEffect(() => {
     let cancelled = false;
@@ -89,56 +112,24 @@ export default function SpeciesMap({
     setLayers([]);
     setError(false);
 
-    if (!fullCanvasRef.current) {
-      fullCanvasRef.current = document.createElement("canvas");
-      fullCanvasRef.current.width = FULL_SIZE;
-      fullCanvasRef.current.height = FULL_SIZE;
+    if (!basemapCanvasRef.current) {
+      basemapCanvasRef.current = document.createElement("canvas");
+      basemapCanvasRef.current.width = FULL_SIZE;
+      basemapCanvasRef.current.height = FULL_SIZE;
     }
 
     async function render() {
-      const fullCanvas = fullCanvasRef.current!;
-      const ctx = fullCanvas.getContext("2d")!;
-      ctx.clearRect(0, 0, FULL_SIZE, FULL_SIZE);
+      const bmCanvas = basemapCanvasRef.current!;
+      const bmCtx = bmCanvas.getContext("2d")!;
+      bmCtx.clearRect(0, 0, FULL_SIZE, FULL_SIZE);
 
-      for (const { x, y, sub } of TILE_COORDS) {
-        try {
-          const img = await loadImage(baseTileUrl(x, y, sub));
-          if (cancelled) {
-            return;
+      const baseTiles = await Promise.all(
+        TILE_COORDS.map(async ({ x, y, sub }) => {
+          try {
+            return { x, y, img: await loadImage(baseTileUrl(x, y, sub)) };
+          } catch {
+            return { x, y, img: null };
           }
-          ctx.drawImage(
-            img,
-            x * TILE_SIZE,
-            y * TILE_SIZE,
-            TILE_SIZE,
-            TILE_SIZE,
-          );
-        } catch {
-          // basemap tile failed
-        }
-      }
-
-      copyToDisplay();
-
-      const allSpeciesData = await Promise.all(
-        organisms.map(async (org, i) => {
-          const color = COLORS[i % COLORS.length];
-          const key = await getGbifTaxonKey(org.scientificName);
-          if (!key) {
-            return { org, color, points: [] as { tx: number; ty: number; cx: number; cy: number }[] };
-          }
-          const points: { tx: number; ty: number; cx: number; cy: number }[] = [];
-          for (const { x, y } of TILE_COORDS) {
-            try {
-              const img = await loadImage(densityTileUrl(key, x, y));
-              for (const { cx, cy } of findOccurrencePoints(img)) {
-                points.push({ tx: x, ty: y, cx, cy });
-              }
-            } catch {
-              // tile failed for this quadrant
-            }
-          }
-          return { org, color, points };
         }),
       );
 
@@ -146,24 +137,46 @@ export default function SpeciesMap({
         return;
       }
 
+      for (const { x, y, img } of baseTiles) {
+        if (img) {
+          bmCtx.drawImage(img, x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+        }
+      }
+
+      drawToDisplay([]);
+
+      const allSpeciesData: { org: Organism; color: { hex: string }; points: { tx: number; ty: number; cx: number; cy: number }[] }[] = [];
+      for (let i = 0; i < organisms.length; i++) {
+        const org = organisms[i];
+        const color = COLORS[i % COLORS.length];
+        const key = await getGbifTaxonKey(org.scientificName);
+        if (!key) {
+          allSpeciesData.push({ org, color, points: [] });
+          continue;
+        }
+        const points: { tx: number; ty: number; cx: number; cy: number }[] = [];
+        for (const { x, y } of TILE_COORDS) {
+          if (cancelled) {
+            return;
+          }
+          try {
+            const img = await loadImage(densityTileUrl(key, x, y));
+            for (const { cx, cy } of findOccurrencePoints(img)) {
+              points.push({ tx: x, ty: y, cx, cy });
+            }
+          } catch {
+            // tile failed for this quadrant
+          }
+        }
+        allSpeciesData.push({ org, color, points });
+      }
+
+      if (cancelled) {
+        return;
+      }
+
       const speciesResults: SpeciesLayer[] = [];
       for (const { org, color, points } of allSpeciesData) {
-        if (points.length > 0) {
-          ctx.globalAlpha = 0.35;
-          ctx.fillStyle = color.hex;
-          for (const { tx, ty, cx, cy } of points) {
-            ctx.beginPath();
-            ctx.arc(
-              tx * TILE_SIZE + cx,
-              ty * TILE_SIZE + cy,
-              DOT_RADIUS,
-              0,
-              Math.PI * 2,
-            );
-            ctx.fill();
-          }
-          ctx.globalAlpha = 1;
-        }
         speciesResults.push({
           name: capitalize(org.commonName),
           hex: color.hex,
@@ -171,29 +184,40 @@ export default function SpeciesMap({
         });
       }
 
-      copyToDisplay();
+      drawToDisplay(allSpeciesData);
       setLayers(speciesResults);
       setLoading(false);
     }
 
-    function copyToDisplay() {
+    function drawToDisplay(
+      speciesData: { color: { hex: string }; points: { tx: number; ty: number; cx: number; cy: number }[] }[],
+    ) {
       const display = displayCanvasRef.current;
-      if (!display || !fullCanvasRef.current) {
+      if (!display || !basemapCanvasRef.current) {
         return;
       }
-      const dCtx = display.getContext("2d")!;
-      dCtx.clearRect(0, 0, display.width, display.height);
-      dCtx.drawImage(
-        fullCanvasRef.current,
-        0,
-        CROP_TOP,
-        FULL_SIZE,
-        CROP_HEIGHT,
-        0,
-        0,
-        FULL_SIZE,
-        CROP_HEIGHT,
+      const ctx = display.getContext("2d")!;
+      ctx.clearRect(0, 0, DISPLAY_W, DISPLAY_H);
+
+      // Draw basemap stretched to display dimensions
+      ctx.drawImage(
+        basemapCanvasRef.current,
+        0, CROP_TOP, FULL_SIZE, SRC_CROP_HEIGHT,
+        0, 0, DISPLAY_W, DISPLAY_H,
       );
+
+      // Draw dots at mapped coordinates (round, not stretched)
+      for (const { color, points } of speciesData) {
+        ctx.globalAlpha = 0.35;
+        ctx.fillStyle = color.hex;
+        for (const { tx, ty, cx, cy } of points) {
+          const { dx, dy } = mapToDisplay(tx, ty, cx, cy);
+          ctx.beginPath();
+          ctx.arc(dx, dy, DOT_RADIUS, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.globalAlpha = 1;
+      }
     }
 
     render().catch(() => {
@@ -206,7 +230,7 @@ export default function SpeciesMap({
     return () => {
       cancelled = true;
     };
-  }, [organisms.map((o) => o.ncbiTaxId).join(",")]);
+  }, [taxIdKey]);
 
   return (
     <div className="species-map-container">
@@ -214,8 +238,8 @@ export default function SpeciesMap({
       <div className="species-map-wrapper">
         <canvas
           ref={displayCanvasRef}
-          width={FULL_SIZE}
-          height={CROP_HEIGHT}
+          width={DISPLAY_W}
+          height={DISPLAY_H}
           className="species-map-canvas"
         />
         {loading && (

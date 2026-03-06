@@ -5,10 +5,7 @@ import Header from './Header.tsx'
 import OrganismCard from './OrganismCard.tsx'
 import ResultScreen, { TaxLink } from './ResultScreen.tsx'
 import { getOrganismImage } from '../api/wikipedia.ts'
-import {
-  organisms as allOrganisms,
-  pickThreeOrganisms,
-} from '../data/organisms.ts'
+import { organisms as allOrganisms } from '../data/organisms.ts'
 import { surprisingScenarios } from '../data/surprisingFacts.ts'
 import { recordRound, startPresence } from '../firebase.ts'
 import { saveHistory, loadHistory } from '../utils/history.ts'
@@ -28,7 +25,7 @@ import type { SurprisingScenario } from '../data/surprisingFacts.ts'
 import type { SpeciesPoolEntry, TaxonomyData } from '../utils/taxonomy.ts'
 import type { MrcaInfo } from '../utils/format.ts'
 
-type GameState = 'customizing' | 'loading' | 'selecting' | 'result'
+type GameState = 'customizing' | 'loading' | 'selecting' | 'result' | 'easyCompleted'
 type GameMode = 'easy' | 'random' | 'custom'
 
 interface RoundData {
@@ -257,24 +254,8 @@ export default function Game({ mode }: { mode: GameMode }) {
         sessionStorage.setItem('shownScenarios', JSON.stringify([...next]))
         orgs = [...pick.s.organisms]
       } else {
-        setCurrentScenario(null)
-        let picked = pickThreeOrganisms()
-        for (let i = 0; i < 50; i++) {
-          picked = pickThreeOrganisms()
-          const taxIds: [number, number, number] = [
-            picked[0].ncbiTaxId,
-            picked[1].ncbiTaxId,
-            picked[2].ncbiTaxId,
-          ]
-          const pair = findClosestPairFromData(taxIds, data)
-          if (
-            !pair.isPolytomy &&
-            !seenCombosRef.current.has(comboKey(picked))
-          ) {
-            break
-          }
-        }
-        orgs = picked
+        setState('easyCompleted')
+        return
       }
       const shuffled = orgs.sort(() => Math.random() - 0.5)
       const images = await Promise.all(
@@ -697,6 +678,30 @@ export default function Game({ mode }: { mode: GameMode }) {
               })()}
             >
               Play
+            </Button>
+            <Button variant="secondary" href={import.meta.env.BASE_URL}>
+              Back
+            </Button>
+          </div>
+        </div>
+      )}
+
+      {state === 'easyCompleted' && (
+        <div className="easy-completed">
+          <p>
+            You&apos;ve completed all {surprisingScenarios.length} curated
+            scenarios!
+          </p>
+          <div className="selecting-actions">
+            <Button
+              onClick={() => {
+                setShownScenarioIndices(new Set())
+                sessionStorage.removeItem('shownScenarios')
+                seenCombosRef.current.clear()
+                startRound()
+              }}
+            >
+              Restart Easy Mode
             </Button>
             <Button variant="secondary" href={import.meta.env.BASE_URL}>
               Back

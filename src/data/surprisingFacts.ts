@@ -644,9 +644,9 @@ export const surprisingScenarios: SurprisingScenario[] = [
     sourceLabel: "Priapulida - Wikipedia",
   },
   {
-    organisms: [org("Peanut worm"), org("Earthworm"), org("Garden snail")],
+    organisms: [org("Peanut worm"), org("Earthworm"), org("Milky ribbon worm")],
     funFact:
-      "Peanut worms (sipunculans) were classified as their own phylum for over a century, but modern genomics placed them firmly within Annelida — the same phylum as earthworms and lugworms. They are closer to an earthworm than to a garden snail, despite looking like a featureless tube that retracts into a peanut shape when threatened.",
+      "Peanut worms (sipunculans) were classified as their own phylum for over a century, but modern genomics placed them firmly within Annelida — the same phylum as earthworms and lugworms. Despite both being soft marine 'worms', a peanut worm is closer to an earthworm than to a ribbon worm — ribbon worms (nemerteans) belong to an entirely different phylum.",
     sourceUrl: "https://en.wikipedia.org/wiki/Peanut_worm",
     sourceLabel: "Peanut worm - Wikipedia",
   },
