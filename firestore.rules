@@ -21,7 +21,8 @@ service cloud.firestore {
                     && request.resource.data.totalWins <= resource.data.totalWins + 1
                     && (request.resource.data.currentStreak == 0
                         || request.resource.data.currentStreak == resource.data.currentStreak + 1)
-                    && request.resource.data.bestStreak >= resource.data.bestStreak;
+                    && request.resource.data.bestStreak >= resource.data.bestStreak
+                    && request.resource.data.bestStreak <= resource.data.bestStreak + 1;
       allow delete: if request.auth != null
                     && request.auth.uid == uid;
     }

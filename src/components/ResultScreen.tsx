@@ -1,4 +1,5 @@
 import Button from "./Button.tsx";
+import { ShareButton } from "./Game.tsx";
 import PhyloTree from "./PhyloTree.tsx";
 import { capitalize } from "../utils/format.ts";
 import { getLineageFromParents } from "../utils/taxonomy.ts";
@@ -20,6 +21,7 @@ interface ResultScreenProps {
   images: Record<number, string | null>;
   userSelectedTaxIds: Set<number>;
   funFact?: string;
+  shareUrl: string;
   onPlayAgain: () => void;
 }
 
@@ -204,6 +206,7 @@ export default function ResultScreen({
   images,
   userSelectedTaxIds,
   funFact,
+  shareUrl,
   onPlayAgain,
 }: ResultScreenProps) {
   return (
@@ -216,7 +219,10 @@ export default function ResultScreen({
           <p>{funFact}</p>
         </div>
       )}
-      <Button onClick={onPlayAgain}>Next</Button>
+      <div className="result-actions">
+        <Button onClick={onPlayAgain}>Next</Button>
+        <ShareButton url={shareUrl} />
+      </div>
       <Explanation
         sister1={sister1}
         sister2={sister2}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import {
   getCurrentUser,
+  isNameTaken,
   signInWithGoogle,
   signOut,
 } from "../firebase.ts"
@@ -13,6 +14,8 @@ export default function SignInPage() {
   const [error, setError] = useState("")
   const [nickname, setNickname] = useState("")
   const [nicknameSaved, setNicknameSaved] = useState(false)
+  const [nameError, setNameError] = useState("")
+  const [checking, setChecking] = useState(false)
 
   useEffect(() => {
     const saved = localStorage.getItem("phyloLeaderboardName") ?? ""
@@ -29,14 +32,26 @@ export default function SignInPage() {
     })
   }, [])
 
-  const handleSaveNickname = () => {
+  const handleSaveNickname = async () => {
     const trimmed = nickname.trim()
     if (!trimmed || trimmed.length > 20) {
       return
     }
-    localStorage.setItem("phyloLeaderboardName", trimmed)
-    window.dispatchEvent(new Event("nickname-changed"))
-    setNicknameSaved(true)
+    setNameError("")
+    setChecking(true)
+    try {
+      const taken = await isNameTaken(trimmed)
+      if (taken) {
+        setNameError("That name is already taken")
+      } else {
+        localStorage.setItem("phyloLeaderboardName", trimmed)
+        window.dispatchEvent(new Event("nickname-changed"))
+        setNicknameSaved(true)
+      }
+    } catch {
+      setNameError("Could not check name availability")
+    }
+    setChecking(false)
   }
 
   const handleSignIn = async () => {
@@ -102,11 +117,12 @@ export default function SignInPage() {
             />
             <button
               className="leaderboard-submit-btn"
-              disabled={!nickname.trim()}
+              disabled={!nickname.trim() || checking}
               onClick={handleSaveNickname}
             >
-              Save
+              {checking ? "Checking..." : "Save"}
             </button>
+            {nameError && <p className="signin-error">{nameError}</p>}
           </div>
         )}
         <div className="signin-actions">

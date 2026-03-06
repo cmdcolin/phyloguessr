@@ -279,13 +279,6 @@ export const surprisingScenarios: SurprisingScenario[] = [
     sourceLabel: "Lungfish - Wikipedia",
   },
   {
-    organisms: [org("Greater flamingo"), org("Rock pigeon"), org("Bald eagle")],
-    funFact:
-      'Flamingos and pigeons are surprisingly close relatives — DNA studies show they share a recent common ancestor. Eagles are in a separate branch of birds, despite seeming more "interesting" than a pigeon.',
-    sourceUrl: "https://en.wikipedia.org/wiki/Columbaves",
-    sourceLabel: "Columbaves - Wikipedia",
-  },
-  {
     organisms: [
       org("Bottlenose dolphin"),
       org("Hippopotamus"),
@@ -295,13 +288,6 @@ export const surprisingScenarios: SurprisingScenario[] = [
       "Dolphins and hippos share an ancestor — whales actually evolved from the same group of hoofed mammals as hippos. Seals may look aquatic too, but they evolved from a completely different lineage (carnivores, like bears and dogs).",
     sourceUrl: "https://en.wikipedia.org/wiki/Cetartiodactyla",
     sourceLabel: "Cetartiodactyla - Wikipedia",
-  },
-  {
-    organisms: [org("Maned wolf"), org("Gray wolf"), org("Red fox")],
-    funFact:
-      "The maned wolf looks like a fox on stilts and is named after a wolf, but it is neither. It belongs to its own genus Chrysocyon and is the sole surviving member of a South American canid lineage. Despite appearances, it is not closely related to gray wolves (Canis) or red foxes (Vulpes) — those two are more closely related to each other than either is to the maned wolf.",
-    sourceUrl: "https://en.wikipedia.org/wiki/Maned_wolf",
-    sourceLabel: "Maned wolf - Wikipedia",
   },
   {
     organisms: [org("Gray wolf"), org("Raccoon"), org("Domestic cat")],
@@ -805,7 +791,7 @@ export const surprisingScenarios: SurprisingScenario[] = [
   {
     organisms: [org("Colugo"), org("Human"), org("Flying squirrel")],
     funFact:
-      "The closest non-primate relative of humans is a gliding rainforest mammal that looks like a large flying squirrel. Colugos (Dermoptera) are the sister group to all primates — closer to every human, ape, and monkey than to any rodent, bat, or other mammal. Flying squirrels are rodents; they and colugos evolved near-identical gliding membranes completely independently.",
+      "The closest non-primate relative of humans is a gliding rainforest mammal that looks like a large flying squirrel. Colugos (Dermoptera) are the sister group to all primates — closer to every human, ape, and monkey than to any rodent, bat, or other mammal. Flying squirrels are rodents; they and colugos evolved near-identical gliding membranes completely independently. Note: NCBI Taxonomy leaves primates, colugos, and rodents as an unresolved polytomy within Euarchontoglires, but molecular phylogenies (reflected in the Open Tree of Life) confirm the clade Primatomorpha grouping colugos with primates.",
     sourceUrl: "https://en.wikipedia.org/wiki/Colugo",
     sourceLabel: "Colugo - Wikipedia",
   },
@@ -919,13 +905,6 @@ export const surprisingScenarios: SurprisingScenario[] = [
       "Mantisflies look exactly like praying mantises — same raptorial forelegs, same triangular head, same ambush hunting posture — but they are Neuroptera, closely related to delicate lacewings and antlions! Mantises are in their own order (Mantodea). The two lineages independently evolved the same predatory body plan, one of the most extreme convergences in all of insects.",
     sourceUrl: "https://en.wikipedia.org/wiki/Mantispidae",
     sourceLabel: "Mantispidae - Wikipedia",
-  },
-  {
-    organisms: [org("Twisted-wing parasite"), org("Fruit fly"), org("Ladybug")],
-    funFact:
-      "Xenos vesparum is a twisted-wing parasite so bizarre it was misclassified for decades — males have fan-shaped hind wings and no front wings, while females live permanently inside wasps. Molecular data finally revealed these parasites are closest relatives of flies (Diptera), shocking entomologists who had placed them near beetles.",
-    sourceUrl: "https://en.wikipedia.org/wiki/Xenos_vesparum",
-    sourceLabel: "Xenos vesparum - Wikipedia",
   },
   {
     organisms: [org("Myxozoan"), org("Moon jellyfish"), org("Plasmodium")],
@@ -1188,13 +1167,6 @@ export const surprisingScenarios: SurprisingScenario[] = [
       'The pronghorn is called the "American antelope" but is not an antelope at all — it is the sole surviving member of Antilocapridae, closer to giraffes than to any true antelope! Impala and other antelopes are Bovidae (with cattle and goats). The pronghorn\'s family was once diverse across North America, but only one species survives.',
     sourceUrl: "https://en.wikipedia.org/wiki/Pronghorn",
     sourceLabel: "Pronghorn - Wikipedia",
-  },
-  {
-    organisms: [org("Amoeba"), org("Human"), org("Paramecium")],
-    funFact:
-      'An amoeba is closer to you than to a paramecium! Amoebozoa is the sister group to Opisthokonta (animals + fungi), while Paramecium is in the SAR supergroup on the other side of the eukaryotic tree. Despite both being "single-celled organisms," they are deeply separated by over a billion years of evolution.',
-    sourceUrl: "https://en.wikipedia.org/wiki/Amorphea",
-    sourceLabel: "Amorphea - Wikipedia",
   },
   {
     organisms: [org("Green sea turtle"), org("Chicken"), org("Komodo dragon")],

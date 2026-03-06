@@ -1483,9 +1483,9 @@ export const organisms: Organism[] = [
   },
   {
     commonName: "Microsporidian",
-    scientificName: "Encephalitozoon cuniculi",
-    ncbiTaxId: 6035,
-    wikiTitle: "Encephalitozoon_cuniculi",
+    scientificName: "Fibrillanosema crangonycis",
+    ncbiTaxId: 481877,
+    wikiTitle: "Fibrillanosema_crangonycis",
     group: "microbe",
   },
   {

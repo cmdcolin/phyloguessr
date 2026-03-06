@@ -18,7 +18,7 @@ export default function OnlinePlayers() {
   }
 
   return (
-    <span className="online-counter" title="Players online now">
+    <span className="online-counter" title="Signed-in players online now">
       <span className="online-dot" />
       {count} online
     </span>

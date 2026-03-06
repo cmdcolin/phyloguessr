@@ -5,7 +5,7 @@ import Header from "./Header.tsx";
 import OrganismCard from "./OrganismCard.tsx";
 import ResultScreen from "./ResultScreen.tsx";
 import { getOrganismImage } from "../api/wikipedia.ts";
-import { pickThreeOrganisms } from "../data/organisms.ts";
+import { organisms as allOrganisms, pickThreeOrganisms } from "../data/organisms.ts";
 import { surprisingScenarios } from "../data/surprisingFacts.ts";
 import { recordRound, startPresence } from "../firebase.ts";
 import { saveHistory, loadHistory } from "../utils/history.ts";
@@ -57,10 +57,106 @@ function comboKey(orgs: { ncbiTaxId: number }[]) {
     .join(",");
 }
 
+function parseSharedQuestion() {
+  const params = new URLSearchParams(window.location.search);
+  const a = params.get("a");
+  const b = params.get("b");
+  const c = params.get("c");
+  if (!a || !b || !c) {
+    return null;
+  }
+  const ids = [Number(a), Number(b), Number(c)];
+  if (ids.some((n) => !Number.isFinite(n) || n <= 0)) {
+    return null;
+  }
+  return ids as [number, number, number];
+}
+
+function resolveOrganism(taxId: number, pool: SpeciesPoolEntry[] | null, data: TaxonomyData | null) {
+  const known = allOrganisms.find((o) => o.ncbiTaxId === taxId);
+  if (known) {
+    return known;
+  }
+  if (pool) {
+    const entry = pool.find(([id]) => id === taxId);
+    if (entry) {
+      const [, commonName, scientificName] = entry;
+      return {
+        commonName,
+        scientificName,
+        ncbiTaxId: taxId,
+        wikiTitle: scientificName.replace(/ /g, "_"),
+        group: "shared",
+      } satisfies Organism;
+    }
+  }
+  if (data) {
+    const name = data.names[String(taxId)];
+    if (name) {
+      return {
+        commonName: name,
+        scientificName: name,
+        ncbiTaxId: taxId,
+        wikiTitle: name.replace(/ /g, "_"),
+        group: "shared",
+      } satisfies Organism;
+    }
+  }
+  return null;
+}
+
+function buildShareUrl(orgs: Organism[]) {
+  const url = new URL(window.location.href);
+  url.search = "";
+  url.searchParams.set("a", String(orgs[0].ncbiTaxId));
+  url.searchParams.set("b", String(orgs[1].ncbiTaxId));
+  url.searchParams.set("c", String(orgs[2].ncbiTaxId));
+  return url.toString();
+}
+
+function updateUrlWithQuestion(orgs: Organism[]) {
+  const url = new URL(window.location.href);
+  url.search = "";
+  url.searchParams.set("a", String(orgs[0].ncbiTaxId));
+  url.searchParams.set("b", String(orgs[1].ncbiTaxId));
+  url.searchParams.set("c", String(orgs[2].ncbiTaxId));
+  history.replaceState(null, "", url.toString());
+}
+
+function clearQuestionFromUrl() {
+  const url = new URL(window.location.href);
+  url.searchParams.delete("a");
+  url.searchParams.delete("b");
+  url.searchParams.delete("c");
+  history.replaceState(null, "", url.toString());
+}
+
+function ShareButton({ url }: { url: string }) {
+  const [copied, setCopied] = useState(false);
+  return (
+    <button
+      className="share-btn"
+      onClick={() => {
+        navigator.clipboard.writeText(url).then(() => {
+          setCopied(true);
+          setTimeout(() => setCopied(false), 2000);
+        });
+      }}
+    >
+      {copied ? "Copied!" : "Share"}
+    </button>
+  );
+}
+
+export { ShareButton };
+
 export default function Game({ mode }: { mode: GameMode }) {
   const hasQueryParams =
     typeof window !== "undefined" &&
     new URLSearchParams(window.location.search).has("id");
+  const hasSharedQuestion =
+    typeof window !== "undefined" &&
+    parseSharedQuestion() !== null;
   const hasNickname =
     typeof window !== "undefined" &&
     !!localStorage.getItem("phyloLeaderboardName");
@@ -135,6 +231,7 @@ export default function Game({ mode }: { mode: GameMode }) {
     setState("loading");
     setSelected([]);
     setResult(null);
+    clearQuestionFromUrl();
 
     let data = taxonomyData;
     if (!data) {
@@ -148,11 +245,18 @@ export default function Game({ mode }: { mode: GameMode }) {
       const shownIndices = shownScenarioIndicesRef.current;
       const unshown = surprisingScenarios
         .map((s, i) => ({ s, i }))
-        .filter(
-          ({ s, i }) =>
-            !shownIndices.has(i) &&
-            !seenCombosRef.current.has(comboKey(s.organisms)),
-        );
+        .filter(({ s, i }) => {
+          if (shownIndices.has(i) || seenCombosRef.current.has(comboKey(s.organisms))) {
+            return false;
+          }
+          const taxIds: [number, number, number] = [
+            s.organisms[0].ncbiTaxId,
+            s.organisms[1].ncbiTaxId,
+            s.organisms[2].ncbiTaxId,
+          ];
+          const pair = findClosestPairFromData(taxIds, data);
+          return !pair.isPolytomy;
+        });
       let orgs;
       if (unshown.length > 0) {
         const pick = unshown[Math.floor(Math.random() * unshown.length)];
@@ -165,8 +269,17 @@ export default function Game({ mode }: { mode: GameMode }) {
       } else {
         setCurrentScenario(null);
         let picked = pickThreeOrganisms();
-        for (let i = 0; i < 20 && seenCombosRef.current.has(comboKey(picked)); i++) {
+        for (let i = 0; i < 50; i++) {
           picked = pickThreeOrganisms();
+          const taxIds: [number, number, number] = [
+            picked[0].ncbiTaxId,
+            picked[1].ncbiTaxId,
+            picked[2].ncbiTaxId,
+          ];
+          const pair = findClosestPairFromData(taxIds, data);
+          if (!pair.isPolytomy && !seenCombosRef.current.has(comboKey(picked))) {
+            break;
+          }
         }
         orgs = picked;
       }
@@ -176,6 +289,7 @@ export default function Game({ mode }: { mode: GameMode }) {
       );
       recordCombo(shuffled);
       setRound({ organisms: shuffled, images });
+      updateUrlWithQuestion(shuffled);
       setState("selecting");
     } else {
       let pool = speciesPool;
@@ -280,6 +394,7 @@ export default function Game({ mode }: { mode: GameMode }) {
       }
       recordCombo(finalOrgs);
       setRound({ organisms: finalOrgs, images: finalImages });
+      updateUrlWithQuestion(finalOrgs);
       setState("selecting");
     }
   }, [
@@ -290,12 +405,52 @@ export default function Game({ mode }: { mode: GameMode }) {
     cladeFilter,
   ]);
 
+  const loadSharedQuestion = useCallback(async (taxIds: [number, number, number]) => {
+    setState("loading");
+    setLoadingMessage("Loading shared question...");
+
+    let data = taxonomyData;
+    if (!data) {
+      setLoadingMessage("Downloading taxonomy data (~5 MB)...");
+      data = await loadTaxonomyData();
+      setTaxonomyData(data);
+    }
+
+    let pool = speciesPool;
+    if (!pool) {
+      setLoadingMessage("Downloading species pool...");
+      pool = await loadSpeciesPool();
+      setSpeciesPool(pool);
+    }
+
+    const orgs: Organism[] = [];
+    for (const id of taxIds) {
+      const org = resolveOrganism(id, pool, data);
+      if (!org) {
+        setLoadingMessage("Could not find one of the shared species.");
+        startRound();
+        return;
+      }
+      orgs.push(org);
+    }
+
+    const images = await Promise.all(
+      orgs.map((o) => getOrganismImage(o.wikiTitle, o.scientificName)),
+    );
+    recordCombo(orgs);
+    setRound({ organisms: orgs, images });
+    setState("selecting");
+  }, [taxonomyData, speciesPool, startRound]); // eslint-disable-line react-hooks/exhaustive-deps
+
   useEffect(() => {
     startPresence();
     if (!hasNickname) {
       return;
     }
-    if (mode !== "custom" || hasQueryParams) {
+    const sharedIds = parseSharedQuestion();
+    if (sharedIds) {
+      loadSharedQuestion(sharedIds);
+    } else if (mode !== "custom" || hasQueryParams) {
       startRound();
     } else {
       loadTaxonomyData().then((data) => setTaxonomyData(data));
@@ -350,18 +505,27 @@ export default function Game({ mode }: { mode: GameMode }) {
       (userPickedTaxIds.has(pair.sister1TaxId) &&
         userPickedTaxIds.has(pair.sister2TaxId));
 
-    const entry: HistoryEntry = {
-      correct,
-      organisms: orgs.map((o) => o.commonName),
-      sister: [sister1.commonName, sister2.commonName],
-      mode,
-      timestamp: Date.now(),
-    };
-    saveHistory([...loadHistory(), entry]);
+    const organismNames = orgs.map((o) => o.commonName);
+    const sortedKey = [...organismNames].sort().join(",");
+    const existingHistory = loadHistory();
+    const alreadyPlayed = existingHistory.some(
+      (h) => [...h.organisms].sort().join(",") === sortedKey,
+    );
 
-    const leaderboardName = localStorage.getItem("phyloLeaderboardName");
-    if (leaderboardName) {
-      recordRound(leaderboardName, correct).catch(console.error);
+    if (!alreadyPlayed) {
+      const entry: HistoryEntry = {
+        correct,
+        organisms: organismNames,
+        sister: [sister1.commonName, sister2.commonName],
+        mode,
+        timestamp: Date.now(),
+      };
+      saveHistory([...existingHistory, entry]);
+
+      const leaderboardName = localStorage.getItem("phyloLeaderboardName");
+      if (leaderboardName) {
+        recordRound(leaderboardName, correct).catch(console.error);
+      }
     }
 
     setResult({
@@ -399,6 +563,7 @@ export default function Game({ mode }: { mode: GameMode }) {
                     "phyloLeaderboardName",
                     nicknameInput.trim(),
                   );
+                  window.dispatchEvent(new Event("nickname-changed"));
                   if (mode === "custom" && !hasQueryParams) {
                     setState("customizing");
                     loadTaxonomyData().then((data) => setTaxonomyData(data));
@@ -415,6 +580,7 @@ export default function Game({ mode }: { mode: GameMode }) {
                   "phyloLeaderboardName",
                   nicknameInput.trim(),
                 );
+                window.dispatchEvent(new Event("nickname-changed"));
                 if (mode === "custom" && !hasQueryParams) {
                   setState("customizing");
                   loadTaxonomyData().then((data) => setTaxonomyData(data));
@@ -718,9 +884,12 @@ export default function Game({ mode }: { mode: GameMode }) {
               />
             ))}
           </div>
-          <Button onClick={handleSubmit} disabled={selected.length !== 2}>
-            Submit
-          </Button>
+          <div className="selecting-actions">
+            <Button onClick={handleSubmit} disabled={selected.length !== 2}>
+              Submit
+            </Button>
+            <ShareButton url={buildShareUrl(round.organisms)} />
+          </div>
         </div>
       )}
 
@@ -742,6 +911,7 @@ export default function Game({ mode }: { mode: GameMode }) {
             new Set(selected.map((i) => round.organisms[i].ncbiTaxId))
           }
           funFact={currentScenario?.funFact}
+          shareUrl={buildShareUrl(round.organisms)}
           onPlayAgain={startRound}
         />
       )}

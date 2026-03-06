@@ -124,6 +124,7 @@ export default function Header() {
                     onClick={async () => {
                       await signOut()
                       setSignedIn(false)
+                      setNickname(null)
                       setShowMenu(false)
                     }}
                   >

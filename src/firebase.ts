@@ -12,6 +12,7 @@ import {
   collection,
   doc,
   setDoc,
+  deleteDoc,
   query,
   orderBy,
   where,
@@ -56,10 +57,6 @@ export async function getCurrentUser() {
   return currentUser
 }
 
-export function isSignedIn() {
-  return currentUser !== null
-}
-
 export async function signInWithGoogle() {
   const result = await signInWithPopup(auth, googleProvider)
   return result.user
@@ -67,6 +64,9 @@ export async function signInWithGoogle() {
 
 export async function signOut() {
   stopPresence()
+  if (currentUser) {
+    await deleteDoc(doc(presenceRef, currentUser.uid)).catch(() => {})
+  }
   await auth.signOut()
 }
 
@@ -140,14 +140,7 @@ export async function getTopStreaks(count = 20) {
   const q = query(scoresRef, orderBy("bestStreak", "desc"), limit(count * 2))
   const snap = await getDocs(q)
   const all = snap.docs.map((d) => toLeaderboardEntry(d.id, d.data()))
-  const byName = new Map<string, LeaderboardEntry>()
-  for (const entry of all) {
-    const existing = byName.get(entry.name)
-    if (!existing || entry.bestStreak > existing.bestStreak) {
-      byName.set(entry.name, entry)
-    }
-  }
-  return [...byName.values()]
+  return all
     .sort((a, b) => b.bestStreak - a.bestStreak)
     .slice(0, count)
 }
