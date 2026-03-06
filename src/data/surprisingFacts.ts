@@ -56,7 +56,7 @@ export const surprisingScenarios: SurprisingScenario[] = [
   {
     organisms: [org("Common bat"), org("Cow"), org("Human")],
     funFact:
-      "A bat is more closely related to a cow than to a human. Bats and cows are both Laurasiatheria — the superorder that also includes dogs, cats, horses, and whales. Humans are Euarchontoglires, a completely separate placental mammal branch. The flapping, echolocating creature shares more recent ancestry with your steak than with you.",
+      "A bat is more closely related to a cow than to a human. Bats and cows are on the same major branch of the mammal family tree — the one that also includes dogs, cats, horses, and whales. Humans are on a completely separate branch, with primates, rodents, and rabbits. The flapping, echolocating creature shares more recent ancestry with your steak than with you.",
     sourceUrl: "https://en.wikipedia.org/wiki/Laurasiatheria",
     sourceLabel: "Laurasiatheria - Wikipedia",
   },
@@ -67,7 +67,7 @@ export const surprisingScenarios: SurprisingScenario[] = [
       org("Nine-banded armadillo"),
     ],
     funFact:
-      "An aardvark digging up termite mounds in Africa shares more recent common ancestry with a manatee drifting through Caribbean seagrass than either does with a nine-banded armadillo — which has a nearly identical lifestyle to the aardvark. Aardvarks and manatees are both Afrotheria; armadillos are Xenarthra, one of the most ancient and separate placental mammal lineages.",
+      "An aardvark digging up termite mounds in Africa shares more recent common ancestry with a manatee drifting through Caribbean seagrass than either does with a nine-banded armadillo — which has a nearly identical lifestyle to the aardvark. Aardvarks and manatees both descend from an ancient group of African mammals; armadillos evolved separately in South America.",
     sourceUrl: "https://en.wikipedia.org/wiki/Afrotheria",
     sourceLabel: "Afrotheria - Wikipedia",
   },
@@ -95,7 +95,7 @@ export const surprisingScenarios: SurprisingScenario[] = [
   {
     organisms: [org("Plasmodium"), org("Paramecium"), org("Baker's yeast")],
     funFact:
-      "The malaria parasite and paramecium are both Alveolata — single-celled organisms with distinctive membrane-bound sacs. Yeast is a fungus, far more distant.",
+      "The malaria parasite and paramecium are both single-celled organisms that share a deep common ancestor, despite one being a deadly parasite and the other a free-living pond dweller. Yeast is a fungus — actually more closely related to animals than to either of them.",
     sourceUrl: "https://en.wikipedia.org/wiki/Alveolata",
     sourceLabel: "Alveolata - Wikipedia",
   },
@@ -113,7 +113,7 @@ export const surprisingScenarios: SurprisingScenario[] = [
       org("Komodo dragon"),
     ],
     funFact:
-      "A chicken and an alligator are closer relatives than either is to a Komodo dragon. Birds and crocodilians are both archosaurs; lizards and snakes are squamates, a completely separate reptile lineage.",
+      'A chicken and an alligator are closer relatives than either is to a Komodo dragon. Despite "dinosaur" meaning "terrible lizard," dinosaurs have nothing to do with lizards. The reptile family tree splits into two branches: lizards and snakes on one side, and turtles, crocodilians, dinosaurs, and birds on the other. A chicken is a living dinosaur; a Komodo dragon is not.',
     sourceUrl: "https://en.wikipedia.org/wiki/Archosaur",
     sourceLabel: "Archosaur - Wikipedia",
   },
@@ -193,6 +193,35 @@ export const surprisingScenarios: SurprisingScenario[] = [
     sourceLabel: "Cetartiodactyla - Wikipedia",
   },
   {
+    organisms: [
+      org("Bottlenose dolphin"),
+      org("Blue whale"),
+      org("Great white shark"),
+    ],
+    funFact:
+      "A dolphin and a whale are both mammals — they breathe air, nurse their young, and have vestigial leg bones buried inside their bodies. Their ancestors walked on land on four hoofed legs. Sharks have been in the ocean for over 400 million years; whales and dolphins returned to the sea only about 50 million years ago and independently evolved the same streamlined shape.",
+    sourceUrl: "https://en.wikipedia.org/wiki/Evolution_of_cetaceans",
+    sourceLabel: "Evolution of cetaceans - Wikipedia",
+  },
+  {
+    organisms: [
+      org("West Indian manatee"),
+      org("Bottlenose dolphin"),
+      org("African elephant"),
+    ],
+    funFact:
+      "A manatee is more closely related to an elephant than to a dolphin. Manatees and elephants share ancestors that lived in Africa — manatees still have toenails on their flippers from their land-dwelling past. Dolphins descended from a completely different group of land mammals related to hippos. Two separate lineages of land mammals independently returned to the sea.",
+    sourceUrl: "https://en.wikipedia.org/wiki/Sirenia#Evolution",
+    sourceLabel: "Sirenia evolution - Wikipedia",
+  },
+  {
+    organisms: [org("Walrus"), org("Sea otter"), org("Blue whale")],
+    funFact:
+      "A walrus is more closely related to a sea otter than to a whale — despite the walrus and whale both being fully aquatic. Walruses and sea otters are both carnivores that returned to the sea from land-dwelling ancestors related to bears and weasels. Whales returned to the sea separately, from hoofed mammals related to hippos. Three ocean mammals, but only two share a carnivore ancestor.",
+    sourceUrl: "https://en.wikipedia.org/wiki/Marine_mammal#Evolution",
+    sourceLabel: "Marine mammal evolution - Wikipedia",
+  },
+  {
     organisms: [org("Horseshoe crab"), org("Scorpion"), org("Honeybee")],
     funFact:
       "Despite being called crabs, horseshoe crabs are more closely related to scorpions and spiders (chelicerates) than to any true crustacean or insect.",
@@ -256,14 +285,14 @@ export const surprisingScenarios: SurprisingScenario[] = [
       org("Common shrew"),
     ],
     funFact:
-      'Despite being named "shrews" and looking like mice, elephant shrews are Afrotheria — more closely related to actual elephants than to true shrews!',
+      'Despite being named "shrews" and looking like mice, elephant shrews are more closely related to actual elephants than to true shrews! Both descend from an ancient group of African mammals that also includes manatees, aardvarks, and tenrecs.',
     sourceUrl: "https://en.wikipedia.org/wiki/Elephant_shrew",
     sourceLabel: "Elephant shrew - Wikipedia",
   },
   {
     organisms: [org("Tenrec"), org("African elephant"), org("Hedgehog")],
     funFact:
-      "Tenrecs look almost identical to hedgehogs but are Afrotheria, closer to elephants! This is one of the most striking examples of convergent evolution in mammals.",
+      "Tenrecs look almost identical to hedgehogs — spiny, round, and they even curl into a ball the same way — but they are closer to elephants than to any hedgehog! Tenrecs evolved in Africa alongside elephants and aardvarks; hedgehogs evolved separately in Europe and Asia. One of the most striking examples of convergent evolution in mammals.",
     sourceUrl: "https://en.wikipedia.org/wiki/Tenrecidae",
     sourceLabel: "Tenrecidae - Wikipedia",
   },
@@ -313,14 +342,14 @@ export const surprisingScenarios: SurprisingScenario[] = [
   {
     organisms: [org("Common genet"), org("Lion"), org("Egyptian mongoose")],
     funFact:
-      "The common genet looks uncannily like a small spotted wild cat — slim body, spotted coat, retractile claws, solitary hunter. But genets are Viverridae, the civet family, which branched off from the lineage leading to true cats very early in Feliformia. A genet is closer to a mongoose than to a lion.",
+      "The common genet looks uncannily like a small spotted wild cat — slim body, spotted coat, retractile claws, solitary hunter. But genets are in the civet family, which branched off from the lineage leading to true cats very early. A genet is closer to a mongoose than to a lion.",
     sourceUrl: "https://en.wikipedia.org/wiki/Common_genet",
     sourceLabel: "Common genet - Wikipedia",
   },
   {
     organisms: [org("Binturong"), org("Lion"), org("Brown bear")],
     funFact:
-      "The binturong is nicknamed the 'bearcat' — and it looks the part, with a stocky bear-like body and a cat-like face. Yet it belongs to Viverridae (the civet family) and is Feliformia, the same suborder as lions and domestic cats. Brown bears are Caniformia — the bear is actually on the 'dog side' of Carnivora, making the binturong more closely related to a lion than to a bear.",
+      "The binturong is nicknamed the 'bearcat' — and it looks the part, with a stocky bear-like body and a cat-like face. Yet it belongs to the civet family, on the 'cat side' of the carnivore family tree alongside lions and domestic cats. Bears are on the 'dog side,' making the binturong more closely related to a lion than to a bear.",
     sourceUrl: "https://en.wikipedia.org/wiki/Binturong",
     sourceLabel: "Binturong - Wikipedia",
   },
@@ -334,14 +363,14 @@ export const surprisingScenarios: SurprisingScenario[] = [
   {
     organisms: [org("Walrus"), org("Brown bear"), org("Harbor seal")],
     funFact:
-      "Walruses and harbor seals are both pinnipeds, but pinnipeds are Caniformia — the bear-and-dog suborder of Carnivora. All pinnipeds evolved from a terrestrial ancestor they share with bears and dogs, making a walrus more closely related to a brown bear than to any dolphin or whale.",
+      "Walruses and harbor seals both evolved from land-dwelling carnivores related to bears and dogs. All seals, sea lions, and walruses share this ancestry, making a walrus more closely related to a brown bear than to any dolphin or whale.",
     sourceUrl: "https://en.wikipedia.org/wiki/Pinniped#Evolution",
     sourceLabel: "Pinniped evolution - Wikipedia",
   },
   {
     organisms: [org("Human"), org("House mouse"), org("Domestic cat")],
     funFact:
-      "You are more closely related to a mouse than to your cat. Humans and mice are both Euarchontoglires — the same superorder as all primates, rodents, and rabbits. Cats are Laurasiatheria, a completely different placental branch that also includes dogs, horses, bats, and whales.",
+      "You are more closely related to a mouse than to your cat. Humans and mice are on the same major branch of the mammal family tree — the one with all primates, rodents, and rabbits. Cats are on a completely different branch, the one that also includes dogs, horses, bats, and whales.",
     sourceUrl: "https://en.wikipedia.org/wiki/Euarchontoglires",
     sourceLabel: "Euarchontoglires - Wikipedia",
   },
@@ -610,7 +639,7 @@ export const surprisingScenarios: SurprisingScenario[] = [
   {
     organisms: [org("Priapulid"), org("Fruit fly"), org("Earthworm")],
     funFact:
-      "Priapulids (penis worms) are marine burrowing worms that look superficially like earthworms, but they are Ecdysozoa — the same major group as insects, nematodes, and arthropods. A priapulid is more closely related to a fruit fly than to an earthworm, which is Lophotrochozoa.",
+      "Priapulids (penis worms) are marine burrowing worms that look superficially like earthworms, but they are in the same major group as insects and spiders — animals that grow by molting their outer skin. A priapulid is more closely related to a fruit fly than to an earthworm.",
     sourceUrl: "https://en.wikipedia.org/wiki/Priapulida",
     sourceLabel: "Priapulida - Wikipedia",
   },
@@ -775,6 +804,104 @@ export const surprisingScenarios: SurprisingScenario[] = [
     sourceLabel: "Duckweed - Wikipedia",
   },
   {
+    organisms: [org("Orchid"), org("Rice"), org("Snapdragon")],
+    funFact:
+      "An orchid is more closely related to a rice plant than to a snapdragon — despite orchids and snapdragons both having showy, bilaterally symmetric flowers. Orchids are monocots, on the same branch as grasses, palms, and lilies. Snapdragons are eudicots, on the other side of the flowering plant tree. The similar flower shapes evolved independently.",
+    sourceUrl: "https://en.wikipedia.org/wiki/Orchidaceae",
+    sourceLabel: "Orchidaceae - Wikipedia",
+  },
+  {
+    organisms: [org("Sunflower"), org("Carrot"), org("Rose")],
+    funFact:
+      "A sunflower is more closely related to a carrot than to a rose, despite sunflowers and roses both being classic garden flowers. Sunflowers and carrots are both asterids — a huge branch of flowering plants that also includes coffee, mint, and tomatoes. Roses are rosids, a separate branch.",
+    sourceUrl: "https://en.wikipedia.org/wiki/Asterids",
+    sourceLabel: "Asterids - Wikipedia",
+  },
+  {
+    organisms: [org("Common daisy"), org("Sunflower"), org("Lily")],
+    funFact:
+      "A daisy and a sunflower are in the same family — the largest family of eudicot plants. What looks like a single flower is actually hundreds of tiny flowers packed into a composite head. Lilies may look more like daisies as simple 'flowers,' but they are monocots — on the grass-and-palm side of the flowering plant tree.",
+    sourceUrl: "https://en.wikipedia.org/wiki/Asteraceae",
+    sourceLabel: "Asteraceae - Wikipedia",
+  },
+  {
+    organisms: [org("Common fern"), org("Sunflower"), org("Sphagnum moss")],
+    funFact:
+      "A fern is more closely related to a sunflower than to a moss. Ferns and flowering plants are both vascular plants — they have internal plumbing to transport water and nutrients. Mosses never evolved this system and diverged from all other land plants over 400 million years ago. Ferns just look 'primitive' because they reproduce with spores instead of seeds.",
+    sourceUrl: "https://en.wikipedia.org/wiki/Fern",
+    sourceLabel: "Fern - Wikipedia",
+  },
+  {
+    organisms: [org("Welwitschia"), org("Redwood"), org("Banana")],
+    funFact:
+      "Welwitschia — a bizarre desert plant that grows only two leaves its entire life, which can last over 1,000 years — is a gymnosperm, on the same branch as redwoods and pines. Despite looking nothing like any conifer, it produces cones and has no flowers. Banana plants are flowering plants, a completely separate lineage.",
+    sourceUrl: "https://en.wikipedia.org/wiki/Welwitschia",
+    sourceLabel: "Welwitschia - Wikipedia",
+  },
+  {
+    organisms: [org("Ginkgo"), org("Redwood"), org("Common fern")],
+    funFact:
+      "The ginkgo tree is the last surviving member of a plant group that was diverse during the age of dinosaurs. It is a gymnosperm like redwoods — both produce seeds without flowers — but ginkgos and conifers are on different branches of the gymnosperm tree. Ferns are even more distant, having diverged before seeds evolved at all.",
+    sourceUrl: "https://en.wikipedia.org/wiki/Ginkgo_biloba",
+    sourceLabel: "Ginkgo biloba - Wikipedia",
+  },
+  {
+    organisms: [org("Banana"), org("Wheat"), org("Carrot")],
+    funFact:
+      "A banana plant and a wheat stalk are both monocots — plants that sprout with a single seed leaf. Despite one being a tropical tree-like herb and the other a temperate grass, they share a more recent ancestor with each other than either does with a carrot, which is a eudicot on the other side of the flowering plant tree.",
+    sourceUrl: "https://en.wikipedia.org/wiki/Monocotyledon",
+    sourceLabel: "Monocotyledon - Wikipedia",
+  },
+  {
+    organisms: [org("Tomato"), org("Blueberry"), org("Strawberry")],
+    funFact:
+      "A tomato and a blueberry are more closely related than either is to a strawberry. Tomatoes (nightshade family) and blueberries (heath family) are both asterids — a huge branch of flowering plants. Strawberries are rosids, a completely separate branch. The two 'berries' are not even on the same side of the family tree.",
+    sourceUrl: "https://en.wikipedia.org/wiki/Asterids",
+    sourceLabel: "Asterids - Wikipedia",
+  },
+  {
+    organisms: [org("Iris"), org("Orchid"), org("Common daisy")],
+    funFact:
+      "An iris and an orchid are both monocots — despite looking like typical garden flowers, they are on the grass-and-palm side of the flowering plant tree. A daisy is a eudicot, more closely related to oaks and roses than to either iris or orchid. The showy petals evolved independently in both groups.",
+    sourceUrl: "https://en.wikipedia.org/wiki/Monocotyledon",
+    sourceLabel: "Monocotyledon - Wikipedia",
+  },
+  {
+    organisms: [org("Corpse lily"), org("Mistletoe"), org("Sphagnum moss")],
+    funFact:
+      "The corpse lily (Rafflesia) — which produces the world's largest flower at nearly a meter across and smells like rotting meat — is a flowering plant related to mistletoe and poinsettias. It has no leaves, stems, or roots and lives entirely as a parasite inside grapevines. Despite looking like a fungus growing on the forest floor, it is closer to the mistletoe on your doorframe than to any moss.",
+    sourceUrl: "https://en.wikipedia.org/wiki/Rafflesia",
+    sourceLabel: "Rafflesia - Wikipedia",
+  },
+  {
+    organisms: [org("Dodder"), org("Potato"), org("Corpse lily")],
+    funFact:
+      "Dodder looks like parasitic orange spaghetti draped over other plants — no leaves, no chlorophyll, just a tangle of vampire vines. But it is a flowering plant in the morning glory family, more closely related to a potato than to the corpse lily. Both dodder and potatoes are asterids; the corpse lily is on a completely different branch. Plants have independently evolved parasitism many times.",
+    sourceUrl: "https://en.wikipedia.org/wiki/Cuscuta",
+    sourceLabel: "Cuscuta - Wikipedia",
+  },
+  {
+    organisms: [org("Avocado"), org("Cinnamon"), org("Strawberry")],
+    funFact:
+      "An avocado is more closely related to cinnamon than to a strawberry. Avocados and cinnamon are both in the laurel family — an ancient lineage of flowering plants that split off before most modern flowers evolved. Strawberries are rosids, on a completely different branch. The creamy fruit in your guacamole and the bark in your spice rack are relatives.",
+    sourceUrl: "https://en.wikipedia.org/wiki/Lauraceae",
+    sourceLabel: "Lauraceae - Wikipedia",
+  },
+  {
+    organisms: [org("Tomato"), org("Potato"), org("Hot pepper")],
+    funFact:
+      "A tomato is more closely related to a potato than to a hot pepper — despite tomatoes and peppers both being colorful fruits you'd find together in a salsa. Tomatoes and potatoes are both in the genus Solanum, practically siblings. Peppers are in a separate genus (Capsicum) within the same nightshade family. The spicy fruit is the distant cousin; the starchy tuber is the close one.",
+    sourceUrl: "https://en.wikipedia.org/wiki/Solanum",
+    sourceLabel: "Solanum - Wikipedia",
+  },
+  {
+    organisms: [org("Indian pipe"), org("Blueberry"), org("Orchid")],
+    funFact:
+      "Indian pipe is a ghostly white plant with no chlorophyll — it looks like a fungus pushing through the leaf litter. But it is a flowering plant in the heath family, the same family as blueberries and rhododendrons! It gets its energy by parasitizing fungi that are connected to tree roots. Orchids are monocots, far more distant despite also being showy forest plants.",
+    sourceUrl: "https://en.wikipedia.org/wiki/Monotropa_uniflora",
+    sourceLabel: "Monotropa uniflora - Wikipedia",
+  },
+  {
     organisms: [org("Tardigrade"), org("Velvet worm"), org("Sea cucumber")],
     funFact:
       "Tardigrades and velvet worms are both panarthropods — relatives of insects and spiders! Velvet worms look like caterpillars and tardigrades look like microscopic gummy bears, but both have legs, molt their cuticle, and share a common ancestor with all arthropods. Sea cucumbers may look blobby and similar, but they are echinoderms — closer to humans than to any bug.",
@@ -791,7 +918,7 @@ export const surprisingScenarios: SurprisingScenario[] = [
   {
     organisms: [org("Colugo"), org("Human"), org("Flying squirrel")],
     funFact:
-      "The closest non-primate relative of humans is a gliding rainforest mammal that looks like a large flying squirrel. Colugos (Dermoptera) are the sister group to all primates — closer to every human, ape, and monkey than to any rodent, bat, or other mammal. Flying squirrels are rodents; they and colugos evolved near-identical gliding membranes completely independently. Note: NCBI Taxonomy leaves primates, colugos, and rodents as an unresolved polytomy within Euarchontoglires, but molecular phylogenies (reflected in the Open Tree of Life) confirm the clade Primatomorpha grouping colugos with primates.",
+      "The closest non-primate relative of humans is a gliding rainforest mammal that looks like a large flying squirrel. Colugos are the closest living relatives of all primates — closer to every human, ape, and monkey than to any rodent, bat, or other mammal. Flying squirrels are rodents; they and colugos evolved near-identical gliding membranes completely independently.",
     sourceUrl: "https://en.wikipedia.org/wiki/Colugo",
     sourceLabel: "Colugo - Wikipedia",
   },
@@ -834,7 +961,7 @@ export const surprisingScenarios: SurprisingScenario[] = [
       org("European mole"),
     ],
     funFact:
-      "Golden moles look identical to European moles — same sleek body, same powerful digging claws, same tiny eyes — but they are Afrotheria, more closely related to elephants than to any true mole! European moles are Eulipotyphla, on a completely different branch of the mammal tree. They evolved the same body plan independently on different continents.",
+      "Golden moles look identical to European moles — same sleek body, same powerful digging claws, same tiny eyes — but they are more closely related to elephants than to any true mole! Golden moles evolved in Africa alongside elephants and aardvarks; European moles evolved separately alongside shrews and hedgehogs. They arrived at the same body plan independently on different continents.",
     sourceUrl: "https://en.wikipedia.org/wiki/Golden_mole",
     sourceLabel: "Golden mole - Wikipedia",
   },
@@ -845,21 +972,21 @@ export const surprisingScenarios: SurprisingScenario[] = [
       org("European mole"),
     ],
     funFact:
-      "Naked mole rats live underground like moles, but they are rodents — closer to mice than to any mole! True moles are Eulipotyphla (with shrews and hedgehogs), while naked mole rats are in the same order as mice, rats, and guinea pigs.",
+      "Naked mole rats live underground like moles, but they are rodents — closer to mice than to any mole! True moles are on a completely different branch of the mammal tree, alongside shrews and hedgehogs. Naked mole rats are in the same order as mice, rats, and guinea pigs.",
     sourceUrl: "https://en.wikipedia.org/wiki/Naked_mole-rat",
     sourceLabel: "Naked mole-rat - Wikipedia",
   },
   {
     organisms: [org("Tree shrew"), org("Human"), org("Common shrew")],
     funFact:
-      "Tree shrews look like shrews but are Euarchonta — among the closest living relatives of primates! Despite the name, they are not shrews at all. True shrews are Eulipotyphla, on the same branch as hedgehogs and moles, far from any primate.",
+      "Tree shrews look like shrews but are among the closest living relatives of primates! Despite the name, they are not shrews at all. True shrews are on a completely different branch of the mammal tree, alongside hedgehogs and moles, far from any primate.",
     sourceUrl: "https://en.wikipedia.org/wiki/Treeshrew",
     sourceLabel: "Treeshrew - Wikipedia",
   },
   {
     organisms: [org("Hedgehog"), org("Common shrew"), org("Tenrec")],
     funFact:
-      "Hedgehogs and shrews are both Eulipotyphla — true insectivores that evolved together in Laurasia. Tenrecs independently evolved spines nearly identical to a hedgehog's, but they are Afrotheria — closer to elephants and aardvarks than to any hedgehog.",
+      "Hedgehogs and shrews are both true insectivores that evolved together in Europe and Asia. Tenrecs independently evolved spines nearly identical to a hedgehog's, but they are African mammals — closer to elephants and aardvarks than to any hedgehog.",
     sourceUrl: "https://en.wikipedia.org/wiki/Eulipotyphla",
     sourceLabel: "Eulipotyphla - Wikipedia",
   },
@@ -870,7 +997,7 @@ export const surprisingScenarios: SurprisingScenario[] = [
       org("European mole"),
     ],
     funFact:
-      "The marsupial mole looks identical to a European mole — same tubular body, same shovel-like claws, same vestigial eyes — but it is a marsupial, closer to kangaroos than to any true mole! With golden moles (Afrotheria) and European moles (Eulipotyphla), that makes three separate lineages on three continents that independently evolved the same burrowing body plan.",
+      "The marsupial mole looks identical to a European mole — same tubular body, same shovel-like claws, same vestigial eyes — but it is a marsupial, closer to kangaroos than to any true mole! With golden moles (African relatives of elephants) and European moles (relatives of shrews), that makes three separate lineages on three continents that independently evolved the same burrowing body plan.",
     sourceUrl: "https://en.wikipedia.org/wiki/Marsupial_mole",
     sourceLabel: "Marsupial mole - Wikipedia",
   },
@@ -895,7 +1022,7 @@ export const surprisingScenarios: SurprisingScenario[] = [
       org("Pangolin"),
     ],
     funFact:
-      "The tiny pink fairy armadillo — just 13 cm long with a rosy shell — and the nine-banded armadillo are both Xenarthra, an ancient group that includes sloths and anteaters. Pangolins look armored too, but their scales evolved completely independently — pangolins are actually the sister group to all carnivores!",
+      "The tiny pink fairy armadillo — just 13 cm long with a rosy shell — and the nine-banded armadillo are both part of the same ancient South American group that includes sloths and anteaters. Pangolins look armored too, but their scales evolved completely independently — pangolins are actually closest to carnivores like dogs and cats!",
     sourceUrl: "https://en.wikipedia.org/wiki/Pink_fairy_armadillo",
     sourceLabel: "Pink fairy armadillo - Wikipedia",
   },
@@ -1057,7 +1184,7 @@ export const surprisingScenarios: SurprisingScenario[] = [
       org("Koala"),
     ],
     funFact:
-      "A slow, fuzzy tree-hugger and a tiny pink armored burrower are in the same superorder — Xenarthra! Sloths, armadillos, and anteaters all share a common ancestor that evolved in South America. Despite looking far more similar to a sloth, koalas are marsupials on a completely different branch of the mammal tree.",
+      "A slow, fuzzy tree-hugger and a tiny pink armored burrower share a common ancestor that evolved in South America — sloths, armadillos, and anteaters are all part of the same ancient group. Despite looking far more similar to a sloth, koalas are marsupials on a completely different branch of the mammal tree.",
     sourceUrl: "https://en.wikipedia.org/wiki/Koala",
     sourceLabel: "Koala - Wikipedia",
   },
@@ -1068,7 +1195,7 @@ export const surprisingScenarios: SurprisingScenario[] = [
       org("Giant anteater"),
     ],
     funFact:
-      "Aardvarks and giant anteaters do the same job — long snouts, long sticky tongues, powerful claws for ripping open termite mounds — but they are not related at all. Aardvarks are Afrotheria, closer to elephants than to any anteater. Giant anteaters are Xenarthra, closer to sloths and armadillos. They independently evolved the same ant-eating toolkit on different continents.",
+      "Aardvarks and giant anteaters do the same job — long snouts, long sticky tongues, powerful claws for ripping open termite mounds — but they are not related at all. Aardvarks are African mammals closer to elephants than to any anteater. Giant anteaters are South American mammals closer to sloths and armadillos. They independently evolved the same ant-eating toolkit on different continents.",
     sourceUrl: "https://en.wikipedia.org/wiki/Aardvark",
     sourceLabel: "Aardvark - Wikipedia",
   },
@@ -1089,7 +1216,7 @@ export const surprisingScenarios: SurprisingScenario[] = [
   {
     organisms: [org("Numbat"), org("Red kangaroo"), org("Giant anteater")],
     funFact:
-      "The numbat is a termite-eating Australian marsupial with a long sticky tongue — the same toolkit as aardvarks (Afrotheria) and anteaters (Xenarthra). Three completely unrelated mammals on three different continents independently evolved the same termite-specialist body plan. The numbat is closer to a kangaroo than to either of them.",
+      "The numbat is a termite-eating Australian marsupial with a long sticky tongue — the same toolkit as aardvarks (from Africa) and anteaters (from South America). Three completely unrelated mammals on three different continents independently evolved the same termite-specialist body plan. The numbat is closer to a kangaroo than to either of them.",
     sourceUrl: "https://en.wikipedia.org/wiki/Numbat",
     sourceLabel: "Numbat - Wikipedia",
   },
@@ -1171,9 +1298,27 @@ export const surprisingScenarios: SurprisingScenario[] = [
   {
     organisms: [org("Green sea turtle"), org("Chicken"), org("Komodo dragon")],
     funFact:
-      'Turtles are closer to birds than to lizards! Molecular evidence places turtles within Archelosauria, alongside birds and crocodilians. Lizards and snakes are Lepidosauria, a completely separate branch. Despite turtles looking like the quintessential "reptile," they are on the bird side of the reptile tree.',
+      'Turtles are closer to birds and crocodilians than to lizards! The reptile family tree has two main branches: one leading to lizards and snakes, the other to turtles, dinosaurs, birds, and crocs. Despite looking like the most "primitive" reptile, turtles are on the same branch as a T. rex — not dinosaurs themselves, but the closest relatives of that whole lineage.',
     sourceUrl: "https://en.wikipedia.org/wiki/Archelosauria",
     sourceLabel: "Archelosauria - Wikipedia",
+  },
+  {
+    organisms: [
+      org("Galápagos tortoise"),
+      org("Nile crocodile"),
+      org("Tuatara"),
+    ],
+    funFact:
+      "Tortoises and tuataras both look like primordial reptiles frozen in time — but they are on opposite sides of the reptile family tree. The tree splits into two main branches: one leading to lizards, snakes, and tuataras, the other to turtles, dinosaurs, birds, and crocs. Despite both looking equally ancient, a tortoise is on the dinosaur side and a tuatara is on the lizard side.",
+    sourceUrl: "https://en.wikipedia.org/wiki/Archelosauria",
+    sourceLabel: "Archelosauria - Wikipedia",
+  },
+  {
+    organisms: [org("Emperor penguin"), org("Snapping turtle"), org("Corn snake")],
+    funFact:
+      'A penguin is more closely related to a snapping turtle than a snake is — because birds are reptiles. "Reptilia" is not a valid group unless you include birds. The reptile family tree splits into two main branches: lizards and snakes on one side, turtles, dinosaurs, birds, and crocs on the other. The snake is the odd one out.',
+    sourceUrl: "https://en.wikipedia.org/wiki/Reptile#Phylogenetics",
+    sourceLabel: "Reptile phylogenetics - Wikipedia",
   },
   {
     organisms: [org("Chicken"), org("Emperor penguin"), org("Ostrich")],
@@ -1185,7 +1330,7 @@ export const surprisingScenarios: SurprisingScenario[] = [
   {
     organisms: [org("Olive baboon"), org("Gorilla"), org("Capuchin monkey")],
     funFact:
-      'A baboon is closer to a gorilla than to a capuchin — despite baboons and capuchins both being "monkeys"! Old World monkeys and apes are both Catarrhini, while New World monkeys (Platyrrhini) split off over 40 million years ago. "Monkey" is not a valid phylogenetic group unless you include apes.',
+      'A baboon is closer to a gorilla than to a capuchin — despite baboons and capuchins both being "monkeys"! Baboons and apes both evolved in Africa and Asia, while capuchins are New World monkeys that split off over 40 million years ago. "Monkey" is not a valid evolutionary group unless you include apes.',
     sourceUrl: "https://en.wikipedia.org/wiki/Catarrhini",
     sourceLabel: "Catarrhini - Wikipedia",
   },
@@ -1228,14 +1373,21 @@ export const surprisingScenarios: SurprisingScenario[] = [
   {
     organisms: [org("Human"), org("Olive baboon"), org("Capuchin monkey")],
     funFact:
-      'You are more closely related to a baboon than a capuchin monkey is. Humans and baboons are both catarrhines — "Old World" primates — while capuchins are platyrrhines, "New World" monkeys that split off over 40 million years ago. The word "monkey" is not a valid evolutionary group unless you include apes and humans in it.',
+      'You are more closely related to a baboon than a capuchin monkey is. Humans and baboons are both "Old World" primates — apes and the monkeys of Africa and Asia. Capuchins are "New World" monkeys that split off over 40 million years ago when South America was a separate continent. The word "monkey" is not a valid evolutionary group unless you include apes and humans in it.',
     sourceUrl: "https://en.wikipedia.org/wiki/Catarrhini",
     sourceLabel: "Catarrhini - Wikipedia",
   },
   {
+    organisms: [org("Human"), org("Australian lungfish"), org("Atlantic salmon")],
+    funFact:
+      'You are more closely related to a lungfish than a salmon is. Both are called "fish," but "fish" is not a real evolutionary group. Lungfish have fleshy, limb-like fins and are on the same branch as all land animals — the lineage that crawled onto shore. Salmon are ray-finned fish, a completely separate branch. You are literally inside the fish family tree.',
+    sourceUrl: "https://en.wikipedia.org/wiki/Sarcopterygii",
+    sourceLabel: "Sarcopterygii - Wikipedia",
+  },
+  {
     organisms: [org("Three-toed sloth"), org("Rock hyrax"), org("Gray wolf")],
     funFact:
-      "A sloth and a hyrax are more closely related to each other than either is to a wolf! Under the Atlantogenata hypothesis (supported by most large-scale genomic studies), Xenarthra (sloths, armadillos, anteaters) and Afrotheria (elephants, hyraxes, manatees) form a single supergroup. Wolves and all Boreoeutheria (including primates and rodents) are on the other side of the placental mammal tree.",
+      "A sloth and a hyrax are more closely related to each other than either is to a wolf! Sloths (from South America) and hyraxes (from Africa) belong to two ancient mammal groups that share deep common ancestry from when those continents were joined. Wolves, along with primates, rodents, and most familiar mammals, are on the other side of the mammal family tree.",
     sourceUrl: "https://en.wikipedia.org/wiki/Atlantogenata",
     sourceLabel: "Atlantogenata - Wikipedia",
   },
