@@ -218,6 +218,7 @@ async function parseOttTaxonomy(ottFile) {
   const ottToNcbi = new Map();
   const ottNames = new Map();
   const ottRanks = new Map();
+  const ottParents = new Map();
 
   const rl = createInterface({
     input: createReadStream(ottFile),
@@ -232,11 +233,15 @@ async function parseOttTaxonomy(ottFile) {
     }
     const parts = line.split("\t|\t");
     const ottId = parseInt(parts[0], 10);
+    const parentUid = parts[1] ? parseInt(parts[1], 10) : undefined;
     const name = parts[2];
     const rank = parts[3];
     const sourceinfo = parts[4] || "";
 
     ottNames.set(ottId, name);
+    if (parentUid !== undefined && !isNaN(parentUid)) {
+      ottParents.set(ottId, parentUid);
+    }
     if (rank && rank !== "no rank" && rank !== "no rank - terminal") {
       ottRanks.set(ottId, rank);
     }
@@ -252,7 +257,7 @@ async function parseOttTaxonomy(ottFile) {
   console.log(
     `  ${ncbiToOtt.size} NCBI<->OTT mappings, ${ottNames.size} OTT names`,
   );
-  return { ncbiToOtt, ottToNcbi, ottNames, ottRanks };
+  return { ncbiToOtt, ottToNcbi, ottNames, ottRanks, ottParents };
 }
 
 function parseOtlTree(treeFile) {
@@ -310,6 +315,30 @@ function parseOtlTree(treeFile) {
   return parents;
 }
 
+function getOttLineage(ottId, ottTaxParents) {
+  const lineage = [];
+  let cur = ottId;
+  const seen = new Set();
+  while (cur !== undefined && !seen.has(cur)) {
+    seen.add(cur);
+    lineage.push(cur);
+    cur = ottTaxParents.get(cur);
+  }
+  return lineage;
+}
+
+function getOttLca(ottId1, ottId2, ottTaxParents) {
+  const lineage1 = getOttLineage(ottId1, ottTaxParents);
+  const set1 = new Set(lineage1);
+  const lineage2 = getOttLineage(ottId2, ottTaxParents);
+  for (const id of lineage2) {
+    if (set1.has(id)) {
+      return id;
+    }
+  }
+  return undefined;
+}
+
 function buildOtlAncestorTree(
   pool,
   curatedIds,
@@ -318,6 +347,7 @@ function buildOtlAncestorTree(
   ottToNcbi,
   ottNames,
   ottRanks,
+  ottTaxParents,
   ncbiScientificNames,
 ) {
   console.log("Building pruned ancestor tree from OTL...");
@@ -347,6 +377,25 @@ function buildOtlAncestorTree(
     const synId = nextId--;
     ottLabelToNumericId.set(ottLabel, synId);
     return synId;
+  }
+
+  // Resolve mrcaott labels to a taxonomic name by finding the LCA
+  // of the two referenced OTT taxa in the OTT taxonomy hierarchy
+  function resolveMrcaLabel(label) {
+    const m = label.match(/^mrcaott(\d+)ott(\d+)$/);
+    if (!m) {
+      return undefined;
+    }
+    const ottId1 = parseInt(m[1], 10);
+    const ottId2 = parseInt(m[2], 10);
+    const lcaOttId = getOttLca(ottId1, ottId2, ottTaxParents);
+    if (lcaOttId === undefined) {
+      return undefined;
+    }
+    const ncbiId = ottToNcbi.get(lcaOttId);
+    const name = ncbiScientificNames.get(ncbiId) || ottNames.get(lcaOttId);
+    const rank = ottRanks.get(lcaOttId);
+    return { name, rank };
   }
 
   // Collect all leaf NCBI IDs that need lineages
@@ -383,6 +432,7 @@ function buildOtlAncestorTree(
   const prunedParents = {};
   const prunedNames = {};
   const prunedRanks = {};
+  let mrcaResolved = 0;
 
   for (const label of neededLabels) {
     const id = resolveId(label);
@@ -404,10 +454,20 @@ function buildOtlAncestorTree(
       if (rank && rank !== "no rank") {
         prunedRanks[id] = rank;
       }
+    } else {
+      const resolved = resolveMrcaLabel(label);
+      if (resolved?.name) {
+        prunedNames[id] = resolved.name;
+        mrcaResolved++;
+      }
+      if (resolved?.rank && resolved.rank !== "no rank") {
+        prunedRanks[id] = resolved.rank;
+      }
     }
   }
 
   console.log(`  ${Object.keys(prunedParents).length} ancestor nodes`);
+  console.log(`  ${mrcaResolved} mrca nodes resolved to taxonomy names`);
   return { parents: prunedParents, names: prunedNames, ranks: prunedRanks };
 }
 
@@ -506,7 +566,7 @@ async function main() {
   const pool = buildSpeciesPool(ncbiParents, ncbiRanks, scientificNames, commonNames);
 
   // Parse OTL data
-  const { ncbiToOtt, ottToNcbi, ottNames, ottRanks } =
+  const { ncbiToOtt, ottToNcbi, ottNames, ottRanks, ottParents: ottTaxParents } =
     await parseOttTaxonomy(ottFile);
   const otlParents = parseOtlTree(treeFile);
 
@@ -519,6 +579,7 @@ async function main() {
     ottToNcbi,
     ottNames,
     ottRanks,
+    ottTaxParents,
     scientificNames,
   );
 

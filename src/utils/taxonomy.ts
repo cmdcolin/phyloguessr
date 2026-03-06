@@ -54,6 +54,27 @@ export function getLineageFromParents(
   return lineage;
 }
 
+function findNearestNamedAncestor(taxId: number, data: TaxonomyData) {
+  let current = taxId;
+  const seen = new Set<number>();
+  while (!seen.has(current)) {
+    seen.add(current);
+    if (data.names[String(current)]) {
+      return {
+        taxId: current,
+        name: data.names[String(current)],
+        rank: data.ranks[String(current)] ?? "no rank",
+      };
+    }
+    const parent = data.parents[String(current)];
+    if (parent === undefined || parent === current) {
+      break;
+    }
+    current = parent;
+  }
+  return { taxId, name: String(taxId), rank: "no rank" };
+}
+
 function getLcaFromParents(a: number, b: number, data: TaxonomyData) {
   const lineageA = getLineageFromParents(a, data.parents);
   const lineageB = getLineageFromParents(b, data.parents);
@@ -61,10 +82,11 @@ function getLcaFromParents(a: number, b: number, data: TaxonomyData) {
   for (let i = 0; i < lineageA.length; i++) {
     if (setB.has(lineageA[i])) {
       const taxId = lineageA[i];
+      const named = findNearestNamedAncestor(taxId, data);
       return {
-        taxId,
-        name: data.names[String(taxId)] ?? String(taxId),
-        rank: data.ranks[String(taxId)] ?? "no rank",
+        taxId: named.taxId,
+        name: named.name,
+        rank: named.rank,
         depth: lineageA.length - i,
       };
     }
