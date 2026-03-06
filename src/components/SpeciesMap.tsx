@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "preact/hooks";
+import { useEffect, useRef, useState, useMemo } from "preact/hooks";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { getGbifTaxonKey, gbifTileUrl } from "../api/gbif.ts";
@@ -23,10 +23,23 @@ export default function SpeciesMap({
   >([]);
   const [loading, setLoading] = useState(true);
 
+  const taxIds = useMemo(
+    () => organisms.map((o) => o.ncbiTaxId).join(","),
+    [organisms],
+  );
+
   useEffect(() => {
-    if (!mapRef.current || leafletMap.current) {
+    if (!mapRef.current) {
       return;
     }
+
+    if (leafletMap.current) {
+      leafletMap.current.remove();
+      leafletMap.current = null;
+    }
+
+    setLoading(true);
+    setLegend([]);
 
     const map = L.map(mapRef.current, {
       center: [20, 0],
@@ -37,19 +50,19 @@ export default function SpeciesMap({
     });
     leafletMap.current = map;
 
-    L.tileLayer("https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png", {
-      attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>',
-      subdomains: "abcd",
-      maxZoom: 20,
-    }).addTo(map);
+    L.tileLayer(
+      "https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png",
+      {
+        attribution:
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a> | Occurrence data from <a href="https://www.gbif.org/">GBIF</a>',
+        subdomains: "abcd",
+        maxZoom: 20,
+      },
+    ).addTo(map);
 
     let cancelled = false;
 
     async function addSpeciesLayers() {
-      const legendEntries: { name: string; color: string; failed: boolean }[] =
-        [];
-
       const results = await Promise.all(
         organisms.map(async (org, i) => {
           const key = await getGbifTaxonKey(org.scientificName);
@@ -60,6 +73,9 @@ export default function SpeciesMap({
       if (cancelled) {
         return;
       }
+
+      const legendEntries: { name: string; color: string; failed: boolean }[] =
+        [];
 
       for (const { org, key, styleIdx } of results) {
         const tileStyle = TILE_STYLES[styleIdx];
@@ -93,7 +109,7 @@ export default function SpeciesMap({
       map.remove();
       leafletMap.current = null;
     };
-  }, [organisms]);
+  }, [taxIds]);
 
   const colorMap: Record<string, string> = {
     blue: "#3388ff",
@@ -105,7 +121,9 @@ export default function SpeciesMap({
     <div className="species-map-container">
       <h3 className="species-map-title">Species Occurrence (GBIF)</h3>
       <div ref={mapRef} className="species-map" />
-      {loading && <div className="species-map-loading">Loading map data...</div>}
+      {loading && (
+        <div className="species-map-loading">Loading map data...</div>
+      )}
       {legend.length > 0 && (
         <div className="species-map-legend">
           {legend.map((entry) => (

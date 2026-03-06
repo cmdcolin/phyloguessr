@@ -1,9 +1,11 @@
+import { lazy, Suspense } from "preact/compat";
 import Button from "./Button.tsx";
 import { ShareButton } from "./Game.tsx";
 import PhyloTree from "./PhyloTree.tsx";
-import SpeciesMap from "./SpeciesMap.tsx";
 import { capitalize } from "../utils/format.ts";
 import { getLineageFromParents } from "../utils/taxonomy.ts";
+
+const SpeciesMap = lazy(() => import("./SpeciesMap.tsx"));
 
 import type { Organism } from "../data/organisms.ts";
 import type { MrcaInfo } from "../utils/format.ts";
@@ -239,7 +241,9 @@ export default function ResultScreen({
         images={images}
         userSelectedTaxIds={userSelectedTaxIds}
       />
-      <SpeciesMap organisms={[sister1, sister2, outgroup]} />
+      <Suspense fallback={<div className="species-map-loading">Loading map...</div>}>
+        <SpeciesMap organisms={[sister1, sister2, outgroup]} />
+      </Suspense>
       <div className="lineage-breadcrumbs">
         <Breadcrumbs organism={sister1} taxonomyData={taxonomyData} />
         <Breadcrumbs organism={sister2} taxonomyData={taxonomyData} />
