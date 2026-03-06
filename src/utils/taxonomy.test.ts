@@ -3,6 +3,7 @@ import { resolve } from 'path'
 
 import { describe, expect, it } from 'vitest'
 
+import { organisms } from '../data/organisms.ts'
 import {
   buildTreeFromLineages,
   findClosestPairFromData,
@@ -309,12 +310,6 @@ describe('all curated organisms have valid taxonomy data', () => {
     }
   } catch {
     data = { parents: {}, names: {}, ranks: {} }
-  }
-
-  // Dynamically import organisms to get all tax IDs
-  // We use a static import approach since vitest handles TS imports
-  const { organisms } = (await import('../data/organisms.ts')) as {
-    organisms: { commonName: string; ncbiTaxId: number }[]
   }
 
   it('every organism has a parent entry in taxonomy data', () => {

@@ -185,9 +185,6 @@ function Breadcrumbs({
   const steps = filterToImportantRanks(
     getFullLineage(organism.ncbiTaxId, taxonomyData),
   ).reverse()
-  if (steps.length === 0) {
-    return null
-  }
 
   return (
     <>
@@ -213,15 +210,21 @@ function Breadcrumbs({
           ncbi
         </a>
       </span>
-      <span className="breadcrumb-path">
-        {steps.map((step, i) => (
-          <span key={step.taxId}>
-            {i > 0 && <span className="breadcrumb-sep">{' \u203a '}</span>}
-            <TaxLink name={step.name} taxId={step.taxId} />
-            <span className="breadcrumb-rank"> ({formatRank(step.rank)})</span>
-          </span>
-        ))}
-      </span>
+      {steps.length > 0 ? (
+        <span className="breadcrumb-path">
+          {steps.map((step, i) => (
+            <span key={step.taxId}>
+              {i > 0 && <span className="breadcrumb-sep">{' \u203a '}</span>}
+              <TaxLink name={step.name} taxId={step.taxId} />
+              <span className="breadcrumb-rank"> ({formatRank(step.rank)})</span>
+            </span>
+          ))}
+        </span>
+      ) : (
+        <span className="breadcrumb-path breadcrumb-missing">
+          Lineage data missing
+        </span>
+      )}
     </>
   )
 }
