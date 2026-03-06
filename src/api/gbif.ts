@@ -22,7 +22,3 @@ export async function getGbifTaxonKey(scientificName: string) {
     return null;
   }
 }
-
-export function gbifTileUrl(taxonKey: number, style: string) {
-  return `https://api.gbif.org/v2/map/occurrence/density/{z}/{x}/{y}@1x.png?taxonKey=${taxonKey}&style=${style}`;
-}
