@@ -4,6 +4,7 @@ import Button from './Button.tsx'
 import Header from './Header.tsx'
 import OrganismCard from './OrganismCard.tsx'
 import ResultScreen, { TaxLink } from './ResultScreen.tsx'
+import SpeciesMap from './SpeciesMap.tsx'
 import { getOrganismImage } from '../api/wikipedia.ts'
 import { organisms as allOrganisms } from '../data/organisms.ts'
 import { surprisingScenarios } from '../data/surprisingFacts.ts'
@@ -187,6 +188,7 @@ export default function Game({ mode }: { mode: GameMode }) {
   )
   const [cladeError, setCladeError] = useState('')
   const [showSuggestions, setShowSuggestions] = useState(false)
+  const [showMapHint, setShowMapHint] = useState(false)
   const [seenCombos, setSeenCombos] = useState<Set<string>>(() => {
     const saved = sessionStorage.getItem('phyloSeenCombos')
     if (saved) {
@@ -215,6 +217,7 @@ export default function Game({ mode }: { mode: GameMode }) {
     setState('loading')
     setSelected([])
     setResult(null)
+    setShowMapHint(false)
     clearQuestionFromUrl()
 
     let data = taxonomyData
@@ -757,7 +760,13 @@ export default function Game({ mode }: { mode: GameMode }) {
             <Button variant="secondary" onClick={startRound}>
               Skip
             </Button>
+            <Button variant="secondary" onClick={() => setShowMapHint(prev => !prev)}>
+              {showMapHint ? 'Hide map hint' : 'Show map hint'}
+            </Button>
           </div>
+          {showMapHint && round && (
+            <SpeciesMap organisms={round.organisms} />
+          )}
         </div>
       )}
 

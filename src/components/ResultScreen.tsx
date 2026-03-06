@@ -79,9 +79,6 @@ function filterToImportantRanks(steps: BreadcrumbStep[]) {
 }
 
 export function TaxLink({ name, taxId }: { name: string; taxId: number }) {
-  if (taxId < 0) {
-    return <span className="breadcrumb-link">{name}</span>;
-  }
   return (
     <span className="breadcrumb-link">
       <a
@@ -91,16 +88,33 @@ export function TaxLink({ name, taxId }: { name: string; taxId: number }) {
       >
         {name}
       </a>
-      {" "}
-      <a
-        className="breadcrumb-secondary-link"
-        href={`https://www.ncbi.nlm.nih.gov/datasets/taxonomy/${taxId}`}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        ncbi
-      </a>
+      {taxId >= 0 && (
+        <>
+          {" "}
+          <a
+            className="breadcrumb-secondary-link"
+            href={`https://www.ncbi.nlm.nih.gov/datasets/taxonomy/${taxId}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            ncbi
+          </a>
+        </>
+      )}
     </span>
+  );
+}
+
+function OrganismLink({ organism }: { organism: Organism }) {
+  return (
+    <a
+      className="breadcrumb-link"
+      href={`https://en.wikipedia.org/wiki/${encodeURIComponent(organism.scientificName)}`}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {capitalize(organism.commonName)}
+    </a>
   );
 }
 
@@ -135,24 +149,25 @@ function Explanation({
     <div className="result-explanation">
       {sisterMrca ? (
         <p>
-          {capitalize(sister1.commonName)} and {capitalize(sister2.commonName)}{" "}
-          share a most recent common ancestor in{" "}
+          <OrganismLink organism={sister1} /> and{" "}
+          <OrganismLink organism={sister2} /> share a most recent common
+          ancestor in{" "}
           <TaxLink name={sisterMrca.name} taxId={sisterMrca.taxId} /> (
           {formatRank(sisterMrca.rank)}).
         </p>
       ) : (
         <p>
-          {capitalize(sister1.commonName)} and {capitalize(sister2.commonName)}{" "}
-          are more closely related to each other than either is to{" "}
-          {capitalize(outgroup.commonName)}.
+          <OrganismLink organism={sister1} /> and{" "}
+          <OrganismLink organism={sister2} /> are more closely related to each
+          other than either is to <OrganismLink organism={outgroup} />.
         </p>
       )}
       {overallMrca &&
         sisterMrca &&
         overallMrca.name !== sisterMrca.name && (
           <p>
-            To include {capitalize(outgroup.commonName)}, you have to go back
-            further to{" "}
+            To include <OrganismLink organism={outgroup} />, you have to go
+            back further to{" "}
             <TaxLink name={overallMrca.name} taxId={overallMrca.taxId} /> (
             {formatRank(overallMrca.rank)}).
           </p>
