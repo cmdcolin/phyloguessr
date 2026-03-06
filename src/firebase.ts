@@ -1,9 +1,7 @@
 import { initializeApp } from "firebase/app"
 import {
   getAuth,
-  signInAnonymously,
   signInWithPopup,
-  linkWithPopup,
   onAuthStateChanged,
   GoogleAuthProvider,
 } from "firebase/auth"
@@ -37,51 +35,32 @@ const db = getFirestore(app)
 const scoresRef = collection(db, "scores")
 const googleProvider = new GoogleAuthProvider()
 
-let resolveAuth: (user: User) => void
-let authReady = new Promise<User>((resolve) => {
-  resolveAuth = resolve
+let currentUser: User | null = null
+let resolveAuthReady: () => void
+let authReady = new Promise<void>((resolve) => {
+  resolveAuthReady = resolve
 })
 
 onAuthStateChanged(auth, (user) => {
-  if (user) {
-    resolveAuth(user)
-  } else {
-    authReady = new Promise<User>((resolve) => {
-      resolveAuth = resolve
-    })
-    signInAnonymously(auth).catch(console.error)
-  }
+  currentUser = user
+  resolveAuthReady()
 })
 
-export function getUid() {
-  return authReady.then((u) => u.uid)
+export async function getUid() {
+  await authReady
+  return currentUser?.uid ?? null
 }
 
-export function getCurrentUser() {
-  return authReady
+export async function getCurrentUser() {
+  await authReady
+  return currentUser
+}
+
+export function isSignedIn() {
+  return currentUser !== null
 }
 
 export async function signInWithGoogle() {
-  const currentUser = auth.currentUser
-  if (currentUser?.isAnonymous) {
-    try {
-      const result = await linkWithPopup(currentUser, googleProvider)
-      return result.user
-    } catch (err: unknown) {
-      if (
-        err !== null &&
-        typeof err === "object" &&
-        "code" in err &&
-        err.code === "auth/credential-already-in-use"
-      ) {
-        const anonUid = currentUser.uid
-        const result = await signInWithPopup(auth, googleProvider)
-        await deleteAnonScore(anonUid)
-        return result.user
-      }
-      throw err
-    }
-  }
   const result = await signInWithPopup(auth, googleProvider)
   return result.user
 }
@@ -89,16 +68,6 @@ export async function signInWithGoogle() {
 export async function signOut() {
   stopPresence()
   await auth.signOut()
-}
-
-async function deleteAnonScore(anonUid: string) {
-  const oldRef = doc(scoresRef, anonUid)
-  await runTransaction(db, async (transaction) => {
-    const oldSnap = await transaction.get(oldRef)
-    if (oldSnap.exists()) {
-      transaction.delete(oldRef)
-    }
-  })
 }
 
 export interface LeaderboardEntry {
@@ -123,9 +92,19 @@ function toLeaderboardEntry(uid: string, data: Record<string, unknown>): Leaderb
   }
 }
 
+export async function isNameTaken(name: string) {
+  await authReady
+  const q = query(scoresRef, where("name", "==", name), limit(1))
+  const snap = await getDocs(q)
+  return snap.docs.some((d) => d.id !== currentUser?.uid)
+}
+
 export async function recordRound(name: string, correct: boolean) {
-  const user = await authReady
-  const uid = user.uid
+  await authReady
+  if (!currentUser) {
+    return
+  }
+  const uid = currentUser.uid
   const docRef = doc(scoresRef, uid)
 
   await runTransaction(db, async (transaction) => {
@@ -158,9 +137,19 @@ export async function recordRound(name: string, correct: boolean) {
 }
 
 export async function getTopStreaks(count = 20) {
-  const q = query(scoresRef, orderBy("bestStreak", "desc"), limit(count))
+  const q = query(scoresRef, orderBy("bestStreak", "desc"), limit(count * 2))
   const snap = await getDocs(q)
-  return snap.docs.map((d) => toLeaderboardEntry(d.id, d.data()))
+  const all = snap.docs.map((d) => toLeaderboardEntry(d.id, d.data()))
+  const byName = new Map<string, LeaderboardEntry>()
+  for (const entry of all) {
+    const existing = byName.get(entry.name)
+    if (!existing || entry.bestStreak > existing.bestStreak) {
+      byName.set(entry.name, entry)
+    }
+  }
+  return [...byName.values()]
+    .sort((a, b) => b.bestStreak - a.bestStreak)
+    .slice(0, count)
 }
 
 const presenceRef = collection(db, "presence")
@@ -173,10 +162,13 @@ export interface PresenceEntry {
 }
 
 async function updatePresence() {
-  const user = await authReady
+  await authReady
+  if (!currentUser) {
+    return
+  }
   const name = localStorage.getItem("phyloLeaderboardName") ?? "Anonymous"
-  await setDoc(doc(presenceRef, user.uid), {
-    uid: user.uid,
+  await setDoc(doc(presenceRef, currentUser.uid), {
+    uid: currentUser.uid,
     name,
     lastSeen: Date.now(),
   } satisfies PresenceEntry)

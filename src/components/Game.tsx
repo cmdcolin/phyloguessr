@@ -1,17 +1,15 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import Button from "./Button.tsx";
-import HeaderAuth from "./HeaderAuth.tsx";
-import Leaderboard from "./Leaderboard.tsx";
-import OnlinePlayers from "./OnlinePlayers.tsx";
+import Header from "./Header.tsx";
 import OrganismCard from "./OrganismCard.tsx";
 import ResultScreen from "./ResultScreen.tsx";
-import TreeIcon from "./TreeIcon.tsx";
 import { getOrganismImage } from "../api/wikipedia.ts";
 import { pickThreeOrganisms } from "../data/organisms.ts";
 import { surprisingScenarios } from "../data/surprisingFacts.ts";
 import { recordRound, startPresence } from "../firebase.ts";
-import { getCurrentStreak, loadHistory, saveHistory } from "../utils/history.ts";
+import { saveHistory, loadHistory } from "../utils/history.ts";
+import type { HistoryEntry } from "../utils/history.ts";
 import {
   findClosestPairFromData,
   findTaxId,
@@ -27,7 +25,6 @@ import type { Organism } from "../data/organisms.ts";
 import type { SurprisingScenario } from "../data/surprisingFacts.ts";
 import type { SpeciesPoolEntry, TaxonomyData } from "../utils/taxonomy.ts";
 import type { MrcaInfo } from "../utils/format.ts";
-import type { HistoryEntry } from "../utils/history.ts";
 
 type GameState =
   | "needs-nickname"
@@ -79,9 +76,6 @@ export default function Game({ mode }: { mode: GameMode }) {
   const [round, setRound] = useState<RoundData | null>(null);
   const [selected, setSelected] = useState<number[]>([]);
   const [result, setResult] = useState<ResultData | null>(null);
-  const [history, setHistory] = useState<HistoryEntry[]>(loadHistory);
-  const [showHistory, setShowHistory] = useState(false);
-  const [showLeaderboard, setShowLeaderboard] = useState(false);
   const [nicknameInput, setNicknameInput] = useState("");
 
   const [taxonomyData, setTaxonomyData] = useState<TaxonomyData | null>(null);
@@ -363,7 +357,7 @@ export default function Game({ mode }: { mode: GameMode }) {
       mode,
       timestamp: Date.now(),
     };
-    setHistory((prev) => saveHistory([...prev, entry]));
+    saveHistory([...loadHistory(), entry]);
 
     const leaderboardName = localStorage.getItem("phyloLeaderboardName");
     if (leaderboardName) {
@@ -385,138 +379,7 @@ export default function Game({ mode }: { mode: GameMode }) {
 
   return (
     <div className="game">
-      <header className="game-header">
-        <div className="header-left">
-          <TreeIcon size={26} />
-          <h1>
-            <a className="home-btn" href={import.meta.env.BASE_URL}>
-              PhyloGuessr
-            </a>
-          </h1>
-        </div>
-        <div className="header-animals" aria-hidden="true">
-          <img
-            className="header-animal animal-platypus"
-            src="https://images.phylopic.org/images/61932f57-1fd2-49d9-bb86-042d6005581a/thumbnail/128x128.png"
-            alt=""
-          />
-          <img
-            className="header-animal animal-aardvark"
-            src="https://images.phylopic.org/images/cfee2dca-3767-46b8-8d03-bd8f46e79e9e/thumbnail/128x128.png"
-            alt=""
-          />
-          <img
-            className="header-animal animal-octopus"
-            src="https://images.phylopic.org/images/f400b519-3564-4183-b4bd-c3b922cc7c5e/thumbnail/128x128.png"
-            alt=""
-          />
-          <img
-            className="header-animal animal-hippo"
-            src="https://images.phylopic.org/images/3769e205-b10c-4aab-affc-b4f0302f4eaa/thumbnail/128x128.png"
-            alt=""
-          />
-          <img
-            className="header-animal animal-axolotl"
-            src="https://images.phylopic.org/images/575eaa51-6c9b-4d36-9881-b8463c68ebbc/thumbnail/128x128.png"
-            alt=""
-          />
-          <img
-            className="header-animal animal-horseshoecrab"
-            src="https://images.phylopic.org/images/38c82deb-b187-4e85-a9f8-dba2794b42d0/thumbnail/128x128.png"
-            alt=""
-          />
-        </div>
-        <div className="header-right">
-          <HeaderAuth />
-          <OnlinePlayers />
-          <button
-            className="leaderboard-btn"
-            title="Leaderboard"
-            onClick={() => setShowLeaderboard((s) => !s)}
-          >
-            LB
-          </button>
-          <a
-            href={`${import.meta.env.BASE_URL}about`}
-            className="about-btn"
-            title="About"
-          >
-            ?
-          </a>
-          {history.length > 0 &&
-            (() => {
-              const wins = history.filter((h) => h.correct).length;
-              const losses = history.length - wins;
-              const streak = getCurrentStreak(history);
-              return (
-                <>
-                  <button
-                    className="score-btn"
-                    onClick={() => setShowHistory((s) => !s)}
-                  >
-                    {wins} {wins === 1 ? "win" : "wins"}, {losses}{" "}
-                    {losses === 1 ? "loss" : "losses"}
-                  </button>
-                  {streak > 1 && (
-                    <span className="streak">{streak} streak</span>
-                  )}
-                </>
-              );
-            })()}
-        </div>
-      </header>
-
-      {showHistory && (
-        <div className="history-panel">
-          <div className="history-header">
-            <h3>Game History</h3>
-            <div className="history-actions">
-              <button
-                className="reset-btn"
-                onClick={() => {
-                  setHistory([]);
-                  localStorage.removeItem("phyloHistory");
-                }}
-              >
-                Reset
-              </button>
-              <button
-                className="close-btn"
-                onClick={() => setShowHistory(false)}
-              >
-                Close
-              </button>
-            </div>
-          </div>
-          {history.length === 0 && (
-            <p className="history-empty">No games played yet.</p>
-          )}
-          <ul className="history-list">
-            {[...history].reverse().map((h, i) => (
-              <li
-                key={history.length - 1 - i}
-                className={h.correct ? "history-win" : "history-loss"}
-              >
-                <span className="history-result">{h.correct ? "W" : "L"}</span>
-                <span className="history-organisms">
-                  {h.organisms.join(", ")}
-                </span>
-                <span className="history-sister">
-                  Answer: {h.sister.join(" + ")}
-                </span>
-                <span className="history-mode">{h.mode}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-      {showLeaderboard && (
-        <Leaderboard
-          history={history}
-          onClose={() => setShowLeaderboard(false)}
-        />
-      )}
+      <Header />
 
       {state === "needs-nickname" && (
         <div className="nickname-screen">
@@ -575,20 +438,28 @@ export default function Game({ mode }: { mode: GameMode }) {
               <ul className="clade-presets-list">
                 {(
                   [
-                    ["40674", "Mammalia", "mammals"],
-                    ["8782", "Aves", "birds"],
-                    ["8504", "Lepidosauria", "lizards & snakes"],
-                    ["8292", "Amphibia", "frogs & salamanders"],
-                    ["50557", "Insecta", "insects"],
-                    ["6854", "Arachnida", "spiders & scorpions"],
-                    ["7898", "Actinopterygii", "ray-finned fish"],
-                    ["7777", "Chondrichthyes", "sharks & rays"],
-                    ["3398", "Magnoliopsida", "flowering plants"],
-                    ["58019", "Pinopsida", "conifers"],
-                    ["4751", "Fungi", "mushrooms & yeasts"],
-                    ["6447", "Mollusca", "snails & octopuses"],
+                    ["40674", "mammals", "Mammalia"],
+                    ["8782", "birds", "Aves"],
+                    ["8504", "lizards & snakes", "Lepidosauria"],
+                    ["8292", "frogs & salamanders", "Amphibia"],
+                    ["50557", "insects", "Insecta"],
+                    ["6854", "spiders & scorpions", "Arachnida"],
+                    ["7898", "ray-finned fish", "Actinopterygii"],
+                    ["7777", "sharks & rays", "Chondrichthyes"],
+                    ["32523", "bony vertebrates", "Tetrapoda"],
+                    ["6656", "crustaceans", "Arthropoda"],
+                    ["6447", "snails & octopuses", "Mollusca"],
+                    ["3398", "flowering plants", "Magnoliopsida"],
+                    ["58019", "conifers", "Pinopsida"],
+                    ["4751", "mushrooms & yeasts", "Fungi"],
+                    ["7742", "vertebrates", "Vertebrata"],
+                    ["33208", "animals", "Metazoa"],
+                    ["9443", "primates", "Primates"],
+                    ["33554", "songbirds", "Passeriformes"],
+                    ["7088", "butterflies & moths", "Lepidoptera"],
+                    ["4890", "yeasts & sac fungi", "Ascomycota"],
                   ] as const
-                ).map(([id, name, label]) => (
+                ).map(([id, label, name]) => (
                   <li
                     key={id}
                     className={`clade-preset-item ${cladeFilter === id ? "active" : ""}`}
@@ -598,7 +469,7 @@ export default function Game({ mode }: { mode: GameMode }) {
                       setShowSuggestions(false);
                     }}
                   >
-                    {name} ({label})
+                    {label} <span className="clade-preset-scientific">({name})</span>
                   </li>
                 ))}
                 <li className="clade-preset-item clade-custom-item">

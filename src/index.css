@@ -145,63 +145,15 @@ body {
   justify-content: flex-end;
 }
 
-.score-btn {
+.header-nickname {
   font-size: 0.85rem;
   color: GrayText;
-  background: none;
-  border: none;
-  cursor: pointer;
-  text-decoration: underline;
-  text-decoration-style: dotted;
-  font-family: inherit;
-}
-
-.score-btn:hover {
-  color: CanvasText;
 }
 
 .streak {
   font-size: 0.8rem;
   color: var(--success);
   font-weight: 600;
-}
-
-.history-panel,
-.leaderboard-panel {
-  max-width: 600px;
-  margin: 0 auto var(--space-lg);
-  padding: var(--space-lg);
-  border: 1px solid color-mix(in srgb, CanvasText 20%, transparent);
-  border-radius: 8px;
-  background: Canvas;
-}
-
-.history-header,
-.leaderboard-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: var(--space-md);
-}
-
-.history-header h3,
-.leaderboard-header h3 {
-  font-size: 1rem;
-}
-
-.history-actions {
-  display: flex;
-  gap: var(--space-sm);
-}
-
-.history-actions button {
-  font-size: 0.8rem;
-  padding: 4px 10px;
-  border-radius: 4px;
-  border: 1px solid color-mix(in srgb, CanvasText 20%, transparent);
-  background: Canvas;
-  color: CanvasText;
-  cursor: pointer;
 }
 
 .reset-btn:hover {
@@ -215,6 +167,19 @@ body {
   font-size: 0.9rem;
 }
 
+.history-page .history-list {
+  max-height: none;
+}
+
+.history-stats {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+  font-size: 0.9rem;
+  color: GrayText;
+}
+
 .history-list {
   list-style: none;
   max-height: 300px;
@@ -223,7 +188,8 @@ body {
 
 .history-list li {
   display: flex;
-  align-items: center;
+  align-items: baseline;
+  flex-wrap: wrap;
   gap: var(--space-sm);
   padding: 6px 0;
   font-size: 0.85rem;
@@ -248,15 +214,11 @@ body {
 .history-organisms {
   flex: 1;
   min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .history-sister {
   color: GrayText;
   font-size: 0.8rem;
-  flex-shrink: 0;
 }
 
 .history-mode {
@@ -468,6 +430,11 @@ body {
 .clade-preset-item.active {
   color: var(--accent-tree);
   font-weight: bold;
+}
+
+.clade-preset-scientific {
+  color: GrayText;
+  font-weight: normal;
 }
 
 .clade-custom-item {
@@ -1010,83 +977,6 @@ body {
   padding: var(--space-lg);
 }
 
-.header-signin-btn {
-  padding: 4px 10px;
-  font-size: 0.75rem;
-  border: 1px solid ButtonBorder;
-  border-radius: 4px;
-  background: Canvas;
-  color: CanvasText;
-  cursor: pointer;
-  font-family: inherit;
-  text-decoration: none;
-}
-
-.header-signin-btn:hover {
-  border-color: GrayText;
-}
-
-.header-signed-in {
-  font-size: 0.75rem;
-  color: GrayText;
-  white-space: nowrap;
-  text-decoration: none;
-}
-
-.header-signed-in:hover {
-  color: CanvasText;
-}
-
-.header-user-menu {
-  position: relative;
-}
-
-.header-user-btn {
-  padding: 4px 10px;
-  font-size: 0.75rem;
-  border: 1px solid ButtonBorder;
-  border-radius: 4px;
-  background: Canvas;
-  color: CanvasText;
-  cursor: pointer;
-  font-family: inherit;
-}
-
-.header-user-btn:hover {
-  border-color: GrayText;
-}
-
-.header-user-dropdown {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  margin-top: 4px;
-  background: Canvas;
-  border: 1px solid ButtonBorder;
-  border-radius: 4px;
-  min-width: 140px;
-  z-index: 20;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-}
-
-.header-dropdown-item {
-  display: block;
-  width: 100%;
-  padding: 8px 12px;
-  font-size: 0.8rem;
-  border: none;
-  background: none;
-  color: CanvasText;
-  text-align: left;
-  cursor: pointer;
-  text-decoration: none;
-  font-family: inherit;
-}
-
-.header-dropdown-item:hover {
-  background: ButtonFace;
-}
-
 .signin-note {
   color: GrayText;
   font-style: italic;
@@ -1135,36 +1025,74 @@ body {
 }
 
 
-.leaderboard-btn,
-.about-btn {
-  display: inline-flex;
-  align-items: center;
+.hamburger-wrapper {
+  position: relative;
+}
+
+.hamburger-btn {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  border: 1px solid ButtonBorder;
+  gap: 4px;
+  width: 32px;
+  height: 32px;
+  padding: 6px;
   background: none;
-  color: GrayText;
-  font-weight: 700;
-  line-height: 1;
-}
-
-.leaderboard-btn {
-  font-size: 0.65rem;
+  border: 1px solid color-mix(in srgb, GrayText, transparent 60%);
+  border-radius: 6px;
   cursor: pointer;
-  font-family: inherit;
+  color: GrayText;
 }
 
-.about-btn {
-  font-size: 0.9rem;
-  text-decoration: none;
-}
-
-.leaderboard-btn:hover,
-.about-btn:hover {
+.hamburger-btn:hover {
   border-color: GrayText;
   color: CanvasText;
+}
+
+.hamburger-icon {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+  border-radius: 1px;
+}
+
+.hamburger-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 4px;
+  min-width: 160px;
+  background: Canvas;
+  border: 1px solid color-mix(in srgb, GrayText, transparent 60%);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  overflow: hidden;
+}
+
+.hamburger-item {
+  display: block;
+  width: 100%;
+  padding: 8px 12px;
+  background: none;
+  border: none;
+  font: inherit;
+  font-size: 0.9rem;
+  color: CanvasText;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.hamburger-item:hover {
+  background: color-mix(in srgb, GrayText, transparent 85%);
+}
+
+.hamburger-divider {
+  height: 1px;
+  background: color-mix(in srgb, GrayText, transparent 80%);
+  margin: 4px 0;
 }
 
 .leaderboard-loading,
@@ -1384,17 +1312,6 @@ body {
   font-weight: 600;
 }
 
-
-.about-link {
-  font-size: 0.85rem;
-  color: GrayText;
-  text-decoration: underline;
-  text-decoration-style: dotted;
-}
-
-.about-link:hover {
-  color: CanvasText;
-}
 
 .about-page {
   max-width: 540px;

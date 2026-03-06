@@ -1,16 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import Header from '../components/Header.tsx'
-import SignInPage from '../components/SignInPage.tsx'
+import History from '../components/History.tsx'
 import '../index.css'
 ---
 
-<Layout title="Sign In - PhyloGuessr">
+<Layout title="History - PhyloGuessr">
   <div class="game">
     <Header client:load />
     <div class="about-page">
-      <h2>Sign In</h2>
-      <SignInPage client:load />
+      <h2>Game History</h2>
+      <History client:load />
     </div>
   </div>
 </Layout>

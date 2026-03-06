@@ -284,38 +284,73 @@ export function pickThreeFromClade(
   return pickFromAncestor(ancestorTaxId, pool, data);
 }
 
+const targetRankList = ["genus", "family", "order", "class", "phylum"] as const;
+
+let cladeIndexCache: {
+  pool: SpeciesPoolEntry[];
+  byRank: Map<string, { taxId: number; name: string; rank: string }[]>;
+} | undefined;
+
+function buildCladeIndex(
+  pool: SpeciesPoolEntry[],
+  data: TaxonomyData,
+) {
+  if (cladeIndexCache && cladeIndexCache.pool === pool) {
+    return cladeIndexCache.byRank;
+  }
+
+  const targetRanks = new Set<string>(targetRankList);
+  const cladeCounts = new Map<number, number>();
+
+  for (let i = 0; i < pool.length; i++) {
+    const lineage = getLineageFromParents(pool[i][0], data.parents);
+    for (const id of lineage) {
+      const rank = data.ranks[String(id)];
+      if (rank !== undefined && targetRanks.has(rank)) {
+        cladeCounts.set(id, (cladeCounts.get(id) ?? 0) + 1);
+      }
+    }
+  }
+
+  const byRank = new Map<string, { taxId: number; name: string; rank: string }[]>();
+  for (const r of targetRankList) {
+    byRank.set(r, []);
+  }
+
+  for (const [taxId, count] of cladeCounts) {
+    if (count >= 3) {
+      const rank = data.ranks[String(taxId)] ?? "";
+      const bucket = byRank.get(rank);
+      if (bucket) {
+        bucket.push({
+          taxId,
+          name: data.names[String(taxId)] ?? `Taxon ${taxId}`,
+          rank,
+        });
+      }
+    }
+  }
+
+  cladeIndexCache = { pool, byRank };
+  return byRank;
+}
+
 export function pickThreeHardModeDistance(
   pool: SpeciesPoolEntry[],
   data: TaxonomyData,
 ): HardModeResult {
-  const targetRanks = ["genus", "family", "order", "class", "phylum"];
+  const byRank = buildCladeIndex(pool, data);
+  const nonEmptyRanks = targetRankList.filter(
+    (r) => (byRank.get(r)?.length ?? 0) > 0,
+  );
 
   for (let attempt = 0; attempt < 20; attempt++) {
-    const seedIdx = Math.floor(Math.random() * pool.length);
-    const seed = pool[seedIdx];
-    const lineage = getLineageFromParents(seed[0], data.parents);
-
-    const rankedAncestors = lineage.filter((id) => {
-      const rank = data.ranks[String(id)];
-      return rank !== undefined && targetRanks.includes(rank);
-    });
-
-    if (rankedAncestors.length < 1) {
-      continue;
-    }
-
-    const ancestorId =
-      rankedAncestors[Math.floor(Math.random() * rankedAncestors.length)];
-    const result = pickFromAncestor(ancestorId, pool, data);
+    const rank = nonEmptyRanks[Math.floor(Math.random() * nonEmptyRanks.length)];
+    const bucket = byRank.get(rank)!;
+    const clade = bucket[Math.floor(Math.random() * bucket.length)];
+    const result = pickFromAncestor(clade.taxId, pool, data);
     if (result) {
-      return {
-        picks: result,
-        clade: {
-          taxId: ancestorId,
-          name: data.names[String(ancestorId)] ?? `Taxon ${ancestorId}`,
-          rank: data.ranks[String(ancestorId)] ?? "",
-        },
-      };
+      return { picks: result, clade };
     }
   }
 
