@@ -59,9 +59,11 @@ function createColoredTileLayer(taxonKey: number, color: string, style: string, 
 export default function InteractiveMap({
   organisms,
   mode,
+  onMapReady,
 }: {
   organisms: Organism[]
   mode: Exclude<MapMode, 'static'>
+  onMapReady?: (controls: { resetView: () => void }) => void
 }) {
   const mapRef = useRef<HTMLDivElement>(null)
   const leafletMap = useRef<L.Map | null>(null)
@@ -86,6 +88,7 @@ export default function InteractiveMap({
       worldCopyJump: true,
     })
     leafletMap.current = map
+    onMapReady?.({ resetView: () => map.setView([20, 0], 2) })
 
     L.tileLayer(
       'https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png',
@@ -144,18 +147,7 @@ export default function InteractiveMap({
     }
   }, [resolvedKeys, mode])
 
-  function resetView() {
-    if (leafletMap.current) {
-      leafletMap.current.setView([20, 0], 2)
-    }
-  }
-
   return (
-    <div>
-      <div ref={mapRef} className="species-interactive-map" />
-      <button className="map-toggle-btn map-reset-btn" onClick={resetView}>
-        Reset zoom
-      </button>
-    </div>
+    <div ref={mapRef} className="species-interactive-map" />
   )
 }

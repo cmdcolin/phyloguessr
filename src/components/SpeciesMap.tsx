@@ -89,8 +89,8 @@ export type MapMode = 'static' | 'hex' | 'square'
 
 const MAP_MODES: { value: MapMode; label: string }[] = [
   { value: 'static', label: 'Static' },
-  { value: 'hex', label: 'Hex' },
-  { value: 'square', label: 'Square' },
+  { value: 'hex', label: 'Interactive: Hex' },
+  { value: 'square', label: 'Interactive: Square' },
 ]
 
 export default function SpeciesMap({ organisms }: { organisms: Organism[] }) {
@@ -100,6 +100,7 @@ export default function SpeciesMap({ organisms }: { organisms: Organism[] }) {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
   const [mode, setMode] = useState<MapMode>('static')
+  const mapControlsRef = useRef<{ resetView: () => void } | null>(null)
 
   const taxIdKey = useMemo(
     () => organisms.map(o => o.ncbiTaxId).join(','),
@@ -264,20 +265,30 @@ export default function SpeciesMap({ organisms }: { organisms: Organism[] }) {
   return (
     <div className="species-map-container">
       <h3 className="species-map-title">Species Occurrence (GBIF)</h3>
-      <div className="map-toggle-group">
-        {MAP_MODES.map(m => (
+      <div className="map-toggle-row">
+        <div className="map-toggle-group">
+          {MAP_MODES.map(m => (
+            <button
+              key={m.value}
+              className={`map-toggle-btn${mode === m.value ? ' map-toggle-btn--active' : ''}`}
+              onClick={() => setMode(m.value)}
+            >
+              {m.label}
+            </button>
+          ))}
+        </div>
+        {mode !== 'static' && (
           <button
-            key={m.value}
-            className={`map-toggle-btn${mode === m.value ? ' map-toggle-btn--active' : ''}`}
-            onClick={() => setMode(m.value)}
+            className="map-toggle-btn map-reset-btn"
+            onClick={() => mapControlsRef.current?.resetView()}
           >
-            {m.label}
+            Reset zoom
           </button>
-        ))}
+        )}
       </div>
       {mode !== 'static' ? (
         <Suspense fallback={<div className="species-map-overlay-inline">Loading interactive map...</div>}>
-          <InteractiveMap organisms={organisms} mode={mode} />
+          <InteractiveMap organisms={organisms} mode={mode} onMapReady={c => { mapControlsRef.current = c }} />
         </Suspense>
       ) : (
         <div className="species-map-wrapper">

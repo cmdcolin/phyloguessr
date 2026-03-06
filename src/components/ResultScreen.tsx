@@ -22,6 +22,7 @@ interface ResultScreenProps {
   taxonomyData: TaxonomyData;
   images: Record<number, string | null>;
   userSelectedTaxIds: Set<number>;
+  organismColors: Record<number, string>;
   funFact?: string;
   shareUrl: string;
   onPlayAgain: () => void;
@@ -241,6 +242,7 @@ export default function ResultScreen({
   taxonomyData,
   images,
   userSelectedTaxIds,
+  organismColors,
   funFact,
   shareUrl,
   onPlayAgain,
@@ -275,6 +277,7 @@ export default function ResultScreen({
         cladeLabel={cladeLabel}
         images={images}
         userSelectedTaxIds={userSelectedTaxIds}
+        organismColors={organismColors}
       />
       <MapToggle organisms={[sister1, sister2, outgroup]} />
       <div className="lineage-breadcrumbs">

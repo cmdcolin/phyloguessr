@@ -483,13 +483,6 @@ export const surprisingScenarios: SurprisingScenario[] = [
     sourceLabel: "Lancelet - Wikipedia",
   },
   {
-    organisms: [org("Acorn worm"), org("Starfish"), org("Common octopus")],
-    funFact:
-      'Acorn worms and starfish are both on "our side" of the animal family tree — their embryos develop mouth-second, just like ours do. Acorn worms even have gill slits similar to those in fish and human embryos.',
-    sourceUrl: "https://en.wikipedia.org/wiki/Hemichordata",
-    sourceLabel: "Hemichordata - Wikipedia",
-  },
-  {
     organisms: [org("Great white shark"), org("Human"), org("Lancelet")],
     funFact:
       "You share more with a shark than you might think. Sharks and humans are both jawed vertebrates — your jaw, teeth, and inner ear all trace back to a common ancestor with sharks over 450 million years ago. Lancelets split off even earlier, before jaws evolved.",
@@ -553,13 +546,6 @@ export const surprisingScenarios: SurprisingScenario[] = [
       'Starfish are on "our side" of the animal family tree! Despite looking alien, starfish share a more recent common ancestor with humans than with jellyfish. Their larvae are even bilaterally symmetric — like us — before transforming into their star shape.',
     sourceUrl: "https://en.wikipedia.org/wiki/Deuterostome",
     sourceLabel: "Deuterostome - Wikipedia",
-  },
-  {
-    organisms: [org("Sea urchin"), org("Acorn worm"), org("Moon jellyfish")],
-    funFact:
-      "Sea urchins and acorn worms both develop the same way as humans in the embryo — forming the mouth second. This shared embryonic blueprint connects them despite looking nothing alike.",
-    sourceUrl: "https://en.wikipedia.org/wiki/Ambulacraria",
-    sourceLabel: "Ambulacraria - Wikipedia",
   },
   {
     organisms: [org("Moon jellyfish"), org("Sea anemone"), org("Bath sponge")],

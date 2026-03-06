@@ -9,6 +9,7 @@ interface PhyloTreeProps {
   cladeLabel?: string;
   images: Record<number, string | null>;
   userSelectedTaxIds: Set<number>;
+  organismColors?: Record<number, string>;
 }
 
 export default function PhyloTree({
@@ -18,6 +19,7 @@ export default function PhyloTree({
   cladeLabel,
   images,
   userSelectedTaxIds,
+  organismColors,
 }: PhyloTreeProps) {
   const imgSize = 40;
   const w = 560;
@@ -210,9 +212,9 @@ export default function PhyloTree({
       })}
 
       {/* Leaf dots */}
-      <circle cx={leafX} cy={y1} r={4} fill="var(--accent-tree)" />
-      <circle cx={leafX} cy={y2} r={4} fill="var(--accent-tree)" />
-      <circle cx={leafX} cy={y3} r={4} fill="GrayText" />
+      <circle cx={leafX} cy={y1} r={4} fill={organismColors?.[sister1.ncbiTaxId] ?? "var(--accent-tree)"} />
+      <circle cx={leafX} cy={y2} r={4} fill={organismColors?.[sister2.ncbiTaxId] ?? "var(--accent-tree)"} />
+      <circle cx={leafX} cy={y3} r={4} fill={organismColors?.[outgroup.ncbiTaxId] ?? "GrayText"} />
 
       {/* User selection arrows */}
       {[
@@ -226,13 +228,14 @@ export default function PhyloTree({
         const arrowY = y + 16;
         const arrowBase = leafX - 16;
         const arrowTip = leafX - 6;
+        const color = organismColors?.[org.ncbiTaxId] ?? "white";
         return (
           <g key={`arrow-${org.ncbiTaxId}`}>
             <text
               x={arrowBase - 3}
               y={arrowY + 3.5}
               fontSize={9}
-              fill="white"
+              fill={color}
               fontWeight="bold"
               textAnchor="end"
             >
@@ -240,7 +243,7 @@ export default function PhyloTree({
             </text>
             <polygon
               points={`${arrowBase},${arrowY - 5} ${arrowBase},${arrowY + 5} ${arrowTip},${arrowY}`}
-              fill="white"
+              fill={color}
               opacity={0.85}
             />
           </g>

@@ -1179,16 +1179,9 @@ export const organisms: Organism[] = [
   },
   {
     commonName: "Lancelet",
-    scientificName: "Branchiostoma floridae",
-    ncbiTaxId: 7739,
-    wikiTitle: "Branchiostoma_floridae",
-    group: "invertebrate",
-  },
-  {
-    commonName: "Acorn worm",
-    scientificName: "Saccoglossus kowalevskii",
-    ncbiTaxId: 10224,
-    wikiTitle: "Saccoglossus_kowalevskii",
+    scientificName: "Branchiostoma lanceolatum",
+    ncbiTaxId: 7740,
+    wikiTitle: "Branchiostoma_lanceolatum",
     group: "invertebrate",
   },
   {

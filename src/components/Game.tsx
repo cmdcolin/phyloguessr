@@ -784,7 +784,7 @@ export default function Game({ mode }: { mode: GameMode }) {
                 selected={selected.includes(i)}
                 disabled={false}
                 onClick={() => toggleSelect(i)}
-                mapColor={showMapHint ? MAP_COLORS[i % MAP_COLORS.length] : undefined}
+                mapColor={MAP_COLORS[i % MAP_COLORS.length]}
               />
             ))}
           </div>
@@ -822,6 +822,9 @@ export default function Game({ mode }: { mode: GameMode }) {
           userSelectedTaxIds={
             new Set(selected.map(i => round.organisms[i].ncbiTaxId))
           }
+          organismColors={Object.fromEntries(
+            round.organisms.map((o, i) => [o.ncbiTaxId, MAP_COLORS[i % MAP_COLORS.length]]),
+          )}
           funFact={currentScenario?.funFact}
           shareUrl={buildShareUrl(round.organisms)}
           onPlayAgain={startRound}

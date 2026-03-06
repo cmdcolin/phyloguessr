@@ -1477,10 +1477,20 @@ a.breadcrumb-link:hover,
   margin: var(--space-md) 0;
 }
 
+.map-toggle-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-sm);
+}
+
+.map-toggle-row .map-reset-btn {
+  margin-left: auto;
+}
+
 .map-toggle-group {
   display: flex;
   gap: 0;
-  margin-bottom: var(--space-sm);
 }
 
 .map-toggle-btn {
@@ -1492,15 +1502,15 @@ a.breadcrumb-link:hover,
   color: inherit;
 }
 
-.map-toggle-btn:first-child {
+.map-toggle-group .map-toggle-btn:first-child {
   border-radius: 6px 0 0 6px;
 }
 
-.map-toggle-btn:last-child {
+.map-toggle-group .map-toggle-btn:last-child {
   border-radius: 0 6px 6px 0;
 }
 
-.map-toggle-btn:not(:first-child) {
+.map-toggle-group .map-toggle-btn:not(:first-child) {
   border-left: none;
 }
 
