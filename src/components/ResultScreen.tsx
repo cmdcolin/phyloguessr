@@ -1,3 +1,4 @@
+import { useState } from "preact/hooks";
 import Button from "./Button.tsx";
 import { ShareButton } from "./Game.tsx";
 import PhyloTree from "./PhyloTree.tsx";
@@ -14,9 +15,9 @@ interface ResultScreenProps {
   sister1: Organism;
   sister2: Organism;
   outgroup: Organism;
-  cladeLabel?: string;
-  sisterMrca?: MrcaInfo;
-  overallMrca?: MrcaInfo;
+  cladeLabel: string;
+  sisterMrca: MrcaInfo;
+  overallMrca: MrcaInfo;
   isPolytomy: boolean;
   taxonomyData: TaxonomyData;
   images: Record<number, string | null>;
@@ -129,11 +130,11 @@ function Explanation({
   sister1: Organism;
   sister2: Organism;
   outgroup: Organism;
-  sisterMrca?: MrcaInfo;
-  overallMrca?: MrcaInfo;
+  sisterMrca: MrcaInfo;
+  overallMrca: MrcaInfo;
   isPolytomy: boolean;
 }) {
-  if (isPolytomy && sisterMrca) {
+  if (isPolytomy) {
     return (
       <div className="result-explanation">
         <p>
@@ -147,31 +148,21 @@ function Explanation({
   }
   return (
     <div className="result-explanation">
-      {sisterMrca ? (
+      <p>
+        <OrganismLink organism={sister1} /> and{" "}
+        <OrganismLink organism={sister2} /> share a most recent common
+        ancestor in{" "}
+        <TaxLink name={sisterMrca.name} taxId={sisterMrca.taxId} /> (
+        {formatRank(sisterMrca.rank)}).
+      </p>
+      {overallMrca.name !== sisterMrca.name && (
         <p>
-          <OrganismLink organism={sister1} /> and{" "}
-          <OrganismLink organism={sister2} /> share a most recent common
-          ancestor in{" "}
-          <TaxLink name={sisterMrca.name} taxId={sisterMrca.taxId} /> (
-          {formatRank(sisterMrca.rank)}).
-        </p>
-      ) : (
-        <p>
-          <OrganismLink organism={sister1} /> and{" "}
-          <OrganismLink organism={sister2} /> are more closely related to each
-          other than either is to <OrganismLink organism={outgroup} />.
+          To include <OrganismLink organism={outgroup} />, you have to go
+          back further to{" "}
+          <TaxLink name={overallMrca.name} taxId={overallMrca.taxId} /> (
+          {formatRank(overallMrca.rank)}).
         </p>
       )}
-      {overallMrca &&
-        sisterMrca &&
-        overallMrca.name !== sisterMrca.name && (
-          <p>
-            To include <OrganismLink organism={outgroup} />, you have to go
-            back further to{" "}
-            <TaxLink name={overallMrca.name} taxId={overallMrca.taxId} /> (
-            {formatRank(overallMrca.rank)}).
-          </p>
-        )}
     </div>
   );
 }
@@ -226,6 +217,18 @@ function Breadcrumbs({
   );
 }
 
+function MapToggle({ organisms }: { organisms: Organism[] }) {
+  const [show, setShow] = useState(false);
+  return (
+    <div className="map-toggle">
+      <button className="map-toggle-btn" onClick={() => setShow(s => !s)}>
+        {show ? "Hide map" : "Show map"}
+      </button>
+      {show && <SpeciesMap organisms={organisms} />}
+    </div>
+  );
+}
+
 export default function ResultScreen({
   correct,
   sister1,
@@ -273,7 +276,7 @@ export default function ResultScreen({
         images={images}
         userSelectedTaxIds={userSelectedTaxIds}
       />
-      <SpeciesMap organisms={[sister1, sister2, outgroup]} />
+      <MapToggle organisms={[sister1, sister2, outgroup]} />
       <div className="lineage-breadcrumbs">
         <Breadcrumbs organism={sister1} taxonomyData={taxonomyData} />
         <Breadcrumbs organism={sister2} taxonomyData={taxonomyData} />

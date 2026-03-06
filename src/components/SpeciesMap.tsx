@@ -1,9 +1,12 @@
 import { useEffect, useRef, useState, useMemo } from 'preact/hooks'
+import { lazy, Suspense } from 'preact/compat'
 import { getGbifTaxonKey } from '../api/gbif.ts'
 import { capitalize } from '../utils/format.ts'
 import type { Organism } from '../data/organisms.ts'
 
-const COLORS = [{ hex: '#e07020' }, { hex: '#2070d0' }, { hex: '#20a050' }]
+const InteractiveMap = lazy(() => import('./InteractiveMap.tsx'))
+
+export const MAP_COLORS = ['#e07020', '#2070d0', '#20a050']
 
 const TILE_COORDS = [
   { x: 0, y: 0, sub: 'a' },
@@ -82,18 +85,21 @@ function mapToDisplay(tx: number, ty: number, cx: number, cy: number) {
   }
 }
 
-interface SpeciesLayer {
-  name: string
-  hex: string
-  hasData: boolean
-}
+export type MapMode = 'static' | 'hex' | 'square'
+
+const MAP_MODES: { value: MapMode; label: string }[] = [
+  { value: 'static', label: 'Static' },
+  { value: 'hex', label: 'Hex' },
+  { value: 'square', label: 'Square' },
+]
 
 export default function SpeciesMap({ organisms }: { organisms: Organism[] }) {
   const basemapCanvasRef = useRef<HTMLCanvasElement | null>(null)
+  const snapshotCanvasRef = useRef<HTMLCanvasElement | null>(null)
   const displayCanvasRef = useRef<HTMLCanvasElement>(null)
-  const [layers, setLayers] = useState<SpeciesLayer[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
+  const [mode, setMode] = useState<MapMode>('static')
 
   const taxIdKey = useMemo(
     () => organisms.map(o => o.ncbiTaxId).join(','),
@@ -103,7 +109,6 @@ export default function SpeciesMap({ organisms }: { organisms: Organism[] }) {
   useEffect(() => {
     let cancelled = false
     setLoading(true)
-    setLayers([])
     setError(false)
 
     if (!basemapCanvasRef.current) {
@@ -113,7 +118,10 @@ export default function SpeciesMap({ organisms }: { organisms: Organism[] }) {
     }
 
     async function render() {
-      const bmCanvas = basemapCanvasRef.current!
+      const bmCanvas = basemapCanvasRef.current
+      if (!bmCanvas) {
+        return
+      }
       const bmCtx = bmCanvas.getContext('2d')!
       bmCtx.clearRect(0, 0, FULL_SIZE, FULL_SIZE)
 
@@ -146,16 +154,14 @@ export default function SpeciesMap({ organisms }: { organisms: Organism[] }) {
       drawToDisplay([])
 
       const allSpeciesData: {
-        org: Organism
-        color: { hex: string }
+        color: string
         points: { tx: number; ty: number; cx: number; cy: number }[]
       }[] = []
       for (let i = 0; i < organisms.length; i++) {
-        const org = organisms[i]
-        const color = COLORS[i % COLORS.length]
-        const key = await getGbifTaxonKey(org.scientificName)
+        const color = MAP_COLORS[i % MAP_COLORS.length]
+        const key = await getGbifTaxonKey(organisms[i].scientificName)
         if (!key) {
-          allSpeciesData.push({ org, color, points: [] })
+          allSpeciesData.push({ color, points: [] })
           continue
         }
         const points: { tx: number; ty: number; cx: number; cy: number }[] = []
@@ -172,42 +178,38 @@ export default function SpeciesMap({ organisms }: { organisms: Organism[] }) {
             // tile failed for this quadrant
           }
         }
-        allSpeciesData.push({ org, color, points })
+        allSpeciesData.push({ color, points })
       }
 
       if (cancelled) {
         return
       }
 
-      const speciesResults: SpeciesLayer[] = []
-      for (const { org, color, points } of allSpeciesData) {
-        speciesResults.push({
-          name: capitalize(org.commonName),
-          hex: color.hex,
-          hasData: points.length > 0,
-        })
-      }
-
       drawToDisplay(allSpeciesData)
-      setLayers(speciesResults)
       setLoading(false)
     }
 
     function drawToDisplay(
       speciesData: {
-        color: { hex: string }
+        color: string
         points: { tx: number; ty: number; cx: number; cy: number }[]
       }[],
     ) {
-      const display = displayCanvasRef.current
-      if (!display || !basemapCanvasRef.current) {
+      if (!basemapCanvasRef.current) {
         return
       }
-      const ctx = display.getContext('2d')!
-      ctx.clearRect(0, 0, DISPLAY_W, DISPLAY_H)
 
-      // Draw basemap stretched to display dimensions
-      ctx.drawImage(
+      if (!snapshotCanvasRef.current) {
+        snapshotCanvasRef.current = document.createElement('canvas')
+        snapshotCanvasRef.current.width = DISPLAY_W
+        snapshotCanvasRef.current.height = DISPLAY_H
+      }
+
+      const snap = snapshotCanvasRef.current
+      const snapCtx = snap.getContext('2d')!
+      snapCtx.clearRect(0, 0, DISPLAY_W, DISPLAY_H)
+
+      snapCtx.drawImage(
         basemapCanvasRef.current,
         0,
         CROP_TOP,
@@ -219,17 +221,23 @@ export default function SpeciesMap({ organisms }: { organisms: Organism[] }) {
         DISPLAY_H,
       )
 
-      // Draw dots at mapped coordinates (round, not stretched)
       for (const { color, points } of speciesData) {
-        ctx.globalAlpha = 0.35
-        ctx.fillStyle = color.hex
+        snapCtx.globalAlpha = 0.35
+        snapCtx.fillStyle = color
         for (const { tx, ty, cx, cy } of points) {
           const { dx, dy } = mapToDisplay(tx, ty, cx, cy)
-          ctx.beginPath()
-          ctx.arc(dx, dy, DOT_RADIUS, 0, Math.PI * 2)
-          ctx.fill()
+          snapCtx.beginPath()
+          snapCtx.arc(dx, dy, DOT_RADIUS, 0, Math.PI * 2)
+          snapCtx.fill()
         }
-        ctx.globalAlpha = 1
+        snapCtx.globalAlpha = 1
+      }
+
+      const display = displayCanvasRef.current
+      if (display) {
+        const ctx = display.getContext('2d')!
+        ctx.clearRect(0, 0, DISPLAY_W, DISPLAY_H)
+        ctx.drawImage(snap, 0, 0)
       }
     }
 
@@ -245,36 +253,60 @@ export default function SpeciesMap({ organisms }: { organisms: Organism[] }) {
     }
   }, [taxIdKey])
 
+  useEffect(() => {
+    if (mode === 'static' && snapshotCanvasRef.current && displayCanvasRef.current) {
+      const ctx = displayCanvasRef.current.getContext('2d')!
+      ctx.clearRect(0, 0, DISPLAY_W, DISPLAY_H)
+      ctx.drawImage(snapshotCanvasRef.current, 0, 0)
+    }
+  }, [mode])
+
   return (
     <div className="species-map-container">
       <h3 className="species-map-title">Species Occurrence (GBIF)</h3>
-      <div className="species-map-wrapper">
-        <canvas
-          ref={displayCanvasRef}
-          width={DISPLAY_W}
-          height={DISPLAY_H}
-          className="species-map-canvas"
-        />
-        {loading && (
-          <div className="species-map-overlay">
-            Loading species distributions...
-          </div>
-        )}
-        {error && (
-          <div className="species-map-overlay">
-            Failed to load distribution data
-          </div>
-        )}
+      <div className="map-toggle-group">
+        {MAP_MODES.map(m => (
+          <button
+            key={m.value}
+            className={`map-toggle-btn${mode === m.value ? ' map-toggle-btn--active' : ''}`}
+            onClick={() => setMode(m.value)}
+          >
+            {m.label}
+          </button>
+        ))}
       </div>
+      {mode !== 'static' ? (
+        <Suspense fallback={<div className="species-map-overlay-inline">Loading interactive map...</div>}>
+          <InteractiveMap organisms={organisms} mode={mode} />
+        </Suspense>
+      ) : (
+        <div className="species-map-wrapper">
+          <canvas
+            ref={displayCanvasRef}
+            width={DISPLAY_W}
+            height={DISPLAY_H}
+            className="species-map-canvas"
+          />
+          {loading && (
+            <div className="species-map-overlay">
+              Loading species distributions...
+            </div>
+          )}
+          {error && (
+            <div className="species-map-overlay">
+              Failed to load distribution data
+            </div>
+          )}
+        </div>
+      )}
       <div className="species-map-legend">
-        {layers.map(layer => (
-          <span key={layer.name} className="species-map-legend-item">
+        {organisms.map((org, i) => (
+          <span key={org.ncbiTaxId} className="species-map-legend-item">
             <span
               className="species-map-legend-dot"
-              style={{ backgroundColor: layer.hex }}
+              style={{ backgroundColor: MAP_COLORS[i % MAP_COLORS.length] }}
             />
-            {layer.name}
-            {!layer.hasData && ' (no data)'}
+            {capitalize(org.commonName)}
           </span>
         ))}
       </div>

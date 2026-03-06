@@ -520,8 +520,14 @@ function buildNcbiAncestorTree(pool, curatedIds, ncbiParents, ncbiRanks, ncbiNam
 
 function collapseRedundantNodes(tree) {
   const { parents, names, ranks } = tree;
-  let collapsed = 0;
 
+  // Build child count map to detect branching points
+  const childCount = new Map();
+  for (const parentId of Object.values(parents)) {
+    childCount.set(parentId, (childCount.get(parentId) ?? 0) + 1);
+  }
+
+  let collapsed = 0;
   for (const id of Object.keys(parents)) {
     const name = names[id];
     const rank = ranks[id];
@@ -532,7 +538,8 @@ function collapseRedundantNodes(tree) {
     while (
       parentId !== undefined &&
       names[parentId] === name &&
-      ranks[parentId] === rank
+      ranks[parentId] === rank &&
+      (childCount.get(parentId) ?? 0) <= 1
     ) {
       parentId = parents[parentId];
       collapsed++;
@@ -578,6 +585,71 @@ function mergeAncestorTrees(otlTree, ncbiTree) {
   return { parents, names, ranks };
 }
 
+// --- Compress single-child intermediate nodes ---
+
+const importantRanks = new Set([
+  "species", "genus", "family", "order", "class", "phylum", "kingdom", "domain",
+]);
+
+function compressChains(tree) {
+  const { parents, names, ranks } = tree;
+
+  // Build child list
+  const childrenOf = {};
+  for (const [id, parentId] of Object.entries(parents)) {
+    const key = String(parentId);
+    if (!childrenOf[key]) {
+      childrenOf[key] = [];
+    }
+    childrenOf[key].push(id);
+  }
+
+  // Remove single-child nodes without important ranks
+  let removed = 0;
+  for (const nodeId of Object.keys(parents)) {
+    const kids = childrenOf[nodeId] || [];
+    const rank = ranks[nodeId] || "";
+    if (kids.length === 1 && !importantRanks.has(rank)) {
+      const child = kids[0];
+      parents[child] = parents[nodeId];
+      // Update child list for the grandparent
+      const gpKey = String(parents[nodeId]);
+      if (childrenOf[gpKey]) {
+        const idx = childrenOf[gpKey].indexOf(nodeId);
+        if (idx !== -1) {
+          childrenOf[gpKey][idx] = child;
+        }
+      }
+      delete parents[nodeId];
+      delete names[nodeId];
+      delete ranks[nodeId];
+      delete childrenOf[nodeId];
+      removed++;
+    }
+  }
+
+  console.log(`  Removed ${removed} intermediate nodes (${Object.keys(parents).length} remaining)`);
+  return tree;
+}
+
+// --- Compact output format ---
+
+function toCompactFormat(tree) {
+  const { parents, names, ranks } = tree;
+  const rankList = [...new Set(Object.values(ranks))].sort();
+  const rankMap = Object.fromEntries(rankList.map((r, i) => [r, i]));
+
+  const data = {};
+  for (const id of Object.keys(parents)) {
+    data[id] = [
+      parents[id],
+      names[id] || "",
+      rankMap[ranks[id]] ?? -1,
+    ];
+  }
+  return { R: rankList, D: data };
+}
+
 // --- Main ---
 
 async function main() {
@@ -621,14 +693,20 @@ async function main() {
   console.log("Collapsing redundant nodes...");
   collapseRedundantNodes(ancestorTree);
 
+  // Compress single-child nodes without important ranks
+  console.log("Compressing intermediate chains...");
+  compressChains(ancestorTree);
+
   // Write output files
   mkdirSync(OUT_DIR, { recursive: true });
 
   console.log("Writing species-pool.json...");
   await writeFile(join(OUT_DIR, "species-pool.json"), JSON.stringify(pool));
 
-  console.log("Writing parents.json...");
-  await writeFile(join(OUT_DIR, "parents.json"), JSON.stringify(ancestorTree));
+  // Write compact format: { R: rankList, D: { id: [parent, name, rankIndex] } }
+  console.log("Writing parents.json (compact format)...");
+  const compact = toCompactFormat(ancestorTree);
+  await writeFile(join(OUT_DIR, "parents.json"), JSON.stringify(compact));
 
   const poolStats = statSync(join(OUT_DIR, "species-pool.json"));
   const parentsStats = statSync(join(OUT_DIR, "parents.json"));

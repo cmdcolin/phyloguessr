@@ -7,6 +7,7 @@ interface OrganismCardProps {
   selected: boolean;
   disabled: boolean;
   onClick: () => void;
+  mapColor?: string;
 }
 
 export default function OrganismCard({
@@ -16,6 +17,7 @@ export default function OrganismCard({
   selected,
   disabled,
   onClick,
+  mapColor,
 }: OrganismCardProps) {
   return (
     <button
@@ -31,7 +33,15 @@ export default function OrganismCard({
         )}
       </div>
       <div className="organism-info">
-        <div className="common-name">{capitalize(commonName)}</div>
+        <div className="common-name">
+          {mapColor && (
+            <span
+              className="map-color-dot"
+              style={{ backgroundColor: mapColor }}
+            />
+          )}
+          {capitalize(commonName)}
+        </div>
         <div className="scientific-name">{scientificName}</div>
       </div>
     </button>

@@ -4,7 +4,7 @@ import Button from './Button.tsx'
 import Header from './Header.tsx'
 import OrganismCard from './OrganismCard.tsx'
 import ResultScreen, { TaxLink } from './ResultScreen.tsx'
-import SpeciesMap from './SpeciesMap.tsx'
+import SpeciesMap, { MAP_COLORS } from './SpeciesMap.tsx'
 import { getOrganismImage } from '../api/wikipedia.ts'
 import { organisms as allOrganisms } from '../data/organisms.ts'
 import { surprisingScenarios } from '../data/surprisingFacts.ts'
@@ -39,9 +39,9 @@ interface ResultData {
   sister1: Organism
   sister2: Organism
   outgroup: Organism
-  cladeLabel?: string
-  sisterMrca?: MrcaInfo
-  overallMrca?: MrcaInfo
+  cladeLabel: string
+  sisterMrca: MrcaInfo
+  overallMrca: MrcaInfo
   isPolytomy: boolean
 }
 
@@ -113,6 +113,7 @@ function buildShareUrl(orgs: Organism[]) {
   return url.toString()
 }
 
+
 function updateUrlWithQuestion(orgs: Organism[]) {
   const url = new URL(window.location.href)
   url.search = ''
@@ -127,7 +128,46 @@ function clearQuestionFromUrl() {
   url.searchParams.delete('a')
   url.searchParams.delete('b')
   url.searchParams.delete('c')
+  url.searchParams.delete('r')
   history.replaceState(null, '', url.toString())
+}
+
+function pushResultToUrl() {
+  const url = new URL(window.location.href)
+  url.searchParams.set('r', '1')
+  history.pushState(null, '', url.toString())
+}
+
+function hasResultParam() {
+  return new URLSearchParams(window.location.search).get('r') === '1'
+}
+
+function computeResult(
+  orgs: Organism[],
+  data: TaxonomyData,
+  correct: boolean | ((pair: ReturnType<typeof findClosestPairFromData>) => boolean),
+) {
+  const taxIds: [number, number, number] = [
+    orgs[0].ncbiTaxId,
+    orgs[1].ncbiTaxId,
+    orgs[2].ncbiTaxId,
+  ]
+  const pair = findClosestPairFromData(taxIds, data)
+  const byTaxId = new Map(orgs.map(o => [o.ncbiTaxId, o]))
+  const sister1 = byTaxId.get(pair.sister1TaxId) ?? orgs[0]
+  const sister2 = byTaxId.get(pair.sister2TaxId) ?? orgs[1]
+  const outgroup = byTaxId.get(pair.outgroupTaxId) ?? orgs[2]
+  return {
+    correct: typeof correct === 'function' ? correct(pair) : correct,
+    sister1,
+    sister2,
+    outgroup,
+    cladeLabel: pair.sisterLca.name,
+    sisterMrca: { taxId: pair.sisterLca.taxId, name: pair.sisterLca.name, rank: pair.sisterLca.rank },
+    overallMrca: { taxId: pair.overallLca.taxId, name: pair.overallLca.name, rank: pair.overallLca.rank },
+    isPolytomy: pair.isPolytomy,
+    pair,
+  }
 }
 
 function ShareButton({ url }: { url: string }) {
@@ -404,7 +444,13 @@ export default function Game({ mode }: { mode: GameMode }) {
       )
       recordCombo(orgs)
       setRound({ organisms: orgs, images })
-      setState('selecting')
+
+      if (hasResultParam()) {
+        setResult(computeResult(orgs, data, true))
+        setState('result')
+      } else {
+        setState('selecting')
+      }
     },
     [taxonomyData, speciesPool, startRound],
   ) // eslint-disable-line react-hooks/exhaustive-deps
@@ -421,6 +467,23 @@ export default function Game({ mode }: { mode: GameMode }) {
     }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
+  useEffect(() => {
+    const handler = () => {
+      if (hasResultParam()) {
+        if (round && taxonomyData) {
+          setResult(computeResult(round.organisms, taxonomyData, true))
+          setState('result')
+        }
+      } else if (round) {
+        setResult(null)
+        setSelected([])
+        setState('selecting')
+      }
+    }
+    window.addEventListener('popstate', handler)
+    return () => window.removeEventListener('popstate', handler)
+  }, [round, taxonomyData])
+
   const toggleSelect = (idx: number) => {
     setSelected(prev => {
       if (prev.includes(idx)) {
@@ -434,40 +497,19 @@ export default function Game({ mode }: { mode: GameMode }) {
   }
 
   const handleSubmit = () => {
-    if (!round || selected.length !== 2) {
+    if (!round || selected.length !== 2 || !taxonomyData) {
       return
     }
 
     const orgs = round.organisms
-    const taxIds: [number, number, number] = [
-      orgs[0].ncbiTaxId,
-      orgs[1].ncbiTaxId,
-      orgs[2].ncbiTaxId,
-    ]
-
-    const pair = findClosestPairFromData(taxIds, taxonomyData!)
-
-    const sister1 = orgs.find(o => o.ncbiTaxId === pair.sister1TaxId)!
-    const sister2 = orgs.find(o => o.ncbiTaxId === pair.sister2TaxId)!
-    const outgroup = orgs.find(o => o.ncbiTaxId === pair.outgroupTaxId)!
-
-    const sisterMrca: MrcaInfo = {
-      taxId: pair.sisterLca.taxId,
-      name: pair.sisterLca.name,
-      rank: pair.sisterLca.rank,
-    }
-    const overallMrca: MrcaInfo = {
-      taxId: pair.overallLca.taxId,
-      name: pair.overallLca.name,
-      rank: pair.overallLca.rank,
-    }
-
     const selectedOrgs = selected.map(i => orgs[i])
     const userPickedTaxIds = new Set(selectedOrgs.map(o => o.ncbiTaxId))
-    const correct =
-      pair.isPolytomy ||
-      (userPickedTaxIds.has(pair.sister1TaxId) &&
-        userPickedTaxIds.has(pair.sister2TaxId))
+
+    const { pair, ...resultData } = computeResult(orgs, taxonomyData,
+      pair => pair.isPolytomy ||
+        (userPickedTaxIds.has(pair.sister1TaxId) &&
+          userPickedTaxIds.has(pair.sister2TaxId)),
+    )
 
     const organismNames = orgs.map(o => o.commonName)
     const sortedKey = [...organismNames].sort().join(',')
@@ -478,9 +520,9 @@ export default function Game({ mode }: { mode: GameMode }) {
 
     if (!alreadyPlayed) {
       const entry: HistoryEntry = {
-        correct,
+        correct: resultData.correct,
         organisms: organismNames,
-        sister: [sister1.commonName, sister2.commonName],
+        sister: [resultData.sister1.commonName, resultData.sister2.commonName],
         mode,
         timestamp: Date.now(),
       }
@@ -488,21 +530,13 @@ export default function Game({ mode }: { mode: GameMode }) {
 
       const leaderboardName = localStorage.getItem('phyloLeaderboardName')
       if (leaderboardName) {
-        recordRound(leaderboardName, correct).catch(console.error)
+        recordRound(leaderboardName, resultData.correct).catch(console.error)
       }
     }
 
-    setResult({
-      correct,
-      sister1,
-      sister2,
-      outgroup,
-      cladeLabel: sisterMrca.name,
-      sisterMrca,
-      overallMrca,
-      isPolytomy: pair.isPolytomy,
-    })
+    setResult(resultData)
     setState('result')
+    pushResultToUrl()
   }
 
   return (
@@ -750,6 +784,7 @@ export default function Game({ mode }: { mode: GameMode }) {
                 selected={selected.includes(i)}
                 disabled={false}
                 onClick={() => toggleSelect(i)}
+                mapColor={showMapHint ? MAP_COLORS[i % MAP_COLORS.length] : undefined}
               />
             ))}
           </div>
@@ -761,7 +796,7 @@ export default function Game({ mode }: { mode: GameMode }) {
               Skip
             </Button>
             <Button variant="secondary" onClick={() => setShowMapHint(prev => !prev)}>
-              {showMapHint ? 'Hide map hint' : 'Show map hint'}
+              {showMapHint ? 'Hide map' : 'Map hint'}
             </Button>
           </div>
           {showMapHint && round && (

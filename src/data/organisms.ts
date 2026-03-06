@@ -1442,7 +1442,7 @@ export const organisms: Organism[] = [
   {
     commonName: "Orchid",
     scientificName: "Phalaenopsis equestris",
-    ncbiTaxId: 78870,
+    ncbiTaxId: 78828,
     wikiTitle: "Orchidaceae",
     group: "plant",
   },
@@ -1562,7 +1562,7 @@ export const organisms: Organism[] = [
   {
     commonName: "Corpse lily",
     scientificName: "Rafflesia arnoldii",
-    ncbiTaxId: 56971,
+    ncbiTaxId: 577516,
     wikiTitle: "Rafflesia_arnoldii",
     group: "plant",
   },

@@ -116,6 +116,27 @@ export function findClosestPairFromData(
 let taxonomyDataPromise: Promise<TaxonomyData> | undefined;
 let speciesPoolPromise: Promise<SpeciesPoolEntry[]> | undefined;
 
+interface CompactTaxonomyData {
+  R: string[];
+  D: Record<string, [number, string, number]>;
+}
+
+function unpackTaxonomyData(compact: CompactTaxonomyData) {
+  const parents: Record<string, number> = {};
+  const names: Record<string, string> = {};
+  const ranks: Record<string, string> = {};
+  for (const [id, [parent, name, rankIdx]] of Object.entries(compact.D)) {
+    parents[id] = parent;
+    if (name) {
+      names[id] = name;
+    }
+    if (rankIdx >= 0) {
+      ranks[id] = compact.R[rankIdx];
+    }
+  }
+  return { parents, names, ranks } satisfies TaxonomyData;
+}
+
 export function loadTaxonomyData() {
   if (!taxonomyDataPromise) {
     taxonomyDataPromise = fetch(
@@ -124,8 +145,8 @@ export function loadTaxonomyData() {
       if (!r.ok) {
         throw new Error(`Failed to load taxonomy data: ${r.status}`);
       }
-      return r.json();
-    });
+      return r.json() as Promise<CompactTaxonomyData>;
+    }).then(unpackTaxonomyData);
   }
   return taxonomyDataPromise;
 }
@@ -438,10 +459,12 @@ export function buildTreeFromLineages(
     for (let i = 0; i < lineage.length - 1; i++) {
       allNodes.add(lineage[i]);
       allNodes.add(lineage[i + 1]);
-      if (!childMap.has(lineage[i + 1])) {
-        childMap.set(lineage[i + 1], new Set());
+      let children = childMap.get(lineage[i + 1]);
+      if (!children) {
+        children = new Set();
+        childMap.set(lineage[i + 1], children);
       }
-      childMap.get(lineage[i + 1])!.add(lineage[i]);
+      children.add(lineage[i]);
     }
   }
 
