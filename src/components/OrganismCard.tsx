@@ -1,13 +1,13 @@
-import { capitalize } from "../utils/format.ts";
+import { capitalize } from '../utils/format.ts'
 
 interface OrganismCardProps {
-  commonName: string;
-  scientificName: string;
-  imageUrl: string | null;
-  selected: boolean;
-  disabled: boolean;
-  onClick: () => void;
-  mapColor?: string;
+  commonName: string
+  scientificName: string
+  imageUrl: string | null
+  selected: boolean
+  disabled: boolean
+  onClick: () => void
+  mapColor?: string
 }
 
 export default function OrganismCard({
@@ -21,7 +21,7 @@ export default function OrganismCard({
 }: OrganismCardProps) {
   return (
     <button
-      className={`organism-card ${selected ? "selected" : ""}`}
+      className={`organism-card ${selected ? 'selected' : ''}`}
       onClick={onClick}
       disabled={disabled}
     >
@@ -45,5 +45,5 @@ export default function OrganismCard({
         <div className="scientific-name">{scientificName}</div>
       </div>
     </button>
-  );
+  )
 }

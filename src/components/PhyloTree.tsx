@@ -1,15 +1,15 @@
-import { capitalize } from "../utils/format.ts";
+import { capitalize } from '../utils/format.ts'
 
-import type { Organism } from "../data/organisms.ts";
+import type { Organism } from '../data/organisms.ts'
 
 interface PhyloTreeProps {
-  sister1: Organism;
-  sister2: Organism;
-  outgroup: Organism;
-  cladeLabel?: string;
-  images: Record<number, string | null>;
-  userSelectedTaxIds: Set<number>;
-  organismColors?: Record<number, string>;
+  sister1: Organism
+  sister2: Organism
+  outgroup: Organism
+  cladeLabel?: string
+  images: Record<number, string | null>
+  userSelectedTaxIds: Set<number>
+  organismColors?: Record<number, string>
 }
 
 export default function PhyloTree({
@@ -21,31 +21,31 @@ export default function PhyloTree({
   userSelectedTaxIds,
   organismColors,
 }: PhyloTreeProps) {
-  const imgSize = 40;
-  const w = 560;
-  const h = 220;
-  const leftMargin = 60;
-  const rightMargin = 230;
-  const topPad = 35;
-  const rowH = 65;
+  const imgSize = 40
+  const w = 560
+  const h = 220
+  const leftMargin = 60
+  const rightMargin = 230
+  const topPad = 35
+  const rowH = 65
 
   // y positions for the three leaves
-  const y1 = topPad;
-  const y2 = topPad + rowH;
-  const y3 = topPad + rowH * 2;
+  const y1 = topPad
+  const y2 = topPad + rowH
+  const y3 = topPad + rowH * 2
 
   // x positions
-  const rootX = leftMargin;
-  const innerX = leftMargin + 100;
-  const leafX = w - rightMargin;
+  const rootX = leftMargin
+  const innerX = leftMargin + 100
+  const leafX = w - rightMargin
 
   // inner node y = midpoint of sister pair
-  const innerY = (y1 + y2) / 2;
+  const innerY = (y1 + y2) / 2
 
   return (
     <svg viewBox={`0 0 ${w} ${h}`} className="phylo-tree">
       <defs>
-        {[sister1, sister2, outgroup].map((org) => (
+        {[sister1, sister2, outgroup].map(org => (
           <clipPath key={org.ncbiTaxId} id={`clip-${org.ncbiTaxId}`}>
             <circle cx={0} cy={0} r={imgSize / 2} />
           </clipPath>
@@ -153,8 +153,8 @@ export default function PhyloTree({
         { org: sister2, y: y2 },
         { org: outgroup, y: y3 },
       ].map(({ org, y }) => {
-        const imgUrl = images[org.ncbiTaxId];
-        const textX = leafX + 8 + (imgUrl ? imgSize + 6 : 0);
+        const imgUrl = images[org.ncbiTaxId]
+        const textX = leafX + 8 + (imgUrl ? imgSize + 6 : 0)
         return (
           <g key={org.ncbiTaxId}>
             {imgUrl && (
@@ -189,7 +189,7 @@ export default function PhyloTree({
               {org.scientificName}
             </text>
             <text x={textX} y={y + 31} fontSize={11} fill="GrayText">
-              {"("}
+              {'('}
               <a
                 href={`https://en.wikipedia.org/wiki/${org.scientificName}`}
                 target="_blank"
@@ -197,7 +197,7 @@ export default function PhyloTree({
               >
                 <tspan fill="var(--accent-tree)">wiki</tspan>
               </a>
-              {", "}
+              {', '}
               <a
                 href={`https://www.ncbi.nlm.nih.gov/datasets/taxonomy/${org.ncbiTaxId}`}
                 target="_blank"
@@ -205,10 +205,10 @@ export default function PhyloTree({
               >
                 <tspan fill="var(--accent-tree)">ncbi</tspan>
               </a>
-              {")"}
+              {')'}
             </text>
           </g>
-        );
+        )
       })}
 
       {/* Leaf dots */}
@@ -216,19 +216,19 @@ export default function PhyloTree({
         cx={leafX}
         cy={y1}
         r={4}
-        fill={organismColors?.[sister1.ncbiTaxId] ?? "var(--accent-tree)"}
+        fill={organismColors?.[sister1.ncbiTaxId] ?? 'var(--accent-tree)'}
       />
       <circle
         cx={leafX}
         cy={y2}
         r={4}
-        fill={organismColors?.[sister2.ncbiTaxId] ?? "var(--accent-tree)"}
+        fill={organismColors?.[sister2.ncbiTaxId] ?? 'var(--accent-tree)'}
       />
       <circle
         cx={leafX}
         cy={y3}
         r={4}
-        fill={organismColors?.[outgroup.ncbiTaxId] ?? "GrayText"}
+        fill={organismColors?.[outgroup.ncbiTaxId] ?? 'GrayText'}
       />
 
       {/* User selection arrows */}
@@ -238,19 +238,18 @@ export default function PhyloTree({
         { org: outgroup, y: y3 },
       ].map(({ org, y }) => {
         if (!userSelectedTaxIds.has(org.ncbiTaxId)) {
-          return null;
+          return null
         }
-        const arrowY = y + 16;
-        const arrowBase = leafX - 16;
-        const arrowTip = leafX - 6;
-        const color = organismColors?.[org.ncbiTaxId] ?? "white";
+        const arrowY = y + 16
+        const arrowBase = leafX - 16
+        const arrowTip = leafX - 6
         return (
           <g key={`arrow-${org.ncbiTaxId}`}>
             <text
               x={arrowBase - 3}
               y={arrowY + 3.5}
               fontSize={9}
-              fill={"white"}
+              fill={'white'}
               fontWeight="bold"
               textAnchor="end"
             >
@@ -258,12 +257,12 @@ export default function PhyloTree({
             </text>
             <polygon
               points={`${arrowBase},${arrowY - 5} ${arrowBase},${arrowY + 5} ${arrowTip},${arrowY}`}
-              fill={"white"}
+              fill={'white'}
               opacity={0.85}
             />
           </g>
-        );
+        )
       })}
     </svg>
-  );
+  )
 }

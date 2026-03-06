@@ -1,39 +1,41 @@
-import { useEffect, useRef, useState } from "react";
-import OnlinePlayers from "./OnlinePlayers.tsx";
-import TreeIcon from "./TreeIcon.tsx";
-import { getCurrentUser, signOut } from "../firebase.ts";
+import { useEffect, useRef, useState } from 'react'
+
+import OnlinePlayers from './OnlinePlayers.tsx'
+import TreeIcon from './TreeIcon.tsx'
+import { getCurrentUser, signOut } from '../firebase.ts'
 
 export default function Header() {
-  const [showMenu, setShowMenu] = useState(false);
-  const [signedIn, setSignedIn] = useState(false);
-  const [nickname, setNickname] = useState<string | null>(null);
-  const menuRef = useRef<HTMLDivElement>(null);
+  const [showMenu, setShowMenu] = useState(false)
+  const [signedIn, setSignedIn] = useState(false)
+  const [nickname, setNickname] = useState<string | null>(null)
+  const menuRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    setNickname(localStorage.getItem("phyloLeaderboardName"));
-    getCurrentUser().then((user) => {
-      setSignedIn(user !== null);
-    });
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setNickname(localStorage.getItem('phyloLeaderboardName'))
+    getCurrentUser().then(user => {
+      setSignedIn(user !== null)
+    })
     const onNicknameChanged = () => {
-      setNickname(localStorage.getItem("phyloLeaderboardName"));
-    };
-    window.addEventListener("nickname-changed", onNicknameChanged);
+      setNickname(localStorage.getItem('phyloLeaderboardName'))
+    }
+    window.addEventListener('nickname-changed', onNicknameChanged)
     return () =>
-      window.removeEventListener("nickname-changed", onNicknameChanged);
-  }, []);
+      window.removeEventListener('nickname-changed', onNicknameChanged)
+  }, [])
 
   useEffect(() => {
     if (!showMenu) {
-      return;
+      return
     }
     const handleClickOutside = (e: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
-        setShowMenu(false);
+        setShowMenu(false)
       }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [showMenu]);
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [showMenu])
 
   return (
     <header className="game-header">
@@ -84,7 +86,7 @@ export default function Header() {
           <button
             className="hamburger-btn"
             title="Menu"
-            onClick={() => setShowMenu((s) => !s)}
+            onClick={() => setShowMenu(s => !s)}
             aria-label="Menu"
           >
             <span className="hamburger-icon" />
@@ -123,10 +125,10 @@ export default function Header() {
                   <button
                     className="hamburger-item"
                     onClick={async () => {
-                      await signOut();
-                      setSignedIn(false);
-                      setNickname(null);
-                      setShowMenu(false);
+                      await signOut()
+                      setSignedIn(false)
+                      setNickname(null)
+                      setShowMenu(false)
                     }}
                   >
                     Sign out
@@ -145,5 +147,5 @@ export default function Header() {
         </div>
       </div>
     </header>
-  );
+  )
 }

@@ -101,5 +101,5 @@ export default function TreeIcon({ size = 28 }: { size?: number }) {
       <circle cx="28" cy="12" r="2.5" fill="url(#treeRainbow)" />
       <circle cx="28" cy="24" r="2.5" fill="url(#treeRainbow)" />
     </svg>
-  );
+  )
 }

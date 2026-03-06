@@ -1,5 +1,8 @@
 import { useState } from 'preact/hooks'
+
 import Button from './Button.tsx'
+import DiagramTree from './DiagramTree.tsx'
+import FullTree from './FullTree.tsx'
 import { ShareButton } from './Game.tsx'
 import PhyloTree from './PhyloTree.tsx'
 import SpeciesMap, { MAP_COLORS } from './SpeciesMap.tsx'
@@ -7,6 +10,7 @@ import { capitalize } from '../utils/format.ts'
 import { getLineageFromParents } from '../utils/taxonomy.ts'
 
 import type { Organism } from '../data/organisms.ts'
+import type { DiagramNode } from '../data/surprisingFacts.ts'
 import type { MrcaInfo } from '../utils/format.ts'
 import type { TaxonomyData } from '../utils/taxonomy.ts'
 
@@ -24,6 +28,7 @@ interface ResultScreenProps {
   userSelectedTaxIds: Set<number>
   organismColors: Record<number, string>
   funFact?: string
+  diagram?: DiagramNode
   shareUrl: string
   onPlayAgain: () => void
 }
@@ -221,6 +226,32 @@ function Breadcrumbs({
   )
 }
 
+function FullTreeToggle({
+  organisms,
+  taxonomyData,
+  organismColors,
+}: {
+  organisms: [Organism, Organism, Organism]
+  taxonomyData: TaxonomyData
+  organismColors: Record<number, string>
+}) {
+  const [show, setShow] = useState(false)
+  return (
+    <div className="map-toggle">
+      <button className="map-toggle-btn" onClick={() => setShow(s => !s)}>
+        {show ? 'Hide full tree' : 'Show full tree'}
+      </button>
+      {show && (
+        <FullTree
+          organisms={organisms}
+          taxonomyData={taxonomyData}
+          organismColors={organismColors}
+        />
+      )}
+    </div>
+  )
+}
+
 function MapToggle({
   organisms,
   organismColors,
@@ -258,6 +289,7 @@ export default function ResultScreen({
   userSelectedTaxIds,
   organismColors,
   funFact,
+  diagram,
   shareUrl,
   onPlayAgain,
 }: ResultScreenProps) {
@@ -271,6 +303,7 @@ export default function ResultScreen({
           <p>{funFact}</p>
         </div>
       )}
+      {/* {diagram && <DiagramTree root={diagram} />} */}
       <div className="result-actions">
         <Button onClick={onPlayAgain}>Next</Button>
         <ShareButton url={shareUrl} />
@@ -293,6 +326,11 @@ export default function ResultScreen({
         userSelectedTaxIds={userSelectedTaxIds}
         organismColors={organismColors}
       />
+      {/* <FullTreeToggle
+        organisms={[sister1, sister2, outgroup]}
+        taxonomyData={taxonomyData}
+        organismColors={organismColors}
+      /> */}
       <MapToggle
         organisms={[sister1, sister2, outgroup]}
         organismColors={organismColors}

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Titan+One&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Titan+One&display=swap');
 
 :root {
   color-scheme: light dark;
@@ -90,7 +90,7 @@ body {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   border: none;
-  font-family: "Titan One", "Impact", "Arial Black", sans-serif;
+  font-family: 'Titan One', 'Impact', 'Arial Black', sans-serif;
   font-weight: 900;
   cursor: pointer;
   padding: 0;
@@ -238,7 +238,7 @@ body {
 }
 
 .wordart-subtitle {
-  font-family: "Titan One", "Impact", "Arial Black", sans-serif;
+  font-family: 'Titan One', 'Impact', 'Arial Black', sans-serif;
   font-size: clamp(1.4rem, 4vw, 2.2rem);
   font-weight: 900;
   letter-spacing: 0.02em;
@@ -846,6 +846,10 @@ body {
   margin-bottom: var(--space-xs);
 }
 
+.diagram-tree-svg {
+  margin-top: var(--space-xs);
+}
+
 .phylo-tree {
   width: 100%;
   max-width: 500px;
@@ -1336,7 +1340,7 @@ a.breadcrumb-link:hover,
 }
 
 .online-player::before {
-  content: "";
+  content: '';
   width: 6px;
   height: 6px;
   border-radius: 50%;
