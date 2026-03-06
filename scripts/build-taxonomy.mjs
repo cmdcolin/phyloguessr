@@ -516,6 +516,36 @@ function buildNcbiAncestorTree(pool, curatedIds, ncbiParents, ncbiRanks, ncbiNam
   return { parents: prunedParents, names: prunedNames, ranks: prunedRanks };
 }
 
+// --- Collapse redundant chains ---
+
+function collapseRedundantNodes(tree) {
+  const { parents, names, ranks } = tree;
+  let collapsed = 0;
+
+  for (const id of Object.keys(parents)) {
+    const name = names[id];
+    const rank = ranks[id];
+    if (!name || !rank) {
+      continue;
+    }
+    let parentId = parents[id];
+    while (
+      parentId !== undefined &&
+      names[parentId] === name &&
+      ranks[parentId] === rank
+    ) {
+      parentId = parents[parentId];
+      collapsed++;
+    }
+    if (parentId !== undefined) {
+      parents[id] = parentId;
+    }
+  }
+
+  console.log(`  Collapsed ${collapsed} redundant intermediate nodes`);
+  return tree;
+}
+
 // --- Merge OTL + NCBI trees ---
 
 function mergeAncestorTrees(otlTree, ncbiTree) {
@@ -586,6 +616,10 @@ async function main() {
 
   // Merge: OTL takes priority, NCBI fills gaps
   const ancestorTree = mergeAncestorTrees(otlTree, ncbiTree);
+
+  // Collapse chains of nodes with the same name+rank
+  console.log("Collapsing redundant nodes...");
+  collapseRedundantNodes(ancestorTree);
 
   // Write output files
   mkdirSync(OUT_DIR, { recursive: true });

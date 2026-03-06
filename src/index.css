@@ -844,6 +844,8 @@ body {
   margin: var(--space-sm) auto var(--space-md);
   font-size: 0.8rem;
   line-height: 1.6;
+  max-width: 100%;
+  overflow-x: auto;
 }
 
 .breadcrumb-path {
@@ -855,12 +857,6 @@ body {
   margin-top: var(--space-md);
   font-size: 0.85rem;
   color: var(--error);
-}
-
-@media (max-width: 719px) {
-  .lineage-breadcrumbs {
-    overflow-x: auto;
-  }
 }
 
 @media (min-width: 720px) {
@@ -893,13 +889,24 @@ body {
   color: GrayText;
 }
 
-.breadcrumb-link {
+a.breadcrumb-link,
+.breadcrumb-link a {
   color: var(--success);
   text-decoration: none;
 }
 
-.breadcrumb-link:hover {
+a.breadcrumb-link:hover,
+.breadcrumb-link a:hover {
   text-decoration: underline;
+}
+
+.breadcrumb-secondary-link {
+  font-size: 0.7rem;
+  opacity: 0.6;
+}
+
+.breadcrumb-secondary-link:hover {
+  opacity: 1;
 }
 
 .breadcrumb-rank {
@@ -1458,20 +1465,36 @@ body {
   font-weight: 600;
 }
 
+.species-map-wrapper {
+  position: relative;
+  max-width: 600px;
+}
+
 .species-map-canvas {
   width: 100%;
-  max-width: 600px;
   height: auto;
   border-radius: 8px;
   border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
   display: block;
 }
 
-.species-map-loading {
-  text-align: center;
-  padding: var(--space-sm);
-  opacity: 0.7;
+.species-map-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
   font-size: 0.9rem;
+  color: #333;
+}
+
+@media (prefers-color-scheme: dark) {
+  .species-map-overlay {
+    background: rgba(0, 0, 0, 0.5);
+    color: #ccc;
+  }
 }
 
 .species-map-legend {

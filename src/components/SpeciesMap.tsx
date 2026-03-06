@@ -81,11 +81,13 @@ export default function SpeciesMap({
   const displayCanvasRef = useRef<HTMLCanvasElement>(null);
   const [layers, setLayers] = useState<SpeciesLayer[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
     setLoading(true);
     setLayers([]);
+    setError(false);
 
     if (!fullCanvasRef.current) {
       fullCanvasRef.current = document.createElement("canvas");
@@ -194,7 +196,12 @@ export default function SpeciesMap({
       );
     }
 
-    render();
+    render().catch(() => {
+      if (!cancelled) {
+        setError(true);
+        setLoading(false);
+      }
+    });
 
     return () => {
       cancelled = true;
@@ -204,15 +211,24 @@ export default function SpeciesMap({
   return (
     <div className="species-map-container">
       <h3 className="species-map-title">Species Occurrence (GBIF)</h3>
-      <canvas
-        ref={displayCanvasRef}
-        width={FULL_SIZE}
-        height={CROP_HEIGHT}
-        className="species-map-canvas"
-      />
-      {loading && (
-        <div className="species-map-loading">Loading map data...</div>
-      )}
+      <div className="species-map-wrapper">
+        <canvas
+          ref={displayCanvasRef}
+          width={FULL_SIZE}
+          height={CROP_HEIGHT}
+          className="species-map-canvas"
+        />
+        {loading && (
+          <div className="species-map-overlay">
+            Loading species distributions...
+          </div>
+        )}
+        {error && (
+          <div className="species-map-overlay">
+            Failed to load distribution data
+          </div>
+        )}
+      </div>
       <div className="species-map-legend">
         {layers.map((layer) => (
           <span key={layer.name} className="species-map-legend-item">
