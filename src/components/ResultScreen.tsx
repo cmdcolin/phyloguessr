@@ -2,7 +2,7 @@ import { useState } from "preact/hooks";
 import Button from "./Button.tsx";
 import { ShareButton } from "./Game.tsx";
 import PhyloTree from "./PhyloTree.tsx";
-import SpeciesMap from "./SpeciesMap.tsx";
+import SpeciesMap, { MAP_COLORS } from "./SpeciesMap.tsx";
 import { capitalize } from "../utils/format.ts";
 import { getLineageFromParents } from "../utils/taxonomy.ts";
 
@@ -171,9 +171,11 @@ function Explanation({
 function Breadcrumbs({
   organism,
   taxonomyData,
+  color,
 }: {
   organism: Organism;
   taxonomyData: TaxonomyData;
+  color?: string;
 }) {
   const steps = filterToImportantRanks(
     getFullLineage(organism.ncbiTaxId, taxonomyData),
@@ -185,6 +187,12 @@ function Breadcrumbs({
   return (
     <>
       <span className="breadcrumb-label">
+        {color && (
+          <span
+            className="map-color-dot"
+            style={{ backgroundColor: color }}
+          />
+        )}
         {capitalize(organism.commonName)}
         {" "}
         <a
@@ -218,14 +226,17 @@ function Breadcrumbs({
   );
 }
 
-function MapToggle({ organisms }: { organisms: Organism[] }) {
+function MapToggle({ organisms, organismColors }: { organisms: Organism[]; organismColors: Record<number, string> }) {
   const [show, setShow] = useState(false);
+  const sorted = [...organisms].sort(
+    (a, b) => MAP_COLORS.indexOf(organismColors[a.ncbiTaxId]) - MAP_COLORS.indexOf(organismColors[b.ncbiTaxId]),
+  );
   return (
     <div className="map-toggle">
       <button className="map-toggle-btn" onClick={() => setShow(s => !s)}>
         {show ? "Hide map" : "Show map"}
       </button>
-      {show && <SpeciesMap organisms={organisms} />}
+      {show && <SpeciesMap organisms={sorted} />}
     </div>
   );
 }
@@ -279,11 +290,11 @@ export default function ResultScreen({
         userSelectedTaxIds={userSelectedTaxIds}
         organismColors={organismColors}
       />
-      <MapToggle organisms={[sister1, sister2, outgroup]} />
+      <MapToggle organisms={[sister1, sister2, outgroup]} organismColors={organismColors} />
       <div className="lineage-breadcrumbs">
-        <Breadcrumbs organism={sister1} taxonomyData={taxonomyData} />
-        <Breadcrumbs organism={sister2} taxonomyData={taxonomyData} />
-        <Breadcrumbs organism={outgroup} taxonomyData={taxonomyData} />
+        <Breadcrumbs organism={sister1} taxonomyData={taxonomyData} color={organismColors[sister1.ncbiTaxId]} />
+        <Breadcrumbs organism={sister2} taxonomyData={taxonomyData} color={organismColors[sister2.ncbiTaxId]} />
+        <Breadcrumbs organism={outgroup} taxonomyData={taxonomyData} color={organismColors[outgroup.ncbiTaxId]} />
       </div>
       <a
         className="report-issue-link"

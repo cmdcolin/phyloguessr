@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, useMemo } from 'preact/hooks'
-import { lazy, Suspense } from 'preact/compat'
+import { lazy, Suspense } from 'react'
 import { getGbifTaxonKey } from '../api/gbif.ts'
 import { capitalize } from '../utils/format.ts'
 import type { Organism } from '../data/organisms.ts'

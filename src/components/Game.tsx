@@ -129,13 +129,23 @@ function clearQuestionFromUrl() {
   url.searchParams.delete('b')
   url.searchParams.delete('c')
   url.searchParams.delete('r')
+  url.searchParams.delete('s')
   history.replaceState(null, '', url.toString())
 }
 
-function pushResultToUrl() {
+function pushResultToUrl(selectedIndices: number[]) {
   const url = new URL(window.location.href)
   url.searchParams.set('r', '1')
+  url.searchParams.set('s', selectedIndices.join(','))
   history.pushState(null, '', url.toString())
+}
+
+function getSelectedParam() {
+  const s = new URLSearchParams(window.location.search).get('s')
+  if (s) {
+    return s.split(',').map(Number).filter(n => !isNaN(n))
+  }
+  return null
 }
 
 function hasResultParam() {
@@ -446,7 +456,18 @@ export default function Game({ mode }: { mode: GameMode }) {
       setRound({ organisms: orgs, images })
 
       if (hasResultParam()) {
-        setResult(computeResult(orgs, data, true))
+        const savedSelected = getSelectedParam()
+        if (savedSelected && savedSelected.length === 2) {
+          const userPickedTaxIds = new Set(savedSelected.map(i => orgs[i].ncbiTaxId))
+          setSelected(savedSelected)
+          setResult(computeResult(orgs, data,
+            pair => pair.isPolytomy ||
+              (userPickedTaxIds.has(pair.sister1TaxId) &&
+                userPickedTaxIds.has(pair.sister2TaxId)),
+          ))
+        } else {
+          setResult(computeResult(orgs, data, true))
+        }
         setState('result')
       } else {
         setState('selecting')
@@ -471,7 +492,18 @@ export default function Game({ mode }: { mode: GameMode }) {
     const handler = () => {
       if (hasResultParam()) {
         if (round && taxonomyData) {
-          setResult(computeResult(round.organisms, taxonomyData, true))
+          const savedSelected = getSelectedParam()
+          if (savedSelected && savedSelected.length === 2) {
+            const userPickedTaxIds = new Set(savedSelected.map(i => round.organisms[i].ncbiTaxId))
+            setSelected(savedSelected)
+            setResult(computeResult(round.organisms, taxonomyData,
+              pair => pair.isPolytomy ||
+                (userPickedTaxIds.has(pair.sister1TaxId) &&
+                  userPickedTaxIds.has(pair.sister2TaxId)),
+            ))
+          } else {
+            setResult(computeResult(round.organisms, taxonomyData, true))
+          }
           setState('result')
         }
       } else if (round) {
@@ -536,7 +568,8 @@ export default function Game({ mode }: { mode: GameMode }) {
 
     setResult(resultData)
     setState('result')
-    pushResultToUrl()
+    setSelected(selected)
+    pushResultToUrl(selected)
   }
 
   return (
