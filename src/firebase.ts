@@ -9,7 +9,7 @@ import {
   collection,
   deleteDoc,
   doc,
-  getCountFromServer,
+  getCount,
   getDocs,
   getFirestore,
   limit,
@@ -18,7 +18,7 @@ import {
   runTransaction,
   setDoc,
   where,
-} from 'firebase/firestore'
+} from 'firebase/firestore/lite'
 
 import type { User } from 'firebase/auth'
 
@@ -201,6 +201,6 @@ export function stopPresence() {
 export async function getOnlineCount() {
   const cutoff = Date.now() - PRESENCE_TIMEOUT_MS
   const q = query(presenceRef, where('lastSeen', '>', cutoff))
-  const snap = await getCountFromServer(q)
+  const snap = await getCount(q)
   return snap.data().count
 }
