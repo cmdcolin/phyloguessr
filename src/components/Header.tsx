@@ -110,6 +110,9 @@ export default function Header() {
               <a className="hamburger-item" href="/donate">
                 Donate
               </a>
+              <a className="hamburger-item" href="/privacy">
+                Privacy
+              </a>
               <div className="hamburger-divider" />
               {signedIn ? (
                 <>
