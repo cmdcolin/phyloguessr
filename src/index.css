@@ -841,6 +841,13 @@ body {
   animation: wrong-wobble 0.7s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
 }
 
+.result-banner.debated {
+  background: linear-gradient(90deg, #ffa726, #ffcc02, #ffa726);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 .result-explanation {
   font-size: 0.9rem;
   line-height: 1.5;

@@ -1,8 +1,6 @@
 import { useState } from 'preact/hooks'
 
 import Button from './Button.tsx'
-import DiagramTree from './DiagramTree.tsx'
-import FullTree from './FullTree.tsx'
 import { ShareButton } from './Game.tsx'
 import PhyloTree from './PhyloTree.tsx'
 import SpeciesMap, { MAP_COLORS } from './SpeciesMap.tsx'
@@ -10,7 +8,6 @@ import { capitalize } from '../utils/format.ts'
 import { getLineageFromParents } from '../utils/taxonomy.ts'
 
 import type { Organism } from '../data/organisms.ts'
-import type { DiagramNode } from '../data/surprisingFacts.ts'
 import type { MrcaInfo } from '../utils/format.ts'
 import type { TaxonomyData } from '../utils/taxonomy.ts'
 
@@ -28,9 +25,8 @@ interface ResultScreenProps {
   userSelectedTaxIds: Set<number>
   organismColors: Record<number, string>
   funFact?: string
-  sourceUrl?: string
-  sourceLabel?: string
-  diagram?: DiagramNode
+  sources?: { url: string; label: string }[]
+  activelyDebated?: boolean
   shareUrl: string
   onPlayAgain: () => void
 }
@@ -110,8 +106,7 @@ function Explanation({
   overallMrca,
   isPolytomy,
   funFact,
-  sourceUrl,
-  sourceLabel,
+  sources,
 }: {
   sister1: Organism
   sister2: Organism
@@ -120,8 +115,7 @@ function Explanation({
   overallMrca: MrcaInfo
   isPolytomy: boolean
   funFact?: string
-  sourceUrl?: string
-  sourceLabel?: string
+  sources?: { url: string; label: string }[]
 }) {
   if (isPolytomy) {
     return (
@@ -133,12 +127,17 @@ function Explanation({
           related to another — any pair is equally correct!
                 </p>
         {funFact && <p>Fun fact: {funFact}</p>}
-        {sourceUrl && (
+        {sources && sources.length > 0 && (
           <p className="fun-fact-source">
-            Source:{' '}
-            <a href={sourceUrl} target="_blank" rel="noopener noreferrer">
-              {sourceLabel ?? sourceUrl}
-            </a>
+            {sources.length === 1 ? 'Source: ' : 'Sources: '}
+            {sources.map((s, i) => (
+              <span key={s.url}>
+                {i > 0 && ' · '}
+                <a href={s.url} target="_blank" rel="noopener noreferrer">
+                  {s.label}
+                </a>
+              </span>
+            ))}
           </p>
         )}
       </div>
@@ -162,14 +161,19 @@ function Explanation({
         )}
       </p>
         {funFact && <p>Fun fact: {funFact}</p>}
-      {sourceUrl && (
-        <p className="fun-fact-source">
-          Source:{' '}
-          <a href={sourceUrl} target="_blank" rel="noopener noreferrer">
-            {sourceLabel ?? sourceUrl}
-          </a>
-        </p>
-      )}
+      {sources && sources.length > 0 && (
+          <p className="fun-fact-source">
+            {sources.length === 1 ? 'Source: ' : 'Sources: '}
+            {sources.map((s, i) => (
+              <span key={s.url}>
+                {i > 0 && ' · '}
+                <a href={s.url} target="_blank" rel="noopener noreferrer">
+                  {s.label}
+                </a>
+              </span>
+            ))}
+          </p>
+        )}
     </div>
   )
 }
@@ -390,20 +394,28 @@ export default function ResultScreen({
   userSelectedTaxIds,
   organismColors,
   funFact,
-  sourceUrl,
-  sourceLabel,
-  diagram,
+  sources,
+  activelyDebated,
   shareUrl,
   onPlayAgain,
 }: ResultScreenProps) {
+  const bannerClass = activelyDebated
+    ? 'debated'
+    : correct
+      ? 'correct'
+      : 'wrong'
+  const bannerText = activelyDebated
+    ? 'Actively Debated!'
+    : correct
+      ? 'Correct!'
+      : 'Not quite!'
   return (
     <div className="result-screen">
-      <div className={`result-banner ${correct ? 'correct' : 'wrong'}`}>
-        {correct ? 'Correct!' : 'Not quite!'}
+      <div className={`result-banner ${bannerClass}`}>
+        {bannerText}
         <ShareButton url={shareUrl} />
       </div>
 
-      {/* {diagram && <DiagramTree root={diagram} />} */}
       <Explanation
         sister1={sister1}
         sister2={sister2}
@@ -412,8 +424,7 @@ export default function ResultScreen({
         overallMrca={overallMrca}
         isPolytomy={isPolytomy}
         funFact={funFact}
-        sourceUrl={sourceUrl}
-        sourceLabel={sourceLabel}
+        sources={sources}
       />
       <div className="result-actions">
         <Button onClick={onPlayAgain}>Next</Button>

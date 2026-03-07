@@ -50,8 +50,8 @@ interface ResultData {
   overallMrca: MrcaInfo
   isPolytomy: boolean
   funFact?: string
-  sourceUrl?: string
-  sourceLabel?: string
+  sources?: { url: string; label: string }[]
+  activelyDebated?: boolean
 }
 
 function comboKey(orgs: { ncbiTaxId: number }[]) {
@@ -535,12 +535,15 @@ export default function Game({ mode }: { mode: GameMode }) {
     }
     const fullResult = computeResult(orgs, taxonomyData, correctnessFn)
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { pair, ...resultData } = fullResult
+    const { pair, ...resultData } = fullResult as ReturnType<typeof computeResult> & ResultData
 
     if (scenario) {
       resultData.funFact = scenario.funFact
-      resultData.sourceUrl = scenario.sourceUrl
-      resultData.sourceLabel = scenario.sourceLabel
+      resultData.sources = scenario.sources
+      if (scenario.activelyDebated) {
+        resultData.activelyDebated = true
+        resultData.correct = true
+      }
       if (scenario.correctPair) {
         const cp = scenario.correctPair
         const sister1 = orgs.find(o => o.commonName === cp[0]) ?? orgs[0]
@@ -891,8 +894,8 @@ export default function Game({ mode }: { mode: GameMode }) {
             ]),
           )}
           funFact={result.funFact}
-          sourceUrl={result.sourceUrl}
-          sourceLabel={result.sourceLabel}
+          sources={result.sources}
+          activelyDebated={result.activelyDebated}
           shareUrl={buildShareUrl(round.organisms)}
           onPlayAgain={startRound}
         />
