@@ -15,7 +15,7 @@ import ResultScreen from './ResultScreen.tsx'
 import { TaxLink } from './TaxLink.tsx'
 import { MapToggle } from './MapToggle.tsx'
 import { MAP_COLORS } from './SpeciesMap.tsx'
-import { surprisingScenarios } from '../data/surprisingFacts.ts'
+import { loadSurprisingScenarios } from '../data/surprisingFacts.ts'
 import { recordRound, startPresence } from '../firebase.ts'
 import { addHistoryEntry, loadHistory } from '../utils/history.ts'
 import { sessionStorageGetItem } from '../utils/storage.ts'
@@ -33,6 +33,7 @@ import {
 } from '../utils/taxonomy.ts'
 
 import type { Organism } from '../data/organisms.ts'
+import type { SurprisingScenario } from '../data/surprisingFacts.ts'
 import type { MrcaInfo } from '../utils/format.ts'
 import type { HistoryEntry } from '../utils/history.ts'
 import type {
@@ -129,6 +130,7 @@ export default function Game({ mode }: { mode: GameMode }) {
   const [speciesPool, setSpeciesPool] = useState<SpeciesPoolEntry[] | null>(
     null,
   )
+  const [scenarios, setScenarios] = useState<SurprisingScenario[] | null>(null)
   const [loadingMessage, setLoadingMessage] = useState('')
   const [shownScenarioIndices, setShownScenarioIndices] = useState<Set<number>>(
     () => {
@@ -187,8 +189,14 @@ export default function Game({ mode }: { mode: GameMode }) {
     }
 
     if (mode === 'easy') {
+      let loadedScenarios = scenarios
+      if (!loadedScenarios) {
+        setLoadingMessage('Loading scenarios...')
+        loadedScenarios = await loadSurprisingScenarios()
+        setScenarios(loadedScenarios)
+      }
       setLoadingMessage('Loading organisms...')
-      const unshown = surprisingScenarios
+      const unshown = loadedScenarios
         .map((s, i) => ({ s, i }))
         .filter(({ s, i }) => {
           if (
@@ -341,6 +349,7 @@ export default function Game({ mode }: { mode: GameMode }) {
     mode,
     taxonomyData,
     speciesPool,
+    scenarios,
     cladeFilter,
     shownScenarioIndices,
     seenCombos,
@@ -429,7 +438,7 @@ export default function Game({ mode }: { mode: GameMode }) {
     }
 
     const orgs = round.organisms
-    const scenario = surprisingScenarios.find(
+    const scenario = scenarios?.find(
       s => comboKey(s.organisms) === comboKey(orgs),
     )
 
@@ -710,7 +719,7 @@ export default function Game({ mode }: { mode: GameMode }) {
       {state === 'easyCompleted' && (
         <div className="easy-completed">
           <p>
-            You&apos;ve completed all {surprisingScenarios.length} curated
+            You&apos;ve completed all {scenarios?.length ?? 0} curated
             scenarios!
           </p>
           <div className="selecting-actions">
