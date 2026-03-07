@@ -228,7 +228,10 @@ export default function Leaderboard() {
                     )
                 : multiEntries
               ).map((entry, i) => (
-                <tr key={entry.uid} className={entry.uid === uid ? 'lb-you' : ''}>
+                <tr
+                  key={entry.uid}
+                  className={entry.uid === uid ? 'lb-you' : ''}
+                >
                   <td className="lb-rank">{i + 1}</td>
                   <td className="lb-name">
                     {entry.name}

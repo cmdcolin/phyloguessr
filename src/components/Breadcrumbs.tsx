@@ -65,10 +65,7 @@ function BreadcrumbPath({ steps }: { steps: BreadcrumbStep[] }) {
         <span key={step.taxId}>
           {i > 0 && <span className="breadcrumb-sep">{' \u203a '}</span>}
           <TaxLink name={step.name} taxId={step.taxId} />
-          <span className="breadcrumb-rank">
-            {' '}
-            ({formatRank(step.rank)})
-          </span>
+          <span className="breadcrumb-rank"> ({formatRank(step.rank)})</span>
         </span>
       ))}
     </>

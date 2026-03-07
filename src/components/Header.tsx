@@ -95,37 +95,22 @@ export default function Header() {
           </button>
           {showMenu && (
             <div className="hamburger-dropdown">
-              <a
-                className="hamburger-item"
-                href="/leaderboard"
-              >
+              <a className="hamburger-item" href="/leaderboard">
                 Leaderboard
               </a>
-              <a
-                className="hamburger-item"
-                href="/history"
-              >
+              <a className="hamburger-item" href="/history">
                 History
               </a>
-              <a
-                className="hamburger-item"
-                href="/about"
-              >
+              <a className="hamburger-item" href="/about">
                 About
               </a>
-              <a
-                className="hamburger-item"
-                href="/donate"
-              >
+              <a className="hamburger-item" href="/donate">
                 Donate
               </a>
               <div className="hamburger-divider" />
               {signedIn ? (
                 <>
-                  <a
-                    className="hamburger-item"
-                    href="/login"
-                  >
+                  <a className="hamburger-item" href="/login">
                     Account settings
                   </a>
                   <button
@@ -141,10 +126,7 @@ export default function Header() {
                   </button>
                 </>
               ) : (
-                <a
-                  className="hamburger-item"
-                  href="/login"
-                >
+                <a className="hamburger-item" href="/login">
                   Sign in
                 </a>
               )}

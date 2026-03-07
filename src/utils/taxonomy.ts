@@ -220,7 +220,7 @@ function unpackTaxonomyData(compact: CompactTaxonomyData) {
 }
 
 function fetchTaxonomy(file: string) {
-  return fetch(`${import.meta.env.BASE_URL}taxonomy/${file}`)
+  return fetch(`/taxonomy/${file}`)
     .then(r => {
       if (!r.ok) {
         throw new Error(`Failed to load taxonomy data: ${r.status}`)
@@ -246,9 +246,7 @@ export function loadTaxonomyData() {
 
 export function loadSpeciesPool() {
   if (!speciesPoolPromise) {
-    speciesPoolPromise = fetch(
-      `${import.meta.env.BASE_URL}taxonomy/species-pool.json`,
-    ).then(r => {
+    speciesPoolPromise = fetch(`/taxonomy/species-pool.json`).then(r => {
       if (!r.ok) {
         throw new Error(`Failed to load species pool: ${r.status}`)
       }

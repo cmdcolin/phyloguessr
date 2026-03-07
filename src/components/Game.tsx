@@ -695,12 +695,12 @@ export default function Game({ mode }: { mode: GameMode }) {
                   }
                 }
                 const qs = params.toString()
-                return `${import.meta.env.BASE_URL}random${qs ? `?${qs}` : ''}`
+                return `/random${qs ? `?${qs}` : ''}`
               })()}
             >
               Play
             </Button>
-            <Button variant="secondary" href={import.meta.env.BASE_URL}>
+            <Button variant="secondary" href="/">
               ⏮ Back
             </Button>
           </div>
@@ -724,7 +724,7 @@ export default function Game({ mode }: { mode: GameMode }) {
             >
               Restart Easy Mode
             </Button>
-            <Button variant="secondary" href={import.meta.env.BASE_URL}>
+            <Button variant="secondary" href="/">
               ⏮ Back
             </Button>
           </div>

@@ -147,7 +147,7 @@ export default function SignInPage() {
           </div>
         )}
         <div className="signin-actions">
-          <a className="btn btn-primary" href={import.meta.env.BASE_URL}>
+          <a className="btn btn-primary" href="/">
             Play
           </a>
           <button className="btn btn-secondary" onClick={handleSignOut}>
@@ -193,7 +193,7 @@ export default function SignInPage() {
         >
           {signingIn ? 'Signing in...' : 'Sign in with Google'}
         </button>
-        <a className="btn btn-secondary" href={import.meta.env.BASE_URL}>
+        <a className="btn btn-secondary" href="/">
           Back to game
         </a>
       </div>

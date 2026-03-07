@@ -1,7 +1,5 @@
 import { organisms as allOrganisms } from '../data/organisms.ts'
-import {
-  resolveOrganism as resolveOrganismUtil,
-} from '../utils/taxonomy.ts'
+import { resolveOrganism as resolveOrganismUtil } from '../utils/taxonomy.ts'
 
 import type { Organism } from '../data/organisms.ts'
 import type { SpeciesPoolEntry, TaxonomyData } from '../utils/taxonomy.ts'
