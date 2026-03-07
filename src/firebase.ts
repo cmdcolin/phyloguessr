@@ -250,7 +250,10 @@ export function startPresence() {
     lastPresenceWrite = Date.now()
   }, PRESENCE_INTERVAL_MS)
   visibilityHandler = () => {
-    if (document.visibilityState === 'visible' && Date.now() - lastPresenceWrite >= PRESENCE_INTERVAL_MS) {
+    if (
+      document.visibilityState === 'visible' &&
+      Date.now() - lastPresenceWrite >= PRESENCE_INTERVAL_MS
+    ) {
       updatePresence()
       lastPresenceWrite = Date.now()
     }

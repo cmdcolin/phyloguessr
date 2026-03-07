@@ -109,14 +109,14 @@ export default function InteractiveMap({
       }
 
       const map = leaflet.map(mapRef.current, {
-        center: [20, 0],
-        zoom: 2,
+        center: [0, 0],
+        zoom: 1,
         minZoom: 1,
         maxZoom: 10,
         worldCopyJump: true,
       })
       leafletMapRef.current = map
-      onMapReadyRef.current?.({ resetView: () => map.setView([20, 0], 2) })
+      onMapReadyRef.current?.({ resetView: () => map.setView([0, 0], 1) })
 
       leaflet
         .tileLayer(

@@ -72,7 +72,14 @@ export interface HardModeResult {
 
 export function resolveOrganism(
   taxId: number,
-  knownOrganisms: { ncbiTaxId: number; commonName: string; scientificName: string; wikiTitle: string; group: string; imageUrl?: string }[],
+  knownOrganisms: {
+    ncbiTaxId: number
+    commonName: string
+    scientificName: string
+    wikiTitle: string
+    group: string
+    imageUrl?: string
+  }[],
   pool: SpeciesPoolEntry[] | null,
   data: TaxonomyData | null,
 ) {
@@ -250,7 +257,6 @@ export function loadSpeciesPool() {
   }
   return speciesPoolPromise
 }
-
 
 function isDescendantOf(
   taxId: number,
@@ -621,10 +627,7 @@ export function pickThreeHardMode(
   return [...indices].map(i => pool[i])
 }
 
-export function getAllPairLcas(
-  taxIds: number[],
-  data: TaxonomyData,
-) {
+export function getAllPairLcas(taxIds: number[], data: TaxonomyData) {
   const pairs: {
     i: number
     j: number
@@ -750,7 +753,7 @@ export function pickNHardModeDistance(
   return { picks: pickNFromClade(count, 1, pool, data) ?? pool.slice(0, count) }
 }
 
-interface DiagramNode {
+export interface DiagramNode {
   label: string
   highlight?: boolean
   wikiLink?: string
@@ -771,7 +774,8 @@ const landmarks: Record<string, string> = {
   Vertebrata: 'animals with backbones',
   Gnathostomata: 'jawed vertebrates',
   Osteichthyes: 'bony fish and technically all their descendants',
-  Sarcopterygii: 'you are a lobe-finned fish! includes lungfish, coelacanths, and all land animals',
+  Sarcopterygii:
+    'you are a lobe-finned fish! includes lungfish, coelacanths, and all land animals',
   Tetrapoda: 'four-limbed vertebrates — includes snakes, which lost theirs!',
   Amniota: 'land-egg vertebrates — includes reptiles, birds, mammals',
 
@@ -782,19 +786,26 @@ const landmarks: Record<string, string> = {
   Eutheria: 'placental mammals',
   Marsupialia: 'pouched mammals, e.g. kangaroos, koalas, possums',
   Monotremata: 'egg-laying mammals! just platypus + echidnas',
-  Afrotheria: 'a superorder of placental mammals — includes elephants, manatees, aardvarks, tenrecs',
-  Xenarthra: 'a superorder of placental mammals — includes sloths, armadillos, anteaters',
-  Laurasiatheria: 'a superorder of placental mammals — includes bats, cats, whales, horses',
-  Euarchontoglires: 'a superorder of placental mammals — includes primates, rodents, rabbits',
+  Afrotheria:
+    'a superorder of placental mammals — includes elephants, manatees, aardvarks, tenrecs',
+  Xenarthra:
+    'a superorder of placental mammals — includes sloths, armadillos, anteaters',
+  Laurasiatheria:
+    'a superorder of placental mammals — includes bats, cats, whales, horses',
+  Euarchontoglires:
+    'a superorder of placental mammals — includes primates, rodents, rabbits',
   Boreoeutheria: 'includes most placental mammals',
   Primates: 'includes monkeys, apes, lemurs, tarsiers',
   Hominidae: 'the great apes — includes humans!',
   Homininae: 'African great apes + humans',
-  Rodentia: '40% of all mammal species! includes mice, rats, squirrels, beavers',
+  Rodentia:
+    '40% of all mammal species! includes mice, rats, squirrels, beavers',
   Lagomorpha: 'rabbits, hares, pikas — not rodents!',
   Carnivora: 'includes cats, dogs, bears, seals, and pandas',
-  Feliformia: 'cat-side of Carnivora — includes cats, hyenas, mongooses, civets',
-  Caniformia: 'dog-side of Carnivora — includes dogs, bears, seals, weasels, raccoons',
+  Feliformia:
+    'cat-side of Carnivora — includes cats, hyenas, mongooses, civets',
+  Caniformia:
+    'dog-side of Carnivora — includes dogs, bears, seals, weasels, raccoons',
   Mustelidae: 'includes weasels, otters, wolverines, badgers',
   Cetacea: 'whales and dolphins — descended from land animals!',
   Cetartiodactyla: 'hippos are the closest living relatives of whales!',
@@ -824,7 +835,8 @@ const landmarks: Record<string, string> = {
   Neognathae: 'most living birds',
   Palaeognathae: 'includes ostriches, emus, kiwis',
   Neoaves: 'most modern birds',
-  Passeriformes: 'perching birds — over half of all bird species! e.g. crows, sparrows',
+  Passeriformes:
+    'perching birds — over half of all bird species! e.g. crows, sparrows',
   Accipitriformes: 'includes hawks, eagles, vultures',
   Psittaciformes: 'parrots — includes macaws, cockatoos',
   Strigiformes: 'owls',
@@ -865,8 +877,10 @@ const landmarks: Record<string, string> = {
   Arthropoda: 'includes insects, spiders, crabs — most species on Earth',
   Pancrustacea: 'insects are actually land crustaceans!',
   Hexapoda: 'six-legged arthropods — includes insects and springtails',
-  Insecta: 'includes beetles, butterflies, ants — ~80% of known animal species!',
-  Endopterygota: 'insects with complete metamorphosis, e.g. beetles, flies, butterflies',
+  Insecta:
+    'includes beetles, butterflies, ants — ~80% of known animal species!',
+  Endopterygota:
+    'insects with complete metamorphosis, e.g. beetles, flies, butterflies',
   Coleoptera: 'beetles — 1 in 4 animal species is a beetle!',
   Lepidoptera: 'butterflies and moths',
   Hymenoptera: 'includes ants, bees, wasps',
@@ -881,7 +895,8 @@ const landmarks: Record<string, string> = {
   Mecoptera: 'scorpionflies',
   Dermaptera: 'earwigs',
   Chelicerata: 'includes spiders, scorpions, horseshoe crabs',
-  Arachnida: 'eight-legged arthropods — includes spiders, scorpions, ticks, mites',
+  Arachnida:
+    'eight-legged arthropods — includes spiders, scorpions, ticks, mites',
   Araneae: 'spiders',
   Acari: 'ticks and mites',
   Scorpiones: 'scorpions — older than dinosaurs!',
@@ -915,7 +930,8 @@ const landmarks: Record<string, string> = {
   Ctenophora: 'comb jellies — possibly the oldest animal lineage',
   Tardigrada: 'tardigrades — can survive in space!',
   Onychophora: 'velvet worms — shoot slime to catch prey',
-  Tunicata: 'sea squirts and salps — blobs stuck to rocks, yet our closest invertebrate relatives!',
+  Tunicata:
+    'sea squirts and salps — blobs stuck to rocks, yet our closest invertebrate relatives!',
   Nemertea: 'ribbon worms',
   Sipuncula: 'peanut worms',
   Xenacoelomorpha: 'simple worm-like animals',
@@ -935,7 +951,8 @@ const landmarks: Record<string, string> = {
   Rosidae: 'includes roses, legumes, oaks, maples',
   Asteridae: 'includes sunflowers, mints, carrots, tomatoes',
   Fabales: 'includes legumes, peanuts, beans',
-  Fabaceae: 'legumes — includes peanuts, beans, clover. they fix nitrogen from the air!',
+  Fabaceae:
+    'legumes — includes peanuts, beans, clover. they fix nitrogen from the air!',
   Rosaceae: 'includes roses, strawberries, almonds, apples, cherries',
   Asteraceae: 'largest plant family! includes daisies, sunflowers, dandelions',
   Solanaceae: 'nightshades — includes tomatoes, potatoes, peppers, tobacco',
@@ -1077,7 +1094,11 @@ function makeBranchNode(
   if (highlight) {
     leaf.highlight = true
   }
-  if (clades.branch && clades.leaf && clades.branch.taxId !== clades.leaf.taxId) {
+  if (
+    clades.branch &&
+    clades.leaf &&
+    clades.branch.taxId !== clades.leaf.taxId
+  ) {
     const node: DiagramNode = {
       label: annotateLabel(clades.branch.name),
       wikiLink: wikiUrl(clades.branch.name),
@@ -1103,8 +1124,7 @@ export function buildContextDiagram(
     return undefined
   }
 
-  const getName = (taxId: number) =>
-    data.names[String(taxId)] ?? String(taxId)
+  const getName = (taxId: number) => data.names[String(taxId)] ?? String(taxId)
 
   const lin1 = getLineageFromParents(sister1.ncbiTaxId, data.parents)
   const lin2 = getLineageFromParents(sister2.ncbiTaxId, data.parents)

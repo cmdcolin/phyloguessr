@@ -45,6 +45,10 @@ writeFileSync(EASY_PATH, JSON.stringify(easyTree))
 
 const fullSize = statSync(PARENTS_PATH).size
 const easySize = statSync(EASY_PATH).size
-console.log(`Full tree: ${Object.keys(parents.D).length} nodes (${(fullSize / 1024).toFixed(0)} KB)`)
-console.log(`Easy tree: ${Object.keys(easyTree.D).length} nodes (${(easySize / 1024).toFixed(0)} KB)`)
+console.log(
+  `Full tree: ${Object.keys(parents.D).length} nodes (${(fullSize / 1024).toFixed(0)} KB)`,
+)
+console.log(
+  `Easy tree: ${Object.keys(easyTree.D).length} nodes (${(easySize / 1024).toFixed(0)} KB)`,
+)
 console.log(`Reduction: ${((1 - easySize / fullSize) * 100).toFixed(0)}%`)

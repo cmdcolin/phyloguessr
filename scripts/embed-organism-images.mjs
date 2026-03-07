@@ -45,10 +45,7 @@ function saveCache(cache) {
   if (!existsSync(CACHE_DIR)) {
     mkdirSync(CACHE_DIR, { recursive: true })
   }
-  writeFileSync(
-    CACHE_PATH,
-    JSON.stringify(Object.fromEntries(cache), null, 2),
-  )
+  writeFileSync(CACHE_PATH, JSON.stringify(Object.fromEntries(cache), null, 2))
 }
 
 async function fetchWikiThumbnail(wikiTitle) {
@@ -92,7 +89,8 @@ async function fetchImage(wikiTitle, scientificName) {
 
 function parseOrganisms(src) {
   const organisms = []
-  const regex = /\{\s*commonName:\s*'([^']+)',\s*scientificName:\s*'([^']+)',\s*ncbiTaxId:\s*(\d+),\s*wikiTitle:\s*'([^']+)',\s*group:\s*'([^']+)'(?:,\s*imageUrl:\s*'([^']*)')?\s*,?\s*\}/gs
+  const regex =
+    /\{\s*commonName:\s*'([^']+)',\s*scientificName:\s*'([^']+)',\s*ncbiTaxId:\s*(\d+),\s*wikiTitle:\s*'([^']+)',\s*group:\s*'([^']+)'(?:,\s*imageUrl:\s*'([^']*)')?\s*,?\s*\}/gs
   let match
   while ((match = regex.exec(src)) !== null) {
     organisms.push({
@@ -136,12 +134,14 @@ async function main() {
     return !cached || !cached.url
   })
 
-  console.log(`${organisms.length - needFetch.length} already cached, ${needFetch.length} need fetching`)
+  console.log(
+    `${organisms.length - needFetch.length} already cached, ${needFetch.length} need fetching`,
+  )
 
   if (needFetch.length > 0) {
     console.log('Fetching images...')
     let fetched = 0
-    await processInBatches(needFetch, async (o) => {
+    await processInBatches(needFetch, async o => {
       const url = await fetchImage(o.wikiTitle, o.scientificName)
       cache.set(o.scientificName, { url, ts: now })
       fetched++
@@ -180,7 +180,9 @@ async function main() {
   }
 
   writeFileSync(ORGANISMS_PATH, updated)
-  console.log(`\nDone: ${embedded} organisms updated with image URLs, ${failed} without images`)
+  console.log(
+    `\nDone: ${embedded} organisms updated with image URLs, ${failed} without images`,
+  )
 }
 
 main().catch(err => {

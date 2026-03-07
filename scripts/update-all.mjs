@@ -72,11 +72,15 @@ if (existsSync(JB2HUBS)) {
 }
 
 // Step 3: Validate pool images
-const validateArgs = 'scripts/validate-pool-images.mjs' + (refresh ? ' --refresh' : '')
+const validateArgs =
+  'scripts/validate-pool-images.mjs' + (refresh ? ' --refresh' : '')
 run('Step 3: Validate pool images & embed URLs', validateArgs)
 
 // Step 4: Embed organism images for easy mode
-run('Step 4: Embed easy-mode organism images', 'scripts/embed-organism-images.mjs')
+run(
+  'Step 4: Embed easy-mode organism images',
+  'scripts/embed-organism-images.mjs',
+)
 
 // Step 5: Split taxonomy for easy mode
 run('Step 5: Split taxonomy for easy mode', 'scripts/split-taxonomy.mjs')

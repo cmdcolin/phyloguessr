@@ -66,7 +66,9 @@ export default function MultiGame() {
   const [selected, setSelected] = useState<number[]>([])
   const [result, setResult] = useState<MultiResultData | null>(null)
   const [taxonomyData, setTaxonomyData] = useState<TaxonomyData | null>(null)
-  const [speciesPool, setSpeciesPool] = useState<SpeciesPoolEntry[] | null>(null)
+  const [speciesPool, setSpeciesPool] = useState<SpeciesPoolEntry[] | null>(
+    null,
+  )
   const [loadingMessage, setLoadingMessage] = useState('')
   const [randomClade, setRandomClade] = useState<{
     taxId: number
@@ -121,7 +123,12 @@ export default function MultiGame() {
     let finalClade: { taxId: number; name: string; rank: string } | undefined
 
     for (let attempt = 0; attempt < 20; attempt++) {
-      const hardResult = pickNHardModeDistance(SPECIES_COUNT, pool, data, 'order')
+      const hardResult = pickNHardModeDistance(
+        SPECIES_COUNT,
+        pool,
+        data,
+        'order',
+      )
       const picks = hardResult.picks
 
       const orgs: Organism[] = picks.map(
@@ -149,7 +156,9 @@ export default function MultiGame() {
     }
 
     if (finalOrgs.length === 0) {
-      setLoadingMessage("Couldn't find a valid set of species — please try again")
+      setLoadingMessage(
+        "Couldn't find a valid set of species — please try again",
+      )
       return
     }
     if (finalClade) {

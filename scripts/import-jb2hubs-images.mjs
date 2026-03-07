@@ -8,7 +8,13 @@
 // Usage:
 //   node scripts/import-jb2hubs-images.mjs
 
-import { readFileSync, writeFileSync, existsSync, readdirSync, statSync } from 'fs'
+import {
+  readFileSync,
+  writeFileSync,
+  existsSync,
+  readdirSync,
+  statSync,
+} from 'fs'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
 
@@ -38,10 +44,7 @@ function loadCache() {
 }
 
 function saveCache(cache) {
-  writeFileSync(
-    CACHE_PATH,
-    JSON.stringify(Object.fromEntries(cache), null, 2),
-  )
+  writeFileSync(CACHE_PATH, JSON.stringify(Object.fromEntries(cache), null, 2))
 }
 
 function walkHubs(prefix) {
@@ -130,7 +133,9 @@ function main() {
     }
   }
 
-  console.log(`\nImage cache: ${existingSize} existing, ${added} added from jb2hubs`)
+  console.log(
+    `\nImage cache: ${existingSize} existing, ${added} added from jb2hubs`,
+  )
   saveCache(cache)
   console.log(`Saved cache to ${CACHE_PATH}`)
 }

@@ -4,6 +4,7 @@ import { cluster, hierarchy } from 'd3-hierarchy'
 import Button from './Button.tsx'
 import DiagramTree from './DiagramTree.tsx'
 import { ShareButton } from './Game.tsx'
+import { TaxLink } from './ResultScreen.tsx'
 import SpeciesMap from './SpeciesMap.tsx'
 import { capitalize, formatRank } from '../utils/format.ts'
 import {
@@ -52,8 +53,7 @@ function PairTable({
   organisms: Organism[]
   userPair: PairRanking
 }) {
-  const byOrg = (taxId: number) =>
-    organisms.find(o => o.ncbiTaxId === taxId)
+  const byOrg = (taxId: number) => organisms.find(o => o.ncbiTaxId === taxId)
 
   return (
     <div className="multi-pair-table-wrapper">
@@ -72,14 +72,18 @@ function PairTable({
             const orgA = byOrg(pair.taxIdA)
             const orgB = byOrg(pair.taxIdB)
             return (
-              <tr key={`${pair.taxIdA}-${pair.taxIdB}`} className={isUser ? 'multi-pair-user' : ''}>
+              <tr
+                key={`${pair.taxIdA}-${pair.taxIdB}`}
+                className={isUser ? 'multi-pair-user' : ''}
+              >
                 <td className="multi-pair-rank">{idx + 1}</td>
                 <td>
                   {capitalize(orgA?.commonName ?? '?')} &amp;{' '}
                   {capitalize(orgB?.commonName ?? '?')}
                 </td>
                 <td className="multi-pair-lca">
-                  {pair.lca.name} ({formatRank(pair.lca.rank)})
+                  <TaxLink name={pair.lca.name} taxId={pair.lca.taxId} /> (
+                  {formatRank(pair.lca.rank)})
                 </td>
               </tr>
             )
@@ -156,8 +160,12 @@ function MultiTree({
       elements.push(
         <line
           key={`v-${node.data.taxId}`}
-          x1={x} y1={minChildY} x2={x} y2={maxChildY}
-          stroke="var(--accent-tree)" strokeWidth={2.5}
+          x1={x}
+          y1={minChildY}
+          x2={x}
+          y2={maxChildY}
+          stroke="var(--accent-tree)"
+          strokeWidth={2.5}
         />,
       )
 
@@ -168,7 +176,10 @@ function MultiTree({
         elements.push(
           <line
             key={`h-${node.data.taxId}-${child.data.taxId}`}
-            x1={x} y1={cy} x2={cx} y2={cy}
+            x1={x}
+            y1={cy}
+            x2={cx}
+            y2={cy}
             stroke="var(--accent-tree)"
             strokeWidth={2.5}
           />,
@@ -176,8 +187,11 @@ function MultiTree({
       }
 
       if (node.children.length >= 2) {
-        const nodeRank = node.data.rank === 'no rank' || node.data.rank === 'no rank - terminal'
-          ? '' : node.data.rank
+        const nodeRank =
+          node.data.rank === 'no rank' ||
+          node.data.rank === 'no rank - terminal'
+            ? ''
+            : node.data.rank
         const parts = []
         if (node.data.label !== 'root') {
           parts.push(node.data.label)
@@ -189,8 +203,11 @@ function MultiTree({
           elements.push(
             <text
               key={`t-${node.data.taxId}`}
-              x={x + 4} y={minChildY - 6}
-              fontSize={10} fill="var(--accent-tree)" fontStyle="italic"
+              x={x + 4}
+              y={minChildY - 6}
+              fontSize={10}
+              fill="var(--accent-tree)"
+              fontStyle="italic"
             >
               {parts.join(' ')}
             </text>,
@@ -205,14 +222,21 @@ function MultiTree({
       elements.push(
         <line
           key={`ext-${node.data.taxId}`}
-          x1={x} y1={y} x2={leafX} y2={y}
-          stroke={leafColor} strokeWidth={2.5}
+          x1={x}
+          y1={y}
+          x2={leafX}
+          y2={y}
+          stroke={leafColor}
+          strokeWidth={2.5}
         />,
       )
       elements.push(
         <circle
           key={`c-${node.data.taxId}`}
-          cx={leafX} cy={y} r={3.5} fill={leafColor}
+          cx={leafX}
+          cy={y}
+          r={3.5}
+          fill={leafColor}
         />,
       )
       const displayName = isOrganism
@@ -221,8 +245,10 @@ function MultiTree({
       elements.push(
         <text
           key={`lt-${node.data.taxId}`}
-          x={leafX + 10} y={y + 4}
-          fontSize={12} fill="currentColor"
+          x={leafX + 10}
+          y={y + 4}
+          fontSize={12}
+          fill="currentColor"
           fontWeight={isOrganism ? 'bold' : 'normal'}
         >
           {capitalize(displayName)}
@@ -235,8 +261,12 @@ function MultiTree({
         elements.push(
           <text
             key={`arrow-label-${node.data.taxId}`}
-            x={arrowBase - 3} y={arrowY + 3.5}
-            fontSize={9} fill="white" fontWeight="bold" textAnchor="end"
+            x={arrowBase - 3}
+            y={arrowY + 3.5}
+            fontSize={9}
+            fill="white"
+            fontWeight="bold"
+            textAnchor="end"
           >
             your pick
           </text>,
@@ -245,7 +275,8 @@ function MultiTree({
           <polygon
             key={`arrow-${node.data.taxId}`}
             points={`${arrowBase},${arrowY - 5} ${arrowBase},${arrowY + 5} ${arrowTip},${arrowY}`}
-            fill="white" opacity={0.85}
+            fill="white"
+            opacity={0.85}
           />,
         )
       }
@@ -283,7 +314,14 @@ function MultiLineageBreadcrumbs({
   userSelectedTaxIds: Set<number>
 }) {
   const majorRanks = new Set([
-    'domain', 'kingdom', 'phylum', 'class', 'order', 'family', 'genus', 'species',
+    'domain',
+    'kingdom',
+    'phylum',
+    'class',
+    'order',
+    'family',
+    'genus',
+    'species',
   ])
   const lineages = organisms.map(o => {
     const lin = getLineageFromParents(o.ncbiTaxId, taxonomyData.parents)
@@ -338,26 +376,42 @@ function MultiLineageBreadcrumbs({
 
         return (
           <Fragment key={org.ncbiTaxId}>
-            <span className={`breadcrumb-label ${isUserPick ? 'breadcrumb-user-pick' : ''}`}>
+            <span
+              className={`breadcrumb-label ${isUserPick ? 'breadcrumb-user-pick' : ''}`}
+            >
               {capitalize(org.commonName)}
-              {isUserPick && <span className="breadcrumb-pick-tag">your pick</span>}
+              {isUserPick && (
+                <span className="breadcrumb-pick-tag">your pick</span>
+              )}
             </span>
             <span className="breadcrumb-path">
               {pinnedOnly.map((step, i) => (
                 <span key={step.taxId}>
-                  {i > 0 && <span className="breadcrumb-sep">{' \u203a '}</span>}
-                  {step.name}
-                  <span className="breadcrumb-rank"> ({formatRank(step.rank)})</span>
+                  {i > 0 && (
+                    <span className="breadcrumb-sep">{' \u203a '}</span>
+                  )}
+                  <TaxLink name={step.name} taxId={step.taxId} />
+                  <span className="breadcrumb-rank">
+                    {' '}
+                    ({formatRank(step.rank)})
+                  </span>
                 </span>
               ))}
               {hasGap && (
-                <span className="breadcrumb-sep">{' \u203a \u2026 \u203a '}</span>
+                <span className="breadcrumb-sep">
+                  {' \u203a \u2026 \u203a '}
+                </span>
               )}
               {tail.map((step, i) => (
                 <span key={step.taxId}>
-                  {i > 0 && <span className="breadcrumb-sep">{' \u203a '}</span>}
-                  {step.name}
-                  <span className="breadcrumb-rank"> ({formatRank(step.rank)})</span>
+                  {i > 0 && (
+                    <span className="breadcrumb-sep">{' \u203a '}</span>
+                  )}
+                  <TaxLink name={step.name} taxId={step.taxId} />
+                  <span className="breadcrumb-rank">
+                    {' '}
+                    ({formatRank(step.rank)})
+                  </span>
                 </span>
               ))}
             </span>
@@ -382,7 +436,9 @@ export default function MultiResultScreen({
 
   return (
     <div className="result-screen">
-      <div className={`result-banner ${rank === 1 ? 'correct' : score >= 50 ? 'debated' : 'wrong'}`}>
+      <div
+        className={`result-banner ${rank === 1 ? 'correct' : score >= 50 ? 'debated' : 'wrong'}`}
+      >
         {rank === 1 ? 'Perfect!' : `${score} points`}
         <ShareButton url={shareUrl} />
       </div>
@@ -390,27 +446,34 @@ export default function MultiResultScreen({
       <div className="result-explanation">
         {rank === 1 ? (
           <p>
-            You picked{' '}
-            <strong>{capitalize(userOrgA.commonName)}</strong> &amp;{' '}
-            <strong>{capitalize(userOrgB.commonName)}</strong> — the closest pair!
-            They share a most recent common ancestor in{' '}
-            <strong>{bestPair.lca.name}</strong> ({formatRank(bestPair.lca.rank)}).
+            You picked <strong>{capitalize(userOrgA.commonName)}</strong> &amp;{' '}
+            <strong>{capitalize(userOrgB.commonName)}</strong> — the closest
+            pair! They share a most recent common ancestor in{' '}
+            <strong>
+              <TaxLink name={bestPair.lca.name} taxId={bestPair.lca.taxId} />
+            </strong>{' '}
+            ({formatRank(bestPair.lca.rank)}).
           </p>
         ) : (
           <>
             <p>
-              You picked{' '}
-              <strong>{capitalize(userOrgA.commonName)}</strong> &amp;{' '}
-              <strong>{capitalize(userOrgB.commonName)}</strong> (ranked #{rank} of{' '}
-              {totalPairs} pairs). Their common ancestor is{' '}
-              <strong>{userPair.lca.name}</strong> ({formatRank(userPair.lca.rank)}).
+              You picked <strong>{capitalize(userOrgA.commonName)}</strong>{' '}
+              &amp; <strong>{capitalize(userOrgB.commonName)}</strong> (ranked #
+              {rank} of {totalPairs} pairs). Their common ancestor is{' '}
+              <strong>
+                <TaxLink name={userPair.lca.name} taxId={userPair.lca.taxId} />
+              </strong>{' '}
+              ({formatRank(userPair.lca.rank)}).
             </p>
             <p>
               The closest pair was{' '}
               <strong>{capitalize(bestOrgA.commonName)}</strong> &amp;{' '}
-              <strong>{capitalize(bestOrgB.commonName)}</strong>, sharing a common
-              ancestor in <strong>{bestPair.lca.name}</strong> (
-              {formatRank(bestPair.lca.rank)}).
+              <strong>{capitalize(bestOrgB.commonName)}</strong>, sharing a
+              common ancestor in{' '}
+              <strong>
+                <TaxLink name={bestPair.lca.name} taxId={bestPair.lca.taxId} />
+              </strong>{' '}
+              ({formatRank(bestPair.lca.rank)}).
             </p>
           </>
         )}
@@ -426,7 +489,11 @@ export default function MultiResultScreen({
         userSelectedTaxIds={new Set([userPair.taxIdA, userPair.taxIdB])}
       />
 
-      <MultiDiagramTree organisms={organisms} taxonomyData={taxonomyData} userSelectedTaxIds={new Set([userPair.taxIdA, userPair.taxIdB])} />
+      <MultiDiagramTree
+        organisms={organisms}
+        taxonomyData={taxonomyData}
+        userSelectedTaxIds={new Set([userPair.taxIdA, userPair.taxIdB])}
+      />
 
       <details className="multi-pair-details">
         <summary>All {totalPairs} pair rankings</summary>

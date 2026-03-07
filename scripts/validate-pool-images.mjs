@@ -49,10 +49,7 @@ function loadCache() {
 }
 
 function saveCache(cache) {
-  writeFileSync(
-    CACHE_PATH,
-    JSON.stringify(Object.fromEntries(cache), null, 2),
-  )
+  writeFileSync(CACHE_PATH, JSON.stringify(Object.fromEntries(cache), null, 2))
 }
 
 function isCacheStale(entry) {
@@ -149,7 +146,12 @@ async function processInBatches(pool, cache) {
     checked += batch.length
 
     if (checked % 500 === 0 || checked === pool.length) {
-      const parts = [`${checked}/${pool.length} checked`, `${hits} new hits`, `${misses} new misses`, `${cached} cached`]
+      const parts = [
+        `${checked}/${pool.length} checked`,
+        `${hits} new hits`,
+        `${misses} new misses`,
+        `${cached} cached`,
+      ]
       if (refreshed > 0) {
         parts.push(`${refreshed} refreshed`)
       }

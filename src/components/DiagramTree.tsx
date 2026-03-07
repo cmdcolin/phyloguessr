@@ -1,4 +1,4 @@
-import type { DiagramNode } from '../data/surprisingFacts.ts'
+import type { DiagramNode } from '../utils/taxonomy.ts'
 
 interface TreeLine {
   prefix: string
@@ -7,9 +7,14 @@ interface TreeLine {
   wikiLink?: string
 }
 
-function renderLines(node: DiagramNode, prefix: string, isLast: boolean, isRoot: boolean) {
+function renderLines(
+  node: DiagramNode,
+  prefix: string,
+  isLast: boolean,
+  isRoot: boolean,
+) {
   const lines: TreeLine[] = []
-  const connector = isRoot ? '' : isLast ? '\u2514\u2500\u2500 ' : '\u251C\u2500\u2500 '
+  const connector = isRoot ? '' : isLast ? '└── ' : '├── '
   const isLeaf = !node.children || node.children.length === 0
   const showArrow = isLeaf && !!node.highlight
 
@@ -21,7 +26,7 @@ function renderLines(node: DiagramNode, prefix: string, isLast: boolean, isRoot:
   })
 
   if (node.children) {
-    const childPrefix = isRoot ? '' : prefix + (isLast ? '    ' : '\u2502   ')
+    const childPrefix = isRoot ? '' : prefix + (isLast ? '    ' : '│   ')
     for (let i = 0; i < node.children.length; i++) {
       const child = node.children[i]
       const childIsLast = i === node.children.length - 1
@@ -54,7 +59,7 @@ export default function DiagramTree({ root }: { root: DiagramNode }) {
           ) : (
             line.label
           )}
-          {line.arrow && <span className="diagram-highlight">{' \u2190'}</span>}
+          {line.arrow && <span className="diagram-highlight">{' ←'}</span>}
           {'\n'}
         </span>
       ))}

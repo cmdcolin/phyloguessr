@@ -358,11 +358,7 @@ describe('all curated organisms have valid taxonomy data', () => {
 })
 
 describe('curated microorganisms have valid taxonomy data', () => {
-  const microorganisms = CURATED_MICROORGANISMS as [
-    number,
-    string,
-    string,
-  ][]
+  const microorganisms = CURATED_MICROORGANISMS as [number, string, string][]
 
   it('no duplicate tax IDs in microorganism list', () => {
     const seen = new Set<number>()
@@ -429,18 +425,24 @@ describe('buildContextDiagram', () => {
       data,
     )
     expect(result).toBeDefined()
-    expect(result!.label).toBe('Amniota (land-egg vertebrates — includes reptiles, birds, mammals)')
+    expect(result!.label).toBe(
+      'Amniota (land-egg vertebrates — includes reptiles, birds, mammals)',
+    )
     expect(result!.children).toHaveLength(2)
 
     // Outgroup should have a branch node (Lepidosauria) with leaf underneath
     const outBranch = result!.children![0]
-    expect(outBranch.label).toBe('Lepidosauria (includes lizards, snakes, tuatara)')
+    expect(outBranch.label).toBe(
+      'Lepidosauria (includes lizards, snakes, tuatara)',
+    )
     expect(outBranch.highlight).toBeFalsy()
     expect(outBranch.children).toHaveLength(1)
     expect(outBranch.children![0].label).toBe('Serpentes — snakes (Snake)')
 
     const sisterBranch = result!.children![1]
-    expect(sisterBranch.label).toBe('Archelosauria')
+    expect(sisterBranch.label).toBe(
+      'Archelosauria (turtles are closer to birds than to lizards!)',
+    )
     expect(sisterBranch.highlight).toBe(true)
     expect(sisterBranch.children).toHaveLength(2)
     expect(sisterBranch.children![0].highlight).toBe(true)
@@ -471,7 +473,9 @@ describe('buildContextDiagram', () => {
       data,
     )
     expect(result).toBeDefined()
-    expect(result!.label).toBe('Eukaryota (all complex life — cells with nuclei)')
+    expect(result!.label).toBe(
+      'Eukaryota (all complex life — cells with nuclei)',
+    )
     expect(result!.children![1].label).toBe('Plants')
     expect(result!.children![1].highlight).toBe(true)
   })

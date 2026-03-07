@@ -137,15 +137,27 @@ export const CURATED_MICROORGANISMS = [
   [186190, 'Rickettsia martinet', 'Rickettsia martinet'],
   [1590, 'Lactobacillus', 'Lactiplantibacillus plantarum'],
   [2559916, 'Lactiplantibacillus daoliensis', 'Lactiplantibacillus daoliensis'],
-  [2559917, 'Lactiplantibacillus nangangensis', 'Lactiplantibacillus nangangensis'],
+  [
+    2559917,
+    'Lactiplantibacillus nangangensis',
+    'Lactiplantibacillus nangangensis',
+  ],
   [1351, 'Enterococcus', 'Enterococcus faecalis'],
   [1274384, 'Enterococcus alcedinis', 'Enterococcus alcedinis'],
   [1077675, 'Enterococcus plantarum', 'Enterococcus plantarum'],
   [920, 'Acidophile bacterium', 'Acidithiobacillus ferrooxidans'],
   [1689834, 'Acidithiobacillus ferriphilus', 'Acidithiobacillus ferriphilus'],
-  [100486, 'Acidithiobacillus cuprithermicus', 'Acidithiobacillus cuprithermicus'],
+  [
+    100486,
+    'Acidithiobacillus cuprithermicus',
+    'Acidithiobacillus cuprithermicus',
+  ],
   [1097, 'Green sulfur bacterium', 'Chlorobaculum tepidum'],
-  [115852, 'Chlorobaculum thiosulfatiphilum', 'Chlorobaculum thiosulfatiphilum'],
+  [
+    115852,
+    'Chlorobaculum thiosulfatiphilum',
+    'Chlorobaculum thiosulfatiphilum',
+  ],
   [157109, 'Chlorobaculum chlorovibrioides', 'Chlorobaculum chlorovibrioides'],
   [274539, 'Chlorobaculum parvum', 'Chlorobaculum parvum'],
   [1165, 'Anabaena (cyanobacterium)', 'Anabaena cylindrica'],
@@ -167,7 +179,11 @@ export const CURATED_MICROORGANISMS = [
   [2039234, 'Halobacterium litoreum', 'Halobacterium litoreum'],
   [145262, 'Methanobacterium', 'Methanothermobacter thermautotrophicus'],
   [145261, 'Methanothermobacter wolfeii', 'Methanothermobacter wolfeii'],
-  [49341, 'Methanothermobacter thermophilus', 'Methanothermobacter thermophilus'],
+  [
+    49341,
+    'Methanothermobacter thermophilus',
+    'Methanothermobacter thermophilus',
+  ],
   [680118, 'Methanothermobacter tenebrarum', 'Methanothermobacter tenebrarum'],
   [311400, 'Thermococcus', 'Thermococcus kodakarensis'],
   [227597, 'Thermococcus coalescens', 'Thermococcus coalescens'],
@@ -453,4 +469,3 @@ export const CURATED_MICROORGANISMS = [
   [12637, 'Dengue virus', 'Dengue virus'],
   [64320, 'Zika virus', 'Zika virus'],
 ]
-

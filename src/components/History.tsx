@@ -55,17 +55,21 @@ export default function History() {
         </div>
       )}
 
-      {totalCount === 0 && <p className="history-empty">No games played yet.</p>}
+      {totalCount === 0 && (
+        <p className="history-empty">No games played yet.</p>
+      )}
 
       {entries.length > 0 && (
         <ul className="history-list">
           {entries.map((h, i) => {
-            const href =
-              h.ncbiTaxIds
-                ? `/${h.mode}?a=${h.ncbiTaxIds[0]}&b=${h.ncbiTaxIds[1]}&c=${h.ncbiTaxIds[2]}`
-                : null
+            const href = h.ncbiTaxIds
+              ? `/${h.mode}?a=${h.ncbiTaxIds[0]}&b=${h.ncbiTaxIds[1]}&c=${h.ncbiTaxIds[2]}`
+              : null
             return (
-              <li key={i} className={h.correct ? 'history-win' : 'history-loss'}>
+              <li
+                key={i}
+                className={h.correct ? 'history-win' : 'history-loss'}
+              >
                 <span className="history-result">{h.correct ? 'W' : 'L'}</span>
                 <span className="history-organisms">
                   {href ? (

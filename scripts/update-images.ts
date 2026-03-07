@@ -129,10 +129,7 @@ if (process.argv.includes('--pool')) {
   }
 
   const cleaned = pool.map(e => (e[3] ? e : e.slice(0, 3)))
-  writeFileSync(
-    'dist/taxonomy/species-pool.json',
-    JSON.stringify(cleaned),
-  )
+  writeFileSync('dist/taxonomy/species-pool.json', JSON.stringify(cleaned))
 
   console.log(
     `\nSpecies pool: ${poolUpdated} with images, ${poolMissing} missing`,

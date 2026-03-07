@@ -95,7 +95,12 @@ export async function addHistoryEntry(entry: HistoryEntry) {
   }
 
   const existing = await statsStore.get('global')
-  const prev = existing ?? { totalPlayed: 0, totalWins: 0, bestStreak: 0, currentStreak: 0 }
+  const prev = existing ?? {
+    totalPlayed: 0,
+    totalWins: 0,
+    bestStreak: 0,
+    currentStreak: 0,
+  }
   const currentStreak = entry.correct ? prev.currentStreak + 1 : 0
   await statsStore.put(
     {

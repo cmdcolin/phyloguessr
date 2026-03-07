@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react'
 
-import { getTopMultiScores, getTopStreaks, getUid, isNameTaken } from '../firebase.ts'
+import {
+  getTopMultiScores,
+  getTopStreaks,
+  getUid,
+  isNameTaken,
+} from '../firebase.ts'
 import { localStorageGetItem } from '../utils/storage.ts'
 
 import type { LeaderboardEntry, MultiLeaderboardEntry } from '../firebase.ts'

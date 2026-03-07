@@ -9,9 +9,8 @@ import { capitalize, formatRank } from '../utils/format.ts'
 import { getLineageFromParents } from '../utils/taxonomy.ts'
 
 import type { Organism } from '../data/organisms.ts'
-import type { DiagramNode } from '../data/surprisingFacts.ts'
 import type { MrcaInfo } from '../utils/format.ts'
-import type { TaxonomyData } from '../utils/taxonomy.ts'
+import type { DiagramNode, TaxonomyData } from '../utils/taxonomy.ts'
 
 interface ResultScreenProps {
   correct: boolean
@@ -33,7 +32,6 @@ interface ResultScreenProps {
   shareUrl: string
   onPlayAgain: () => void
 }
-
 
 interface BreadcrumbStep {
   taxId: number
@@ -122,7 +120,7 @@ function Explanation({
           <TaxLink name={sisterMrca.name} taxId={sisterMrca.taxId} /> (
           {formatRank(sisterMrca.rank)}). None of the three is more closely
           related to another — any pair is equally correct!
-                </p>
+        </p>
         {funFact && <p>Fun fact: {funFact}</p>}
         {sources && sources.length > 0 && (
           <p className="fun-fact-source">
@@ -157,20 +155,20 @@ function Explanation({
           </>
         )}
       </p>
-        {funFact && <p>Fun fact: {funFact}</p>}
+      {funFact && <p>Fun fact: {funFact}</p>}
       {sources && sources.length > 0 && (
-          <p className="fun-fact-source">
-            {sources.length === 1 ? 'Source: ' : 'Sources: '}
-            {sources.map((s, i) => (
-              <span key={s.url}>
-                {i > 0 && ' · '}
-                <a href={s.url} target="_blank" rel="noopener noreferrer">
-                  {s.label}
-                </a>
-              </span>
-            ))}
-          </p>
-        )}
+        <p className="fun-fact-source">
+          {sources.length === 1 ? 'Source: ' : 'Sources: '}
+          {sources.map((s, i) => (
+            <span key={s.url}>
+              {i > 0 && ' · '}
+              <a href={s.url} target="_blank" rel="noopener noreferrer">
+                {s.label}
+              </a>
+            </span>
+          ))}
+        </p>
+      )}
     </div>
   )
 }
@@ -282,32 +280,6 @@ function Breadcrumbs({
         </span>
       )}
     </>
-  )
-}
-
-function FullTreeToggle({
-  organisms,
-  taxonomyData,
-  organismColors,
-}: {
-  organisms: [Organism, Organism, Organism]
-  taxonomyData: TaxonomyData
-  organismColors: Record<number, string>
-}) {
-  const [show, setShow] = useState(false)
-  return (
-    <div className="map-toggle">
-      <button className="map-toggle-btn" onClick={() => setShow(s => !s)}>
-        {show ? 'Hide full tree' : 'Show full tree'}
-      </button>
-      {show && (
-        <FullTree
-          organisms={organisms}
-          taxonomyData={taxonomyData}
-          organismColors={organismColors}
-        />
-      )}
-    </div>
   )
 }
 
@@ -439,18 +411,15 @@ export default function ResultScreen({
           sister2={sister2}
           outgroup={outgroup}
           cladeLabel={cladeLabel}
-          rootLabel={overallMrca.name !== sisterMrca.name ? overallMrca.name : undefined}
+          rootLabel={
+            overallMrca.name !== sisterMrca.name ? overallMrca.name : undefined
+          }
           images={images}
           userSelectedTaxIds={userSelectedTaxIds}
           organismColors={organismColors}
         />
       )}
       {diagram && <DiagramTree root={diagram} />}
-      {/* <FullTreeToggle
-        organisms={[sister1, sister2, outgroup]}
-        taxonomyData={taxonomyData}
-        organismColors={organismColors}
-      /> */}
       <MapToggle
         organisms={[sister1, sister2, outgroup]}
         organismColors={organismColors}

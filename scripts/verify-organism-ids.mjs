@@ -12,7 +12,8 @@ const ROOT = join(__dirname, '..')
 
 const src = readFileSync(join(ROOT, 'src', 'data', 'organisms.ts'), 'utf8')
 const entries = []
-const re = /commonName:\s*'([^']+)'[^}]*scientificName:\s*'([^']+)'[^}]*ncbiTaxId:\s*(\d+)/gs
+const re =
+  /commonName:\s*'([^']+)'[^}]*scientificName:\s*'([^']+)'[^}]*ncbiTaxId:\s*(\d+)/gs
 let m
 while ((m = re.exec(src)) !== null) {
   entries.push({ commonName: m[1], scientificName: m[2], taxId: Number(m[3]) })
@@ -51,7 +52,10 @@ async function checkTaxId(taxId, expectedName) {
   if (actualName.toLowerCase() === expectedName.toLowerCase()) {
     return { status: 'OK', detail: actualName }
   }
-  return { status: 'MISMATCH', detail: `expected "${expectedName}", got "${actualName}"` }
+  return {
+    status: 'MISMATCH',
+    detail: `expected "${expectedName}", got "${actualName}"`,
+  }
 }
 
 async function main() {
@@ -64,7 +68,9 @@ async function main() {
     if (result.status === 'OK') {
       ok++
     } else {
-      console.log(`  ${result.status}: ${commonName} (taxId ${taxId}) — ${result.detail}`)
+      console.log(
+        `  ${result.status}: ${commonName} (taxId ${taxId}) — ${result.detail}`,
+      )
       bad++
     }
     await new Promise(r => setTimeout(r, DELAY_MS))

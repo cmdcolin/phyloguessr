@@ -40,7 +40,10 @@ async function checkTaxId(taxId, expectedName) {
   if (actualName.toLowerCase() === expectedName.toLowerCase()) {
     return { status: 'OK', detail: actualName }
   }
-  return { status: 'MISMATCH', detail: `expected "${expectedName}", got "${actualName}"` }
+  return {
+    status: 'MISMATCH',
+    detail: `expected "${expectedName}", got "${actualName}"`,
+  }
 }
 
 async function main() {
@@ -52,7 +55,9 @@ async function main() {
     if (result.status === 'OK') {
       ok++
     } else {
-      console.log(`  ${result.status}: ${commonName} (taxId ${taxId}) — ${result.detail}`)
+      console.log(
+        `  ${result.status}: ${commonName} (taxId ${taxId}) — ${result.detail}`,
+      )
       bad++
     }
     await new Promise(r => setTimeout(r, DELAY_MS))

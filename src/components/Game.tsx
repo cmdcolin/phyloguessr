@@ -8,7 +8,6 @@ import SpeciesMap, { MAP_COLORS } from './SpeciesMap.tsx'
 
 import { organisms as allOrganisms } from '../data/organisms.ts'
 import { surprisingScenarios } from '../data/surprisingFacts.ts'
-import type { DiagramNode } from '../data/surprisingFacts.ts'
 import { recordRound, startPresence } from '../firebase.ts'
 import { addHistoryEntry, loadHistory } from '../utils/history.ts'
 import { sessionStorageGetItem } from '../utils/storage.ts'
@@ -29,7 +28,11 @@ import {
 import type { Organism } from '../data/organisms.ts'
 import type { MrcaInfo } from '../utils/format.ts'
 import type { HistoryEntry } from '../utils/history.ts'
-import type { SpeciesPoolEntry, TaxonomyData } from '../utils/taxonomy.ts'
+import type {
+  DiagramNode,
+  SpeciesPoolEntry,
+  TaxonomyData,
+} from '../utils/taxonomy.ts'
 
 type GameState =
   | 'customizing'
@@ -64,7 +67,6 @@ function comboKey(orgs: { ncbiTaxId: number }[]) {
     .sort((a, b) => a - b)
     .join(',')
 }
-
 
 function parseSharedQuestion() {
   const params = new URLSearchParams(window.location.search)
@@ -111,8 +113,6 @@ function updateUrlWithQuestion(orgs: Organism[]) {
   url.searchParams.set('ids', orgs.map(o => o.ncbiTaxId).join(','))
   history.pushState(null, '', url.toString())
 }
-
-
 
 function makeCorrectnessPredicate(orgs: Organism[], selectedIndices: number[]) {
   const userPickedTaxIds = new Set(
@@ -505,20 +505,25 @@ export default function Game({ mode }: { mode: GameMode }) {
     }
 
     const orgs = round.organisms
-    const scenario = surprisingScenarios.find(s => comboKey(s.organisms) === comboKey(orgs))
+    const scenario = surprisingScenarios.find(
+      s => comboKey(s.organisms) === comboKey(orgs),
+    )
 
-    let correctnessFn: boolean | ((pair: ReturnType<typeof findClosestPairFromData>) => boolean)
+    let correctnessFn:
+      | boolean
+      | ((pair: ReturnType<typeof findClosestPairFromData>) => boolean)
     if (scenario?.correctPair) {
       const userPicked = new Set(selected.map(i => orgs[i].commonName))
-      correctnessFn = scenario.correctPair.every(name =>
-        userPicked.has(name),
-      )
+      correctnessFn = scenario.correctPair.every(name => userPicked.has(name))
     } else {
       correctnessFn = makeCorrectnessPredicate(orgs, selected)
     }
     const fullResult = computeResult(orgs, taxonomyData, correctnessFn)
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { pair, ...resultData } = fullResult as ReturnType<typeof computeResult> & ResultData
+    const { pair, ...resultData } = fullResult as ReturnType<
+      typeof computeResult
+    > &
+      ResultData
 
     if (scenario) {
       resultData.funFact = scenario.funFact
@@ -844,7 +849,11 @@ export default function Game({ mode }: { mode: GameMode }) {
             ))}
           </div>
           <div className="selecting-actions">
-            <button className="nav-icon-btn" onClick={() => history.back()} title="Previous question">
+            <button
+              className="nav-icon-btn"
+              onClick={() => history.back()}
+              title="Previous question"
+            >
               ⏮
             </button>
             <Button onClick={handleSubmit} disabled={selected.length !== 2}>
@@ -858,7 +867,9 @@ export default function Game({ mode }: { mode: GameMode }) {
             className="map-hint-link"
             onClick={() => setShowMapHint(prev => !prev)}
           >
-            {showMapHint ? 'Hide species distribution map' : 'Show species distribution map (GBIF)'}
+            {showMapHint
+              ? 'Hide species distribution map'
+              : 'Show species distribution map (GBIF)'}
           </button>
           {showMapHint && round && <SpeciesMap organisms={round.organisms} />}
         </div>
