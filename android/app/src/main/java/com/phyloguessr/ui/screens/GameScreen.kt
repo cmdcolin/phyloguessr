@@ -1,8 +1,10 @@
 package com.phyloguessr.ui.screens
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -34,10 +36,14 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import coil.compose.AsyncImage
+import coil.compose.SubcomposeAsyncImage
 import com.phyloguessr.data.Organism
+import com.phyloguessr.data.TaxonomyData
 import com.phyloguessr.game.GameState
 import com.phyloguessr.game.GameViewModel
+import com.phyloguessr.ui.theme.RainbowColors
+import com.phyloguessr.ui.theme.TitanOne
+import com.phyloguessr.ui.theme.TreeLogo
 
 @Composable
 fun GameScreen(
@@ -67,10 +73,19 @@ fun GameScreen(
             TextButton(onClick = onBack) {
                 Text("Back")
             }
-            Text(
-                text = "PhyloGuessr",
-                style = MaterialTheme.typography.titleMedium,
-            )
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(6.dp),
+            ) {
+                TreeLogo(size = 24.dp)
+                Text(
+                    text = "PhyloGuessr",
+                    style = MaterialTheme.typography.titleMedium.copy(
+                        fontFamily = TitanOne,
+                        brush = androidx.compose.ui.graphics.Brush.linearGradient(RainbowColors),
+                    ),
+                )
+            }
             Spacer(modifier = Modifier.width(48.dp))
         }
 
@@ -89,14 +104,32 @@ fun GameScreen(
                 }
             }
 
+            GameState.CUSTOMIZING -> {
+                CustomScreen(
+                    selectedTaxId = uiState.cladeFilter,
+                    error = uiState.cladeFilterError,
+                    onSelectClade = { viewModel.setCladeFilter(it) },
+                    onStart = { viewModel.startCustomRound() },
+                    onBack = onBack,
+                )
+            }
+
             GameState.SELECTING -> {
                 SelectingScreen(
                     organisms = uiState.organisms,
                     selected = uiState.selected,
                     cladeName = uiState.cladeInfo?.let { "${it.name} (${it.rank})" },
                     onToggleSelect = { viewModel.toggleSelect(it) },
-                    onSubmit = { viewModel.submit() },
-                    onSkip = { viewModel.nextRound(mode) },
+                    onSubmit = {
+                        if (mode == "multi") viewModel.submitMulti() else viewModel.submit()
+                    },
+                    onSkip = {
+                        if (mode == "custom") {
+                            viewModel.startCustomRound()
+                        } else {
+                            viewModel.nextRound(mode)
+                        }
+                    },
                 )
             }
 
@@ -123,12 +156,28 @@ fun GameScreen(
             }
 
             GameState.RESULT -> {
-                uiState.result?.let { result ->
-                    ResultScreen(
-                        result = result,
-                        organisms = uiState.organisms,
-                        onPlayAgain = { viewModel.nextRound(mode) },
-                    )
+                if (mode == "multi") {
+                    uiState.multiResult?.let { result ->
+                        MultiResultScreen(
+                            result = result,
+                            onPlayAgain = { viewModel.nextRound(mode) },
+                        )
+                    }
+                } else {
+                    uiState.result?.let { result ->
+                        ResultScreen(
+                            result = result,
+                            organisms = uiState.organisms,
+                            taxonomyData = uiState.taxonomyData,
+                            onPlayAgain = {
+                                if (mode == "custom") {
+                                    viewModel.startCustomRound()
+                                } else {
+                                    viewModel.nextRound(mode)
+                                }
+                            },
+                        )
+                    }
                 }
             }
         }
@@ -221,13 +270,30 @@ fun OrganismCard(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             if (organism.imageUrl != null) {
-                AsyncImage(
+                SubcomposeAsyncImage(
                     model = organism.imageUrl,
                     contentDescription = organism.commonName,
                     modifier = Modifier
                         .size(80.dp)
                         .clip(RoundedCornerShape(8.dp)),
                     contentScale = ContentScale.Crop,
+                    loading = {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(MaterialTheme.colorScheme.surfaceVariant),
+                            contentAlignment = Alignment.Center,
+                        ) {
+                            CircularProgressIndicator(modifier = Modifier.size(24.dp))
+                        }
+                    },
+                    error = {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(MaterialTheme.colorScheme.surfaceVariant),
+                        )
+                    },
                 )
             }
             Column(modifier = Modifier.padding(start = 12.dp)) {

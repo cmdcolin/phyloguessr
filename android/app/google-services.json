@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "482031111716",
+    "project_id": "phyloguessr",
+    "storage_bucket": "phyloguessr.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:482031111716:android:789618e4e03f0bb6b752b1",
+        "android_client_info": {
+          "package_name": "com.phyloguessr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "482031111716-266qd4fksf7u5q7i80djo82i8i0gvnrr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAeB0ETbJUtZC_z8kulAgFie7x3fKDUBRU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "482031111716-266qd4fksf7u5q7i80djo82i8i0gvnrr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

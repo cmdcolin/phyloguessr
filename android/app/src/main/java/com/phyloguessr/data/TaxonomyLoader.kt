@@ -20,7 +20,7 @@ fun loadSpeciesPoolFromAssets(context: Context): List<SpeciesPoolEntry> {
     return raw.map { entry ->
         SpeciesPoolEntry(
             taxId = (entry[0] as Number).toInt(),
-            commonName = entry[1] as String,
+            commonName = (entry[1] as String).replaceFirstChar { it.uppercaseChar() },
             scientificName = entry[2] as String,
             imageUrl = if (entry.size > 3) entry[3] as? String else null,
         )

@@ -140,6 +140,24 @@ fun findTaxId(query: String, data: TaxonomyData): Int? {
     return findTaxIdByName(trimmed, data)
 }
 
+data class PairRanking(
+    val taxIdA: Int,
+    val taxIdB: Int,
+    val lca: LcaResult,
+)
+
+fun getAllPairLcas(taxIds: List<Int>, data: TaxonomyData): List<PairRanking> {
+    val pairs = mutableListOf<PairRanking>()
+    for (i in taxIds.indices) {
+        for (j in i + 1 until taxIds.size) {
+            val lca = getLcaFromParents(taxIds[i], taxIds[j], data)
+            pairs.add(PairRanking(taxIdA = taxIds[i], taxIdB = taxIds[j], lca = lca))
+        }
+    }
+    pairs.sortByDescending { it.lca.depth }
+    return pairs
+}
+
 fun comboKey(organisms: List<Int>): String {
     return organisms.sorted().joinToString(",")
 }

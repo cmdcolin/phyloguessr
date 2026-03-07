@@ -119,6 +119,103 @@ data class CladeInfo(
     val rank: String,
 )
 
+fun pickNFromClade(
+    count: Int,
+    ancestorTaxId: Int,
+    pool: List<SpeciesPoolEntry>,
+    data: TaxonomyData,
+): List<SpeciesPoolEntry>? {
+    val matches = pool.filter { isDescendantOf(it.taxId, ancestorTaxId, data.parents) }
+    if (matches.size < count) return null
+
+    for (attempt in 0 until 50) {
+        val picks = matches.shuffled().take(count)
+        val genera = mutableMapOf<Int, Int>()
+        var tooMany = false
+        for (pick in picks) {
+            val lineage = getLineageFromParents(pick.taxId, data.parents)
+            for (id in lineage) {
+                val rank = data.ranks[id.toString()]
+                if (rank == "genus") {
+                    genera[id] = (genera[id] ?: 0) + 1
+                    if (genera[id]!! > 2) {
+                        tooMany = true
+                    }
+                    break
+                }
+            }
+        }
+        if (!tooMany) return picks
+    }
+
+    return matches.shuffled().take(count)
+}
+
+fun pickNHardModeDistance(
+    count: Int,
+    pool: List<SpeciesPoolEntry>,
+    data: TaxonomyData,
+    minRank: String? = null,
+): Pair<List<SpeciesPoolEntry>, CladeInfo?> {
+    val cladeCounts = mutableMapOf<Int, Int>()
+    val targetRanks = TARGET_RANKS.toSet()
+
+    for (entry in pool) {
+        val lineage = getLineageFromParents(entry.taxId, data.parents)
+        for (id in lineage) {
+            val rank = data.ranks[id.toString()]
+            if (rank != null && rank in targetRanks) {
+                cladeCounts[id] = (cladeCounts[id] ?: 0) + 1
+            }
+        }
+    }
+
+    val minRankIdx = if (minRank != null) TARGET_RANKS.indexOf(minRank).coerceAtLeast(0) else 0
+    val byRank = mutableMapOf<String, MutableList<CladeInfo>>()
+    for (r in TARGET_RANKS) {
+        byRank[r] = mutableListOf()
+    }
+    for ((taxId, cnt) in cladeCounts) {
+        if (cnt >= count) {
+            val rank = data.ranks[taxId.toString()] ?: continue
+            byRank[rank]?.add(CladeInfo(taxId, data.names[taxId.toString()] ?: "Taxon $taxId", rank))
+        }
+    }
+
+    val nonEmptyRanks = TARGET_RANKS.filterIndexed { i, r -> i >= minRankIdx && byRank[r]?.isNotEmpty() == true }
+
+    for (attempt in 0 until 20) {
+        if (nonEmptyRanks.isEmpty()) break
+        val rank = nonEmptyRanks.random()
+        val clade = byRank[rank]!!.random()
+        val result = pickNFromClade(count, clade.taxId, pool, data)
+        if (result != null) {
+            val taxIds = result.map { it.taxId }
+            val pairs = getAllPairLcas(taxIds, data)
+            if (pairs.size < 2) continue
+            if (pairs[0].lca.depth == pairs[1].lca.depth) continue
+            val distinctDepths = pairs.map { it.lca.depth }.toSet()
+            if (distinctDepths.size >= minOf(4, pairs.size)) {
+                return result to clade
+            }
+        }
+    }
+
+    for (attempt in 0 until 10) {
+        val result = pickNFromClade(count, 1, pool, data)
+        if (result != null) {
+            val taxIds = result.map { it.taxId }
+            val pairs = getAllPairLcas(taxIds, data)
+            if (pairs.size >= 2 && pairs[0].lca.depth != pairs[1].lca.depth) {
+                return result to null
+            }
+        }
+    }
+
+    val fallback = pickNFromClade(count, 1, pool, data) ?: pool.shuffled().take(count)
+    return fallback to null
+}
+
 fun pickThreeHardMode(
     pool: List<SpeciesPoolEntry>,
     data: TaxonomyData,
