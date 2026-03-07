@@ -1751,8 +1751,8 @@ export const surprisingScenarios: SurprisingScenario[] = [
       'The shoebill was long classified as a stork, but DNA reveals it is closest to pelicans and herons! Both are Pelecaniformes within Neoaves. Ostriches are palaeognaths — among the most ancient living bird lineages.',
     sources: [
       {
-        url: 'https://en.wikipedia.org/wiki/Shoebill',
-        label: 'Shoebill - Wikipedia',
+        url: 'https://sandiegozoowildlifealliance.org/story-hub/2019/09/25/7-revealing-facts-about-shoebills',
+        label: 'San Diego Zoo - 7 Revealing Facts about Shoebills',
       },
       {
         url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC44917/',

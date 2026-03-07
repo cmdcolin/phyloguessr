@@ -42,7 +42,7 @@ export default function Header() {
       <div className="header-left">
         <TreeIcon size={26} />
         <h1>
-          <a className="home-btn" href={import.meta.env.BASE_URL}>
+          <a className="home-btn" href="/">
             PhyloGuessr
           </a>
         </h1>
@@ -97,25 +97,25 @@ export default function Header() {
             <div className="hamburger-dropdown">
               <a
                 className="hamburger-item"
-                href={`${import.meta.env.BASE_URL}leaderboard`}
+                href="/leaderboard"
               >
                 Leaderboard
               </a>
               <a
                 className="hamburger-item"
-                href={`${import.meta.env.BASE_URL}history`}
+                href="/history"
               >
                 History
               </a>
               <a
                 className="hamburger-item"
-                href={`${import.meta.env.BASE_URL}about`}
+                href="/about"
               >
                 About
               </a>
               <a
                 className="hamburger-item"
-                href={`${import.meta.env.BASE_URL}donate`}
+                href="/donate"
               >
                 Donate
               </a>
@@ -124,7 +124,7 @@ export default function Header() {
                 <>
                   <a
                     className="hamburger-item"
-                    href={`${import.meta.env.BASE_URL}login`}
+                    href="/login"
                   >
                     Account settings
                   </a>
@@ -143,7 +143,7 @@ export default function Header() {
               ) : (
                 <a
                   className="hamburger-item"
-                  href={`${import.meta.env.BASE_URL}login`}
+                  href="/login"
                 >
                   Sign in
                 </a>
