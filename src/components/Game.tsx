@@ -5,7 +5,7 @@ import Header from './Header.tsx'
 import OrganismCard from './OrganismCard.tsx'
 import ResultScreen, { TaxLink } from './ResultScreen.tsx'
 import SpeciesMap, { MAP_COLORS } from './SpeciesMap.tsx'
-import { getOrganismImage } from '../api/wikipedia.ts'
+
 import { organisms as allOrganisms } from '../data/organisms.ts'
 import { surprisingScenarios } from '../data/surprisingFacts.ts'
 import { recordRound, startPresence } from '../firebase.ts'
@@ -60,10 +60,7 @@ function comboKey(orgs: { ncbiTaxId: number }[]) {
 }
 
 function resolveImage(o: Organism) {
-  if (o.imageUrl) {
-    return Promise.resolve(o.imageUrl)
-  }
-  return resolveImage(o)
+  return Promise.resolve(o.imageUrl ?? null)
 }
 
 function parseSharedQuestion() {

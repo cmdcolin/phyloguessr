@@ -15,6 +15,7 @@
     "deploy": "gh-pages -d dist  -t --nojekyll",
     "postdeploy": "git push --follow-tags",
     "build-taxonomy": "node scripts/build-taxonomy.mjs",
+    "update-data": "node scripts/update-all.mjs",
     "test": "vitest run",
     "deploy:rules": "firebase deploy --only firestore:rules"
   },

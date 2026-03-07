@@ -739,8 +739,20 @@ async function main() {
   // Write output files
   mkdirSync(OUT_DIR, { recursive: true })
 
-  console.log('Writing species-pool.json...')
-  await writeFile(join(OUT_DIR, 'species-pool.json'), JSON.stringify(pool))
+  const poolPath = join(OUT_DIR, 'species-pool.json')
+  if (existsSync(poolPath)) {
+    const existing = JSON.parse(readFileSync(poolPath, 'utf8'))
+    if (Array.isArray(existing) && existing.length > 0 && existing[0].length >= 4) {
+      console.log(`Preserving existing species-pool.json (${existing.length} entries with images)`)
+      console.log('  Run validate-pool-images.mjs to rebuild from scratch')
+    } else {
+      console.log('Writing species-pool.json...')
+      await writeFile(poolPath, JSON.stringify(pool))
+    }
+  } else {
+    console.log('Writing species-pool.json...')
+    await writeFile(poolPath, JSON.stringify(pool))
+  }
 
   // Write compact format: { R: rankList, D: { id: [parent, name, rankIndex] } }
   console.log('Writing parents.json (compact format)...')
