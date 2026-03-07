@@ -4,6 +4,7 @@ import Button from './Button.tsx'
 import {
   buildShareUrl,
   comboKey,
+  getDifficulty,
   parseSharedIds,
   resolveOrganism,
   toggleSelect,
@@ -120,6 +121,7 @@ function computeResult(
 }
 
 export default function Game({ mode }: { mode: GameMode }) {
+  const difficulty = getDifficulty()
   const [state, setState] = useState<GameState>(
     mode === 'custom' ? 'customizing' : 'loading',
   )
@@ -778,6 +780,7 @@ export default function Game({ mode }: { mode: GameMode }) {
                 disabled={false}
                 onClick={() => handleToggleSelect(i)}
                 mapColor={MAP_COLORS[i % MAP_COLORS.length]}
+                difficulty={difficulty}
               />
             ))}
           </div>

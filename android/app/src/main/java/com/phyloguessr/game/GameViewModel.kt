@@ -304,7 +304,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         )
     }
 
-    fun submitMulti() {
+    fun submitMulti(difficulty: Difficulty) {
         val current = _uiState.value
         if (current.selected.size != 2 || current.state != GameState.SELECTING) return
         val data = taxonomyData ?: return
@@ -343,7 +343,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
 
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                FirebaseRepository.submitScore("multi", rank == 1, score)
+                FirebaseRepository.submitScore("multi", difficulty, rank == 1, score)
                 FirebaseRepository.updatePresence()
             } catch (_: Exception) {}
         }
@@ -357,7 +357,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         )
     }
 
-    fun submit() {
+    fun submit(difficulty: Difficulty) {
         val current = _uiState.value
         if (current.selected.size != 2 || current.state != GameState.SELECTING) return
         val data = taxonomyData ?: return
@@ -433,7 +433,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
 
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                FirebaseRepository.submitScore(mode, correct, if (correct) 100 else 0)
+                FirebaseRepository.submitScore(mode, difficulty, correct, if (correct) 100 else 0)
                 FirebaseRepository.updatePresence()
             } catch (_: Exception) {}
         }

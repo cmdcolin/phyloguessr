@@ -89,7 +89,6 @@ private fun getDivergenceStart(lineages: List<List<BreadcrumbStep>>): Int {
 @Composable
 fun ResultScreen(
     result: ResultData,
-    organisms: List<Organism>,
     taxonomyData: TaxonomyData?,
     onPlayAgain: () -> Unit,
 ) {

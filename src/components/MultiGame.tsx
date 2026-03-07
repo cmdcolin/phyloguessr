@@ -4,6 +4,7 @@ import Button from './Button.tsx'
 import {
   buildShareUrl,
   comboKey,
+  getDifficulty,
   parseSharedIds,
   resolveOrganism,
   toggleSelect,
@@ -30,6 +31,7 @@ const SPECIES_COUNT = 6
 type GameState = 'loading' | 'selecting' | 'result'
 
 export default function MultiGame() {
+  const difficulty = getDifficulty()
   const [state, setState] = useState<GameState>('loading')
   const [organisms, setOrganisms] = useState<Organism[]>([])
   const [selected, setSelected] = useState<number[]>([])
@@ -315,6 +317,7 @@ export default function MultiGame() {
                 disabled={false}
                 onClick={() => handleToggleSelect(i)}
                 mapColor={undefined}
+                difficulty={difficulty}
               />
             ))}
           </div>

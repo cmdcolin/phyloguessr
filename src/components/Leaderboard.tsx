@@ -4,9 +4,7 @@ import {
   getTopMultiScores,
   getTopStreaks,
   getUid,
-  isNameTaken,
 } from '../firebase.ts'
-import { localStorageGetItem } from '../utils/storage.ts'
 
 import type { LeaderboardEntry, MultiLeaderboardEntry } from '../firebase.ts'
 
@@ -26,16 +24,7 @@ export default function Leaderboard() {
     setError('')
   }
   const [uid, setUid] = useState<string | null>(null)
-  const [name, setName] = useState(
-    () => localStorageGetItem('phyloLeaderboardName') ?? '',
-  )
-  const [editingName, setEditingName] = useState(
-    () => !localStorageGetItem('phyloLeaderboardName'),
-  )
-
   const [multiSort, setMultiSort] = useState<MultiSort>('total')
-  const [nameError, setNameError] = useState('')
-  const [checking, setChecking] = useState(false)
 
   useEffect(() => {
     let cancelled = false
@@ -69,72 +58,8 @@ export default function Leaderboard() {
     }
   }, [tab])
 
-  const handleSetName = async () => {
-    const trimmed = name.trim()
-    if (!trimmed || trimmed.length > 20) {
-      return
-    }
-    setNameError('')
-    setChecking(true)
-    try {
-      const taken = await isNameTaken(trimmed)
-      if (taken) {
-        setNameError('That name is already taken')
-        setChecking(false)
-      } else {
-        localStorage.setItem('phyloLeaderboardName', trimmed)
-        window.dispatchEvent(new Event('nickname-changed'))
-        setEditingName(false)
-        setChecking(false)
-      }
-    } catch {
-      setNameError('Could not check name availability')
-      setChecking(false)
-    }
-  }
-
   return (
     <div className="leaderboard-page">
-      <div className="leaderboard-nickname">
-        {editingName ? (
-          <div className="leaderboard-form">
-            <input
-              type="text"
-              className="leaderboard-name-input"
-              placeholder="Pick a nickname (max 20 chars)"
-              maxLength={20}
-              value={name}
-              onChange={e => setName(e.target.value)}
-              onKeyDown={e => {
-                if (e.key === 'Enter') {
-                  handleSetName()
-                }
-              }}
-            />
-            <button
-              className="leaderboard-submit-btn"
-              disabled={!name.trim() || checking}
-              onClick={handleSetName}
-            >
-              {checking ? 'Checking...' : 'Save'}
-            </button>
-            {nameError && <p className="leaderboard-error">{nameError}</p>}
-          </div>
-        ) : (
-          <div className="leaderboard-name-display">
-            <span>
-              Playing as <strong>{name}</strong>
-            </span>
-            <button
-              className="leaderboard-change-btn"
-              onClick={() => setEditingName(true)}
-            >
-              change
-            </button>
-          </div>
-        )}
-      </div>
-
       <div className="leaderboard-tabs">
         <button
           className={`leaderboard-tab ${tab === 'classic' ? 'active' : ''}`}

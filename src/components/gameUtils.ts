@@ -54,6 +54,15 @@ export function resolveOrganism(
   return resolveOrganismUtil(taxId, allOrganisms, pool, data)
 }
 
+export type Difficulty = 'normal' | 'hard' | 'expert'
+
+export function getDifficulty(): Difficulty {
+  if (typeof window === 'undefined') return 'normal'
+  const d = new URLSearchParams(window.location.search).get('difficulty')
+  if (d === 'hard' || d === 'expert') return d
+  return 'normal'
+}
+
 export function toggleSelect(prev: number[], idx: number) {
   if (prev.includes(idx)) {
     return prev.filter(i => i !== idx)

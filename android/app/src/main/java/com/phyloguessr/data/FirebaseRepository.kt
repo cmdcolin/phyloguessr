@@ -6,6 +6,7 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.phyloguessr.game.Difficulty
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
@@ -94,9 +95,10 @@ object FirebaseRepository {
         awaitClose { listener.remove() }
     }
 
-    suspend fun submitScore(mode: String, correct: Boolean, score: Int) {
+    suspend fun submitScore(mode: String, difficulty: Difficulty, correct: Boolean, score: Int) {
         val user = auth.currentUser ?: return
-        val statsRef = db.collection("leaderboard").document("${user.uid}_$mode")
+        val diffKey = difficulty.name.lowercase()
+        val statsRef = db.collection("leaderboard").document("${user.uid}_${mode}_$diffKey")
         db.runTransaction { transaction ->
             val snap = transaction.get(statsRef)
             if (snap.exists()) {
@@ -115,6 +117,7 @@ object FirebaseRepository {
                     "uid" to user.uid,
                     "displayName" to (user.displayName ?: "Anonymous"),
                     "mode" to mode,
+                    "difficulty" to diffKey,
                     "correct" to if (correct) 1 else 0,
                     "total" to 1,
                     "bestScore" to score.toLong(),

@@ -17,19 +17,24 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.material3.FilterChip
 import com.phyloguessr.data.FirebaseRepository
+import com.phyloguessr.game.Difficulty
 import com.phyloguessr.ui.theme.RainbowSubtitle
 import com.phyloguessr.ui.theme.RainbowTitle
 import com.phyloguessr.ui.theme.TreeLogo
 
 @Composable
 fun HomeScreen(
-    onModeSelected: (String) -> Unit,
+    onModeSelected: (String, Difficulty) -> Unit,
     onLeaderboard: () -> Unit,
     onSignIn: () -> Unit,
     onSignOut: () -> Unit,
@@ -37,6 +42,7 @@ fun HomeScreen(
     val authFlow = remember { FirebaseRepository.observeAuthState() }
     val authState by authFlow.collectAsState(FirebaseRepository.currentUser)
     val displayName = authState?.displayName
+    var difficulty by remember { mutableStateOf(Difficulty.NORMAL) }
 
     Column(
         modifier = Modifier
@@ -71,7 +77,7 @@ fun HomeScreen(
         )
         for ((key, label, color) in modes) {
             Button(
-                onClick = { onModeSelected(key) },
+                onClick = { onModeSelected(key, difficulty) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(vertical = 8.dp)
@@ -86,7 +92,28 @@ fun HomeScreen(
             }
         }
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(12.dp))
+
+        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            for (d in Difficulty.entries) {
+                FilterChip(
+                    selected = difficulty == d,
+                    onClick = { difficulty = d },
+                    label = {
+                        Text(
+                            when (d) {
+                                Difficulty.NORMAL -> "Normal"
+                                Difficulty.HARD -> "Hard"
+                                Difficulty.EXPERT -> "Expert"
+                            },
+                            fontSize = 13.sp,
+                        )
+                    },
+                )
+            }
+        }
+
+        Spacer(modifier = Modifier.height(12.dp))
 
         Row(
             modifier = Modifier.fillMaxWidth(),

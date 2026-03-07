@@ -39,6 +39,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.SubcomposeAsyncImage
 import com.phyloguessr.data.Organism
 import com.phyloguessr.data.TaxonomyData
+import com.phyloguessr.game.Difficulty
 import com.phyloguessr.game.GameState
 import com.phyloguessr.game.GameViewModel
 import com.phyloguessr.ui.theme.RainbowColors
@@ -48,6 +49,7 @@ import com.phyloguessr.ui.theme.TreeLogo
 @Composable
 fun GameScreen(
     mode: String,
+    difficulty: Difficulty,
     onBack: () -> Unit,
     viewModel: GameViewModel = viewModel(),
 ) {
@@ -119,9 +121,14 @@ fun GameScreen(
                     organisms = uiState.organisms,
                     selected = uiState.selected,
                     cladeName = uiState.cladeInfo?.let { "${it.name} (${it.rank})" },
+                    difficulty = difficulty,
                     onToggleSelect = { viewModel.toggleSelect(it) },
                     onSubmit = {
-                        if (mode == "multi") viewModel.submitMulti() else viewModel.submit()
+                        if (mode == "multi") {
+                            viewModel.submitMulti(difficulty)
+                        } else {
+                            viewModel.submit(difficulty)
+                        }
                     },
                     onSkip = {
                         if (mode == "custom") {
@@ -167,7 +174,6 @@ fun GameScreen(
                     uiState.result?.let { result ->
                         ResultScreen(
                             result = result,
-                            organisms = uiState.organisms,
                             taxonomyData = uiState.taxonomyData,
                             onPlayAgain = {
                                 if (mode == "custom") {
@@ -189,6 +195,7 @@ fun SelectingScreen(
     organisms: List<Organism>,
     selected: List<Int>,
     cladeName: String?,
+    difficulty: Difficulty,
     onToggleSelect: (Int) -> Unit,
     onSubmit: () -> Unit,
     onSkip: () -> Unit,
@@ -219,6 +226,7 @@ fun SelectingScreen(
             OrganismCard(
                 organism = org,
                 selected = i in selected,
+                difficulty = difficulty,
                 onClick = { onToggleSelect(i) },
             )
         }
@@ -245,6 +253,7 @@ fun SelectingScreen(
 fun OrganismCard(
     organism: Organism,
     selected: Boolean,
+    difficulty: Difficulty,
     onClick: () -> Unit,
 ) {
     Card(
@@ -296,17 +305,23 @@ fun OrganismCard(
                     },
                 )
             }
-            Column(modifier = Modifier.padding(start = 12.dp)) {
-                Text(
-                    text = organism.commonName,
-                    style = MaterialTheme.typography.titleMedium,
-                )
-                Text(
-                    text = organism.scientificName,
-                    style = MaterialTheme.typography.bodySmall,
-                    fontStyle = FontStyle.Italic,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
+            if (difficulty != Difficulty.EXPERT || organism.imageUrl == null) {
+                Column(modifier = Modifier.padding(start = 12.dp)) {
+                    if (difficulty == Difficulty.NORMAL) {
+                        Text(
+                            text = organism.commonName,
+                            style = MaterialTheme.typography.titleMedium,
+                        )
+                    }
+                    if (difficulty != Difficulty.EXPERT) {
+                        Text(
+                            text = organism.scientificName,
+                            style = MaterialTheme.typography.bodySmall,
+                            fontStyle = FontStyle.Italic,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                    }
+                }
             }
         }
     }

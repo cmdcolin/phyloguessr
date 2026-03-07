@@ -11,6 +11,11 @@ import '../index.css'
       <h3 class="wordart-subtitle">
         The evolutionary guessing game
       </h3>
+      <div class="difficulty-selector">
+        <button class="diff-btn active" data-difficulty="normal">Normal</button>
+        <button class="diff-btn" data-difficulty="hard">Hard</button>
+        <button class="diff-btn" data-difficulty="expert">Expert</button>
+      </div>
       <div class="mode-selector">
         <a class="mode-btn mode-btn-easy" href="/easy">Easy <span class="btn-emoji">🍿</span></a>
         <a class="mode-btn mode-btn-random" href="/random">Random <span class="btn-emoji">🎰</span></a>
@@ -20,3 +25,51 @@ import '../index.css'
     </div>
   </div>
 </Layout>
+
+<script>
+  const diffBtns = document.querySelectorAll<HTMLButtonElement>('.diff-btn')
+  const modeBtns = document.querySelectorAll<HTMLAnchorElement>('.mode-btn')
+
+  diffBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      diffBtns.forEach(b => b.classList.remove('active'))
+      btn.classList.add('active')
+      const difficulty = btn.dataset.difficulty ?? 'normal'
+      modeBtns.forEach(modeBtn => {
+        const url = new URL(modeBtn.href)
+        if (difficulty === 'normal') {
+          url.searchParams.delete('difficulty')
+        } else {
+          url.searchParams.set('difficulty', difficulty)
+        }
+        modeBtn.href = url.toString()
+      })
+    })
+  })
+</script>
+
+<style>
+  .difficulty-selector {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+
+  .diff-btn {
+    padding: 6px 18px;
+    border-radius: 20px;
+    border: 2px solid var(--color-primary, #2e7d32);
+    background: transparent;
+    color: var(--color-primary, #2e7d32);
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .diff-btn.active {
+    background: var(--color-primary, #2e7d32);
+    color: white;
+  }
+</style>
