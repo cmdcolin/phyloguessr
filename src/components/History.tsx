@@ -1,31 +1,53 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
-import { getCurrentStreak, loadHistory } from '../utils/history.ts'
+import {
+  PAGE_SIZE,
+  clearHistory,
+  loadHistoryCount,
+  loadHistoryPage,
+  loadStats,
+} from '../utils/history.ts'
 
-import type { HistoryEntry } from '../utils/history.ts'
+import type { HistoryEntry, HistoryStats } from '../utils/history.ts'
 
 export default function History() {
-  const [history, setHistory] = useState<HistoryEntry[]>(() =>
-    typeof localStorage !== 'undefined' ? loadHistory() : [],
-  )
+  const [stats, setStats] = useState<HistoryStats | undefined>()
+  const [entries, setEntries] = useState<HistoryEntry[]>([])
+  const [page, setPage] = useState(0)
+  const [totalCount, setTotalCount] = useState<number | null>(null)
 
-  const wins = history.filter(h => h.correct).length
-  const losses = history.length - wins
-  const streak = getCurrentStreak(history)
+  useEffect(() => {
+    loadStats().then(setStats).catch(console.error)
+    loadHistoryCount().then(setTotalCount).catch(console.error)
+  }, [])
+
+  useEffect(() => {
+    loadHistoryPage(page).then(setEntries).catch(console.error)
+  }, [page])
+
+  const totalPages = Math.ceil((totalCount ?? 0) / PAGE_SIZE)
 
   return (
     <div className="history-page">
-      {history.length > 0 && (
+      {stats && (
         <div className="history-stats">
           <span>
-            {wins}W / {losses}L
+            {stats.totalWins}W / {stats.totalPlayed - stats.totalWins}L
           </span>
-          {streak > 1 && <span className="streak">{streak} streak</span>}
+          {stats.bestStreak > 1 && (
+            <span className="streak">Best: {stats.bestStreak}</span>
+          )}
+          {stats.currentStreak > 1 && (
+            <span className="streak">{stats.currentStreak} streak</span>
+          )}
           <button
             className="reset-btn"
             onClick={() => {
-              localStorage.removeItem('phyloHistory')
-              setHistory([])
+              clearHistory().catch(console.error)
+              setStats(undefined)
+              setEntries([])
+              setTotalCount(0)
+              setPage(0)
             }}
           >
             Reset
@@ -33,28 +55,50 @@ export default function History() {
         </div>
       )}
 
-      {history.length === 0 && (
-        <p className="history-empty">No games played yet.</p>
+      {totalCount === 0 && <p className="history-empty">No games played yet.</p>}
+
+      {entries.length > 0 && (
+        <ul className="history-list">
+          {entries.map((h, i) => {
+            const href =
+              h.ncbiTaxIds
+                ? `/${h.mode}?a=${h.ncbiTaxIds[0]}&b=${h.ncbiTaxIds[1]}&c=${h.ncbiTaxIds[2]}`
+                : null
+            return (
+              <li key={i} className={h.correct ? 'history-win' : 'history-loss'}>
+                <span className="history-result">{h.correct ? 'W' : 'L'}</span>
+                <span className="history-organisms">
+                  {href ? (
+                    <a href={href}>{h.organisms.join(', ')}</a>
+                  ) : (
+                    h.organisms.join(', ')
+                  )}
+                </span>
+                <span className="history-sister">
+                  Answer: {h.sister.join(' + ')}
+                </span>
+                <span className="history-mode">{h.mode}</span>
+              </li>
+            )
+          })}
+        </ul>
       )}
 
-      {history.length > 0 && (
-        <ul className="history-list">
-          {[...history].reverse().map((h, i) => (
-            <li
-              key={history.length - 1 - i}
-              className={h.correct ? 'history-win' : 'history-loss'}
-            >
-              <span className="history-result">{h.correct ? 'W' : 'L'}</span>
-              <span className="history-organisms">
-                {h.organisms.join(', ')}
-              </span>
-              <span className="history-sister">
-                Answer: {h.sister.join(' + ')}
-              </span>
-              <span className="history-mode">{h.mode}</span>
-            </li>
-          ))}
-        </ul>
+      {totalPages > 1 && (
+        <div className="history-pagination">
+          <button onClick={() => setPage(p => p - 1)} disabled={page === 0}>
+            Prev
+          </button>
+          <span>
+            {page + 1} / {totalPages}
+          </span>
+          <button
+            onClick={() => setPage(p => p + 1)}
+            disabled={page >= totalPages - 1}
+          >
+            Next
+          </button>
+        </div>
       )}
     </div>
   )

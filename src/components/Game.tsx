@@ -9,7 +9,7 @@ import SpeciesMap, { MAP_COLORS } from './SpeciesMap.tsx'
 import { organisms as allOrganisms } from '../data/organisms.ts'
 import { surprisingScenarios } from '../data/surprisingFacts.ts'
 import { recordRound, startPresence } from '../firebase.ts'
-import { loadHistory, saveHistory } from '../utils/history.ts'
+import { addHistoryEntry, loadHistory } from '../utils/history.ts'
 import { sessionStorageGetItem } from '../utils/storage.ts'
 import {
   findClosestPairFromData,
@@ -24,7 +24,6 @@ import {
 } from '../utils/taxonomy.ts'
 
 import type { Organism } from '../data/organisms.ts'
-import type { SurprisingScenario } from '../data/surprisingFacts.ts'
 import type { MrcaInfo } from '../utils/format.ts'
 import type { HistoryEntry } from '../utils/history.ts'
 import type { SpeciesPoolEntry, TaxonomyData } from '../utils/taxonomy.ts'
@@ -50,6 +49,9 @@ interface ResultData {
   sisterMrca: MrcaInfo
   overallMrca: MrcaInfo
   isPolytomy: boolean
+  funFact?: string
+  sourceUrl?: string
+  sourceLabel?: string
 }
 
 function comboKey(orgs: { ncbiTaxId: number }[]) {
@@ -128,40 +130,10 @@ function updateUrlWithQuestion(orgs: Organism[]) {
   url.searchParams.set('a', String(orgs[0].ncbiTaxId))
   url.searchParams.set('b', String(orgs[1].ncbiTaxId))
   url.searchParams.set('c', String(orgs[2].ncbiTaxId))
-  history.replaceState(null, '', url.toString())
-}
-
-function clearQuestionFromUrl() {
-  const url = new URL(window.location.href)
-  url.searchParams.delete('a')
-  url.searchParams.delete('b')
-  url.searchParams.delete('c')
-  url.searchParams.delete('r')
-  url.searchParams.delete('s')
-  history.replaceState(null, '', url.toString())
-}
-
-function pushResultToUrl(selectedIndices: number[]) {
-  const url = new URL(window.location.href)
-  url.searchParams.set('r', '1')
-  url.searchParams.set('s', selectedIndices.join(','))
   history.pushState(null, '', url.toString())
 }
 
-function getSelectedParam() {
-  const s = new URLSearchParams(window.location.search).get('s')
-  if (s) {
-    return s
-      .split(',')
-      .map(Number)
-      .filter(n => !isNaN(n))
-  }
-  return null
-}
 
-function hasResultParam() {
-  return new URLSearchParams(window.location.search).get('r') === '1'
-}
 
 function makeCorrectnessPredicate(orgs: Organism[], selectedIndices: number[]) {
   const userPickedTaxIds = new Set(
@@ -217,7 +189,8 @@ function ShareButton({ url }: { url: string }) {
   const [copied, setCopied] = useState(false)
   return (
     <button
-      className="share-btn"
+      className="share-icon-btn"
+      title={copied ? 'Copied!' : 'Share link'}
       onClick={() => {
         navigator.clipboard.writeText(url).then(() => {
           setCopied(true)
@@ -225,7 +198,7 @@ function ShareButton({ url }: { url: string }) {
         })
       }}
     >
-      {copied ? 'Copied!' : 'Share'}
+      {copied ? '✓' : '🔗'}
     </button>
   )
 }
@@ -250,8 +223,6 @@ export default function Game({ mode }: { mode: GameMode }) {
     null,
   )
   const [loadingMessage, setLoadingMessage] = useState('')
-  const [currentScenario, setCurrentScenario] =
-    useState<SurprisingScenario | null>(null)
   const [shownScenarioIndices, setShownScenarioIndices] = useState<Set<number>>(
     () => {
       const saved = sessionStorageGetItem('shownScenarios')
@@ -297,7 +268,6 @@ export default function Game({ mode }: { mode: GameMode }) {
     setSelected([])
     setResult(null)
     setShowMapHint(false)
-    clearQuestionFromUrl()
 
     let data = taxonomyData
     if (!data) {
@@ -327,13 +297,15 @@ export default function Game({ mode }: { mode: GameMode }) {
             s.organisms[1].ncbiTaxId,
             s.organisms[2].ncbiTaxId,
           ]
+          if (s.correctPair) {
+            return true
+          }
           const pair = findClosestPairFromData(taxIds, data)
           return !pair.isPolytomy
         })
       let orgs
       if (unshown.length > 0) {
         const pick = unshown[Math.floor(Math.random() * unshown.length)]
-        setCurrentScenario(pick.s)
         const next = new Set(shownScenarioIndices)
         next.add(pick.i)
         setShownScenarioIndices(next)
@@ -491,25 +463,7 @@ export default function Game({ mode }: { mode: GameMode }) {
 
       recordCombo(orgs)
       setRound({ organisms: orgs })
-
-      if (hasResultParam()) {
-        const savedSelected = getSelectedParam()
-        if (savedSelected && savedSelected.length === 2) {
-          setSelected(savedSelected)
-          setResult(
-            computeResult(
-              orgs,
-              data,
-              makeCorrectnessPredicate(orgs, savedSelected),
-            ),
-          )
-          setState('result')
-        } else {
-          setState('selecting')
-        }
-      } else {
-        setState('selecting')
-      }
+      setState('selecting')
     },
     [taxonomyData, speciesPool, startRound],
   )
@@ -529,34 +483,26 @@ export default function Game({ mode }: { mode: GameMode }) {
 
   useEffect(() => {
     const handler = () => {
-      if (hasResultParam()) {
-        if (round && taxonomyData) {
-          const savedSelected = getSelectedParam()
-          if (savedSelected && savedSelected.length === 2) {
-            setSelected(savedSelected)
-            setResult(
-              computeResult(
-                round.organisms,
-                taxonomyData,
-                makeCorrectnessPredicate(round.organisms, savedSelected),
-              ),
-            )
-            setState('result')
-          } else {
-            setResult(null)
-            setSelected([])
-            setState('selecting')
+      const sharedIds = parseSharedQuestion()
+      if (sharedIds) {
+        const orgs: Organism[] = []
+        for (const id of sharedIds) {
+          const org = resolveOrganism(id, speciesPool, taxonomyData)
+          if (org) {
+            orgs.push(org)
           }
         }
-      } else if (round) {
-        setResult(null)
-        setSelected([])
-        setState('selecting')
+        if (orgs.length === 3) {
+          setRound({ organisms: orgs })
+          setResult(null)
+          setSelected([])
+          setState('selecting')
+        }
       }
     }
     window.addEventListener('popstate', handler)
     return () => window.removeEventListener('popstate', handler)
-  }, [round, taxonomyData])
+  }, [taxonomyData, speciesPool])
 
   const toggleSelect = (idx: number) => {
     setSelected(prev => {
@@ -570,24 +516,48 @@ export default function Game({ mode }: { mode: GameMode }) {
     })
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!round || selected.length !== 2 || !taxonomyData) {
       return
     }
 
     const orgs = round.organisms
+    const scenario = surprisingScenarios.find(s => comboKey(s.organisms) === comboKey(orgs))
 
-    const fullResult = computeResult(
-      orgs,
-      taxonomyData,
-      makeCorrectnessPredicate(orgs, selected),
-    )
+    let correctnessFn: boolean | ((pair: ReturnType<typeof findClosestPairFromData>) => boolean)
+    if (scenario?.correctPair) {
+      const userPicked = new Set(selected.map(i => orgs[i].commonName))
+      correctnessFn = scenario.correctPair.every(name =>
+        userPicked.has(name),
+      )
+    } else {
+      correctnessFn = makeCorrectnessPredicate(orgs, selected)
+    }
+    const fullResult = computeResult(orgs, taxonomyData, correctnessFn)
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { pair, ...resultData } = fullResult
 
+    if (scenario) {
+      resultData.funFact = scenario.funFact
+      resultData.sourceUrl = scenario.sourceUrl
+      resultData.sourceLabel = scenario.sourceLabel
+      if (scenario.correctPair) {
+        const cp = scenario.correctPair
+        const sister1 = orgs.find(o => o.commonName === cp[0]) ?? orgs[0]
+        const sister2 = orgs.find(o => o.commonName === cp[1]) ?? orgs[1]
+        const outgroup =
+          orgs.find(o => o.commonName !== cp[0] && o.commonName !== cp[1]) ??
+          orgs[2]
+        resultData.sister1 = sister1
+        resultData.sister2 = sister2
+        resultData.outgroup = outgroup
+        resultData.isPolytomy = false
+      }
+    }
+
     const organismNames = orgs.map(o => o.commonName)
     const sortedKey = [...organismNames].sort().join(',')
-    const existingHistory = loadHistory()
+    const existingHistory = await loadHistory()
     const alreadyPlayed = existingHistory.some(
       h => [...h.organisms].sort().join(',') === sortedKey,
     )
@@ -599,8 +569,9 @@ export default function Game({ mode }: { mode: GameMode }) {
         sister: [resultData.sister1.commonName, resultData.sister2.commonName],
         mode,
         timestamp: Date.now(),
+        ncbiTaxIds: orgs.map(o => o.ncbiTaxId),
       }
-      saveHistory([...existingHistory, entry])
+      await addHistoryEntry(entry)
 
       const leaderboardName = localStorage.getItem('phyloLeaderboardName')
       if (leaderboardName) {
@@ -611,7 +582,7 @@ export default function Game({ mode }: { mode: GameMode }) {
     setResult(resultData)
     setState('result')
     setSelected(selected)
-    pushResultToUrl(selected)
+    history.pushState({ result: true }, '')
   }
 
   return (
@@ -804,7 +775,7 @@ export default function Game({ mode }: { mode: GameMode }) {
               Play
             </Button>
             <Button variant="secondary" href={import.meta.env.BASE_URL}>
-              Back
+              ⏮ Back
             </Button>
           </div>
         </div>
@@ -828,7 +799,7 @@ export default function Game({ mode }: { mode: GameMode }) {
               Restart Easy Mode
             </Button>
             <Button variant="secondary" href={import.meta.env.BASE_URL}>
-              Back
+              ⏮ Back
             </Button>
           </div>
         </div>
@@ -876,19 +847,22 @@ export default function Game({ mode }: { mode: GameMode }) {
             ))}
           </div>
           <div className="selecting-actions">
+            <button className="nav-icon-btn" onClick={() => history.back()} title="Previous question">
+              ⏮
+            </button>
             <Button onClick={handleSubmit} disabled={selected.length !== 2}>
               Submit
             </Button>
-            <Button variant="secondary" onClick={startRound}>
-              Skip
-            </Button>
-            <Button
-              variant="secondary"
-              onClick={() => setShowMapHint(prev => !prev)}
-            >
-              {showMapHint ? 'Hide map' : 'Map hint'}
-            </Button>
+            <button className="nav-icon-btn" onClick={startRound} title="Skip">
+              ⏭
+            </button>
           </div>
+          <button
+            className="map-hint-link"
+            onClick={() => setShowMapHint(prev => !prev)}
+          >
+            {showMapHint ? 'Hide species distribution map' : 'Show species distribution map (GBIF)'}
+          </button>
           {showMapHint && round && <SpeciesMap organisms={round.organisms} />}
         </div>
       )}
@@ -916,8 +890,9 @@ export default function Game({ mode }: { mode: GameMode }) {
               MAP_COLORS[i % MAP_COLORS.length],
             ]),
           )}
-          funFact={currentScenario?.funFact}
-          diagram={currentScenario?.diagram}
+          funFact={result.funFact}
+          sourceUrl={result.sourceUrl}
+          sourceLabel={result.sourceLabel}
           shareUrl={buildShareUrl(round.organisms)}
           onPlayAgain={startRound}
         />

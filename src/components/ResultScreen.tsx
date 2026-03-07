@@ -28,6 +28,8 @@ interface ResultScreenProps {
   userSelectedTaxIds: Set<number>
   organismColors: Record<number, string>
   funFact?: string
+  sourceUrl?: string
+  sourceLabel?: string
   diagram?: DiagramNode
   shareUrl: string
   onPlayAgain: () => void
@@ -58,31 +60,6 @@ function getFullLineage(taxId: number, data: TaxonomyData) {
     }
   }
   return steps
-}
-
-const importantRanks = new Set([
-  'species',
-  'genus',
-  'family',
-  'order',
-  'class',
-  'phylum',
-  'kingdom',
-  'domain',
-])
-
-function filterToImportantRanks(steps: BreadcrumbStep[]) {
-  const filtered = steps.filter(s => importantRanks.has(s.rank))
-  const seen = new Set<string>()
-  const deduped: BreadcrumbStep[] = []
-  for (const step of filtered) {
-    const key = `${step.name}|${step.rank}`
-    if (!seen.has(key)) {
-      seen.add(key)
-      deduped.push(step)
-    }
-  }
-  return deduped
 }
 
 export function TaxLink({ name, taxId }: { name: string; taxId: number }) {
@@ -132,6 +109,9 @@ function Explanation({
   sisterMrca,
   overallMrca,
   isPolytomy,
+  funFact,
+  sourceUrl,
+  sourceLabel,
 }: {
   sister1: Organism
   sister2: Organism
@@ -139,6 +119,9 @@ function Explanation({
   sisterMrca: MrcaInfo
   overallMrca: MrcaInfo
   isPolytomy: boolean
+  funFact?: string
+  sourceUrl?: string
+  sourceLabel?: string
 }) {
   if (isPolytomy) {
     return (
@@ -148,7 +131,16 @@ function Explanation({
           <TaxLink name={sisterMrca.name} taxId={sisterMrca.taxId} /> (
           {formatRank(sisterMrca.rank)}). None of the three is more closely
           related to another — any pair is equally correct!
-        </p>
+                </p>
+        {funFact && <p>Fun fact: {funFact}</p>}
+        {sourceUrl && (
+          <p className="fun-fact-source">
+            Source:{' '}
+            <a href={sourceUrl} target="_blank" rel="noopener noreferrer">
+              {sourceLabel ?? sourceUrl}
+            </a>
+          </p>
+        )}
       </div>
     )
   }
@@ -169,22 +161,69 @@ function Explanation({
           </>
         )}
       </p>
+        {funFact && <p>Fun fact: {funFact}</p>}
+      {sourceUrl && (
+        <p className="fun-fact-source">
+          Source:{' '}
+          <a href={sourceUrl} target="_blank" rel="noopener noreferrer">
+            {sourceLabel ?? sourceUrl}
+          </a>
+        </p>
+      )}
     </div>
   )
+}
+
+const majorRanks = new Set([
+  'domain',
+  'kingdom',
+  'phylum',
+  'class',
+  'order',
+  'family',
+  'genus',
+  'species',
+])
+
+function getDivergenceStart(lineages: BreadcrumbStep[][]) {
+  const minLen = Math.min(...lineages.map(l => l.length))
+  let commonLen = 0
+  for (let i = 0; i < minLen; i++) {
+    const id = lineages[0][i].taxId
+    if (lineages.every(l => l[i].taxId === id)) {
+      commonLen = i + 1
+    } else {
+      break
+    }
+  }
+  // Walk back from divergence to find the nearest major rank above it
+  const ref = lineages[0]
+  for (let i = commonLen - 1; i >= 0; i--) {
+    if (majorRanks.has(ref[i].rank)) {
+      return i
+    }
+  }
+  return 0
 }
 
 function Breadcrumbs({
   organism,
   taxonomyData,
   color,
+  startIndex,
 }: {
   organism: Organism
   taxonomyData: TaxonomyData
   color?: string
+  startIndex: number
 }) {
-  const steps = filterToImportantRanks(
-    getFullLineage(organism.ncbiTaxId, taxonomyData),
-  ).reverse()
+  const allSteps = getFullLineage(organism.ncbiTaxId, taxonomyData).reverse()
+  const pinnedRanks = new Set(['domain', 'kingdom', 'phylum'])
+  const pinned = allSteps.filter(s => pinnedRanks.has(s.rank))
+  const tail = allSteps.slice(startIndex)
+  const tailIds = new Set(tail.map(s => s.taxId))
+  const pinnedOnly = pinned.filter(s => !tailIds.has(s.taxId))
+  const hasGap = pinnedOnly.length > 0 && tail.length > 0
 
   return (
     <>
@@ -210,13 +249,29 @@ function Breadcrumbs({
           ncbi
         </a>
       </span>
-      {steps.length > 0 ? (
+      {allSteps.length > 0 ? (
         <span className="breadcrumb-path">
-          {steps.map((step, i) => (
+          {pinnedOnly.map((step, i) => (
             <span key={step.taxId}>
               {i > 0 && <span className="breadcrumb-sep">{' \u203a '}</span>}
               <TaxLink name={step.name} taxId={step.taxId} />
-              <span className="breadcrumb-rank"> ({formatRank(step.rank)})</span>
+              <span className="breadcrumb-rank">
+                {' '}
+                ({formatRank(step.rank)})
+              </span>
+            </span>
+          ))}
+          {hasGap && (
+            <span className="breadcrumb-sep">{' \u203a \u2026 \u203a '}</span>
+          )}
+          {tail.map((step, i) => (
+            <span key={step.taxId}>
+              {i > 0 && <span className="breadcrumb-sep">{' \u203a '}</span>}
+              <TaxLink name={step.name} taxId={step.taxId} />
+              <span className="breadcrumb-rank">
+                {' '}
+                ({formatRank(step.rank)})
+              </span>
             </span>
           ))}
         </span>
@@ -255,6 +310,47 @@ function FullTreeToggle({
   )
 }
 
+function LineageBreadcrumbs({
+  sister1,
+  sister2,
+  outgroup,
+  taxonomyData,
+  organismColors,
+}: {
+  sister1: Organism
+  sister2: Organism
+  outgroup: Organism
+  taxonomyData: TaxonomyData
+  organismColors: Record<number, string>
+}) {
+  const l1 = getFullLineage(sister1.ncbiTaxId, taxonomyData).reverse()
+  const l2 = getFullLineage(sister2.ncbiTaxId, taxonomyData).reverse()
+  const l3 = getFullLineage(outgroup.ncbiTaxId, taxonomyData).reverse()
+  const startIndex = getDivergenceStart([l1, l2, l3])
+  return (
+    <div className="lineage-breadcrumbs">
+      <Breadcrumbs
+        organism={sister1}
+        taxonomyData={taxonomyData}
+        color={organismColors[sister1.ncbiTaxId]}
+        startIndex={startIndex}
+      />
+      <Breadcrumbs
+        organism={sister2}
+        taxonomyData={taxonomyData}
+        color={organismColors[sister2.ncbiTaxId]}
+        startIndex={startIndex}
+      />
+      <Breadcrumbs
+        organism={outgroup}
+        taxonomyData={taxonomyData}
+        color={organismColors[outgroup.ncbiTaxId]}
+        startIndex={startIndex}
+      />
+    </div>
+  )
+}
+
 function MapToggle({
   organisms,
   organismColors,
@@ -270,8 +366,10 @@ function MapToggle({
   )
   return (
     <div className="map-toggle">
-      <button className="map-toggle-btn" onClick={() => setShow(s => !s)}>
-        {show ? 'Hide map' : 'Show map'}
+      <button className="map-hint-link" onClick={() => setShow(s => !s)}>
+        {show
+          ? 'Hide species distribution map'
+          : 'Show species distribution map (GBIF)'}
       </button>
       {show && <SpeciesMap organisms={sorted} />}
     </div>
@@ -292,6 +390,8 @@ export default function ResultScreen({
   userSelectedTaxIds,
   organismColors,
   funFact,
+  sourceUrl,
+  sourceLabel,
   diagram,
   shareUrl,
   onPlayAgain,
@@ -300,17 +400,10 @@ export default function ResultScreen({
     <div className="result-screen">
       <div className={`result-banner ${correct ? 'correct' : 'wrong'}`}>
         {correct ? 'Correct!' : 'Not quite!'}
-      </div>
-      {funFact && (
-        <div className="fun-fact">
-          <p>{funFact}</p>
-        </div>
-      )}
-      {/* {diagram && <DiagramTree root={diagram} />} */}
-      <div className="result-actions">
-        <Button onClick={onPlayAgain}>Next</Button>
         <ShareButton url={shareUrl} />
       </div>
+
+      {/* {diagram && <DiagramTree root={diagram} />} */}
       <Explanation
         sister1={sister1}
         sister2={sister2}
@@ -318,7 +411,13 @@ export default function ResultScreen({
         sisterMrca={sisterMrca}
         overallMrca={overallMrca}
         isPolytomy={isPolytomy}
+        funFact={funFact}
+        sourceUrl={sourceUrl}
+        sourceLabel={sourceLabel}
       />
+      <div className="result-actions">
+        <Button onClick={onPlayAgain}>Next</Button>
+      </div>
 
       <PhyloTree
         sister1={sister1}
@@ -338,22 +437,15 @@ export default function ResultScreen({
         organisms={[sister1, sister2, outgroup]}
         organismColors={organismColors}
       />
-      <div className="lineage-breadcrumbs">
-        <Breadcrumbs
-          organism={sister1}
-          taxonomyData={taxonomyData}
-          color={organismColors[sister1.ncbiTaxId]}
-        />
-        <Breadcrumbs
-          organism={sister2}
-          taxonomyData={taxonomyData}
-          color={organismColors[sister2.ncbiTaxId]}
-        />
-        <Breadcrumbs
-          organism={outgroup}
-          taxonomyData={taxonomyData}
-          color={organismColors[outgroup.ncbiTaxId]}
-        />
+      <LineageBreadcrumbs
+        sister1={sister1}
+        sister2={sister2}
+        outgroup={outgroup}
+        taxonomyData={taxonomyData}
+        organismColors={organismColors}
+      />
+      <div className="result-actions">
+        <Button onClick={onPlayAgain}>Next</Button>
       </div>
       <a
         className="report-issue-link"

@@ -14,6 +14,7 @@ export interface SurprisingScenario {
   diagram?: DiagramNode
   sourceUrl: string
   sourceLabel: string
+  correctPair?: [string, string]
 }
 
 function org(name: string) {
@@ -101,7 +102,7 @@ export const surprisingScenarios: SurprisingScenario[] = [
   {
     organisms: [org('Common bat'), org('Cow'), org('Human')],
     funFact:
-      'A bat is more closely related to a cow than to a human. Bats and cows are on the same major branch of the mammal family tree — the one that also includes dogs, cats, horses, and whales. Humans are on a completely separate branch, with primates, rodents, and rabbits. The flapping, echolocating creature shares more recent ancestry with your steak than with you.',
+      'Bats are more closely related to cows than to humans. Bats and cows are both Laurasiatheria — the same major branch of the mammal family tree that also includes dogs, cats, horses, and whales. Humans are on a completely separate branch (Euarchontoglires), with primates, rodents, and rabbits.',
     diagram: {
       label: 'Boreoeutheria',
       children: [
@@ -391,7 +392,7 @@ export const surprisingScenarios: SurprisingScenario[] = [
   {
     organisms: [org('Horseshoe crab'), org('Scorpion'), org('Honeybee')],
     funFact:
-      'Despite being called crabs, horseshoe crabs are more closely related to scorpions and spiders (chelicerates) than to any true crustacean or insect.',
+      'Despite being called crabs, horseshoe crabs are chelicerates — more closely related to scorpions and spiders than to any true crustacean. They have blue copper-based blood and have barely changed in over 450 million years of fossil record.',
     diagram: {
       label: 'Arthropoda',
       children: [
@@ -433,35 +434,35 @@ export const surprisingScenarios: SurprisingScenario[] = [
       org('Garden snail'),
     ],
     funFact:
-      'Corals and jellyfish are both cnidarians — animals with stinging cells. Despite corals looking like rocks, they are closer to jellyfish than to any shelled creature.',
+      'Corals look like colorful rocks, but each coral head is a colony of thousands of tiny animals — each with a mouth ringed by stinging tentacles, just like a jellyfish in miniature. Corals and jellyfish are both cnidarians, while snails are molluscs on a completely different branch of the animal tree.',
     sourceUrl: 'https://en.wikipedia.org/wiki/Cnidaria',
     sourceLabel: 'Cnidaria - Wikipedia',
   },
   {
     organisms: [org('Seahorse'), org('Clownfish'), org('Great white shark')],
     funFact:
-      'Seahorses and clownfish are both bony fish (Osteichthyes). Sharks have cartilaginous skeletons and diverged from bony fish over 400 million years ago.',
+      'A seahorse barely looks like a fish — upright posture, prehensile tail, no scales, and the males get pregnant. But it is a bony fish (a pipefish relative), closer to a clownfish than to any shark. Sharks have cartilaginous skeletons and diverged from bony fish over 400 million years ago.',
     sourceUrl: 'https://en.wikipedia.org/wiki/Osteichthyes',
     sourceLabel: 'Osteichthyes - Wikipedia',
   },
   {
     organisms: [org('Nautilus'), org('Giant clam'), org('Horseshoe crab')],
     funFact:
-      'The nautilus and the giant clam are both molluscs, despite one being a shelled swimmer and the other a sedentary filter feeder. Horseshoe crabs are chelicerates — closer to spiders.',
+      'The nautilus — a jet-propelled predator with 90 tentacles and a 500-million-year-old lineage — is a mollusc, just like the sedentary giant clam cemented to a reef. Horseshoe crabs may have a similar ancient look, but they are chelicerates, closer to spiders than to any shelled sea creature.',
     sourceUrl: 'https://en.wikipedia.org/wiki/Mollusca',
     sourceLabel: 'Mollusca - Wikipedia',
   },
   {
     organisms: [org('Starfish'), org('Sea urchin'), org('Common octopus')],
     funFact:
-      'Starfish and sea urchins are both echinoderms — they share five-fold radial symmetry and a water vascular system. Octopuses are molluscs, a completely separate phylum.',
+      'A spiny ball and a five-armed star seem like completely different animals, but starfish and sea urchins are both echinoderms — they share five-fold radial symmetry, a unique water vascular system, and are actually on the vertebrate side of the animal tree, more closely related to humans than to octopuses. Octopuses are molluscs, a completely separate phylum.',
     sourceUrl: 'https://en.wikipedia.org/wiki/Echinoderm',
     sourceLabel: 'Echinoderm - Wikipedia',
   },
   {
     organisms: [org('Hippopotamus'), org('Blue whale'), org('Cow')],
     funFact:
-      'Hippos are the closest living relatives of whales! They share an ancestor that lived about 55 million years ago. Cows diverged from this lineage much earlier.',
+      'Hippos are the closest living relatives of whales! Their shared ancestor was a small, pig-like animal that lived about 55 million years ago — one lineage returned fully to the sea, the other stayed semi-aquatic. Cows diverged from this lineage much earlier.',
     diagram: {
       label: 'Cetartiodactyla (even-toed ungulates + whales)',
       children: [
@@ -523,7 +524,7 @@ export const surprisingScenarios: SurprisingScenario[] = [
   {
     organisms: [org('Gray wolf'), org('Raccoon'), org('Domestic cat')],
     funFact:
-      'Wolves and raccoons are both on the "dog side" of the carnivore family tree. Despite raccoons seeming like a unique oddball, they share a more recent ancestor with wolves than cats do.',
+      'Raccoons are on the "dog side" of the carnivore family tree (Caniformia), more closely related to wolves than to cats. Cats are on the other side (Feliformia) with hyenas and mongooses.',
     sourceUrl: 'https://en.wikipedia.org/wiki/Caniformia',
     sourceLabel: 'Caniformia - Wikipedia',
   },
@@ -556,18 +557,12 @@ export const surprisingScenarios: SurprisingScenario[] = [
     sourceLabel: 'Hyena evolution - Wikipedia',
   },
   {
-    organisms: [org('Red panda'), org('Raccoon'), org('Domestic cat')],
-    funFact:
-      'Red pandas and raccoons are both on the "dog side" of the carnivore family tree, in the same group as weasels. Despite "panda" in the name, red pandas are not related to giant pandas (which are bears).',
-    sourceUrl: 'https://en.wikipedia.org/wiki/Red_panda#Taxonomy',
-    sourceLabel: 'Red panda taxonomy - Wikipedia',
-  },
-  {
     organisms: [org('Common genet'), org('Lion'), org('Egyptian mongoose')],
+    correctPair: ['Common genet', 'Egyptian mongoose'],
     funFact:
-      'The common genet looks uncannily like a small spotted wild cat — slim body, spotted coat, retractile claws, solitary hunter. But genets are in the civet family, which branched off from the lineage leading to true cats very early. A genet is closer to a mongoose than to a lion.',
-    sourceUrl: 'https://en.wikipedia.org/wiki/Common_genet',
-    sourceLabel: 'Common genet - Wikipedia',
+      'The common genet looks uncannily like a small spotted wild cat — slim body, spotted coat, retractile claws, solitary hunter. But genets are in the civet family (Viverridae), which molecular studies place closer to mongooses (Herpestidae) than to true cats (Felidae) within Feliformia. (NCBI taxonomy leaves Feliformia families unresolved, but molecular phylogenetics consistently supports this grouping.)',
+    sourceUrl: 'https://en.wikipedia.org/wiki/Feliformia',
+    sourceLabel: 'Feliformia - Wikipedia',
   },
   {
     organisms: [org('Binturong'), org('Lion'), org('Brown bear')],
@@ -578,15 +573,16 @@ export const surprisingScenarios: SurprisingScenario[] = [
   },
   {
     organisms: [org('Fossa'), org('Lion'), org('Egyptian mongoose')],
+    correctPair: ['Fossa', 'Egyptian mongoose'],
     funFact:
-      "The fossa of Madagascar looks exactly like a small wild cat — sleek build, retractile claws, solitary ambush hunting. But it belongs to Eupleridae, a family far more closely related to the Egyptian mongoose than to any true cat. It's a striking case of convergent evolution: a mongoose relative that evolved cat-like traits to fill the apex predator role on an island with no true cats.",
-    sourceUrl: 'https://en.wikipedia.org/wiki/Fossa_(animal)',
-    sourceLabel: 'Fossa - Wikipedia',
+      "The fossa of Madagascar looks exactly like a small wild cat — sleek build, retractile claws, solitary ambush hunting. But it belongs to Eupleridae, the sister family of mongooses (Herpestidae). It's a striking case of convergent evolution: a mongoose relative that evolved cat-like traits to fill the apex predator role on an island with no true cats. (NCBI taxonomy leaves Feliformia families unresolved, but molecular studies firmly place Eupleridae with Herpestidae.)",
+    sourceUrl: 'https://en.wikipedia.org/wiki/Feliformia',
+    sourceLabel: 'Feliformia - Wikipedia',
   },
   {
     organisms: [org('Walrus'), org('Brown bear'), org('Harbor seal')],
     funFact:
-      'Walruses and harbor seals both evolved from land-dwelling carnivores related to bears and dogs. All seals, sea lions, and walruses share this ancestry, making a walrus more closely related to a brown bear than to any dolphin or whale.',
+      'Walruses, seals, and sea lions all evolved from bear-like ancestors that returned to the sea about 25 million years ago. Despite living in the same ocean as whales and dolphins, pinnipeds are carnivores — on the same branch as bears and dogs, not cetaceans.',
     sourceUrl: 'https://en.wikipedia.org/wiki/Pinniped#Evolution',
     sourceLabel: 'Pinniped evolution - Wikipedia',
   },
@@ -646,7 +642,7 @@ export const surprisingScenarios: SurprisingScenario[] = [
   {
     organisms: [org('Brown rat'), org('House mouse'), org('European rabbit')],
     funFact:
-      'Rats and mice are in the same family! Despite rabbits looking more like large mice, rabbits are not rodents at all — they are in their own separate order with hares and pikas.',
+      'Rats and mice are in the same family (Muridae)! Despite rabbits looking like large, fluffy mice, rabbits are not rodents at all — they are lagomorphs, in their own separate order. You can tell by the teeth: rodents have one pair of upper incisors, while rabbits have a second tiny pair hidden behind the first.',
     sourceUrl: 'https://en.wikipedia.org/wiki/Muridae',
     sourceLabel: 'Muridae - Wikipedia',
   },
@@ -708,7 +704,7 @@ export const surprisingScenarios: SurprisingScenario[] = [
   {
     organisms: [org('Sea squirt'), org('Human'), org('Common octopus')],
     funFact:
-      'Sea squirts are our relatives! As larvae, they have a notochord (primitive backbone), making them chordates like us. As adults they attach to rocks and digest their own brains — but they are still closer to humans than to any mollusc.',
+      'Sea squirts are our relatives! As larvae, they have a notochord (primitive backbone) and swim freely, making them chordates like us. As adults they attach to rocks and reabsorb their larval nervous system, developing a simpler adult ganglion suited to a sedentary life. Despite looking like blobs, they are closer to humans than to any mollusc.',
     diagram: {
       label: 'Bilateria',
       children: [
@@ -736,22 +732,23 @@ export const surprisingScenarios: SurprisingScenario[] = [
   },
   {
     organisms: [org('Sea squirt'), org('Atlantic salmon'), org('Lancelet')],
+    correctPair: ['Sea squirt', 'Atlantic salmon'],
     funFact:
-      'A blob stuck to a rock is closer to a salmon than a lancelet is! Sea squirts (tunicates) are the closest invertebrate relatives of all vertebrates, including jawed fish. Despite lancelets looking far more fish-like, DNA evidence shows tunicates are our nearest invertebrate cousins.',
+      'A blob stuck to a rock is closer to a salmon than a lancelet is! Sea squirts (tunicates) are the closest invertebrate relatives of all vertebrates. Lancelets — small, translucent, fish-shaped animals that live in sand — look far more vertebrate-like, but DNA evidence shows tunicates are actually our nearest invertebrate cousins. (NCBI taxonomy leaves this unresolved within Chordata, but molecular phylogenetics strongly supports the tunicate–vertebrate grouping called Olfactores.)',
     sourceUrl: 'https://en.wikipedia.org/wiki/Olfactores',
     sourceLabel: 'Olfactores - Wikipedia',
   },
   {
     organisms: [org('Lancelet'), org('Atlantic salmon'), org('Sea urchin')],
     funFact:
-      'The tiny, translucent lancelet is the closest living invertebrate relative of all vertebrates. It has a notochord but no true spine — a living snapshot of what our ancestors looked like before evolving bones.',
+      'Lancelets (also called amphioxus) are tiny, translucent, blade-shaped animals that live half-buried in sand on the seafloor. They have a notochord — a flexible rod that is the precursor to a spine — but no true backbone, skull, or brain. They are the closest living picture of what our ancestors looked like before evolving bones.',
     sourceUrl: 'https://en.wikipedia.org/wiki/Lancelet',
     sourceLabel: 'Lancelet - Wikipedia',
   },
   {
     organisms: [org('Great white shark'), org('Human'), org('Lancelet')],
     funFact:
-      'You share more with a shark than you might think. Sharks and humans are both jawed vertebrates — your jaw, teeth, and inner ear all trace back to a common ancestor with sharks over 450 million years ago. Lancelets split off even earlier, before jaws evolved.',
+      'Sharks and humans are both jawed vertebrates — your jaw, teeth, and inner ear all trace back to a common ancestor with sharks over 450 million years ago. Lancelets — small, translucent animals that live buried in sand — are chordates but split off before jaws or even a true backbone evolved.',
     sourceUrl: 'https://en.wikipedia.org/wiki/Gnathostomata',
     sourceLabel: 'Gnathostomata - Wikipedia',
   },
@@ -853,14 +850,14 @@ export const surprisingScenarios: SurprisingScenario[] = [
   {
     organisms: [org('Moon jellyfish'), org('Sea anemone'), org('Bath sponge')],
     funFact:
-      'Jellyfish and sea anemones are both cnidarians with stinging nematocysts. Sponges lack true tissues entirely — they are the most structurally simple animals, representing a lineage that diverged before nerves and muscles evolved.',
+      'Jellyfish and sea anemones are both cnidarians — animals with specialized stinging cells (nematocysts). Sponges lack true tissues entirely — no nerves, no muscles, no organs — and represent one of the deepest-diverging animal lineages.',
     sourceUrl: 'https://en.wikipedia.org/wiki/Porifera',
     sourceLabel: 'Porifera - Wikipedia',
   },
   {
     organisms: [org('Staghorn coral'), org('Sea anemone'), org('Starfish')],
     funFact:
-      'Corals and sea anemones are close relatives — both are stinging animals that stay anchored in place. Starfish may live on reefs too, but they are on the vertebrate side of the animal tree, far more related to us than to any coral.',
+      'Corals and sea anemones are both anthozoans — cnidarians that gave up the free-swimming jellyfish stage and settled down. They are essentially upside-down jellyfish cemented to the seafloor. Starfish may live on the same reef, but they are deuterostomes — more closely related to humans than to any coral or jellyfish.',
     sourceUrl: 'https://en.wikipedia.org/wiki/Anthozoa',
     sourceLabel: 'Anthozoa - Wikipedia',
   },
@@ -925,21 +922,21 @@ export const surprisingScenarios: SurprisingScenario[] = [
   {
     organisms: [org('Earthworm'), org('Common octopus'), org('Pork tapeworm')],
     funFact:
-      'Earthworms and octopuses share a more recent common ancestor than either does with tapeworms. Despite all being soft-bodied invertebrates, tapeworms are flatworms — a completely separate lineage. The word "worm" means nothing phylogenetically!',
+      'All three are lophotrochozoans — but which pair is closest? The exact relationships between annelids (earthworms), molluscs (octopuses), and flatworms (tapeworms) remain one of the hardest problems in animal phylogenetics. These lineages may have diverged so rapidly that the branching order is nearly impossible to resolve. The word "worm" means nothing phylogenetically — any pair here could be correct!',
     sourceUrl: 'https://en.wikipedia.org/wiki/Lophotrochozoa',
     sourceLabel: 'Lophotrochozoa - Wikipedia',
   },
   {
     organisms: [org('Sea lamprey'), org('Great white shark'), org('Lancelet')],
     funFact:
-      'Lampreys are jawless but they are true vertebrates — they have a skull and spinal column. Lampreys and sharks are both vertebrates, while lancelets lack a backbone entirely. Your inner fish goes very deep.',
+      'Lampreys are jawless parasites with a circular, toothed mouth — but they are true vertebrates with a skull and spinal column. They represent what vertebrates looked like before jaws evolved over 450 million years ago. Lancelets — small, translucent sand-dwellers — lack a backbone entirely and split off even earlier.',
     sourceUrl: 'https://en.wikipedia.org/wiki/Lamprey',
     sourceLabel: 'Lamprey - Wikipedia',
   },
   {
     organisms: [org('Earthworm'), org('Garden snail'), org('Pork tapeworm')],
     funFact:
-      'Earthworms and snails are more closely related than you might think — their embryos share a distinctive spiral pattern of cell division. Tapeworms may look more worm-like, but they are flatworms, a much more distant lineage.',
+      'All three are spiralians — animals whose embryos share a distinctive spiral pattern of cell division. But the exact branching order of annelids, molluscs, and flatworms within Spiralia is hotly debated. Recent phylogenomic studies suggest these phyla diverged in such a rapid burst that the true tree may be nearly impossible to resolve. Any pair here could be correct!',
     sourceUrl: 'https://en.wikipedia.org/wiki/Spiralia',
     sourceLabel: 'Spiralia - Wikipedia',
   },
@@ -1003,8 +1000,9 @@ export const surprisingScenarios: SurprisingScenario[] = [
   },
   {
     organisms: [org('Malayan tapir'), org('White rhinoceros'), org('Horse')],
+    correctPair: ['Malayan tapir', 'White rhinoceros'],
     funFact:
-      "All three are Perissodactyla — odd-toed ungulates — but the tapir and rhino are each other's closest relatives, forming Ceratomorpha. Horses are the odd one out (Equidae), despite horses and rhinos both seeming like the obvious pair: large, powerful, tough-skinned. The pig-snouted tapir turns out to be the rhino's nearest living kin.",
+      "All three are Perissodactyla — odd-toed ungulates — but the tapir and rhino are each other's closest relatives, forming Ceratomorpha. Horses are the odd one out (Equidae), despite horses and rhinos both seeming like the obvious pair: large, powerful, tough-skinned. The pig-snouted tapir turns out to be the rhino's nearest living kin. (NCBI taxonomy leaves Perissodactyla unresolved, but Ceratomorpha is well-established by molecular and morphological evidence.)",
     sourceUrl: 'https://en.wikipedia.org/wiki/Ceratomorpha',
     sourceLabel: 'Ceratomorpha - Wikipedia',
   },
@@ -1040,7 +1038,7 @@ export const surprisingScenarios: SurprisingScenario[] = [
   {
     organisms: [org('Giant kelp'), org('Plasmodium'), org('Thale cress')],
     funFact:
-      'Giant kelp is NOT a plant! It is a brown alga — despite growing 60 meters tall with leaf-like blades, it is in a completely different kingdom from plants. Incredibly, kelp shares a deep common ancestor with the malaria parasite, both belonging to a vast group of organisms unrelated to plants.',
+      'Giant kelp is NOT a plant — it is technically a protist! Despite growing 60 meters tall with leaf-like blades, it is a brown alga that evolved photosynthesis independently by engulfing an ancient alga and keeping its chloroplasts (secondary endosymbiosis). Kelp shares a deep common ancestor with the malaria parasite in the SAR supergroup, both completely unrelated to plants.',
     diagram: {
       label: 'Eukaryotes',
       children: [
@@ -1278,8 +1276,9 @@ export const surprisingScenarios: SurprisingScenario[] = [
   },
   {
     organisms: [org('Colugo'), org('Human'), org('Flying squirrel')],
+    correctPair: ['Colugo', 'Human'],
     funFact:
-      'The closest non-primate relative of humans is a gliding rainforest mammal that looks like a large flying squirrel. Colugos are the closest living relatives of all primates — closer to every human, ape, and monkey than to any rodent, bat, or other mammal. Flying squirrels are rodents; they and colugos evolved near-identical gliding membranes completely independently.',
+      'The closest non-primate relative of humans is a gliding rainforest mammal that looks like a large flying squirrel. Colugos are the closest living relatives of all primates — closer to every human, ape, and monkey than to any rodent, bat, or other mammal. Flying squirrels are rodents; they and colugos evolved near-identical gliding membranes completely independently. (Note: NCBI taxonomy leaves this unresolved, but phylogenetic studies confirm the colugo–primate grouping.)',
     sourceUrl: 'https://en.wikipedia.org/wiki/Colugo',
     sourceLabel: 'Colugo - Wikipedia',
   },
@@ -1516,13 +1515,6 @@ export const surprisingScenarios: SurprisingScenario[] = [
     sourceLabel: 'Brittle star - Wikipedia',
   },
   {
-    organisms: [org('Komodo dragon'), org('King cobra'), org('Tuatara')],
-    funFact:
-      'The tuatara looks exactly like a lizard but is the sole survivor of Rhynchocephalia — a reptile order that diverged from lizards and snakes ~250 million years ago. Komodo dragons and king cobras are both squamates; the tuatara just looks like one.',
-    sourceUrl: 'https://en.wikipedia.org/wiki/Tuatara',
-    sourceLabel: 'Tuatara - Wikipedia',
-  },
-  {
     organisms: [
       org('Greater flamingo'),
       org('Great crested grebe'),
@@ -1700,8 +1692,9 @@ export const surprisingScenarios: SurprisingScenario[] = [
   },
   {
     organisms: [org('Pronghorn'), org('Giraffe'), org('Impala')],
+    correctPair: ['Pronghorn', 'Giraffe'],
     funFact:
-      'The pronghorn is called the "American antelope" but is not an antelope at all — it is the sole surviving member of Antilocapridae, closer to giraffes than to any true antelope! Impala and other antelopes are Bovidae (with cattle and goats). The pronghorn\'s family was once diverse across North America, but only one species survives.',
+      'The pronghorn is called the "American antelope" but is not an antelope at all — it is the sole surviving member of Antilocapridae, closer to giraffes than to any true antelope! Impala and other antelopes are Bovidae (with cattle and goats). The pronghorn\'s family was once diverse across North America, but only one species survives. (NCBI taxonomy leaves Pecora unresolved, but molecular studies consistently group Antilocapridae with Giraffidae.)',
     sourceUrl: 'https://en.wikipedia.org/wiki/Pronghorn',
     sourceLabel: 'Pronghorn - Wikipedia',
   },
@@ -1885,8 +1878,9 @@ export const surprisingScenarios: SurprisingScenario[] = [
   },
   {
     organisms: [org('Three-toed sloth'), org('Rock hyrax'), org('Gray wolf')],
+    correctPair: ['Three-toed sloth', 'Rock hyrax'],
     funFact:
-      'A sloth and a hyrax are more closely related to each other than either is to a wolf! Sloths (from South America) and hyraxes (from Africa) belong to two ancient mammal groups that share deep common ancestry from when those continents were joined. Wolves, along with primates, rodents, and most familiar mammals, are on the other side of the mammal family tree.',
+      'A sloth and a hyrax are more closely related to each other than either is to a wolf! Sloths (Xenarthra, from South America) and hyraxes (Afrotheria, from Africa) form a clade called Atlantogenata — named for the Atlantic Ocean that separated their ancestral continents. Wolves belong to Boreoeutheria, the other major branch of placental mammals. (NCBI taxonomy leaves the base of Eutheria unresolved, but large-scale genomic studies strongly support Atlantogenata.)',
     sourceUrl: 'https://en.wikipedia.org/wiki/Atlantogenata',
     sourceLabel: 'Atlantogenata - Wikipedia',
   },
@@ -1929,17 +1923,6 @@ export const surprisingScenarios: SurprisingScenario[] = [
       'The American pitcher plant (Sarracenia) and the tropical pitcher plant (Nepenthes) both have deep tubes of digestive acid to eat bugs, but they are not related at all! The American ones are closer to blueberries and kiwis (order Ericales), while the Asian ones are closer to buckwheat and rhubarb (order Caryophyllales). Evolution invented the pitcher trap at least five separate times because eating bugs is a great way to get nitrogen in poor soil.',
     sourceUrl: 'https://en.wikipedia.org/wiki/Pitcher_plant',
     sourceLabel: 'Pitcher plant - Wikipedia',
-  },
-  {
-    organisms: [
-      org('Common woodlouse'),
-      org('American lobster'),
-      org('Ladybug'),
-    ],
-    funFact:
-      'Woodlice are not insects — they are crustaceans, more closely related to lobsters and shrimp than to any land insect! They are isopods that made the leap from sea to land, and they still breathe through gill-like structures. They are the most successful group of fully terrestrial crustaceans.',
-    sourceUrl: 'https://en.wikipedia.org/wiki/Woodlouse',
-    sourceLabel: 'Woodlouse - Wikipedia',
   },
   {
     organisms: [org('Dandelion'), org('Giant groundsel'), org('Scots pine')],

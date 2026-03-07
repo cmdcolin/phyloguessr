@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'preact/hooks'
 
-import { MAP_COLORS, type MapMode } from './SpeciesMap.tsx'
+import { MAP_COLORS } from './SpeciesMap.tsx'
 import { getGbifTaxonKey } from '../api/gbif.ts'
 
 import type { Organism } from '../data/organisms.ts'
@@ -11,9 +11,9 @@ interface TileMode {
   params: string
 }
 
-const TILE_MODES: Record<Exclude<MapMode, 'static'>, TileMode> = {
-  hex: { style: 'classic.poly', params: '&bin=hex&hexPerTile=25' },
-  square: { style: 'classic.poly', params: '&bin=square&squareSize=32' },
+const TILE_CONFIG: TileMode = {
+  style: 'classic.poly',
+  params: '&bin=square&squareSize=32',
 }
 
 function parseHexColor(hex: string) {
@@ -65,11 +65,9 @@ function createColoredTileLayer(
 
 export default function InteractiveMap({
   organisms,
-  mode,
   onMapReady,
 }: {
   organisms: Organism[]
-  mode: Exclude<MapMode, 'static'>
   onMapReady?: (controls: { resetView: () => void }) => void
 }) {
   const mapRef = useRef<HTMLDivElement>(null)
@@ -166,7 +164,6 @@ export default function InteractiveMap({
     }
     speciesLayersRef.current = []
 
-    const tileMode = TILE_MODES[mode]
     for (let i = 0; i < resolvedKeys.length; i++) {
       const key = resolvedKeys[i]
       if (key) {
@@ -175,8 +172,8 @@ export default function InteractiveMap({
           leaflet,
           key,
           color,
-          tileMode.style,
-          tileMode.params,
+          TILE_CONFIG.style,
+          TILE_CONFIG.params,
         )
 
         const layer = new (LayerClass as unknown as new (
@@ -185,7 +182,7 @@ export default function InteractiveMap({
         speciesLayersRef.current.push(layer)
       }
     }
-  }, [resolvedKeys, mode])
+  }, [resolvedKeys])
 
   return <div ref={mapRef} className="species-interactive-map" />
 }
