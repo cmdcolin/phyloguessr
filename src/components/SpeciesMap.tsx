@@ -4,12 +4,20 @@ import { Suspense, lazy } from 'react'
 import { capitalize } from '../utils/format.ts'
 
 import type { Organism } from '../data/organisms.ts'
+import type { Difficulty } from './gameUtils.ts'
 
 const InteractiveMap = lazy(() => import('./InteractiveMap.tsx'))
 
 export const MAP_COLORS = ['#e07020', '#2070d0', '#20a050']
 
-export default function SpeciesMap({ organisms }: { organisms: Organism[] }) {
+export default function SpeciesMap({
+  organisms,
+  difficulty = 'normal',
+}: {
+  organisms: Organism[]
+  difficulty?: Difficulty
+}) {
+  const showLabels = difficulty === 'normal'
   const mapControlsRef = useRef<{ resetView: () => void } | null>(null)
 
   return (
@@ -44,7 +52,7 @@ export default function SpeciesMap({ organisms }: { organisms: Organism[] }) {
               className="species-map-legend-dot"
               style={{ backgroundColor: MAP_COLORS[i % MAP_COLORS.length] }}
             />
-            {capitalize(org.commonName)}
+            {showLabels ? capitalize(org.commonName) : null}
           </span>
         ))}
       </div>

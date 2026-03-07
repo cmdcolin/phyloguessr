@@ -3,13 +3,16 @@ import { useState } from 'react'
 import SpeciesMap, { MAP_COLORS } from './SpeciesMap.tsx'
 
 import type { Organism } from '../data/organisms.ts'
+import type { Difficulty } from './gameUtils.ts'
 
 export function MapToggle({
   organisms,
   organismColors,
+  difficulty,
 }: {
   organisms: Organism[]
   organismColors?: Record<number, string>
+  difficulty?: Difficulty
 }) {
   const [show, setShow] = useState(false)
   const sorted = organismColors
@@ -26,7 +29,7 @@ export function MapToggle({
           ? 'Hide species distribution map'
           : 'Show species distribution map (GBIF)'}
       </button>
-      {show && <SpeciesMap organisms={sorted} />}
+      {show && <SpeciesMap organisms={sorted} difficulty={difficulty} />}
     </div>
   )
 }

@@ -18,7 +18,8 @@ import { MapToggle } from './MapToggle.tsx'
 import { MAP_COLORS } from './SpeciesMap.tsx'
 import { loadSurprisingScenarios } from '../data/surprisingFacts.ts'
 import { recordRound, startPresence } from '../firebase.ts'
-import { addHistoryEntry, loadHistory } from '../utils/history.ts'
+import { addHistoryEntry, loadHistory, loadStats } from '../utils/history.ts'
+import type { HistoryStats } from '../utils/history.ts'
 import { sessionStorageGetItem } from '../utils/storage.ts'
 import {
   buildContextDiagram,
@@ -143,6 +144,12 @@ export default function Game({ mode }: { mode: GameMode }) {
       return new Set()
     },
   )
+  const [stats, setStats] = useState<HistoryStats | null>(null)
+
+  const refreshStats = () => {
+    loadStats().then(s => setStats(s ?? null))
+  }
+
   const [randomClade, setRandomClade] = useState<{
     taxId: number
     name: string
@@ -395,6 +402,7 @@ export default function Game({ mode }: { mode: GameMode }) {
   )
 
   useEffect(() => {
+    refreshStats()
     startPresence()
     const sharedIds = parseSharedIds()
     if (sharedIds) {
@@ -509,6 +517,7 @@ export default function Game({ mode }: { mode: GameMode }) {
         ncbiTaxIds: orgs.map(o => o.ncbiTaxId),
       }
       await addHistoryEntry(entry)
+      refreshStats()
 
       const leaderboardName = localStorage.getItem('phyloLeaderboardName')
       if (leaderboardName) {
@@ -549,6 +558,8 @@ export default function Game({ mode }: { mode: GameMode }) {
                     ['3398', 'flowering plants', 'Magnoliopsida'],
                     ['58019', 'conifers', 'Pinopsida'],
                     ['4751', 'mushrooms & yeasts', 'Fungi'],
+                    ['2', 'bacteria', 'Bacteria'],
+                    ['10239', 'viruses', 'Viruses'],
                     ['7742', 'vertebrates', 'Vertebrata'],
                     ['33208', 'animals', 'Metazoa'],
                     ['9443', 'primates', 'Primates'],
@@ -766,6 +777,16 @@ export default function Game({ mode }: { mode: GameMode }) {
               {randomClade.rank ? ` (${randomClade.rank})` : ''}
             </p>
           )}
+          {stats && (
+            <div className="game-stats">
+              <span className="game-stats-item">
+                Total wins: <strong>{stats.totalWins}</strong>
+              </span>
+              <span className="game-stats-item game-stats-streak">
+                Streak: <strong>{stats.currentStreak}</strong>
+              </span>
+            </div>
+          )}
           <p className="selecting-prompt">
             Choose the two organisms you think are most closely related
           </p>
@@ -799,7 +820,7 @@ export default function Game({ mode }: { mode: GameMode }) {
               ⏭
             </button>
           </div>
-          <MapToggle organisms={round.organisms} />
+          <MapToggle organisms={round.organisms} difficulty={difficulty} />
         </div>
       )}
 

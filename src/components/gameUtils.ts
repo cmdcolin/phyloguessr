@@ -43,7 +43,7 @@ export function buildShareUrl(orgs: Organism[]) {
 }
 
 export function updateUrlWithQuestion(orgs: Organism[]) {
-  history.pushState(null, '', buildShareUrl(orgs))
+  history.replaceState(null, '', buildShareUrl(orgs))
 }
 
 export function resolveOrganism(
@@ -54,12 +54,12 @@ export function resolveOrganism(
   return resolveOrganismUtil(taxId, allOrganisms, pool, data)
 }
 
-export type Difficulty = 'normal' | 'hard' | 'expert'
+export type Difficulty = 'normal' | 'nolabels'
 
 export function getDifficulty(): Difficulty {
   if (typeof window === 'undefined') return 'normal'
-  const d = new URLSearchParams(window.location.search).get('difficulty')
-  if (d === 'hard' || d === 'expert') return d
+  const d = localStorage.getItem('phyloDifficulty')
+  if (d === 'nolabels' || d === 'hard' || d === 'expert') return 'nolabels'
   return 'normal'
 }
 

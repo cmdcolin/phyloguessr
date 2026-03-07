@@ -174,13 +174,13 @@ export function findClosestPairFromData(
 
   let best = pairs[0]
   for (let i = 1; i < pairs.length; i++) {
-    if (pairs[i].lca.depth > best.lca.depth) {
+    if (lcaClosenessScore(pairs[i].lca) > lcaClosenessScore(best.lca)) {
       best = pairs[i]
     }
   }
 
   const overallLca =
-    best.otherLcas[0].depth < best.otherLcas[1].depth
+    lcaClosenessScore(best.otherLcas[0]) < lcaClosenessScore(best.otherLcas[1])
       ? best.otherLcas[0]
       : best.otherLcas[1]
 
@@ -189,7 +189,10 @@ export function findClosestPairFromData(
     sister2TaxId: best.s2,
     outgroupTaxId: best.out,
     sisterLca: best.lca,
-    overallLca: overallLca.depth < best.lca.depth ? overallLca : best.lca,
+    overallLca:
+      lcaClosenessScore(overallLca) < lcaClosenessScore(best.lca)
+        ? overallLca
+        : best.lca,
     isPolytomy,
   } satisfies ClosestPairResult
 }
@@ -625,6 +628,37 @@ export function pickThreeHardMode(
   return [...indices].map(i => pool[i])
 }
 
+const rankScore: Record<string, number> = {
+  subspecies: 9,
+  species: 8,
+  subgenus: 7,
+  genus: 6,
+  subtribe: 5.7,
+  tribe: 5.5,
+  subfamily: 5.3,
+  family: 5,
+  superfamily: 4.5,
+  infraorder: 4.4,
+  suborder: 4.3,
+  order: 4,
+  superorder: 3.8,
+  subclass: 3.5,
+  class: 3,
+  superclass: 2.8,
+  subphylum: 2.5,
+  phylum: 2,
+  kingdom: 1,
+  superkingdom: 0.5,
+}
+
+export function lcaClosenessScore(lca: LcaResult) {
+  const rs = rankScore[lca.rank]
+  if (rs !== undefined) {
+    return rs * 1000 + lca.depth
+  }
+  return lca.depth
+}
+
 export function getAllPairLcas(taxIds: number[], data: TaxonomyData) {
   const pairs: {
     i: number
@@ -639,7 +673,7 @@ export function getAllPairLcas(taxIds: number[], data: TaxonomyData) {
       pairs.push({ i, j, taxIdA: taxIds[i], taxIdB: taxIds[j], lca })
     }
   }
-  pairs.sort((a, b) => b.lca.depth - a.lca.depth)
+  pairs.sort((a, b) => lcaClosenessScore(b.lca) - lcaClosenessScore(a.lca))
   return pairs
 }
 
@@ -727,11 +761,11 @@ export function pickNHardModeDistance(
       if (pairs.length < 2) {
         continue
       }
-      if (pairs[0].lca.depth === pairs[1].lca.depth) {
+      if (lcaClosenessScore(pairs[0].lca) === lcaClosenessScore(pairs[1].lca)) {
         continue
       }
-      const distinctDepths = new Set(pairs.map(p => p.lca.depth))
-      if (distinctDepths.size >= Math.min(4, pairs.length)) {
+      const distinctScores = new Set(pairs.map(p => lcaClosenessScore(p.lca)))
+      if (distinctScores.size >= Math.min(4, pairs.length)) {
         return { picks: result, clade }
       }
     }
@@ -742,7 +776,7 @@ export function pickNHardModeDistance(
     if (result) {
       const taxIds = result.map(r => r[0])
       const pairs = getAllPairLcas(taxIds, data)
-      if (pairs.length >= 2 && pairs[0].lca.depth !== pairs[1].lca.depth) {
+      if (pairs.length >= 2 && lcaClosenessScore(pairs[0].lca) !== lcaClosenessScore(pairs[1].lca)) {
         return { picks: result }
       }
     }

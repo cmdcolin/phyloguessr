@@ -22,9 +22,8 @@ export default function OrganismCard({
   mapColor,
   difficulty = 'normal',
 }: OrganismCardProps) {
-  const showCommonName = difficulty === 'normal'
-  const showScientificName = difficulty !== 'expert'
-  const showInfo = showCommonName || showScientificName || (!imageUrl)
+  const showLabels = difficulty === 'normal'
+  const showInfo = showLabels || !imageUrl || !!mapColor
 
   return (
     <button
@@ -34,14 +33,14 @@ export default function OrganismCard({
     >
       <div className="organism-image">
         {imageUrl ? (
-          <img src={imageUrl} alt={showCommonName ? commonName : scientificName} draggable={false} />
+          <img src={imageUrl} alt={showLabels ? commonName : scientificName} draggable={false} />
         ) : (
           <div className="no-image">?</div>
         )}
       </div>
       {showInfo && (
         <div className="organism-info">
-          {showCommonName && (
+          {showLabels ? (
             <div className="common-name">
               {mapColor && (
                 <span
@@ -51,8 +50,15 @@ export default function OrganismCard({
               )}
               {capitalize(commonName)}
             </div>
+          ) : (
+            mapColor && (
+              <span
+                className="map-color-dot"
+                style={{ backgroundColor: mapColor }}
+              />
+            )
           )}
-          {showScientificName && (
+          {showLabels && (
             <div className="scientific-name">{scientificName}</div>
           )}
         </div>

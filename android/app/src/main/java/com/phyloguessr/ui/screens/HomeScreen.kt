@@ -42,7 +42,7 @@ fun HomeScreen(
     val authFlow = remember { FirebaseRepository.observeAuthState() }
     val authState by authFlow.collectAsState(FirebaseRepository.currentUser)
     val displayName = authState?.displayName
-    var difficulty by remember { mutableStateOf(Difficulty.NORMAL) }
+    var difficulty by remember { mutableStateOf(Difficulty.SHOW_LABELS) }
 
     Column(
         modifier = Modifier
@@ -102,9 +102,8 @@ fun HomeScreen(
                     label = {
                         Text(
                             when (d) {
-                                Difficulty.NORMAL -> "Normal"
-                                Difficulty.HARD -> "Hard"
-                                Difficulty.EXPERT -> "Expert"
+                                Difficulty.SHOW_LABELS -> "Show species labels"
+                                Difficulty.HIDE_LABELS -> "Don't show species labels"
                             },
                             fontSize = 13.sp,
                         )

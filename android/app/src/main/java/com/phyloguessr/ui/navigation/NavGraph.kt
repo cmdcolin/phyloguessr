@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -41,7 +42,7 @@ fun PhyloGuessrApp() {
             val mode = backStackEntry.arguments?.getString("mode") ?: "random"
             val diffStr = backStackEntry.arguments?.getString("difficulty") ?: "normal"
             val difficulty = runCatching { Difficulty.valueOf(diffStr.uppercase()) }
-                .getOrDefault(Difficulty.NORMAL)
+                .getOrDefault(Difficulty.SHOW_LABELS)
             GameScreen(
                 mode = mode,
                 difficulty = difficulty,

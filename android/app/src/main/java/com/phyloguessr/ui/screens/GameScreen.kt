@@ -305,15 +305,13 @@ fun OrganismCard(
                     },
                 )
             }
-            if (difficulty != Difficulty.EXPERT || organism.imageUrl == null) {
+            if (difficulty == Difficulty.SHOW_LABELS || organism.imageUrl == null) {
                 Column(modifier = Modifier.padding(start = 12.dp)) {
-                    if (difficulty == Difficulty.NORMAL) {
+                    if (difficulty == Difficulty.SHOW_LABELS) {
                         Text(
                             text = organism.commonName,
                             style = MaterialTheme.typography.titleMedium,
                         )
-                    }
-                    if (difficulty != Difficulty.EXPERT) {
                         Text(
                             text = organism.scientificName,
                             style = MaterialTheme.typography.bodySmall,

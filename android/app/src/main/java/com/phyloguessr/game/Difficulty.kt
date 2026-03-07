@@ -1,3 +1,3 @@
 package com.phyloguessr.game
 
-enum class Difficulty { NORMAL, HARD, EXPERT }
+enum class Difficulty { SHOW_LABELS, HIDE_LABELS }

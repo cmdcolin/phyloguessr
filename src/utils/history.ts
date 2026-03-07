@@ -9,6 +9,7 @@ export interface HistoryEntry {
   mode: string
   timestamp: number
   ncbiTaxIds?: number[]
+  score?: number
 }
 
 export interface HistoryStats {
@@ -16,6 +17,8 @@ export interface HistoryStats {
   totalWins: number
   bestStreak: number
   currentStreak: number
+  multiTotalScore?: number
+  multiTotalPlayed?: number
 }
 
 interface PhyloSchema extends DBSchema {
@@ -103,12 +106,16 @@ export async function addHistoryEntry(entry: HistoryEntry) {
     currentStreak: 0,
   }
   const currentStreak = entry.correct ? prev.currentStreak + 1 : 0
+  const isMulti = entry.mode === 'multi'
   await statsStore.put(
     {
       totalPlayed: prev.totalPlayed + 1,
       totalWins: prev.totalWins + (entry.correct ? 1 : 0),
       bestStreak: Math.max(prev.bestStreak, currentStreak),
       currentStreak,
+      multiTotalScore:
+        (prev.multiTotalScore ?? 0) + (isMulti ? (entry.score ?? 0) : 0),
+      multiTotalPlayed: (prev.multiTotalPlayed ?? 0) + (isMulti ? 1 : 0),
     },
     'global',
   )

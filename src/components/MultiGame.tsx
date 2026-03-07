@@ -13,9 +13,11 @@ import Header from './Header.tsx'
 import MultiResultScreen from './MultiResultScreen.tsx'
 import OrganismCard from './OrganismCard.tsx'
 import { recordMultiRound, startPresence } from '../firebase.ts'
-import { addHistoryEntry, loadHistory } from '../utils/history.ts'
+import { addHistoryEntry, loadHistory, loadStats } from '../utils/history.ts'
+import type { HistoryStats } from '../utils/history.ts'
 import {
   getAllPairLcas,
+  lcaClosenessScore,
   loadSpeciesPool,
   loadTaxonomyData,
   pickNHardModeDistance,
@@ -41,6 +43,11 @@ export default function MultiGame() {
     null,
   )
   const [loadingMessage, setLoadingMessage] = useState('')
+  const [stats, setStats] = useState<HistoryStats | null>(null)
+
+  const refreshStats = () => {
+    loadStats().then(s => setStats(s ?? null))
+  }
   const [randomClade, setRandomClade] = useState<{
     taxId: number
     name: string
@@ -119,7 +126,7 @@ export default function MultiGame() {
 
       const taxIds = orgs.map(o => o.ncbiTaxId)
       const pairs = getAllPairLcas(taxIds, data)
-      if (pairs.length >= 2 && pairs[0].lca.depth > pairs[1].lca.depth) {
+      if (pairs.length >= 2 && lcaClosenessScore(pairs[0].lca) > lcaClosenessScore(pairs[1].lca)) {
         finalOrgs = orgs
         finalClade = hardResult.clade
         break
@@ -180,6 +187,7 @@ export default function MultiGame() {
   )
 
   useEffect(() => {
+    refreshStats()
     startPresence()
     const sharedIds = parseSharedIds()
     if (sharedIds) {
@@ -234,8 +242,8 @@ export default function MultiGame() {
     )!
 
     const bestPair = allPairs[0]
-    const userDepth = userPair.lca.depth
-    const betterCount = allPairs.filter(p => p.lca.depth > userDepth).length
+    const userScore = lcaClosenessScore(userPair.lca)
+    const betterCount = allPairs.filter(p => lcaClosenessScore(p.lca) > userScore).length
     const rank = betterCount + 1
     const totalPairs = allPairs.length
     const t = totalPairs <= 1 ? 1 : (totalPairs - rank) / (totalPairs - 1)
@@ -269,8 +277,10 @@ export default function MultiGame() {
         mode: 'multi',
         timestamp: Date.now(),
         ncbiTaxIds: taxIds,
+        score,
       }
       await addHistoryEntry(entry)
+      refreshStats()
 
       const leaderboardName = localStorage.getItem('phyloLeaderboardName')
       if (leaderboardName) {
@@ -302,6 +312,19 @@ export default function MultiGame() {
               Group: {randomClade.name}
               {randomClade.rank ? ` (${randomClade.rank})` : ''}
             </p>
+          )}
+          {stats && stats.multiTotalPlayed !== undefined && stats.multiTotalPlayed > 0 && (
+            <div className="game-stats">
+              <span className="game-stats-item">
+                Avg score:{' '}
+                <strong>
+                  {Math.round((stats.multiTotalScore ?? 0) / stats.multiTotalPlayed)}
+                </strong>
+              </span>
+              <span className="game-stats-item">
+                Total points: <strong>{stats.multiTotalScore ?? 0}</strong>
+              </span>
+            </div>
           )}
           <p className="selecting-prompt">
             Pick the two species you think are most closely related

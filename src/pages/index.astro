@@ -12,9 +12,8 @@ import '../index.css'
         The evolutionary guessing game
       </h3>
       <div class="difficulty-selector">
-        <button class="diff-btn active" data-difficulty="normal">Normal</button>
-        <button class="diff-btn" data-difficulty="hard">Hard</button>
-        <button class="diff-btn" data-difficulty="expert">Expert</button>
+        <button class="diff-btn" data-difficulty="normal">Show species labels</button>
+        <button class="diff-btn" data-difficulty="nolabels">Don't show species labels</button>
       </div>
       <div class="mode-selector">
         <a class="mode-btn mode-btn-easy" href="/easy">Easy <span class="btn-emoji">🍿</span></a>
@@ -26,24 +25,25 @@ import '../index.css'
   </div>
 </Layout>
 
-<script>
-  const diffBtns = document.querySelectorAll<HTMLButtonElement>('.diff-btn')
-  const modeBtns = document.querySelectorAll<HTMLAnchorElement>('.mode-btn')
+<script is:inline>
+  const diffBtns = document.querySelectorAll('.diff-btn')
+
+  const saved = localStorage.getItem('phyloDifficulty')
+  const active = (saved === 'nolabels' || saved === 'hard' || saved === 'expert') ? 'nolabels' : 'normal'
+  diffBtns.forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.difficulty === active)
+  })
 
   diffBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       diffBtns.forEach(b => b.classList.remove('active'))
       btn.classList.add('active')
       const difficulty = btn.dataset.difficulty ?? 'normal'
-      modeBtns.forEach(modeBtn => {
-        const url = new URL(modeBtn.href)
-        if (difficulty === 'normal') {
-          url.searchParams.delete('difficulty')
-        } else {
-          url.searchParams.set('difficulty', difficulty)
-        }
-        modeBtn.href = url.toString()
-      })
+      if (difficulty === 'normal') {
+        localStorage.removeItem('phyloDifficulty')
+      } else {
+        localStorage.setItem('phyloDifficulty', difficulty)
+      }
     })
   })
 </script>
