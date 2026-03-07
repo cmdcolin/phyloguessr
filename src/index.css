@@ -1233,6 +1233,37 @@ a.breadcrumb-link:hover,
   color: var(--error);
 }
 
+.leaderboard-sort {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-sm);
+  font-size: 0.8rem;
+  color: GrayText;
+}
+
+.leaderboard-sort-btn {
+  appearance: none;
+  background: none;
+  border: 1px solid color-mix(in srgb, CanvasText 20%, transparent);
+  border-radius: 4px;
+  padding: 2px var(--space-sm);
+  font-size: 0.8rem;
+  font-family: inherit;
+  color: GrayText;
+  cursor: pointer;
+}
+
+.leaderboard-sort-btn:hover {
+  color: CanvasText;
+}
+
+.leaderboard-sort-btn.active {
+  color: CanvasText;
+  font-weight: 600;
+  border-color: var(--accent-tree);
+}
+
 .leaderboard-table {
   width: 100%;
   border-collapse: collapse;

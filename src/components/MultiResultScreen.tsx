@@ -1,5 +1,5 @@
-import { Fragment, useState } from 'react'
 import { cluster, hierarchy } from 'd3-hierarchy'
+import { Fragment, useState } from 'react'
 
 import Button from './Button.tsx'
 import DiagramTree from './DiagramTree.tsx'
@@ -144,9 +144,10 @@ function MultiTree({
     .separation(() => 1)
   clusterLayout(root)
 
-  const elements: preact.JSX.Element[] = []
+  const elements = []
+  const nodes = root.descendants()
 
-  root.each(node => {
+  for (const node of nodes) {
     const x = (node.y ?? 0) + leftMargin
     const y = (node.x ?? 0) + topPad
     const isLeaf = !node.children
@@ -281,7 +282,7 @@ function MultiTree({
         )
       }
     }
-  })
+  }
 
   return (
     <svg viewBox={`0 0 ${w} ${h}`} className="phylo-tree diagram-tree-svg">

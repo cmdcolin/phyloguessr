@@ -3,9 +3,7 @@ import { useCallback, useEffect, useState } from 'react'
 import Button from './Button.tsx'
 import Header from './Header.tsx'
 import MultiResultScreen from './MultiResultScreen.tsx'
-import type { MultiResultData } from './MultiResultScreen.tsx'
 import OrganismCard from './OrganismCard.tsx'
-
 import { organisms as allOrganisms } from '../data/organisms.ts'
 import { recordMultiRound, startPresence } from '../firebase.ts'
 import { addHistoryEntry, loadHistory } from '../utils/history.ts'
@@ -17,6 +15,7 @@ import {
   resolveOrganism as resolveOrganismUtil,
 } from '../utils/taxonomy.ts'
 
+import type { MultiResultData } from './MultiResultScreen.tsx'
 import type { Organism } from '../data/organisms.ts'
 import type { HistoryEntry } from '../utils/history.ts'
 import type { SpeciesPoolEntry, TaxonomyData } from '../utils/taxonomy.ts'

@@ -56,9 +56,10 @@ export default function FullTree({
 
   clusterLayout(root)
 
-  const elements: preact.JSX.Element[] = []
+  const elements = []
+  const nodes = root.descendants()
 
-  root.each(node => {
+  for (const node of nodes) {
     const x = (node.y ?? 0) + leftMargin
     const y = (node.x ?? 0) + topPad
     const isLeaf = !node.children
@@ -178,7 +179,7 @@ export default function FullTree({
         </text>,
       )
     }
-  })
+  }
 
   return (
     <svg viewBox={`0 0 ${w} ${h}`} className="phylo-tree diagram-tree-svg">

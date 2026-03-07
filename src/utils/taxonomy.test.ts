@@ -3,16 +3,14 @@ import { resolve } from 'path'
 
 import { describe, expect, it } from 'vitest'
 
-import { organisms } from '../data/organisms.ts'
 import {
   buildContextDiagram,
   buildTreeFromLineages,
   findClosestPairFromData,
   getLineageFromParents,
 } from './taxonomy.ts'
-
-// @ts-expect-error .mjs import
 import { CURATED_MICROORGANISMS } from '../../scripts/curated-microorganisms.mjs'
+import { organisms } from '../data/organisms.ts'
 
 import type { TaxonomyData } from './taxonomy.ts'
 

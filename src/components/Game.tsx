@@ -5,7 +5,6 @@ import Header from './Header.tsx'
 import OrganismCard from './OrganismCard.tsx'
 import ResultScreen, { TaxLink } from './ResultScreen.tsx'
 import SpeciesMap, { MAP_COLORS } from './SpeciesMap.tsx'
-
 import { organisms as allOrganisms } from '../data/organisms.ts'
 import { surprisingScenarios } from '../data/surprisingFacts.ts'
 import { recordRound, startPresence } from '../firebase.ts'
