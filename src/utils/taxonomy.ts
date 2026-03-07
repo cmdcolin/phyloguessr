@@ -34,6 +34,45 @@ export interface HardModeResult {
   clade?: { taxId: number; name: string; rank: string }
 }
 
+export function resolveOrganism(
+  taxId: number,
+  knownOrganisms: { ncbiTaxId: number; commonName: string; scientificName: string; wikiTitle: string; group: string; imageUrl?: string }[],
+  pool: SpeciesPoolEntry[] | null,
+  data: TaxonomyData | null,
+) {
+  const known = knownOrganisms.find(o => o.ncbiTaxId === taxId)
+  if (known) {
+    return known
+  }
+  if (pool) {
+    const entry = pool.find(([id]) => id === taxId)
+    if (entry) {
+      const [, commonName, scientificName, imageUrl] = entry
+      return {
+        commonName,
+        scientificName,
+        ncbiTaxId: taxId,
+        wikiTitle: scientificName.replace(/ /g, '_'),
+        group: 'shared',
+        imageUrl,
+      }
+    }
+  }
+  if (data) {
+    const name = data.names[String(taxId)]
+    if (name) {
+      return {
+        commonName: name,
+        scientificName: name,
+        ncbiTaxId: taxId,
+        wikiTitle: name.replace(/ /g, '_'),
+        group: 'shared',
+      }
+    }
+  }
+  return null
+}
+
 export function getLineageFromParents(
   taxId: number,
   parents: Record<string, number>,
@@ -544,6 +583,254 @@ export function pickThreeHardMode(
     indices.add(Math.floor(Math.random() * pool.length))
   }
   return [...indices].map(i => pool[i])
+}
+
+export function getAllPairLcas(
+  taxIds: number[],
+  data: TaxonomyData,
+) {
+  const pairs: {
+    i: number
+    j: number
+    taxIdA: number
+    taxIdB: number
+    lca: LcaResult
+  }[] = []
+  for (let i = 0; i < taxIds.length; i++) {
+    for (let j = i + 1; j < taxIds.length; j++) {
+      const lca = getLcaFromParents(taxIds[i], taxIds[j], data)
+      pairs.push({ i, j, taxIdA: taxIds[i], taxIdB: taxIds[j], lca })
+    }
+  }
+  pairs.sort((a, b) => b.lca.depth - a.lca.depth)
+  return pairs
+}
+
+export function pickNFromClade(
+  count: number,
+  ancestorTaxId: number,
+  pool: SpeciesPoolEntry[],
+  data: TaxonomyData,
+) {
+  const matches: SpeciesPoolEntry[] = []
+  for (let i = 0; i < pool.length; i++) {
+    if (isDescendantOf(pool[i][0], ancestorTaxId, data.parents)) {
+      matches.push(pool[i])
+    }
+  }
+  if (matches.length < count) {
+    return undefined
+  }
+
+  for (let pickAttempt = 0; pickAttempt < 50; pickAttempt++) {
+    const indices = new Set<number>()
+    while (indices.size < count) {
+      indices.add(Math.floor(Math.random() * matches.length))
+    }
+    const picks = [...indices].map(i => matches[i])
+
+    const genera = new Map<number, number>()
+    let tooMany = false
+    for (const pick of picks) {
+      const lineage = getLineageFromParents(pick[0], data.parents)
+      for (const id of lineage) {
+        const rank = data.ranks[String(id)]
+        if (rank === 'genus') {
+          genera.set(id, (genera.get(id) ?? 0) + 1)
+          if (genera.get(id)! > 2) {
+            tooMany = true
+          }
+          break
+        }
+      }
+    }
+    if (!tooMany) {
+      return picks
+    }
+  }
+
+  const indices = new Set<number>()
+  while (indices.size < count) {
+    indices.add(Math.floor(Math.random() * matches.length))
+  }
+  return [...indices].map(i => matches[i])
+}
+
+export function pickNHardModeDistance(
+  count: number,
+  pool: SpeciesPoolEntry[],
+  data: TaxonomyData,
+  minRank?: 'family' | 'order' | 'class' | 'phylum',
+): HardModeResult {
+  const byRank = buildCladeIndex(pool, data)
+  const minRankIdx = minRank ? targetRankList.indexOf(minRank) : 0
+  const nonEmptyRanks = targetRankList.filter(
+    (r, i) => i >= minRankIdx && (byRank.get(r)?.length ?? 0) > 0,
+  )
+
+  for (let attempt = 0; attempt < 20; attempt++) {
+    const rank = nonEmptyRanks[Math.floor(Math.random() * nonEmptyRanks.length)]
+    const bucket = byRank.get(rank)!
+    const clade = bucket[Math.floor(Math.random() * bucket.length)]
+
+    const matches: SpeciesPoolEntry[] = []
+    for (let i = 0; i < pool.length; i++) {
+      if (isDescendantOf(pool[i][0], clade.taxId, data.parents)) {
+        matches.push(pool[i])
+      }
+    }
+    if (matches.length < count) {
+      continue
+    }
+
+    const result = pickNFromClade(count, clade.taxId, pool, data)
+    if (result) {
+      const taxIds = result.map(r => r[0])
+      const pairs = getAllPairLcas(taxIds, data)
+      if (pairs.length >= 2 && pairs[0].lca.depth !== pairs[1].lca.depth) {
+        return { picks: result, clade }
+      }
+    }
+  }
+
+  return { picks: pickNFromClade(count, 1, pool, data) ?? pool.slice(0, count) }
+}
+
+interface DiagramNode {
+  label: string
+  highlight?: boolean
+  children?: DiagramNode[]
+}
+
+const contextRanks = new Set([
+  'kingdom',
+  'phylum',
+  'subphylum',
+  'superclass',
+  'class',
+  'subclass',
+  'infraclass',
+  'superorder',
+  'order',
+  'suborder',
+  'infraorder',
+  'superfamily',
+  'family',
+])
+
+interface CladePair {
+  branch: { taxId: number; name: string } | undefined
+  leaf: { taxId: number; name: string } | undefined
+}
+
+function findClades(
+  lineage: number[],
+  aboveTaxId: number,
+  data: TaxonomyData,
+): CladePair {
+  const idx = lineage.indexOf(aboveTaxId)
+  if (idx <= 0) {
+    return { branch: undefined, leaf: undefined }
+  }
+  const clades: { taxId: number; name: string }[] = []
+  for (let i = idx - 1; i >= 0; i--) {
+    const rank = data.ranks[String(lineage[i])]
+    if (rank && contextRanks.has(rank)) {
+      clades.push({
+        taxId: lineage[i],
+        name: data.names[String(lineage[i])] ?? String(lineage[i]),
+      })
+    }
+  }
+  if (clades.length === 0) {
+    const taxId = lineage[idx - 1]
+    return {
+      branch: undefined,
+      leaf: { taxId, name: data.names[String(taxId)] ?? String(taxId) },
+    }
+  }
+  if (clades.length === 1) {
+    return { branch: undefined, leaf: clades[0] }
+  }
+  return { branch: clades[0], leaf: clades[clades.length - 1] }
+}
+
+function makeLeafLabel(
+  organism: { commonName: string },
+  clade: { name: string } | undefined,
+) {
+  if (clade) {
+    return `${clade.name} (${organism.commonName})`
+  }
+  return organism.commonName
+}
+
+function makeBranchNode(
+  organism: { commonName: string },
+  clades: CladePair,
+  highlight?: boolean,
+): DiagramNode {
+  const leafLabel = makeLeafLabel(organism, clades.leaf ?? clades.branch)
+  const leaf: DiagramNode = { label: leafLabel }
+  if (highlight) {
+    leaf.highlight = true
+  }
+  if (clades.branch && clades.leaf && clades.branch.taxId !== clades.leaf.taxId) {
+    const node: DiagramNode = {
+      label: clades.branch.name,
+      children: [leaf],
+    }
+    if (highlight) {
+      node.highlight = true
+    }
+    return node
+  }
+  return leaf
+}
+
+export function buildContextDiagram(
+  sister1: { ncbiTaxId: number; commonName: string },
+  sister2: { ncbiTaxId: number; commonName: string },
+  outgroup: { ncbiTaxId: number; commonName: string },
+  sisterLcaTaxId: number,
+  overallLcaTaxId: number,
+  data: TaxonomyData,
+): DiagramNode | undefined {
+  if (sisterLcaTaxId === overallLcaTaxId) {
+    return undefined
+  }
+
+  const getName = (taxId: number) =>
+    data.names[String(taxId)] ?? String(taxId)
+
+  const lin1 = getLineageFromParents(sister1.ncbiTaxId, data.parents)
+  const lin2 = getLineageFromParents(sister2.ncbiTaxId, data.parents)
+  const linOut = getLineageFromParents(outgroup.ncbiTaxId, data.parents)
+
+  const outIdx = linOut.indexOf(overallLcaTaxId)
+  if (outIdx <= 0) {
+    return undefined
+  }
+
+  const outClades = findClades(linOut, overallLcaTaxId, data)
+  const s1Clades = findClades(lin1, sisterLcaTaxId, data)
+  const s2Clades = findClades(lin2, sisterLcaTaxId, data)
+
+  const outNode = makeBranchNode(outgroup, outClades)
+
+  const sisterNode: DiagramNode = {
+    label: getName(sisterLcaTaxId),
+    highlight: true,
+    children: [
+      makeBranchNode(sister1, s1Clades, true),
+      makeBranchNode(sister2, s2Clades, true),
+    ],
+  }
+
+  return {
+    label: getName(overallLcaTaxId),
+    children: [outNode, sisterNode],
+  }
 }
 
 export function buildTreeFromLineages(

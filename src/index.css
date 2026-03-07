@@ -315,6 +315,11 @@ body {
   border: 3px solid #7a1a1a;
   color: white;
 }
+.mode-btn-multi {
+  background: #5a3d8f;
+  border: 3px solid #3f2a66;
+  color: white;
+}
 
 .mode-btn-easy.active {
   background: #1a5a1a;
@@ -327,6 +332,10 @@ body {
 .mode-btn-custom.active {
   background: #7a1a1a;
   border-color: #4d0000;
+}
+.mode-btn-multi.active {
+  background: #3f2a66;
+  border-color: #2a1a44;
 }
 
 .custom-screen {
@@ -860,12 +869,34 @@ body {
 }
 
 .fun-fact-source {
-  font-size: 0.82rem;
-  opacity: 0.7;
+  font-size: 0.95rem;
 }
 
-.diagram-tree-svg {
-  margin-top: var(--space-xs);
+.debated-placeholder {
+  text-align: center;
+  padding: var(--space-md);
+}
+
+.debated-question-mark {
+  font-size: 4rem;
+  font-weight: bold;
+  opacity: 0.4;
+}
+
+.diagram-text-tree {
+  margin: var(--space-sm) auto;
+  padding: var(--space-sm) var(--space-md);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  text-align: left;
+  max-width: 500px;
+  overflow-x: auto;
+  color: GrayText;
+}
+
+.diagram-text-tree .diagram-highlight {
+  color: var(--accent-tree);
+  font-weight: bold;
 }
 
 .phylo-tree {
@@ -1148,6 +1179,35 @@ a.breadcrumb-link:hover,
   height: 1px;
   background: color-mix(in srgb, GrayText, transparent 80%);
   margin: 4px 0;
+}
+
+.leaderboard-tabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: var(--space-md);
+  border-bottom: 1px solid color-mix(in srgb, CanvasText 15%, transparent);
+}
+
+.leaderboard-tab {
+  appearance: none;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: var(--space-sm) var(--space-lg);
+  font-size: 0.9rem;
+  font-family: inherit;
+  color: GrayText;
+  cursor: pointer;
+}
+
+.leaderboard-tab:hover {
+  color: CanvasText;
+}
+
+.leaderboard-tab.active {
+  color: CanvasText;
+  font-weight: 600;
+  border-bottom-color: var(--accent-tree);
 }
 
 .leaderboard-loading,
@@ -1556,6 +1616,89 @@ a.breadcrumb-link:hover,
   border-radius: 8px;
   border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
   z-index: 0;
+}
+
+.multi-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+
+.multi-cards .organism-card {
+  flex: unset;
+}
+
+.multi-pair-details {
+  margin: var(--space-md) 0;
+  text-align: left;
+}
+
+.multi-pair-details summary {
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: GrayText;
+  text-align: center;
+}
+
+.multi-pair-table-wrapper {
+  overflow-x: auto;
+  margin-top: var(--space-sm);
+}
+
+.multi-pair-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+.multi-pair-table th {
+  text-align: left;
+  font-size: 0.72rem;
+  color: GrayText;
+  padding: 4px 8px;
+  border-bottom: 1px solid color-mix(in srgb, CanvasText 15%, transparent);
+}
+
+.multi-pair-table td {
+  padding: 4px 8px;
+  border-bottom: 1px solid color-mix(in srgb, CanvasText 8%, transparent);
+}
+
+.multi-pair-rank {
+  color: GrayText;
+  width: 30px;
+}
+
+.multi-pair-lca {
+  color: GrayText;
+  font-style: italic;
+}
+
+.multi-pair-user {
+  background: var(--success-bg);
+  font-weight: 600;
+}
+
+.breadcrumb-user-pick {
+  color: var(--accent-tree);
+}
+
+.breadcrumb-pick-tag {
+  font-size: 0.65rem;
+  font-weight: normal;
+  color: Canvas;
+  background: var(--accent-tree);
+  padding: 1px 5px;
+  border-radius: 3px;
+  margin-left: var(--space-xs);
+  vertical-align: middle;
+}
+
+@media (max-width: 600px) {
+  .multi-cards {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-sm);
+  }
 }
 
 .species-map-overlay-inline {

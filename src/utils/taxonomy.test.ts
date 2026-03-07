@@ -5,6 +5,7 @@ import { describe, expect, it } from 'vitest'
 
 import { organisms } from '../data/organisms.ts'
 import {
+  buildContextDiagram,
   buildTreeFromLineages,
   findClosestPairFromData,
   getLineageFromParents,
@@ -373,5 +374,105 @@ describe('curated microorganisms have valid taxonomy data', () => {
       seen.add(taxId)
     }
     expect(dupes).toEqual([])
+  })
+})
+
+describe('buildContextDiagram', () => {
+  // Amniota
+  // ├── Lepidosauria (order)
+  // │   └── Serpentes (suborder) → taxId 50
+  // └── Archelosauria (superorder)
+  //     ├── Testudines (order) → taxId 60
+  //     └── Archosauria (superorder)
+  //         └── Aves (class) → taxId 70
+  function makeReptileData(): TaxonomyData {
+    return {
+      parents: {
+        '100': 1,
+        '110': 100,
+        '120': 100,
+        '50': 110,
+        '60': 120,
+        '130': 120,
+        '70': 130,
+      },
+      names: {
+        '1': 'root',
+        '100': 'Amniota',
+        '110': 'Lepidosauria',
+        '120': 'Archelosauria',
+        '130': 'Archosauria',
+        '50': 'Serpentes',
+        '60': 'Testudines',
+        '70': 'Aves',
+      },
+      ranks: {
+        '100': 'class',
+        '110': 'order',
+        '120': 'superorder',
+        '130': 'superorder',
+        '50': 'suborder',
+        '60': 'order',
+        '70': 'class',
+      },
+    }
+  }
+
+  it('builds a context diagram for bird+turtle vs snake', () => {
+    const data = makeReptileData()
+    const result = buildContextDiagram(
+      { ncbiTaxId: 70, commonName: 'Penguin' },
+      { ncbiTaxId: 60, commonName: 'Snapping turtle' },
+      { ncbiTaxId: 50, commonName: 'Snake' },
+      120,
+      100,
+      data,
+    )
+    expect(result).toBeDefined()
+    expect(result!.label).toBe('Amniota')
+    expect(result!.children).toHaveLength(2)
+
+    // Outgroup should have a branch node (Lepidosauria) with leaf underneath
+    const outBranch = result!.children![0]
+    expect(outBranch.label).toBe('Lepidosauria')
+    expect(outBranch.highlight).toBeFalsy()
+    expect(outBranch.children).toHaveLength(1)
+    expect(outBranch.children![0].label).toBe('Serpentes (Snake)')
+
+    const sisterBranch = result!.children![1]
+    expect(sisterBranch.label).toBe('Archelosauria')
+    expect(sisterBranch.highlight).toBe(true)
+    expect(sisterBranch.children).toHaveLength(2)
+    expect(sisterBranch.children![0].highlight).toBe(true)
+    expect(sisterBranch.children![1].highlight).toBe(true)
+  })
+
+  it('returns undefined when sister and overall LCA are the same', () => {
+    const data = makeReptileData()
+    const result = buildContextDiagram(
+      { ncbiTaxId: 70, commonName: 'Penguin' },
+      { ncbiTaxId: 60, commonName: 'Turtle' },
+      { ncbiTaxId: 50, commonName: 'Snake' },
+      100,
+      100,
+      data,
+    )
+    expect(result).toBeUndefined()
+  })
+
+  it('uses simple mock data (Plants vs Animals)', () => {
+    const data = makeMockData()
+    const result = buildContextDiagram(
+      { ncbiTaxId: 21, commonName: 'Orchid' },
+      { ncbiTaxId: 22, commonName: 'Oak' },
+      { ncbiTaxId: 31, commonName: 'Dog' },
+      20,
+      10,
+      data,
+    )
+    expect(result).toBeDefined()
+    expect(result!.label).toBe('Eukaryota')
+    expect(result!.children![1].label).toBe('Plants')
+    expect(result!.children![1].highlight).toBe(true)
   })
 })

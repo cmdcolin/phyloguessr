@@ -7,6 +7,7 @@ interface PhyloTreeProps {
   sister2: Organism
   outgroup: Organism
   cladeLabel?: string
+  rootLabel?: string
   images: Record<number, string | null>
   userSelectedTaxIds: Set<number>
   organismColors?: Record<number, string>
@@ -17,6 +18,7 @@ export default function PhyloTree({
   sister2,
   outgroup,
   cladeLabel,
+  rootLabel,
   images,
   userSelectedTaxIds,
   organismColors,
@@ -144,6 +146,19 @@ export default function PhyloTree({
           fontStyle="italic"
         >
           {cladeLabel}
+        </text>
+      )}
+
+      {/* Root label */}
+      {rootLabel && (
+        <text
+          x={rootX + 4}
+          y={innerY + (y3 - innerY) / 2 - 8}
+          fontSize={11}
+          fill="GrayText"
+          fontStyle="italic"
+        >
+          {rootLabel}
         </text>
       )}
 

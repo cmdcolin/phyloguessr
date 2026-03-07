@@ -113,7 +113,7 @@ export const surprisingScenarios: SurprisingScenario[] = [
       'Oak trees are closer to pumpkins than to pines. Oaks and pumpkins are both flowering plants (angiosperms), while pines are gymnosperms — a much older lineage.',
     sources: [
       { url: 'https://en.wikipedia.org/wiki/Flowering_plant', label: 'Flowering plant - Wikipedia' },
-      { url: 'https://www.youtube.com/watch?v=ONVpFtiD-fo', label: 'YouTube - The Surprising Map of Plants' },
+      { url: 'https://www.youtube.com/watch?v=ONVpFtiD-fo', label: 'Domain of Life - The Surprising Map of Plants' },
     ],
   },
   {
@@ -149,11 +149,11 @@ export const surprisingScenarios: SurprisingScenario[] = [
   {
     organisms: [
       org('Aardvark'),
-      org('West Indian manatee'),
+      org('Elephant shrew'),
       org('Nine-banded armadillo'),
     ],
     funFact:
-      'An aardvark digging up termite mounds in Africa shares more recent common ancestry with a manatee drifting through Caribbean seagrass than either does with a nine-banded armadillo — which has a nearly identical lifestyle to the aardvark. Aardvarks and manatees both descend from an ancient group of African mammals; armadillos evolved separately in South America.',
+      'An aardvark digging up termite mounds in Africa shares more recent common ancestry with a tiny elephant shrew darting through leaf litter than either does with a nine-banded armadillo — which has a nearly identical lifestyle to the aardvark. Aardvarks and elephant shrews both descend from an ancient group of African mammals (Afrotheria); armadillos evolved separately in South America.',
     sources: [
       { url: 'https://en.wikipedia.org/wiki/Afrotheria', label: 'Afrotheria - Wikipedia' },
       { url: 'https://www.livescience.com/55241-aardvark-facts.html', label: 'Live Science - Aardvark facts' },
@@ -353,15 +353,16 @@ export const surprisingScenarios: SurprisingScenario[] = [
   {
     organisms: [org('Tuatara'), org('Komodo dragon'), org('King cobra')],
     funFact:
-      'The tuatara looks like a large lizard, but it is the sole survivor of Rhynchocephalia — a reptile order that diverged from squamates over 240 million years ago. The Komodo dragon and king cobra are both squamates, more closely related to each other than either is to the tuatara.',
+      'The tuatara looks like a large lizard, but it is the sole survivor of Rhynchocephalia — a reptile order that diverged from squamates (the order containing all lizards and snakes) over 240 million years ago. The Komodo dragon and king cobra are both squamates, more closely related to each other than either is to the tuatara.',
     sources: [{ url: 'https://en.wikipedia.org/wiki/Rhynchocephalia', label: 'Rhynchocephalia - Wikipedia' },
       { url: 'https://theconversation.com/not-a-lizard-nor-a-dinosaur-tuatara-is-the-sole-survivor-of-a-once-widespread-reptile-group-75921', label: 'The Conversation - Tuatara is the sole survivor of a once-widespread reptile group' }],
   },
   {
-    organisms: [org('Axolotl'), org('Tiger salamander'), org('Common frog')],
+    organisms: [org('Axolotl'), org('Tiger salamander'), org('Olm')],
     funFact:
-      'The axolotl is a tiger salamander — it is a neotenic form of Ambystoma, retaining juvenile features (external gills, aquatic lifestyle) into adulthood. Frogs are a completely separate amphibian order (Anura). The axolotl looks nothing like a tiger salamander, yet they are essentially the same animal.',
-    sources: [{ url: 'https://en.wikipedia.org/wiki/Axolotl', label: 'Axolotl - Wikipedia' }],
+      'The axolotl is a tiger salamander — it is a neotenic form of Ambystoma, retaining juvenile features (external gills, aquatic lifestyle) into adulthood. The olm is a blind cave salamander that also has external gills and lives permanently in water, looking strikingly similar to an axolotl — but it belongs to a completely different salamander family (Proteidae). The axolotl looks nothing like a tiger salamander, yet they are essentially the same animal.',
+    sources: [{ url: 'https://en.wikipedia.org/wiki/Axolotl', label: 'Axolotl - Wikipedia' },
+      { url: 'https://en.wikipedia.org/wiki/Olm', label: 'Olm - Wikipedia' }],
   },
   {
     organisms: [org('Blue whale'), org('Cow'), org('Horse')],
@@ -420,7 +421,7 @@ export const surprisingScenarios: SurprisingScenario[] = [
       { url: 'https://www.britannica.com/animal/pinniped', label: 'Britannica - Pinnipeds' }],
   },
   {
-    organisms: [org('Horseshoe crab'), org('Scorpion'), org('Honeybee')],
+    organisms: [org('Horseshoe crab'), org('Scorpion'), org('Ladybug')],
     funFact:
       'Despite being called crabs, horseshoe crabs are chelicerates — more closely related to scorpions and spiders than to any true crustacean. They have blue copper-based blood and have barely changed in over 450 million years of fossil record.',
     diagram: {
@@ -438,13 +439,26 @@ export const surprisingScenarios: SurprisingScenario[] = [
           label: 'Mandibulata',
           children: [
             { label: 'Crustaceans' },
-            { label: 'Insects (honeybee)', highlight: true },
+            { label: 'Insects (ladybug)', highlight: true },
           ],
         },
       ],
     },
     sources: [{ url: 'https://en.wikipedia.org/wiki/Chelicerata', label: 'Chelicerata - Wikipedia' },
       { url: 'https://oceanservice.noaa.gov/facts/horseshoe-crab.html', label: 'NOAA - Are horseshoe crabs really crabs?' }],
+  },
+  {
+    organisms: [org('Deer tick'), org('Dust mite'), org('Garden spider')],
+    funFact:
+      'Ticks and mites are both Acari — the same group of arachnids. Despite looking nothing alike (one is a blood-sucking parasite, the other a microscopic dust-dweller), they are more closely related to each other than either is to a spider. All three are arachnids, but spiders (Araneae) are on a separate branch.',
+    sources: [{ url: 'https://en.wikipedia.org/wiki/Acari', label: 'Acari - Wikipedia' }],
+  },
+  {
+    organisms: [org('Deer tick'), org('Garden spider'), org('Earwig')],
+    funFact:
+      'Ticks are arachnids — with eight legs and no antennae — more closely related to a garden spider than to an earwig. Despite their tiny size, ticks and spiders are both chelicerates while insects like earwigs are mandibulates, separated by over 500 million years of evolution.',
+    sources: [{ url: 'https://en.wikipedia.org/wiki/Tick', label: 'Tick - Wikipedia' },
+      { url: 'https://en.wikipedia.org/wiki/Chelicerata', label: 'Chelicerata - Wikipedia' }],
   },
   {
     organisms: [
@@ -852,7 +866,7 @@ export const surprisingScenarios: SurprisingScenario[] = [
   {
     organisms: [org('Comb jelly'), org('Moon jellyfish'), org('Salp')],
     funFact:
-      'Three transparent, drifting "jellies" — but from three completely different phyla. Moon jellyfish are cnidarians (stinging cells). Comb jellies are ctenophores (no stinging cells — they use sticky colloblasts instead). Salps are chordates, more closely related to humans than to either of the other two. "Jelly" is an ecological description, not a phylogenetic one.',
+      'Three transparent, drifting "jellies" — but from three completely different phyla. Moon jellyfish are cnidarians (stinging cells). Comb jellies are ctenophores (no stinging cells — they use sticky colloblasts instead). Salps are barrel-shaped filter feeders that move by pumping water through their gelatinous bodies — and they are chordates, more closely related to humans than to either of the other two.',
     sources: [{ url: 'https://en.wikipedia.org/wiki/Jellyfish#Phylogeny', label: 'Jellyfish phylogeny - Wikipedia' }],
   },
   {
@@ -1066,7 +1080,7 @@ export const surprisingScenarios: SurprisingScenario[] = [
   {
     organisms: [org('Nautilus'), org('Giant squid'), org('Horseshoe crab')],
     funFact:
-      'The nautilus is a living fossil cephalopod — the last surviving lineage with an external shell. It is more closely related to the giant squid than to horseshoe crabs, despite all three looking like armored sea creatures.',
+      'The nautilus is a living fossil cephalopod — the last surviving lineage with an external shell. It is more closely related to the giant squid, a fellow cephalopod, than to horseshoe crabs, despite all three looking like armored sea creatures.',
     sources: [{ url: 'https://en.wikipedia.org/wiki/Nautilus', label: 'Nautilus - Wikipedia' }],
   },
   // Deep eukaryote / protist surprises
@@ -1254,7 +1268,7 @@ export const surprisingScenarios: SurprisingScenario[] = [
   {
     organisms: [org('Dodder'), org('Potato'), org('Corpse lily')],
     funFact:
-      'Dodder looks like parasitic orange spaghetti draped over other plants — no leaves, no chlorophyll, just a tangle of vampire vines. But it is a flowering plant in the morning glory family, more closely related to a potato than to the corpse lily. Both dodder and potatoes are asterids; the corpse lily is on a completely different branch. Plants have independently evolved parasitism many times.',
+      'Dodder looks like tangled orange string draped over other plants — no leaves, no chlorophyll, just parasitic vines tapping into their hosts. But it is a flowering plant in the morning glory family, more closely related to a potato than to the corpse lily. Both dodder and potatoes are asterids; the corpse lily is on a completely different branch.',
     sources: [{ url: 'https://en.wikipedia.org/wiki/Cuscuta', label: 'Cuscuta - Wikipedia' }],
   },
   {
@@ -1459,40 +1473,10 @@ export const surprisingScenarios: SurprisingScenario[] = [
     sources: [{ url: 'https://en.wikipedia.org/wiki/Porcelain_crab', label: 'Porcelain crab - Wikipedia' }],
   },
   {
-    organisms: [org('Foraminiferan'), org('Paramecium'), org('Staghorn coral')],
-    funFact:
-      'Foraminifera build intricate calcium carbonate shells and can form reef-like structures that look like coral — but they are single-celled protists in the SAR supergroup, closer to paramecium than to any animal! The pyramids of Giza are built from limestone made almost entirely of foram shells.',
-    sources: [{ url: 'https://en.wikipedia.org/wiki/Foraminifera', label: 'Foraminifera - Wikipedia' }],
-  },
-  {
-    organisms: [org('Foraminiferan'), org('Polycystine'), org('Giant kelp')],
-    funFact:
-      'Foraminifera (calcium carbonate shells) and polycystines (intricate silica skeletons) are both Rhizaria — single-celled organisms on the same branch of the eukaryotic tree. Giant kelp is also in the SAR supergroup but on a different branch (Stramenopiles). Ernst Haeckel\'s famous "Art Forms in Nature" drawings were largely of polycystine skeletons.',
-    sources: [{ url: 'https://en.wikipedia.org/wiki/Rhizaria', label: 'Rhizaria - Wikipedia' }],
-  },
-  {
-    organisms: [org('Sea urchin'), org('Foraminiferan'), org('Garden snail')],
-    funFact:
-      'Sea urchins and foraminifera both have "tests" — hard calcium carbonate shells — but one is a complex animal and the other is a single-celled protist. The word "test" unites them terminologically, but phylogenetically they could not be more different. A snail shell is called something else entirely, despite being made of the same material.',
-    sources: [{ url: 'https://en.wikipedia.org/wiki/Test_(biology)', label: 'Test (biology) - Wikipedia' }],
-  },
-  {
-    organisms: [org('Copepod'), org('White shrimp'), org('Foraminiferan')],
-    funFact:
-      'Copepods and foraminifera are both "plankton" drifting in the same drop of seawater, but a copepod is a crustacean — related to shrimp and lobsters — while a foram is a single-celled protist. "Plankton" is an ecological term, not a phylogenetic one. It spans the entire tree of life, from bacteria to baby fish.',
-    sources: [{ url: 'https://en.wikipedia.org/wiki/Plankton', label: 'Plankton - Wikipedia' }],
-  },
-  {
     organisms: [org('Diatom'), org('Giant kelp'), org('Polycystine')],
     funFact:
       "A microscopic diatom and a 60-meter giant kelp are both Stramenopiles — the same branch of the eukaryotic tree! Polycystines also have silica shells like diatoms, but are Rhizaria, a completely separate lineage. Diatoms produce about 20% of Earth's oxygen — more than all the world's rainforests.",
     sources: [{ url: 'https://en.wikipedia.org/wiki/Diatom', label: 'Diatom - Wikipedia' }],
-  },
-  {
-    organisms: [org('Xenophyophore'), org('Foraminiferan'), org('Bath sponge')],
-    funFact:
-      'Xenophyophores are giant blobs up to 20 cm across that carpet the deep seafloor — they look like sponges or corals, but they are single cells! Molecular data revealed they are foraminifera, the same group as the microscopic shelled protists. One of the largest single-celled organisms ever found, and they are not even animals.',
-    sources: [{ url: 'https://en.wikipedia.org/wiki/Xenophyophorea', label: 'Xenophyophorea - Wikipedia' }],
   },
   {
     organisms: [org('Slime mold'), org('Amoeba'), org('Fly agaric')],
@@ -1502,9 +1486,9 @@ export const surprisingScenarios: SurprisingScenario[] = [
       { url: 'https://www.nps.gov/articles/000/slime-molds.htm', label: 'National Park Service - Slime molds are not fungi' }],
   },
   {
-    organisms: [org('Crinoid'), org('Starfish'), org('Xenophyophore')],
+    organisms: [org('Crinoid'), org('Starfish'), org('Staghorn coral')],
     funFact:
-      'Crinoids look like underwater ferns swaying on the seafloor, but they are echinoderms — animals related to starfish and sea urchins! Xenophyophores can look similar from a distance, but they are single-celled foraminifera. On the deep seafloor, nothing is what it seems.',
+      'Crinoids look like underwater plants or corals swaying on the reef, but they are echinoderms — animals related to starfish and sea urchins! Staghorn coral may share the same reef, but corals are cnidarians — a completely different branch of animal life. The feathery crinoid waving next to a coral is secretly on the same team as the starfish.',
     sources: [{ url: 'https://en.wikipedia.org/wiki/Crinoid', label: 'Crinoid - Wikipedia' }],
   },
   {
@@ -1584,7 +1568,7 @@ export const surprisingScenarios: SurprisingScenario[] = [
   {
     organisms: [org('Human'), org('Salp'), org('Starfish')],
     funFact:
-      'A salp — a transparent, barrel-shaped blob drifting in open ocean — is more closely related to you than a starfish is. Salps are tunicates, which sit inside phylum Chordata as the sister group of all vertebrates. Starfish are Echinodermata, a more distant deuterostome branch. The gelatinous animal pulsing through the sea shares more recent common ancestry with every fish, frog, and human than with any echinoderm.',
+      'A salp — a transparent, barrel-shaped animal that drifts through open ocean, pumping water through its body to feed and move — is more closely related to you than a starfish is. Salps are tunicates, which sit inside phylum Chordata as the sister group of all vertebrates. They even have a primitive notochord during their larval stage. Starfish are Echinodermata, a more distant deuterostome branch.',
     sources: [{ url: 'https://en.wikipedia.org/wiki/Olfactores', label: 'Olfactores - Wikipedia' }],
   },
   {
@@ -1641,7 +1625,7 @@ export const surprisingScenarios: SurprisingScenario[] = [
   {
     organisms: [org('Oomycete'), org('Diatom'), org('Penicillium')],
     funFact:
-      'Oomycetes (water molds) look identical to fungi under a microscope — same filamentous hyphae, same growth pattern — and were classified as fungi for centuries. But they are stramenopiles, closer to photosynthetic diatoms than to any true fungus! Phytophthora infestans caused the Irish potato famine, and it is not even a fungus.',
+      'Oomycetes (water molds) look identical to fungi under a microscope — same filamentous hyphae, same growth pattern — and were classified as fungi for centuries. But they are stramenopiles, closer to photosynthetic diatoms than to any true fungus. Phytophthora infestans, the oomycete that caused the Irish potato famine, is one of the most devastating plant pathogens in history.',
     diagram: {
       label: 'Eukaryotes',
       children: [
@@ -1694,8 +1678,8 @@ export const surprisingScenarios: SurprisingScenario[] = [
     sources: [{ url: 'https://en.wikipedia.org/wiki/Muskox', label: 'Muskox - Wikipedia' }],
   },
   {
-    organisms: [org('Pronghorn'), org('Giraffe'), org('Impala')],
-    correctPair: ['Pronghorn', 'Giraffe'],
+    organisms: [org('American pronghorn'), org('Giraffe'), org('Impala')],
+    correctPair: ['American pronghorn', 'Giraffe'],
     funFact:
       'The pronghorn is called the "American antelope" but is not an antelope at all — it is the sole surviving member of Antilocapridae, closer to giraffes than to any true antelope! Impala and other antelopes are Bovidae (with cattle and goats). The pronghorn\'s family was once diverse across North America, but only one species survives. (NCBI taxonomy leaves Pecora unresolved, but molecular studies consistently group Antilocapridae with Giraffidae.)',
     sources: [{ url: 'https://en.wikipedia.org/wiki/Pronghorn', label: 'Pronghorn - Wikipedia' },
@@ -1923,9 +1907,9 @@ export const surprisingScenarios: SurprisingScenario[] = [
       { url: 'https://www.science.org/doi/10.1126/science.ade0529', label: 'Science - Convergence in carnivorous pitcher plants' }],
   },
   {
-    organisms: [org('Dandelion'), org('Giant groundsel'), org('Scots pine')],
+    organisms: [org('Dandelion'), org('Giant groundsel'), org('Ginkgo')],
     funFact:
-      "The giant groundsel is a 20-foot tall woody tree from Mount Kilimanjaro — and it is basically a dandelion that moved to a mountain and decided to become the boss. Both are in the daisy family (Asteraceae). The pine tree is a completely different branch of life (a gymnosperm) that doesn't even make flowers!",
+      "The giant groundsel is a 20-foot tall woody tree from Mount Kilimanjaro — and it is basically a dandelion that moved to a mountain and decided to become the boss. Both are in the daisy family (Asteraceae). The ginkgo tree is a completely different branch of life (a gymnosperm) that doesn't even make flowers — a living fossil barely changed since the age of dinosaurs.",
     sources: [{ url: 'https://en.wikipedia.org/wiki/Dendrosenecio', label: 'Dendrosenecio - Wikipedia' }],
   },
   {
@@ -1935,9 +1919,9 @@ export const surprisingScenarios: SurprisingScenario[] = [
     sources: [{ url: 'https://en.wikipedia.org/wiki/Malpighiales', label: 'Malpighiales - Wikipedia' }],
   },
   {
-    organisms: [org('Dragon blood tree'), org('Asparagus'), org('Sugar maple')],
+    organisms: [org('Dragon blood tree'), org('Orchid'), org('Cinnamon')],
     funFact:
-      "The bizarre umbrella-shaped dragon blood tree from Yemen is secretly a giant asparagus relative! Both are monocots — plants that sprout with a single seed leaf. The dragon blood tree doesn't have true wood rings; it builds its thick trunk from fibrous tissue. The maple tree, despite looking more like a 'real tree,' is an unrelated eudicot.",
+      "The bizarre umbrella-shaped dragon blood tree from Yemen is secretly an orchid relative! Both are monocots — plants that sprout with a single seed leaf. The dragon blood tree doesn't have true wood rings; it builds its thick trunk from fibrous tissue. Cinnamon, despite also being a tree, is a magnoliid — an ancient lineage of flowering plants that is neither monocot nor eudicot.",
     sources: [{ url: 'https://en.wikipedia.org/wiki/Dracaena_(plant)', label: 'Dracaena - Wikipedia' }],
   },
   // Early animal tree of life — placozoans, acoels, and deep divergences
@@ -2012,7 +1996,7 @@ export const surprisingScenarios: SurprisingScenario[] = [
   {
     organisms: [org('Hydra'), org('Staghorn coral'), org('Comb jelly')],
     funFact:
-      'Hydra and corals are both cnidarians — animals with stinging cells (nematocysts). Hydra is a tiny freshwater polyp and corals build massive reef structures, but they share the same basic body plan. Comb jellies look similar but belong to a separate phylum (Ctenophora) and use sticky colloblast cells instead of stinging ones.',
+      'Hydra — a tiny freshwater polyp, just a few millimeters long, that can regenerate its entire body from a small fragment — and corals are both cnidarians, animals with stinging cells (nematocysts). Despite the vast difference in size and habitat, they share the same basic body plan. Comb jellies look similar but belong to a separate phylum (Ctenophora) and use sticky colloblast cells instead of stinging ones.',
     sources: [
       { url: 'https://en.wikipedia.org/wiki/Hydra_(genus)', label: 'Hydra - Wikipedia' },
       { url: 'https://biology.ucdavis.edu/news/hydra-and-quest-understand-immortality', label: 'UC Davis - Hydra and the quest to understand immortality' },

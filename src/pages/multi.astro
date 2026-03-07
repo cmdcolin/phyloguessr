@@ -1,0 +1,9 @@
+---
+import Layout from '../layouts/Layout.astro'
+import MultiGame from '../components/MultiGame.tsx'
+import '../index.css'
+---
+
+<Layout title="Multi Mode - PhyloGuessr">
+  <MultiGame client:only="preact" />
+</Layout>

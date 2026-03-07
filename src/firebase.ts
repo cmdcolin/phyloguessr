@@ -147,6 +147,71 @@ export async function getTopStreaks(count = 20) {
   return snap.docs.map(d => toLeaderboardEntry(d.id, d.data()))
 }
 
+const multiScoresRef = collection(db, 'multiScores')
+
+export interface MultiLeaderboardEntry {
+  uid: string
+  name: string
+  totalPoints: number
+  totalPlayed: number
+  perfects: number
+  timestamp: number
+}
+
+function toMultiLeaderboardEntry(
+  uid: string,
+  data: Record<string, unknown>,
+): MultiLeaderboardEntry {
+  return {
+    uid: typeof data.uid === 'string' ? data.uid : uid,
+    name: typeof data.name === 'string' ? data.name : 'Anonymous',
+    totalPoints: typeof data.totalPoints === 'number' ? data.totalPoints : 0,
+    totalPlayed: typeof data.totalPlayed === 'number' ? data.totalPlayed : 0,
+    perfects: typeof data.perfects === 'number' ? data.perfects : 0,
+    timestamp: typeof data.timestamp === 'number' ? data.timestamp : 0,
+  }
+}
+
+export async function recordMultiRound(name: string, score: number) {
+  await authReady
+  if (!currentUser) {
+    return
+  }
+  const uid = currentUser.uid
+  const docRef = doc(multiScoresRef, uid)
+
+  await runTransaction(db, async transaction => {
+    const existing = await transaction.get(docRef)
+
+    if (existing.exists()) {
+      const prev = toMultiLeaderboardEntry(uid, existing.data())
+      transaction.set(docRef, {
+        uid,
+        name,
+        totalPoints: prev.totalPoints + score,
+        totalPlayed: prev.totalPlayed + 1,
+        perfects: prev.perfects + (score === 100 ? 1 : 0),
+        timestamp: Date.now(),
+      } satisfies MultiLeaderboardEntry)
+    } else {
+      transaction.set(docRef, {
+        uid,
+        name,
+        totalPoints: score,
+        totalPlayed: 1,
+        perfects: score === 100 ? 1 : 0,
+        timestamp: Date.now(),
+      } satisfies MultiLeaderboardEntry)
+    }
+  })
+}
+
+export async function getTopMultiScores(count = 20) {
+  const q = query(multiScoresRef, orderBy('totalPoints', 'desc'), limit(count))
+  const snap = await getDocs(q)
+  return snap.docs.map(d => toMultiLeaderboardEntry(d.id, d.data()))
+}
+
 const presenceRef = collection(db, 'presence')
 const PRESENCE_INTERVAL_MS = 5 * 60 * 1000
 const PRESENCE_TIMEOUT_MS = 8 * 60 * 1000

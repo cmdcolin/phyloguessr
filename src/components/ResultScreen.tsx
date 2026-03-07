@@ -1,6 +1,7 @@
 import { useState } from 'preact/hooks'
 
 import Button from './Button.tsx'
+import DiagramTree from './DiagramTree.tsx'
 import { ShareButton } from './Game.tsx'
 import PhyloTree from './PhyloTree.tsx'
 import SpeciesMap, { MAP_COLORS } from './SpeciesMap.tsx'
@@ -8,6 +9,7 @@ import { capitalize } from '../utils/format.ts'
 import { getLineageFromParents } from '../utils/taxonomy.ts'
 
 import type { Organism } from '../data/organisms.ts'
+import type { DiagramNode } from '../data/surprisingFacts.ts'
 import type { MrcaInfo } from '../utils/format.ts'
 import type { TaxonomyData } from '../utils/taxonomy.ts'
 
@@ -25,6 +27,7 @@ interface ResultScreenProps {
   userSelectedTaxIds: Set<number>
   organismColors: Record<number, string>
   funFact?: string
+  diagram?: DiagramNode
   sources?: { url: string; label: string }[]
   activelyDebated?: boolean
   shareUrl: string
@@ -394,6 +397,7 @@ export default function ResultScreen({
   userSelectedTaxIds,
   organismColors,
   funFact,
+  diagram,
   sources,
   activelyDebated,
   shareUrl,
@@ -430,15 +434,24 @@ export default function ResultScreen({
         <Button onClick={onPlayAgain}>Next</Button>
       </div>
 
-      <PhyloTree
-        sister1={sister1}
-        sister2={sister2}
-        outgroup={outgroup}
-        cladeLabel={cladeLabel}
-        images={images}
-        userSelectedTaxIds={userSelectedTaxIds}
-        organismColors={organismColors}
-      />
+      {activelyDebated ? (
+        <div className="debated-placeholder">
+          <span className="debated-question-mark">?</span>
+          <p>The true branching order is still being debated by scientists.</p>
+        </div>
+      ) : (
+        <PhyloTree
+          sister1={sister1}
+          sister2={sister2}
+          outgroup={outgroup}
+          cladeLabel={cladeLabel}
+          rootLabel={overallMrca.name !== sisterMrca.name ? overallMrca.name : undefined}
+          images={images}
+          userSelectedTaxIds={userSelectedTaxIds}
+          organismColors={organismColors}
+        />
+      )}
+      {diagram && <DiagramTree root={diagram} />}
       {/* <FullTreeToggle
         organisms={[sister1, sister2, outgroup]}
         taxonomyData={taxonomyData}

@@ -8,10 +8,12 @@ import SpeciesMap, { MAP_COLORS } from './SpeciesMap.tsx'
 
 import { organisms as allOrganisms } from '../data/organisms.ts'
 import { surprisingScenarios } from '../data/surprisingFacts.ts'
+import type { DiagramNode } from '../data/surprisingFacts.ts'
 import { recordRound, startPresence } from '../firebase.ts'
 import { addHistoryEntry, loadHistory } from '../utils/history.ts'
 import { sessionStorageGetItem } from '../utils/storage.ts'
 import {
+  buildContextDiagram,
   findClosestPairFromData,
   findTaxId,
   loadEasyTaxonomyData,
@@ -20,6 +22,7 @@ import {
   pickThreeFromClade,
   pickThreeHardModeDistance,
   pickThreeMicrobialCrossKingdom,
+  resolveOrganism as resolveOrganismUtil,
   searchTaxonNames,
 } from '../utils/taxonomy.ts'
 
@@ -50,6 +53,7 @@ interface ResultData {
   overallMrca: MrcaInfo
   isPolytomy: boolean
   funFact?: string
+  diagram?: DiagramNode
   sources?: { url: string; label: string }[]
   activelyDebated?: boolean
 }
@@ -64,6 +68,15 @@ function comboKey(orgs: { ncbiTaxId: number }[]) {
 
 function parseSharedQuestion() {
   const params = new URLSearchParams(window.location.search)
+
+  const idsParam = params.get('ids')
+  if (idsParam) {
+    const ids = idsParam.split(',').map(Number)
+    if (ids.length === 3 && ids.every(n => Number.isFinite(n) && n > 0)) {
+      return ids as [number, number, number]
+    }
+  }
+
   const a = params.get('a')
   const b = params.get('b')
   const c = params.get('c')
@@ -82,54 +95,20 @@ function resolveOrganism(
   pool: SpeciesPoolEntry[] | null,
   data: TaxonomyData | null,
 ) {
-  const known = allOrganisms.find(o => o.ncbiTaxId === taxId)
-  if (known) {
-    return known
-  }
-  if (pool) {
-    const entry = pool.find(([id]) => id === taxId)
-    if (entry) {
-      const [, commonName, scientificName, imageUrl] = entry
-      return {
-        commonName,
-        scientificName,
-        ncbiTaxId: taxId,
-        wikiTitle: scientificName.replace(/ /g, '_'),
-        group: 'shared',
-        imageUrl,
-      } satisfies Organism
-    }
-  }
-  if (data) {
-    const name = data.names[String(taxId)]
-    if (name) {
-      return {
-        commonName: name,
-        scientificName: name,
-        ncbiTaxId: taxId,
-        wikiTitle: name.replace(/ /g, '_'),
-        group: 'shared',
-      } satisfies Organism
-    }
-  }
-  return null
+  return resolveOrganismUtil(taxId, allOrganisms, pool, data)
 }
 
 function buildShareUrl(orgs: Organism[]) {
   const url = new URL(window.location.href)
   url.search = ''
-  url.searchParams.set('a', String(orgs[0].ncbiTaxId))
-  url.searchParams.set('b', String(orgs[1].ncbiTaxId))
-  url.searchParams.set('c', String(orgs[2].ncbiTaxId))
+  url.searchParams.set('ids', orgs.map(o => o.ncbiTaxId).join(','))
   return url.toString()
 }
 
 function updateUrlWithQuestion(orgs: Organism[]) {
   const url = new URL(window.location.href)
   url.search = ''
-  url.searchParams.set('a', String(orgs[0].ncbiTaxId))
-  url.searchParams.set('b', String(orgs[1].ncbiTaxId))
-  url.searchParams.set('c', String(orgs[2].ncbiTaxId))
+  url.searchParams.set('ids', orgs.map(o => o.ncbiTaxId).join(','))
   history.pushState(null, '', url.toString())
 }
 
@@ -540,6 +519,7 @@ export default function Game({ mode }: { mode: GameMode }) {
     if (scenario) {
       resultData.funFact = scenario.funFact
       resultData.sources = scenario.sources
+      resultData.diagram = scenario.diagram
       if (scenario.activelyDebated) {
         resultData.activelyDebated = true
         resultData.correct = true
@@ -556,6 +536,17 @@ export default function Game({ mode }: { mode: GameMode }) {
         resultData.outgroup = outgroup
         resultData.isPolytomy = false
       }
+    }
+
+    if (!resultData.diagram && !resultData.isPolytomy) {
+      resultData.diagram = buildContextDiagram(
+        resultData.sister1,
+        resultData.sister2,
+        resultData.outgroup,
+        resultData.sisterMrca.taxId,
+        resultData.overallMrca.taxId,
+        taxonomyData,
+      )
     }
 
     const organismNames = orgs.map(o => o.commonName)
@@ -894,6 +885,7 @@ export default function Game({ mode }: { mode: GameMode }) {
             ]),
           )}
           funFact={result.funFact}
+          diagram={result.diagram}
           sources={result.sources}
           activelyDebated={result.activelyDebated}
           shareUrl={buildShareUrl(round.organisms)}

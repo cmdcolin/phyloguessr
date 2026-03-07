@@ -15,7 +15,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 9689,
     wikiTitle: 'Lion',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/43633891/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/020_The_lion_king_Snyggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/330px-020_The_lion_king_Snyggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg',
   },
   {
     commonName: 'Domestic cat',
@@ -26,28 +26,12 @@ export const organisms: Organism[] = [
     imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/330px-Cat_August_2010-4.jpg',
   },
   {
-    commonName: 'Red fox',
-    scientificName: 'Vulpes vulpes',
-    ncbiTaxId: 9627,
-    wikiTitle: 'Red_fox',
-    group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/6568074/medium.jpg',
-  },
-  {
-    commonName: 'Maned wolf',
-    scientificName: 'Chrysocyon brachyurus',
-    ncbiTaxId: 68728,
-    wikiTitle: 'Maned_wolf',
-    group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/112568688/medium.jpeg',
-  },
-  {
     commonName: 'Gray wolf',
     scientificName: 'Canis lupus',
     ncbiTaxId: 9612,
     wikiTitle: 'Wolf',
     group: 'mammal',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Huskiesatrest.jpg/500px-Huskiesatrest.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Eurasian_wolf_2.jpg/330px-Eurasian_wolf_2.jpg',
   },
   {
     commonName: 'Brown bear',
@@ -55,7 +39,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 9644,
     wikiTitle: 'Brown_bear',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/1491897/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/2010-kodiak-bear-1.jpg/330px-2010-kodiak-bear-1.jpg',
   },
   {
     commonName: 'Horse',
@@ -63,7 +47,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 9796,
     wikiTitle: 'Horse',
     group: 'mammal',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Nokota_Horses_cropped.jpg/500px-Nokota_Horses_cropped.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Nokota_Horses_cropped.jpg/330px-Nokota_Horses_cropped.jpg',
   },
   {
     commonName: 'African elephant',
@@ -71,7 +55,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 9785,
     wikiTitle: 'African_elephant',
     group: 'mammal',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/178_Male_African_bush_elephant_in_Etosha_National_Park_Photo_by_Giles_Laurent.jpg/330px-178_Male_African_bush_elephant_in_Etosha_National_Park_Photo_by_Giles_Laurent.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/African_Elephant_%28Loxodonta_africana%29_male_%2817289351322%29.jpg/330px-African_Elephant_%28Loxodonta_africana%29_male_%2817289351322%29.jpg',
   },
   {
     commonName: 'Blue whale',
@@ -87,15 +71,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 9606,
     wikiTitle: 'Human',
     group: 'mammal',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/6/68/Akha_cropped_hires.JPG',
-  },
-  {
-    commonName: 'Chimpanzee',
-    scientificName: 'Pan troglodytes',
-    ncbiTaxId: 9598,
-    wikiTitle: 'Chimpanzee',
-    group: 'mammal',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/015_Chimpanzee_at_Kibale_forest_National_Park_Photo_by_Giles_Laurent.jpg/330px-015_Chimpanzee_at_Kibale_forest_National_Park_Photo_by_Giles_Laurent.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Akha_cropped_hires.JPG/330px-Akha_cropped_hires.JPG',
   },
   {
     commonName: 'Platypus',
@@ -111,7 +87,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 9321,
     wikiTitle: 'Red_kangaroo',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/164668615/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Red_kangaroo_-_melbourne_zoo.jpg/330px-Red_kangaroo_-_melbourne_zoo.jpg',
   },
   {
     commonName: 'Common bat',
@@ -119,7 +95,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 59463,
     wikiTitle: 'Little_brown_bat',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/11540852/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Little_Brown_Myotis_%28cropped%29.JPG/330px-Little_Brown_Myotis_%28cropped%29.JPG',
   },
   {
     commonName: 'White rhinoceros',
@@ -135,7 +111,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 9813,
     wikiTitle: 'Rock_hyrax',
     group: 'mammal',
-    imageUrl: 'https://static.inaturalist.org/photos/131657139/medium.jpeg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/188_Rock_hyrax_in_Damaraland_Photo_by_Giles_Laurent.jpg/330px-188_Rock_hyrax_in_Damaraland_Photo_by_Giles_Laurent.jpg',
   },
   {
     commonName: 'Cow',
@@ -143,7 +119,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 9913,
     wikiTitle: 'Cattle',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/29102489/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Cow_%28Fleckvieh_breed%29_Oeschinensee_Slaunger_2009-07-07.jpg/330px-Cow_%28Fleckvieh_breed%29_Oeschinensee_Slaunger_2009-07-07.jpg',
   },
   {
     commonName: 'Impala',
@@ -151,7 +127,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 9897,
     wikiTitle: 'Impala',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/64268875/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Impala_%28Aepyceros_melampus%29_male_Kruger.jpg/330px-Impala_%28Aepyceros_melampus%29_male_Kruger.jpg',
   },
   {
     commonName: 'Flying squirrel',
@@ -159,7 +135,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 64683,
     wikiTitle: 'Southern_flying_squirrel',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/11269593/medium.jpeg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Southern_Flying_Squirrel_-_Glaucomys_volans%2C_Arlington%2C_Virginia%2C_December_22%2C_2020_%2853406816432%29.jpg/330px-Southern_Flying_Squirrel_-_Glaucomys_volans%2C_Arlington%2C_Virginia%2C_December_22%2C_2020_%2853406816432%29.jpg',
   },
   {
     commonName: 'Aardvark',
@@ -167,7 +143,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 9818,
     wikiTitle: 'Aardvark',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/175359469/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Orycteropus_afer_175359469.jpg/330px-Orycteropus_afer_175359469.jpg',
   },
   {
     commonName: 'West Indian manatee',
@@ -175,7 +151,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 9778,
     wikiTitle: 'West_Indian_manatee',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/173261823/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Manatee_with_calf.PD_-_colour_corrected.jpg/330px-Manatee_with_calf.PD_-_colour_corrected.jpg',
   },
   {
     commonName: 'Nine-banded armadillo',
@@ -183,7 +159,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 9361,
     wikiTitle: 'Nine-banded_armadillo',
     group: 'mammal',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Nine-banded_Armadillo_%28Dasypus_novemcinctus%29_%2837649606094%29.jpg/330px-Nine-banded_Armadillo_%28Dasypus_novemcinctus%29_%2837649606094%29.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Tatu_%28dasypus_novemcinctus%29%2C_Uruguay%2C_2020.jpg/330px-Tatu_%28dasypus_novemcinctus%29%2C_Uruguay%2C_2020.jpg',
   },
   {
     commonName: 'Harbor seal',
@@ -199,7 +175,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 9707,
     wikiTitle: 'Walrus',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/65857/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Walrus_in_the_Russian_Arctic_National_Park%2C_Novaya_Zemlya_2015-2.jpg/330px-Walrus_in_the_Russian_Arctic_National_Park%2C_Novaya_Zemlya_2015-2.jpg',
   },
   {
     commonName: 'Common shrew',
@@ -207,7 +183,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 42254,
     wikiTitle: 'Eurasian_shrew',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/19163863/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Sorex-araneus.jpg/330px-Sorex-araneus.jpg',
   },
   {
     commonName: 'House mouse',
@@ -215,7 +191,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 10090,
     wikiTitle: 'House_mouse',
     group: 'mammal',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/%D0%9C%D1%8B%D1%88%D1%8C_2.jpg/500px-%D0%9C%D1%8B%D1%88%D1%8C_2.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/%D0%9C%D1%8B%D1%88%D1%8C_2.jpg/330px-%D0%9C%D1%8B%D1%88%D1%8C_2.jpg',
   },
   {
     commonName: 'Hippopotamus',
@@ -223,7 +199,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 9833,
     wikiTitle: 'Hippopotamus',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/13896177/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Portrait_Hippopotamus_in_the_water.jpg/330px-Portrait_Hippopotamus_in_the_water.jpg',
   },
   {
     commonName: 'Bottlenose dolphin',
@@ -231,7 +207,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 9739,
     wikiTitle: 'Common_bottlenose_dolphin',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/611231392/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Tursiops_truncatus_01-cropped.jpg/330px-Tursiops_truncatus_01-cropped.jpg',
   },
   {
     commonName: 'Elephant shrew',
@@ -239,7 +215,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 28737,
     wikiTitle: 'Cape_elephant_shrew',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/15171220/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Macroscelides_edwardii_-_1700-1880_-_Print_-_Iconographia_Zoologica_-_Special_Collections_University_of_Amsterdam_-_UBA01_IZ20900065_2.jpg/330px-Macroscelides_edwardii_-_1700-1880_-_Print_-_Iconographia_Zoologica_-_Special_Collections_University_of_Amsterdam_-_UBA01_IZ20900065_2.jpg',
   },
   {
     commonName: 'Hedgehog',
@@ -247,7 +223,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 9365,
     wikiTitle: 'European_hedgehog',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/604670731/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Erinaceus_europaeus_LC0119.jpg/330px-Erinaceus_europaeus_LC0119.jpg',
   },
   {
     commonName: 'Tenrec',
@@ -255,7 +231,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 94439,
     wikiTitle: 'Tailless_tenrec',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/32135102/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Tanrek.jpg/330px-Tanrek.jpg',
   },
   {
     commonName: 'Raccoon',
@@ -263,7 +239,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 9654,
     wikiTitle: 'Raccoon',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/46439025/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Raccoon_in_Central_Park_%2835264%29.jpg/330px-Raccoon_in_Central_Park_%2835264%29.jpg',
   },
   {
     commonName: 'Red panda',
@@ -271,7 +247,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 9649,
     wikiTitle: 'Red_panda',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/26989188/medium.jpeg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Red_Panda%2C_Gentle_Tree-Dweller_of_the_Himalayas.jpg/330px-Red_Panda%2C_Gentle_Tree-Dweller_of_the_Himalayas.jpg',
   },
   {
     commonName: 'Spotted hyena',
@@ -287,7 +263,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 10116,
     wikiTitle: 'Brown_rat',
     group: 'mammal',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Rattus_norvegicus_-_Brown_rat_02.jpg/500px-Rattus_norvegicus_-_Brown_rat_02.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Rattus_norvegicus_-_Brown_rat_02.jpg/330px-Rattus_norvegicus_-_Brown_rat_02.jpg',
   },
   {
     commonName: 'European rabbit',
@@ -295,7 +271,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 9986,
     wikiTitle: 'European_rabbit',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/520690657/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Oryctolagus_cuniculus_Tasmania_2_%28cropped%29.jpg/330px-Oryctolagus_cuniculus_Tasmania_2_%28cropped%29.jpg',
   },
   {
     commonName: 'American pika',
@@ -303,7 +279,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 9978,
     wikiTitle: 'American_pika',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/49236748/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Ochotona_princeps_rockies.JPG/330px-Ochotona_princeps_rockies.JPG',
   },
   {
     commonName: 'American beaver',
@@ -319,15 +295,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 30640,
     wikiTitle: 'Eastern_gray_squirrel',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/22144449/medium.jpg',
-  },
-  {
-    commonName: 'Yellow-bellied marmot',
-    scientificName: 'Marmota flaviventris',
-    ncbiTaxId: 93162,
-    wikiTitle: 'Yellow-bellied_marmot',
-    group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/32635/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/EasternGraySquirrel_GAm.jpg/330px-EasternGraySquirrel_GAm.jpg',
   },
   {
     commonName: 'Black-tailed prairie dog',
@@ -335,7 +303,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 45480,
     wikiTitle: 'Black-tailed_prairie_dog',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/7688931/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Cynomys_ludovicianus_%2854906540630%29.jpg/330px-Cynomys_ludovicianus_%2854906540630%29.jpg',
   },
   {
     commonName: 'Philippine tarsier',
@@ -343,7 +311,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 1868482,
     wikiTitle: 'Philippine_tarsier',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/51885186/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Tarsier-GG.jpg/330px-Tarsier-GG.jpg',
   },
   {
     commonName: 'Ring-tailed lemur',
@@ -351,7 +319,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 9447,
     wikiTitle: 'Ring-tailed_lemur',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/50237086/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Ring-tailed_lemur_%28Lemur_catta%29.jpg/330px-Ring-tailed_lemur_%28Lemur_catta%29.jpg',
   },
   {
     commonName: 'Orangutan',
@@ -359,7 +327,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 9601,
     wikiTitle: 'Sumatran_orangutan',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/109776453/medium.jpeg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Sumatra-Orang-Utan_im_Pongoland.jpg/330px-Sumatra-Orang-Utan_im_Pongoland.jpg',
   },
   {
     commonName: 'Gorilla',
@@ -367,7 +335,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 9593,
     wikiTitle: 'Western_gorilla',
     group: 'mammal',
-    imageUrl: 'https://static.inaturalist.org/photos/103269312/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Male_gorilla_in_SF_zoo.jpg/330px-Male_gorilla_in_SF_zoo.jpg',
   },
   {
     commonName: 'Olive baboon',
@@ -391,7 +359,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 9974,
     wikiTitle: 'Sunda_pangolin',
     group: 'mammal',
-    imageUrl: 'https://static.inaturalist.org/photos/44039156/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Pangolin_borneo.jpg/330px-Pangolin_borneo.jpg',
   },
   {
     commonName: 'Sugar glider',
@@ -399,7 +367,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 34899,
     wikiTitle: 'Sugar_glider',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/27396323/medium.jpeg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Petaurus_breviceps-Cayley.jpg/330px-Petaurus_breviceps-Cayley.jpg',
   },
   {
     commonName: 'Koala',
@@ -407,7 +375,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 38626,
     wikiTitle: 'Koala',
     group: 'mammal',
-    imageUrl: 'https://static.inaturalist.org/photos/425371537/medium.jpeg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Koala_climbing_tree.jpg/330px-Koala_climbing_tree.jpg',
   },
   {
     commonName: 'Three-toed sloth',
@@ -415,7 +383,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 9355,
     wikiTitle: 'Brown-throated_sloth',
     group: 'mammal',
-    imageUrl: 'https://static.inaturalist.org/photos/73892662/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Bradypus.jpg/330px-Bradypus.jpg',
   },
   {
     commonName: 'Giant anteater',
@@ -423,7 +391,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 71006,
     wikiTitle: 'Giant_anteater',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/108811809/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Myresluger2.jpg/330px-Myresluger2.jpg',
   },
   {
     commonName: 'Dromedary camel',
@@ -431,7 +399,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 9838,
     wikiTitle: 'Dromedary',
     group: 'mammal',
-    imageUrl: 'https://static.inaturalist.org/photos/254331474/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Camelus_dromedarius_in_Nuweiba.jpg/330px-Camelus_dromedarius_in_Nuweiba.jpg',
   },
   {
     commonName: 'American bison',
@@ -439,7 +407,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 9901,
     wikiTitle: 'American_bison',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/20660087/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/American_bison_k5680-1.jpg/330px-American_bison_k5680-1.jpg',
   },
   {
     commonName: 'Musk ox',
@@ -447,7 +415,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 37176,
     wikiTitle: 'Muskox',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/348194143/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Muskox_%28Ovibos_moschatus%29_male_Dovrefjell_4.jpg/330px-Muskox_%28Ovibos_moschatus%29_male_Dovrefjell_4.jpg',
   },
   {
     commonName: 'Mountain goat',
@@ -455,15 +423,15 @@ export const organisms: Organism[] = [
     ncbiTaxId: 34873,
     wikiTitle: 'Mountain_goat',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/18929544/medium.jpeg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Mountain_Goat%2C_Enchantments_Basin.jpg/330px-Mountain_Goat%2C_Enchantments_Basin.jpg',
   },
   {
-    commonName: 'Pronghorn',
+    commonName: 'American pronghorn',
     scientificName: 'Antilocapra americana',
     ncbiTaxId: 9891,
     wikiTitle: 'Pronghorn',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/250039273/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Antilocapra_americana.jpg/330px-Antilocapra_americana.jpg',
   },
   {
     commonName: 'White-tailed deer',
@@ -479,7 +447,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 55782,
     wikiTitle: 'Numbat',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/453089064/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Numbat%2C_Dryandra_Woodland%2C_Western_Australia.jpg/330px-Numbat%2C_Dryandra_Woodland%2C_Western_Australia.jpg',
   },
   {
     commonName: 'Giant panda',
@@ -495,7 +463,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 9802,
     wikiTitle: 'Malayan_tapir',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/299796044/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Schabrackentapir_Tapirus_indicus_Tiergarten-Nuernberg-1.jpg/330px-Schabrackentapir_Tapirus_indicus_Tiergarten-Nuernberg-1.jpg',
   },
   {
     commonName: 'Common genet',
@@ -503,7 +471,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 94190,
     wikiTitle: 'Common_genet',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/29532844/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Genetta_genetta_felina_%28Wroclaw_zoo%29.JPG/330px-Genetta_genetta_felina_%28Wroclaw_zoo%29.JPG',
   },
   {
     commonName: 'Binturong',
@@ -511,7 +479,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 94180,
     wikiTitle: 'Binturong',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/145153388/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Binturong_in_Overloon.jpg/330px-Binturong_in_Overloon.jpg',
   },
   {
     commonName: 'Fossa',
@@ -519,7 +487,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 94188,
     wikiTitle: 'Fossa_(animal)',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/70367976/medium.jpeg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Cryptoprocta_Ferox.JPG/330px-Cryptoprocta_Ferox.JPG',
   },
   {
     commonName: 'Egyptian mongoose',
@@ -535,7 +503,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 482537,
     wikiTitle: 'Colugo',
     group: 'mammal',
-    imageUrl: 'https://static.inaturalist.org/photos/147004077/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Colugo_%28Galeopterus_variegatus%2C_adult_female%29%2C_Central_Catchment_Area%2C_Singapore_-_20060618.jpg/330px-Colugo_%28Galeopterus_variegatus%2C_adult_female%29%2C_Central_Catchment_Area%2C_Singapore_-_20060618.jpg',
   },
   {
     commonName: 'Okapi',
@@ -551,7 +519,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 9894,
     wikiTitle: 'Giraffe',
     group: 'mammal',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Rothschild%27s_giraffe_%28Giraffa_camelopardalis_rothschildi%29_-_Murchison_Falls_National_Park.jpg/330px-Rothschild%27s_giraffe_%28Giraffa_camelopardalis_rothschildi%29_-_Murchison_Falls_National_Park.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Giraffe_Mikumi_National_Park.jpg/330px-Giraffe_Mikumi_National_Park.jpg',
   },
   {
     commonName: 'Patagonian mara',
@@ -567,7 +535,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 48420,
     wikiTitle: 'Wolverine',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/251363753/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Gulo_gulo_2.jpg/330px-Gulo_gulo_2.jpg',
   },
   {
     commonName: 'Sea otter',
@@ -575,7 +543,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 34882,
     wikiTitle: 'Sea_otter',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/311432614/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Sea_Otter_%28Enhydra_lutris%29_%2825169790524%29_crop.jpg/330px-Sea_Otter_%28Enhydra_lutris%29_%2825169790524%29_crop.jpg',
   },
   {
     commonName: 'Golden mole',
@@ -583,7 +551,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 185453,
     wikiTitle: 'Cape_golden_mole',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/14901484/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Chrysochloris_asiatica_270437025.jpg/330px-Chrysochloris_asiatica_270437025.jpg',
   },
   {
     commonName: 'European mole',
@@ -591,7 +559,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 9375,
     wikiTitle: 'European_mole',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/79276172/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Talpa_europaea_MHNT.jpg/330px-Talpa_europaea_MHNT.jpg',
   },
   {
     commonName: 'Naked mole rat',
@@ -599,7 +567,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 10181,
     wikiTitle: 'Naked_mole-rat',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/129234581/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Nacktmull.jpg/330px-Nacktmull.jpg',
   },
   {
     commonName: 'Tree shrew',
@@ -607,7 +575,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 37347,
     wikiTitle: 'Northern_treeshrew',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/13757244/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Tupaia_belangeri_99597342.jpg/330px-Tupaia_belangeri_99597342.jpg',
   },
   {
     commonName: 'Marsupial mole',
@@ -615,7 +583,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 37699,
     wikiTitle: 'Southern_marsupial_mole',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/89385820/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Notoryctes_typhlops.jpg/330px-Notoryctes_typhlops.jpg',
   },
   {
     commonName: 'Echidna',
@@ -623,7 +591,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 9261,
     wikiTitle: 'Short-beaked_echidna',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/338769869/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Wild_shortbeak_echidna.jpg/330px-Wild_shortbeak_echidna.jpg',
   },
   {
     commonName: 'Aye-aye',
@@ -631,7 +599,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 31869,
     wikiTitle: 'Aye-aye',
     group: 'mammal',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/4582836/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Wild_aye_aye.jpg/330px-Wild_aye_aye.jpg',
   },
   {
     commonName: 'Pink fairy armadillo',
@@ -639,7 +607,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 450267,
     wikiTitle: 'Pink_fairy_armadillo',
     group: 'mammal',
-    imageUrl: 'https://static.inaturalist.org/photos/274186714/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Pink_Fairy_Armadillo_%28Chlamyphorus_truncatus%29.jpg/330px-Pink_Fairy_Armadillo_%28Chlamyphorus_truncatus%29.jpg',
   },
 
   // Birds
@@ -657,7 +625,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 9031,
     wikiTitle: 'Chicken',
     group: 'bird',
-    imageUrl: 'https://static.inaturalist.org/photos/65623665/medium.jpeg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Male_and_female_chicken_sitting_together.jpg/330px-Male_and_female_chicken_sitting_together.jpg',
   },
   {
     commonName: 'Emperor penguin',
@@ -684,20 +652,12 @@ export const organisms: Organism[] = [
     imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Corvus-brachyrhynchos-001.jpg/330px-Corvus-brachyrhynchos-001.jpg',
   },
   {
-    commonName: 'Rock pigeon',
-    scientificName: 'Columba livia',
-    ncbiTaxId: 8932,
-    wikiTitle: 'Rock_dove',
-    group: 'bird',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/466776975/medium.jpg',
-  },
-  {
     commonName: 'Greater flamingo',
     scientificName: 'Phoenicopterus roseus',
     ncbiTaxId: 435638,
     wikiTitle: 'Greater_flamingo',
     group: 'bird',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/153881987/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/010_Greater_flamingos_male_and_female_in_the_Camargue_during_mating_season_Photo_by_Giles_Laurent.jpg/330px-010_Greater_flamingos_male_and_female_in_the_Camargue_during_mating_season_Photo_by_Giles_Laurent.jpg',
   },
   {
     commonName: 'Great crested grebe',
@@ -705,7 +665,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 345573,
     wikiTitle: 'Great_crested_grebe',
     group: 'bird',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/556162413/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Podiceps_cristatus_2_-_Lake_Dulverton.jpg/330px-Podiceps_cristatus_2_-_Lake_Dulverton.jpg',
   },
   {
     commonName: 'Hoatzin',
@@ -713,7 +673,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 30419,
     wikiTitle: 'Hoatzin',
     group: 'bird',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/335722298/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Hoatzin_%28Opisthocomus_hoazin%29_Rio_Napo.jpg/330px-Hoatzin_%28Opisthocomus_hoazin%29_Rio_Napo.jpg',
   },
   {
     commonName: 'Common loon',
@@ -729,7 +689,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 33584,
     wikiTitle: 'Shoebill',
     group: 'bird',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/46952988/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Balaeniceps_rex_-Ueno_Zoo%2C_Tokyo%2C_Japan-8a.jpg/330px-Balaeniceps_rex_-Ueno_Zoo%2C_Tokyo%2C_Japan-8a.jpg',
   },
   {
     commonName: 'Brown pelican',
@@ -737,7 +697,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 37043,
     wikiTitle: 'Brown_pelican',
     group: 'bird',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/74013719/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Brown_pelican_in_flight_%28Bodega_Bay%29.jpg/330px-Brown_pelican_in_flight_%28Bodega_Bay%29.jpg',
   },
 
   {
@@ -746,7 +706,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 8954,
     wikiTitle: 'Peregrine_falcon',
     group: 'bird',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/212499566/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Falco_peregrinus_m_Humber_Bay_Park_Toronto.jpg/330px-Falco_peregrinus_m_Humber_Bay_Park_Toronto.jpg',
   },
   {
     commonName: 'African grey parrot',
@@ -754,15 +714,15 @@ export const organisms: Organism[] = [
     ncbiTaxId: 57247,
     wikiTitle: 'African_grey_parrot',
     group: 'bird',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/47367883/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Psittacus_erithacus_-perching_on_tray-8d.jpg/330px-Psittacus_erithacus_-perching_on_tray-8d.jpg',
   },
   {
     commonName: 'Barn owl',
     scientificName: 'Tyto alba',
     ncbiTaxId: 56313,
-    wikiTitle: 'Barn_owl',
+    wikiTitle: 'Tyto_alba',
     group: 'bird',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/165796939/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Barn_Owl%2C_Lancashire.jpg/330px-Barn_Owl%2C_Lancashire.jpg',
   },
   {
     commonName: 'Common nighthawk',
@@ -770,7 +730,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 48398,
     wikiTitle: 'Common_nighthawk',
     group: 'bird',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/279194539/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Common_Nighthawk_%2814428313550%29.jpg/330px-Common_Nighthawk_%2814428313550%29.jpg',
   },
   {
     commonName: 'Red-tailed hawk',
@@ -778,7 +738,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 56263,
     wikiTitle: 'Red-tailed_hawk',
     group: 'bird',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/101327658/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Red-tailed_Hawk_%2845812546121%29.jpg/330px-Red-tailed_Hawk_%2845812546121%29.jpg',
   },
   {
     commonName: 'Ruby-throated hummingbird',
@@ -786,7 +746,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 190676,
     wikiTitle: 'Ruby-throated_hummingbird',
     group: 'bird',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/221352761/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Archilochus_colubris_-flying_-male-8.jpg/330px-Archilochus_colubris_-flying_-male-8.jpg',
   },
 
   // Reptiles
@@ -796,7 +756,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 61221,
     wikiTitle: 'Komodo_dragon',
     group: 'reptile',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/1892238/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/202306_Varanus_komodoensis.jpg/330px-202306_Varanus_komodoensis.jpg',
   },
   {
     commonName: 'American alligator',
@@ -804,7 +764,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 8496,
     wikiTitle: 'American_alligator',
     group: 'reptile',
-    imageUrl: 'https://static.inaturalist.org/photos/343508251/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/American_Alligator.jpg/330px-American_Alligator.jpg',
   },
   {
     commonName: 'Green sea turtle',
@@ -820,7 +780,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 8665,
     wikiTitle: 'King_cobra',
     group: 'reptile',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/307874083/medium.jpeg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/12_-_The_Mystical_King_Cobra_and_Coffee_Forests.jpg/330px-12_-_The_Mystical_King_Cobra_and_Coffee_Forests.jpg',
   },
   {
     commonName: 'Tuatara',
@@ -837,7 +797,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 66189,
     wikiTitle: 'Galápagos_tortoise',
     group: 'reptile',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/37748207/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Galapagos_giant_tortoise_Geochelone_elephantopus.jpg/330px-Galapagos_giant_tortoise_Geochelone_elephantopus.jpg',
   },
   {
     commonName: 'Snapping turtle',
@@ -845,7 +805,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 8475,
     wikiTitle: 'Common_snapping_turtle',
     group: 'reptile',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/352641070/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Snapping_Turtle_Heinz.png/330px-Snapping_Turtle_Heinz.png',
   },
   {
     commonName: 'Nile crocodile',
@@ -861,7 +821,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 94885,
     wikiTitle: 'Corn_snake',
     group: 'reptile',
-    imageUrl: 'https://static.inaturalist.org/photos/457255500/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/CornSnake.jpg/330px-CornSnake.jpg',
   },
 
   // Amphibians
@@ -871,7 +831,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 8296,
     wikiTitle: 'Axolotl',
     group: 'amphibian',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/87949947/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Axolotl_ganz.jpg/330px-Axolotl_ganz.jpg',
   },
   {
     commonName: 'Tiger salamander',
@@ -887,7 +847,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 8407,
     wikiTitle: 'Common_frog',
     group: 'amphibian',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/171173/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/European_Common_Frog_Rana_temporaria.jpg/330px-European_Common_Frog_Rana_temporaria.jpg',
   },
   {
     commonName: 'Caecilian',
@@ -895,7 +855,15 @@ export const organisms: Organism[] = [
     ncbiTaxId: 356198,
     wikiTitle: 'Caecilian',
     group: 'amphibian',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/607737/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Oscaecilia_ochrocephala_%2816983972190%29.jpg/330px-Oscaecilia_ochrocephala_%2816983972190%29.jpg',
+  },
+  {
+    commonName: 'Olm',
+    scientificName: 'Proteus anguinus',
+    ncbiTaxId: 221568,
+    wikiTitle: 'Olm',
+    group: 'amphibian',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Proteus_anguinus_Postojnska_Jama_Slovenija.jpg/330px-Proteus_anguinus_Postojnska_Jama_Slovenija.jpg',
   },
 
   // Fish
@@ -913,7 +881,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 80972,
     wikiTitle: 'Ocellaris_clownfish',
     group: 'fish',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/9045216/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Clown_fish_in_the_Andaman_Coral_Reef.jpg/330px-Clown_fish_in_the_Andaman_Coral_Reef.jpg',
   },
   {
     commonName: 'Coelacanth',
@@ -937,7 +905,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 8030,
     wikiTitle: 'Atlantic_salmon',
     group: 'fish',
-    imageUrl: 'https://static.inaturalist.org/photos/60703307/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Wst_atlantischer_lachs_stoer_001.jpg/330px-Wst_atlantischer_lachs_stoer_001.jpg',
   },
   {
     commonName: 'Australian lungfish',
@@ -945,7 +913,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 7892,
     wikiTitle: 'Australian_lungfish',
     group: 'fish',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/577691714/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Neoceratodus_forsteri%2C_2014-09-19.JPG/330px-Neoceratodus_forsteri%2C_2014-09-19.JPG',
   },
   {
     commonName: 'Sea lamprey',
@@ -953,7 +921,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 7757,
     wikiTitle: 'Sea_lamprey',
     group: 'fish',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Petromyzon_marinus.001_-_Aquarium_Finisterrae.jpg/500px-Petromyzon_marinus.001_-_Aquarium_Finisterrae.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Petromyzon_marinus.001_-_Aquarium_Finisterrae.jpg/330px-Petromyzon_marinus.001_-_Aquarium_Finisterrae.jpg',
   },
   {
     commonName: 'African lungfish',
@@ -961,7 +929,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 7888,
     wikiTitle: 'West_African_lungfish',
     group: 'fish',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/28665335/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Protopterus_annectens_Natural_History_Museum_University_of_Pisa.jpg/330px-Protopterus_annectens_Natural_History_Museum_University_of_Pisa.jpg',
   },
   {
     commonName: 'European eel',
@@ -969,7 +937,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 7936,
     wikiTitle: 'European_eel',
     group: 'fish',
-    imageUrl: 'https://static.inaturalist.org/photos/40043710/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Anguilla_anguilla.jpg/330px-Anguilla_anguilla.jpg',
   },
   {
     commonName: 'Ocean sunfish',
@@ -977,7 +945,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 94237,
     wikiTitle: 'Ocean_sunfish',
     group: 'fish',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/151075271/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Mola_mola.jpg/330px-Mola_mola.jpg',
   },
   {
     commonName: 'Pufferfish',
@@ -985,7 +953,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 31033,
     wikiTitle: 'Takifugu_rubripes',
     group: 'fish',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/60989907/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Fugu_in_Tank.jpg/330px-Fugu_in_Tank.jpg',
   },
   {
     commonName: 'Atlantic bluefin tuna',
@@ -993,7 +961,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 8237,
     wikiTitle: 'Atlantic_bluefin_tuna',
     group: 'fish',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/88446846/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Bluefin-big.jpg/330px-Bluefin-big.jpg',
   },
   {
     commonName: 'Atlantic mudskipper',
@@ -1001,7 +969,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 166755,
     wikiTitle: 'Atlantic_mudskipper',
     group: 'fish',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/1867545/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/GambianMudskippers.jpg/330px-GambianMudskippers.jpg',
   },
 
   // Arthropods (insects and others)
@@ -1011,7 +979,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 7460,
     wikiTitle: 'Western_honey_bee',
     group: 'arthropod',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Apis_mellifera_Western_honey_bee.jpg/500px-Apis_mellifera_Western_honey_bee.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Apis_mellifera_Western_honey_bee.jpg/330px-Apis_mellifera_Western_honey_bee.jpg',
   },
   {
     commonName: 'Monarch butterfly',
@@ -1019,7 +987,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 13037,
     wikiTitle: 'Monarch_butterfly',
     group: 'arthropod',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/227923335/medium.jpeg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Monarch_Butterfly_Danaus_plexippus_Male_2664px.jpg/330px-Monarch_Butterfly_Danaus_plexippus_Male_2664px.jpg',
   },
   {
     commonName: 'Fruit fly',
@@ -1027,7 +995,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 7227,
     wikiTitle: 'Drosophila_melanogaster',
     group: 'arthropod',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Drosophila_melanogaster_Proboscis.jpg/500px-Drosophila_melanogaster_Proboscis.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Drosophila_melanogaster_Proboscis.jpg/330px-Drosophila_melanogaster_Proboscis.jpg',
   },
   {
     commonName: 'Ant',
@@ -1035,7 +1003,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 258706,
     wikiTitle: 'Red_wood_ant',
     group: 'arthropod',
-    imageUrl: 'https://static.inaturalist.org/photos/196220123/medium.jpeg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/A_Formica_rufa_sideview.jpg/330px-A_Formica_rufa_sideview.jpg',
   },
   {
     commonName: 'Ladybug',
@@ -1043,7 +1011,15 @@ export const organisms: Organism[] = [
     ncbiTaxId: 41139,
     wikiTitle: 'Coccinella_septempunctata',
     group: 'arthropod',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/267168450/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/7-Spotted-Ladybug-Coccinella-septempunctata-sq1.jpg/330px-7-Spotted-Ladybug-Coccinella-septempunctata-sq1.jpg',
+  },
+  {
+    commonName: 'Earwig',
+    scientificName: 'Forficula auricularia',
+    ncbiTaxId: 13068,
+    wikiTitle: 'Forficula_auricularia',
+    group: 'arthropod',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/European_earwig_%2881241%29.jpg/330px-European_earwig_%2881241%29.jpg',
   },
   {
     commonName: 'Dragonfly',
@@ -1051,7 +1027,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 214820,
     wikiTitle: 'Green_darner',
     group: 'arthropod',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/374837307/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Common_Green_Darner_Anax_junius_JG.jpg/330px-Common_Green_Darner_Anax_junius_JG.jpg',
   },
   {
     commonName: 'Horseshoe crab',
@@ -1059,7 +1035,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 6850,
     wikiTitle: 'Atlantic_horseshoe_crab',
     group: 'arthropod',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/186273920/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Limulus_polyphemus_%28aq.%29.jpg/330px-Limulus_polyphemus_%28aq.%29.jpg',
   },
   {
     commonName: 'Tardigrade',
@@ -1067,7 +1043,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 232323,
     wikiTitle: 'Tardigrade',
     group: 'arthropod',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/0/08/Waterbear.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/SEM_image_of_Milnesium_tardigradum_in_active_state_-_journal.pone.0045682.g001-2_%28white_background%29.png/330px-SEM_image_of_Milnesium_tardigradum_in_active_state_-_journal.pone.0045682.g001-2_%28white_background%29.png',
   },
   {
     commonName: 'Scorpion',
@@ -1075,7 +1051,31 @@ export const organisms: Organism[] = [
     ncbiTaxId: 55084,
     wikiTitle: 'Emperor_scorpion',
     group: 'arthropod',
-    imageUrl: 'https://static.inaturalist.org/photos/169448714/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Female_Emperor_Scorpion.jpg/330px-Female_Emperor_Scorpion.jpg',
+  },
+  {
+    commonName: 'Garden spider',
+    scientificName: 'Araneus diadematus',
+    ncbiTaxId: 45920,
+    wikiTitle: 'Araneus_diadematus',
+    group: 'arthropod',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Araneus_diadematus_MHNT_Femelle_Fronton.jpg/330px-Araneus_diadematus_MHNT_Femelle_Fronton.jpg',
+  },
+  {
+    commonName: 'Deer tick',
+    scientificName: 'Ixodes scapularis',
+    ncbiTaxId: 6945,
+    wikiTitle: 'Ixodes_scapularis',
+    group: 'arthropod',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Adult_deer_tick.jpg/330px-Adult_deer_tick.jpg',
+  },
+  {
+    commonName: 'Dust mite',
+    scientificName: 'Dermatophagoides pteronyssinus',
+    ncbiTaxId: 6956,
+    wikiTitle: 'Dermatophagoides_pteronyssinus',
+    group: 'arthropod',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/House_Dust_Mite.jpg/330px-House_Dust_Mite.jpg',
   },
   {
     commonName: 'Barnacle',
@@ -1083,7 +1083,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 172567,
     wikiTitle: 'Balanus_balanus',
     group: 'arthropod',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/5604970/medium.jpeg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Rough_barnacle%2C_Ammoniakhavnen_imported_from_iNaturalist_photo_327952133.jpg/330px-Rough_barnacle%2C_Ammoniakhavnen_imported_from_iNaturalist_photo_327952133.jpg',
   },
   {
     commonName: 'American lobster',
@@ -1091,7 +1091,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 6706,
     wikiTitle: 'American_lobster',
     group: 'arthropod',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/75691769/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Nur01521_-_Flickr_-_NOAA_Photo_Library.jpg/330px-Nur01521_-_Flickr_-_NOAA_Photo_Library.jpg',
   },
   {
     commonName: 'Red king crab',
@@ -1099,7 +1099,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 6741,
     wikiTitle: 'Red_king_crab',
     group: 'arthropod',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/158690742/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Spider_crab.jpg/330px-Spider_crab.jpg',
   },
   {
     commonName: 'Hermit crab',
@@ -1107,7 +1107,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 174397,
     wikiTitle: 'Pagurus_bernhardus',
     group: 'arthropod',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/6221181/medium.jpeg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Pagurus_bernhardus.jpg/330px-Pagurus_bernhardus.jpg',
   },
   {
     commonName: 'Blue crab',
@@ -1115,7 +1115,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 6763,
     wikiTitle: 'Callinectes_sapidus',
     group: 'arthropod',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/175905385/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/The_Childrens_Museum_of_Indianapolis_-_Atlantic_blue_crab.jpg/330px-The_Childrens_Museum_of_Indianapolis_-_Atlantic_blue_crab.jpg',
   },
   {
     commonName: 'Common woodlouse',
@@ -1123,7 +1123,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 13347,
     wikiTitle: 'Armadillidium_vulgare',
     group: 'arthropod',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/175293083/medium.jpeg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Armadillidium_vulgare_male.jpg/330px-Armadillidium_vulgare_male.jpg',
   },
   {
     commonName: 'Coconut crab',
@@ -1131,7 +1131,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 177283,
     wikiTitle: 'Coconut_crab',
     group: 'arthropod',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/185244029/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Coconut_Crab_Birgus_latro.jpg/330px-Coconut_Crab_Birgus_latro.jpg',
   },
   {
     commonName: 'Porcelain crab',
@@ -1139,7 +1139,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 88211,
     wikiTitle: 'Porcelain_crab',
     group: 'arthropod',
-    imageUrl: 'https://static.inaturalist.org/photos/1390549/medium.JPG',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/South_eastern_Pacific_species_of_Petrolisthes%2C_Allopetrolisthes%2C_and_Liopetrolisthes_%28Porcellanidae%29.jpg/330px-South_eastern_Pacific_species_of_Petrolisthes%2C_Allopetrolisthes%2C_and_Liopetrolisthes_%28Porcellanidae%29.jpg',
   },
   {
     commonName: 'White shrimp',
@@ -1147,7 +1147,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 6689,
     wikiTitle: 'Whiteleg_shrimp',
     group: 'arthropod',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/1441420/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Litopenaeus_vannamei_specimen.jpg/330px-Litopenaeus_vannamei_specimen.jpg',
   },
   {
     commonName: 'Mantisfly',
@@ -1163,7 +1163,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 7507,
     wikiTitle: 'Mantis_religiosa',
     group: 'arthropod',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/180063407/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/European_praying_mantis_%28Mantis_religiosa%29_green_female_Dobruja.jpg/330px-European_praying_mantis_%28Mantis_religiosa%29_green_female_Dobruja.jpg',
   },
   {
     commonName: 'Green lacewing',
@@ -1171,15 +1171,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 189513,
     wikiTitle: 'Chrysoperla_carnea',
     group: 'arthropod',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/26616087/medium.jpg',
-  },
-  {
-    commonName: 'Twisted-wing parasite',
-    scientificName: 'Stylops melittae',
-    ncbiTaxId: 50597,
-    wikiTitle: 'Stylops_melittae',
-    group: 'arthropod',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/14144589/medium.jpeg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/%28MHNT%29_Chrysoperla_carnea_-_dorsal_view.jpg/330px-%28MHNT%29_Chrysoperla_carnea_-_dorsal_view.jpg',
   },
 
   // Other invertebrates
@@ -1189,7 +1181,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 6645,
     wikiTitle: 'Common_octopus',
     group: 'invertebrate',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/166419253/medium.jpeg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Octopus2.jpg/330px-Octopus2.jpg',
   },
   {
     commonName: 'Common limpet',
@@ -1197,7 +1189,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 6465,
     wikiTitle: 'Common_limpet',
     group: 'invertebrate',
-    imageUrl: 'https://static.inaturalist.org/photos/27603096/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Common_limpets1.jpg/330px-Common_limpets1.jpg',
   },
   {
     commonName: 'Sand dollar',
@@ -1205,7 +1197,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 869203,
     wikiTitle: 'Sand_dollar',
     group: 'invertebrate',
-    imageUrl: 'https://static.inaturalist.org/photos/100977362/medium.jpeg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Clypeaster_reticulatus.jpg/330px-Clypeaster_reticulatus.jpg',
   },
   {
     commonName: 'Garden snail',
@@ -1213,7 +1205,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 6535,
     wikiTitle: 'Cornu_aspersum',
     group: 'invertebrate',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/16302570/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Snail1web.jpg/330px-Snail1web.jpg',
   },
   {
     commonName: 'Milky ribbon worm',
@@ -1221,7 +1213,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 6221,
     wikiTitle: 'Cerebratulus_lacteus',
     group: 'invertebrate',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/14836795/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Cerebratulus_lacteus_%28YPM_IZ_103854%29.jpeg/330px-Cerebratulus_lacteus_%28YPM_IZ_103854%29.jpeg',
   },
   {
     commonName: 'Nautilus',
@@ -1229,7 +1221,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 34573,
     wikiTitle: 'Chambered_nautilus',
     group: 'invertebrate',
-    imageUrl: 'https://static.inaturalist.org/photos/112270018/medium.jpeg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Nautilus_pompilius_%28detail%29.jpg/330px-Nautilus_pompilius_%28detail%29.jpg',
   },
   {
     commonName: 'Giant clam',
@@ -1245,15 +1237,15 @@ export const organisms: Organism[] = [
     ncbiTaxId: 7604,
     wikiTitle: 'Common_starfish',
     group: 'invertebrate',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Asterias_rubens.jpg/500px-Asterias_rubens.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Asterias_rubens.jpg/330px-Asterias_rubens.jpg',
   },
   {
     commonName: 'Sea urchin',
     scientificName: 'Strongylocentrotus purpuratus',
     ncbiTaxId: 7668,
-    wikiTitle: 'Purple_sea_urchin',
+    wikiTitle: 'Strongylocentrotus_purpuratus',
     group: 'invertebrate',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Urchin_%289398869414%29.jpg/500px-Urchin_%289398869414%29.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Urchin_%289398869414%29.jpg/330px-Urchin_%289398869414%29.jpg',
   },
   {
     commonName: 'Moon jellyfish',
@@ -1261,7 +1253,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 6145,
     wikiTitle: 'Moon_jellyfish',
     group: 'invertebrate',
-    imageUrl: 'https://static.inaturalist.org/photos/128613708/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Aurelia_aurita_%28Cnidaria%29_Luc_Viatour.jpg/330px-Aurelia_aurita_%28Cnidaria%29_Luc_Viatour.jpg',
   },
   {
     commonName: 'Staghorn coral',
@@ -1269,7 +1261,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 6130,
     wikiTitle: 'Staghorn_coral',
     group: 'invertebrate',
-    imageUrl: 'https://static.inaturalist.org/photos/164610234/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Hertshoon.jpg/330px-Hertshoon.jpg',
   },
   {
     commonName: 'Giant squid',
@@ -1277,7 +1269,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 256136,
     wikiTitle: 'Giant_squid',
     group: 'invertebrate',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/91402900/medium.jpeg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Giant_squid_Ranheim.jpg/330px-Giant_squid_Ranheim.jpg',
   },
   {
     commonName: 'Earthworm',
@@ -1285,7 +1277,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 6398,
     wikiTitle: 'Lumbricus_terrestris',
     group: 'invertebrate',
-    imageUrl: 'https://static.inaturalist.org/photos/6813438/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Regenwurm1.jpg/330px-Regenwurm1.jpg',
   },
   {
     commonName: 'Shipworm',
@@ -1293,7 +1285,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 263429,
     wikiTitle: 'Shipworm',
     group: 'invertebrate',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/151633519/medium.jpeg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Shipworm.jpg/330px-Shipworm.jpg',
   },
   {
     commonName: 'Priapulid',
@@ -1301,7 +1293,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 37621,
     wikiTitle: 'Priapulida',
     group: 'invertebrate',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Priapulus_caudatus.jpg/500px-Priapulus_caudatus.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Priapulus_caudatus.jpg/330px-Priapulus_caudatus.jpg',
   },
   {
     commonName: 'Peanut worm',
@@ -1309,7 +1301,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 6446,
     wikiTitle: 'Peanut_worm',
     group: 'invertebrate',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/133619270/medium.jpeg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Thysanocardia_nigra.jpg/330px-Thysanocardia_nigra.jpg',
   },
   {
     commonName: 'Pork tapeworm',
@@ -1325,7 +1317,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 252964,
     wikiTitle: 'Spongia_officinalis',
     group: 'invertebrate',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/154760564/medium.jpeg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/c/c9/Spongia_officinalis.jpg',
   },
   {
     commonName: 'Sea anemone',
@@ -1333,7 +1325,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 45351,
     wikiTitle: 'Nematostella_vectensis',
     group: 'invertebrate',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Nematostella_vectensis_%28I1419%29_999_%2830695685804%29.jpg/500px-Nematostella_vectensis_%28I1419%29_999_%2830695685804%29.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Nematostella_vectensis_%28I1419%29_999_%2830695685804%29.jpg/330px-Nematostella_vectensis_%28I1419%29_999_%2830695685804%29.jpg',
   },
   {
     commonName: 'Comb jelly',
@@ -1341,7 +1333,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 27923,
     wikiTitle: 'Mnemiopsis',
     group: 'invertebrate',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Sea_walnut%2C_Boston_Aquarium_%28cropped%29.jpg/500px-Sea_walnut%2C_Boston_Aquarium_%28cropped%29.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Sea_walnut%2C_Boston_Aquarium_%28cropped%29.jpg/330px-Sea_walnut%2C_Boston_Aquarium_%28cropped%29.jpg',
   },
   {
     commonName: 'Sea squirt',
@@ -1349,7 +1341,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 7719,
     wikiTitle: 'Ciona_intestinalis',
     group: 'invertebrate',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Cionaintestinalis.jpg/500px-Cionaintestinalis.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Cionaintestinalis.jpg/330px-Cionaintestinalis.jpg',
   },
   {
     commonName: 'Lancelet',
@@ -1365,7 +1357,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 307972,
     wikiTitle: 'Apostichopus_japonicus',
     group: 'invertebrate',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/154075340/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Apostichopus_japonicus.jpg/330px-Apostichopus_japonicus.jpg',
   },
   {
     commonName: 'Salp',
@@ -1373,14 +1365,15 @@ export const organisms: Organism[] = [
     ncbiTaxId: 569448,
     wikiTitle: 'Salp',
     group: 'invertebrate',
-    imageUrl: 'https://static.inaturalist.org/photos/35333491/medium.jpeg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Salp.jpg/330px-Salp.jpg',
   },
   {
     commonName: "Portuguese man o' war",
     scientificName: 'Physalia physalis',
     ncbiTaxId: 168775,
-    wikiTitle: 'Portuguese_man_o%27_war',
+    wikiTitle: "Portuguese_man_o'_war",
     group: 'invertebrate',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Portuguese_Man-O-War_%28Physalia_physalis%29.jpg/330px-Portuguese_Man-O-War_%28Physalia_physalis%29.jpg',
   },
   {
     commonName: 'Vampire squid',
@@ -1388,7 +1381,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 55288,
     wikiTitle: 'Vampire_squid',
     group: 'invertebrate',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/239331193/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Vampyroteuthis_illustration.jpg/330px-Vampyroteuthis_illustration.jpg',
   },
   {
     commonName: 'Crinoid',
@@ -1396,7 +1389,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 105859,
     wikiTitle: 'Crinoid',
     group: 'invertebrate',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/34137094/medium.jpeg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Crinoid_on_the_reef_of_Batu_Moncho_Island.JPG/330px-Crinoid_on_the_reef_of_Batu_Moncho_Island.JPG',
   },
   {
     commonName: 'Brittle star',
@@ -1404,7 +1397,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 70180,
     wikiTitle: 'Brittle_star',
     group: 'invertebrate',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/195306070/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Ophiura_ophiura.jpg/330px-Ophiura_ophiura.jpg',
   },
   {
     commonName: 'Velvet worm',
@@ -1412,7 +1405,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 49087,
     wikiTitle: 'Velvet_worm',
     group: 'invertebrate',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/20328292/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Velvet_worm_rotated%2C_mirror.png/330px-Velvet_worm_rotated%2C_mirror.png',
   },
 
   // Plants
@@ -1422,7 +1415,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 3702,
     wikiTitle: 'Arabidopsis_thaliana',
     group: 'plant',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/25177169/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Arabidopsis_thaliana.jpg/330px-Arabidopsis_thaliana.jpg',
   },
   {
     commonName: 'English oak',
@@ -1438,7 +1431,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 3663,
     wikiTitle: 'Cucurbita_pepo',
     group: 'plant',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/473112807/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Cucurbita_pepo_collage_1.png/330px-Cucurbita_pepo_collage_1.png',
   },
   {
     commonName: 'Scots pine',
@@ -1454,7 +1447,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 29780,
     wikiTitle: 'Mango',
     group: 'plant',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Mangoes_%28Magnifera_indica%29_from_India.jpg/330px-Mangoes_%28Magnifera_indica%29_from_India.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Mangos_-_single_and_halved.jpg/330px-Mangos_-_single_and_halved.jpg',
   },
   {
     commonName: 'Poison ivy',
@@ -1462,7 +1455,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 43853,
     wikiTitle: 'Toxicodendron_radicans',
     group: 'plant',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/61276703/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/2014-10-29_13_43_39_Poison_Ivy_foliage_during_autumn_leaf_coloration_in_Ewing%2C_New_Jersey.JPG/330px-2014-10-29_13_43_39_Poison_Ivy_foliage_during_autumn_leaf_coloration_in_Ewing%2C_New_Jersey.JPG',
   },
   {
     commonName: 'English ivy',
@@ -1494,7 +1487,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 69266,
     wikiTitle: 'Vaccinium_corymbosum',
     group: 'plant',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/216577733/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Vaccinium_corymbosum%2801%29.jpg/330px-Vaccinium_corymbosum%2801%29.jpg',
   },
   {
     commonName: 'Cotton',
@@ -1502,7 +1495,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 3635,
     wikiTitle: 'Gossypium_hirsutum',
     group: 'plant',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/121677327/medium.jpeg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/CottonPlant.JPG/330px-CottonPlant.JPG',
   },
   {
     commonName: 'Cacao',
@@ -1510,7 +1503,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 3641,
     wikiTitle: 'Theobroma_cacao',
     group: 'plant',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/306622911/medium.jpeg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Matadecacao.jpg/330px-Matadecacao.jpg',
   },
   {
     commonName: 'Venus flytrap',
@@ -1518,15 +1511,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 4362,
     wikiTitle: 'Venus_flytrap',
     group: 'plant',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/108567955/medium.jpg',
-  },
-  {
-    commonName: 'Spinach',
-    scientificName: 'Spinacia oleracea',
-    ncbiTaxId: 3562,
-    wikiTitle: 'Spinach',
-    group: 'plant',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/41981/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Venus_Flytrap_showing_trigger_hairs.jpg/330px-Venus_Flytrap_showing_trigger_hairs.jpg',
   },
   {
     commonName: 'Saguaro cactus',
@@ -1534,7 +1519,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 171969,
     wikiTitle: 'Saguaro',
     group: 'plant',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/77029090/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Carnegiea_gigantea_in_Saguaro_National_Park_near_Tucson%2C_Arizona_during_November_%2858%29.jpg/330px-Carnegiea_gigantea_in_Saguaro_National_Park_near_Tucson%2C_Arizona_during_November_%2858%29.jpg',
   },
   {
     commonName: 'Jumping cholla',
@@ -1542,7 +1527,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 701512,
     wikiTitle: 'Cylindropuntia_fulgida',
     group: 'plant',
-    imageUrl: 'https://static.inaturalist.org/photos/792929/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Choya_brincadora_-_panoramio.jpg/330px-Choya_brincadora_-_panoramio.jpg',
   },
   {
     commonName: 'Sacred lotus',
@@ -1550,7 +1535,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 4432,
     wikiTitle: 'Nelumbo_nucifera',
     group: 'plant',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Sacred_lotus_Nelumbo_nucifera.jpg/500px-Sacred_lotus_Nelumbo_nucifera.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Sacred_lotus_Nelumbo_nucifera.jpg/330px-Sacred_lotus_Nelumbo_nucifera.jpg',
   },
   {
     commonName: 'Water lily',
@@ -1558,7 +1543,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 34301,
     wikiTitle: 'Nymphaea_alba',
     group: 'plant',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/169681028/medium.jpeg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/2016_Kwiat_grzybieni_bia%C5%82ych_2.jpg/330px-2016_Kwiat_grzybieni_bia%C5%82ych_2.jpg',
   },
   {
     commonName: 'Strawberry',
@@ -1566,7 +1551,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 57918,
     wikiTitle: 'Fragaria_vesca',
     group: 'plant',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/134106423/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Illustration_Fragaria_vesca0.jpg/330px-Illustration_Fragaria_vesca0.jpg',
   },
   {
     commonName: 'Peanut',
@@ -1574,7 +1559,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 3818,
     wikiTitle: 'Peanut',
     group: 'plant',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/105026294/medium.jpeg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Arachis_hypogaea_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-163.jpg/330px-Arachis_hypogaea_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-163.jpg',
   },
   {
     commonName: 'Cashew',
@@ -1590,7 +1575,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 3755,
     wikiTitle: 'Almond',
     group: 'plant',
-    imageUrl: 'https://static.inaturalist.org/photos/113968708/medium.jpeg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Almonds_-_in_shell%2C_shell_cracked_open%2C_shelled%2C_blanched.jpg/330px-Almonds_-_in_shell%2C_shell_cracked_open%2C_shelled%2C_blanched.jpg',
   },
   {
     commonName: 'Rose',
@@ -1614,7 +1599,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 4530,
     wikiTitle: 'Rice',
     group: 'plant',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Mature_Rice_%28India%29_by_Augustus_Binu.jpg/330px-Mature_Rice_%28India%29_by_Augustus_Binu.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/20201102.Hengnan.Hybrid_rice_Sanyou-1.6.jpg/330px-20201102.Hengnan.Hybrid_rice_Sanyou-1.6.jpg',
   },
   {
     commonName: 'Baobab',
@@ -1663,7 +1648,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 41492,
     wikiTitle: 'Bellis_perennis',
     group: 'plant',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/515847774/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Bellis_perennis_sl1.jpg/330px-Bellis_perennis_sl1.jpg',
   },
   {
     commonName: 'Carrot',
@@ -1671,7 +1656,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 4039,
     wikiTitle: 'Carrot',
     group: 'plant',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Daucus_carota_May_2008-1_edit.jpg/330px-Daucus_carota_May_2008-1_edit.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Vegetable-Carrot-Bundle-wStalks.jpg/330px-Vegetable-Carrot-Bundle-wStalks.jpg',
   },
   {
     commonName: 'Sphagnum moss',
@@ -1687,7 +1672,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 32101,
     wikiTitle: 'Pteridium_aquilinum',
     group: 'plant',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/64559686/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Adelaarsvaren_planten_Pteridium_aquilinum.jpg/330px-Adelaarsvaren_planten_Pteridium_aquilinum.jpg',
   },
   {
     commonName: 'Welwitschia',
@@ -1776,7 +1761,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 4565,
     wikiTitle: 'Common_wheat',
     group: 'plant',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/127585014/medium.jpeg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Bl%C3%A9_tendre_%28GRAPELLI%29_AO-5-cliche_Jean_Weber_%285%29_%2823975019962%29.jpg/330px-Bl%C3%A9_tendre_%28GRAPELLI%29_AO-5-cliche_Jean_Weber_%285%29_%2823975019962%29.jpg',
   },
   {
     commonName: 'Corpse lily',
@@ -1832,7 +1817,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 50225,
     wikiTitle: 'Taraxacum_officinale',
     group: 'plant',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/35280454/medium.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Taraxacum_officinale_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-135.jpg/330px-Taraxacum_officinale_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-135.jpg',
   },
   {
     commonName: 'Giant groundsel',
@@ -1867,22 +1852,6 @@ export const organisms: Organism[] = [
     imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Dragonblood_tree_in_Socotra_2.jpg/330px-Dragonblood_tree_in_Socotra_2.jpg',
   },
   {
-    commonName: 'Asparagus',
-    scientificName: 'Asparagus officinalis',
-    ncbiTaxId: 4686,
-    wikiTitle: 'Asparagus',
-    group: 'plant',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/285678052/medium.jpg',
-  },
-  {
-    commonName: 'Sugar maple',
-    scientificName: 'Acer saccharum',
-    ncbiTaxId: 4024,
-    wikiTitle: 'Sugar_maple',
-    group: 'plant',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Acer_saccharum_1-jgreenlee_%285098070608%29.jpg/330px-Acer_saccharum_1-jgreenlee_%285098070608%29.jpg',
-  },
-  {
     commonName: 'African milk tree',
     scientificName: 'Euphorbia trigona',
     ncbiTaxId: 1492770,
@@ -1896,7 +1865,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 37495,
     wikiTitle: 'Poinsettia',
     group: 'plant',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/467993798/medium.jpeg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Weihnachtsstern_-_gro%C3%9F.jpg/330px-Weihnachtsstern_-_gro%C3%9F.jpg',
   },
   {
     commonName: 'Papaya',
@@ -1912,7 +1881,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 3712,
     wikiTitle: 'Brassica_oleracea',
     group: 'plant',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/159421391/medium.jpeg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Brassica_oleracea0.jpg/330px-Brassica_oleracea0.jpg',
   },
   {
     commonName: 'American pitcher plant',
@@ -1920,7 +1889,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 45176,
     wikiTitle: 'Sarracenia_purpurea',
     group: 'plant',
-    imageUrl: 'https://inaturalist-open-data.s3.amazonaws.com/photos/56349988/medium.jpeg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Sarracenia_purpurea_Flowers.JPG/330px-Sarracenia_purpurea_Flowers.JPG',
   },
   {
     commonName: 'Tropical pitcher plant',
@@ -1938,6 +1907,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 4932,
     wikiTitle: 'Saccharomyces_cerevisiae',
     group: 'microbe',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Saccharomyces_cerevisiae_SEM.jpg/330px-Saccharomyces_cerevisiae_SEM.jpg',
   },
   {
     commonName: 'Candida auris',
@@ -1985,7 +1955,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 5885,
     wikiTitle: 'Paramecium',
     group: 'microbe',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Paramecium_caudatum_Ehrenberg%2C_1833.jpg/330px-Paramecium_caudatum_Ehrenberg%2C_1833.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Paramecium.jpg/330px-Paramecium.jpg',
   },
   {
     commonName: 'Plasmodium',
@@ -2028,36 +1998,12 @@ export const organisms: Organism[] = [
     imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Fibrillanosema_spore.jpg/330px-Fibrillanosema_spore.jpg',
   },
   {
-    commonName: 'Foraminiferan',
-    scientificName: 'Ammonia tepida',
-    ncbiTaxId: 37320,
-    wikiTitle: 'Foraminifera',
-    group: 'microbe',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Ammonia_tepida.jpg/330px-Ammonia_tepida.jpg',
-  },
-  {
-    commonName: 'Xenophyophore',
-    scientificName: 'Syringammina corbicula',
-    ncbiTaxId: 212475,
-    wikiTitle: 'Xenophyophore',
-    group: 'microbe',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/XenophyophoreNOAA.jpg/330px-XenophyophoreNOAA.jpg',
-  },
-  {
-    commonName: 'Copepod',
-    scientificName: 'Calanus finmarchicus',
-    ncbiTaxId: 6837,
-    wikiTitle: 'Calanus_finmarchicus',
-    group: 'arthropod',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/FMIB_36348_Copepod_Culanus_finmarchicus_from_the_West_Coast_of_Scotland.jpeg/330px-FMIB_36348_Copepod_Culanus_finmarchicus_from_the_West_Coast_of_Scotland.jpeg',
-  },
-  {
     commonName: 'Diatom',
     scientificName: 'Thalassiosira pseudonana',
     ncbiTaxId: 35128,
     wikiTitle: 'Diatom',
     group: 'microbe',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Oogonium_--_3_%2834809275943%29.jpg/330px-Oogonium_--_3_%2834809275943%29.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Diatoms_through_the_microscope.jpg/330px-Diatoms_through_the_microscope.jpg',
   },
   {
     commonName: 'Polycystine',
@@ -2089,7 +2035,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 6087,
     wikiTitle: 'Hydra_(genus)',
     group: 'invertebrate',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Hydra_biology.jpg/500px-Hydra_biology.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Hydra-Foto.jpg/330px-Hydra-Foto.jpg',
   },
   {
     commonName: 'Planarian',
@@ -2097,7 +2043,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 79327,
     wikiTitle: 'Schmidtea_mediterranea',
     group: 'invertebrate',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Smed_distribution.png/500px-Smed_distribution.png',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Smed_distribution.png/330px-Smed_distribution.png',
   },
   {
     commonName: 'Acoel flatworm',
