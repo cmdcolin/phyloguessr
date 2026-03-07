@@ -112,7 +112,8 @@ export function findClosestPairFromData(
   } satisfies ClosestPairResult
 }
 
-let taxonomyDataPromise: Promise<TaxonomyData> | undefined
+let easyTaxonomyPromise: Promise<TaxonomyData> | undefined
+let fullTaxonomyPromise: Promise<TaxonomyData> | undefined
 let speciesPoolPromise: Promise<SpeciesPoolEntry[]> | undefined
 
 interface CompactTaxonomyData {
@@ -136,20 +137,29 @@ function unpackTaxonomyData(compact: CompactTaxonomyData) {
   return { parents, names, ranks } satisfies TaxonomyData
 }
 
-export function loadTaxonomyData() {
-  if (!taxonomyDataPromise) {
-    taxonomyDataPromise = fetch(
-      `${import.meta.env.BASE_URL}taxonomy/parents.json`,
-    )
-      .then(r => {
-        if (!r.ok) {
-          throw new Error(`Failed to load taxonomy data: ${r.status}`)
-        }
-        return r.json() as Promise<CompactTaxonomyData>
-      })
-      .then(unpackTaxonomyData)
+function fetchTaxonomy(file: string) {
+  return fetch(`${import.meta.env.BASE_URL}taxonomy/${file}`)
+    .then(r => {
+      if (!r.ok) {
+        throw new Error(`Failed to load taxonomy data: ${r.status}`)
+      }
+      return r.json() as Promise<CompactTaxonomyData>
+    })
+    .then(unpackTaxonomyData)
+}
+
+export function loadEasyTaxonomyData() {
+  if (!easyTaxonomyPromise) {
+    easyTaxonomyPromise = fetchTaxonomy('parents-easy.json')
   }
-  return taxonomyDataPromise
+  return easyTaxonomyPromise
+}
+
+export function loadTaxonomyData() {
+  if (!fullTaxonomyPromise) {
+    fullTaxonomyPromise = fetchTaxonomy('parents.json')
+  }
+  return fullTaxonomyPromise
 }
 
 export function loadSpeciesPool() {

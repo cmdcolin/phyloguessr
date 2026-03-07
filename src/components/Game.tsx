@@ -14,6 +14,7 @@ import { sessionStorageGetItem } from '../utils/storage.ts'
 import {
   findClosestPairFromData,
   findTaxId,
+  loadEasyTaxonomyData,
   loadSpeciesPool,
   loadTaxonomyData,
   pickThreeFromClade,
@@ -300,8 +301,13 @@ export default function Game({ mode }: { mode: GameMode }) {
 
     let data = taxonomyData
     if (!data) {
-      setLoadingMessage('Downloading taxonomy data (~5 MB)...')
-      data = await loadTaxonomyData()
+      if (mode === 'easy') {
+        setLoadingMessage('Downloading taxonomy data...')
+        data = await loadEasyTaxonomyData()
+      } else {
+        setLoadingMessage('Downloading taxonomy data...')
+        data = await loadTaxonomyData()
+      }
       setTaxonomyData(data)
     }
 
@@ -460,7 +466,7 @@ export default function Game({ mode }: { mode: GameMode }) {
 
       let data = taxonomyData
       if (!data) {
-        setLoadingMessage('Downloading taxonomy data (~5 MB)...')
+        setLoadingMessage('Downloading taxonomy data...')
         data = await loadTaxonomyData()
         setTaxonomyData(data)
       }

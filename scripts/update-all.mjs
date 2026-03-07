@@ -78,11 +78,14 @@ run('Step 3: Validate pool images & embed URLs', validateArgs)
 // Step 4: Embed organism images for easy mode
 run('Step 4: Embed easy-mode organism images', 'scripts/embed-organism-images.mjs')
 
-// Step 5: Run tests
-runShell('Step 5: Run tests', 'npx vitest run')
+// Step 5: Split taxonomy for easy mode
+run('Step 5: Split taxonomy for easy mode', 'scripts/split-taxonomy.mjs')
 
-// Step 6: Build site
-runShell('Step 6: Build site', 'npx astro build')
+// Step 6: Run tests
+runShell('Step 6: Run tests', 'npx vitest run')
+
+// Step 7: Build site
+runShell('Step 7: Build site', 'npx astro build')
 
 console.log(`\n${'='.repeat(60)}`)
 console.log('  All steps completed successfully!')

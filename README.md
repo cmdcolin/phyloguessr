@@ -2,9 +2,11 @@
 
 Geoguessr but for ... animals and plants and stuff
 
-## Demo
+## Live site
 
-https://cmdcolin.github.io/phyloguessr
+Wooo bought a domain name and everything
+
+https://phyloguessr.com
 
 ## Screenshot
 
