@@ -104,6 +104,9 @@ export default function Header() {
               <a className="hamburger-item" href="/about">
                 About
               </a>
+              <a className="hamburger-item" href="/why">
+                Why
+              </a>
               <a className="hamburger-item" href="/donate">
                 Donate
               </a>
