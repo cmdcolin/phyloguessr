@@ -6,6 +6,7 @@ import {
   existsSync,
   mkdirSync,
   readFileSync,
+  readdirSync,
   statSync,
 } from 'fs'
 import { writeFile } from 'fs/promises'
@@ -164,6 +165,136 @@ function buildSpeciesPool(
   return pool
 }
 
+// --- jb2hubs species import ---
+
+const JB2HUBS_DIR = join(process.env.HOME, 'src', 'jb2hubs', 'hubs')
+
+function cleanJb2hubsCommonName(commonName, scientificName) {
+  let name = commonName
+    // Remove assembly/year suffixes like "(2009 genbank)" or "(ATCC 18224 2008 refseq)"
+    .replace(/\s*\([^)]*\d{4}[^)]*(genbank|refseq)[^)]*\)/gi, '')
+    .replace(/\s*\(\d{4}\)/, '')
+    // Remove strain prefixes like "ascomycetes T.marneffei" or "basidiomycetes M.osmundae IAM 14324"
+    .replace(/^(ascomycetes|basidiomycetes|apicomplexans|diplomonads)\s+\S+/i, '')
+    // Remove strain/isolate identifiers
+    .replace(/\s+(ATCC|IAM|CBS|NRRL|DSM|JCM)\s+\S+/g, '')
+    .trim()
+
+  if (!name || name === scientificName) {
+    return scientificName.split(' ').slice(0, 2).join(' ')
+  }
+  return name
+}
+
+function cleanJb2hubsSciName(scientificName) {
+  // Remove strain identifiers — keep just genus + species
+  return scientificName.split(' ').slice(0, 2).join(' ')
+}
+
+function scanJb2hubs(ncbiParents, ncbiRanks, scientificNames) {
+  if (!existsSync(JB2HUBS_DIR)) {
+    console.log('  jb2hubs not found, skipping')
+    return []
+  }
+  console.log('Scanning jb2hubs for additional species...')
+  const results = []
+
+  function walk(dir, depth) {
+    if (depth > 5) return
+    let entries
+    try {
+      entries = readdirSync(dir)
+    } catch {
+      return
+    }
+    for (const entry of entries) {
+      const full = join(dir, entry)
+      try {
+        if (!statSync(full).isDirectory()) continue
+      } catch {
+        continue
+      }
+      const metaPath = join(full, 'meta.json')
+      const imagePath = join(full, 'image.json')
+      if (existsSync(metaPath) && existsSync(imagePath)) {
+        try {
+          const meta = JSON.parse(readFileSync(metaPath, 'utf8'))
+          const image = JSON.parse(readFileSync(imagePath, 'utf8'))
+          if (meta.taxonId && meta.scientificName && image.imageUrl) {
+            results.push({
+              taxId: meta.taxonId,
+              scientificName: meta.scientificName,
+              commonName: meta.commonName || '',
+            })
+          }
+        } catch {
+          // skip malformed
+        }
+      } else {
+        walk(full, depth + 1)
+      }
+    }
+  }
+
+  for (const prefix of ['GCF', 'GCA']) {
+    walk(join(JB2HUBS_DIR, prefix), 0)
+  }
+  console.log(`  Found ${results.length} assemblies with images`)
+
+  // Deduplicate by taxId, prefer GCF (listed first)
+  const byTaxId = new Map()
+  for (const r of results) {
+    if (!byTaxId.has(r.taxId)) {
+      byTaxId.set(r.taxId, r)
+    }
+  }
+
+  // Map strain taxIds to their species-level parent when possible
+  const entries = []
+  const seenSpecies = new Set()
+  for (const [taxId, r] of byTaxId) {
+    let speciesTaxId = taxId
+    const rank = ncbiRanks.get(taxId)
+    // Walk up to species rank if this is a strain/subspecies
+    if (rank && rank !== 'species') {
+      let current = taxId
+      const seen = new Set()
+      while (current && !seen.has(current)) {
+        seen.add(current)
+        if (ncbiRanks.get(current) === 'species') {
+          speciesTaxId = current
+          break
+        }
+        const parent = ncbiParents.get(current)
+        if (!parent || parent === current) break
+        current = parent
+      }
+    }
+
+    if (seenSpecies.has(speciesTaxId)) continue
+    seenSpecies.add(speciesTaxId)
+
+    const cleanSci = cleanJb2hubsSciName(
+      scientificNames.get(speciesTaxId) || r.scientificName,
+    )
+    const cleanCommon = cleanJb2hubsCommonName(r.commonName, cleanSci)
+
+    let excluded = false
+    for (const pat of EXCLUDE_PATTERNS) {
+      if (pat.test(cleanSci) || pat.test(cleanCommon)) {
+        excluded = true
+        break
+      }
+    }
+    if (!excluded) {
+      entries.push([speciesTaxId, cleanCommon, cleanSci])
+    }
+  }
+
+  console.log(`  ${entries.length} unique species from jb2hubs`)
+  return entries
+}
+
 function buildNcbiAncestorTree(
   pool,
   curatedIds,
@@ -314,6 +445,18 @@ async function main() {
     `  Added ${microAdded} curated microorganisms (pool now ${pool.length})`,
   )
 
+  // Add species from jb2hubs genome hubs
+  const jb2hubsEntries = scanJb2hubs(ncbiParents, ncbiRanks, scientificNames)
+  let jb2Added = 0
+  for (const entry of jb2hubsEntries) {
+    if (!poolIds.has(entry[0])) {
+      pool.push(entry)
+      poolIds.add(entry[0])
+      jb2Added++
+    }
+  }
+  console.log(`  Added ${jb2Added} species from jb2hubs (pool now ${pool.length})`)
+
   const ancestorTree = buildNcbiAncestorTree(
     pool,
     CURATED_TAX_IDS,
@@ -329,25 +472,8 @@ async function main() {
   mkdirSync(OUT_DIR, { recursive: true })
 
   const poolPath = join(OUT_DIR, 'species-pool.json')
-  if (existsSync(poolPath)) {
-    const existing = JSON.parse(readFileSync(poolPath, 'utf8'))
-    if (
-      Array.isArray(existing) &&
-      existing.length > 0 &&
-      existing[0].length >= 4
-    ) {
-      console.log(
-        `Preserving existing species-pool.json (${existing.length} entries with images)`,
-      )
-      console.log('  Run validate-pool-images.mjs to rebuild from scratch')
-    } else {
-      console.log('Writing species-pool.json...')
-      await writeFile(poolPath, JSON.stringify(pool))
-    }
-  } else {
-    console.log('Writing species-pool.json...')
-    await writeFile(poolPath, JSON.stringify(pool))
-  }
+  console.log('Writing species-pool.json...')
+  await writeFile(poolPath, JSON.stringify(pool))
 
   // Write compact format: { R: rankList, D: { id: [parent, name, rankIndex] } }
   console.log('Writing parents.json (compact format)...')

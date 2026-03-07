@@ -294,15 +294,11 @@ export default function Game({ mode }: { mode: GameMode }) {
         } else if (cladeTaxId !== undefined) {
           const result = pickThreeFromClade(cladeTaxId, pool, data)
           if (!result) {
-            if (mode === 'custom') {
-              setCladeError(
-                `Not enough species found in "${cladeFilter.trim()}" — try a broader group`,
-              )
-              setState('customizing')
-              return
-            }
-            setCladeFilter('')
-            continue
+            const label = data.names[String(cladeTaxId)] ?? cladeFilter.trim()
+            setLoadingMessage(
+              `Not enough species in "${label}" — try a broader group`,
+            )
+            return
           }
           picks = result
           const name = data.names[String(cladeTaxId)] ?? cladeFilter.trim()
@@ -758,6 +754,11 @@ export default function Game({ mode }: { mode: GameMode }) {
           {loadingMessage}
           {loadingMessage.includes('try again') && (
             <Button onClick={startRound}>Retry</Button>
+          )}
+          {loadingMessage.includes('try a broader group') && (
+            <Button variant="secondary" href="/custom">
+              ⏮ Back
+            </Button>
           )}
         </div>
       )}

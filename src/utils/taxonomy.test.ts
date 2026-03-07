@@ -7,6 +7,8 @@ import {
   buildContextDiagram,
   buildTreeFromLineages,
   findClosestPairFromData,
+  getAllPairLcas,
+  lcaClosenessScore,
   getLineageFromParents,
 } from './taxonomy.ts'
 import { CURATED_MICROORGANISMS } from '../../scripts/curated-microorganisms.mjs'
@@ -168,6 +170,197 @@ describe('findClosestPairFromData polytomy', () => {
     const data = makeMockData()
     const result = findClosestPairFromData([21, 22, 31], data)
     expect(result.isPolytomy).toBe(false)
+  })
+})
+
+describe('lcaClosenessScore', () => {
+  it('ranks genus closer than family', () => {
+    const genus = { taxId: 1, name: 'G', rank: 'genus', depth: 5 }
+    const family = { taxId: 2, name: 'F', rank: 'family', depth: 5 }
+    expect(lcaClosenessScore(genus)).toBeGreaterThan(lcaClosenessScore(family))
+  })
+
+  it('ranks genus closer than family even when family has higher depth', () => {
+    const genus = { taxId: 1, name: 'G', rank: 'genus', depth: 5 }
+    const family = { taxId: 2, name: 'F', rank: 'family', depth: 50 }
+    expect(lcaClosenessScore(genus)).toBeGreaterThan(lcaClosenessScore(family))
+  })
+
+  it('uses depth as tiebreaker within same rank', () => {
+    const deep = { taxId: 1, name: 'A', rank: 'genus', depth: 10 }
+    const shallow = { taxId: 2, name: 'B', rank: 'genus', depth: 5 }
+    expect(lcaClosenessScore(deep)).toBeGreaterThan(
+      lcaClosenessScore(shallow),
+    )
+  })
+
+  it('falls back to depth for unranked nodes without data', () => {
+    const deep = { taxId: 1, name: 'A', rank: 'no rank', depth: 20 }
+    const shallow = { taxId: 2, name: 'B', rank: 'no rank', depth: 10 }
+    expect(lcaClosenessScore(deep)).toBeGreaterThan(
+      lcaClosenessScore(shallow),
+    )
+  })
+
+  it('uses nearest ranked ancestor for unranked nodes when data is provided', () => {
+    // Unranked node 15 sits between genus 20 and species 11
+    const data: TaxonomyData = {
+      parents: { '10': 1, '15': 10, '20': 15 },
+      names: { '10': 'Family X', '15': 'Some clade', '20': 'Genus Y' },
+      ranks: { '10': 'family', '15': 'no rank', '20': 'genus' },
+    }
+    const unrankedLca = { taxId: 15, name: 'Some clade', rank: 'no rank', depth: 8 }
+    const familyLca = { taxId: 10, name: 'Family X', rank: 'family', depth: 5 }
+
+    // Without data, unranked scores by raw depth only
+    expect(lcaClosenessScore(unrankedLca)).toBeLessThan(
+      lcaClosenessScore(familyLca),
+    )
+    // With data, unranked node finds family as nearest ranked ancestor,
+    // then uses depth as tiebreaker — so it scores higher than the family node
+    expect(lcaClosenessScore(unrankedLca, data)).toBeGreaterThan(
+      lcaClosenessScore(familyLca, data),
+    )
+  })
+})
+
+describe('getAllPairLcas rank-aware sorting', () => {
+  it('genus pair ranks above family pair despite uneven tree depth', () => {
+    // Build a tree where the family-level LCA has more intermediate nodes
+    // (higher raw depth) than the genus-level LCA
+    //
+    //              1 (root)
+    //              |
+    //             10 (kingdom)
+    //            /          \
+    //          20 (order)    30 (order)
+    //          |              |
+    //         25 (family)    35 (no rank)
+    //         |               |
+    //         26 (genus)     36 (no rank)
+    //        /  \             |
+    //       27   28          37 (no rank)
+    //      (sp) (sp)          |
+    //                        38 (family)
+    //                       /  \
+    //                      39   40
+    //                     (sp) (sp)
+    const data: TaxonomyData = {
+      parents: {
+        '10': 1,
+        '20': 10,
+        '25': 20,
+        '26': 25,
+        '27': 26,
+        '28': 26,
+        '30': 10,
+        '35': 30,
+        '36': 35,
+        '37': 36,
+        '38': 37,
+        '39': 38,
+        '40': 38,
+      },
+      names: {
+        '1': 'root',
+        '10': 'Life',
+        '20': 'Order A',
+        '25': 'Family A',
+        '26': 'Genus A',
+        '27': 'Species 1',
+        '28': 'Species 2',
+        '30': 'Order B',
+        '35': 'Clade X',
+        '36': 'Clade Y',
+        '37': 'Clade Z',
+        '38': 'Family B',
+        '39': 'Species 3',
+        '40': 'Species 4',
+      },
+      ranks: {
+        '10': 'kingdom',
+        '20': 'order',
+        '25': 'family',
+        '26': 'genus',
+        '27': 'species',
+        '28': 'species',
+        '30': 'order',
+        '35': 'no rank',
+        '36': 'no rank',
+        '37': 'no rank',
+        '38': 'family',
+        '39': 'species',
+        '40': 'species',
+      },
+    }
+
+    const pairs = getAllPairLcas([27, 28, 39, 40], data)
+
+    // Species 1+2 share genus, Species 3+4 share family
+    // Genus pair should be ranked first despite family pair having more
+    // intermediate nodes (higher raw depth from root)
+    expect(pairs[0].lca.rank).toBe('genus')
+    expect(new Set([pairs[0].taxIdA, pairs[0].taxIdB])).toEqual(
+      new Set([27, 28]),
+    )
+  })
+})
+
+describe('findClosestPairFromData rank-aware', () => {
+  it('picks genus pair over family pair with deeper tree', () => {
+    // Same uneven tree as above, but with 3 species for the trio game
+    const data: TaxonomyData = {
+      parents: {
+        '10': 1,
+        '20': 10,
+        '25': 20,
+        '26': 25,
+        '27': 26,
+        '28': 26,
+        '30': 10,
+        '35': 30,
+        '36': 35,
+        '37': 36,
+        '38': 37,
+        '39': 38,
+      },
+      names: {
+        '1': 'root',
+        '10': 'Life',
+        '20': 'Order A',
+        '25': 'Family A',
+        '26': 'Genus A',
+        '27': 'Species 1',
+        '28': 'Species 2',
+        '30': 'Order B',
+        '35': 'Clade X',
+        '36': 'Clade Y',
+        '37': 'Clade Z',
+        '38': 'Family B',
+        '39': 'Species 3',
+      },
+      ranks: {
+        '10': 'kingdom',
+        '20': 'order',
+        '25': 'family',
+        '26': 'genus',
+        '27': 'species',
+        '28': 'species',
+        '30': 'order',
+        '35': 'no rank',
+        '36': 'no rank',
+        '37': 'no rank',
+        '38': 'family',
+        '39': 'species',
+      },
+    }
+
+    const result = findClosestPairFromData([27, 28, 39], data)
+    expect(new Set([result.sister1TaxId, result.sister2TaxId])).toEqual(
+      new Set([27, 28]),
+    )
+    expect(result.sisterLca.rank).toBe('genus')
+    expect(result.outgroupTaxId).toBe(39)
   })
 })
 

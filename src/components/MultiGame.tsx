@@ -126,7 +126,7 @@ export default function MultiGame() {
 
       const taxIds = orgs.map(o => o.ncbiTaxId)
       const pairs = getAllPairLcas(taxIds, data)
-      if (pairs.length >= 2 && lcaClosenessScore(pairs[0].lca) > lcaClosenessScore(pairs[1].lca)) {
+      if (pairs.length >= 2 && lcaClosenessScore(pairs[0].lca, data) > lcaClosenessScore(pairs[1].lca, data)) {
         finalOrgs = orgs
         finalClade = hardResult.clade
         break
@@ -242,8 +242,8 @@ export default function MultiGame() {
     )!
 
     const bestPair = allPairs[0]
-    const userScore = lcaClosenessScore(userPair.lca)
-    const betterCount = allPairs.filter(p => lcaClosenessScore(p.lca) > userScore).length
+    const userScore = lcaClosenessScore(userPair.lca, taxonomyData)
+    const betterCount = allPairs.filter(p => lcaClosenessScore(p.lca, taxonomyData) > userScore).length
     const rank = betterCount + 1
     const totalPairs = allPairs.length
     const t = totalPairs <= 1 ? 1 : (totalPairs - rank) / (totalPairs - 1)
