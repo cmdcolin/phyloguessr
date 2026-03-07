@@ -27,7 +27,7 @@ export interface TaxonomyData {
   ranks: Record<string, string>
 }
 
-export type SpeciesPoolEntry = [number, string, string]
+export type SpeciesPoolEntry = [number, string, string, string?]
 
 export interface HardModeResult {
   picks: SpeciesPoolEntry[]
@@ -165,6 +165,7 @@ export function loadSpeciesPool() {
   }
   return speciesPoolPromise
 }
+
 
 function isDescendantOf(
   taxId: number,
@@ -306,7 +307,7 @@ export function pickThreeFromClade(
   return pickFromAncestor(ancestorTaxId, pool, data)
 }
 
-const targetRankList = ['genus', 'family', 'order', 'class', 'phylum'] as const
+const targetRankList = ['family', 'order', 'class', 'phylum'] as const
 
 let cladeIndexCache:
   | {
@@ -359,10 +360,124 @@ function buildCladeIndex(pool: SpeciesPoolEntry[], data: TaxonomyData) {
   return byRank
 }
 
+const MICROBIAL_GROUP_NAMES = [
+  'Bacteria',
+  'Archaea',
+  'Fungi',
+  'Viruses',
+  'Alveolata',
+  'Amoebozoa',
+  'Euglenozoa',
+  'Stramenopiles',
+  'Excavata',
+  'Metamonada',
+  'Haptista',
+  'Haptophyta',
+  'Cryptophyceae',
+  'SAR',
+] as const
+
+function getMicrobialGroup(taxId: number, data: TaxonomyData) {
+  let current = taxId
+  const seen = new Set<number>()
+  while (current !== 1 && !seen.has(current)) {
+    seen.add(current)
+    const name = data.names[String(current)]
+    if (name) {
+      for (const group of MICROBIAL_GROUP_NAMES) {
+        if (name === group) {
+          return group
+        }
+      }
+    }
+    const parent = data.parents[String(current)]
+    if (parent === undefined || parent === current) {
+      break
+    }
+    current = parent
+  }
+  return undefined
+}
+
+let microbialGroupCache:
+  | { pool: SpeciesPoolEntry[]; byGroup: Map<string, SpeciesPoolEntry[]> }
+  | undefined
+
+function getMicrobialGroups(pool: SpeciesPoolEntry[], data: TaxonomyData) {
+  if (microbialGroupCache && microbialGroupCache.pool === pool) {
+    return microbialGroupCache.byGroup
+  }
+  const byGroup = new Map<string, SpeciesPoolEntry[]>()
+  for (const entry of pool) {
+    const group = getMicrobialGroup(entry[0], data)
+    if (group) {
+      let bucket = byGroup.get(group)
+      if (!bucket) {
+        bucket = []
+        byGroup.set(group, bucket)
+      }
+      bucket.push(entry)
+    }
+  }
+  microbialGroupCache = { pool, byGroup }
+  return byGroup
+}
+
+export function pickThreeMicrobialCrossKingdom(
+  pool: SpeciesPoolEntry[],
+  data: TaxonomyData,
+) {
+  const byGroup = getMicrobialGroups(pool, data)
+  const groupNames = [...byGroup.keys()].filter(
+    g => (byGroup.get(g)?.length ?? 0) > 0,
+  )
+  if (groupNames.length < 3) {
+    return undefined
+  }
+
+  for (let attempt = 0; attempt < 30; attempt++) {
+    const shuffled = [...groupNames]
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      const tmp = shuffled[i]
+      shuffled[i] = shuffled[j]
+      shuffled[j] = tmp
+    }
+    const threeGroups = shuffled.slice(0, 3)
+    const picks: SpeciesPoolEntry[] = []
+    for (const g of threeGroups) {
+      const bucket = byGroup.get(g)!
+      picks.push(bucket[Math.floor(Math.random() * bucket.length)])
+    }
+    const taxIds: [number, number, number] = [
+      picks[0][0],
+      picks[1][0],
+      picks[2][0],
+    ]
+    const pair = findClosestPairFromData(taxIds, data)
+    if (!pair.isPolytomy) {
+      return picks
+    }
+  }
+  return undefined
+}
+
+const MICROBIAL_ROUND_CHANCE = 0.05
+
 export function pickThreeHardModeDistance(
   pool: SpeciesPoolEntry[],
   data: TaxonomyData,
 ): HardModeResult {
+  if (Math.random() < MICROBIAL_ROUND_CHANCE) {
+    const picks = pickThreeMicrobialCrossKingdom(pool, data)
+    if (picks) {
+      return {
+        picks,
+        clade: { taxId: 0, name: 'Microorganisms', rank: '' },
+      }
+    }
+  }
+
   const byRank = buildCladeIndex(pool, data)
   const nonEmptyRanks = targetRankList.filter(
     r => (byRank.get(r)?.length ?? 0) > 0,

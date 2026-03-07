@@ -4,6 +4,7 @@ export interface Organism {
   ncbiTaxId: number
   wikiTitle: string
   group: string
+  imageUrl?: string
 }
 
 export const organisms: Organism[] = [
@@ -94,7 +95,7 @@ export const organisms: Organism[] = [
   },
   {
     commonName: 'Red kangaroo',
-    scientificName: 'Macropus rufus',
+    scientificName: 'Osphranter rufus',
     ncbiTaxId: 9321,
     wikiTitle: 'Red_kangaroo',
     group: 'mammal',
@@ -333,7 +334,7 @@ export const organisms: Organism[] = [
   {
     commonName: 'Capuchin monkey',
     scientificName: 'Cebus capucinus',
-    ncbiTaxId: 9514,
+    ncbiTaxId: 9516,
     wikiTitle: 'Colombian_white-faced_capuchin',
     group: 'mammal',
   },
@@ -431,7 +432,7 @@ export const organisms: Organism[] = [
   {
     commonName: 'Malayan tapir',
     scientificName: 'Tapirus indicus',
-    ncbiTaxId: 9801,
+    ncbiTaxId: 9802,
     wikiTitle: 'Malayan_tapir',
     group: 'mammal',
   },
@@ -629,7 +630,7 @@ export const organisms: Organism[] = [
   {
     commonName: 'Common loon',
     scientificName: 'Gavia immer',
-    ncbiTaxId: 37040,
+    ncbiTaxId: 37039,
     wikiTitle: 'Common_loon',
     group: 'bird',
   },
@@ -658,7 +659,7 @@ export const organisms: Organism[] = [
   {
     commonName: 'African grey parrot',
     scientificName: 'Psittacus erithacus',
-    ncbiTaxId: 9042,
+    ncbiTaxId: 57247,
     wikiTitle: 'African_grey_parrot',
     group: 'bird',
   },
@@ -731,7 +732,7 @@ export const organisms: Organism[] = [
   {
     commonName: 'Galápagos tortoise',
     scientificName: 'Chelonoidis niger',
-    ncbiTaxId: 106734,
+    ncbiTaxId: 66189,
     wikiTitle: 'Galápagos_tortoise',
     group: 'reptile',
   },
@@ -745,14 +746,14 @@ export const organisms: Organism[] = [
   {
     commonName: 'Nile crocodile',
     scientificName: 'Crocodylus niloticus',
-    ncbiTaxId: 8551,
+    ncbiTaxId: 8501,
     wikiTitle: 'Nile_crocodile',
     group: 'reptile',
   },
   {
     commonName: 'Corn snake',
     scientificName: 'Pantherophis guttatus',
-    ncbiTaxId: 286032,
+    ncbiTaxId: 94885,
     wikiTitle: 'Corn_snake',
     group: 'reptile',
   },
@@ -812,7 +813,7 @@ export const organisms: Organism[] = [
   {
     commonName: 'Seahorse',
     scientificName: 'Hippocampus kuda',
-    ncbiTaxId: 109280,
+    ncbiTaxId: 103715,
     wikiTitle: 'Seahorse',
     group: 'fish',
   },
@@ -1002,7 +1003,7 @@ export const organisms: Organism[] = [
   },
   {
     commonName: 'White shrimp',
-    scientificName: 'Litopenaeus vannamei',
+    scientificName: 'Penaeus vannamei',
     ncbiTaxId: 6689,
     wikiTitle: 'Whiteleg_shrimp',
     group: 'arthropod',
@@ -1463,21 +1464,21 @@ export const organisms: Organism[] = [
   {
     commonName: 'Carrot',
     scientificName: 'Daucus carota',
-    ncbiTaxId: 79200,
+    ncbiTaxId: 4039,
     wikiTitle: 'Carrot',
     group: 'plant',
   },
   {
     commonName: 'Sphagnum moss',
     scientificName: 'Sphagnum palustre',
-    ncbiTaxId: 53071,
+    ncbiTaxId: 13805,
     wikiTitle: 'Sphagnum',
     group: 'plant',
   },
   {
     commonName: 'Common fern',
     scientificName: 'Pteridium aquilinum',
-    ncbiTaxId: 95407,
+    ncbiTaxId: 32101,
     wikiTitle: 'Pteridium_aquilinum',
     group: 'plant',
   },
@@ -1499,7 +1500,7 @@ export const organisms: Organism[] = [
   {
     commonName: 'Iris',
     scientificName: 'Iris germanica',
-    ncbiTaxId: 35875,
+    ncbiTaxId: 34205,
     wikiTitle: 'Iris_(plant)',
     group: 'plant',
   },
@@ -1520,7 +1521,7 @@ export const organisms: Organism[] = [
   {
     commonName: 'Cinnamon',
     scientificName: 'Cinnamomum verum',
-    ncbiTaxId: 13424,
+    ncbiTaxId: 128608,
     wikiTitle: 'Cinnamomum_verum',
     group: 'plant',
   },
@@ -1541,14 +1542,14 @@ export const organisms: Organism[] = [
   {
     commonName: 'Dodder',
     scientificName: 'Cuscuta campestris',
-    ncbiTaxId: 246576,
+    ncbiTaxId: 132261,
     wikiTitle: 'Cuscuta',
     group: 'plant',
   },
   {
     commonName: 'Indian pipe',
     scientificName: 'Monotropa uniflora',
-    ncbiTaxId: 13397,
+    ncbiTaxId: 50148,
     wikiTitle: 'Monotropa_uniflora',
     group: 'plant',
   },
@@ -1576,14 +1577,14 @@ export const organisms: Organism[] = [
   {
     commonName: 'Redwood',
     scientificName: 'Sequoia sempervirens',
-    ncbiTaxId: 34034,
+    ncbiTaxId: 28980,
     wikiTitle: 'Sequoia_sempervirens',
     group: 'plant',
   },
   {
     commonName: 'Lily',
     scientificName: 'Lilium longiflorum',
-    ncbiTaxId: 4686,
+    ncbiTaxId: 4690,
     wikiTitle: 'Lilium',
     group: 'plant',
   },
@@ -1639,14 +1640,14 @@ export const organisms: Organism[] = [
   {
     commonName: 'Asparagus',
     scientificName: 'Asparagus officinalis',
-    ncbiTaxId: 4550,
+    ncbiTaxId: 4686,
     wikiTitle: 'Asparagus',
     group: 'plant',
   },
   {
     commonName: 'Sugar maple',
     scientificName: 'Acer saccharum',
-    ncbiTaxId: 4023,
+    ncbiTaxId: 4024,
     wikiTitle: 'Sugar_maple',
     group: 'plant',
   },
@@ -1681,14 +1682,14 @@ export const organisms: Organism[] = [
   {
     commonName: 'American pitcher plant',
     scientificName: 'Sarracenia purpurea',
-    ncbiTaxId: 4355,
+    ncbiTaxId: 45176,
     wikiTitle: 'Sarracenia_purpurea',
     group: 'plant',
   },
   {
     commonName: 'Tropical pitcher plant',
     scientificName: 'Nepenthes rajah',
-    ncbiTaxId: 4345,
+    ncbiTaxId: 150991,
     wikiTitle: 'Nepenthes_rajah',
     group: 'plant',
   },
@@ -1703,7 +1704,7 @@ export const organisms: Organism[] = [
   },
   {
     commonName: 'Candida auris',
-    scientificName: 'Candida auris',
+    scientificName: 'Candidozyma auris',
     ncbiTaxId: 498019,
     wikiTitle: 'Candida_auris',
     group: 'microbe',
@@ -1718,7 +1719,7 @@ export const organisms: Organism[] = [
   {
     commonName: 'Morel',
     scientificName: 'Morchella esculenta',
-    ncbiTaxId: 5194,
+    ncbiTaxId: 39407,
     wikiTitle: 'Morchella_esculenta',
     group: 'microbe',
   },
@@ -1759,7 +1760,7 @@ export const organisms: Organism[] = [
   },
   {
     commonName: 'Slime mold',
-    scientificName: 'Physarum polycephalum',
+    scientificName: 'Badhamia polycephala',
     ncbiTaxId: 5791,
     wikiTitle: 'Physarum_polycephalum',
     group: 'microbe',
@@ -1774,7 +1775,7 @@ export const organisms: Organism[] = [
   {
     commonName: 'Microsporidian',
     scientificName: 'Fibrillanosema crangonycis',
-    ncbiTaxId: 481877,
+    ncbiTaxId: 253633,
     wikiTitle: 'Fibrillanosema_crangonycis',
     group: 'microbe',
   },
@@ -1809,7 +1810,7 @@ export const organisms: Organism[] = [
   {
     commonName: 'Polycystine',
     scientificName: 'Polycystinea',
-    ncbiTaxId: 33083,
+    ncbiTaxId: 65582,
     wikiTitle: 'Polycystine',
     group: 'microbe',
   },

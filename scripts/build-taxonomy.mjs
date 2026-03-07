@@ -14,6 +14,7 @@ import { pipeline } from 'stream/promises'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
 import { execSync } from 'child_process'
+import { CURATED_MICROORGANISMS } from './curated-microorganisms.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
@@ -689,6 +690,18 @@ async function main() {
     scientificNames,
     commonNames,
   )
+
+  // Add curated microorganisms that lack NCBI common names
+  const poolIds = new Set(pool.map(e => e[0]))
+  let microAdded = 0
+  for (const entry of CURATED_MICROORGANISMS) {
+    if (!poolIds.has(entry[0])) {
+      pool.push(entry)
+      poolIds.add(entry[0])
+      microAdded++
+    }
+  }
+  console.log(`  Added ${microAdded} curated microorganisms (pool now ${pool.length})`)
 
   // Parse OTL data
   const ott = await parseOttTaxonomy(ottFile)

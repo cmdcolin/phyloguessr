@@ -1,5 +1,3 @@
-const imageCache = new Map<string, string | null>()
-
 export async function getWikiThumbnail(wikiTitle: string) {
   const res = await fetch(
     `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(wikiTitle)}`,
@@ -41,16 +39,9 @@ export async function getOrganismImage(
   wikiTitle: string,
   scientificName: string,
 ) {
-  const key = wikiTitle
-  if (imageCache.has(key)) {
-    return imageCache.get(key)!
-  }
   const wikiImg = await getWikiThumbnail(wikiTitle)
   if (wikiImg) {
-    imageCache.set(key, wikiImg)
     return wikiImg
   }
-  const inatImg = await getINaturalistPhoto(scientificName)
-  imageCache.set(key, inatImg)
-  return inatImg
+  return getINaturalistPhoto(scientificName)
 }

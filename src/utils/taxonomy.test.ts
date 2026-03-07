@@ -10,6 +10,9 @@ import {
   getLineageFromParents,
 } from './taxonomy.ts'
 
+// @ts-expect-error .mjs import
+import { CURATED_MICROORGANISMS } from '../../scripts/curated-microorganisms.mjs'
+
 import type { TaxonomyData } from './taxonomy.ts'
 
 // A small mock taxonomy tree:
@@ -335,5 +338,40 @@ describe('all curated organisms have valid taxonomy data', () => {
       }
     }
     expect(short).toEqual([])
+  })
+
+  it('no duplicate ncbiTaxId values in curated organisms', () => {
+    const seen = new Map<number, string>()
+    const dupes: { taxId: number; names: string[] }[] = []
+    for (const org of organisms) {
+      if (seen.has(org.ncbiTaxId)) {
+        dupes.push({
+          taxId: org.ncbiTaxId,
+          names: [seen.get(org.ncbiTaxId)!, org.commonName],
+        })
+      }
+      seen.set(org.ncbiTaxId, org.commonName)
+    }
+    expect(dupes).toEqual([])
+  })
+})
+
+describe('curated microorganisms have valid taxonomy data', () => {
+  const microorganisms = CURATED_MICROORGANISMS as [
+    number,
+    string,
+    string,
+  ][]
+
+  it('no duplicate tax IDs in microorganism list', () => {
+    const seen = new Set<number>()
+    const dupes: [number, string][] = []
+    for (const [taxId, name] of microorganisms) {
+      if (seen.has(taxId)) {
+        dupes.push([taxId, name])
+      }
+      seen.add(taxId)
+    }
+    expect(dupes).toEqual([])
   })
 })

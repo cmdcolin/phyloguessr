@@ -18,6 +18,7 @@ import {
   loadTaxonomyData,
   pickThreeFromClade,
   pickThreeHardModeDistance,
+  pickThreeMicrobialCrossKingdom,
   searchTaxonNames,
 } from '../utils/taxonomy.ts'
 
@@ -58,6 +59,13 @@ function comboKey(orgs: { ncbiTaxId: number }[]) {
     .join(',')
 }
 
+function resolveImage(o: Organism) {
+  if (o.imageUrl) {
+    return Promise.resolve(o.imageUrl)
+  }
+  return resolveImage(o)
+}
+
 function parseSharedQuestion() {
   const params = new URLSearchParams(window.location.search)
   const a = params.get('a')
@@ -85,13 +93,14 @@ function resolveOrganism(
   if (pool) {
     const entry = pool.find(([id]) => id === taxId)
     if (entry) {
-      const [, commonName, scientificName] = entry
+      const [, commonName, scientificName, imageUrl] = entry
       return {
         commonName,
         scientificName,
         ncbiTaxId: taxId,
         wikiTitle: scientificName.replace(/ /g, '_'),
         group: 'shared',
+        imageUrl,
       } satisfies Organism
     }
   }
@@ -337,7 +346,7 @@ export default function Game({ mode }: { mode: GameMode }) {
       }
       const shuffled = orgs.sort(() => Math.random() - 0.5)
       const images = await Promise.all(
-        shuffled.map(o => getOrganismImage(o.wikiTitle, o.scientificName)),
+        shuffled.map(o => resolveImage(o)),
       )
       recordCombo(shuffled)
       setRound({ organisms: shuffled, images })
@@ -356,8 +365,10 @@ export default function Game({ mode }: { mode: GameMode }) {
       setCladeError('')
       setRandomClade(null)
 
+      const isMicroMode =
+        mode === 'custom' && cladeFilter.trim() === 'micro'
       let cladeTaxId: number | undefined
-      if (mode === 'custom' && cladeFilter.trim()) {
+      if (mode === 'custom' && cladeFilter.trim() && !isMicroMode) {
         cladeTaxId = findTaxId(cladeFilter.trim(), data)
         if (cladeTaxId === undefined) {
           setCladeError(`"${cladeFilter.trim()}" not found in taxonomy`)
@@ -376,7 +387,16 @@ export default function Game({ mode }: { mode: GameMode }) {
           | { taxId: number; name: string; rank: string }
           | undefined
 
-        if (cladeTaxId !== undefined) {
+        if (isMicroMode) {
+          const result = pickThreeMicrobialCrossKingdom(pool, data)
+          if (!result) {
+            setCladeError('Not enough microorganisms in the pool')
+            setState('customizing')
+            return
+          }
+          picks = result
+          attemptClade = { taxId: 0, name: 'Microorganisms', rank: '' }
+        } else if (cladeTaxId !== undefined) {
           const result = pickThreeFromClade(cladeTaxId, pool, data)
           if (!result) {
             setCladeError(
@@ -396,18 +416,17 @@ export default function Game({ mode }: { mode: GameMode }) {
         }
 
         const orgs: Organism[] = picks.map(
-          ([taxId, commonName, scientificName]) => ({
+          ([taxId, commonName, scientificName, imageUrl]) => ({
             commonName,
             scientificName,
             ncbiTaxId: taxId,
             wikiTitle: scientificName.replace(/ /g, '_'),
             group: mode,
+            imageUrl,
           }),
         )
 
-        const images = await Promise.all(
-          orgs.map(o => getOrganismImage(o.wikiTitle, o.scientificName)),
-        )
+        const images = await Promise.all(orgs.map(resolveImage))
 
         const taxIds: [number, number, number] = [
           orgs[0].ncbiTaxId,
@@ -482,7 +501,7 @@ export default function Game({ mode }: { mode: GameMode }) {
       }
 
       const images = await Promise.all(
-        orgs.map(o => getOrganismImage(o.wikiTitle, o.scientificName)),
+        orgs.map(o => resolveImage(o)),
       )
       recordCombo(orgs)
       setRound({ organisms: orgs, images })
@@ -642,6 +661,7 @@ export default function Game({ mode }: { mode: GameMode }) {
                     ['33554', 'songbirds', 'Passeriformes'],
                     ['7088', 'butterflies & moths', 'Lepidoptera'],
                     ['4890', 'yeasts & sac fungi', 'Ascomycota'],
+                    ['micro', 'microorganisms', 'cross-kingdom'],
                   ] as const
                 ).map(([id, label, name]) => (
                   <li
@@ -718,6 +738,14 @@ export default function Game({ mode }: { mode: GameMode }) {
                 cladeFilter.trim().length >= 2 &&
                 (() => {
                   const trimmed = cladeFilter.trim()
+                  if (trimmed === 'micro') {
+                    return (
+                      <p className="clade-resolved">
+                        <span className="clade-check">✓</span> Microorganisms
+                        (cross-kingdom)
+                      </p>
+                    )
+                  }
                   const isNumeric = /^\d+$/.test(trimmed)
                   if (isNumeric) {
                     const name = taxonomyData.names[trimmed]
@@ -765,13 +793,16 @@ export default function Game({ mode }: { mode: GameMode }) {
               disabled={
                 !cladeFilter.trim() ||
                 (!!taxonomyData &&
+                  cladeFilter.trim() !== 'micro' &&
                   findTaxId(cladeFilter.trim(), taxonomyData) === undefined)
               }
               href={(() => {
                 const params = new URLSearchParams()
                 const trimmed = cladeFilter.trim()
                 if (trimmed) {
-                  if (/^\d+$/.test(trimmed)) {
+                  if (trimmed === 'micro') {
+                    params.set('id', 'micro')
+                  } else if (/^\d+$/.test(trimmed)) {
                     params.set('id', trimmed)
                   } else if (taxonomyData) {
                     const taxId = findTaxId(trimmed, taxonomyData)
