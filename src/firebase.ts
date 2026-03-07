@@ -144,12 +144,12 @@ export async function recordRound(name: string, correct: boolean) {
 export async function getTopStreaks(count = 20) {
   const q = query(scoresRef, orderBy('bestStreak', 'desc'), limit(count))
   const snap = await getDocs(q)
-  const all = snap.docs.map(d => toLeaderboardEntry(d.id, d.data()))
-  return all.sort((a, b) => b.bestStreak - a.bestStreak).slice(0, count)
+  return snap.docs.map(d => toLeaderboardEntry(d.id, d.data()))
 }
 
 const presenceRef = collection(db, 'presence')
-const PRESENCE_TIMEOUT_MS = 2 * 60 * 1000
+const PRESENCE_INTERVAL_MS = 5 * 60 * 1000
+const PRESENCE_TIMEOUT_MS = 8 * 60 * 1000
 
 export interface PresenceEntry {
   uid: string
@@ -172,16 +172,22 @@ async function updatePresence() {
 
 let heartbeatId: ReturnType<typeof setInterval> | null = null
 let visibilityHandler: (() => void) | null = null
+let lastPresenceWrite = 0
 
 export function startPresence() {
   if (heartbeatId !== null) {
     return
   }
   updatePresence()
-  heartbeatId = setInterval(() => updatePresence(), 60_000)
+  lastPresenceWrite = Date.now()
+  heartbeatId = setInterval(() => {
+    updatePresence()
+    lastPresenceWrite = Date.now()
+  }, PRESENCE_INTERVAL_MS)
   visibilityHandler = () => {
-    if (document.visibilityState === 'visible') {
+    if (document.visibilityState === 'visible' && Date.now() - lastPresenceWrite >= PRESENCE_INTERVAL_MS) {
       updatePresence()
+      lastPresenceWrite = Date.now()
     }
   }
   document.addEventListener('visibilitychange', visibilityHandler)
