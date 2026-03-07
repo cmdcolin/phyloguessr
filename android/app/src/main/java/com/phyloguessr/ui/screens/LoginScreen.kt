@@ -14,6 +14,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -36,7 +37,7 @@ import com.phyloguessr.ui.theme.TreeLogo
 import kotlinx.coroutines.launch
 
 @Composable
-fun LoginScreen(onSignedIn: () -> Unit) {
+fun LoginScreen(onSignedIn: () -> Unit, onSkip: () -> Unit) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
     var error by remember { mutableStateOf<String?>(null) }
@@ -117,6 +118,12 @@ fun LoginScreen(onSignedIn: () -> Unit) {
                 color = MaterialTheme.colorScheme.error,
                 style = MaterialTheme.typography.bodySmall,
             )
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        TextButton(onClick = onSkip) {
+            Text("Continue without signing in")
         }
     }
 }

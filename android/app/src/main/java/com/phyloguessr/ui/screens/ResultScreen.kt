@@ -26,7 +26,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
@@ -34,7 +33,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.AsyncImage
+import coil.compose.SubcomposeAsyncImage
 import com.phyloguessr.data.Organism
 import com.phyloguessr.data.TaxonomyData
 import com.phyloguessr.game.DiagramNode
@@ -243,11 +242,12 @@ fun PhyloTreeCanvas(result: ResultData) {
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                val canvasWidth = 80.dp
-                val canvasHeight = 180.dp
+                // Each leaf row is 48dp: name (~20sp) + scientific name (~14sp) + spacing
+                val rowHeight = 48.dp
+                val canvasHeight = rowHeight * 3
                 androidx.compose.foundation.Canvas(
                     modifier = Modifier
-                        .width(canvasWidth)
+                        .width(80.dp)
                         .height(canvasHeight),
                 ) {
                     val h = size.height
@@ -261,22 +261,13 @@ fun PhyloTreeCanvas(result: ResultData) {
                     val innerX = 42.dp.toPx()
                     val leafX = size.width - 2.dp.toPx()
 
-                    // root stub
                     drawLine(grayColor, androidx.compose.ui.geometry.Offset(0f, rootY), androidx.compose.ui.geometry.Offset(rootX, rootY), 2f)
-                    // root vertical (gray)
                     drawLine(grayColor, androidx.compose.ui.geometry.Offset(rootX, innerY), androidx.compose.ui.geometry.Offset(rootX, y3), 2f)
-                    // root to inner node (accent)
                     drawLine(accentColor, androidx.compose.ui.geometry.Offset(rootX, innerY), androidx.compose.ui.geometry.Offset(innerX, innerY), 3f)
-                    // inner vertical (accent)
                     drawLine(accentColor, androidx.compose.ui.geometry.Offset(innerX, y1), androidx.compose.ui.geometry.Offset(innerX, y2), 3f)
-                    // sister1 branch
                     drawLine(accentColor, androidx.compose.ui.geometry.Offset(innerX, y1), androidx.compose.ui.geometry.Offset(leafX, y1), 3f)
-                    // sister2 branch
                     drawLine(accentColor, androidx.compose.ui.geometry.Offset(innerX, y2), androidx.compose.ui.geometry.Offset(leafX, y2), 3f)
-                    // outgroup branch (gray)
                     drawLine(grayColor, androidx.compose.ui.geometry.Offset(rootX, y3), androidx.compose.ui.geometry.Offset(leafX, y3), 2f)
-
-                    // leaf dots
                     drawCircle(accentColor, 5f, androidx.compose.ui.geometry.Offset(leafX, y1))
                     drawCircle(accentColor, 5f, androidx.compose.ui.geometry.Offset(leafX, y2))
                     drawCircle(grayColor, 5f, androidx.compose.ui.geometry.Offset(leafX, y3))
@@ -285,26 +276,30 @@ fun PhyloTreeCanvas(result: ResultData) {
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(180.dp),
+                        .height(canvasHeight),
                 ) {
-                    Box(
-                        modifier = Modifier
-                            .weight(1f)
-                            .fillMaxWidth(),
-                        contentAlignment = Alignment.CenterStart,
-                    ) { OrganismMini(sister1) }
-                    Box(
-                        modifier = Modifier
-                            .weight(1f)
-                            .fillMaxWidth(),
-                        contentAlignment = Alignment.CenterStart,
-                    ) { OrganismMini(sister2) }
-                    Box(
-                        modifier = Modifier
-                            .weight(1f)
-                            .fillMaxWidth(),
-                        contentAlignment = Alignment.CenterStart,
-                    ) { OrganismMini(outgroup) }
+                    for (org in listOf(sister1, sister2, outgroup)) {
+                        Box(
+                            modifier = Modifier
+                                .weight(1f)
+                                .fillMaxWidth(),
+                            contentAlignment = Alignment.CenterStart,
+                        ) {
+                            Column {
+                                Text(
+                                    text = org.commonName,
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    fontWeight = FontWeight.Bold,
+                                )
+                                Text(
+                                    text = org.scientificName,
+                                    style = MaterialTheme.typography.bodySmall,
+                                    fontStyle = FontStyle.Italic,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                )
+                            }
+                        }
+                    }
                 }
             }
 
@@ -385,12 +380,12 @@ fun LineageBreadcrumbsView(result: ResultData, taxonomyData: TaxonomyData) {
     val tertiaryColor = MaterialTheme.colorScheme.tertiary
     val grayColor = MaterialTheme.colorScheme.onSurfaceVariant
 
-    val lineages = remember(result) {
-        organisms.map { org ->
+    val (lineages, startIndex) = remember(result) {
+        val lins = organisms.map { org ->
             getFullLineage(org.ncbiTaxId, taxonomyData).reversed()
         }
+        lins to getDivergenceStart(lins)
     }
-    val startIndex = remember(lineages) { getDivergenceStart(lineages) }
 
     Card(
         modifier = Modifier.fillMaxWidth(),
@@ -448,7 +443,7 @@ fun LineageBreadcrumbsView(result: ResultData, taxonomyData: TaxonomyData) {
                         if (j > 0) append(" › ")
                         append(pinnedOnly[j].name)
                         val rank = pinnedOnly[j].rank
-                        if (rank != "no rank") append(" (${rank})")
+                        if (rank != "no rank") append(" ($rank)")
                     }
                     if (hasGap) {
                         if (isNotEmpty()) append(" › … › ")
@@ -505,13 +500,20 @@ fun SisterPairCard(sister1: Organism, sister2: Organism) {
 fun OrganismMini(organism: Organism) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         if (organism.imageUrl != null) {
-            AsyncImage(
+            SubcomposeAsyncImage(
                 model = organism.imageUrl,
                 contentDescription = organism.commonName,
                 modifier = Modifier
                     .size(64.dp)
                     .clip(RoundedCornerShape(8.dp)),
                 contentScale = ContentScale.Crop,
+                error = {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .background(MaterialTheme.colorScheme.surfaceVariant),
+                    )
+                },
             )
             Spacer(modifier = Modifier.height(4.dp))
         }
@@ -536,13 +538,20 @@ fun SmallOrganismRow(organism: Organism) {
         modifier = Modifier.padding(vertical = 4.dp),
     ) {
         if (organism.imageUrl != null) {
-            AsyncImage(
+            SubcomposeAsyncImage(
                 model = organism.imageUrl,
                 contentDescription = organism.commonName,
                 modifier = Modifier
                     .size(40.dp)
                     .clip(RoundedCornerShape(4.dp)),
                 contentScale = ContentScale.Crop,
+                error = {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .background(MaterialTheme.colorScheme.surfaceVariant),
+                    )
+                },
             )
             Spacer(modifier = Modifier.padding(start = 8.dp))
         }

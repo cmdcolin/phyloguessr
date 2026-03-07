@@ -52,21 +52,6 @@ object FirebaseRepository {
         auth.signOut()
     }
 
-    suspend fun setDisplayName(name: String) {
-        val user = auth.currentUser ?: return
-        val profileUpdates = com.google.firebase.auth.UserProfileChangeRequest.Builder()
-            .setDisplayName(name)
-            .build()
-        user.updateProfile(profileUpdates).await()
-        db.collection("users").document(user.uid).set(
-            mapOf(
-                "displayName" to name,
-                "lastSeen" to FieldValue.serverTimestamp(),
-            ),
-            com.google.firebase.firestore.SetOptions.merge(),
-        ).await()
-    }
-
     suspend fun updatePresence() {
         val user = auth.currentUser ?: return
         db.collection("users").document(user.uid).set(
@@ -80,8 +65,9 @@ object FirebaseRepository {
 
     suspend fun goOffline() {
         val user = auth.currentUser ?: return
-        db.collection("users").document(user.uid).update(
-            "lastSeen", FieldValue.serverTimestamp(),
+        db.collection("users").document(user.uid).set(
+            mapOf("lastSeen" to FieldValue.serverTimestamp()),
+            com.google.firebase.firestore.SetOptions.merge(),
         ).await()
     }
 

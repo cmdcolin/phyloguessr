@@ -31,10 +31,11 @@ import com.phyloguessr.ui.theme.TreeLogo
 fun HomeScreen(
     onModeSelected: (String) -> Unit,
     onLeaderboard: () -> Unit,
-    onProfile: () -> Unit,
+    onSignIn: () -> Unit,
     onSignOut: () -> Unit,
 ) {
-    val authState by FirebaseRepository.observeAuthState().collectAsState(FirebaseRepository.currentUser)
+    val authFlow = remember { FirebaseRepository.observeAuthState() }
+    val authState by authFlow.collectAsState(FirebaseRepository.currentUser)
     val displayName = authState?.displayName
 
     Column(
@@ -100,23 +101,26 @@ fun HomeScreen(
             ) {
                 Text("Leaderboard", fontSize = 13.sp)
             }
-            OutlinedButton(
-                onClick = onProfile,
-                modifier = Modifier
-                    .weight(1f)
-                    .height(44.dp),
-                shape = RoundedCornerShape(8.dp),
-            ) {
-                Text("Profile", fontSize = 13.sp)
-            }
-            OutlinedButton(
-                onClick = onSignOut,
-                modifier = Modifier
-                    .weight(1f)
-                    .height(44.dp),
-                shape = RoundedCornerShape(8.dp),
-            ) {
-                Text("Sign Out", fontSize = 13.sp)
+            if (authState == null) {
+                OutlinedButton(
+                    onClick = onSignIn,
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(44.dp),
+                    shape = RoundedCornerShape(8.dp),
+                ) {
+                    Text("Sign In", fontSize = 13.sp)
+                }
+            } else {
+                OutlinedButton(
+                    onClick = onSignOut,
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(44.dp),
+                    shape = RoundedCornerShape(8.dp),
+                ) {
+                    Text("Sign Out", fontSize = 13.sp)
+                }
             }
         }
     }

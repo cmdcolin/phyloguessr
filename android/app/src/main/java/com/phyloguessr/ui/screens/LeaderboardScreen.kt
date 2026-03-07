@@ -43,8 +43,10 @@ import com.phyloguessr.ui.theme.TreeLogo
 @Composable
 fun LeaderboardScreen(onBack: () -> Unit) {
     var selectedMode by remember { mutableStateOf("easy") }
-    val leaderboard by FirebaseRepository.observeLeaderboard(selectedMode).collectAsState(emptyList())
-    val onlineUsers by FirebaseRepository.observeOnlineUsers().collectAsState(emptyList())
+    val leaderboardFlow = remember(selectedMode) { FirebaseRepository.observeLeaderboard(selectedMode) }
+    val leaderboard by leaderboardFlow.collectAsState(emptyList())
+    val onlineUsersFlow = remember { FirebaseRepository.observeOnlineUsers() }
+    val onlineUsers by onlineUsersFlow.collectAsState(emptyList())
     val currentUid = FirebaseRepository.currentUser?.uid
 
     Column(
