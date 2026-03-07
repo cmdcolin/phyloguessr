@@ -429,15 +429,15 @@ describe('buildContextDiagram', () => {
       data,
     )
     expect(result).toBeDefined()
-    expect(result!.label).toBe('Amniota')
+    expect(result!.label).toBe('Amniota (land-egg vertebrates — includes reptiles, birds, mammals)')
     expect(result!.children).toHaveLength(2)
 
     // Outgroup should have a branch node (Lepidosauria) with leaf underneath
     const outBranch = result!.children![0]
-    expect(outBranch.label).toBe('Lepidosauria')
+    expect(outBranch.label).toBe('Lepidosauria (includes lizards, snakes, tuatara)')
     expect(outBranch.highlight).toBeFalsy()
     expect(outBranch.children).toHaveLength(1)
-    expect(outBranch.children![0].label).toBe('Serpentes (Snake)')
+    expect(outBranch.children![0].label).toBe('Serpentes — snakes (Snake)')
 
     const sisterBranch = result!.children![1]
     expect(sisterBranch.label).toBe('Archelosauria')
@@ -471,7 +471,7 @@ describe('buildContextDiagram', () => {
       data,
     )
     expect(result).toBeDefined()
-    expect(result!.label).toBe('Eukaryota')
+    expect(result!.label).toBe('Eukaryota (all complex life — cells with nuclei)')
     expect(result!.children![1].label).toBe('Plants')
     expect(result!.children![1].highlight).toBe(true)
   })

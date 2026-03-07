@@ -523,7 +523,6 @@ export default function Game({ mode }: { mode: GameMode }) {
     if (scenario) {
       resultData.funFact = scenario.funFact
       resultData.sources = scenario.sources
-      resultData.diagram = scenario.diagram
       if (scenario.activelyDebated) {
         resultData.activelyDebated = true
         resultData.correct = true
@@ -542,7 +541,7 @@ export default function Game({ mode }: { mode: GameMode }) {
       }
     }
 
-    if (!resultData.diagram && !resultData.isPolytomy) {
+    if (!resultData.isPolytomy) {
       resultData.diagram = buildContextDiagram(
         resultData.sister1,
         resultData.sister2,

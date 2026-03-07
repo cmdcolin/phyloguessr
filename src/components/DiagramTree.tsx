@@ -11,7 +11,7 @@ function renderLines(node: DiagramNode, prefix: string, isLast: boolean, isRoot:
   const lines: TreeLine[] = []
   const connector = isRoot ? '' : isLast ? '\u2514\u2500\u2500 ' : '\u251C\u2500\u2500 '
   const isLeaf = !node.children || node.children.length === 0
-  const showArrow = isLeaf && node.highlight
+  const showArrow = isLeaf && !!node.highlight
 
   lines.push({
     prefix: `${prefix}${connector}`,

@@ -17,7 +17,6 @@ export interface Source {
 export interface SurprisingScenario {
   organisms: [Organism, Organism, Organism]
   funFact: string
-  diagram?: DiagramNode
   sources: Source[]
   correctPair?: [string, string]
   activelyDebated?: boolean
@@ -45,23 +44,6 @@ export const surprisingScenarios: SurprisingScenario[] = [
     organisms: [org('Human'), org('Sea urchin'), org('Fruit fly')],
     funFact:
       'Humans and sea urchins are both deuterostomes — a group of animals whose embryos develop the same way, forming the anus before the mouth. Insects develop the other way around, putting them on a completely different branch of the animal tree.',
-    diagram: {
-      label: 'Bilateria',
-      children: [
-        {
-          label: 'Protostomia ("mouth first")',
-          children: [{ label: 'Insects (fruit fly)', highlight: true }],
-        },
-        {
-          label: 'Deuterostomia ("anus first")',
-          highlight: true,
-          children: [
-            { label: 'Echinoderms (sea urchin)', highlight: true },
-            { label: 'Chordates (human)', highlight: true },
-          ],
-        },
-      ],
-    },
     sources: [
       { url: 'https://en.wikipedia.org/wiki/Deuterostome', label: 'Deuterostome - Wikipedia' },
       { url: 'https://www.abc.net.au/science/articles/2006/11/10/1785449.htm', label: 'ABC Science - Sea urchins are our cousins' },
@@ -82,27 +64,6 @@ export const surprisingScenarios: SurprisingScenario[] = [
     organisms: [org('Rock hyrax'), org('African elephant'), org('House mouse')],
     funFact:
       'The tiny hyrax is more closely related to the elephant than to any rodent! Both belong to Afrotheria, a superorder of mammals that originated in Africa.',
-    diagram: {
-      label: 'Placentalia',
-      children: [
-        {
-          label: 'Afrotheria (African origin)',
-          highlight: true,
-          children: [
-            { label: 'Hyraxes (rock hyrax)', highlight: true },
-            { label: 'Elephants', highlight: true },
-            { label: 'Manatees, aardvarks...' },
-          ],
-        },
-        {
-          label: 'Boreoeutheria',
-          children: [
-            { label: 'Rodents (mouse)', highlight: true },
-            { label: 'Primates, carnivores...' },
-          ],
-        },
-      ],
-    },
     sources: [
       { url: 'https://en.wikipedia.org/wiki/Afrotheria', label: 'Afrotheria - Wikipedia' },
       { url: 'https://en.wikipedia.org/wiki/Hyrax', label: 'Hyrax - Wikipedia' },
@@ -121,27 +82,6 @@ export const surprisingScenarios: SurprisingScenario[] = [
     organisms: [org('Common bat'), org('Cow'), org('Human')],
     funFact:
       'Bats are more closely related to cows than to humans. Bats and cows are both Laurasiatheria — the same major branch of the mammal family tree that also includes dogs, cats, horses, and whales. Humans are on a completely separate branch (Euarchontoglires), with primates, rodents, and rabbits.',
-    diagram: {
-      label: 'Boreoeutheria',
-      children: [
-        {
-          label: 'Euarchontoglires',
-          children: [
-            { label: 'Primates (human)', highlight: true },
-            { label: 'Rodents, rabbits...' },
-          ],
-        },
-        {
-          label: 'Laurasiatheria',
-          highlight: true,
-          children: [
-            { label: 'Bats (common bat)', highlight: true },
-            { label: 'Ungulates (cow)', highlight: true },
-            { label: 'Carnivores, whales...' },
-          ],
-        },
-      ],
-    },
     sources: [
       { url: 'https://en.wikipedia.org/wiki/Laurasiatheria', label: 'Laurasiatheria - Wikipedia' },
       { url: 'https://www.batcon.org/surprising-bat-relatives/', label: 'Bat Conservation International - Surprising bat relatives' },
@@ -164,24 +104,6 @@ export const surprisingScenarios: SurprisingScenario[] = [
     organisms: [org('Harbor seal'), org('Brown bear'), org('Domestic cat')],
     funFact:
       'Seals are more closely related to bears than to cats! Seals and bears are both on the "dog side" of the carnivore family tree, while cats are on the other side. Seals actually evolved from bear-like ancestors.',
-    diagram: {
-      label: 'Carnivora',
-      children: [
-        {
-          label: 'Feliformia ("cat side")',
-          children: [{ label: 'Cats (domestic cat)', highlight: true }],
-        },
-        {
-          label: 'Caniformia ("dog side")',
-          highlight: true,
-          children: [
-            { label: 'Bears (brown bear)', highlight: true },
-            { label: 'Pinnipeds (harbor seal)', highlight: true },
-            { label: 'Dogs, weasels...' },
-          ],
-        },
-      ],
-    },
     sources: [
       { url: 'https://en.wikipedia.org/wiki/Caniformia', label: 'Caniformia - Wikipedia' },
       { url: 'https://www.youtube.com/watch?v=aAOsf004FqQ', label: 'YouTube - Seals are related to dogs and bears' },
@@ -218,24 +140,6 @@ export const surprisingScenarios: SurprisingScenario[] = [
     organisms: [org('Coelacanth'), org('Human'), org('Atlantic salmon')],
     funFact:
       'Coelacanths are more closely related to humans than to salmon! As lobe-finned fish, coelacanths share a common ancestor with all land vertebrates (tetrapods).',
-    diagram: {
-      label: 'Osteichthyes (bony fish)',
-      children: [
-        {
-          label: 'Actinopterygii (ray-finned)',
-          children: [{ label: 'Salmon', highlight: true }],
-        },
-        {
-          label: 'Sarcopterygii (lobe-finned)',
-          highlight: true,
-          children: [
-            { label: 'Coelacanth', highlight: true },
-            { label: 'Lungfish' },
-            { label: 'Tetrapods (human)', highlight: true },
-          ],
-        },
-      ],
-    },
     sources: [
       { url: 'https://www.scientificamerican.com/article/slow-evolving-lobe-finned-coelacanth-genome-unlocked/', label: "Coelacanth Genome Unlocked - Scientific American" },
       { url: 'https://ocean.si.edu/ocean-life/fish/coelacanth', label: 'Smithsonian Ocean - Coelacanth' },
@@ -249,47 +153,6 @@ export const surprisingScenarios: SurprisingScenario[] = [
     ],
     funFact:
       'A chicken and an alligator are closer relatives than either is to a Komodo dragon. Despite "dinosaur" meaning "terrible lizard," dinosaurs have nothing to do with lizards. The reptile family tree splits into two branches: lizards and snakes on one side, and turtles, crocodilians, dinosaurs, and birds on the other. A chicken is a living dinosaur; a Komodo dragon is not.',
-    diagram: {
-      label: 'Amniota',
-      children: [
-        { label: 'Mammals' },
-        {
-          label: 'Sauropsida (reptiles + birds)',
-          children: [
-            {
-              label: 'Lepidosauria',
-              children: [
-                {
-                  label: 'Lizards, snakes (Komodo dragon)',
-                  highlight: true,
-                },
-              ],
-            },
-            {
-              label: 'Archelosauria',
-              highlight: true,
-              children: [
-                { label: 'Turtles' },
-                {
-                  label: 'Archosauria',
-                  highlight: true,
-                  children: [
-                    {
-                      label: 'Crocodilians (alligator)',
-                      highlight: true,
-                    },
-                    {
-                      label: 'Dinosauria',
-                      children: [{ label: 'Birds (chicken)', highlight: true }],
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },
     sources: [{ url: 'https://en.wikipedia.org/wiki/Archosaur', label: 'Archosaur - Wikipedia' },
       { url: 'https://www.earth.com/news/crocodiles-birds-archosaurs/', label: 'Earth.com - Crocodiles and birds are archosaurs' }],
   },
@@ -393,26 +256,6 @@ export const surprisingScenarios: SurprisingScenario[] = [
     ],
     funFact:
       'A manatee is more closely related to an elephant than to a dolphin. Manatees and elephants share ancestors that lived in Africa — manatees still have toenails on their flippers from their land-dwelling past. Dolphins descended from a completely different group of land mammals related to hippos. Two separate lineages of land mammals independently returned to the sea.',
-    diagram: {
-      label: 'Placentalia',
-      children: [
-        {
-          label: 'Afrotheria',
-          highlight: true,
-          children: [
-            { label: 'Sirenia (manatee)', highlight: true },
-            { label: 'Elephants', highlight: true },
-          ],
-        },
-        {
-          label: 'Laurasiatheria',
-          children: [
-            { label: 'Cetacea (dolphin)', highlight: true },
-            { label: 'Carnivores, bats...' },
-          ],
-        },
-      ],
-    },
     sources: [{ url: 'https://en.wikipedia.org/wiki/Sirenia#Evolution', label: 'Sirenia evolution - Wikipedia' },
       { url: 'https://www.livescience.com/weird-relatives-of-elephants.html', label: 'Live Science - Weird relatives of elephants' }],
   },
@@ -427,26 +270,6 @@ export const surprisingScenarios: SurprisingScenario[] = [
     organisms: [org('Horseshoe crab'), org('Scorpion'), org('Ladybug')],
     funFact:
       'Despite being called crabs, horseshoe crabs are chelicerates — more closely related to scorpions and spiders than to any true crustacean. They have blue copper-based blood and have barely changed in over 450 million years of fossil record.',
-    diagram: {
-      label: 'Arthropoda',
-      children: [
-        {
-          label: 'Chelicerata',
-          highlight: true,
-          children: [
-            { label: 'Horseshoe crabs', highlight: true },
-            { label: 'Arachnids (scorpion)', highlight: true },
-          ],
-        },
-        {
-          label: 'Mandibulata',
-          children: [
-            { label: 'Crustaceans' },
-            { label: 'Insects (ladybug)', highlight: true },
-          ],
-        },
-      ],
-    },
     sources: [
       { url: 'https://www.nationalgeographic.com/animals/article/horseshoe-crabs-related-to-spiders', label: 'Horseshoe crabs are spider relatives, genes reveal - National Geographic' },
       { url: 'https://oceanservice.noaa.gov/facts/horseshoe-crab.html', label: 'NOAA - Are horseshoe crabs really crabs?' },
@@ -512,21 +335,6 @@ export const surprisingScenarios: SurprisingScenario[] = [
     organisms: [org('Hippopotamus'), org('Blue whale'), org('Cow')],
     funFact:
       'Hippos are the closest living relatives of whales! Their shared ancestor was a small, pig-like animal that lived about 55 million years ago — one lineage returned fully to the sea, the other stayed semi-aquatic. Cows diverged from this lineage much earlier.',
-    diagram: {
-      label: 'Cetartiodactyla (even-toed ungulates + whales)',
-      children: [
-        { label: 'Ruminants (cow)', highlight: true },
-        { label: 'Pigs' },
-        {
-          label: 'Whippomorpha',
-          highlight: true,
-          children: [
-            { label: 'Hippopotamus', highlight: true },
-            { label: 'Cetacea (blue whale)', highlight: true },
-          ],
-        },
-      ],
-    },
     sources: [{ url: 'https://en.wikipedia.org/wiki/Hippopotamus#Evolution', label: 'Hippopotamus evolution - Wikipedia' },
       { url: 'https://evolution.berkeley.edu/what-are-evograms/the-evolution-of-whales/', label: 'UC Berkeley - The evolution of whales' }],
   },
@@ -582,27 +390,6 @@ export const surprisingScenarios: SurprisingScenario[] = [
     organisms: [org('Spotted hyena'), org('Domestic cat'), org('Gray wolf')],
     funFact:
       'Despite looking and acting like dogs, hyenas are on the "cat side" of the carnivore family tree — they are more closely related to cats than to wolves! Their dog-like appearance is a classic case of convergent evolution.',
-    diagram: {
-      label: 'Carnivora',
-      children: [
-        {
-          label: 'Caniformia ("dog side")',
-          children: [
-            { label: 'Dogs, wolves (gray wolf)', highlight: true },
-            { label: 'Bears, seals, weasels...' },
-          ],
-        },
-        {
-          label: 'Feliformia ("cat side")',
-          highlight: true,
-          children: [
-            { label: 'Cats (domestic cat)', highlight: true },
-            { label: 'Hyenas (spotted hyena)', highlight: true },
-            { label: 'Mongooses, civets...' },
-          ],
-        },
-      ],
-    },
     sources: [
       { url: 'https://en.wikipedia.org/wiki/Hyena#Evolution', label: 'Hyena evolution - Wikipedia' },
       { url: 'https://a-z-animals.com/animals/hyena/understanding-hyenas-are-they-canines-felines-or-unique-creatures/', label: 'A-Z Animals - Are hyenas canines, felines, or unique creatures?' },
@@ -643,27 +430,6 @@ export const surprisingScenarios: SurprisingScenario[] = [
     organisms: [org('Human'), org('House mouse'), org('Domestic cat')],
     funFact:
       'You are more closely related to a mouse than to your cat. Humans and mice are on the same major branch of the mammal family tree — the one with all primates, rodents, and rabbits. Cats are on a completely different branch, the one that also includes dogs, horses, bats, and whales.',
-    diagram: {
-      label: 'Boreoeutheria',
-      children: [
-        {
-          label: 'Euarchontoglires',
-          highlight: true,
-          children: [
-            { label: 'Primates (human)', highlight: true },
-            { label: 'Rodents (mouse)', highlight: true },
-            { label: 'Rabbits...' },
-          ],
-        },
-        {
-          label: 'Laurasiatheria',
-          children: [
-            { label: 'Carnivores (cat)', highlight: true },
-            { label: 'Bats, ungulates, whales...' },
-          ],
-        },
-      ],
-    },
     sources: [{ url: 'https://en.wikipedia.org/wiki/Euarchontoglires', label: 'Euarchontoglires - Wikipedia' },
       { url: 'https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.0030002', label: 'PLOS Computational Biology - Phylogenomic study of human, dog, and mouse' }],
   },
@@ -752,28 +518,6 @@ export const surprisingScenarios: SurprisingScenario[] = [
     organisms: [org('Sea squirt'), org('Human'), org('Common octopus')],
     funFact:
       'Sea squirts are our relatives! As larvae, they have a notochord (primitive backbone) and swim freely, making them chordates like us. As adults they attach to rocks and reabsorb their larval nervous system, developing a simpler adult ganglion suited to a sedentary life. Despite looking like blobs, they are closer to humans than to any mollusc.',
-    diagram: {
-      label: 'Bilateria',
-      children: [
-        {
-          label: 'Protostomia',
-          children: [{ label: 'Molluscs (octopus)', highlight: true }],
-        },
-        {
-          label: 'Deuterostomia',
-          children: [
-            {
-              label: 'Chordata',
-              highlight: true,
-              children: [
-                { label: 'Tunicates (sea squirt)', highlight: true },
-                { label: 'Vertebrates (human)', highlight: true },
-              ],
-            },
-          ],
-        },
-      ],
-    },
     sources: [{ url: 'https://en.wikipedia.org/wiki/Tunicate', label: 'Tunicate - Wikipedia' },
       { url: 'https://www.adfg.alaska.gov/index.cfm?adfg=wildlifenews.view_article&articles_id=455', label: 'Alaska Fish & Game - Your cousin the sea squirt' }],
   },
@@ -831,21 +575,6 @@ export const surprisingScenarios: SurprisingScenario[] = [
     organisms: [org('Bath sponge'), org('Human'), org('Morel')],
     funFact:
       'Sponges are animals! Despite having no organs, muscles, or nervous system, sponges are on the animal branch of the tree of life. A sponge is more closely related to you than a mushroom is — even though fungi are our closest non-animal relatives.',
-    diagram: {
-      label: 'Opisthokonta',
-      children: [
-        { label: 'Fungi (morel)', highlight: true },
-        {
-          label: 'Animalia',
-          highlight: true,
-          children: [
-            { label: 'Porifera (sponge)', highlight: true },
-            { label: 'Cnidaria (jellyfish)' },
-            { label: 'Bilateria (human)', highlight: true },
-          ],
-        },
-      ],
-    },
     sources: [
       { url: 'https://en.wikipedia.org/wiki/Porifera', label: 'Porifera - Wikipedia' },
       { url: 'https://www.science.org/doi/10.1126/science.abj2949', label: 'Science - Profiling cellular diversity in sponges informs animal cell type and nervous system evolution' },
@@ -884,28 +613,6 @@ export const surprisingScenarios: SurprisingScenario[] = [
     organisms: [org('Starfish'), org('Human'), org('Moon jellyfish')],
     funFact:
       'Starfish are on "our side" of the animal family tree! Despite looking alien, starfish share a more recent common ancestor with humans than with jellyfish. Their larvae are even bilaterally symmetric — like us — before transforming into their star shape.',
-    diagram: {
-      label: 'Animalia',
-      children: [
-        {
-          label: 'Cnidaria',
-          children: [{ label: 'Jellyfish, corals', highlight: true }],
-        },
-        {
-          label: 'Bilateria',
-          children: [
-            {
-              label: 'Deuterostomia',
-              highlight: true,
-              children: [
-                { label: 'Echinoderms (starfish)', highlight: true },
-                { label: 'Chordates (human)', highlight: true },
-              ],
-            },
-          ],
-        },
-      ],
-    },
     sources: [{ url: 'https://en.wikipedia.org/wiki/Deuterostome', label: 'Deuterostome - Wikipedia' }],
   },
   {
@@ -929,31 +636,6 @@ export const surprisingScenarios: SurprisingScenario[] = [
     ],
     funFact:
       'Pangolins look like armadillos with scales but are actually closest to carnivores like dogs and cats! Pangolins are the sister group to all carnivores. Armadillos evolved their armor independently in a completely separate branch of mammals.',
-    diagram: {
-      label: 'Placentalia',
-      children: [
-        {
-          label: 'Xenarthra (South American)',
-          children: [
-            { label: 'Armadillos', highlight: true },
-            { label: 'Sloths, anteaters' },
-          ],
-        },
-        {
-          label: 'Boreoeutheria',
-          children: [
-            {
-              label: 'Ferae',
-              highlight: true,
-              children: [
-                { label: 'Pholidota (pangolin)', highlight: true },
-                { label: 'Carnivora (wolf)', highlight: true },
-              ],
-            },
-          ],
-        },
-      ],
-    },
     sources: [
       { url: 'https://www.scientificamerican.com/blog/tetrapod-zoology/surprises-from-placental-mammal-phylogeny-1-pangolins-are-close-kin-of-carnivorans/', label: 'Pangolins Are Close Kin of Carnivorans - Scientific American' },
     ],
@@ -1097,30 +779,6 @@ export const surprisingScenarios: SurprisingScenario[] = [
     organisms: [org('Giant kelp'), org('Plasmodium'), org('Thale cress')],
     funFact:
       'Giant kelp is NOT a plant — it is technically a protist! Despite growing 60 meters tall with leaf-like blades, it is a brown alga that evolved photosynthesis independently by engulfing an ancient alga and keeping its chloroplasts (secondary endosymbiosis). Kelp shares a deep common ancestor with the malaria parasite in the SAR supergroup, both completely unrelated to plants.',
-    diagram: {
-      label: 'Eukaryotes',
-      children: [
-        {
-          label: 'Archaeplastida',
-          children: [{ label: 'Plants (thale cress)', highlight: true }],
-        },
-        { label: 'Opisthokonta (animals, fungi)' },
-        {
-          label: 'SAR supergroup',
-          highlight: true,
-          children: [
-            {
-              label: 'Stramenopiles (giant kelp)',
-              highlight: true,
-            },
-            {
-              label: 'Alveolata (Plasmodium)',
-              highlight: true,
-            },
-          ],
-        },
-      ],
-    },
     sources: [{ url: 'https://en.wikipedia.org/wiki/Brown_algae', label: 'Brown algae - Wikipedia' },
       { url: 'https://bio.libretexts.org/Bookshelves/Introductory_and_General_Biology/General_Biology_(Boundless)/23:_Protists/23.03:_Groups_of_Protists/23.3C:_Chromalveolata-_Stramenopiles', label: 'Biology LibreTexts - Stramenopiles' }],
   },
@@ -1210,29 +868,6 @@ export const surprisingScenarios: SurprisingScenario[] = [
     organisms: [org('Common fern'), org('Sunflower'), org('Sphagnum moss')],
     funFact:
       "A fern is more closely related to a sunflower than to a moss. Ferns and flowering plants are both vascular plants — they have internal plumbing to transport water and nutrients. Mosses never evolved this system and diverged from all other land plants over 400 million years ago. Ferns just look 'primitive' because they reproduce with spores instead of seeds.",
-    diagram: {
-      label: 'Land plants (Embryophyta)',
-      children: [
-        { label: 'Bryophytes (moss)', highlight: true },
-        {
-          label: 'Vascular plants (Tracheophyta)',
-          highlight: true,
-          children: [
-            { label: 'Ferns', highlight: true },
-            {
-              label: 'Seed plants',
-              children: [
-                { label: 'Gymnosperms (pines)' },
-                {
-                  label: 'Angiosperms (sunflower)',
-                  highlight: true,
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },
     sources: [{ url: 'https://en.wikipedia.org/wiki/Fern', label: 'Fern - Wikipedia' }],
   },
   {
@@ -1442,29 +1077,6 @@ export const surprisingScenarios: SurprisingScenario[] = [
     organisms: [org('White shrimp'), org('Monarch butterfly'), org('Scorpion')],
     funFact:
       'A shrimp is more closely related to a butterfly than to a scorpion! Insects actually evolved from within crustaceans, making them "land shrimp" in a sense. Traditional "Crustacea" is not a real group without including insects. Scorpions are chelicerates — on a completely separate branch of arthropods.',
-    diagram: {
-      label: 'Arthropoda',
-      children: [
-        {
-          label: 'Chelicerata',
-          children: [{ label: 'Scorpions, spiders', highlight: true }],
-        },
-        {
-          label: 'Mandibulata',
-          children: [
-            { label: 'Myriapoda (centipedes)' },
-            {
-              label: 'Pancrustacea',
-              highlight: true,
-              children: [
-                { label: 'Crustaceans (shrimp)', highlight: true },
-                { label: 'Insects (butterfly)', highlight: true },
-              ],
-            },
-          ],
-        },
-      ],
-    },
     sources: [{ url: 'https://en.wikipedia.org/wiki/Pancrustacea', label: 'Pancrustacea - Wikipedia' },
       { url: 'https://academic.oup.com/icb/article/55/5/765/604304', label: 'Integrative and Comparative Biology - Linking insects with Crustacea' }],
   },
@@ -1638,32 +1250,6 @@ export const surprisingScenarios: SurprisingScenario[] = [
     organisms: [org('Oomycete'), org('Diatom'), org('Penicillium')],
     funFact:
       'Oomycetes (water molds) look identical to fungi under a microscope — same filamentous hyphae, same growth pattern — and were classified as fungi for centuries. But they are stramenopiles, closer to photosynthetic diatoms than to any true fungus. Phytophthora infestans, the oomycete that caused the Irish potato famine, is one of the most devastating plant pathogens in history.',
-    diagram: {
-      label: 'Eukaryotes',
-      children: [
-        {
-          label: 'Opisthokonta',
-          children: [
-            { label: 'Fungi (Penicillium)', highlight: true },
-            { label: 'Animals' },
-          ],
-        },
-        {
-          label: 'SAR supergroup',
-          children: [
-            {
-              label: 'Stramenopiles',
-              highlight: true,
-              children: [
-                { label: 'Oomycetes', highlight: true },
-                { label: 'Diatoms', highlight: true },
-                { label: 'Brown algae (kelp)' },
-              ],
-            },
-          ],
-        },
-      ],
-    },
     sources: [{ url: 'https://en.wikipedia.org/wiki/Oomycete', label: 'Oomycete - Wikipedia' },
       { url: 'https://ucmp.berkeley.edu/chromista/oomycota.html', label: 'UC Berkeley - Oomycetes are not fungi' }],
   },
@@ -1701,37 +1287,6 @@ export const surprisingScenarios: SurprisingScenario[] = [
     organisms: [org('Green sea turtle'), org('Chicken'), org('Komodo dragon')],
     funFact:
       'Turtles are closer to birds and crocodilians than to lizards! The reptile family tree has two main branches: one leading to lizards and snakes, the other to turtles, dinosaurs, birds, and crocs. Despite looking like the most "primitive" reptile, turtles are on the same branch as a T. rex — not dinosaurs themselves, but the closest relatives of that whole lineage.',
-    diagram: {
-      label: 'Sauropsida',
-      children: [
-        {
-          label: 'Lepidosauria',
-          children: [
-            {
-              label: 'Lizards, snakes (Komodo dragon)',
-              highlight: true,
-            },
-          ],
-        },
-        {
-          label: 'Archelosauria',
-          highlight: true,
-          children: [
-            { label: 'Turtles (green sea turtle)', highlight: true },
-            {
-              label: 'Archosauria',
-              children: [
-                { label: 'Crocodilians' },
-                {
-                  label: 'Dinosauria',
-                  children: [{ label: 'Birds (chicken)', highlight: true }],
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },
     sources: [{ url: 'https://en.wikipedia.org/wiki/Archelosauria', label: 'Archelosauria - Wikipedia' },
       { url: 'https://bmcbiol.biomedcentral.com/articles/10.1186/1741-7007-10-65', label: 'BMC Biology - Turtles are sister group of birds and crocodiles' }],
   },
@@ -1743,38 +1298,6 @@ export const surprisingScenarios: SurprisingScenario[] = [
     ],
     funFact:
       'Tortoises and tuataras both look like primordial reptiles frozen in time — but they are on opposite sides of the reptile family tree. The tree splits into two main branches: one leading to lizards, snakes, and tuataras, the other to turtles, dinosaurs, birds, and crocs. Despite both looking equally ancient, a tortoise is on the dinosaur side and a tuatara is on the lizard side.',
-    diagram: {
-      label: 'Sauropsida',
-      children: [
-        {
-          label: 'Lepidosauria',
-          children: [
-            { label: 'Tuatara', highlight: true },
-            { label: 'Lizards, snakes' },
-          ],
-        },
-        {
-          label: 'Archelosauria',
-          highlight: true,
-          children: [
-            {
-              label: 'Turtles (Galápagos tortoise)',
-              highlight: true,
-            },
-            {
-              label: 'Archosauria',
-              children: [
-                {
-                  label: 'Crocodilians (Nile crocodile)',
-                  highlight: true,
-                },
-                { label: 'Dinosauria → Birds' },
-              ],
-            },
-          ],
-        },
-      ],
-    },
     sources: [
       { url: 'https://en.wikipedia.org/wiki/Archelosauria', label: 'Archelosauria - Wikipedia' },
       { url: 'https://bmcbiol.biomedcentral.com/articles/10.1186/1741-7007-10-65', label: 'BMC Biology - Turtles are sister group of birds and crocodiles' },
@@ -1849,24 +1372,6 @@ export const surprisingScenarios: SurprisingScenario[] = [
     ],
     funFact:
       'You are more closely related to a lungfish than a salmon is. Both are called "fish," but "fish" is not a real evolutionary group. Lungfish have fleshy, limb-like fins and are on the same branch as all land animals — the lineage that crawled onto shore. Salmon are ray-finned fish, a completely separate branch. You are literally inside the fish family tree.',
-    diagram: {
-      label: 'Osteichthyes (bony "fish")',
-      children: [
-        {
-          label: 'Actinopterygii (ray-finned)',
-          children: [{ label: 'Salmon', highlight: true }],
-        },
-        {
-          label: 'Sarcopterygii (lobe-finned)',
-          highlight: true,
-          children: [
-            { label: 'Lungfish', highlight: true },
-            { label: 'Coelacanths' },
-            { label: 'Tetrapods (human)', highlight: true },
-          ],
-        },
-      ],
-    },
     sources: [
       { url: 'https://en.wikipedia.org/wiki/Sarcopterygii', label: 'Sarcopterygii - Wikipedia' },
       { url: 'https://www.businessinsider.com/fish-do-not-exist-2016-8', label: 'Business Insider - There is no such thing as a fish' },
@@ -1941,22 +1446,6 @@ export const surprisingScenarios: SurprisingScenario[] = [
     organisms: [org('Trichoplax'), org('Bath sponge'), org('Human')],
     funFact:
       'Trichoplax is a flat, transparent animal with no organs, no gut, and no nervous system — it glides over food and digests it externally. Despite this simplicity, most phylogenies place Placozoa as sister to Cnidaria+Bilateria, meaning Trichoplax is more closely related to humans than sponges are.',
-    diagram: {
-      label: 'Animalia',
-      children: [
-        { label: 'Porifera (sponge)', highlight: true },
-        { label: 'Ctenophora (comb jelly)' },
-        {
-          label: 'ParaHoxozoa',
-          highlight: true,
-          children: [
-            { label: 'Placozoa (Trichoplax)', highlight: true },
-            { label: 'Cnidaria (jellyfish)' },
-            { label: 'Bilateria (human)', highlight: true },
-          ],
-        },
-      ],
-    },
     sources: [
       { url: 'https://www.quantamagazine.org/worlds-simplest-animal-reveals-hidden-diversity-20180912/', label: "World's Simplest Animal Reveals Hidden Diversity - Quanta Magazine" },
       { url: 'https://www.nature.com/articles/nature07191', label: 'Nature - The Trichoplax genome and the nature of placozoans' },
@@ -1977,29 +1466,6 @@ export const surprisingScenarios: SurprisingScenario[] = [
     activelyDebated: true,
     funFact:
       'Acoel flatworms and planarians look nearly identical — small, soft worms that glide on surfaces. But molecular data shows they are not closely related. Planarians are protostomes (with insects and molluscs). Acoels belong to Xenacoelomorpha, which may be the sister group to all other bilaterians, representing the deepest split in the bilaterian tree.',
-    diagram: {
-      label: 'Bilateria',
-      children: [
-        { label: 'Xenacoelomorpha (acoel)', highlight: true },
-        {
-          label: 'Nephrozoa',
-          highlight: true,
-          children: [
-            {
-              label: 'Protostomia',
-              children: [
-                { label: 'Platyhelminthes (planarian)', highlight: true },
-                { label: 'Arthropods, molluscs...' },
-              ],
-            },
-            {
-              label: 'Deuterostomia',
-              children: [{ label: 'Chordates (human)', highlight: true }],
-            },
-          ],
-        },
-      ],
-    },
     sources: [
       { url: 'https://en.wikipedia.org/wiki/Xenacoelomorpha', label: 'Xenacoelomorpha - Wikipedia' },
       { url: 'https://www.nature.com/articles/nature16520', label: 'Nature - Xenacoelomorpha is the sister group to Nephrozoa' },
@@ -2057,31 +1523,6 @@ export const surprisingScenarios: SurprisingScenario[] = [
     organisms: [org('Termite'), org('American cockroach'), org('Honeybee')],
     funFact:
       'Termites are cockroaches. Molecular phylogenetics showed that termites are nested within Blattodea (the cockroach order), and they were reclassified in 2007. Their closest living relative is the wood-eating cockroach Cryptocercus, which shares the same gut bacteria. Termites are essentially social cockroaches that evolved a caste system.',
-    diagram: {
-      label: 'Neoptera',
-      children: [
-        {
-          label: 'Polyneoptera',
-          children: [
-            {
-              label: 'Blattodea (cockroaches)',
-              highlight: true,
-              children: [
-                { label: 'Cockroaches', highlight: true },
-                { label: 'Termitoidae (termites)', highlight: true },
-              ],
-            },
-          ],
-        },
-        {
-          label: 'Endopterygota',
-          children: [
-            { label: 'Hymenoptera (bees, ants)', highlight: true },
-            { label: 'Beetles, flies...' },
-          ],
-        },
-      ],
-    },
     sources: [
       { url: 'https://en.wikipedia.org/wiki/Termite', label: 'Termite - Wikipedia' },
       { url: 'https://www.smithsonianmag.com/smart-news/termites-are-moving-cockroaches-taxonomically-180968332/', label: 'Smithsonian - Termites are moving in with cockroaches' },
