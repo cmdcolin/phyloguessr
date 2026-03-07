@@ -1,17 +1,16 @@
 import { cluster, hierarchy } from 'd3-hierarchy'
-import { Fragment, useState } from 'react'
 
 import Button from './Button.tsx'
+import { LineageBreadcrumbs } from './Breadcrumbs.tsx'
 import DiagramTree from './DiagramTree.tsx'
-import { ShareButton } from './Game.tsx'
-import { TaxLink } from './ResultScreen.tsx'
-import SpeciesMap from './SpeciesMap.tsx'
+import { ShareButton } from './ShareButton.tsx'
+import { MapToggle } from './MapToggle.tsx'
+import { TaxLink } from './TaxLink.tsx'
 import { capitalize, formatRank } from '../utils/format.ts'
 import {
   buildTreeFromLineages,
   collapseSingleChildren,
   countLeaves,
-  getLineageFromParents,
   getMaxDepth,
   treeNodeToDiagramNode,
 } from '../utils/taxonomy.ts'
@@ -291,138 +290,6 @@ function MultiTree({
   )
 }
 
-function MapToggle({ organisms }: { organisms: Organism[] }) {
-  const [show, setShow] = useState(false)
-  return (
-    <div className="map-toggle">
-      <button className="map-hint-link" onClick={() => setShow(s => !s)}>
-        {show
-          ? 'Hide species distribution map'
-          : 'Show species distribution map (GBIF)'}
-      </button>
-      {show && <SpeciesMap organisms={organisms} />}
-    </div>
-  )
-}
-
-function MultiLineageBreadcrumbs({
-  organisms,
-  taxonomyData,
-  userSelectedTaxIds,
-}: {
-  organisms: Organism[]
-  taxonomyData: TaxonomyData
-  userSelectedTaxIds: Set<number>
-}) {
-  const majorRanks = new Set([
-    'domain',
-    'kingdom',
-    'phylum',
-    'class',
-    'order',
-    'family',
-    'genus',
-    'species',
-  ])
-  const lineages = organisms.map(o => {
-    const lin = getLineageFromParents(o.ncbiTaxId, taxonomyData.parents)
-    const steps: { taxId: number; name: string; rank: string }[] = []
-    for (const id of lin) {
-      const name = taxonomyData.names[String(id)]
-      const rank = taxonomyData.ranks[String(id)]
-      if (name) {
-        steps.push({ taxId: id, name, rank: rank ?? 'no rank' })
-      }
-    }
-    return steps.reverse()
-  })
-
-  const minLen = Math.min(...lineages.map(l => l.length))
-  let commonLen = 0
-  for (let i = 0; i < minLen; i++) {
-    if (lineages.every(l => l[i].taxId === lineages[0][i].taxId)) {
-      commonLen = i + 1
-    } else {
-      break
-    }
-  }
-
-  let startIndex = 0
-  for (let i = commonLen - 1; i >= 0; i--) {
-    if (majorRanks.has(lineages[0][i].rank)) {
-      startIndex = i
-      break
-    }
-  }
-
-  const sortedIndices = [...organisms.keys()].sort((a, b) => {
-    const aSelected = userSelectedTaxIds.has(organisms[a].ncbiTaxId) ? 0 : 1
-    const bSelected = userSelectedTaxIds.has(organisms[b].ncbiTaxId) ? 0 : 1
-    return aSelected - bSelected
-  })
-
-  return (
-    <div className="lineage-breadcrumbs">
-      {sortedIndices.map(idx => {
-        const org = organisms[idx]
-        const allSteps = lineages[idx]
-        const pinnedRanks = new Set(['domain', 'kingdom', 'phylum'])
-        const pinned = allSteps.filter(s => pinnedRanks.has(s.rank))
-        const tail = allSteps.slice(startIndex)
-        const tailIds = new Set(tail.map(s => s.taxId))
-        const pinnedOnly = pinned.filter(s => !tailIds.has(s.taxId))
-        const hasGap = pinnedOnly.length > 0 && tail.length > 0
-
-        const isUserPick = userSelectedTaxIds.has(org.ncbiTaxId)
-
-        return (
-          <Fragment key={org.ncbiTaxId}>
-            <span
-              className={`breadcrumb-label ${isUserPick ? 'breadcrumb-user-pick' : ''}`}
-            >
-              {capitalize(org.commonName)}
-              {isUserPick && (
-                <span className="breadcrumb-pick-tag">your pick</span>
-              )}
-            </span>
-            <span className="breadcrumb-path">
-              {pinnedOnly.map((step, i) => (
-                <span key={step.taxId}>
-                  {i > 0 && (
-                    <span className="breadcrumb-sep">{' \u203a '}</span>
-                  )}
-                  <TaxLink name={step.name} taxId={step.taxId} />
-                  <span className="breadcrumb-rank">
-                    {' '}
-                    ({formatRank(step.rank)})
-                  </span>
-                </span>
-              ))}
-              {hasGap && (
-                <span className="breadcrumb-sep">
-                  {' \u203a \u2026 \u203a '}
-                </span>
-              )}
-              {tail.map((step, i) => (
-                <span key={step.taxId}>
-                  {i > 0 && (
-                    <span className="breadcrumb-sep">{' \u203a '}</span>
-                  )}
-                  <TaxLink name={step.name} taxId={step.taxId} />
-                  <span className="breadcrumb-rank">
-                    {' '}
-                    ({formatRank(step.rank)})
-                  </span>
-                </span>
-              ))}
-            </span>
-          </Fragment>
-        )
-      })}
-    </div>
-  )
-}
-
 export default function MultiResultScreen({
   result,
   taxonomyData,
@@ -464,10 +331,7 @@ export default function MultiResultScreen({
               <strong>
                 <TaxLink name={userPair.lca.name} taxId={userPair.lca.taxId} />
               </strong>{' '}
-              ({formatRank(userPair.lca.rank)}).
-            </p>
-            <p>
-              The closest pair was{' '}
+              ({formatRank(userPair.lca.rank)}). The closest pair was{' '}
               <strong>{capitalize(bestOrgA.commonName)}</strong> &amp;{' '}
               <strong>{capitalize(bestOrgB.commonName)}</strong>, sharing a
               common ancestor in{' '}
@@ -507,7 +371,7 @@ export default function MultiResultScreen({
 
       <MapToggle organisms={organisms} />
 
-      <MultiLineageBreadcrumbs
+      <LineageBreadcrumbs
         organisms={organisms}
         taxonomyData={taxonomyData}
         userSelectedTaxIds={new Set([userPair.taxIdA, userPair.taxIdB])}

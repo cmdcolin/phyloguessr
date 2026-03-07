@@ -113,6 +113,12 @@ export default function Header() {
               >
                 About
               </a>
+              <a
+                className="hamburger-item"
+                href={`${import.meta.env.BASE_URL}donate`}
+              >
+                Donate
+              </a>
               <div className="hamburger-divider" />
               {signedIn ? (
                 <>

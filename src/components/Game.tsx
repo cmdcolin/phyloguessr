@@ -1,11 +1,20 @@
 import { useCallback, useEffect, useState } from 'react'
 
 import Button from './Button.tsx'
+import {
+  buildShareUrl,
+  comboKey,
+  parseSharedIds,
+  resolveOrganism,
+  toggleSelect,
+  updateUrlWithQuestion,
+} from './gameUtils.ts'
 import Header from './Header.tsx'
 import OrganismCard from './OrganismCard.tsx'
-import ResultScreen, { TaxLink } from './ResultScreen.tsx'
-import SpeciesMap, { MAP_COLORS } from './SpeciesMap.tsx'
-import { organisms as allOrganisms } from '../data/organisms.ts'
+import ResultScreen from './ResultScreen.tsx'
+import { TaxLink } from './TaxLink.tsx'
+import { MapToggle } from './MapToggle.tsx'
+import { MAP_COLORS } from './SpeciesMap.tsx'
 import { surprisingScenarios } from '../data/surprisingFacts.ts'
 import { recordRound, startPresence } from '../firebase.ts'
 import { addHistoryEntry, loadHistory } from '../utils/history.ts'
@@ -20,7 +29,6 @@ import {
   pickThreeFromClade,
   pickThreeHardModeDistance,
   pickThreeMicrobialCrossKingdom,
-  resolveOrganism as resolveOrganismUtil,
   searchTaxonNames,
 } from '../utils/taxonomy.ts'
 
@@ -58,59 +66,6 @@ interface ResultData {
   diagram?: DiagramNode
   sources?: { url: string; label: string }[]
   activelyDebated?: boolean
-}
-
-function comboKey(orgs: { ncbiTaxId: number }[]) {
-  return orgs
-    .map(o => o.ncbiTaxId)
-    .sort((a, b) => a - b)
-    .join(',')
-}
-
-function parseSharedQuestion() {
-  const params = new URLSearchParams(window.location.search)
-
-  const idsParam = params.get('ids')
-  if (idsParam) {
-    const ids = idsParam.split(',').map(Number)
-    if (ids.length === 3 && ids.every(n => Number.isFinite(n) && n > 0)) {
-      return ids as [number, number, number]
-    }
-  }
-
-  const a = params.get('a')
-  const b = params.get('b')
-  const c = params.get('c')
-  if (!a || !b || !c) {
-    return null
-  }
-  const ids = [Number(a), Number(b), Number(c)]
-  if (ids.some(n => !Number.isFinite(n) || n <= 0)) {
-    return null
-  }
-  return ids as [number, number, number]
-}
-
-function resolveOrganism(
-  taxId: number,
-  pool: SpeciesPoolEntry[] | null,
-  data: TaxonomyData | null,
-) {
-  return resolveOrganismUtil(taxId, allOrganisms, pool, data)
-}
-
-function buildShareUrl(orgs: Organism[]) {
-  const url = new URL(window.location.href)
-  url.search = ''
-  url.searchParams.set('ids', orgs.map(o => o.ncbiTaxId).join(','))
-  return url.toString()
-}
-
-function updateUrlWithQuestion(orgs: Organism[]) {
-  const url = new URL(window.location.href)
-  url.search = ''
-  url.searchParams.set('ids', orgs.map(o => o.ncbiTaxId).join(','))
-  history.pushState(null, '', url.toString())
 }
 
 function makeCorrectnessPredicate(orgs: Organism[], selectedIndices: number[]) {
@@ -163,26 +118,6 @@ function computeResult(
   }
 }
 
-function ShareButton({ url }: { url: string }) {
-  const [copied, setCopied] = useState(false)
-  return (
-    <button
-      className="share-icon-btn"
-      title={copied ? 'Copied!' : 'Share link'}
-      onClick={() => {
-        navigator.clipboard.writeText(url).then(() => {
-          setCopied(true)
-          setTimeout(() => setCopied(false), 2000)
-        })
-      }}
-    >
-      {copied ? '✓' : '🔗'}
-    </button>
-  )
-}
-
-export { ShareButton }
-
 export default function Game({ mode }: { mode: GameMode }) {
   const [state, setState] = useState<GameState>(
     mode === 'custom' ? 'customizing' : 'loading',
@@ -216,7 +151,6 @@ export default function Game({ mode }: { mode: GameMode }) {
   )
   const [cladeError, setCladeError] = useState('')
   const [showSuggestions, setShowSuggestions] = useState(false)
-  const [showMapHint, setShowMapHint] = useState(false)
   const [seenCombos, setSeenCombos] = useState<Set<string>>(() => {
     const saved = sessionStorageGetItem('phyloSeenCombos')
     if (saved) {
@@ -239,7 +173,6 @@ export default function Game({ mode }: { mode: GameMode }) {
     setState('loading')
     setSelected([])
     setResult(null)
-    setShowMapHint(false)
 
     let data = taxonomyData
     if (!data) {
@@ -414,7 +347,7 @@ export default function Game({ mode }: { mode: GameMode }) {
   ])
 
   const loadSharedQuestion = useCallback(
-    async (taxIds: [number, number, number]) => {
+    async (taxIds: number[]) => {
       setState('loading')
       setLoadingMessage('Loading shared question...')
 
@@ -452,7 +385,7 @@ export default function Game({ mode }: { mode: GameMode }) {
 
   useEffect(() => {
     startPresence()
-    const sharedIds = parseSharedQuestion()
+    const sharedIds = parseSharedIds()
     if (sharedIds) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       loadSharedQuestion(sharedIds)
@@ -465,7 +398,7 @@ export default function Game({ mode }: { mode: GameMode }) {
 
   useEffect(() => {
     const handler = () => {
-      const sharedIds = parseSharedQuestion()
+      const sharedIds = parseSharedIds()
       if (sharedIds) {
         const orgs: Organism[] = []
         for (const id of sharedIds) {
@@ -486,16 +419,8 @@ export default function Game({ mode }: { mode: GameMode }) {
     return () => window.removeEventListener('popstate', handler)
   }, [taxonomyData, speciesPool])
 
-  const toggleSelect = (idx: number) => {
-    setSelected(prev => {
-      if (prev.includes(idx)) {
-        return prev.filter(i => i !== idx)
-      }
-      if (prev.length < 2) {
-        return [...prev, idx]
-      }
-      return [prev[1], idx]
-    })
+  const handleToggleSelect = (idx: number) => {
+    setSelected(prev => toggleSelect(prev, idx))
   }
 
   const handleSubmit = async () => {
@@ -842,7 +767,7 @@ export default function Game({ mode }: { mode: GameMode }) {
                 imageUrl={org.imageUrl ?? null}
                 selected={selected.includes(i)}
                 disabled={false}
-                onClick={() => toggleSelect(i)}
+                onClick={() => handleToggleSelect(i)}
                 mapColor={MAP_COLORS[i % MAP_COLORS.length]}
               />
             ))}
@@ -862,15 +787,7 @@ export default function Game({ mode }: { mode: GameMode }) {
               ⏭
             </button>
           </div>
-          <button
-            className="map-hint-link"
-            onClick={() => setShowMapHint(prev => !prev)}
-          >
-            {showMapHint
-              ? 'Hide species distribution map'
-              : 'Show species distribution map (GBIF)'}
-          </button>
-          {showMapHint && round && <SpeciesMap organisms={round.organisms} />}
+          <MapToggle organisms={round.organisms} />
         </div>
       )}
 

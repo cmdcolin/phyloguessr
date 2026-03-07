@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Header from '../components/Header.tsx'
+import '../index.css'
+---
+
+<Layout title="Donate - PhyloGuessr">
+  <div class="game">
+    <Header client:load />
+    <div class="about-page">
+      <h2>Support PhyloGuessr</h2>
+
+      <h3>Buy me a coffee</h3>
+      <p>If you enjoy PhyloGuessr you can 
+      <a href="https://www.buymeacoffee.com/OVkJroC3iJ" target="_blank" rel="noopener noreferrer">Buy Me a Coffee</a></p>
+
+      <p>Alternatively, consider donating to an organization that supports research, biodiversity, or conservation. If you make a donation, let us know and we'll list your name here! </p>
+      <p>To get your name listed, <a href="mailto:colin.diesh@gmail.com" target="_blank" rel="noopener noreferrer">email me</a> with proof of your donation and whether you want to be listed, or anonymously listed, and whether you want your place of donation to be listed.</p>
+
+      <h3>Donors</h3>
+      <p>None yet! Be the first!</p>
+    </div>
+  </div>
+</Layout>

@@ -1,10 +1,16 @@
 import { useCallback, useEffect, useState } from 'react'
 
 import Button from './Button.tsx'
+import {
+  buildShareUrl,
+  comboKey,
+  parseSharedIds,
+  resolveOrganism,
+  toggleSelect,
+} from './gameUtils.ts'
 import Header from './Header.tsx'
 import MultiResultScreen from './MultiResultScreen.tsx'
 import OrganismCard from './OrganismCard.tsx'
-import { organisms as allOrganisms } from '../data/organisms.ts'
 import { recordMultiRound, startPresence } from '../firebase.ts'
 import { addHistoryEntry, loadHistory } from '../utils/history.ts'
 import {
@@ -12,7 +18,6 @@ import {
   loadSpeciesPool,
   loadTaxonomyData,
   pickNHardModeDistance,
-  resolveOrganism as resolveOrganismUtil,
 } from '../utils/taxonomy.ts'
 
 import type { MultiResultData } from './MultiResultScreen.tsx'
@@ -22,42 +27,7 @@ import type { SpeciesPoolEntry, TaxonomyData } from '../utils/taxonomy.ts'
 
 const SPECIES_COUNT = 6
 
-function parseSharedIds() {
-  const params = new URLSearchParams(window.location.search)
-  const raw = params.get('ids')
-  if (!raw) {
-    return null
-  }
-  const ids = raw.split(',').map(Number)
-  if (ids.length < 3 || ids.some(n => !Number.isFinite(n) || n <= 0)) {
-    return null
-  }
-  return ids
-}
-
-function buildIdsUrl(orgs: Organism[]) {
-  const url = new URL(window.location.href)
-  url.search = ''
-  url.searchParams.set('ids', orgs.map(o => o.ncbiTaxId).join(','))
-  return url.toString()
-}
-
-function resolveOrganism(
-  taxId: number,
-  pool: SpeciesPoolEntry[] | null,
-  data: TaxonomyData | null,
-) {
-  return resolveOrganismUtil(taxId, allOrganisms, pool, data)
-}
-
 type GameState = 'loading' | 'selecting' | 'result'
-
-function comboKey(orgs: { ncbiTaxId: number }[]) {
-  return orgs
-    .map(o => o.ncbiTaxId)
-    .sort((a, b) => a - b)
-    .join(',')
-}
 
 export default function MultiGame() {
   const [state, setState] = useState<GameState>('loading')
@@ -166,7 +136,7 @@ export default function MultiGame() {
     recordCombo(finalOrgs)
     const shuffled = finalOrgs.sort(() => Math.random() - 0.5)
     setOrganisms(shuffled)
-    history.pushState(null, '', buildIdsUrl(shuffled))
+    history.pushState(null, '', buildShareUrl(shuffled))
     setState('selecting')
   }, [taxonomyData, speciesPool, seenCombos])
 
@@ -241,16 +211,8 @@ export default function MultiGame() {
     return () => window.removeEventListener('popstate', handler)
   }, [taxonomyData, speciesPool])
 
-  const toggleSelect = (idx: number) => {
-    setSelected(prev => {
-      if (prev.includes(idx)) {
-        return prev.filter(i => i !== idx)
-      }
-      if (prev.length < 2) {
-        return [...prev, idx]
-      }
-      return [prev[1], idx]
-    })
+  const handleToggleSelect = (idx: number) => {
+    setSelected(prev => toggleSelect(prev, idx))
   }
 
   const handleSubmit = async () => {
@@ -351,7 +313,7 @@ export default function MultiGame() {
                 imageUrl={org.imageUrl ?? null}
                 selected={selected.includes(i)}
                 disabled={false}
-                onClick={() => toggleSelect(i)}
+                onClick={() => handleToggleSelect(i)}
                 mapColor={undefined}
               />
             ))}
@@ -371,7 +333,7 @@ export default function MultiGame() {
         <MultiResultScreen
           result={result}
           taxonomyData={taxonomyData}
-          shareUrl={buildIdsUrl(result.organisms)}
+          shareUrl={buildShareUrl(result.organisms)}
           onPlayAgain={startRound}
         />
       )}
