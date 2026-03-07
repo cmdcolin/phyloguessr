@@ -38,7 +38,6 @@ type GameMode = 'easy' | 'random' | 'custom'
 
 interface RoundData {
   organisms: Organism[]
-  images: (string | null)[]
 }
 
 interface ResultData {
@@ -59,9 +58,6 @@ function comboKey(orgs: { ncbiTaxId: number }[]) {
     .join(',')
 }
 
-function resolveImage(o: Organism) {
-  return Promise.resolve(o.imageUrl ?? null)
-}
 
 function parseSharedQuestion() {
   const params = new URLSearchParams(window.location.search)
@@ -342,11 +338,8 @@ export default function Game({ mode }: { mode: GameMode }) {
         return
       }
       const shuffled = orgs.sort(() => Math.random() - 0.5)
-      const images = await Promise.all(
-        shuffled.map(o => resolveImage(o)),
-      )
       recordCombo(shuffled)
-      setRound({ organisms: shuffled, images })
+      setRound({ organisms: shuffled })
       updateUrlWithQuestion(shuffled)
       setState('selecting')
     } else {
@@ -375,7 +368,6 @@ export default function Game({ mode }: { mode: GameMode }) {
       }
 
       let finalOrgs: Organism[] = []
-      let finalImages: (string | null)[] = []
       let finalClade: { taxId: number; name: string; rank: string } | undefined
 
       for (let attempt = 0; attempt < 20; attempt++) {
@@ -423,8 +415,6 @@ export default function Game({ mode }: { mode: GameMode }) {
           }),
         )
 
-        const images = await Promise.all(orgs.map(resolveImage))
-
         const taxIds: [number, number, number] = [
           orgs[0].ncbiTaxId,
           orgs[1].ncbiTaxId,
@@ -436,12 +426,8 @@ export default function Game({ mode }: { mode: GameMode }) {
         }
 
         finalOrgs = orgs
-        finalImages = images
         finalClade = attemptClade
-
-        if (images.every(img => img !== null)) {
-          break
-        }
+        break
       }
 
       if (finalOrgs.length === 0) {
@@ -454,7 +440,7 @@ export default function Game({ mode }: { mode: GameMode }) {
         setRandomClade(finalClade)
       }
       recordCombo(finalOrgs)
-      setRound({ organisms: finalOrgs, images: finalImages })
+      setRound({ organisms: finalOrgs })
       updateUrlWithQuestion(finalOrgs)
       setState('selecting')
     }
@@ -497,11 +483,8 @@ export default function Game({ mode }: { mode: GameMode }) {
         orgs.push(org)
       }
 
-      const images = await Promise.all(
-        orgs.map(o => resolveImage(o)),
-      )
       recordCombo(orgs)
-      setRound({ organisms: orgs, images })
+      setRound({ organisms: orgs })
 
       if (hasResultParam()) {
         const savedSelected = getSelectedParam()
@@ -878,7 +861,7 @@ export default function Game({ mode }: { mode: GameMode }) {
                 key={org.ncbiTaxId}
                 commonName={org.commonName}
                 scientificName={org.scientificName}
-                imageUrl={round.images[i]}
+                imageUrl={org.imageUrl ?? null}
                 selected={selected.includes(i)}
                 disabled={false}
                 onClick={() => toggleSelect(i)}
@@ -916,7 +899,7 @@ export default function Game({ mode }: { mode: GameMode }) {
           isPolytomy={result.isPolytomy}
           taxonomyData={taxonomyData}
           images={Object.fromEntries(
-            round.organisms.map((o, i) => [o.ncbiTaxId, round.images[i]]),
+            round.organisms.map(o => [o.ncbiTaxId, o.imageUrl ?? null]),
           )}
           userSelectedTaxIds={
             new Set(selected.map(i => round.organisms[i].ncbiTaxId))
