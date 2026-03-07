@@ -2,11 +2,17 @@ import { Fragment, useState } from 'react'
 import { cluster, hierarchy } from 'd3-hierarchy'
 
 import Button from './Button.tsx'
+import DiagramTree from './DiagramTree.tsx'
+import { ShareButton } from './Game.tsx'
 import SpeciesMap from './SpeciesMap.tsx'
-import { capitalize } from '../utils/format.ts'
+import { capitalize, formatRank } from '../utils/format.ts'
 import {
   buildTreeFromLineages,
+  collapseSingleChildren,
+  countLeaves,
   getLineageFromParents,
+  getMaxDepth,
+  treeNodeToDiagramNode,
 } from '../utils/taxonomy.ts'
 
 import type { Organism } from '../data/organisms.ts'
@@ -35,13 +41,6 @@ interface MultiResultScreenProps {
   taxonomyData: TaxonomyData
   shareUrl: string
   onPlayAgain: () => void
-}
-
-function formatRank(rank: string) {
-  if (rank === 'no rank' || rank === 'no rank - terminal') {
-    return 'group'
-  }
-  return rank
 }
 
 function PairTable({
@@ -89,6 +88,23 @@ function PairTable({
       </table>
     </div>
   )
+}
+
+function MultiDiagramTree({
+  organisms,
+  taxonomyData,
+  userSelectedTaxIds,
+}: {
+  organisms: Organism[]
+  taxonomyData: TaxonomyData
+  userSelectedTaxIds: Set<number>
+}) {
+  const rawTree = buildTreeFromLineages(organisms, {}, undefined, taxonomyData)
+  const orgTaxIds = new Set(organisms.map(o => o.ncbiTaxId))
+  const tree = collapseSingleChildren(rawTree, orgTaxIds)
+  const orgNames = new Map(organisms.map(o => [o.ncbiTaxId, o.commonName]))
+  const diagramRoot = treeNodeToDiagramNode(tree, orgNames, userSelectedTaxIds)
+  return <DiagramTree root={diagramRoot} />
 }
 
 function MultiTree({
@@ -243,42 +259,6 @@ function MultiTree({
   )
 }
 
-function countLeaves(node: TreeNode): number {
-  if (node.children.length === 0) {
-    return 1
-  }
-  let n = 0
-  for (const c of node.children) {
-    n += countLeaves(c)
-  }
-  return n
-}
-
-function getMaxDepth(node: TreeNode): number {
-  if (node.children.length === 0) {
-    return 0
-  }
-  let max = 0
-  for (const child of node.children) {
-    const d = getMaxDepth(child)
-    if (d > max) {
-      max = d
-    }
-  }
-  return max + 1
-}
-
-function collapseSingleChildren(
-  node: TreeNode,
-  orgTaxIds: Set<number>,
-): TreeNode {
-  const collapsed = node.children.map(c => collapseSingleChildren(c, orgTaxIds))
-  if (collapsed.length === 1 && !orgTaxIds.has(node.taxId)) {
-    return collapsed[0]
-  }
-  return { ...node, children: collapsed }
-}
-
 function MapToggle({ organisms }: { organisms: Organism[] }) {
   const [show, setShow] = useState(false)
   return (
@@ -336,9 +316,16 @@ function MultiLineageBreadcrumbs({
     }
   }
 
+  const sortedIndices = [...organisms.keys()].sort((a, b) => {
+    const aSelected = userSelectedTaxIds.has(organisms[a].ncbiTaxId) ? 0 : 1
+    const bSelected = userSelectedTaxIds.has(organisms[b].ncbiTaxId) ? 0 : 1
+    return aSelected - bSelected
+  })
+
   return (
     <div className="lineage-breadcrumbs">
-      {organisms.map((org, idx) => {
+      {sortedIndices.map(idx => {
+        const org = organisms[idx]
         const allSteps = lineages[idx]
         const pinnedRanks = new Set(['domain', 'kingdom', 'phylum'])
         const pinned = allSteps.filter(s => pinnedRanks.has(s.rank))
@@ -378,24 +365,6 @@ function MultiLineageBreadcrumbs({
         )
       })}
     </div>
-  )
-}
-
-function ShareButton({ url }: { url: string }) {
-  const [copied, setCopied] = useState(false)
-  return (
-    <button
-      className="share-icon-btn"
-      title={copied ? 'Copied!' : 'Share link'}
-      onClick={() => {
-        navigator.clipboard.writeText(url).then(() => {
-          setCopied(true)
-          setTimeout(() => setCopied(false), 2000)
-        })
-      }}
-    >
-      {copied ? '✓' : '🔗'}
-    </button>
   )
 }
 
@@ -457,6 +426,8 @@ export default function MultiResultScreen({
         userSelectedTaxIds={new Set([userPair.taxIdA, userPair.taxIdB])}
       />
 
+      <MultiDiagramTree organisms={organisms} taxonomyData={taxonomyData} userSelectedTaxIds={new Set([userPair.taxIdA, userPair.taxIdB])} />
+
       <details className="multi-pair-details">
         <summary>All {totalPairs} pair rankings</summary>
         <PairTable
@@ -477,6 +448,14 @@ export default function MultiResultScreen({
       <div className="result-actions">
         <Button onClick={onPlayAgain}>Next</Button>
       </div>
+      <a
+        className="report-issue-link"
+        href={`https://github.com/cmdcolin/phyloguessr/issues/new?title=${encodeURIComponent(`Issue with multi: ${organisms.map(o => o.commonName).join(', ')}`)}&body=${encodeURIComponent(`Organisms: ${organisms.map(o => `${o.commonName} (${o.scientificName})`).join(', ')}\n\nDescribe the issue:\n`)}`}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Report issue with this answer
+      </a>
     </div>
   )
 }

@@ -13,18 +13,48 @@ const { title } = Astro.props
     <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PT07Q2BEQR"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-PT07Q2BEQR');
-    </script>
   </head>
   <body>
     <div id="root">
       <slot />
     </div>
+    <script is:inline>
+      (function() {
+        var consent = localStorage.getItem('analytics-consent');
+        if (consent === 'yes') {
+          loadGA();
+        } else if (consent !== 'no') {
+          showBanner();
+        }
+
+        function loadGA() {
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=G-PT07Q2BEQR';
+          document.head.appendChild(s);
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-PT07Q2BEQR');
+        }
+
+        function showBanner() {
+          var banner = document.createElement('div');
+          banner.id = 'cookie-banner';
+          banner.style.cssText = 'position:fixed;bottom:16px;right:16px;background:#333;color:#fff;padding:12px 16px;font-size:14px;z-index:9999;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.3);max-width:320px';
+          banner.innerHTML = '<div style="margin-bottom:8px">This site uses Google Analytics to understand usage.</div><div><button id="cb-accept" style="background:#4CAF50;color:#fff;border:none;padding:6px 14px;cursor:pointer;border-radius:3px;margin-right:6px">OK</button><button id="cb-deny" style="background:transparent;color:#aaa;border:1px solid #aaa;padding:6px 14px;cursor:pointer;border-radius:3px">No thanks</button></div>';
+          document.body.appendChild(banner);
+          document.getElementById('cb-accept').addEventListener('click', function() {
+            localStorage.setItem('analytics-consent', 'yes');
+            banner.remove();
+            loadGA();
+          });
+          document.getElementById('cb-deny').addEventListener('click', function() {
+            localStorage.setItem('analytics-consent', 'no');
+            banner.remove();
+          });
+        }
+      })();
+    </script>
   </body>
 </html>

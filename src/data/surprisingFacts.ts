@@ -5,6 +5,7 @@ import type { Organism } from './organisms.ts'
 export interface DiagramNode {
   label: string
   highlight?: boolean
+  wikiLink?: string
   children?: DiagramNode[]
 }
 
@@ -235,8 +236,10 @@ export const surprisingScenarios: SurprisingScenario[] = [
         },
       ],
     },
-    sources: [{ url: 'https://en.wikipedia.org/wiki/Coelacanth', label: 'Coelacanth - Wikipedia' },
-      { url: 'https://ocean.si.edu/ocean-life/fish/coelacanth', label: 'Smithsonian Ocean - Coelacanth' }],
+    sources: [
+      { url: 'https://www.scientificamerican.com/article/slow-evolving-lobe-finned-coelacanth-genome-unlocked/', label: "Coelacanth Genome Unlocked - Scientific American" },
+      { url: 'https://ocean.si.edu/ocean-life/fish/coelacanth', label: 'Smithsonian Ocean - Coelacanth' },
+    ],
   },
   {
     organisms: [
@@ -444,8 +447,10 @@ export const surprisingScenarios: SurprisingScenario[] = [
         },
       ],
     },
-    sources: [{ url: 'https://en.wikipedia.org/wiki/Chelicerata', label: 'Chelicerata - Wikipedia' },
-      { url: 'https://oceanservice.noaa.gov/facts/horseshoe-crab.html', label: 'NOAA - Are horseshoe crabs really crabs?' }],
+    sources: [
+      { url: 'https://www.nationalgeographic.com/animals/article/horseshoe-crabs-related-to-spiders', label: 'Horseshoe crabs are spider relatives, genes reveal - National Geographic' },
+      { url: 'https://oceanservice.noaa.gov/facts/horseshoe-crab.html', label: 'NOAA - Are horseshoe crabs really crabs?' },
+    ],
   },
   {
     organisms: [org('Deer tick'), org('Dust mite'), org('Garden spider')],
@@ -950,8 +955,7 @@ export const surprisingScenarios: SurprisingScenario[] = [
       ],
     },
     sources: [
-      { url: 'https://en.wikipedia.org/wiki/Pangolin#Taxonomy', label: 'Pangolin taxonomy - Wikipedia' },
-      { url: 'https://en.wikipedia.org/wiki/Ferae', label: 'Ferae - Wikipedia' },
+      { url: 'https://www.scientificamerican.com/blog/tetrapod-zoology/surprises-from-placental-mammal-phylogeny-1-pangolins-are-close-kin-of-carnivorans/', label: 'Pangolins Are Close Kin of Carnivorans - Scientific American' },
     ],
   },
   {
@@ -971,8 +975,10 @@ export const surprisingScenarios: SurprisingScenario[] = [
     organisms: [org('Red king crab'), org('Hermit crab'), org('Blue crab')],
     funFact:
       'King crabs are NOT true crabs — they are actually hermit crabs that evolved a crab-like body shape! This is called "carcinization," and it has happened at least five times independently in crustacean evolution.',
-    sources: [{ url: 'https://en.wikipedia.org/wiki/Carcinisation', label: 'Carcinisation - Wikipedia' },
-      { url: 'https://www.nature.com/articles/355539a0', label: 'Nature - Evolution of king crabs from hermit crab ancestors' }],
+    sources: [
+      { url: 'https://www.scientificamerican.com/article/why-do-animals-keep-evolving-into-crabs/', label: 'Why Do Animals Keep Evolving into Crabs? - Scientific American' },
+      { url: 'https://www.nature.com/articles/355539a0', label: 'Nature - Evolution of king crabs from hermit crab ancestors' },
+    ],
   },
   {
     organisms: [org('Earthworm'), org('Common octopus'), org('Pork tapeworm')],
@@ -1013,7 +1019,10 @@ export const surprisingScenarios: SurprisingScenario[] = [
     organisms: [org('Peanut worm'), org('Earthworm'), org('Milky ribbon worm')],
     funFact:
       "Peanut worms (sipunculans) were classified as their own phylum for over a century, but modern genomics placed them firmly within Annelida — the same phylum as earthworms and lugworms. Despite both being soft marine 'worms', a peanut worm is closer to an earthworm than to a ribbon worm — ribbon worms (nemerteans) belong to an entirely different phylum.",
-    sources: [{ url: 'https://en.wikipedia.org/wiki/Peanut_worm', label: 'Peanut worm - Wikipedia' }],
+    sources: [
+      { url: 'https://www.sciencedaily.com/releases/2011/03/110302184042.htm', label: 'Peanut worms are annelids - ScienceDaily' },
+      { url: 'https://bmcgenomics.biomedcentral.com/articles/10.1186/1471-2164-10-136', label: 'Mitochondrial genome evidence for Sipuncula-Annelida relationship - BMC Genomics' },
+    ],
   },
   // Convergent evolution traps (from Wikipedia's convergent evolution list)
   {
@@ -1192,10 +1201,10 @@ export const surprisingScenarios: SurprisingScenario[] = [
     sources: [{ url: 'https://en.wikipedia.org/wiki/Asterids', label: 'Asterids - Wikipedia' }],
   },
   {
-    organisms: [org('Common daisy'), org('Sunflower'), org('Lily')],
+    organisms: [org('Fuchsia'), org('Sunflower'), org('Lily')],
     funFact:
-      "A daisy and a sunflower are in the same family — the largest family of eudicot plants. What looks like a single flower is actually hundreds of tiny flowers packed into a composite head. Lilies may look more like daisies as simple 'flowers,' but they are monocots — on the grass-and-palm side of the flowering plant tree.",
-    sources: [{ url: 'https://en.wikipedia.org/wiki/Asteraceae', label: 'Asteraceae - Wikipedia' }],
+      "A fuchsia and a sunflower are both eudicots — they share a closer common ancestor with each other than either does with a lily. Lilies may look like typical garden flowers, but they are monocots — on the grass-and-palm side of the flowering plant tree. Fuchsias (evening primrose family) and sunflowers (daisy family) independently evolved showy flowers to attract pollinators.",
+    sources: [{ url: 'https://en.wikipedia.org/wiki/Eudicots', label: 'Eudicots - Wikipedia' }],
   },
   {
     organisms: [org('Common fern'), org('Sunflower'), org('Sphagnum moss')],
@@ -1253,9 +1262,9 @@ export const surprisingScenarios: SurprisingScenario[] = [
     sources: [{ url: 'https://en.wikipedia.org/wiki/Asterids', label: 'Asterids - Wikipedia' }],
   },
   {
-    organisms: [org('Iris'), org('Orchid'), org('Common daisy')],
+    organisms: [org('Iris'), org('Orchid'), org('Fuchsia')],
     funFact:
-      'An iris and an orchid are both monocots — despite looking like typical garden flowers, they are on the grass-and-palm side of the flowering plant tree. A daisy is a eudicot, more closely related to oaks and roses than to either iris or orchid. The showy petals evolved independently in both groups.',
+      'An iris and an orchid are both monocots — despite looking like typical garden flowers, they are on the grass-and-palm side of the flowering plant tree. A fuchsia is a eudicot, more closely related to oaks and roses than to either iris or orchid. The showy petals evolved independently in both groups.',
     sources: [{ url: 'https://en.wikipedia.org/wiki/Monocotyledon', label: 'Monocotyledon - Wikipedia' }],
   },
   {
@@ -1425,7 +1434,7 @@ export const surprisingScenarios: SurprisingScenario[] = [
     funFact:
       'Myxozoans are microscopic parasites of fish that were classified as protozoans for over a century — but they are actually cnidarians, related to jellyfish! They even retain tiny stinging-cell-like structures (polar capsules) homologous to jellyfish nematocysts. They are the most extremely reduced animals known, having lost nearly every feature we associate with being an animal.',
     sources: [
-      { url: 'https://en.wikipedia.org/wiki/Myxozoa', label: 'Myxozoa - Wikipedia' },
+      { url: 'https://www.scientificamerican.com/blog/artful-amoeba/when-jellyfish-became-parasites-strange-things-happened/', label: 'When Jellyfish Became Parasites, Strange Things Happened - Scientific American' },
       { url: 'https://www.pnas.org/doi/10.1073/pnas.1511468112', label: 'PNAS - Genomic insights into the evolutionary origin of Myxozoa within Cnidaria' },
     ],
   },
@@ -1500,8 +1509,11 @@ export const surprisingScenarios: SurprisingScenario[] = [
   {
     organisms: [org('Brittle star'), org('Sea urchin'), org('Starfish')],
     funFact:
-      'Brittle stars look like skinny starfish, but they are closer to sea urchins! Molecular studies place brittle stars (Ophiuroidea) and sea urchins (Echinoidea) as sister groups, with starfish (Asteroidea) on a more distant branch of the echinoderm tree.',
-    sources: [{ url: 'https://en.wikipedia.org/wiki/Brittle_star', label: 'Brittle star - Wikipedia' }],
+      'Biologists once thought brittle stars were closer to sea urchins than to starfish — both share a distinctive pluteus larva and enclosed ambulacral grooves. But genomic studies disproved this "Cryptosyringida" hypothesis: the shared larval skeleton turns out to be convergent evolution, and brittle stars are actually sister to starfish in the clade Asterozoa.',
+    sources: [
+      { url: 'https://en.wikipedia.org/wiki/Brittle_star', label: 'Brittle star - Wikipedia' },
+      { url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC4046411/', label: 'Phylogenomic analysis of echinoderm class relationships supports Asterozoa' },
+    ],
   },
   {
     organisms: [
@@ -1946,7 +1958,7 @@ export const surprisingScenarios: SurprisingScenario[] = [
       ],
     },
     sources: [
-      { url: 'https://en.wikipedia.org/wiki/Placozoa', label: 'Placozoa - Wikipedia' },
+      { url: 'https://www.quantamagazine.org/worlds-simplest-animal-reveals-hidden-diversity-20180912/', label: "World's Simplest Animal Reveals Hidden Diversity - Quanta Magazine" },
       { url: 'https://www.nature.com/articles/nature07191', label: 'Nature - The Trichoplax genome and the nature of placozoans' },
     ],
   },
@@ -1956,7 +1968,7 @@ export const surprisingScenarios: SurprisingScenario[] = [
     funFact:
       'Sponges have no tissues. Trichoplax has no organs. Comb jellies have nerves and muscles but may have evolved them independently. Which of these lineages branched first from the animal tree remains unresolved — and the answer determines whether the common ancestor of all animals had a nervous system.',
     sources: [
-      { url: 'https://en.wikipedia.org/wiki/Placozoa#Phylogenetics', label: 'Placozoa phylogenetics - Wikipedia' },
+      { url: 'https://www.quantamagazine.org/worlds-simplest-animal-reveals-hidden-diversity-20180912/', label: "World's Simplest Animal Reveals Hidden Diversity - Quanta Magazine" },
       { url: 'https://onlinelibrary.wiley.com/doi/full/10.1002/bies.202100080', label: 'BioEssays - The enigmatic Placozoa: evolutionary controversies' },
     ],
   },
@@ -2008,7 +2020,7 @@ export const surprisingScenarios: SurprisingScenario[] = [
     funFact:
       'Trichoplax has no neurons, yet it is a eumetazoan like jellyfish and comb jellies. Did the ancestor of all animals have a nervous system, with Trichoplax and sponges losing it? Or did neurons evolve separately in comb jellies and in the cnidarian+bilaterian lineage? The answer depends on where Placozoa sits relative to Cnidaria and Ctenophora.',
     sources: [
-      { url: 'https://en.wikipedia.org/wiki/Evolution_of_nervous_systems', label: 'Evolution of nervous systems - Wikipedia' },
+      { url: 'https://www.quantamagazine.org/worlds-simplest-animal-reveals-hidden-diversity-20180912/', label: "World's Simplest Animal Reveals Hidden Diversity - Quanta Magazine" },
       { url: 'https://www.cell.com/trends/neurosciences/fulltext/S0166-2236(22)00180-1', label: 'Trends in Neurosciences - Ctenophores and the evolutionary origin(s) of neurons' },
     ],
   },

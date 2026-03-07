@@ -889,7 +889,6 @@ body {
   font-size: 0.85rem;
   line-height: 1.6;
   text-align: left;
-  max-width: 500px;
   overflow-x: auto;
   color: GrayText;
 }
@@ -897,6 +896,17 @@ body {
 .diagram-text-tree .diagram-highlight {
   color: var(--accent-tree);
   font-weight: bold;
+}
+
+.diagram-text-tree .diagram-link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 2px;
+}
+
+.diagram-text-tree .diagram-link:hover {
+  color: var(--accent-tree);
 }
 
 .phylo-tree {

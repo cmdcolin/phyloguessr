@@ -1643,12 +1643,12 @@ export const organisms: Organism[] = [
     imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Sunflower_sky_backdrop.jpg/330px-Sunflower_sky_backdrop.jpg',
   },
   {
-    commonName: 'Common daisy',
-    scientificName: 'Bellis perennis',
-    ncbiTaxId: 41492,
-    wikiTitle: 'Bellis_perennis',
+    commonName: 'Fuchsia',
+    scientificName: 'Fuchsia',
+    ncbiTaxId: 13069,
+    wikiTitle: 'Fuchsia',
     group: 'plant',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Bellis_perennis_sl1.jpg/330px-Bellis_perennis_sl1.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Fuchsia_magellanica_2.jpg/330px-Fuchsia_magellanica_2.jpg',
   },
   {
     commonName: 'Carrot',

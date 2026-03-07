@@ -185,15 +185,9 @@ function ShareButton({ url }: { url: string }) {
 export { ShareButton }
 
 export default function Game({ mode }: { mode: GameMode }) {
-  const hasQueryParams =
-    typeof window !== 'undefined' &&
-    new URLSearchParams(window.location.search).has('id')
-  const [state, setState] = useState<GameState>(() => {
-    if (mode === 'custom' && !hasQueryParams) {
-      return 'customizing'
-    }
-    return 'loading'
-  })
+  const [state, setState] = useState<GameState>(
+    mode === 'custom' ? 'customizing' : 'loading',
+  )
   const [round, setRound] = useState<RoundData | null>(null)
   const [selected, setSelected] = useState<number[]>([])
   const [result, setResult] = useState<ResultData | null>(null)
@@ -312,15 +306,17 @@ export default function Game({ mode }: { mode: GameMode }) {
       setCladeError('')
       setRandomClade(null)
 
-      const isMicroMode =
-        mode === 'custom' && cladeFilter.trim() === 'micro'
+      const isMicroMode = cladeFilter.trim() === 'micro'
       let cladeTaxId: number | undefined
-      if (mode === 'custom' && cladeFilter.trim() && !isMicroMode) {
+      if (cladeFilter.trim() && !isMicroMode) {
         cladeTaxId = findTaxId(cladeFilter.trim(), data)
         if (cladeTaxId === undefined) {
-          setCladeError(`"${cladeFilter.trim()}" not found in taxonomy`)
-          setState('customizing')
-          return
+          if (mode === 'custom') {
+            setCladeError(`"${cladeFilter.trim()}" not found in taxonomy`)
+            setState('customizing')
+            return
+          }
+          setCladeFilter('')
         }
       }
 
@@ -336,20 +332,28 @@ export default function Game({ mode }: { mode: GameMode }) {
         if (isMicroMode) {
           const result = pickThreeMicrobialCrossKingdom(pool, data)
           if (!result) {
-            setCladeError('Not enough microorganisms in the pool')
-            setState('customizing')
-            return
+            if (mode === 'custom') {
+              setCladeError('Not enough microorganisms in the pool')
+              setState('customizing')
+              return
+            }
+            setCladeFilter('')
+            continue
           }
           picks = result
           attemptClade = { taxId: 0, name: 'Microorganisms', rank: '' }
         } else if (cladeTaxId !== undefined) {
           const result = pickThreeFromClade(cladeTaxId, pool, data)
           if (!result) {
-            setCladeError(
-              `Not enough species found in "${cladeFilter.trim()}" — try a broader group`,
-            )
-            setState('customizing')
-            return
+            if (mode === 'custom') {
+              setCladeError(
+                `Not enough species found in "${cladeFilter.trim()}" — try a broader group`,
+              )
+              setState('customizing')
+              return
+            }
+            setCladeFilter('')
+            continue
           }
           picks = result
           const name = data.names[String(cladeTaxId)] ?? cladeFilter.trim()
@@ -453,10 +457,10 @@ export default function Game({ mode }: { mode: GameMode }) {
     if (sharedIds) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       loadSharedQuestion(sharedIds)
-    } else if (mode !== 'custom' || hasQueryParams) {
-      startRound()
-    } else {
+    } else if (mode === 'custom') {
       loadTaxonomyData().then(data => setTaxonomyData(data))
+    } else {
+      startRound()
     }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -763,7 +767,7 @@ export default function Game({ mode }: { mode: GameMode }) {
                   }
                 }
                 const qs = params.toString()
-                return `${import.meta.env.BASE_URL}custom${qs ? `?${qs}` : ''}`
+                return `${import.meta.env.BASE_URL}random${qs ? `?${qs}` : ''}`
               })()}
             >
               Play

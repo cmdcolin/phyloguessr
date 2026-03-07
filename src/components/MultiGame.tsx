@@ -36,14 +36,7 @@ function parseSharedIds() {
   return ids
 }
 
-function updateUrlWithIds(orgs: Organism[]) {
-  const url = new URL(window.location.href)
-  url.search = ''
-  url.searchParams.set('ids', orgs.map(o => o.ncbiTaxId).join(','))
-  history.pushState(null, '', url.toString())
-}
-
-function buildShareUrl(orgs: Organism[]) {
+function buildIdsUrl(orgs: Organism[]) {
   const url = new URL(window.location.href)
   url.search = ''
   url.searchParams.set('ids', orgs.map(o => o.ncbiTaxId).join(','))
@@ -165,7 +158,7 @@ export default function MultiGame() {
     recordCombo(finalOrgs)
     const shuffled = finalOrgs.sort(() => Math.random() - 0.5)
     setOrganisms(shuffled)
-    updateUrlWithIds(shuffled)
+    history.pushState(null, '', buildIdsUrl(shuffled))
     setState('selecting')
   }, [taxonomyData, speciesPool, seenCombos])
 
@@ -273,7 +266,8 @@ export default function MultiGame() {
     const betterCount = allPairs.filter(p => p.lca.depth > userDepth).length
     const rank = betterCount + 1
     const totalPairs = allPairs.length
-    const score = totalPairs <= 1 ? 100 : Math.round(((totalPairs - rank) / (totalPairs - 1)) * 100)
+    const t = totalPairs <= 1 ? 1 : (totalPairs - rank) / (totalPairs - 1)
+    const score = Math.round(t * t * 100)
 
     const resultData: MultiResultData = {
       score,
@@ -369,7 +363,7 @@ export default function MultiGame() {
         <MultiResultScreen
           result={result}
           taxonomyData={taxonomyData}
-          shareUrl={buildShareUrl(result.organisms)}
+          shareUrl={buildIdsUrl(result.organisms)}
           onPlayAgain={startRound}
         />
       )}

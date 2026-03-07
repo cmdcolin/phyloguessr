@@ -5,7 +5,7 @@ import DiagramTree from './DiagramTree.tsx'
 import { ShareButton } from './Game.tsx'
 import PhyloTree from './PhyloTree.tsx'
 import SpeciesMap, { MAP_COLORS } from './SpeciesMap.tsx'
-import { capitalize } from '../utils/format.ts'
+import { capitalize, formatRank } from '../utils/format.ts'
 import { getLineageFromParents } from '../utils/taxonomy.ts'
 
 import type { Organism } from '../data/organisms.ts'
@@ -34,12 +34,6 @@ interface ResultScreenProps {
   onPlayAgain: () => void
 }
 
-function formatRank(rank: string) {
-  if (rank === 'no rank' || rank === 'no rank - terminal') {
-    return 'group'
-  }
-  return rank
-}
 
 interface BreadcrumbStep {
   taxId: number

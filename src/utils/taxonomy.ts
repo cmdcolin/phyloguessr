@@ -21,6 +21,42 @@ export interface TreeNode {
   children: TreeNode[]
 }
 
+export function countLeaves(node: TreeNode): number {
+  if (node.children.length === 0) {
+    return 1
+  }
+  let n = 0
+  for (const c of node.children) {
+    n += countLeaves(c)
+  }
+  return n
+}
+
+export function getMaxDepth(node: TreeNode): number {
+  if (node.children.length === 0) {
+    return 0
+  }
+  let max = 0
+  for (const child of node.children) {
+    const d = getMaxDepth(child)
+    if (d > max) {
+      max = d
+    }
+  }
+  return max + 1
+}
+
+export function collapseSingleChildren(
+  node: TreeNode,
+  orgTaxIds: Set<number>,
+): TreeNode {
+  const collapsed = node.children.map(c => collapseSingleChildren(c, orgTaxIds))
+  if (collapsed.length === 1 && !orgTaxIds.has(node.taxId)) {
+    return collapsed[0]
+  }
+  return { ...node, children: collapsed }
+}
+
 export interface TaxonomyData {
   parents: Record<string, number>
   names: Record<string, string>
@@ -687,8 +723,26 @@ export function pickNHardModeDistance(
     if (result) {
       const taxIds = result.map(r => r[0])
       const pairs = getAllPairLcas(taxIds, data)
-      if (pairs.length >= 2 && pairs[0].lca.depth !== pairs[1].lca.depth) {
+      if (pairs.length < 2) {
+        continue
+      }
+      if (pairs[0].lca.depth === pairs[1].lca.depth) {
+        continue
+      }
+      const distinctDepths = new Set(pairs.map(p => p.lca.depth))
+      if (distinctDepths.size >= Math.min(4, pairs.length)) {
         return { picks: result, clade }
+      }
+    }
+  }
+
+  for (let attempt = 0; attempt < 10; attempt++) {
+    const result = pickNFromClade(count, 1, pool, data)
+    if (result) {
+      const taxIds = result.map(r => r[0])
+      const pairs = getAllPairLcas(taxIds, data)
+      if (pairs.length >= 2 && pairs[0].lca.depth !== pairs[1].lca.depth) {
+        return { picks: result }
       }
     }
   }
@@ -699,7 +753,243 @@ export function pickNHardModeDistance(
 interface DiagramNode {
   label: string
   highlight?: boolean
+  wikiLink?: string
   children?: DiagramNode[]
+}
+
+const landmarks: Record<string, string> = {
+  // deep tree of life
+  Metazoa: 'all animals',
+  Bilateria: 'animals with left-right symmetry',
+  Protostomia: '"mouth first" — includes insects, snails, worms',
+  Deuterostomia: '"anus first" — includes vertebrates, starfish',
+  Opisthokonta: 'animals + fungi — closer to each other than to plants!',
+  Eukaryota: 'all complex life — cells with nuclei',
+
+  // vertebrate backbone
+  Chordata: 'includes all vertebrates, plus sea squirts and lancelets',
+  Vertebrata: 'animals with backbones',
+  Gnathostomata: 'jawed vertebrates',
+  Osteichthyes: 'bony fish and technically all their descendants',
+  Sarcopterygii: 'you are a lobe-finned fish! includes lungfish, coelacanths, and all land animals',
+  Tetrapoda: 'four-limbed vertebrates — includes snakes, which lost theirs!',
+  Amniota: 'land-egg vertebrates — includes reptiles, birds, mammals',
+
+  // mammals
+  Synapsida: 'the mammal lineage',
+  Mammalia: 'includes humans, dogs, whales, bats, mice...',
+  Theria: 'mammals that give live birth',
+  Eutheria: 'placental mammals',
+  Marsupialia: 'pouched mammals, e.g. kangaroos, koalas, possums',
+  Monotremata: 'egg-laying mammals! just platypus + echidnas',
+  Afrotheria: 'a superorder of placental mammals — includes elephants, manatees, aardvarks, tenrecs',
+  Xenarthra: 'a superorder of placental mammals — includes sloths, armadillos, anteaters',
+  Laurasiatheria: 'a superorder of placental mammals — includes bats, cats, whales, horses',
+  Euarchontoglires: 'a superorder of placental mammals — includes primates, rodents, rabbits',
+  Boreoeutheria: 'includes most placental mammals',
+  Primates: 'includes monkeys, apes, lemurs, tarsiers',
+  Hominidae: 'the great apes — includes humans!',
+  Homininae: 'African great apes + humans',
+  Rodentia: '40% of all mammal species! includes mice, rats, squirrels, beavers',
+  Lagomorpha: 'rabbits, hares, pikas — not rodents!',
+  Carnivora: 'includes cats, dogs, bears, seals, and pandas',
+  Feliformia: 'cat-side of Carnivora — includes cats, hyenas, mongooses, civets',
+  Caniformia: 'dog-side of Carnivora — includes dogs, bears, seals, weasels, raccoons',
+  Mustelidae: 'includes weasels, otters, wolverines, badgers',
+  Cetacea: 'whales and dolphins — descended from land animals!',
+  Cetartiodactyla: 'hippos are the closest living relatives of whales!',
+  Chiroptera: 'bats — the only truly flying mammals',
+  Perissodactyla: 'odd-toed ungulates — includes horses, rhinos, tapirs',
+  Artiodactyla: 'even-toed ungulates — includes deer, pigs, cattle, hippos',
+  Ruminantia: 'cud-chewers, e.g. cattle, deer, goats, antelope',
+  Bovidae: 'includes cattle, goats, sheep, antelope',
+  Cervidae: 'deer family, e.g. deer, elk, moose',
+  Suina: 'pigs and peccaries',
+  Proboscidea: 'elephants — closest relatives are hyraxes and manatees!',
+  Pilosa: 'sloths and anteaters',
+  Cingulata: 'armadillos',
+  Eulipotyphla: 'includes hedgehogs, shrews, moles',
+  Scandentia: 'tree shrews — not actually shrews!',
+  Dermoptera: 'colugos ("flying lemurs")',
+  Pholidota: 'pangolins — the only scaly mammals',
+  Sirenia: 'manatees and dugongs — related to elephants!',
+  Diprotodontia: 'includes kangaroos, koalas, wombats',
+
+  // reptiles and birds
+  Sauropsida: 'the reptile + bird lineage',
+  Archelosauria: 'turtles are closer to birds than to lizards!',
+  Archosauria: 'includes crocodilians + dinosaurs (including birds!)',
+  Dinosauria: 'not extinct — birds are living dinosaurs!',
+  Aves: 'birds — living dinosaurs',
+  Neognathae: 'most living birds',
+  Palaeognathae: 'includes ostriches, emus, kiwis',
+  Neoaves: 'most modern birds',
+  Passeriformes: 'perching birds — over half of all bird species! e.g. crows, sparrows',
+  Accipitriformes: 'includes hawks, eagles, vultures',
+  Psittaciformes: 'parrots — includes macaws, cockatoos',
+  Strigiformes: 'owls',
+  Galliformes: 'includes chickens, turkeys, pheasants',
+  Anseriformes: 'includes ducks, geese, swans',
+  Sphenisciformes: 'penguins',
+  Pelecaniformes: 'includes pelicans, herons, ibises',
+  Falconiformes: 'falcons — closer to parrots than to hawks!',
+  Caprimulgiformes: 'includes nightjars and hummingbirds — unlikely relatives!',
+  Lepidosauria: 'includes lizards, snakes, tuatara',
+  Squamata: 'lizards and snakes — snakes evolved from lizards!',
+  Serpentes: 'snakes',
+  Testudines: 'turtles and tortoises',
+  Crocodylia: 'crocodiles and alligators — closer to birds than to lizards!',
+  Reptilia: 'includes turtles, lizards, snakes, crocodilians',
+  Rhynchocephalia: 'tuatara — sole survivor of its entire order!',
+
+  // amphibians
+  Amphibia: 'includes frogs, salamanders, caecilians',
+  Anura: 'frogs and toads',
+  Caudata: 'salamanders and newts',
+  Gymnophiona: 'caecilians — legless burrowing amphibians',
+
+  // fish
+  Actinopterygii: 'ray-finned fishes — 99% of fish species',
+  Teleostei: 'most living bony fishes',
+  Chondrichthyes: 'sharks, rays, skates — skeletons made of cartilage',
+  Dipnoi: 'lungfishes — can breathe air!',
+  Perciformes: 'perch-like fishes',
+  Cypriniformes: 'includes carps and minnows',
+  Salmoniformes: 'includes salmon and trout',
+  Tetraodontiformes: 'includes pufferfish and ocean sunfish',
+  Anguilliformes: 'eels',
+  Syngnathiformes: 'includes seahorses and pipefish',
+  Petromyzontiformes: 'lampreys — jawless fish',
+
+  // arthropods
+  Arthropoda: 'includes insects, spiders, crabs — most species on Earth',
+  Pancrustacea: 'insects are actually land crustaceans!',
+  Hexapoda: 'six-legged arthropods — includes insects and springtails',
+  Insecta: 'includes beetles, butterflies, ants — ~80% of known animal species!',
+  Endopterygota: 'insects with complete metamorphosis, e.g. beetles, flies, butterflies',
+  Coleoptera: 'beetles — 1 in 4 animal species is a beetle!',
+  Lepidoptera: 'butterflies and moths',
+  Hymenoptera: 'includes ants, bees, wasps',
+  Diptera: 'true flies — only two wings, not four!',
+  Hemiptera: 'includes true bugs, cicadas, aphids',
+  Orthoptera: 'includes grasshoppers, crickets, katydids',
+  Odonata: 'dragonflies and damselflies',
+  Blattodea: 'cockroaches and termites — yes, termites are cockroaches!',
+  Mantodea: 'praying mantises',
+  Siphonaptera: 'fleas',
+  Neuroptera: 'includes lacewings and antlions',
+  Mecoptera: 'scorpionflies',
+  Dermaptera: 'earwigs',
+  Chelicerata: 'includes spiders, scorpions, horseshoe crabs',
+  Arachnida: 'eight-legged arthropods — includes spiders, scorpions, ticks, mites',
+  Araneae: 'spiders',
+  Acari: 'ticks and mites',
+  Scorpiones: 'scorpions — older than dinosaurs!',
+  Crustacea: 'includes crabs, shrimp, lobsters, barnacles',
+  Decapoda: 'ten-legged crustaceans, e.g. crabs, lobsters, shrimp',
+  Anomura: 'includes hermit crabs and coconut crabs — not true crabs!',
+  Brachyura: 'true crabs',
+  Isopoda: 'includes woodlice, pill bugs — crustaceans on land!',
+  Cirripedia: 'barnacles — Darwin spent 8 years studying them',
+  Myriapoda: 'centipedes and millipedes',
+
+  // other invertebrates
+  Mollusca: 'includes snails, clams, octopuses',
+  Cephalopoda: 'includes octopuses, squid, nautilus',
+  Gastropoda: 'snails and slugs',
+  Bivalvia: 'includes clams, mussels, oysters',
+  Cnidaria: 'includes jellyfish, corals, anemones',
+  Anthozoa: 'corals and sea anemones',
+  Hydrozoa: 'includes hydroids and man-o-war',
+  Scyphozoa: 'true jellyfish',
+  Echinodermata: 'includes starfish, sea urchins, sea cucumbers',
+  Asteroidea: 'starfish',
+  Echinoidea: 'sea urchins and sand dollars',
+  Crinoidea: 'feather stars and sea lilies',
+  Ophiuroidea: 'brittle stars',
+  Holothuroidea: 'sea cucumbers',
+  Annelida: 'segmented worms, e.g. earthworms, leeches',
+  Nematoda: 'roundworms — 4 out of 5 animals on Earth!',
+  Platyhelminthes: 'flatworms and tapeworms',
+  Porifera: 'sponges — among the simplest animals',
+  Ctenophora: 'comb jellies — possibly the oldest animal lineage',
+  Tardigrada: 'tardigrades — can survive in space!',
+  Onychophora: 'velvet worms — shoot slime to catch prey',
+  Tunicata: 'sea squirts and salps — blobs stuck to rocks, yet our closest invertebrate relatives!',
+  Nemertea: 'ribbon worms',
+  Sipuncula: 'peanut worms',
+  Xenacoelomorpha: 'simple worm-like animals',
+  Lophotrochozoa: 'includes molluscs, worms, bryozoans',
+  Ecdysozoa: 'animals that moult, e.g. insects, crabs, roundworms',
+  Spiralia: 'includes molluscs, annelids, flatworms',
+
+  // plants
+  Viridiplantae: 'all green plants',
+  Embryophyta: 'land plants — colonized land ~470 million years ago',
+  Tracheophyta: 'vascular plants — includes ferns, trees, grasses',
+  Spermatophyta: 'seed plants',
+  Angiospermae: 'flowering plants — 90% of all plant species',
+  Magnoliopsida: 'flowering plants',
+  eudicotyledons: 'eudicots — most flowering plants',
+  Liliopsida: 'monocots — includes grasses, orchids, palms',
+  Rosidae: 'includes roses, legumes, oaks, maples',
+  Asteridae: 'includes sunflowers, mints, carrots, tomatoes',
+  Fabales: 'includes legumes, peanuts, beans',
+  Fabaceae: 'legumes — includes peanuts, beans, clover. they fix nitrogen from the air!',
+  Rosaceae: 'includes roses, strawberries, almonds, apples, cherries',
+  Asteraceae: 'largest plant family! includes daisies, sunflowers, dandelions',
+  Solanaceae: 'nightshades — includes tomatoes, potatoes, peppers, tobacco',
+  Brassicaceae: 'one species gave us cabbage, broccoli, kale, and cauliflower!',
+  Poaceae: 'grasses — includes wheat, rice, bamboo, corn',
+  Orchidaceae: 'orchids — second-largest flowering plant family',
+  Arecaceae: 'palms',
+  Cactaceae: 'cacti',
+  Malvaceae: 'includes cacao, cotton, baobabs, hibiscus',
+  Apiaceae: 'includes carrots, celery, parsley, and poison hemlock',
+  Ericaceae: 'includes blueberries, cranberries, rhododendrons',
+  Sapindaceae: 'includes maples and lychees',
+  Fagaceae: 'includes oaks, beeches, chestnuts',
+  Lauraceae: 'includes avocado, cinnamon, bay laurel',
+  Caryophyllales: 'includes cacti, venus flytraps, beets',
+  Lamiales: 'includes mints, olives, snapdragons',
+  Gentianales: 'includes coffee and milkweed',
+  Malpighiales: 'includes willows, violets, poinsettias, rubber trees',
+  Pinopsida: 'conifers — includes pines, spruces, redwoods',
+  Ginkgoopsida: 'ginkgo — sole survivor, unchanged for 200M years',
+  Gnetales: 'includes welwitschia — lives 1000+ years with just 2 leaves!',
+  Bryophyta: 'mosses',
+  Polypodiopsida: 'ferns — older than flowering plants',
+  Magnoliidae: 'includes magnolias, avocados, black pepper',
+
+  // fungi and microbes
+  Fungi: 'mushrooms, yeasts, molds — closer to animals than plants!',
+  Ascomycota: 'includes yeasts, morels, truffles, penicillium',
+  Basidiomycota: 'includes mushrooms, puffballs, rusts',
+  Saccharomycetes: "baker's yeast, brewer's yeast",
+  Bacteria: 'single-celled organisms without nuclei',
+  Archaea: 'single-celled organisms — not bacteria!',
+  Alveolata: 'includes ciliates, dinoflagellates, malaria parasites',
+  Amoebozoa: 'amoebas and slime molds',
+  Stramenopiles: 'includes kelp, diatoms, water molds',
+  SAR: 'a vast group of mostly single-celled life',
+  Apicomplexa: 'includes malaria parasites',
+  Ciliophora: 'ciliates, e.g. paramecium, stentor',
+  Microsporidia: 'tiny intracellular parasites — actually degenerate fungi!',
+  Oomycota: 'water molds — look like fungi but are not!',
+  Bacillariophyta: 'diatoms — tiny algae in glass shells',
+  Phaeophyceae: 'brown algae, e.g. kelp, sargassum',
+  Myxozoa: 'tiny animal parasites — degenerate jellyfish relatives!',
+  Euglenozoa: 'includes euglenids and trypanosomes',
+  Rhodophyta: 'red algae — used to make agar and nori',
+  Chlorophyta: 'green algae — ancestors of all land plants',
+}
+
+function annotateLabel(name: string) {
+  const hint = landmarks[name]
+  if (hint) {
+    return `${name} (${hint})`
+  }
+  return name
 }
 
 const contextRanks = new Set([
@@ -760,9 +1050,17 @@ function makeLeafLabel(
   clade: { name: string } | undefined,
 ) {
   if (clade) {
+    const hint = landmarks[clade.name]
+    if (hint) {
+      return `${clade.name} — ${hint} (${organism.commonName})`
+    }
     return `${clade.name} (${organism.commonName})`
   }
   return organism.commonName
+}
+
+function wikiUrl(name: string) {
+  return `https://en.wikipedia.org/wiki/${encodeURIComponent(name)}`
 }
 
 function makeBranchNode(
@@ -770,14 +1068,19 @@ function makeBranchNode(
   clades: CladePair,
   highlight?: boolean,
 ): DiagramNode {
-  const leafLabel = makeLeafLabel(organism, clades.leaf ?? clades.branch)
-  const leaf: DiagramNode = { label: leafLabel }
+  const leafClade = clades.leaf ?? clades.branch
+  const leafLabel = makeLeafLabel(organism, leafClade)
+  const leaf: DiagramNode = {
+    label: leafLabel,
+    wikiLink: wikiUrl(leafClade?.name ?? organism.commonName),
+  }
   if (highlight) {
     leaf.highlight = true
   }
   if (clades.branch && clades.leaf && clades.branch.taxId !== clades.leaf.taxId) {
     const node: DiagramNode = {
-      label: clades.branch.name,
+      label: annotateLabel(clades.branch.name),
+      wikiLink: wikiUrl(clades.branch.name),
       children: [leaf],
     }
     if (highlight) {
@@ -818,8 +1121,10 @@ export function buildContextDiagram(
 
   const outNode = makeBranchNode(outgroup, outClades)
 
+  const sisterName = getName(sisterLcaTaxId)
   const sisterNode: DiagramNode = {
-    label: getName(sisterLcaTaxId),
+    label: annotateLabel(sisterName),
+    wikiLink: wikiUrl(sisterName),
     highlight: true,
     children: [
       makeBranchNode(sister1, s1Clades, true),
@@ -827,8 +1132,10 @@ export function buildContextDiagram(
     ],
   }
 
+  const overallName = getName(overallLcaTaxId)
   return {
-    label: getName(overallLcaTaxId),
+    label: annotateLabel(overallName),
+    wikiLink: wikiUrl(overallName),
     children: [outNode, sisterNode],
   }
 }
@@ -930,4 +1237,33 @@ export function buildTreeFromLineages(
 
   root = collapse(root)
   return root
+}
+
+export function treeNodeToDiagramNode(
+  node: TreeNode,
+  orgNames: Map<number, string>,
+  highlightTaxIds?: Set<number>,
+): DiagramNode {
+  const isOrganism = orgNames.has(node.taxId)
+  const isLeaf = node.children.length === 0
+
+  if (isLeaf) {
+    const label = isOrganism
+      ? `${annotateLabel(node.label)} (${orgNames.get(node.taxId)})`
+      : annotateLabel(node.label)
+    return {
+      label,
+      wikiLink: wikiUrl(node.label),
+      highlight: highlightTaxIds ? highlightTaxIds.has(node.taxId) : false,
+    }
+  }
+
+  const children = node.children.map(c =>
+    treeNodeToDiagramNode(c, orgNames, highlightTaxIds),
+  )
+  return {
+    label: annotateLabel(node.label),
+    wikiLink: wikiUrl(node.label),
+    children,
+  }
 }

@@ -1,6 +1,11 @@
 import { cluster, hierarchy } from 'd3-hierarchy'
 
-import { buildTreeFromLineages } from '../utils/taxonomy.ts'
+import {
+  buildTreeFromLineages,
+  collapseSingleChildren,
+  countLeaves,
+  getMaxDepth,
+} from '../utils/taxonomy.ts'
 
 import type { Organism } from '../data/organisms.ts'
 import type { TaxonomyData, TreeNode } from '../utils/taxonomy.ts'
@@ -11,33 +16,11 @@ interface FullTreeProps {
   organismColors: Record<number, string>
 }
 
-function countLeaves(node: TreeNode): number {
-  if (node.children.length === 0) {
-    return 1
-  }
-  let n = 0
-  for (const c of node.children) {
-    n += countLeaves(c)
-  }
-  return n
-}
-
 function formatRank(rank: string) {
   if (rank === 'no rank' || rank === 'no rank - terminal') {
     return ''
   }
   return rank
-}
-
-function collapseSingleChildren(
-  node: TreeNode,
-  orgTaxIds: Set<number>,
-): TreeNode {
-  const collapsed = node.children.map(c => collapseSingleChildren(c, orgTaxIds))
-  if (collapsed.length === 1 && !orgTaxIds.has(node.taxId)) {
-    return collapsed[0]
-  }
-  return { ...node, children: collapsed }
 }
 
 export default function FullTree({
@@ -204,16 +187,3 @@ export default function FullTree({
   )
 }
 
-function getMaxDepth(node: TreeNode): number {
-  if (node.children.length === 0) {
-    return 0
-  }
-  let max = 0
-  for (const child of node.children) {
-    const d = getMaxDepth(child)
-    if (d > max) {
-      max = d
-    }
-  }
-  return max + 1
-}

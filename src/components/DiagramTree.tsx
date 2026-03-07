@@ -1,13 +1,23 @@
 import type { DiagramNode } from '../data/surprisingFacts.ts'
 
+interface TreeLine {
+  prefix: string
+  label: string
+  arrow: boolean
+  wikiLink?: string
+}
+
 function renderLines(node: DiagramNode, prefix: string, isLast: boolean, isRoot: boolean) {
-  const lines: { text: string; highlight: boolean }[] = []
+  const lines: TreeLine[] = []
   const connector = isRoot ? '' : isLast ? '\u2514\u2500\u2500 ' : '\u251C\u2500\u2500 '
-  const label = node.highlight ? `${node.label}  \u2190` : node.label
+  const isLeaf = !node.children || node.children.length === 0
+  const showArrow = isLeaf && node.highlight
 
   lines.push({
-    text: `${prefix}${connector}${label}`,
-    highlight: node.highlight ?? false,
+    prefix: `${prefix}${connector}`,
+    label: node.label,
+    arrow: showArrow,
+    wikiLink: node.wikiLink,
   })
 
   if (node.children) {
@@ -30,8 +40,21 @@ export default function DiagramTree({ root }: { root: DiagramNode }) {
   return (
     <pre className="diagram-text-tree">
       {lines.map((line, i) => (
-        <span key={i} className={line.highlight ? 'diagram-highlight' : ''}>
-          {line.text}
+        <span key={i}>
+          {line.prefix}
+          {line.wikiLink ? (
+            <a
+              href={line.wikiLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="diagram-link"
+            >
+              {line.label}
+            </a>
+          ) : (
+            line.label
+          )}
+          {line.arrow && <span className="diagram-highlight">{' \u2190'}</span>}
           {'\n'}
         </span>
       ))}
