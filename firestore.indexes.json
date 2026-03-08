@@ -7,6 +7,14 @@
         { "fieldPath": "mode", "order": "ASCENDING" },
         { "fieldPath": "correct", "order": "DESCENDING" }
       ]
+    },
+    {
+      "collectionGroup": "modeScores",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "modeKey", "order": "ASCENDING" },
+        { "fieldPath": "bestStreak", "order": "DESCENDING" }
+      ]
     }
   ],
   "fieldOverrides": []

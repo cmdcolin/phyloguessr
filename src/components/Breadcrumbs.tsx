@@ -77,12 +77,14 @@ export function OrganismBreadcrumbs({
   taxonomyData,
   color,
   isUserPick,
+  correct,
   startIndex,
 }: {
   organism: Organism
   taxonomyData: TaxonomyData
   color?: string
   isUserPick?: boolean
+  correct?: boolean
   startIndex: number
 }) {
   const allSteps = getFullLineage(organism.ncbiTaxId, taxonomyData).reverse()
@@ -96,8 +98,9 @@ export function OrganismBreadcrumbs({
   return (
     <>
       <span
-        className={`breadcrumb-label ${isUserPick ? 'breadcrumb-user-pick' : ''}`}
+        className="breadcrumb-label"
       >
+        {isUserPick && <span className={`breadcrumb-pick-arrow ${correct === false ? 'breadcrumb-pick-wrong' : ''}`}>{'→ '}</span>}
         {color && (
           <span className="map-color-dot" style={{ backgroundColor: color }} />
         )}
@@ -122,7 +125,6 @@ export function OrganismBreadcrumbs({
             </a>
           </>
         )}
-        {isUserPick && <span className="breadcrumb-pick-tag">your pick</span>}
       </span>
       {allSteps.length > 0 ? (
         <span className="breadcrumb-path">
@@ -146,11 +148,13 @@ export function LineageBreadcrumbs({
   taxonomyData,
   organismColors,
   userSelectedTaxIds,
+  correct,
 }: {
   organisms: Organism[]
   taxonomyData: TaxonomyData
   organismColors?: Record<number, string>
   userSelectedTaxIds?: Set<number>
+  correct?: boolean
 }) {
   const lineages = organisms.map(o =>
     getFullLineage(o.ncbiTaxId, taxonomyData).reverse(),
@@ -174,6 +178,7 @@ export function LineageBreadcrumbs({
             taxonomyData={taxonomyData}
             color={organismColors?.[organisms[idx].ncbiTaxId]}
             isUserPick={userSelectedTaxIds?.has(organisms[idx].ncbiTaxId)}
+            correct={correct}
             startIndex={startIndex}
           />
         </Fragment>

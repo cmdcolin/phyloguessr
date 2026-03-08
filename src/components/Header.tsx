@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import OnlinePlayers from './OnlinePlayers.tsx'
 import TreeIcon from './TreeIcon.tsx'
 import { getCurrentUser, signOut } from '../firebase.ts'
+import styles from './Header.module.css'
 
 export default function Header() {
   const [showMenu, setShowMenu] = useState(false)
@@ -38,89 +39,89 @@ export default function Header() {
   }, [showMenu])
 
   return (
-    <header className="game-header">
-      <div className="header-left">
+    <header className={styles.header}>
+      <div className={styles.headerLeft}>
         <TreeIcon size={26} />
         <h1>
-          <a className="home-btn" href="/">
+          <a className={styles.homeBtn} href="/">
             PhyloGuessr
           </a>
         </h1>
       </div>
-      <div className="header-animals" aria-hidden="true">
+      <div className={styles.headerAnimals} aria-hidden="true">
         <img
-          className="header-animal animal-platypus"
+          className={`${styles.headerAnimal} ${styles.animalPlatypus}`}
           src="https://images.phylopic.org/images/61932f57-1fd2-49d9-bb86-042d6005581a/thumbnail/128x128.png"
           alt=""
         />
         <img
-          className="header-animal animal-aardvark"
+          className={`${styles.headerAnimal} ${styles.animalAardvark}`}
           src="https://images.phylopic.org/images/cfee2dca-3767-46b8-8d03-bd8f46e79e9e/thumbnail/128x128.png"
           alt=""
         />
         <img
-          className="header-animal animal-octopus"
+          className={`${styles.headerAnimal} ${styles.animalOctopus}`}
           src="https://images.phylopic.org/images/f400b519-3564-4183-b4bd-c3b922cc7c5e/thumbnail/128x128.png"
           alt=""
         />
         <img
-          className="header-animal animal-hippo"
+          className={`${styles.headerAnimal} ${styles.animalHippo}`}
           src="https://images.phylopic.org/images/3769e205-b10c-4aab-affc-b4f0302f4eaa/thumbnail/128x128.png"
           alt=""
         />
         <img
-          className="header-animal animal-axolotl"
+          className={`${styles.headerAnimal} ${styles.animalAxolotl}`}
           src="https://images.phylopic.org/images/575eaa51-6c9b-4d36-9881-b8463c68ebbc/thumbnail/128x128.png"
           alt=""
         />
         <img
-          className="header-animal animal-horseshoecrab"
+          className={`${styles.headerAnimal} ${styles.animalHorseshoecrab}`}
           src="https://images.phylopic.org/images/38c82deb-b187-4e85-a9f8-dba2794b42d0/thumbnail/128x128.png"
           alt=""
         />
       </div>
-      <div className="header-right">
-        {nickname && <span className="header-nickname">{nickname}</span>}
+      <div className={styles.headerRight}>
+        {nickname && <span className={styles.headerNickname}>{nickname}</span>}
         <OnlinePlayers />
-        <div className="hamburger-wrapper" ref={menuRef}>
+        <div className={styles.hamburgerWrapper} ref={menuRef}>
           <button
-            className="hamburger-btn"
+            className={styles.hamburgerBtn}
             title="Menu"
             onClick={() => setShowMenu(s => !s)}
             aria-label="Menu"
           >
-            <span className="hamburger-icon" />
-            <span className="hamburger-icon" />
-            <span className="hamburger-icon" />
+            <span className={styles.hamburgerIcon} />
+            <span className={styles.hamburgerIcon} />
+            <span className={styles.hamburgerIcon} />
           </button>
           {showMenu && (
-            <div className="hamburger-dropdown">
-              <a className="hamburger-item" href="/leaderboard">
+            <div className={styles.hamburgerDropdown}>
+              <a className={styles.hamburgerItem} href="/leaderboard">
                 Leaderboard
               </a>
-              <a className="hamburger-item" href="/history">
+              <a className={styles.hamburgerItem} href="/history">
                 History
               </a>
-              <a className="hamburger-item" href="/about">
+              <a className={styles.hamburgerItem} href="/about">
                 About
               </a>
-              <a className="hamburger-item" href="/why">
+              <a className={styles.hamburgerItem} href="/why">
                 Why
               </a>
-              <a className="hamburger-item" href="/donate">
+              <a className={styles.hamburgerItem} href="/donate">
                 Donate
               </a>
-              <a className="hamburger-item" href="/privacy">
+              <a className={styles.hamburgerItem} href="/privacy">
                 Privacy
               </a>
-              <div className="hamburger-divider" />
+              <div className={styles.hamburgerDivider} />
               {signedIn ? (
                 <>
-                  <a className="hamburger-item" href="/login">
+                  <a className={styles.hamburgerItem} href="/login">
                     Account settings
                   </a>
                   <button
-                    className="hamburger-item"
+                    className={styles.hamburgerItem}
                     onClick={async () => {
                       await signOut()
                       setSignedIn(false)
@@ -132,7 +133,7 @@ export default function Header() {
                   </button>
                 </>
               ) : (
-                <a className="hamburger-item" href="/login">
+                <a className={styles.hamburgerItem} href="/login">
                   Sign in
                 </a>
               )}

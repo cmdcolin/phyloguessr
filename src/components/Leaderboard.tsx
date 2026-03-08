@@ -1,16 +1,66 @@
 import { useEffect, useState } from 'react'
 
 import {
+  getTopModeStreaks,
   getTopMultiScores,
   getTopStreaks,
   getUid,
 } from '../firebase.ts'
+import { formatModeKey } from '../utils/cladePresets.ts'
+import TaxonFilterPicker from './TaxonFilterPicker.tsx'
 
 import type { LeaderboardEntry, MultiLeaderboardEntry } from '../firebase.ts'
 
 type Tab = 'classic' | 'multi'
 type MultiSort = 'total' | 'average'
 const MIN_PLAYED_FOR_AVG = 5
+
+interface StreakEntry {
+  uid: string
+  name: string
+  bestStreak: number
+  totalWins: number
+  totalPlayed: number
+}
+
+function StreakTable({
+  entries,
+  uid,
+}: {
+  entries: StreakEntry[]
+  uid: string | null
+}) {
+  return (
+    <table className="leaderboard-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Best Streak</th>
+          <th>Wins</th>
+          <th>Played</th>
+        </tr>
+      </thead>
+      <tbody>
+        {entries.map((entry, i) => (
+          <tr
+            key={entry.uid}
+            className={entry.uid === uid ? 'lb-you' : ''}
+          >
+            <td className="lb-rank">{i + 1}</td>
+            <td className="lb-name">
+              {entry.name}
+              {entry.uid === uid ? ' (you)' : ''}
+            </td>
+            <td className="lb-streak">{entry.bestStreak}</td>
+            <td>{entry.totalWins}</td>
+            <td>{entry.totalPlayed}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  )
+}
 
 export default function Leaderboard() {
   const [tab, setTabRaw] = useState<Tab>('classic')
@@ -25,16 +75,32 @@ export default function Leaderboard() {
   }
   const [uid, setUid] = useState<string | null>(null)
   const [multiSort, setMultiSort] = useState<MultiSort>('total')
+  const [selectedMode, setSelectedMode] = useState<string>('')
+  const [modeEntries, setModeEntries] = useState<StreakEntry[]>([])
+
+  const handleModeSelect = (mode: string) => {
+    setSelectedMode(mode)
+    setLoading(true)
+    setError('')
+  }
 
   useEffect(() => {
     let cancelled = false
     const fetchData = async () => {
       try {
         if (tab === 'classic') {
-          const data = await getTopStreaks(20)
-          if (!cancelled) {
-            setEntries(data)
-            setLoading(false)
+          if (selectedMode) {
+            const data = await getTopModeStreaks(selectedMode, 20)
+            if (!cancelled) {
+              setModeEntries(data)
+              setLoading(false)
+            }
+          } else {
+            const data = await getTopStreaks(20)
+            if (!cancelled) {
+              setEntries(data)
+              setLoading(false)
+            }
           }
         } else {
           const data = await getTopMultiScores(20)
@@ -56,7 +122,12 @@ export default function Leaderboard() {
     return () => {
       cancelled = true
     }
-  }, [tab])
+  }, [tab, selectedMode])
+
+  const classicEntries = selectedMode ? modeEntries : entries
+  const emptyLabel = selectedMode
+    ? `No scores for ${formatModeKey(selectedMode)} yet.`
+    : 'No scores yet. Be the first!'
 
   return (
     <div className="leaderboard-page">
@@ -75,39 +146,23 @@ export default function Leaderboard() {
         </button>
       </div>
 
+      {tab === 'classic' && (
+        <TaxonFilterPicker
+          className="lb-mode-section"
+          value={selectedMode}
+          onChange={handleModeSelect}
+        />
+      )}
+
       {loading && <p className="leaderboard-loading">Loading...</p>}
       {error && <p className="leaderboard-error">{error}</p>}
 
-      {!loading && tab === 'classic' && entries.length === 0 && !error && (
-        <p className="leaderboard-empty">No scores yet. Be the first!</p>
+      {!loading && tab === 'classic' && classicEntries.length === 0 && !error && (
+        <p className="leaderboard-empty">{emptyLabel}</p>
       )}
 
-      {!loading && tab === 'classic' && entries.length > 0 && (
-        <table className="leaderboard-table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>Best Streak</th>
-              <th>Wins</th>
-              <th>Played</th>
-            </tr>
-          </thead>
-          <tbody>
-            {entries.map((entry, i) => (
-              <tr key={entry.uid} className={entry.uid === uid ? 'lb-you' : ''}>
-                <td className="lb-rank">{i + 1}</td>
-                <td className="lb-name">
-                  {entry.name}
-                  {entry.uid === uid ? ' (you)' : ''}
-                </td>
-                <td className="lb-streak">{entry.bestStreak}</td>
-                <td>{entry.totalWins}</td>
-                <td>{entry.totalPlayed}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      {!loading && tab === 'classic' && classicEntries.length > 0 && (
+        <StreakTable entries={classicEntries} uid={uid} />
       )}
 
       {!loading && tab === 'multi' && multiEntries.length === 0 && !error && (

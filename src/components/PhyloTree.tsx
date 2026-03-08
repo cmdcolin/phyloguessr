@@ -11,6 +11,7 @@ interface PhyloTreeProps {
   images: Record<number, string | null>
   userSelectedTaxIds: Set<number>
   organismColors?: Record<number, string>
+  correct?: boolean
 }
 
 export default function PhyloTree({
@@ -22,6 +23,7 @@ export default function PhyloTree({
   images,
   userSelectedTaxIds,
   organismColors,
+  correct,
 }: PhyloTreeProps) {
   const imgSize = 40
   const w = 560
@@ -258,13 +260,14 @@ export default function PhyloTree({
         const arrowY = y + 16
         const arrowBase = leafX - 16
         const arrowTip = leafX - 6
+        const choiceColor = correct === false ? 'var(--error)' : 'white'
         return (
           <g key={`arrow-${org.ncbiTaxId}`}>
             <text
               x={arrowBase - 3}
               y={arrowY + 3.5}
               fontSize={9}
-              fill={'white'}
+              fill={choiceColor}
               fontWeight="bold"
               textAnchor="end"
             >
@@ -272,7 +275,7 @@ export default function PhyloTree({
             </text>
             <polygon
               points={`${arrowBase},${arrowY - 5} ${arrowBase},${arrowY + 5} ${arrowTip},${arrowY}`}
-              fill={'white'}
+              fill={choiceColor}
               opacity={0.85}
             />
           </g>

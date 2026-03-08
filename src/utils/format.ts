@@ -1,3 +1,7 @@
+export function cn(...classes: (string | false | undefined | null)[]) {
+  return classes.filter(Boolean).join(' ')
+}
+
 export function capitalize(s: string) {
   return s[0].toUpperCase() + s.slice(1)
 }

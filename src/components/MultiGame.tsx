@@ -28,12 +28,11 @@ import type { Organism } from '../data/organisms.ts'
 import type { HistoryEntry } from '../utils/history.ts'
 import type { SpeciesPoolEntry, TaxonomyData } from '../utils/taxonomy.ts'
 
-const SPECIES_COUNT = 6
-
 type GameState = 'loading' | 'selecting' | 'result'
 
 export default function MultiGame() {
   const difficulty = getDifficulty()
+  const SPECIES_COUNT = 6
   const [state, setState] = useState<GameState>('loading')
   const [organisms, setOrganisms] = useState<Organism[]>([])
   const [selected, setSelected] = useState<number[]>([])
@@ -349,7 +348,7 @@ export default function MultiGame() {
               Submit
             </Button>
             <button className="nav-icon-btn" onClick={startRound} title="Skip">
-              ⏭
+              <span className="nav-icon-btn-label">Skip</span> →
             </button>
           </div>
         </div>

@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import Button from './Button.tsx'
 import { LineageBreadcrumbs } from './Breadcrumbs.tsx'
 import DiagramTree from './DiagramTree.tsx'
@@ -6,6 +8,7 @@ import { MapToggle } from './MapToggle.tsx'
 import PhyloTree from './PhyloTree.tsx'
 import { TaxLink } from './TaxLink.tsx'
 import { capitalize, formatRank } from '../utils/format.ts'
+import { expandDiagramUp } from '../utils/taxonomy.ts'
 
 import type { Organism } from '../data/organisms.ts'
 import type { MrcaInfo } from '../utils/format.ts'
@@ -125,6 +128,46 @@ function Explanation({
   )
 }
 
+function ZoomableDiagram({
+  diagram,
+  rootTaxId,
+  taxonomyData,
+  correct,
+  userSelectedTaxIds,
+  organismColors,
+}: {
+  diagram: DiagramNode
+  rootTaxId: number
+  taxonomyData: TaxonomyData
+  correct?: boolean
+  userSelectedTaxIds?: Set<number>
+  organismColors?: Record<number, string>
+}) {
+  const [currentDiagram, setCurrentDiagram] = useState(diagram)
+  const [currentRootTaxId, setCurrentRootTaxId] = useState(rootTaxId)
+  const [canZoom, setCanZoom] = useState(true)
+
+  const handleZoomOut = () => {
+    const expanded = expandDiagramUp(currentDiagram, currentRootTaxId, taxonomyData)
+    if (expanded) {
+      setCurrentDiagram(expanded.diagram)
+      setCurrentRootTaxId(expanded.rootTaxId)
+    } else {
+      setCanZoom(false)
+    }
+  }
+
+  return (
+    <DiagramTree
+      root={currentDiagram}
+      onZoomOut={canZoom ? handleZoomOut : undefined}
+      correct={correct}
+      userSelectedTaxIds={userSelectedTaxIds}
+      organismColors={organismColors}
+    />
+  )
+}
+
 export default function ResultScreen({
   correct,
   sister1,
@@ -193,9 +236,19 @@ export default function ResultScreen({
           images={images}
           userSelectedTaxIds={userSelectedTaxIds}
           organismColors={organismColors}
+          correct={correct}
         />
       )}
-      {diagram && <DiagramTree root={diagram} />}
+      {diagram && (
+        <ZoomableDiagram
+          diagram={diagram}
+          rootTaxId={overallMrca.taxId}
+          taxonomyData={taxonomyData}
+          correct={correct}
+          userSelectedTaxIds={userSelectedTaxIds}
+          organismColors={organismColors}
+        />
+      )}
       <MapToggle
         organisms={[sister1, sister2, outgroup]}
         organismColors={organismColors}
@@ -204,6 +257,8 @@ export default function ResultScreen({
         organisms={[sister1, sister2, outgroup]}
         taxonomyData={taxonomyData}
         organismColors={organismColors}
+        userSelectedTaxIds={userSelectedTaxIds}
+        correct={correct}
       />
       <div className="result-actions">
         <Button onClick={onPlayAgain}>Next</Button>

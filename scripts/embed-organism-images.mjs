@@ -63,29 +63,6 @@ async function fetchWikiThumbnail(wikiTitle) {
   }
 }
 
-async function fetchINaturalistPhoto(scientificName) {
-  try {
-    const res = await fetch(
-      `https://api.inaturalist.org/v1/taxa?q=${encodeURIComponent(scientificName)}&per_page=1`,
-    )
-    if (!res.ok) {
-      return null
-    }
-    const data = await res.json()
-    const taxon = data.results?.[0]
-    return taxon?.default_photo?.medium_url ?? null
-  } catch {
-    return null
-  }
-}
-
-async function fetchImage(wikiTitle, scientificName) {
-  const wikiImg = await fetchWikiThumbnail(wikiTitle)
-  if (wikiImg) {
-    return wikiImg
-  }
-  return fetchINaturalistPhoto(scientificName)
-}
 
 function parseOrganisms(src) {
   const organisms = []
@@ -142,7 +119,7 @@ async function main() {
     console.log('Fetching images...')
     let fetched = 0
     await processInBatches(needFetch, async o => {
-      const url = await fetchImage(o.wikiTitle, o.scientificName)
+      const url = await fetchWikiThumbnail(o.wikiTitle)
       cache.set(o.scientificName, { url, ts: now })
       fetched++
       if (fetched % 20 === 0) {

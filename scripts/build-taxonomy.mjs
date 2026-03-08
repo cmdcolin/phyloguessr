@@ -43,6 +43,27 @@ const EXCLUDE_PATTERNS = [
   /\baff\.\b/,
 ]
 
+function isExcluded(...names) {
+  for (const name of names) {
+    for (const pat of EXCLUDE_PATTERNS) {
+      if (pat.test(name)) return true
+    }
+  }
+  return false
+}
+
+function mergeIntoPool(pool, poolIds, entries) {
+  let added = 0
+  for (const entry of entries) {
+    if (!poolIds.has(entry[0])) {
+      pool.push(entry)
+      poolIds.add(entry[0])
+      added++
+    }
+  }
+  return added
+}
+
 // --- NCBI download and parsing (for species pool) ---
 
 async function downloadNcbi() {
@@ -147,14 +168,7 @@ function buildSpeciesPool(
       continue
     }
 
-    let excluded = false
-    for (const pat of EXCLUDE_PATTERNS) {
-      if (pat.test(sciName) || pat.test(commonName)) {
-        excluded = true
-        break
-      }
-    }
-    if (excluded) {
+    if (isExcluded(sciName, commonName)) {
       continue
     }
 
@@ -280,20 +294,156 @@ function scanJb2hubs(ncbiParents, ncbiRanks, scientificNames) {
     )
     const cleanCommon = cleanJb2hubsCommonName(r.commonName, cleanSci)
 
-    let excluded = false
-    for (const pat of EXCLUDE_PATTERNS) {
-      if (pat.test(cleanSci) || pat.test(cleanCommon)) {
-        excluded = true
-        break
-      }
-    }
-    if (!excluded) {
+    if (!isExcluded(cleanSci, cleanCommon)) {
       entries.push([speciesTaxId, cleanCommon, cleanSci, r.imageUrl])
     }
   }
 
   console.log(`  ${entries.length} unique species from jb2hubs`)
   return entries
+}
+
+// --- Wikidata supplement ---
+
+const WIKIDATA_SUPPLEMENT_PATH = join(WORK_DIR, 'wikidata-supplement.json')
+
+function loadWikidataSupplement(ncbiParents) {
+  if (!existsSync(WIKIDATA_SUPPLEMENT_PATH)) {
+    console.log('  Wikidata supplement not found, skipping')
+    console.log('  Run: node scripts/import-wikidata-images.mjs')
+    return []
+  }
+  console.log('Loading Wikidata supplement...')
+  const raw = JSON.parse(readFileSync(WIKIDATA_SUPPLEMENT_PATH, 'utf8'))
+
+  const byTaxId = new Map()
+  for (const entry of raw) {
+    const taxId = entry[0]
+    if (!ncbiParents.has(taxId)) continue
+    if (byTaxId.has(taxId)) continue
+
+    if (!isExcluded(entry[2])) {
+      byTaxId.set(taxId, entry)
+    }
+  }
+
+  console.log(`  ${byTaxId.size} valid species from Wikidata`)
+  return [...byTaxId.values()]
+}
+
+// --- Diversity-based downsampling ---
+
+const KINGDOM_TARGETS = {
+  Metazoa: 6000,
+  Plants: 3000,
+  Fungi: 2000,
+  Bacteria: 2000,
+  Viruses: 1000,
+  Archaea: 500,
+  Other: 500,
+}
+
+const KINGDOM_ANCESTORS = {
+  2: 'Bacteria',
+  2157: 'Archaea',
+  4751: 'Fungi',
+  10239: 'Viruses',
+  33208: 'Metazoa',
+  3193: 'Plants',
+}
+
+function classifySpecies(taxId, ncbiParents, ncbiRanks) {
+  let kingdom = 'Other'
+  let family = 0
+  let current = taxId
+  const seen = new Set()
+  while (current && current !== 1 && !seen.has(current)) {
+    seen.add(current)
+    if (KINGDOM_ANCESTORS[current]) {
+      kingdom = KINGDOM_ANCESTORS[current]
+    }
+    if (!family) {
+      const rank = ncbiRanks.get(current)
+      if (rank === 'family' || rank === 'order') family = current
+    }
+    if (kingdom !== 'Other' && family) break
+    current = ncbiParents.get(current)
+  }
+  return { kingdom, family }
+}
+
+function downsamplePool(pool, ncbiParents, ncbiRanks) {
+  const target = Object.values(KINGDOM_TARGETS).reduce((a, b) => a + b, 0)
+  if (pool.length <= target) {
+    console.log(`  Pool (${pool.length}) within target (${target}), no downsampling needed`)
+    return pool
+  }
+
+  console.log(`Downsampling ${pool.length} species to ~${target} with diversity priority...`)
+
+  // Group by kingdom and family
+  const groups = new Map()
+  for (const entry of pool) {
+    const { kingdom, family } = classifySpecies(entry[0], ncbiParents, ncbiRanks)
+    const key = `${kingdom}:${family}`
+    if (!groups.has(key)) groups.set(key, { kingdom, entries: [] })
+    groups.get(key).entries.push(entry)
+  }
+
+  // Group families by kingdom
+  const familiesByKingdom = new Map()
+  for (const [, group] of groups) {
+    if (!familiesByKingdom.has(group.kingdom)) {
+      familiesByKingdom.set(group.kingdom, [])
+    }
+    familiesByKingdom.get(group.kingdom).push(group.entries)
+  }
+
+  const sampled = []
+  for (const [kingdom, target] of Object.entries(KINGDOM_TARGETS)) {
+    const families = familiesByKingdom.get(kingdom) || []
+    if (families.length === 0) continue
+
+    const available = families.reduce((s, f) => s + f.length, 0)
+    const actualTarget = Math.min(target, available)
+
+    // Shuffle families for randomness
+    families.sort(() => Math.random() - 0.5)
+
+    // Sample evenly across families
+    const perFamily = Math.max(1, Math.floor(actualTarget / families.length))
+    let picked = 0
+
+    for (const family of families) {
+      family.sort(() => Math.random() - 0.5)
+      const take = Math.min(perFamily, family.length)
+      for (let i = 0; i < take && picked < actualTarget; i++) {
+        sampled.push(family[i])
+        picked++
+      }
+    }
+
+    // Fill remaining from random families
+    if (picked < actualTarget) {
+      const remaining = []
+      for (const family of families) {
+        for (let i = perFamily; i < family.length; i++) {
+          remaining.push(family[i])
+        }
+      }
+      remaining.sort(() => Math.random() - 0.5)
+      for (const entry of remaining) {
+        if (picked >= actualTarget) break
+        sampled.push(entry)
+        picked++
+      }
+    }
+
+    console.log(`  ${kingdom}: ${picked}/${available} (${families.length} families)`)
+  }
+
+  console.log(`  Total: ${sampled.length} species`)
+  return sampled
 }
 
 function buildNcbiAncestorTree(
@@ -434,32 +584,23 @@ async function main() {
   )
 
   const poolIds = new Set(pool.map(e => e[0]))
-  let microAdded = 0
-  for (const entry of CURATED_MICROORGANISMS) {
-    if (!poolIds.has(entry[0])) {
-      pool.push(entry)
-      poolIds.add(entry[0])
-      microAdded++
-    }
-  }
-  console.log(
-    `  Added ${microAdded} curated microorganisms (pool now ${pool.length})`,
-  )
 
-  // Add species from jb2hubs genome hubs
+  const microAdded = mergeIntoPool(pool, poolIds, CURATED_MICROORGANISMS)
+  console.log(`  Added ${microAdded} curated microorganisms (pool now ${pool.length})`)
+
   const jb2hubsEntries = scanJb2hubs(ncbiParents, ncbiRanks, scientificNames)
-  let jb2Added = 0
-  for (const entry of jb2hubsEntries) {
-    if (!poolIds.has(entry[0])) {
-      pool.push(entry)
-      poolIds.add(entry[0])
-      jb2Added++
-    }
-  }
+  const jb2Added = mergeIntoPool(pool, poolIds, jb2hubsEntries)
   console.log(`  Added ${jb2Added} species from jb2hubs (pool now ${pool.length})`)
 
+  const wikidataEntries = loadWikidataSupplement(ncbiParents)
+  const wdAdded = mergeIntoPool(pool, poolIds, wikidataEntries)
+  console.log(`  Added ${wdAdded} species from Wikidata (pool now ${pool.length})`)
+
+  // Downsample for diversity
+  const sampledPool = downsamplePool(pool, ncbiParents, ncbiRanks)
+
   const ancestorTree = buildNcbiAncestorTree(
-    pool,
+    sampledPool,
     CURATED_TAX_IDS,
     ncbiParents,
     ncbiRanks,
@@ -474,7 +615,7 @@ async function main() {
 
   const poolPath = join(OUT_DIR, 'species-pool.json')
   console.log('Writing species-pool.json...')
-  await writeFile(poolPath, JSON.stringify(pool))
+  await writeFile(poolPath, JSON.stringify(sampledPool))
 
   // Write compact format: { R: rankList, D: { id: [parent, name, rankIndex] } }
   console.log('Writing parents.json (compact format)...')

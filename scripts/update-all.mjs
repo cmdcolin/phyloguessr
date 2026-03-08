@@ -64,11 +64,17 @@ if (skipTaxonomy) {
   run('Step 1: Build taxonomy (NCBI + OTL)', 'scripts/build-taxonomy.mjs')
 }
 
-// Step 2: Import jb2hubs images (optional)
+// Step 2a: Import jb2hubs images (optional)
 if (existsSync(JB2HUBS)) {
-  run('Step 2: Import jb2hubs images', 'scripts/import-jb2hubs-images.mjs')
+  run('Step 2a: Import jb2hubs images', 'scripts/import-jb2hubs-images.mjs')
 } else {
   console.log('\nSkipping jb2hubs import (~/src/jb2hubs not found)')
+}
+
+// Step 2b: Import Wikidata images (optional, uses cached data)
+const wikidataSupp = join(ROOT, '.taxonomy-build', 'wikidata-supplement.json')
+if (!existsSync(wikidataSupp)) {
+  console.log('\nNo Wikidata supplement found. Run: node scripts/import-wikidata-images.mjs')
 }
 
 // Step 3: Validate pool images

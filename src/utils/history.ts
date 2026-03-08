@@ -77,8 +77,11 @@ export async function loadHistoryCount() {
   return db.count('history')
 }
 
-export async function loadStats() {
+export async function loadStats(modeKey?: string) {
   const db = await getDb()
+  if (modeKey) {
+    return db.get('stats', `mode:${modeKey}`)
+  }
   return db.get('stats', 'global')
 }
 
@@ -98,6 +101,27 @@ export async function addHistoryEntry(entry: HistoryEntry) {
     }
   }
 
+  const updateStreak = async (key: string, correct: boolean) => {
+    const existing = await statsStore.get(key)
+    const prev = existing ?? {
+      totalPlayed: 0,
+      totalWins: 0,
+      bestStreak: 0,
+      currentStreak: 0,
+    }
+    const streak = correct ? prev.currentStreak + 1 : 0
+    await statsStore.put(
+      {
+        totalPlayed: prev.totalPlayed + 1,
+        totalWins: prev.totalWins + (correct ? 1 : 0),
+        bestStreak: Math.max(prev.bestStreak, streak),
+        currentStreak: streak,
+      },
+      key,
+    )
+  }
+
+  const isMulti = entry.mode === 'multi'
   const existing = await statsStore.get('global')
   const prev = existing ?? {
     totalPlayed: 0,
@@ -105,20 +129,23 @@ export async function addHistoryEntry(entry: HistoryEntry) {
     bestStreak: 0,
     currentStreak: 0,
   }
-  const currentStreak = entry.correct ? prev.currentStreak + 1 : 0
-  const isMulti = entry.mode === 'multi'
+  const globalStreak = entry.correct ? prev.currentStreak + 1 : 0
   await statsStore.put(
     {
       totalPlayed: prev.totalPlayed + 1,
       totalWins: prev.totalWins + (entry.correct ? 1 : 0),
-      bestStreak: Math.max(prev.bestStreak, currentStreak),
-      currentStreak,
+      bestStreak: Math.max(prev.bestStreak, globalStreak),
+      currentStreak: globalStreak,
       multiTotalScore:
         (prev.multiTotalScore ?? 0) + (isMulti ? (entry.score ?? 0) : 0),
       multiTotalPlayed: (prev.multiTotalPlayed ?? 0) + (isMulti ? 1 : 0),
     },
     'global',
   )
+
+  if (entry.mode && entry.mode !== 'multi') {
+    await updateStreak(`mode:${entry.mode}`, entry.correct)
+  }
 
   await tx.done
 }

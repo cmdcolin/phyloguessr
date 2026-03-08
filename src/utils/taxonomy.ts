@@ -797,6 +797,7 @@ export function pickNHardModeDistance(
 export interface DiagramNode {
   label: string
   highlight?: boolean
+  taxId?: number
   wikiLink?: string
   children?: DiagramNode[]
 }
@@ -1122,7 +1123,7 @@ function wikiUrl(name: string) {
 }
 
 function makeBranchNode(
-  organism: { commonName: string },
+  organism: { ncbiTaxId?: number; commonName: string },
   clades: CladePair,
   highlight?: boolean,
 ): DiagramNode {
@@ -1131,6 +1132,7 @@ function makeBranchNode(
   const leaf: DiagramNode = {
     label: leafLabel,
     wikiLink: wikiUrl(leafClade?.name ?? organism.commonName),
+    taxId: organism.ncbiTaxId,
   }
   if (highlight) {
     leaf.highlight = true
@@ -1198,6 +1200,46 @@ export function buildContextDiagram(
     label: annotateLabel(overallName),
     wikiLink: wikiUrl(overallName),
     children: [outNode, sisterNode],
+  }
+}
+
+export function expandDiagramUp(
+  diagram: DiagramNode,
+  rootTaxId: number,
+  data: TaxonomyData,
+): { diagram: DiagramNode; rootTaxId: number } | undefined {
+  const lineage = getLineageFromParents(rootTaxId, data.parents)
+  const rootIdx = lineage.indexOf(rootTaxId)
+  if (rootIdx < 0 || rootIdx >= lineage.length - 1) {
+    return undefined
+  }
+
+  for (let i = rootIdx + 1; i < lineage.length; i++) {
+    const taxId = lineage[i]
+    const name = data.names[String(taxId)]
+    const rank = data.ranks[String(taxId)]
+    if (name && rank && contextRanks.has(rank)) {
+      return {
+        diagram: {
+          label: annotateLabel(name),
+          wikiLink: wikiUrl(name),
+          children: [diagram],
+        },
+        rootTaxId: taxId,
+      }
+    }
+  }
+
+  const parentTaxId = lineage[rootIdx + 1]
+  const parentName =
+    data.names[String(parentTaxId)] ?? String(parentTaxId)
+  return {
+    diagram: {
+      label: annotateLabel(parentName),
+      wikiLink: wikiUrl(parentName),
+      children: [diagram],
+    },
+    rootTaxId: parentTaxId,
   }
 }
 
@@ -1316,6 +1358,7 @@ export function treeNodeToDiagramNode(
       label,
       wikiLink: wikiUrl(node.label),
       highlight: highlightTaxIds ? highlightTaxIds.has(node.taxId) : false,
+      taxId: node.taxId,
     }
   }
 

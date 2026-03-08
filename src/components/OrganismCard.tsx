@@ -1,5 +1,6 @@
-import { capitalize } from '../utils/format.ts'
+import { capitalize, cn } from '../utils/format.ts'
 import type { Difficulty } from './gameUtils.ts'
+import styles from './OrganismCard.module.css'
 
 interface OrganismCardProps {
   commonName: string
@@ -27,24 +28,24 @@ export default function OrganismCard({
 
   return (
     <button
-      className={`organism-card ${selected ? 'selected' : ''}`}
+      className={cn(styles.card, selected && styles.selected)}
       onClick={onClick}
       disabled={disabled}
     >
-      <div className="organism-image">
+      <div className={styles.image}>
         {imageUrl ? (
           <img src={imageUrl} alt={showLabels ? commonName : scientificName} draggable={false} />
         ) : (
-          <div className="no-image">?</div>
+          <div className={styles.noImage}>?</div>
         )}
       </div>
       {showInfo && (
-        <div className="organism-info">
+        <div className={styles.info}>
           {showLabels ? (
-            <div className="common-name">
+            <div className={styles.commonName}>
               {mapColor && (
                 <span
-                  className="map-color-dot"
+                  className={styles.mapColorDot}
                   style={{ backgroundColor: mapColor }}
                 />
               )}
@@ -53,13 +54,13 @@ export default function OrganismCard({
           ) : (
             mapColor && (
               <span
-                className="map-color-dot"
+                className={styles.mapColorDot}
                 style={{ backgroundColor: mapColor }}
               />
             )
           )}
           {showLabels && (
-            <div className="scientific-name">{scientificName}</div>
+            <div className={styles.scientificName}>{scientificName}</div>
           )}
         </div>
       )}

@@ -18,6 +18,7 @@ import { MapToggle } from './MapToggle.tsx'
 import { MAP_COLORS } from './SpeciesMap.tsx'
 import { loadSurprisingScenarios } from '../data/surprisingFacts.ts'
 import { recordRound, startPresence } from '../firebase.ts'
+import { DISPLAY_TREE, formatModeKey } from '../utils/cladePresets.ts'
 import { addHistoryEntry, loadHistory, loadStats } from '../utils/history.ts'
 import type { HistoryStats } from '../utils/history.ts'
 import { sessionStorageGetItem } from '../utils/storage.ts'
@@ -145,10 +146,7 @@ export default function Game({ mode }: { mode: GameMode }) {
     },
   )
   const [stats, setStats] = useState<HistoryStats | null>(null)
-
-  const refreshStats = () => {
-    loadStats().then(s => setStats(s ?? null))
-  }
+  const [modeStats, setModeStats] = useState<HistoryStats | null>(null)
 
   const [randomClade, setRandomClade] = useState<{
     taxId: number
@@ -161,6 +159,25 @@ export default function Game({ mode }: { mode: GameMode }) {
       : '',
   )
   const [cladeError, setCladeError] = useState('')
+
+  const effectiveModeKey = (() => {
+    if (mode === 'easy') {
+      return 'easy'
+    }
+    const trimmed = cladeFilter.trim()
+    if (trimmed) {
+      return `random:${trimmed}`
+    }
+    return 'random'
+  })()
+
+  const refreshStats = () => {
+    loadStats().then(s => setStats(s ?? null))
+    loadStats(effectiveModeKey).then(s => setModeStats(s ?? null))
+  }
+
+  const [multiMode, setMultiMode] = useState(false)
+
   const [showSuggestions, setShowSuggestions] = useState(false)
   const [seenCombos, setSeenCombos] = useState<Set<string>>(() => {
     const saved = sessionStorageGetItem('phyloSeenCombos')
@@ -508,7 +525,7 @@ export default function Game({ mode }: { mode: GameMode }) {
         correct: resultData.correct,
         organisms: organismNames,
         sister: [resultData.sister1.commonName, resultData.sister2.commonName],
-        mode,
+        mode: effectiveModeKey,
         timestamp: Date.now(),
         ncbiTaxIds: orgs.map(o => o.ncbiTaxId),
       }
@@ -517,7 +534,9 @@ export default function Game({ mode }: { mode: GameMode }) {
 
       const leaderboardName = localStorage.getItem('phyloLeaderboardName')
       if (leaderboardName) {
-        recordRound(leaderboardName, resultData.correct).catch(console.error)
+        recordRound(leaderboardName, resultData.correct, effectiveModeKey).catch(
+          console.error,
+        )
       }
     }
 
@@ -536,48 +555,50 @@ export default function Game({ mode }: { mode: GameMode }) {
           <h2>Custom Mode</h2>
           <div className="custom-form">
             <fieldset className="custom-fieldset">
+              <legend>Game format</legend>
+              <ul className="clade-presets-list">
+                <li
+                  className={`clade-preset-item ${!multiMode ? 'active' : ''}`}
+                  onClick={() => setMultiMode(false)}
+                >
+                  Classic <span className="clade-preset-scientific">(pick 2 from 3)</span>
+                </li>
+                <li
+                  className={`clade-preset-item ${multiMode ? 'active' : ''}`}
+                  onClick={() => setMultiMode(true)}
+                >
+                  Multi <span className="clade-preset-scientific">(pick 2 from 6)</span>
+                </li>
+              </ul>
+            </fieldset>
+            <fieldset className="custom-fieldset">
               <legend>Taxon quiz</legend>
               <ul className="clade-presets-list">
-                {(
-                  [
-                    ['40674', 'mammals', 'Mammalia'],
-                    ['8782', 'birds', 'Aves'],
-                    ['8504', 'lizards & snakes', 'Lepidosauria'],
-                    ['8292', 'frogs & salamanders', 'Amphibia'],
-                    ['50557', 'insects', 'Insecta'],
-                    ['6854', 'spiders & scorpions', 'Arachnida'],
-                    ['7898', 'ray-finned fish', 'Actinopterygii'],
-                    ['7777', 'sharks & rays', 'Chondrichthyes'],
-                    ['32523', 'bony vertebrates', 'Tetrapoda'],
-                    ['6656', 'crustaceans', 'Arthropoda'],
-                    ['6447', 'snails & octopuses', 'Mollusca'],
-                    ['3398', 'flowering plants', 'Magnoliopsida'],
-                    ['58019', 'conifers', 'Pinopsida'],
-                    ['4751', 'mushrooms & yeasts', 'Fungi'],
-                    ['2', 'bacteria', 'Bacteria'],
-                    ['10239', 'viruses', 'Viruses'],
-                    ['7742', 'vertebrates', 'Vertebrata'],
-                    ['33208', 'animals', 'Metazoa'],
-                    ['9443', 'primates', 'Primates'],
-                    ['33554', 'songbirds', 'Passeriformes'],
-                    ['7088', 'butterflies & moths', 'Lepidoptera'],
-                    ['4890', 'yeasts & sac fungi', 'Ascomycota'],
-                    ['micro', 'microorganisms', 'cross-kingdom'],
-                  ] as const
-                ).map(([id, label, name]) => (
-                  <li
-                    key={id}
-                    className={`clade-preset-item ${cladeFilter === id ? 'active' : ''}`}
-                    onClick={() => {
-                      setCladeFilter(prev => (prev === id ? '' : id))
-                      setCladeError('')
-                      setShowSuggestions(false)
-                    }}
-                  >
-                    {label}{' '}
-                    <span className="clade-preset-scientific">({name})</span>
-                  </li>
-                ))}
+                {DISPLAY_TREE.map(entry =>
+                  entry.type === 'header' ? (
+                    <li key={entry.label} className="clade-tree-header">
+                      {entry.label}
+                    </li>
+                  ) : (
+                    <li
+                      key={entry.id}
+                      className={`clade-preset-item ${cladeFilter === entry.id ? 'active' : ''}`}
+                      onClick={() => {
+                        setCladeFilter(prev =>
+                          prev === entry.id ? '' : entry.id,
+                        )
+                        setCladeError('')
+                        setShowSuggestions(false)
+                      }}
+                    >
+                      <span className="clade-tree-prefix">{entry.prefix}</span>
+                      {entry.label}{' '}
+                      <span className="clade-preset-scientific">
+                        ({entry.name})
+                      </span>
+                    </li>
+                  ),
+                )}
                 <li className="clade-preset-item clade-custom-item">
                   or, enter custom taxon name/id:{' '}
                   <div className="clade-autocomplete-inline">
@@ -692,12 +713,16 @@ export default function Game({ mode }: { mode: GameMode }) {
           <div className="custom-actions">
             <Button
               disabled={
-                !cladeFilter.trim() ||
-                (!!taxonomyData &&
-                  cladeFilter.trim() !== 'micro' &&
-                  findTaxId(cladeFilter.trim(), taxonomyData) === undefined)
+                !multiMode &&
+                (!cladeFilter.trim() ||
+                  (!!taxonomyData &&
+                    cladeFilter.trim() !== 'micro' &&
+                    findTaxId(cladeFilter.trim(), taxonomyData) === undefined))
               }
               href={(() => {
+                if (multiMode) {
+                  return '/multi'
+                }
                 const params = new URLSearchParams()
                 const trimmed = cladeFilter.trim()
                 if (trimmed) {
@@ -786,6 +811,17 @@ export default function Game({ mode }: { mode: GameMode }) {
               <span className="game-stats-item game-stats-streak">
                 Streak: <strong>{stats.currentStreak}</strong>
               </span>
+              {modeStats && effectiveModeKey !== 'random' && (
+                <span className="game-stats-item game-stats-mode">
+                  {formatModeKey(effectiveModeKey)}:{' '}
+                  <strong>{modeStats.currentStreak}</strong>
+                  {modeStats.bestStreak > 1 && (
+                    <span className="game-stats-best">
+                      {' '}(best {modeStats.bestStreak})
+                    </span>
+                  )}
+                </span>
+              )}
             </div>
           )}
           <p className="selecting-prompt">
@@ -807,18 +843,11 @@ export default function Game({ mode }: { mode: GameMode }) {
             ))}
           </div>
           <div className="selecting-actions">
-            <button
-              className="nav-icon-btn"
-              onClick={() => history.back()}
-              title="Previous question"
-            >
-              ⏮
-            </button>
             <Button onClick={handleSubmit} disabled={selected.length !== 2}>
               Submit
             </Button>
             <button className="nav-icon-btn" onClick={startRound} title="Skip">
-              ⏭
+              <span className="nav-icon-btn-label">Skip</span> →
             </button>
           </div>
           <MapToggle organisms={round.organisms} difficulty={difficulty} />

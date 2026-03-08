@@ -104,45 +104,84 @@ export async function isNameTaken(name: string) {
   return snap.docs.some(d => d.id !== currentUser?.uid)
 }
 
-export async function recordRound(name: string, correct: boolean) {
+function computeStreakUpdate(
+  prev: { bestStreak: number; currentStreak: number; totalWins: number; totalPlayed: number },
+  correct: boolean,
+) {
+  const currentStreak = correct ? prev.currentStreak + 1 : 0
+  return {
+    bestStreak: Math.max(prev.bestStreak, currentStreak),
+    currentStreak,
+    totalWins: prev.totalWins + (correct ? 1 : 0),
+    totalPlayed: prev.totalPlayed + 1,
+  }
+}
+
+function upsertStreakDoc(
+  docRef: ReturnType<typeof doc>,
+  uid: string,
+  name: string,
+  correct: boolean,
+  extraFields?: Record<string, string>,
+) {
+  return runTransaction(db, async transaction => {
+    const existing = await transaction.get(docRef)
+    const prev = existing.exists()
+      ? toLeaderboardEntry(uid, existing.data())
+      : { bestStreak: 0, currentStreak: 0, totalWins: 0, totalPlayed: 0 }
+    const entry = {
+      uid,
+      name,
+      ...computeStreakUpdate(prev, correct),
+      timestamp: Date.now(),
+    } satisfies LeaderboardEntry
+    transaction.set(docRef, extraFields ? { ...entry, ...extraFields } : entry)
+  })
+}
+
+export async function recordRound(
+  name: string,
+  correct: boolean,
+  modeKey?: string,
+) {
   await authReady
   if (!currentUser) {
     return
   }
   const uid = currentUser.uid
-  const docRef = doc(scoresRef, uid)
 
-  await runTransaction(db, async transaction => {
-    const existing = await transaction.get(docRef)
-
-    if (existing.exists()) {
-      const prev = toLeaderboardEntry(uid, existing.data())
-      const currentStreak = correct ? prev.currentStreak + 1 : 0
-      transaction.set(docRef, {
+  const promises: Promise<void>[] = [
+    upsertStreakDoc(doc(scoresRef, uid), uid, name, correct),
+  ]
+  if (modeKey && modeKey !== 'random') {
+    promises.push(
+      upsertStreakDoc(
+        doc(modeScoresRef, `${uid}_${modeKey}`),
         uid,
         name,
-        bestStreak: Math.max(prev.bestStreak, currentStreak),
-        currentStreak,
-        totalWins: prev.totalWins + (correct ? 1 : 0),
-        totalPlayed: prev.totalPlayed + 1,
-        timestamp: Date.now(),
-      } satisfies LeaderboardEntry)
-    } else {
-      transaction.set(docRef, {
-        uid,
-        name,
-        bestStreak: correct ? 1 : 0,
-        currentStreak: correct ? 1 : 0,
-        totalWins: correct ? 1 : 0,
-        totalPlayed: 1,
-        timestamp: Date.now(),
-      } satisfies LeaderboardEntry)
-    }
-  })
+        correct,
+        { modeKey },
+      ),
+    )
+  }
+  await Promise.all(promises)
 }
 
 export async function getTopStreaks(count = 20) {
   const q = query(scoresRef, orderBy('bestStreak', 'desc'), limit(count))
+  const snap = await getDocs(q)
+  return snap.docs.map(d => toLeaderboardEntry(d.id, d.data()))
+}
+
+const modeScoresRef = collection(db, 'modeScores')
+
+export async function getTopModeStreaks(modeKey: string, count = 20) {
+  const q = query(
+    modeScoresRef,
+    where('modeKey', '==', modeKey),
+    orderBy('bestStreak', 'desc'),
+    limit(count),
+  )
   const snap = await getDocs(q)
   return snap.docs.map(d => toLeaderboardEntry(d.id, d.data()))
 }

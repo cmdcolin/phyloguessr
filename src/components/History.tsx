@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 
 import { PAGE_SIZE, clearHistory, loadHistory, loadStats } from '../utils/history.ts'
+import { formatModeKey } from '../utils/cladePresets.ts'
+import TaxonFilterPicker from './TaxonFilterPicker.tsx'
 
 import type { HistoryEntry, HistoryStats } from '../utils/history.ts'
 
@@ -13,7 +15,8 @@ function buildHref(h: HistoryEntry) {
   if (h.mode === 'multi') {
     return `/multi?ids=${h.ncbiTaxIds.join(',')}`
   }
-  return `/${h.mode}?a=${h.ncbiTaxIds[0]}&b=${h.ncbiTaxIds[1]}&c=${h.ncbiTaxIds[2]}`
+  const baseMode = h.mode.startsWith('random') ? 'random' : h.mode
+  return `/${baseMode}?a=${h.ncbiTaxIds[0]}&b=${h.ncbiTaxIds[1]}&c=${h.ncbiTaxIds[2]}`
 }
 
 export default function History() {
@@ -21,13 +24,34 @@ export default function History() {
   const [allEntries, setAllEntries] = useState<HistoryEntry[]>([])
   const [tab, setTab] = useState<Tab>('normal')
   const [page, setPage] = useState(0)
+  const [modeFilter, setModeFilter] = useState('')
+  const [modeStats, setModeStats] = useState<HistoryStats | undefined>()
 
   useEffect(() => {
     loadStats().then(setStats).catch(console.error)
     loadHistory().then(all => setAllEntries([...all].reverse())).catch(console.error)
   }, [])
 
-  const filtered = allEntries.filter(h => (tab === 'multi') === (h.mode === 'multi'))
+  useEffect(() => {
+    if (modeFilter) {
+      loadStats(modeFilter).then(s => setModeStats(s ?? undefined)).catch(console.error)
+    } else {
+      setModeStats(undefined)
+    }
+  }, [modeFilter])
+
+  const filtered = allEntries.filter(h => {
+    if (tab === 'multi') {
+      return h.mode === 'multi'
+    }
+    if (h.mode === 'multi') {
+      return false
+    }
+    if (modeFilter) {
+      return h.mode === modeFilter
+    }
+    return true
+  })
   const totalPages = Math.ceil(filtered.length / PAGE_SIZE)
   const pageEntries = filtered.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE)
 
@@ -39,12 +63,14 @@ export default function History() {
   const handleClear = () => {
     clearHistory().catch(console.error)
     setStats(undefined)
+    setModeStats(undefined)
     setAllEntries([])
     setPage(0)
   }
 
-  const normalPlayed = allEntries.filter(h => h.mode !== 'multi').length
   const multiPlayed = allEntries.filter(h => h.mode === 'multi').length
+
+  const displayStats = modeFilter && modeStats ? modeStats : stats
 
   return (
     <div className="history-page">
@@ -63,16 +89,28 @@ export default function History() {
         </button>
       </div>
 
-      {stats && tab === 'normal' && normalPlayed > 0 && (
+      {tab === 'normal' && (
+        <TaxonFilterPicker
+          className="history-mode-filter"
+          value={modeFilter}
+          onChange={mode => {
+            setModeFilter(mode)
+            setPage(0)
+          }}
+          showRandom
+        />
+      )}
+
+      {displayStats && tab === 'normal' && displayStats.totalPlayed > 0 && (
         <div className="history-stats">
           <span>
-            {stats.totalWins}W / {normalPlayed - stats.totalWins}L
+            {displayStats.totalWins}W / {displayStats.totalPlayed - displayStats.totalWins}L
           </span>
-          {stats.bestStreak > 1 && (
-            <span className="streak">Best streak: {stats.bestStreak}</span>
+          {displayStats.bestStreak > 1 && (
+            <span className="streak">Best streak: {displayStats.bestStreak}</span>
           )}
-          {stats.currentStreak > 1 && (
-            <span className="streak">{stats.currentStreak} streak</span>
+          {displayStats.currentStreak > 1 && (
+            <span className="streak">{displayStats.currentStreak} streak</span>
           )}
         </div>
       )}
@@ -91,7 +129,9 @@ export default function History() {
       )}
 
       {filtered.length === 0 && (
-        <p className="history-empty">No {tab} games played yet.</p>
+        <p className="history-empty">
+          No {tab === 'multi' ? 'multi' : modeFilter ? formatModeKey(modeFilter) : tab} games played yet.
+        </p>
       )}
 
       {pageEntries.length > 0 && (
@@ -115,7 +155,7 @@ export default function History() {
                     h.organisms.join(', ')
                   )}
                 </span>
-                <span className="history-mode">{h.mode}</span>
+                <span className="history-mode">{formatModeKey(h.mode)}</span>
               </li>
             )
           })}

@@ -1197,7 +1197,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 869203,
     wikiTitle: 'Sand_dollar',
     group: 'invertebrate',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Clypeaster_reticulatus.jpg/330px-Clypeaster_reticulatus.jpg',
+    imageUrl: 'https://commons.wikimedia.org/wiki/Special:FilePath/Echinarachnius_parma.jpg?width=330',
   },
   {
     commonName: 'Garden snail',
@@ -1430,7 +1430,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 1903125,
     wikiTitle: 'Phylliroe_bucephala',
     group: 'invertebrate',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Phylliroe_bucephalum.jpg/330px-Phylliroe_bucephalum.jpg',
+    imageUrl: 'https://commons.wikimedia.org/wiki/Special:FilePath/Phylliroe_bucephalum.jpg?width=330',
   },
   {
     commonName: 'Phronima',
@@ -1438,7 +1438,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 472282,
     wikiTitle: 'Phronima',
     group: 'invertebrate',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Phronima_sedentaria_%28YPM_IZ_075000%29.jpeg/330px-Phronima_sedentaria_%28YPM_IZ_075000%29.jpeg',
+    imageUrl: 'https://commons.wikimedia.org/wiki/Special:FilePath/Phronima_sedentaria_(YPM_IZ_075000).jpeg?width=330',
   },
 
   // Plants
@@ -1697,7 +1697,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 13805,
     wikiTitle: 'Sphagnum',
     group: 'plant',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Sphagnum.flexuosum.jpg/330px-Sphagnum.flexuosum.jpg',
+    imageUrl: 'https://commons.wikimedia.org/wiki/Special:FilePath/Sphagnum.palustre.-.lindsey.jpg?width=330',
   },
   {
     commonName: 'Common fern',
@@ -1713,7 +1713,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 3377,
     wikiTitle: 'Welwitschia',
     group: 'plant',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Welwitschia_mirabilis%282%29.jpg/330px-Welwitschia_mirabilis%282%29.jpg',
+    imageUrl: 'https://commons.wikimedia.org/wiki/Special:FilePath/Welwitschia_mirablis_%5E_Ragnhild-4657_-_Flickr_-_Ragnhild_%26_Neil_Crawford.jpg?width=330',
   },
   {
     commonName: 'Ginkgo',
@@ -1981,7 +1981,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 5775,
     wikiTitle: 'Amoeba_proteus',
     group: 'microbe',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Amoeba_proteus_with_many_pseudopodia.jpg/330px-Amoeba_proteus_with_many_pseudopodia.jpg',
+    imageUrl: 'https://commons.wikimedia.org/wiki/Special:FilePath/Amoeba_proteus_with_many_pseudopodia.jpg?width=330',
   },
   {
     commonName: 'Paramecium',
@@ -2029,7 +2029,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 253633,
     wikiTitle: 'Fibrillanosema_crangonycis',
     group: 'microbe',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Fibrillanosema_spore.jpg/330px-Fibrillanosema_spore.jpg',
+    imageUrl: 'https://commons.wikimedia.org/wiki/Special:FilePath/Fibrillanosema_spore.jpg?width=330',
   },
   {
     commonName: 'Diatom',

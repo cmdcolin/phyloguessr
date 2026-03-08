@@ -97,27 +97,31 @@ function MultiDiagramTree({
   organisms,
   taxonomyData,
   userSelectedTaxIds,
+  correct,
 }: {
   organisms: Organism[]
   taxonomyData: TaxonomyData
   userSelectedTaxIds: Set<number>
+  correct: boolean
 }) {
   const rawTree = buildTreeFromLineages(organisms, {}, undefined, taxonomyData)
   const orgTaxIds = new Set(organisms.map(o => o.ncbiTaxId))
   const tree = collapseSingleChildren(rawTree, orgTaxIds)
   const orgNames = new Map(organisms.map(o => [o.ncbiTaxId, o.commonName]))
-  const diagramRoot = treeNodeToDiagramNode(tree, orgNames, userSelectedTaxIds)
-  return <DiagramTree root={diagramRoot} />
+  const diagramRoot = treeNodeToDiagramNode(tree, orgNames)
+  return <DiagramTree root={diagramRoot} correct={correct} userSelectedTaxIds={userSelectedTaxIds} />
 }
 
 function MultiTree({
   organisms,
   taxonomyData,
   userSelectedTaxIds,
+  correct,
 }: {
   organisms: Organism[]
   taxonomyData: TaxonomyData
   userSelectedTaxIds: Set<number>
+  correct: boolean
 }) {
   const rawTree = buildTreeFromLineages(organisms, {}, undefined, taxonomyData)
   const orgTaxIds = new Set(organisms.map(o => o.ncbiTaxId))
@@ -218,7 +222,8 @@ function MultiTree({
 
     if (isLeaf) {
       const isUserPick = userSelectedTaxIds.has(node.data.taxId)
-      const leafColor = isUserPick ? 'white' : 'var(--accent-tree)'
+      const pickColor = correct ? 'white' : 'var(--error)'
+      const leafColor = isUserPick ? pickColor : 'var(--accent-tree)'
       elements.push(
         <line
           key={`ext-${node.data.taxId}`}
@@ -264,18 +269,18 @@ function MultiTree({
             x={arrowBase - 3}
             y={arrowY + 3.5}
             fontSize={9}
-            fill="white"
+            fill={pickColor}
             fontWeight="bold"
             textAnchor="end"
           >
-            your pick
+            your choice
           </text>,
         )
         elements.push(
           <polygon
             key={`arrow-${node.data.taxId}`}
             points={`${arrowBase},${arrowY - 5} ${arrowBase},${arrowY + 5} ${arrowTip},${arrowY}`}
-            fill="white"
+            fill={pickColor}
             opacity={0.85}
           />,
         )
@@ -352,12 +357,14 @@ export default function MultiResultScreen({
         organisms={organisms}
         taxonomyData={taxonomyData}
         userSelectedTaxIds={new Set([userPair.taxIdA, userPair.taxIdB])}
+        correct={rank === 1}
       />
 
       <MultiDiagramTree
         organisms={organisms}
         taxonomyData={taxonomyData}
         userSelectedTaxIds={new Set([userPair.taxIdA, userPair.taxIdB])}
+        correct={rank === 1}
       />
 
       <details className="multi-pair-details">
@@ -375,6 +382,7 @@ export default function MultiResultScreen({
         organisms={organisms}
         taxonomyData={taxonomyData}
         userSelectedTaxIds={new Set([userPair.taxIdA, userPair.taxIdB])}
+        correct={rank === 1}
       />
 
       <div className="result-actions">

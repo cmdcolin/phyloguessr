@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { cn } from '../utils/format.ts'
 
 interface Props {
   variant?: 'primary' | 'secondary'
@@ -19,7 +20,7 @@ export default function Button({
   title,
   children,
 }: Props) {
-  const cls = `btn btn-${variant}${className ? ` ${className}` : ''}`
+  const cls = cn('btn', `btn-${variant}`, className)
   if (href && !disabled) {
     return (
       <a href={href} className={cls} title={title}>

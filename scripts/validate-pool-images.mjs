@@ -26,7 +26,6 @@ const RATE_DELAY_MS = 100
 const REFRESH_MAX_AGE_MS = 90 * 24 * 60 * 60 * 1000
 
 const refreshMode = process.argv.includes('--refresh')
-const cacheOnlyMode = process.argv.includes('--cache-only')
 
 // Cache entries: { url: string | null, ts: number }
 function loadCache() {
@@ -87,21 +86,6 @@ async function checkWikipediaImage(scientificName) {
   return data.thumbnail?.source ?? null
 }
 
-async function checkINaturalistImage(scientificName) {
-  const url = `https://api.inaturalist.org/v1/taxa?q=${encodeURIComponent(scientificName)}&per_page=1`
-  const res = await fetchWithRetry(url)
-  if (!res) {
-    return null
-  }
-  const data = await res.json()
-  const taxon = data.results?.[0]
-  return taxon?.default_photo?.medium_url ?? null
-}
-
-async function checkImage(scientificName) {
-  return checkWikipediaImage(scientificName)
-}
-
 async function processInBatches(pool, cache) {
   let checked = 0
   let hits = 0
@@ -131,18 +115,13 @@ async function processInBatches(pool, cache) {
         return
       }
 
-      if (cacheOnlyMode) {
-        misses++
-        return
-      }
-
       if (cachedEntry) {
         refreshed++
       }
 
       await new Promise(r => setTimeout(r, j * RATE_DELAY_MS))
 
-      const img = await checkImage(scientificName)
+      const img = await checkWikipediaImage(scientificName)
       cache.set(scientificName, { url: img, ts: Date.now() })
       imageUrls[idx] = img
       if (img) {
