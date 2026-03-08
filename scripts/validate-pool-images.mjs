@@ -26,6 +26,7 @@ const RATE_DELAY_MS = 100
 const REFRESH_MAX_AGE_MS = 90 * 24 * 60 * 60 * 1000
 
 const refreshMode = process.argv.includes('--refresh')
+const cacheOnlyMode = process.argv.includes('--cache-only')
 
 // Cache entries: { url: string | null, ts: number }
 function loadCache() {
@@ -98,11 +99,7 @@ async function checkINaturalistImage(scientificName) {
 }
 
 async function checkImage(scientificName) {
-  const wikiImg = await checkWikipediaImage(scientificName)
-  if (wikiImg) {
-    return wikiImg
-  }
-  return checkINaturalistImage(scientificName)
+  return checkWikipediaImage(scientificName)
 }
 
 async function processInBatches(pool, cache) {
@@ -119,10 +116,23 @@ async function processInBatches(pool, cache) {
       const scientificName = entry[2]
       const idx = i + j
 
+      // Entry already has an embedded image URL (4th element from jb2hubs)
+      if (entry[3]) {
+        cached++
+        imageUrls[idx] = entry[3]
+        cache.set(scientificName, { url: entry[3], ts: Date.now() })
+        return
+      }
+
       const cachedEntry = cache.get(scientificName)
       if (cachedEntry && !isCacheStale(cachedEntry)) {
         cached++
         imageUrls[idx] = cachedEntry.url
+        return
+      }
+
+      if (cacheOnlyMode) {
+        misses++
         return
       }
 

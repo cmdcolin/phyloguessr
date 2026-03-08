@@ -225,6 +225,7 @@ function scanJb2hubs(ncbiParents, ncbiRanks, scientificNames) {
               taxId: meta.taxonId,
               scientificName: meta.scientificName,
               commonName: meta.commonName || '',
+              imageUrl: image.imageUrl,
             })
           }
         } catch {
@@ -287,7 +288,7 @@ function scanJb2hubs(ncbiParents, ncbiRanks, scientificNames) {
       }
     }
     if (!excluded) {
-      entries.push([speciesTaxId, cleanCommon, cleanSci])
+      entries.push([speciesTaxId, cleanCommon, cleanSci, r.imageUrl])
     }
   }
 
