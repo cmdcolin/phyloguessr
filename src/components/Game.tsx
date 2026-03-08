@@ -17,7 +17,7 @@ import { TaxLink } from './TaxLink.tsx'
 import { MapToggle } from './MapToggle.tsx'
 import { MAP_COLORS } from './SpeciesMap.tsx'
 import { loadSurprisingScenarios } from '../data/surprisingFacts.ts'
-import { recordRound, startPresence } from '../firebase.ts'
+import { recordRound } from '../firebase.ts'
 import { DISPLAY_TREE, formatModeKey } from '../utils/cladePresets.ts'
 import { addHistoryEntry, loadHistory, loadStats } from '../utils/history.ts'
 import type { HistoryStats } from '../utils/history.ts'
@@ -416,7 +416,6 @@ export default function Game({ mode }: { mode: GameMode }) {
 
   useEffect(() => {
     refreshStats()
-    startPresence()
     const sharedIds = parseSharedIds()
     if (sharedIds) {
       // eslint-disable-next-line react-hooks/set-state-in-effect

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 
 import {
+  getTopModeMultiScores,
   getTopModeStreaks,
   getTopMultiScores,
   getTopStreaks,
@@ -8,11 +9,13 @@ import {
 } from '../firebase.ts'
 import { formatModeKey } from '../utils/cladePresets.ts'
 import TaxonFilterPicker from './TaxonFilterPicker.tsx'
+import styles from './Leaderboard.module.css'
 
 import type { LeaderboardEntry, MultiLeaderboardEntry } from '../firebase.ts'
 
 type Tab = 'classic' | 'multi'
-type MultiSort = 'total' | 'average'
+type StreakSort = 'bestStreak' | 'totalWins' | 'totalPlayed' | 'name'
+type MultiSort = 'totalPoints' | 'avg' | 'perfects' | 'totalPlayed' | 'name'
 const MIN_PLAYED_FOR_AVG = 5
 
 interface StreakEntry {
@@ -23,6 +26,13 @@ interface StreakEntry {
   totalPlayed: number
 }
 
+function SortIcon({ active, dir }: { active: boolean; dir: 'asc' | 'desc' }) {
+  if (!active) {
+    return null
+  }
+  return <i className={styles.sortIcon}>{dir === 'desc' ? '↓' : '↑'}</i>
+}
+
 function StreakTable({
   entries,
   uid,
@@ -30,29 +40,62 @@ function StreakTable({
   entries: StreakEntry[]
   uid: string | null
 }) {
+  const [sort, setSort] = useState<StreakSort>('bestStreak')
+  const [dir, setDir] = useState<'asc' | 'desc'>('desc')
+
+  const handleSort = (col: StreakSort) => {
+    if (sort === col) {
+      setDir(d => (d === 'desc' ? 'asc' : 'desc'))
+    } else {
+      setSort(col)
+      setDir(col === 'name' ? 'asc' : 'desc')
+    }
+  }
+
+  const sorted = [...entries].sort((a, b) => {
+    let cmp = 0
+    if (sort === 'name') {
+      cmp = a.name.localeCompare(b.name)
+    } else if (sort === 'bestStreak') {
+      cmp = a.bestStreak - b.bestStreak
+    } else if (sort === 'totalWins') {
+      cmp = a.totalWins - b.totalWins
+    } else {
+      cmp = a.totalPlayed - b.totalPlayed
+    }
+    return dir === 'desc' ? -cmp : cmp
+  })
+
+  const th = (col: StreakSort, label: string) => (
+    <th className={styles.sortable} onClick={() => handleSort(col)}>
+      {label}
+      <SortIcon active={sort === col} dir={dir} />
+    </th>
+  )
+
   return (
-    <table className="leaderboard-table">
+    <table className={styles.table}>
       <thead>
         <tr>
           <th>#</th>
-          <th>Name</th>
-          <th>Best Streak</th>
-          <th>Wins</th>
-          <th>Played</th>
+          {th('name', 'Name')}
+          {th('bestStreak', 'Best Streak')}
+          {th('totalWins', 'Wins')}
+          {th('totalPlayed', 'Played')}
         </tr>
       </thead>
       <tbody>
-        {entries.map((entry, i) => (
+        {sorted.map((entry, i) => (
           <tr
             key={entry.uid}
-            className={entry.uid === uid ? 'lb-you' : ''}
+            className={entry.uid === uid ? styles.you : ''}
           >
-            <td className="lb-rank">{i + 1}</td>
-            <td className="lb-name">
+            <td className={styles.rank}>{i + 1}</td>
+            <td className={styles.name}>
               {entry.name}
               {entry.uid === uid ? ' (you)' : ''}
             </td>
-            <td className="lb-streak">{entry.bestStreak}</td>
+            <td className={styles.streak}>{entry.bestStreak}</td>
             <td>{entry.totalWins}</td>
             <td>{entry.totalPlayed}</td>
           </tr>
@@ -74,14 +117,32 @@ export default function Leaderboard() {
     setError('')
   }
   const [uid, setUid] = useState<string | null>(null)
-  const [multiSort, setMultiSort] = useState<MultiSort>('total')
-  const [selectedMode, setSelectedMode] = useState<string>('')
+  const [multiSort, setMultiSort] = useState<MultiSort>('totalPoints')
+  const [multiDir, setMultiDir] = useState<'asc' | 'desc'>('desc')
+  const [selectedMode, setSelectedMode] = useState<string>('random')
   const [modeEntries, setModeEntries] = useState<StreakEntry[]>([])
+  const [multiMode, setMultiMode] = useState<string>('')
+  const [multiModeEntries, setMultiModeEntries] = useState<MultiLeaderboardEntry[]>([])
 
   const handleModeSelect = (mode: string) => {
-    setSelectedMode(mode)
+    setSelectedMode(mode === '' ? 'random' : mode)
     setLoading(true)
     setError('')
+  }
+
+  const handleMultiModeSelect = (mode: string) => {
+    setMultiMode(mode)
+    setLoading(true)
+    setError('')
+  }
+
+  const handleMultiSort = (col: MultiSort) => {
+    if (multiSort === col) {
+      setMultiDir(d => (d === 'desc' ? 'asc' : 'desc'))
+    } else {
+      setMultiSort(col)
+      setMultiDir(col === 'name' ? 'asc' : 'desc')
+    }
   }
 
   useEffect(() => {
@@ -103,10 +164,18 @@ export default function Leaderboard() {
             }
           }
         } else {
-          const data = await getTopMultiScores(20)
-          if (!cancelled) {
-            setMultiEntries(data)
-            setLoading(false)
+          if (multiMode) {
+            const data = await getTopModeMultiScores(multiMode, 20)
+            if (!cancelled) {
+              setMultiModeEntries(data)
+              setLoading(false)
+            }
+          } else {
+            const data = await getTopMultiScores(20)
+            if (!cancelled) {
+              setMultiEntries(data)
+              setLoading(false)
+            }
           }
         }
       } catch (err) {
@@ -122,24 +191,56 @@ export default function Leaderboard() {
     return () => {
       cancelled = true
     }
-  }, [tab, selectedMode])
+  }, [tab, selectedMode, multiMode])
 
   const classicEntries = selectedMode ? modeEntries : entries
+  const activeMultiEntries = multiMode ? multiModeEntries : multiEntries
   const emptyLabel = selectedMode
     ? `No scores for ${formatModeKey(selectedMode)} yet.`
     : 'No scores yet. Be the first!'
 
+  const sortedMulti = [...activeMultiEntries]
+    .filter(e => multiSort === 'avg' ? e.totalPlayed >= MIN_PLAYED_FOR_AVG : true)
+    .sort((a, b) => {
+      let cmp = 0
+      if (multiSort === 'name') {
+        cmp = a.name.localeCompare(b.name)
+      } else if (multiSort === 'totalPoints') {
+        cmp = a.totalPoints - b.totalPoints
+      } else if (multiSort === 'avg') {
+        const avgA = a.totalPlayed > 0 ? a.totalPoints / a.totalPlayed : 0
+        const avgB = b.totalPlayed > 0 ? b.totalPoints / b.totalPlayed : 0
+        cmp = avgA - avgB
+      } else if (multiSort === 'perfects') {
+        cmp = a.perfects - b.perfects
+      } else {
+        cmp = a.totalPlayed - b.totalPlayed
+      }
+      return multiDir === 'desc' ? -cmp : cmp
+    })
+
+  const mth = (col: MultiSort, label: string) => (
+    <th className={styles.sortable} onClick={() => handleMultiSort(col)}>
+      {label}
+      <SortIcon active={multiSort === col} dir={multiDir} />
+    </th>
+  )
+
+  const multiEmptyLabel = multiMode
+    ? `No multi scores for ${formatModeKey(multiMode)} yet.`
+    : 'No multi scores yet. Be the first!'
+
   return (
     <div className="leaderboard-page">
-      <div className="leaderboard-tabs">
+      <div className={styles.tabs}>
         <button
-          className={`leaderboard-tab ${tab === 'classic' ? 'active' : ''}`}
+          className={`${styles.tab}${tab === 'classic' ? ` ${styles.active}` : ''}`}
           onClick={() => setTab('classic')}
         >
           Classic
         </button>
         <button
-          className={`leaderboard-tab ${tab === 'multi' ? 'active' : ''}`}
+          className={`${styles.tab}${tab === 'multi' ? ` ${styles.active}` : ''}`}
           onClick={() => setTab('multi')}
         >
           Multi
@@ -148,88 +249,71 @@ export default function Leaderboard() {
 
       {tab === 'classic' && (
         <TaxonFilterPicker
-          className="lb-mode-section"
+          className={styles.modeSection}
           value={selectedMode}
           onChange={handleModeSelect}
+          showRandom
         />
       )}
 
-      {loading && <p className="leaderboard-loading">Loading...</p>}
-      {error && <p className="leaderboard-error">{error}</p>}
+      {tab === 'multi' && (
+        <TaxonFilterPicker
+          className={styles.modeSection}
+          value={multiMode}
+          onChange={handleMultiModeSelect}
+        />
+      )}
+
+      {loading && <p className={styles.loading}>Loading...</p>}
+      {error && <p className={styles.error}>{error}</p>}
 
       {!loading && tab === 'classic' && classicEntries.length === 0 && !error && (
-        <p className="leaderboard-empty">{emptyLabel}</p>
+        <p className={styles.empty}>{emptyLabel}</p>
       )}
 
       {!loading && tab === 'classic' && classicEntries.length > 0 && (
         <StreakTable entries={classicEntries} uid={uid} />
       )}
 
-      {!loading && tab === 'multi' && multiEntries.length === 0 && !error && (
-        <p className="leaderboard-empty">No multi scores yet. Be the first!</p>
+      {!loading && tab === 'multi' && sortedMulti.length === 0 && !error && (
+        <p className={styles.empty}>{multiEmptyLabel}</p>
       )}
 
-      {!loading && tab === 'multi' && multiEntries.length > 0 && (
-        <>
-          <div className="leaderboard-sort">
-            Sort by:{' '}
-            <button
-              className={`leaderboard-sort-btn ${multiSort === 'total' ? 'active' : ''}`}
-              onClick={() => setMultiSort('total')}
-            >
-              Total Points
-            </button>
-            <button
-              className={`leaderboard-sort-btn ${multiSort === 'average' ? 'active' : ''}`}
-              onClick={() => setMultiSort('average')}
-            >
-              Avg (min {MIN_PLAYED_FOR_AVG} played)
-            </button>
-          </div>
-          <table className="leaderboard-table">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Total Points</th>
-                <th>Avg</th>
-                <th>Perfects</th>
-                <th>Played</th>
+      {!loading && tab === 'multi' && sortedMulti.length > 0 && (
+        <table className={styles.table}>
+          <thead>
+            <tr>
+              <th>#</th>
+              {mth('name', 'Name')}
+              {mth('totalPoints', 'Total Points')}
+              {mth('avg', `Avg (min ${MIN_PLAYED_FOR_AVG})`)}
+              {mth('perfects', 'Perfects')}
+              {mth('totalPlayed', 'Played')}
+            </tr>
+          </thead>
+          <tbody>
+            {sortedMulti.map((entry, i) => (
+              <tr
+                key={entry.uid}
+                className={entry.uid === uid ? styles.you : ''}
+              >
+                <td className={styles.rank}>{i + 1}</td>
+                <td className={styles.name}>
+                  {entry.name}
+                  {entry.uid === uid ? ' (you)' : ''}
+                </td>
+                <td className={styles.streak}>{entry.totalPoints}</td>
+                <td>
+                  {entry.totalPlayed > 0
+                    ? Math.round(entry.totalPoints / entry.totalPlayed)
+                    : 0}
+                </td>
+                <td>{entry.perfects}</td>
+                <td>{entry.totalPlayed}</td>
               </tr>
-            </thead>
-            <tbody>
-              {(multiSort === 'average'
-                ? [...multiEntries]
-                    .filter(e => e.totalPlayed >= MIN_PLAYED_FOR_AVG)
-                    .sort(
-                      (a, b) =>
-                        b.totalPoints / b.totalPlayed -
-                        a.totalPoints / a.totalPlayed,
-                    )
-                : multiEntries
-              ).map((entry, i) => (
-                <tr
-                  key={entry.uid}
-                  className={entry.uid === uid ? 'lb-you' : ''}
-                >
-                  <td className="lb-rank">{i + 1}</td>
-                  <td className="lb-name">
-                    {entry.name}
-                    {entry.uid === uid ? ' (you)' : ''}
-                  </td>
-                  <td className="lb-streak">{entry.totalPoints}</td>
-                  <td>
-                    {entry.totalPlayed > 0
-                      ? Math.round(entry.totalPoints / entry.totalPlayed)
-                      : 0}
-                  </td>
-                  <td>{entry.perfects}</td>
-                  <td>{entry.totalPlayed}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </>
+            ))}
+          </tbody>
+        </table>
       )}
     </div>
   )

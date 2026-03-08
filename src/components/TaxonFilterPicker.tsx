@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import { DISPLAY_TREE, formatModeKey } from '../utils/cladePresets.ts'
+import styles from './TaxonFilterPicker.module.css'
 
 export default function TaxonFilterPicker({
   value,
@@ -24,31 +25,31 @@ export default function TaxonFilterPicker({
 
   return (
     <div className={className}>
-      <div className="lb-mode-bar">
+      <div className={styles.modeBar}>
         {value ? (
           <>
-            <span className="lb-mode-label">
+            <span className={styles.modeLabel}>
               {formatModeKey(value)}
             </span>
             <button
-              className="lb-mode-clear"
+              className={styles.modeClear}
               onClick={() => select('')}
             >
               Clear
             </button>
           </>
         ) : (
-          <span className="lb-mode-label">All modes</span>
+          <span className={styles.modeLabel}>All modes</span>
         )}
         <button
-          className="lb-mode-toggle"
+          className={styles.modeToggle}
           onClick={() => setTreeOpen(prev => !prev)}
         >
-          {treeOpen ? 'Hide' : 'Filter by taxon'}
+          {treeOpen ? 'Hide' : 'Taxon specific leaderboard'}
         </button>
       </div>
       {treeOpen && (
-        <ul className="clade-presets-list lb-taxon-tree">
+        <ul className={`clade-presets-list ${styles.taxonTree}`}>
           <li
             className={`clade-preset-item ${!value ? 'active' : ''}`}
             onClick={() => select('')}

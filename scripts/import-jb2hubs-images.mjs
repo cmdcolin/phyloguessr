@@ -97,6 +97,18 @@ function walkHubs(prefix) {
   return results
 }
 
+// Convert full-size Wikimedia Commons URLs to thumbnail URLs
+const COMMONS_FULL_RE =
+  /^(https:\/\/upload\.wikimedia\.org\/wikipedia\/commons)\/(\w\/\w\w)\/([^/?#]+)$/
+function toThumbUrl(url, width = 400) {
+  const m = url.match(COMMONS_FULL_RE)
+  if (m) {
+    const [, base, hashPath, filename] = m
+    return `${base}/thumb/${hashPath}/${filename}/${width}px-${filename}`
+  }
+  return url
+}
+
 function main() {
   console.log('Scanning jb2hubs for species with images...')
   const gcfResults = walkHubs('GCF')
@@ -127,7 +139,7 @@ function main() {
     // Try both the clean name and the full name
     for (const name of [cleanName, r.scientificName]) {
       if (!cache.has(name) || cache.get(name).url === null) {
-        cache.set(name, { url: r.imageUrl, ts: now })
+        cache.set(name, { url: toThumbUrl(r.imageUrl), ts: now })
         added++
       }
     }

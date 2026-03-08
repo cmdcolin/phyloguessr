@@ -187,6 +187,7 @@ export async function getTopModeStreaks(modeKey: string, count = 20) {
 }
 
 const multiScoresRef = collection(db, 'multiScores')
+const modeMultiScoresRef = collection(db, 'modeMultiScores')
 
 export interface MultiLeaderboardEntry {
   uid: string
@@ -211,17 +212,15 @@ function toMultiLeaderboardEntry(
   }
 }
 
-export async function recordMultiRound(name: string, score: number) {
-  await authReady
-  if (!currentUser) {
-    return
-  }
-  const uid = currentUser.uid
-  const docRef = doc(multiScoresRef, uid)
-
+async function upsertMultiDoc(
+  docRef: ReturnType<typeof doc>,
+  uid: string,
+  name: string,
+  score: number,
+  extra?: Record<string, unknown>,
+) {
   await runTransaction(db, async transaction => {
     const existing = await transaction.get(docRef)
-
     if (existing.exists()) {
       const prev = toMultiLeaderboardEntry(uid, existing.data())
       transaction.set(docRef, {
@@ -231,7 +230,8 @@ export async function recordMultiRound(name: string, score: number) {
         totalPlayed: prev.totalPlayed + 1,
         perfects: prev.perfects + (score === 100 ? 1 : 0),
         timestamp: Date.now(),
-      } satisfies MultiLeaderboardEntry)
+        ...extra,
+      })
     } else {
       transaction.set(docRef, {
         uid,
@@ -240,13 +240,50 @@ export async function recordMultiRound(name: string, score: number) {
         totalPlayed: 1,
         perfects: score === 100 ? 1 : 0,
         timestamp: Date.now(),
-      } satisfies MultiLeaderboardEntry)
+        ...extra,
+      })
     }
   })
 }
 
+export async function recordMultiRound(
+  name: string,
+  score: number,
+  modeKey?: string,
+) {
+  await authReady
+  if (!currentUser) {
+    return
+  }
+  const uid = currentUser.uid
+  const promises = [upsertMultiDoc(doc(multiScoresRef, uid), uid, name, score)]
+  if (modeKey) {
+    promises.push(
+      upsertMultiDoc(
+        doc(modeMultiScoresRef, `${uid}_${modeKey}`),
+        uid,
+        name,
+        score,
+        { modeKey },
+      ),
+    )
+  }
+  await Promise.all(promises)
+}
+
 export async function getTopMultiScores(count = 20) {
   const q = query(multiScoresRef, orderBy('totalPoints', 'desc'), limit(count))
+  const snap = await getDocs(q)
+  return snap.docs.map(d => toMultiLeaderboardEntry(d.id, d.data()))
+}
+
+export async function getTopModeMultiScores(modeKey: string, count = 20) {
+  const q = query(
+    modeMultiScoresRef,
+    where('modeKey', '==', modeKey),
+    orderBy('totalPoints', 'desc'),
+    limit(count),
+  )
   const snap = await getDocs(q)
   return snap.docs.map(d => toMultiLeaderboardEntry(d.id, d.data()))
 }
@@ -280,9 +317,9 @@ let lastPresenceWrite = 0
 
 export function startPresence() {
   if (heartbeatId !== null) {
-    return
+    return Promise.resolve()
   }
-  updatePresence()
+  const firstWrite = updatePresence()
   lastPresenceWrite = Date.now()
   heartbeatId = setInterval(() => {
     updatePresence()
@@ -298,6 +335,7 @@ export function startPresence() {
     }
   }
   document.addEventListener('visibilitychange', visibilityHandler)
+  return firstWrite
 }
 
 export function stopPresence() {

@@ -12,7 +12,7 @@ import {
 import Header from './Header.tsx'
 import MultiResultScreen from './MultiResultScreen.tsx'
 import OrganismCard from './OrganismCard.tsx'
-import { recordMultiRound, startPresence } from '../firebase.ts'
+import { recordMultiRound } from '../firebase.ts'
 import { addHistoryEntry, loadHistory, loadStats } from '../utils/history.ts'
 import type { HistoryStats } from '../utils/history.ts'
 import {
@@ -187,7 +187,6 @@ export default function MultiGame() {
 
   useEffect(() => {
     refreshStats()
-    startPresence()
     const sharedIds = parseSharedIds()
     if (sharedIds) {
       // eslint-disable-next-line react-hooks/set-state-in-effect

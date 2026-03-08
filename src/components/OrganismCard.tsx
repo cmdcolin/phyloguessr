@@ -1,4 +1,4 @@
-import { capitalize, cn } from '../utils/format.ts'
+import { capitalize, cn, toWikimediaThumbnail } from '../utils/format.ts'
 import type { Difficulty } from './gameUtils.ts'
 import styles from './OrganismCard.module.css'
 
@@ -34,7 +34,7 @@ export default function OrganismCard({
     >
       <div className={styles.image}>
         {imageUrl ? (
-          <img src={imageUrl} alt={showLabels ? commonName : scientificName} draggable={false} />
+          <img src={toWikimediaThumbnail(imageUrl)} alt={showLabels ? commonName : scientificName} draggable={false} />
         ) : (
           <div className={styles.noImage}>?</div>
         )}
