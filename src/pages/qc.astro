@@ -1,0 +1,9 @@
+---
+import Layout from '../layouts/Layout.astro'
+import QualityControl from '../components/QualityControl.tsx'
+import '../index.css'
+---
+
+<Layout title="Species QC - PhyloGuessr">
+  <QualityControl client:only="preact" />
+</Layout>
