@@ -401,10 +401,34 @@ export function pickThreeFromClade(
 
 const targetRankList = ['family', 'order', 'class', 'phylum'] as const
 
+// NCBI taxonomy IDs for major kingdoms
+const KINGDOM_IDS = {
+  Metazoa: 33208,
+  Viridiplantae: 33090,
+  Fungi: 4751,
+} as const
+
+// Weights for kingdom-based sampling (higher = more frequent)
+const KINGDOM_WEIGHTS = {
+  Metazoa: 70,
+  Viridiplantae: 20,
+  Fungi: 5,
+  Other: 5,
+} as const
+
+type KingdomKey = keyof typeof KINGDOM_WEIGHTS
+
+interface CladeEntry {
+  taxId: number
+  name: string
+  rank: string
+  kingdom: KingdomKey
+}
+
 let cladeIndexCache:
   | {
       pool: SpeciesPoolEntry[]
-      byRank: Map<string, { taxId: number; name: string; rank: string }[]>
+      byRank: Map<string, CladeEntry[]>
     }
   | undefined
 
@@ -415,21 +439,33 @@ function buildCladeIndex(pool: SpeciesPoolEntry[], data: TaxonomyData) {
 
   const targetRanks = new Set<string>(targetRankList)
   const cladeCounts = new Map<number, number>()
+  const cladeKingdoms = new Map<number, KingdomKey>()
 
   for (let i = 0; i < pool.length; i++) {
     const lineage = getLineageFromParents(pool[i][0], data.parents)
+
+    let speciesKingdom: KingdomKey = 'Other'
+    const lineageSet = new Set(lineage)
+    if (lineageSet.has(KINGDOM_IDS.Metazoa)) {
+      speciesKingdom = 'Metazoa'
+    } else if (lineageSet.has(KINGDOM_IDS.Viridiplantae)) {
+      speciesKingdom = 'Viridiplantae'
+    } else if (lineageSet.has(KINGDOM_IDS.Fungi)) {
+      speciesKingdom = 'Fungi'
+    }
+
     for (const id of lineage) {
       const rank = data.ranks[String(id)]
       if (rank !== undefined && targetRanks.has(rank)) {
         cladeCounts.set(id, (cladeCounts.get(id) ?? 0) + 1)
+        if (!cladeKingdoms.has(id)) {
+          cladeKingdoms.set(id, speciesKingdom)
+        }
       }
     }
   }
 
-  const byRank = new Map<
-    string,
-    { taxId: number; name: string; rank: string }[]
-  >()
+  const byRank = new Map<string, CladeEntry[]>()
   for (const r of targetRankList) {
     byRank.set(r, [])
   }
@@ -443,6 +479,7 @@ function buildCladeIndex(pool: SpeciesPoolEntry[], data: TaxonomyData) {
           taxId,
           name: data.names[String(taxId)] ?? `Taxon ${taxId}`,
           rank,
+          kingdom: cladeKingdoms.get(taxId) ?? 'Other',
         })
       }
     }
@@ -450,6 +487,39 @@ function buildCladeIndex(pool: SpeciesPoolEntry[], data: TaxonomyData) {
 
   cladeIndexCache = { pool, byRank }
   return byRank
+}
+
+function weightedPickFromBucket(clades: CladeEntry[]) {
+  const byKingdom: Record<KingdomKey, CladeEntry[]> = {
+    Metazoa: [],
+    Viridiplantae: [],
+    Fungi: [],
+    Other: [],
+  }
+  for (const clade of clades) {
+    byKingdom[clade.kingdom].push(clade)
+  }
+
+  const available: { key: KingdomKey; weight: number }[] = []
+  for (const key of Object.keys(KINGDOM_WEIGHTS) as KingdomKey[]) {
+    if (byKingdom[key].length > 0) {
+      available.push({ key, weight: KINGDOM_WEIGHTS[key] })
+    }
+  }
+
+  const totalWeight = available.reduce((s, k) => s + k.weight, 0)
+  let r = Math.random() * totalWeight
+  let chosenKey: KingdomKey = 'Other'
+  for (const { key, weight } of available) {
+    r -= weight
+    if (r <= 0) {
+      chosenKey = key
+      break
+    }
+  }
+
+  const bucket = byKingdom[chosenKey]
+  return bucket[Math.floor(Math.random() * bucket.length)]
 }
 
 const MICROBIAL_GROUP_NAMES = [
@@ -578,7 +648,7 @@ export function pickThreeHardModeDistance(
   for (let attempt = 0; attempt < 20; attempt++) {
     const rank = nonEmptyRanks[Math.floor(Math.random() * nonEmptyRanks.length)]
     const bucket = byRank.get(rank)!
-    const clade = bucket[Math.floor(Math.random() * bucket.length)]
+    const clade = weightedPickFromBucket(bucket)
     const result = pickFromAncestor(clade.taxId, pool, data)
     if (result) {
       return { picks: result, clade }
