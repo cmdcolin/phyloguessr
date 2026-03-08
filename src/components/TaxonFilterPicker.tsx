@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
-import { DISPLAY_TREE, formatModeKey } from '../utils/cladePresets.ts'
 import styles from './TaxonFilterPicker.module.css'
+import { DISPLAY_TREE, formatModeKey } from '../utils/cladePresets.ts'
 
 export default function TaxonFilterPicker({
   value,
@@ -28,13 +28,8 @@ export default function TaxonFilterPicker({
       <div className={styles.modeBar}>
         {value ? (
           <>
-            <span className={styles.modeLabel}>
-              {formatModeKey(value)}
-            </span>
-            <button
-              className={styles.modeClear}
-              onClick={() => select('')}
-            >
+            <span className={styles.modeLabel}>{formatModeKey(value)}</span>
+            <button className={styles.modeClear} onClick={() => select('')}>
               Clear
             </button>
           </>
@@ -83,9 +78,7 @@ export default function TaxonFilterPicker({
               >
                 <span className="clade-tree-prefix">{entry.prefix}</span>
                 {entry.label}{' '}
-                <span className="clade-preset-scientific">
-                  ({entry.name})
-                </span>
+                <span className="clade-preset-scientific">({entry.name})</span>
               </li>
             ),
           )}

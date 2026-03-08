@@ -105,7 +105,12 @@ export async function isNameTaken(name: string) {
 }
 
 function computeStreakUpdate(
-  prev: { bestStreak: number; currentStreak: number; totalWins: number; totalPlayed: number },
+  prev: {
+    bestStreak: number
+    currentStreak: number
+    totalWins: number
+    totalPlayed: number
+  },
   correct: boolean,
 ) {
   const currentStreak = correct ? prev.currentStreak + 1 : 0

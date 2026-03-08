@@ -1,35 +1,173 @@
 type TaxonHeader = { type: 'header'; label: string }
-type TaxonItem = { type: 'item'; id: string; label: string; name: string; depth: number }
+type TaxonItem = {
+  type: 'item'
+  id: string
+  label: string
+  name: string
+  depth: number
+}
 export type DisplayEntry = TaxonHeader | (TaxonItem & { prefix: string })
 
 const CLADE_TREE: (TaxonHeader | TaxonItem)[] = [
   { type: 'header', label: 'Animals' },
   { type: 'item', id: '33208', label: 'animals', name: 'Metazoa', depth: -1 },
-  { type: 'item', id: '7742', label: 'vertebrates', name: 'Vertebrata', depth: 0 },
-  { type: 'item', id: '32523', label: 'bony vertebrates', name: 'Tetrapoda', depth: 1 },
-  { type: 'item', id: '40674', label: 'mammals', name: 'Mammalia', depth: 2 },
-  { type: 'item', id: '9443', label: 'primates', name: 'Primates', depth: 3 },
-  { type: 'item', id: '8782', label: 'birds', name: 'Aves', depth: 2 },
-  { type: 'item', id: '33554', label: 'songbirds', name: 'Passeriformes', depth: 3 },
-  { type: 'item', id: '8504', label: 'lizards & snakes', name: 'Lepidosauria', depth: 2 },
-  { type: 'item', id: '8292', label: 'frogs & salamanders', name: 'Amphibia', depth: 2 },
-  { type: 'item', id: '7898', label: 'ray-finned fish', name: 'Actinopterygii', depth: 1 },
-  { type: 'item', id: '7777', label: 'sharks & rays', name: 'Chondrichthyes', depth: 1 },
-  { type: 'item', id: '50557', label: 'insects', name: 'Insecta', depth: 0 },
-  { type: 'item', id: '7088', label: 'butterflies & moths', name: 'Lepidoptera', depth: 1 },
-  { type: 'item', id: '6854', label: 'spiders & scorpions', name: 'Arachnida', depth: 0 },
-  { type: 'item', id: '6656', label: 'crustaceans', name: 'Arthropoda', depth: 0 },
-  { type: 'item', id: '6447', label: 'snails & octopuses', name: 'Mollusca', depth: 0 },
+  {
+    type: 'item',
+    id: '7742',
+    label: 'vertebrates',
+    name: 'Vertebrata',
+    depth: 0,
+  },
+  {
+    type: 'item',
+    id: '32523',
+    label: 'tetrapods',
+    name: 'Tetrapoda',
+    depth: 2,
+  },
+  { type: 'item', id: '40674', label: 'mammals', name: 'Mammalia', depth: 3 },
+  { type: 'item', id: '9443', label: 'primates', name: 'Primates', depth: 4 },
+  { type: 'item', id: '8782', label: 'birds', name: 'Aves', depth: 3 },
+  {
+    type: 'item',
+    id: '9126',
+    label: 'songbirds',
+    name: 'Passeriformes',
+    depth: 4,
+  },
+  {
+    type: 'item',
+    id: '8504',
+    label: 'lizards & snakes',
+    name: 'Lepidosauria',
+    depth: 3,
+  },
+  {
+    type: 'item',
+    id: '8292',
+    label: 'frogs & salamanders',
+    name: 'Amphibia',
+    depth: 3,
+  },
+  {
+    type: 'item',
+    id: '7898',
+    label: 'ray-finned fish',
+    name: 'Actinopterygii',
+    depth: 2,
+  },
+  {
+    type: 'item',
+    id: '7777',
+    label: 'sharks & rays',
+    name: 'Chondrichthyes',
+    depth: 2,
+  },
+  {
+    type: 'item',
+    id: '6656',
+    label: 'arthropods',
+    name: 'Arthropoda',
+    depth: 0,
+  },
+  { type: 'item', id: '50557', label: 'insects', name: 'Insecta', depth: 1 },
+  {
+    type: 'item',
+    id: '7088',
+    label: 'butterflies & moths',
+    name: 'Lepidoptera',
+    depth: 2,
+  },
+  {
+    type: 'item',
+    id: '6854',
+    label: 'arachnids (spiders, scorpions, etc)',
+    name: 'Arachnida',
+    depth: 1,
+  },
+  {
+    type: 'item',
+    id: '6657',
+    label: 'crustaceans',
+    name: 'Crustacea',
+    depth: 1,
+  },
+  {
+    type: 'item',
+    id: '6447',
+    label: 'molluscs (snails, octopuses, etc)',
+    name: 'Mollusca',
+    depth: 0,
+  },
   { type: 'header', label: 'Plants' },
-  { type: 'item', id: '3398', label: 'flowering plants', name: 'Magnoliopsida', depth: 0 },
+  {
+    type: 'item',
+    id: '3398',
+    label: 'flowering plants',
+    name: 'Magnoliopsida',
+    depth: 0,
+  },
+  {
+    type: 'item',
+    id: '4447',
+    label: 'monocots',
+    name: 'Liliopsida',
+    depth: 1,
+  },
+  {
+    type: 'item',
+    id: '4209',
+    label: 'daisies & asters',
+    name: 'Asterales',
+    depth: 1,
+  },
+  {
+    type: 'item',
+    id: '72025',
+    label: 'legumes',
+    name: 'Fabales',
+    depth: 1,
+  },
+  {
+    type: 'item',
+    id: '3744',
+    label: 'roses',
+    name: 'Rosales',
+    depth: 1,
+  },
+  {
+    type: 'item',
+    id: '4143',
+    label: 'mints & snapdragons',
+    name: 'Lamiales',
+    depth: 1,
+  },
   { type: 'item', id: '58019', label: 'conifers', name: 'Pinopsida', depth: 0 },
   { type: 'header', label: 'Fungi' },
-  { type: 'item', id: '4751', label: 'mushrooms & yeasts', name: 'Fungi', depth: 0 },
-  { type: 'item', id: '4890', label: 'yeasts & sac fungi', name: 'Ascomycota', depth: 1 },
+  {
+    type: 'item',
+    id: '4751',
+    label: 'fungi',
+    name: 'Fungi',
+    depth: 0,
+  },
+  {
+    type: 'item',
+    id: '4890',
+    label: 'yeasts & sac fungi',
+    name: 'Ascomycota',
+    depth: 1,
+  },
   { type: 'header', label: 'Microbes' },
   { type: 'item', id: '2', label: 'bacteria', name: 'Bacteria', depth: 0 },
   { type: 'item', id: '10239', label: 'viruses', name: 'Viruses', depth: 0 },
-  { type: 'item', id: 'micro', label: 'microorganisms', name: 'cross-kingdom', depth: 0 },
+  {
+    type: 'item',
+    id: 'micro',
+    label: 'microorganisms',
+    name: 'cross-kingdom',
+    depth: 0,
+  },
 ]
 
 function addPrefixes(items: TaxonItem[]): (TaxonItem & { prefix: string })[] {
@@ -79,9 +217,9 @@ export const DISPLAY_TREE: DisplayEntry[] = (() => {
   return result
 })()
 
-const CLADE_PRESETS = CLADE_TREE
-  .filter((e): e is TaxonItem => e.type === 'item')
-  .map(e => [e.id, e.label, e.name] as const)
+const CLADE_PRESETS = CLADE_TREE.filter(
+  (e): e is TaxonItem => e.type === 'item',
+).map(e => [e.id, e.label, e.name] as const)
 
 export function formatModeKey(key: string) {
   if (key === 'easy') {

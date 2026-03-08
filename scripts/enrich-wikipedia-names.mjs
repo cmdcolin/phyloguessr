@@ -10,7 +10,13 @@
 // Usage:
 //   node scripts/enrich-wikipedia-names.mjs [--refresh]
 
-import { readFileSync, writeFileSync, existsSync, mkdirSync, unlinkSync } from 'fs'
+import {
+  readFileSync,
+  writeFileSync,
+  existsSync,
+  mkdirSync,
+  unlinkSync,
+} from 'fs'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
 
@@ -33,7 +39,7 @@ async function fetchSparql(query) {
       headers: {
         'User-Agent': USER_AGENT,
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Accept': 'application/sparql-results+json',
+        Accept: 'application/sparql-results+json',
       },
       body: `query=${encodeURIComponent(query)}`,
     })
@@ -42,7 +48,9 @@ async function fetchSparql(query) {
       try {
         return JSON.parse(text)
       } catch {
-        console.log(`  JSON parse error (got ${text.length} chars), retrying...`)
+        console.log(
+          `  JSON parse error (got ${text.length} chars), retrying...`,
+        )
         await new Promise(r => setTimeout(r, 10000 * (attempt + 1)))
         continue
       }
@@ -61,7 +69,9 @@ async function fetchSparql(query) {
 async function fetchWikipediaNames(taxIds, refresh) {
   if (!refresh && existsSync(NAMES_CACHE_PATH)) {
     const cached = JSON.parse(readFileSync(NAMES_CACHE_PATH, 'utf8'))
-    console.log(`Using cached Wikipedia names (${Object.keys(cached).length} entries)`)
+    console.log(
+      `Using cached Wikipedia names (${Object.keys(cached).length} entries)`,
+    )
     return cached
   }
 
@@ -70,12 +80,16 @@ async function fetchWikipediaNames(taxIds, refresh) {
 
   if (!refresh && existsSync(partialPath)) {
     Object.assign(nameMap, JSON.parse(readFileSync(partialPath, 'utf8')))
-    console.log(`Resuming from partial cache (${Object.keys(nameMap).length} entries)`)
+    console.log(
+      `Resuming from partial cache (${Object.keys(nameMap).length} entries)`,
+    )
   }
 
   // Filter out taxIds we already have
   const remaining = taxIds.filter(id => !nameMap[String(id)])
-  console.log(`Fetching Wikipedia names for ${remaining.length} species (${taxIds.length} total, ${Object.keys(nameMap).length} cached)...`)
+  console.log(
+    `Fetching Wikipedia names for ${remaining.length} species (${taxIds.length} total, ${Object.keys(nameMap).length} cached)...`,
+  )
 
   const batches = []
   for (let i = 0; i < remaining.length; i += BATCH_SIZE) {
@@ -100,7 +114,9 @@ SELECT ?taxId ?scientificName ?wpTitle ?commonName WHERE {
   }
 }
 `
-    console.log(`  Batch ${i + 1}/${batches.length} (${batch.length} taxIds)...`)
+    console.log(
+      `  Batch ${i + 1}/${batches.length} (${batch.length} taxIds)...`,
+    )
     const data = await fetchSparql(query)
     const results = data.results.bindings
 
@@ -115,7 +131,9 @@ SELECT ?taxId ?scientificName ?wpTitle ?commonName WHERE {
       }
     }
 
-    console.log(`  Got ${results.length} results (total: ${Object.keys(nameMap).length})`)
+    console.log(
+      `  Got ${results.length} results (total: ${Object.keys(nameMap).length})`,
+    )
 
     writeFileSync(partialPath, JSON.stringify(nameMap))
     await new Promise(r => setTimeout(r, 2000))
@@ -172,7 +190,11 @@ async function main() {
       continue
     }
 
-    const bestName = pickBestName(info.wpTitle, info.wdLabel, info.scientificName)
+    const bestName = pickBestName(
+      info.wpTitle,
+      info.wdLabel,
+      info.scientificName,
+    )
     if (!bestName) {
       noWpName++
       continue
@@ -199,7 +221,9 @@ async function main() {
   }
 
   writeFileSync(POOL_PATH, JSON.stringify(pool))
-  console.log(`\nSpecies pool: ${updated} names updated, ${alreadyGood} already good, ${noWpName} no Wikipedia name found`)
+  console.log(
+    `\nSpecies pool: ${updated} names updated, ${alreadyGood} already good, ${noWpName} no Wikipedia name found`,
+  )
 
   // Patch wikidata-supplement.json
   if (existsSync(SUPPLEMENT_PATH)) {

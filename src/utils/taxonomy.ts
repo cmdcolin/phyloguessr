@@ -174,13 +174,16 @@ export function findClosestPairFromData(
 
   let best = pairs[0]
   for (let i = 1; i < pairs.length; i++) {
-    if (lcaClosenessScore(pairs[i].lca, data) > lcaClosenessScore(best.lca, data)) {
+    if (
+      lcaClosenessScore(pairs[i].lca, data) > lcaClosenessScore(best.lca, data)
+    ) {
       best = pairs[i]
     }
   }
 
   const overallLca =
-    lcaClosenessScore(best.otherLcas[0], data) < lcaClosenessScore(best.otherLcas[1], data)
+    lcaClosenessScore(best.otherLcas[0], data) <
+    lcaClosenessScore(best.otherLcas[1], data)
       ? best.otherLcas[0]
       : best.otherLcas[1]
 
@@ -752,7 +755,9 @@ export function getAllPairLcas(taxIds: number[], data: TaxonomyData) {
       pairs.push({ i, j, taxIdA: taxIds[i], taxIdB: taxIds[j], lca })
     }
   }
-  pairs.sort((a, b) => lcaClosenessScore(b.lca, data) - lcaClosenessScore(a.lca, data))
+  pairs.sort(
+    (a, b) => lcaClosenessScore(b.lca, data) - lcaClosenessScore(a.lca, data),
+  )
   return pairs
 }
 
@@ -840,10 +845,15 @@ export function pickNHardModeDistance(
       if (pairs.length < 2) {
         continue
       }
-      if (lcaClosenessScore(pairs[0].lca, data) === lcaClosenessScore(pairs[1].lca, data)) {
+      if (
+        lcaClosenessScore(pairs[0].lca, data) ===
+        lcaClosenessScore(pairs[1].lca, data)
+      ) {
         continue
       }
-      const distinctScores = new Set(pairs.map(p => lcaClosenessScore(p.lca, data)))
+      const distinctScores = new Set(
+        pairs.map(p => lcaClosenessScore(p.lca, data)),
+      )
       if (distinctScores.size >= Math.min(4, pairs.length)) {
         return { picks: result, clade }
       }
@@ -855,7 +865,11 @@ export function pickNHardModeDistance(
     if (result) {
       const taxIds = result.map(r => r[0])
       const pairs = getAllPairLcas(taxIds, data)
-      if (pairs.length >= 2 && lcaClosenessScore(pairs[0].lca, data) !== lcaClosenessScore(pairs[1].lca, data)) {
+      if (
+        pairs.length >= 2 &&
+        lcaClosenessScore(pairs[0].lca, data) !==
+          lcaClosenessScore(pairs[1].lca, data)
+      ) {
         return { picks: result }
       }
     }
@@ -1301,8 +1315,7 @@ export function expandDiagramUp(
   }
 
   const parentTaxId = lineage[rootIdx + 1]
-  const parentName =
-    data.names[String(parentTaxId)] ?? String(parentTaxId)
+  const parentName = data.names[String(parentTaxId)] ?? String(parentTaxId)
   return {
     diagram: {
       label: annotateLabel(parentName),

@@ -63,7 +63,6 @@ async function fetchWikiThumbnail(wikiTitle) {
   }
 }
 
-
 function parseOrganisms(src) {
   const organisms = []
   const regex =

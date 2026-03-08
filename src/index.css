@@ -55,7 +55,6 @@ body {
   padding: var(--space-xl) var(--space-lg);
 }
 
-
 .streak {
   font-size: 0.8rem;
   color: var(--success);
@@ -573,7 +572,6 @@ body {
   flex-wrap: wrap;
   margin-bottom: var(--space-lg);
 }
-
 
 .selecting .btn {
   display: flex;
@@ -1276,7 +1274,6 @@ a.breadcrumb-link:hover,
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-md);
 }
-
 
 .multi-pair-details {
   margin: var(--space-md) 0;

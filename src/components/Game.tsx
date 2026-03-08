@@ -1,6 +1,12 @@
 import { useCallback, useEffect, useState } from 'react'
 
 import Button from './Button.tsx'
+import Header from './Header.tsx'
+import { MapToggle } from './MapToggle.tsx'
+import OrganismCard from './OrganismCard.tsx'
+import ResultScreen from './ResultScreen.tsx'
+import { MAP_COLORS } from './SpeciesMap.tsx'
+import { TaxLink } from './TaxLink.tsx'
 import {
   buildShareUrl,
   comboKey,
@@ -10,17 +16,10 @@ import {
   toggleSelect,
   updateUrlWithQuestion,
 } from './gameUtils.ts'
-import Header from './Header.tsx'
-import OrganismCard from './OrganismCard.tsx'
-import ResultScreen from './ResultScreen.tsx'
-import { TaxLink } from './TaxLink.tsx'
-import { MapToggle } from './MapToggle.tsx'
-import { MAP_COLORS } from './SpeciesMap.tsx'
 import { loadSurprisingScenarios } from '../data/surprisingFacts.ts'
 import { recordRound } from '../firebase.ts'
 import { DISPLAY_TREE, formatModeKey } from '../utils/cladePresets.ts'
 import { addHistoryEntry, loadHistory, loadStats } from '../utils/history.ts'
-import type { HistoryStats } from '../utils/history.ts'
 import { sessionStorageGetItem } from '../utils/storage.ts'
 import {
   buildContextDiagram,
@@ -38,7 +37,7 @@ import {
 import type { Organism } from '../data/organisms.ts'
 import type { SurprisingScenario } from '../data/surprisingFacts.ts'
 import type { MrcaInfo } from '../utils/format.ts'
-import type { HistoryEntry } from '../utils/history.ts'
+import type { HistoryEntry, HistoryStats } from '../utils/history.ts'
 import type {
   DiagramNode,
   SpeciesPoolEntry,
@@ -533,9 +532,11 @@ export default function Game({ mode }: { mode: GameMode }) {
 
       const leaderboardName = localStorage.getItem('phyloLeaderboardName')
       if (leaderboardName) {
-        recordRound(leaderboardName, resultData.correct, effectiveModeKey).catch(
-          console.error,
-        )
+        recordRound(
+          leaderboardName,
+          resultData.correct,
+          effectiveModeKey,
+        ).catch(console.error)
       }
     }
 
@@ -560,13 +561,19 @@ export default function Game({ mode }: { mode: GameMode }) {
                   className={`clade-preset-item ${!multiMode ? 'active' : ''}`}
                   onClick={() => setMultiMode(false)}
                 >
-                  Classic <span className="clade-preset-scientific">(pick 2 from 3)</span>
+                  Classic{' '}
+                  <span className="clade-preset-scientific">
+                    (pick 2 from 3)
+                  </span>
                 </li>
                 <li
                   className={`clade-preset-item ${multiMode ? 'active' : ''}`}
                   onClick={() => setMultiMode(true)}
                 >
-                  Multi <span className="clade-preset-scientific">(pick 2 from 6)</span>
+                  Multi{' '}
+                  <span className="clade-preset-scientific">
+                    (pick 2 from 6)
+                  </span>
                 </li>
               </ul>
             </fieldset>
@@ -816,7 +823,8 @@ export default function Game({ mode }: { mode: GameMode }) {
                   <strong>{modeStats.currentStreak}</strong>
                   {modeStats.bestStreak > 1 && (
                     <span className="game-stats-best">
-                      {' '}(best {modeStats.bestStreak})
+                      {' '}
+                      (best {modeStats.bestStreak})
                     </span>
                   )}
                 </span>

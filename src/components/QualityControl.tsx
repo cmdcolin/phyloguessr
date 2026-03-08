@@ -5,6 +5,7 @@ import {
   loadSpeciesPool,
   loadTaxonomyData,
 } from '../utils/taxonomy.ts'
+
 import type { SpeciesPoolEntry, TaxonomyData } from '../utils/taxonomy.ts'
 
 const STORAGE_KEY = 'phylo-flagged-species'
@@ -44,14 +45,14 @@ function getRankFromLineage(
 }
 
 const SOURCE_LABELS: Record<NameSource, string> = {
-  'wikipedia': 'WP',
-  'ncbi': 'NCBI',
+  wikipedia: 'WP',
+  ncbi: 'NCBI',
   'scientific-only': 'sci',
 }
 
 const SOURCE_COLORS: Record<NameSource, string> = {
-  'wikipedia': '#1565c0',
-  'ncbi': '#2e7d32',
+  wikipedia: '#1565c0',
+  ncbi: '#2e7d32',
   'scientific-only': '#777',
 }
 
@@ -132,7 +133,9 @@ export default function QualityControl() {
   const [saveStatus, setSaveStatus] = useState('')
   const containerRef = useRef<HTMLDivElement>(null)
 
-  const [wpNames, setWpNames] = useState<Record<string, { wpTitle: string; wdLabel: string }>>({})
+  const [wpNames, setWpNames] = useState<
+    Record<string, { wpTitle: string; wdLabel: string }>
+  >({})
 
   useEffect(() => {
     Promise.all([
@@ -151,9 +154,15 @@ export default function QualityControl() {
 
   const taxonomyLookup = useMemo(() => {
     if (!data || pool.length === 0) {
-      return new Map<number, { kingdom: string; phylum: string; family: string }>()
+      return new Map<
+        number,
+        { kingdom: string; phylum: string; family: string }
+      >()
     }
-    const lookup = new Map<number, { kingdom: string; phylum: string; family: string }>()
+    const lookup = new Map<
+      number,
+      { kingdom: string; phylum: string; family: string }
+    >()
     for (const entry of pool) {
       const taxId = entry[0]
       const kingdom = getRankFromLineage(taxId, 'kingdom', data)
@@ -172,7 +181,11 @@ export default function QualityControl() {
     const lookup = new Map<number, NameSource>()
     for (const entry of pool) {
       const [taxId, commonName, scientificName] = entry
-      if (commonName === scientificName || commonName.toLowerCase() === scientificName.toLowerCase() || !commonName) {
+      if (
+        commonName === scientificName ||
+        commonName.toLowerCase() === scientificName.toLowerCase() ||
+        !commonName
+      ) {
         lookup.set(taxId, 'scientific-only')
       } else {
         const wp = wpNames[String(taxId)]
@@ -244,7 +257,16 @@ export default function QualityControl() {
 
       return true
     })
-  }, [pool, search, kingdomFilter, phylumFilter, filterMode, flagged, brokenImgs, taxonomyLookup])
+  }, [
+    pool,
+    search,
+    kingdomFilter,
+    phylumFilter,
+    filterMode,
+    flagged,
+    brokenImgs,
+    taxonomyLookup,
+  ])
 
   const sorted = useMemo(() => {
     const arr = [...filtered]
@@ -266,24 +288,22 @@ export default function QualityControl() {
     return arr
   }, [filtered, sortBy, taxonomyLookup])
 
-  const paged = sorted.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE)
   const totalPages = Math.ceil(sorted.length / PAGE_SIZE)
+  const safePage = Math.min(page, Math.max(0, totalPages - 1))
+  const paged = sorted.slice(safePage * PAGE_SIZE, (safePage + 1) * PAGE_SIZE)
 
-  const toggleFlag = useCallback(
-    (taxId: number) => {
-      setFlagged(prev => {
-        const next = new Set(prev)
-        if (next.has(taxId)) {
-          next.delete(taxId)
-        } else {
-          next.add(taxId)
-        }
-        saveFlagged(next)
-        return next
-      })
-    },
-    [],
-  )
+  const toggleFlag = useCallback((taxId: number) => {
+    setFlagged(prev => {
+      const next = new Set(prev)
+      if (next.has(taxId)) {
+        next.delete(taxId)
+      } else {
+        next.add(taxId)
+      }
+      saveFlagged(next)
+      return next
+    })
+  }, [])
 
   const exportFlagged = useCallback(() => {
     const entries = pool
@@ -364,10 +384,6 @@ export default function QualityControl() {
       .catch(() => setSaveStatus('Save failed — only works in dev server'))
   }, [pool, flagged])
 
-  useEffect(() => {
-    setPage(0)
-  }, [search, kingdomFilter, phylumFilter, filterMode, sortBy])
-
   if (loading) {
     return (
       <div class="qc-container">
@@ -390,7 +406,10 @@ export default function QualityControl() {
           type="text"
           placeholder="Search by name or taxId..."
           value={search}
-          onInput={e => setSearch((e.target as HTMLInputElement).value)}
+          onInput={e => {
+            setSearch((e.target as HTMLInputElement).value)
+            setPage(0)
+          }}
           class="qc-search"
         />
 
@@ -399,6 +418,7 @@ export default function QualityControl() {
           onChange={e => {
             setKingdomFilter((e.target as HTMLSelectElement).value)
             setPhylumFilter('all')
+            setPage(0)
           }}
           class="qc-select"
         >
@@ -412,9 +432,10 @@ export default function QualityControl() {
 
         <select
           value={phylumFilter}
-          onChange={e =>
+          onChange={e => {
             setPhylumFilter((e.target as HTMLSelectElement).value)
-          }
+            setPage(0)
+          }}
           class="qc-select"
         >
           <option value="all">All phyla</option>
@@ -427,9 +448,15 @@ export default function QualityControl() {
 
         <select
           value={sortBy}
-          onChange={e =>
-            setSortBy((e.target as HTMLSelectElement).value as 'name' | 'kingdom' | 'phylum')
-          }
+          onChange={e => {
+            setSortBy(
+              (e.target as HTMLSelectElement).value as
+                | 'name'
+                | 'kingdom'
+                | 'phylum',
+            )
+            setPage(0)
+          }}
           class="qc-select"
         >
           <option value="name">Sort: Name</option>
@@ -438,23 +465,28 @@ export default function QualityControl() {
         </select>
 
         <div class="qc-filter-btns">
-          {(['all', 'flagged', 'unflagged', 'broken-img'] as FilterMode[]).map(mode => {
-            const labels: Record<FilterMode, string> = {
-              all: 'All',
-              flagged: 'Flagged',
-              unflagged: 'Unflagged',
-              'broken-img': `Broken img (${brokenImgs.size})`,
-            }
-            return (
-              <button
-                key={mode}
-                class={`qc-filter-btn ${filterMode === mode ? 'active' : ''}`}
-                onClick={() => setFilterMode(mode)}
-              >
-                {labels[mode]}
-              </button>
-            )
-          })}
+          {(['all', 'flagged', 'unflagged', 'broken-img'] as FilterMode[]).map(
+            mode => {
+              const labels: Record<FilterMode, string> = {
+                all: 'All',
+                flagged: 'Flagged',
+                unflagged: 'Unflagged',
+                'broken-img': `Broken img (${brokenImgs.size})`,
+              }
+              return (
+                <button
+                  key={mode}
+                  class={`qc-filter-btn ${filterMode === mode ? 'active' : ''}`}
+                  onClick={() => {
+                    setFilterMode(mode)
+                    setPage(0)
+                  }}
+                >
+                  {labels[mode]}
+                </button>
+              )
+            },
+          )}
         </div>
       </div>
 

@@ -7,9 +7,9 @@ import {
   getTopStreaks,
   getUid,
 } from '../firebase.ts'
-import { formatModeKey } from '../utils/cladePresets.ts'
-import TaxonFilterPicker from './TaxonFilterPicker.tsx'
 import styles from './Leaderboard.module.css'
+import TaxonFilterPicker from './TaxonFilterPicker.tsx'
+import { formatModeKey } from '../utils/cladePresets.ts'
 
 import type { LeaderboardEntry, MultiLeaderboardEntry } from '../firebase.ts'
 
@@ -86,10 +86,7 @@ function StreakTable({
       </thead>
       <tbody>
         {sorted.map((entry, i) => (
-          <tr
-            key={entry.uid}
-            className={entry.uid === uid ? styles.you : ''}
-          >
+          <tr key={entry.uid} className={entry.uid === uid ? styles.you : ''}>
             <td className={styles.rank}>{i + 1}</td>
             <td className={styles.name}>
               {entry.name}
@@ -122,7 +119,9 @@ export default function Leaderboard() {
   const [selectedMode, setSelectedMode] = useState<string>('random')
   const [modeEntries, setModeEntries] = useState<StreakEntry[]>([])
   const [multiMode, setMultiMode] = useState<string>('')
-  const [multiModeEntries, setMultiModeEntries] = useState<MultiLeaderboardEntry[]>([])
+  const [multiModeEntries, setMultiModeEntries] = useState<
+    MultiLeaderboardEntry[]
+  >([])
 
   const handleModeSelect = (mode: string) => {
     setSelectedMode(mode === '' ? 'random' : mode)
@@ -200,7 +199,9 @@ export default function Leaderboard() {
     : 'No scores yet. Be the first!'
 
   const sortedMulti = [...activeMultiEntries]
-    .filter(e => multiSort === 'avg' ? e.totalPlayed >= MIN_PLAYED_FOR_AVG : true)
+    .filter(e =>
+      multiSort === 'avg' ? e.totalPlayed >= MIN_PLAYED_FOR_AVG : true,
+    )
     .sort((a, b) => {
       let cmp = 0
       if (multiSort === 'name') {
@@ -267,9 +268,10 @@ export default function Leaderboard() {
       {loading && <p className={styles.loading}>Loading...</p>}
       {error && <p className={styles.error}>{error}</p>}
 
-      {!loading && tab === 'classic' && classicEntries.length === 0 && !error && (
-        <p className={styles.empty}>{emptyLabel}</p>
-      )}
+      {!loading &&
+        tab === 'classic' &&
+        classicEntries.length === 0 &&
+        !error && <p className={styles.empty}>{emptyLabel}</p>}
 
       {!loading && tab === 'classic' && classicEntries.length > 0 && (
         <StreakTable entries={classicEntries} uid={uid} />

@@ -14,7 +14,11 @@ import { fileURLToPath } from 'url'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
 const CACHE_PATH = join(ROOT, '.taxonomy-build', 'image-cache.json')
-const WIKIDATA_CACHE_PATH = join(ROOT, '.taxonomy-build', 'wikidata-species.json')
+const WIKIDATA_CACHE_PATH = join(
+  ROOT,
+  '.taxonomy-build',
+  'wikidata-species.json',
+)
 
 const SPARQL_ENDPOINT = 'https://query.wikidata.org/sparql'
 const USER_AGENT = 'PhyloGuessr/1.0 (https://phyloguessr.com)'
@@ -130,7 +134,10 @@ LIMIT ${BATCH_SIZE} OFFSET ${offset}
 function commonsUrlToThumb(commonsUrl, width = 330) {
   // http://commons.wikimedia.org/wiki/Special:FilePath/Foo.jpg
   // -> https://upload.wikimedia.org/wikipedia/commons/thumb/<md5[0]>/<md5[0:2]>/Foo.jpg/330px-Foo.jpg
-  const filename = decodeURIComponent(commonsUrl.split('/').pop()).replace(/ /g, '_')
+  const filename = decodeURIComponent(commonsUrl.split('/').pop()).replace(
+    / /g,
+    '_',
+  )
   // Use the Wikimedia thumbnail API shortcut
   return `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(filename)}?width=${width}`
 }
@@ -161,11 +168,17 @@ async function main() {
     added++
   }
 
-  console.log(`Image cache: ${existingSize} existing, ${added} added from Wikidata`)
+  console.log(
+    `Image cache: ${existingSize} existing, ${added} added from Wikidata`,
+  )
   saveCache(cache)
 
   // Write supplemental species list for build-taxonomy to pick up
-  const supplementPath = join(ROOT, '.taxonomy-build', 'wikidata-supplement.json')
+  const supplementPath = join(
+    ROOT,
+    '.taxonomy-build',
+    'wikidata-supplement.json',
+  )
   const supplement = []
   for (const [taxId, s] of byTaxId) {
     const name = s.commonName || s.scientificName

@@ -1,5 +1,6 @@
-import type { ReactNode } from 'react'
 import { cn } from '../utils/format.ts'
+
+import type { ReactNode } from 'react'
 
 interface Props {
   variant?: 'primary' | 'secondary'

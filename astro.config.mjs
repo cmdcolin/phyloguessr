@@ -1,7 +1,8 @@
-import preact from '@astrojs/preact'
-import { defineConfig } from 'astro/config'
 import { readFileSync, writeFileSync } from 'fs'
 import { join } from 'path'
+
+import preact from '@astrojs/preact'
+import { defineConfig } from 'astro/config'
 
 function qcDevPlugin() {
   return {
@@ -14,9 +15,15 @@ function qcDevPlugin() {
           return
         }
         let body = ''
-        req.on('data', chunk => { body += chunk })
+        req.on('data', chunk => {
+          body += chunk
+        })
         req.on('end', () => {
-          const flaggedPath = join(process.cwd(), 'public', 'flagged-species.json')
+          const flaggedPath = join(
+            process.cwd(),
+            'public',
+            'flagged-species.json',
+          )
           writeFileSync(flaggedPath, body)
           res.setHeader('Content-Type', 'application/json')
           res.end(JSON.stringify({ ok: true }))

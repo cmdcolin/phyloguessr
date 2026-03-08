@@ -8,8 +8,8 @@ import {
   buildTreeFromLineages,
   findClosestPairFromData,
   getAllPairLcas,
-  lcaClosenessScore,
   getLineageFromParents,
+  lcaClosenessScore,
 } from './taxonomy.ts'
 import { CURATED_MICROORGANISMS } from '../../scripts/curated-microorganisms.mjs'
 import { organisms } from '../data/organisms.ts'
@@ -189,17 +189,13 @@ describe('lcaClosenessScore', () => {
   it('uses depth as tiebreaker within same rank', () => {
     const deep = { taxId: 1, name: 'A', rank: 'genus', depth: 10 }
     const shallow = { taxId: 2, name: 'B', rank: 'genus', depth: 5 }
-    expect(lcaClosenessScore(deep)).toBeGreaterThan(
-      lcaClosenessScore(shallow),
-    )
+    expect(lcaClosenessScore(deep)).toBeGreaterThan(lcaClosenessScore(shallow))
   })
 
   it('falls back to depth for unranked nodes without data', () => {
     const deep = { taxId: 1, name: 'A', rank: 'no rank', depth: 20 }
     const shallow = { taxId: 2, name: 'B', rank: 'no rank', depth: 10 }
-    expect(lcaClosenessScore(deep)).toBeGreaterThan(
-      lcaClosenessScore(shallow),
-    )
+    expect(lcaClosenessScore(deep)).toBeGreaterThan(lcaClosenessScore(shallow))
   })
 
   it('uses nearest ranked ancestor for unranked nodes when data is provided', () => {
@@ -209,7 +205,12 @@ describe('lcaClosenessScore', () => {
       names: { '10': 'Family X', '15': 'Some clade', '20': 'Genus Y' },
       ranks: { '10': 'family', '15': 'no rank', '20': 'genus' },
     }
-    const unrankedLca = { taxId: 15, name: 'Some clade', rank: 'no rank', depth: 8 }
+    const unrankedLca = {
+      taxId: 15,
+      name: 'Some clade',
+      rank: 'no rank',
+      depth: 8,
+    }
     const familyLca = { taxId: 10, name: 'Family X', rank: 'family', depth: 5 }
 
     // Without data, unranked scores by raw depth only

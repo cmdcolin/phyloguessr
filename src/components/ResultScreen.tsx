@@ -1,11 +1,11 @@
 import { useState } from 'react'
 
-import Button from './Button.tsx'
 import { LineageBreadcrumbs } from './Breadcrumbs.tsx'
+import Button from './Button.tsx'
 import DiagramTree from './DiagramTree.tsx'
-import { ShareButton } from './ShareButton.tsx'
 import { MapToggle } from './MapToggle.tsx'
 import PhyloTree from './PhyloTree.tsx'
+import { ShareButton } from './ShareButton.tsx'
 import { TaxLink } from './TaxLink.tsx'
 import { capitalize, formatRank } from '../utils/format.ts'
 import { expandDiagramUp } from '../utils/taxonomy.ts'
@@ -148,7 +148,11 @@ function ZoomableDiagram({
   const [canZoom, setCanZoom] = useState(true)
 
   const handleZoomOut = () => {
-    const expanded = expandDiagramUp(currentDiagram, currentRootTaxId, taxonomyData)
+    const expanded = expandDiagramUp(
+      currentDiagram,
+      currentRootTaxId,
+      taxonomyData,
+    )
     if (expanded) {
       setCurrentDiagram(expanded.diagram)
       setCurrentRootTaxId(expanded.rootTaxId)

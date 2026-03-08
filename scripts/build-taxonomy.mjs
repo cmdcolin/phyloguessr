@@ -190,7 +190,10 @@ function cleanJb2hubsCommonName(commonName, scientificName) {
     .replace(/\s*\([^)]*\d{4}[^)]*(genbank|refseq)[^)]*\)/gi, '')
     .replace(/\s*\(\d{4}\)/, '')
     // Remove strain prefixes like "ascomycetes T.marneffei" or "basidiomycetes M.osmundae IAM 14324"
-    .replace(/^(ascomycetes|basidiomycetes|apicomplexans|diplomonads)\s+\S+/i, '')
+    .replace(
+      /^(ascomycetes|basidiomycetes|apicomplexans|diplomonads)\s+\S+/i,
+      '',
+    )
     // Remove strain/isolate identifiers
     .replace(/\s+(ATCC|IAM|CBS|NRRL|DSM|JCM)\s+\S+/g, '')
     .trim()
@@ -311,9 +314,7 @@ function loadFlaggedSpecies() {
     return new Set()
   }
   const raw = JSON.parse(readFileSync(FLAGGED_PATH, 'utf8'))
-  const ids = new Set(
-    raw.map(e => (typeof e === 'number' ? e : e.taxId)),
-  )
+  const ids = new Set(raw.map(e => (typeof e === 'number' ? e : e.taxId)))
   console.log(`Loaded ${ids.size} flagged species from flagged-species.json`)
   return ids
 }
@@ -390,16 +391,24 @@ function classifySpecies(taxId, ncbiParents, ncbiRanks) {
 function downsamplePool(pool, ncbiParents, ncbiRanks) {
   const target = Object.values(KINGDOM_TARGETS).reduce((a, b) => a + b, 0)
   if (pool.length <= target) {
-    console.log(`  Pool (${pool.length}) within target (${target}), no downsampling needed`)
+    console.log(
+      `  Pool (${pool.length}) within target (${target}), no downsampling needed`,
+    )
     return pool
   }
 
-  console.log(`Downsampling ${pool.length} species to ~${target} with diversity priority...`)
+  console.log(
+    `Downsampling ${pool.length} species to ~${target} with diversity priority...`,
+  )
 
   // Group by kingdom and family
   const groups = new Map()
   for (const entry of pool) {
-    const { kingdom, family } = classifySpecies(entry[0], ncbiParents, ncbiRanks)
+    const { kingdom, family } = classifySpecies(
+      entry[0],
+      ncbiParents,
+      ncbiRanks,
+    )
     const key = `${kingdom}:${family}`
     if (!groups.has(key)) groups.set(key, { kingdom, entries: [] })
     groups.get(key).entries.push(entry)
@@ -454,7 +463,9 @@ function downsamplePool(pool, ncbiParents, ncbiRanks) {
       }
     }
 
-    console.log(`  ${kingdom}: ${picked}/${available} (${families.length} families)`)
+    console.log(
+      `  ${kingdom}: ${picked}/${available} (${families.length} families)`,
+    )
   }
 
   console.log(`  Total: ${sampled.length} species`)
@@ -601,14 +612,18 @@ async function main() {
   const poolIds = new Set(pool.map(e => e[0]))
 
   const microAdded = mergeIntoPool(pool, poolIds, CURATED_MICROORGANISMS)
-  console.log(`  Added ${microAdded} curated microorganisms (pool now ${pool.length})`)
+  console.log(
+    `  Added ${microAdded} curated microorganisms (pool now ${pool.length})`,
+  )
 
   // jb2hubs names removed — assembly metadata names were low quality.
   // jb2hubs images are still imported separately via import-jb2hubs-images.mjs.
 
   const wikidataEntries = loadWikidataSupplement(ncbiParents)
   const wdAdded = mergeIntoPool(pool, poolIds, wikidataEntries)
-  console.log(`  Added ${wdAdded} species from Wikidata (pool now ${pool.length})`)
+  console.log(
+    `  Added ${wdAdded} species from Wikidata (pool now ${pool.length})`,
+  )
 
   // Remove flagged species
   const flaggedIds = loadFlaggedSpecies()
@@ -617,7 +632,9 @@ async function main() {
     const filtered = pool.filter(e => !flaggedIds.has(e[0]))
     pool.length = 0
     pool.push(...filtered)
-    console.log(`  Removed ${before - pool.length} flagged species (pool now ${pool.length})`)
+    console.log(
+      `  Removed ${before - pool.length} flagged species (pool now ${pool.length})`,
+    )
   }
 
   // Downsample for diversity

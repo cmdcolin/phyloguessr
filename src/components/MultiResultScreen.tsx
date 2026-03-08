@@ -1,10 +1,10 @@
 import { cluster, hierarchy } from 'd3-hierarchy'
 
-import Button from './Button.tsx'
 import { LineageBreadcrumbs } from './Breadcrumbs.tsx'
+import Button from './Button.tsx'
 import DiagramTree from './DiagramTree.tsx'
-import { ShareButton } from './ShareButton.tsx'
 import { MapToggle } from './MapToggle.tsx'
+import { ShareButton } from './ShareButton.tsx'
 import { TaxLink } from './TaxLink.tsx'
 import { capitalize, formatRank } from '../utils/format.ts'
 import {
@@ -109,7 +109,13 @@ function MultiDiagramTree({
   const tree = collapseSingleChildren(rawTree, orgTaxIds)
   const orgNames = new Map(organisms.map(o => [o.ncbiTaxId, o.commonName]))
   const diagramRoot = treeNodeToDiagramNode(tree, orgNames)
-  return <DiagramTree root={diagramRoot} correct={correct} userSelectedTaxIds={userSelectedTaxIds} />
+  return (
+    <DiagramTree
+      root={diagramRoot}
+      correct={correct}
+      userSelectedTaxIds={userSelectedTaxIds}
+    />
+  )
 }
 
 function MultiTree({

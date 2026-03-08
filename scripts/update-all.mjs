@@ -74,7 +74,9 @@ if (existsSync(JB2HUBS)) {
 // Step 2b: Import Wikidata images (optional, uses cached data)
 const wikidataSupp = join(ROOT, '.taxonomy-build', 'wikidata-supplement.json')
 if (!existsSync(wikidataSupp)) {
-  console.log('\nNo Wikidata supplement found. Run: node scripts/import-wikidata-images.mjs')
+  console.log(
+    '\nNo Wikidata supplement found. Run: node scripts/import-wikidata-images.mjs',
+  )
 }
 
 // Step 3: Validate pool images

@@ -3,8 +3,8 @@ import { Suspense, lazy } from 'react'
 
 import { capitalize } from '../utils/format.ts'
 
-import type { Organism } from '../data/organisms.ts'
 import type { Difficulty } from './gameUtils.ts'
+import type { Organism } from '../data/organisms.ts'
 
 const InteractiveMap = lazy(() => import('./InteractiveMap.tsx'))
 

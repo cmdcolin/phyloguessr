@@ -1,6 +1,9 @@
 import { useCallback, useEffect, useState } from 'react'
 
 import Button from './Button.tsx'
+import Header from './Header.tsx'
+import MultiResultScreen from './MultiResultScreen.tsx'
+import OrganismCard from './OrganismCard.tsx'
 import {
   buildShareUrl,
   comboKey,
@@ -9,12 +12,8 @@ import {
   resolveOrganism,
   toggleSelect,
 } from './gameUtils.ts'
-import Header from './Header.tsx'
-import MultiResultScreen from './MultiResultScreen.tsx'
-import OrganismCard from './OrganismCard.tsx'
 import { recordMultiRound } from '../firebase.ts'
 import { addHistoryEntry, loadHistory, loadStats } from '../utils/history.ts'
-import type { HistoryStats } from '../utils/history.ts'
 import {
   getAllPairLcas,
   lcaClosenessScore,
@@ -25,7 +24,7 @@ import {
 
 import type { MultiResultData } from './MultiResultScreen.tsx'
 import type { Organism } from '../data/organisms.ts'
-import type { HistoryEntry } from '../utils/history.ts'
+import type { HistoryEntry, HistoryStats } from '../utils/history.ts'
 import type { SpeciesPoolEntry, TaxonomyData } from '../utils/taxonomy.ts'
 
 type GameState = 'loading' | 'selecting' | 'result'
@@ -125,7 +124,11 @@ export default function MultiGame() {
 
       const taxIds = orgs.map(o => o.ncbiTaxId)
       const pairs = getAllPairLcas(taxIds, data)
-      if (pairs.length >= 2 && lcaClosenessScore(pairs[0].lca, data) > lcaClosenessScore(pairs[1].lca, data)) {
+      if (
+        pairs.length >= 2 &&
+        lcaClosenessScore(pairs[0].lca, data) >
+          lcaClosenessScore(pairs[1].lca, data)
+      ) {
         finalOrgs = orgs
         finalClade = hardResult.clade
         break
@@ -241,7 +244,9 @@ export default function MultiGame() {
 
     const bestPair = allPairs[0]
     const userScore = lcaClosenessScore(userPair.lca, taxonomyData)
-    const betterCount = allPairs.filter(p => lcaClosenessScore(p.lca, taxonomyData) > userScore).length
+    const betterCount = allPairs.filter(
+      p => lcaClosenessScore(p.lca, taxonomyData) > userScore,
+    ).length
     const rank = betterCount + 1
     const totalPairs = allPairs.length
     const t = totalPairs <= 1 ? 1 : (totalPairs - rank) / (totalPairs - 1)
@@ -311,19 +316,23 @@ export default function MultiGame() {
               {randomClade.rank ? ` (${randomClade.rank})` : ''}
             </p>
           )}
-          {stats && stats.multiTotalPlayed !== undefined && stats.multiTotalPlayed > 0 && (
-            <div className="game-stats">
-              <span className="game-stats-item">
-                Avg score:{' '}
-                <strong>
-                  {Math.round((stats.multiTotalScore ?? 0) / stats.multiTotalPlayed)}
-                </strong>
-              </span>
-              <span className="game-stats-item">
-                Total points: <strong>{stats.multiTotalScore ?? 0}</strong>
-              </span>
-            </div>
-          )}
+          {stats &&
+            stats.multiTotalPlayed !== undefined &&
+            stats.multiTotalPlayed > 0 && (
+              <div className="game-stats">
+                <span className="game-stats-item">
+                  Avg score:{' '}
+                  <strong>
+                    {Math.round(
+                      (stats.multiTotalScore ?? 0) / stats.multiTotalPlayed,
+                    )}
+                  </strong>
+                </span>
+                <span className="game-stats-item">
+                  Total points: <strong>{stats.multiTotalScore ?? 0}</strong>
+                </span>
+              </div>
+            )}
           <p className="selecting-prompt">
             Pick the two species you think are most closely related
           </p>

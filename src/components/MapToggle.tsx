@@ -2,8 +2,8 @@ import { useState } from 'react'
 
 import SpeciesMap, { MAP_COLORS } from './SpeciesMap.tsx'
 
-import type { Organism } from '../data/organisms.ts'
 import type { Difficulty } from './gameUtils.ts'
+import type { Organism } from '../data/organisms.ts'
 
 export function MapToggle({
   organisms,

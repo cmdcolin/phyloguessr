@@ -97,10 +97,14 @@ export function OrganismBreadcrumbs({
 
   return (
     <>
-      <span
-        className="breadcrumb-label"
-      >
-        {isUserPick && <span className={`breadcrumb-pick-arrow ${correct === false ? 'breadcrumb-pick-wrong' : ''}`}>{'→ '}</span>}
+      <span className="breadcrumb-label">
+        {isUserPick && (
+          <span
+            className={`breadcrumb-pick-arrow ${correct === false ? 'breadcrumb-pick-wrong' : ''}`}
+          >
+            {'→ '}
+          </span>
+        )}
         {color && (
           <span className="map-color-dot" style={{ backgroundColor: color }} />
         )}

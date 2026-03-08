@@ -1,8 +1,13 @@
 import { useEffect, useState } from 'react'
 
-import { PAGE_SIZE, clearHistory, loadHistory, loadStats } from '../utils/history.ts'
-import { formatModeKey } from '../utils/cladePresets.ts'
 import TaxonFilterPicker from './TaxonFilterPicker.tsx'
+import { formatModeKey } from '../utils/cladePresets.ts'
+import {
+  PAGE_SIZE,
+  clearHistory,
+  loadHistory,
+  loadStats,
+} from '../utils/history.ts'
 
 import type { HistoryEntry, HistoryStats } from '../utils/history.ts'
 
@@ -29,14 +34,16 @@ export default function History() {
 
   useEffect(() => {
     loadStats().then(setStats).catch(console.error)
-    loadHistory().then(all => setAllEntries([...all].reverse())).catch(console.error)
+    loadHistory()
+      .then(all => setAllEntries([...all].reverse()))
+      .catch(console.error)
   }, [])
 
   useEffect(() => {
     if (modeFilter) {
-      loadStats(modeFilter).then(s => setModeStats(s ?? undefined)).catch(console.error)
-    } else {
-      setModeStats(undefined)
+      loadStats(modeFilter)
+        .then(s => setModeStats(s ?? undefined))
+        .catch(console.error)
     }
   }, [modeFilter])
 
@@ -95,6 +102,9 @@ export default function History() {
           value={modeFilter}
           onChange={mode => {
             setModeFilter(mode)
+            if (!mode) {
+              setModeStats(undefined)
+            }
             setPage(0)
           }}
           showRandom
@@ -104,10 +114,13 @@ export default function History() {
       {displayStats && tab === 'normal' && displayStats.totalPlayed > 0 && (
         <div className="history-stats">
           <span>
-            {displayStats.totalWins}W / {displayStats.totalPlayed - displayStats.totalWins}L
+            {displayStats.totalWins}W /{' '}
+            {displayStats.totalPlayed - displayStats.totalWins}L
           </span>
           {displayStats.bestStreak > 1 && (
-            <span className="streak">Best streak: {displayStats.bestStreak}</span>
+            <span className="streak">
+              Best streak: {displayStats.bestStreak}
+            </span>
           )}
           {displayStats.currentStreak > 1 && (
             <span className="streak">{displayStats.currentStreak} streak</span>
@@ -118,11 +131,13 @@ export default function History() {
       {stats && tab === 'multi' && multiPlayed > 0 && (
         <div className="history-stats">
           <span>
-            {multiPlayed} games &middot; Total points: {stats.multiTotalScore ?? 0}
+            {multiPlayed} games &middot; Total points:{' '}
+            {stats.multiTotalScore ?? 0}
           </span>
           {multiPlayed > 0 && (
             <span>
-              Avg score: {Math.round((stats.multiTotalScore ?? 0) / multiPlayed)}
+              Avg score:{' '}
+              {Math.round((stats.multiTotalScore ?? 0) / multiPlayed)}
             </span>
           )}
         </div>
@@ -130,7 +145,13 @@ export default function History() {
 
       {filtered.length === 0 && (
         <p className="history-empty">
-          No {tab === 'multi' ? 'multi' : modeFilter ? formatModeKey(modeFilter) : tab} games played yet.
+          No{' '}
+          {tab === 'multi'
+            ? 'multi'
+            : modeFilter
+              ? formatModeKey(modeFilter)
+              : tab}{' '}
+          games played yet.
         </p>
       )}
 
@@ -144,9 +165,13 @@ export default function History() {
                 className={h.correct ? 'history-win' : 'history-loss'}
               >
                 {tab === 'multi' ? (
-                  <span className="history-result history-score">{h.score ?? '?'}</span>
+                  <span className="history-result history-score">
+                    {h.score ?? '?'}
+                  </span>
                 ) : (
-                  <span className="history-result">{h.correct ? 'W' : 'L'}</span>
+                  <span className="history-result">
+                    {h.correct ? 'W' : 'L'}
+                  </span>
                 )}
                 <span className="history-organisms">
                   {href ? (
