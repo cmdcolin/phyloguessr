@@ -82,6 +82,12 @@ const validateArgs =
   'scripts/validate-pool-images.mjs' + (refresh ? ' --refresh' : '')
 run('Step 3: Validate pool images & embed URLs', validateArgs)
 
+// Step 3b: Enrich common names from Wikipedia
+run(
+  'Step 3b: Enrich common names from Wikipedia',
+  'scripts/enrich-wikipedia-names.mjs' + (refresh ? ' --refresh' : ''),
+)
+
 // Step 4: Embed organism images for easy mode
 run(
   'Step 4: Embed easy-mode organism images',

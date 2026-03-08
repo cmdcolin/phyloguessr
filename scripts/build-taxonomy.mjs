@@ -23,6 +23,7 @@ const NCBI_DUMP_URL =
   'https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/new_taxdump/new_taxdump.tar.gz'
 const WORK_DIR = join(ROOT, '.taxonomy-build')
 const OUT_DIR = join(ROOT, 'public', 'taxonomy')
+const FLAGGED_PATH = join(ROOT, 'public', 'flagged-species.json')
 
 function extractCuratedTaxIds() {
   const src = readFileSync(join(ROOT, 'src', 'data', 'organisms.ts'), 'utf8')
@@ -301,6 +302,20 @@ function scanJb2hubs(ncbiParents, ncbiRanks, scientificNames) {
 
   console.log(`  ${entries.length} unique species from jb2hubs`)
   return entries
+}
+
+// --- Flagged species ---
+
+function loadFlaggedSpecies() {
+  if (!existsSync(FLAGGED_PATH)) {
+    return new Set()
+  }
+  const raw = JSON.parse(readFileSync(FLAGGED_PATH, 'utf8'))
+  const ids = new Set(
+    raw.map(e => (typeof e === 'number' ? e : e.taxId)),
+  )
+  console.log(`Loaded ${ids.size} flagged species from flagged-species.json`)
+  return ids
 }
 
 // --- Wikidata supplement ---
@@ -588,13 +603,22 @@ async function main() {
   const microAdded = mergeIntoPool(pool, poolIds, CURATED_MICROORGANISMS)
   console.log(`  Added ${microAdded} curated microorganisms (pool now ${pool.length})`)
 
-  const jb2hubsEntries = scanJb2hubs(ncbiParents, ncbiRanks, scientificNames)
-  const jb2Added = mergeIntoPool(pool, poolIds, jb2hubsEntries)
-  console.log(`  Added ${jb2Added} species from jb2hubs (pool now ${pool.length})`)
+  // jb2hubs names removed — assembly metadata names were low quality.
+  // jb2hubs images are still imported separately via import-jb2hubs-images.mjs.
 
   const wikidataEntries = loadWikidataSupplement(ncbiParents)
   const wdAdded = mergeIntoPool(pool, poolIds, wikidataEntries)
   console.log(`  Added ${wdAdded} species from Wikidata (pool now ${pool.length})`)
+
+  // Remove flagged species
+  const flaggedIds = loadFlaggedSpecies()
+  if (flaggedIds.size > 0) {
+    const before = pool.length
+    const filtered = pool.filter(e => !flaggedIds.has(e[0]))
+    pool.length = 0
+    pool.push(...filtered)
+    console.log(`  Removed ${before - pool.length} flagged species (pool now ${pool.length})`)
+  }
 
   // Downsample for diversity
   const sampledPool = downsamplePool(pool, ncbiParents, ncbiRanks)

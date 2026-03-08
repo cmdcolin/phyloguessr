@@ -10,7 +10,8 @@ import type { SpeciesPoolEntry, TaxonomyData } from '../utils/taxonomy.ts'
 const STORAGE_KEY = 'phylo-flagged-species'
 const PAGE_SIZE = 60
 
-type FilterMode = 'all' | 'flagged' | 'unflagged'
+type FilterMode = 'all' | 'flagged' | 'unflagged' | 'broken-img'
+type NameSource = 'wikipedia' | 'ncbi' | 'scientific-only'
 
 function loadFlagged() {
   try {
@@ -42,19 +43,39 @@ function getRankFromLineage(
   return undefined
 }
 
+const SOURCE_LABELS: Record<NameSource, string> = {
+  'wikipedia': 'WP',
+  'ncbi': 'NCBI',
+  'scientific-only': 'sci',
+}
+
+const SOURCE_COLORS: Record<NameSource, string> = {
+  'wikipedia': '#1565c0',
+  'ncbi': '#2e7d32',
+  'scientific-only': '#777',
+}
+
 function SpeciesCard({
   entry,
   isFlagged,
   onToggle,
+  onBrokenImg,
   taxonomy,
+  nameSource,
 }: {
   entry: SpeciesPoolEntry
   isFlagged: boolean
   onToggle: () => void
+  onBrokenImg?: (taxId: number) => void
   taxonomy: { kingdom: string; phylum: string; family: string }
+  nameSource: NameSource
 }) {
   const [taxId, commonName, scientificName, imageUrl] = entry
   const [imgError, setImgError] = useState(false)
+  const onImgError = useCallback(() => {
+    setImgError(true)
+    onBrokenImg?.(taxId)
+  }, [taxId, onBrokenImg])
 
   return (
     <div
@@ -67,7 +88,7 @@ function SpeciesCard({
             src={imageUrl}
             alt={scientificName}
             loading="lazy"
-            onError={() => setImgError(true)}
+            onError={onImgError}
           />
         ) : (
           <div class="qc-card-noimg">No image</div>
@@ -81,7 +102,15 @@ function SpeciesCard({
         <div class="qc-card-tax">
           {taxonomy.kingdom} &gt; {taxonomy.phylum} &gt; {taxonomy.family}
         </div>
-        <div class="qc-card-id">NCBI: {taxId}</div>
+        <div class="qc-card-meta">
+          <span class="qc-card-id">NCBI: {taxId}</span>
+          <span
+            class="qc-card-source"
+            style={{ background: SOURCE_COLORS[nameSource] }}
+          >
+            {SOURCE_LABELS[nameSource]}
+          </span>
+        </div>
       </div>
       {isFlagged && <div class="qc-card-flag-badge">FLAGGED</div>}
     </div>
@@ -99,12 +128,23 @@ export default function QualityControl() {
   const [page, setPage] = useState(0)
   const [loading, setLoading] = useState(true)
   const [sortBy, setSortBy] = useState<'name' | 'kingdom' | 'phylum'>('name')
+  const [brokenImgs, setBrokenImgs] = useState<Set<number>>(new Set())
+  const [saveStatus, setSaveStatus] = useState('')
   const containerRef = useRef<HTMLDivElement>(null)
 
+  const [wpNames, setWpNames] = useState<Record<string, { wpTitle: string; wdLabel: string }>>({})
+
   useEffect(() => {
-    Promise.all([loadSpeciesPool(), loadTaxonomyData()]).then(([p, d]) => {
+    Promise.all([
+      loadSpeciesPool(),
+      loadTaxonomyData(),
+      fetch('/taxonomy/wikipedia-names.json')
+        .then(r => (r.ok ? r.json() : {}))
+        .catch(() => ({})),
+    ]).then(([p, d, wp]) => {
       setPool(p)
       setData(d)
+      setWpNames(wp)
       setLoading(false)
     })
   }, [])
@@ -127,6 +167,29 @@ export default function QualityControl() {
     }
     return lookup
   }, [data, pool])
+
+  const nameSourceLookup = useMemo(() => {
+    const lookup = new Map<number, NameSource>()
+    for (const entry of pool) {
+      const [taxId, commonName, scientificName] = entry
+      if (commonName === scientificName || commonName.toLowerCase() === scientificName.toLowerCase() || !commonName) {
+        lookup.set(taxId, 'scientific-only')
+      } else {
+        const wp = wpNames[String(taxId)]
+        if (wp) {
+          const wpClean = wp.wpTitle.replace(/ \(.*\)$/, '').trim()
+          if (commonName === wpClean || commonName === wp.wdLabel) {
+            lookup.set(taxId, 'wikipedia')
+          } else {
+            lookup.set(taxId, 'ncbi')
+          }
+        } else {
+          lookup.set(taxId, 'ncbi')
+        }
+      }
+    }
+    return lookup
+  }, [pool, wpNames])
 
   const kingdoms = useMemo(() => {
     const s = new Set<string>()
@@ -158,6 +221,9 @@ export default function QualityControl() {
       if (filterMode === 'unflagged' && flagged.has(taxId)) {
         return false
       }
+      if (filterMode === 'broken-img' && !brokenImgs.has(taxId)) {
+        return false
+      }
 
       if (kingdomFilter !== 'all' && tax?.kingdom !== kingdomFilter) {
         return false
@@ -178,7 +244,7 @@ export default function QualityControl() {
 
       return true
     })
-  }, [pool, search, kingdomFilter, phylumFilter, filterMode, flagged, taxonomyLookup])
+  }, [pool, search, kingdomFilter, phylumFilter, filterMode, flagged, brokenImgs, taxonomyLookup])
 
   const sorted = useMemo(() => {
     const arr = [...filtered]
@@ -263,6 +329,14 @@ export default function QualityControl() {
     input.click()
   }, [flagged])
 
+  const onBrokenImg = useCallback((taxId: number) => {
+    setBrokenImgs(prev => {
+      const next = new Set(prev)
+      next.add(taxId)
+      return next
+    })
+  }, [])
+
   const clearFlagged = useCallback(() => {
     if (confirm(`Clear all ${flagged.size} flagged species?`)) {
       const next = new Set<number>()
@@ -270,6 +344,25 @@ export default function QualityControl() {
       saveFlagged(next)
     }
   }, [flagged])
+
+  const saveToProject = useCallback(() => {
+    const entries = pool
+      .filter(e => flagged.has(e[0]))
+      .map(e => ({ taxId: e[0], commonName: e[1], scientificName: e[2] }))
+    fetch('/api/qc-save', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(entries, null, 2),
+    })
+      .then(r => {
+        if (r.ok) {
+          setSaveStatus(`Saved ${entries.length} flagged species`)
+        } else {
+          setSaveStatus('Save failed — only works in dev server')
+        }
+      })
+      .catch(() => setSaveStatus('Save failed — only works in dev server'))
+  }, [pool, flagged])
 
   useEffect(() => {
     setPage(0)
@@ -345,28 +438,40 @@ export default function QualityControl() {
         </select>
 
         <div class="qc-filter-btns">
-          {(['all', 'flagged', 'unflagged'] as FilterMode[]).map(mode => (
-            <button
-              key={mode}
-              class={`qc-filter-btn ${filterMode === mode ? 'active' : ''}`}
-              onClick={() => setFilterMode(mode)}
-            >
-              {mode === 'all' ? 'All' : mode === 'flagged' ? 'Flagged' : 'Unflagged'}
-            </button>
-          ))}
+          {(['all', 'flagged', 'unflagged', 'broken-img'] as FilterMode[]).map(mode => {
+            const labels: Record<FilterMode, string> = {
+              all: 'All',
+              flagged: 'Flagged',
+              unflagged: 'Unflagged',
+              'broken-img': `Broken img (${brokenImgs.size})`,
+            }
+            return (
+              <button
+                key={mode}
+                class={`qc-filter-btn ${filterMode === mode ? 'active' : ''}`}
+                onClick={() => setFilterMode(mode)}
+              >
+                {labels[mode]}
+              </button>
+            )
+          })}
         </div>
       </div>
 
       <div class="qc-actions">
+        <button onClick={saveToProject} class="qc-btn qc-btn-save">
+          Save to project ({flagged.size})
+        </button>
         <button onClick={exportFlagged} class="qc-btn">
-          Export flagged ({flagged.size})
+          Export JSON
         </button>
         <button onClick={importFlagged} class="qc-btn">
-          Import flagged
+          Import
         </button>
         <button onClick={clearFlagged} class="qc-btn qc-btn-danger">
-          Clear all flags
+          Clear all
         </button>
+        {saveStatus && <span class="qc-save-status">{saveStatus}</span>}
       </div>
 
       <div class="qc-grid">
@@ -376,6 +481,7 @@ export default function QualityControl() {
             entry={entry}
             isFlagged={flagged.has(entry[0])}
             onToggle={() => toggleFlag(entry[0])}
+            onBrokenImg={onBrokenImg}
             taxonomy={
               taxonomyLookup.get(entry[0]) ?? {
                 kingdom: 'Unknown',
@@ -383,6 +489,7 @@ export default function QualityControl() {
                 family: 'Unknown',
               }
             }
+            nameSource={nameSourceLookup.get(entry[0]) ?? 'scientific-only'}
           />
         ))}
       </div>
@@ -487,8 +594,15 @@ export default function QualityControl() {
           font-size: 0.85rem;
         }
         .qc-btn:hover { background: #444; }
+        .qc-btn-save { border-color: #1565c0; color: #42a5f5; }
+        .qc-btn-save:hover { background: #1565c0; color: white; }
         .qc-btn-danger { border-color: #c62828; color: #ef5350; }
         .qc-btn-danger:hover { background: #c62828; color: white; }
+        .qc-save-status {
+          font-size: 0.85rem;
+          color: #aaa;
+          align-self: center;
+        }
         .qc-grid {
           display: grid;
           grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -553,9 +667,22 @@ export default function QualityControl() {
           overflow: hidden;
           text-overflow: ellipsis;
         }
+        .qc-card-meta {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-top: 2px;
+        }
         .qc-card-id {
           font-size: 0.7rem;
           color: #555;
+        }
+        .qc-card-source {
+          font-size: 0.65rem;
+          font-weight: 700;
+          color: white;
+          padding: 1px 6px;
+          border-radius: 3px;
         }
         .qc-card-flag-badge {
           position: absolute;
