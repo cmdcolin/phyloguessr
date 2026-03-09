@@ -1,0 +1,2 @@
+const n="_tabs_enm8u_1",t="_tab_enm8u_1",e="_active_enm8u_24",_="_loading_enm8u_30",o="_empty_enm8u_31",s="_error_enm8u_32",a="_modeSection_enm8u_43",c="_table_enm8u_47",m="_sortable_enm8u_62",r="_sortIcon_enm8u_72",u="_rank_enm8u_82",b="_name_enm8u_87",l="_streak_enm8u_91",i="_you_enm8u_96",y={tabs:n,tab:t,active:e,loading:_,empty:o,error:s,modeSection:a,table:c,sortable:m,sortIcon:r,rank:u,name:b,streak:l,you:i};export{y as s};
+//# sourceMappingURL=leaderboard.2837b244.CFpmpYG0.js.map
