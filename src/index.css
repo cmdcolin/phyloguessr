@@ -1526,3 +1526,183 @@ a.breadcrumb-link:hover,
 .play-again-btn:hover {
   opacity: 0.85;
 }
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: Canvas;
+  border-bottom: 1px solid ButtonBorder;
+  margin: calc(-1 * var(--space-xl)) calc(-1 * var(--space-lg)) var(--space-xl);
+  padding: 14px 20px;
+}
+
+.site-header-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.site-header h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.site-home-btn {
+  background: linear-gradient(
+    135deg,
+    #ff4ecd,
+    #ff9000,
+    #ffe600,
+    #00e676,
+    #00b0ff,
+    #aa00ff
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  border: none;
+  font-family: 'Titan One', 'Impact', 'Arial Black', sans-serif;
+  font-weight: 900;
+  cursor: pointer;
+  padding: 0;
+  display: inline-block;
+  transform: rotate(-2deg) skewX(-3deg);
+}
+
+.site-header-animals {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  flex: 1;
+  justify-content: center;
+}
+
+.site-header-animal {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.site-animal-platypus {
+  filter: invert(1) sepia(1) saturate(10) hue-rotate(20deg) brightness(0.75);
+  transform: rotate(3deg);
+}
+
+.site-animal-aardvark {
+  filter: invert(1) sepia(1) saturate(10) hue-rotate(90deg) brightness(0.75);
+  transform: rotate(-4deg);
+}
+
+.site-animal-octopus {
+  filter: invert(1) sepia(1) saturate(10) hue-rotate(160deg) brightness(0.75);
+  transform: rotate(5deg);
+}
+
+.site-animal-hippo {
+  filter: invert(1) sepia(1) saturate(10) hue-rotate(220deg) brightness(0.75);
+  transform: rotate(-3deg);
+}
+
+.site-animal-axolotl {
+  filter: invert(1) sepia(1) saturate(10) hue-rotate(280deg) brightness(0.75);
+  transform: rotate(4deg);
+}
+
+.site-animal-horseshoecrab {
+  filter: invert(1) sepia(1) saturate(10) hue-rotate(330deg) brightness(0.75);
+  transform: rotate(-5deg);
+}
+
+.site-header-right {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  justify-content: flex-end;
+}
+
+.site-hamburger-wrapper {
+  position: relative;
+}
+
+.site-hamburger-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  width: 32px;
+  height: 32px;
+  padding: 6px;
+  background: none;
+  border: 1px solid color-mix(in srgb, GrayText, transparent 60%);
+  border-radius: 6px;
+  cursor: pointer;
+  color: GrayText;
+}
+
+.site-hamburger-btn:hover {
+  border-color: GrayText;
+  color: CanvasText;
+}
+
+.site-hamburger-icon {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+  border-radius: 1px;
+}
+
+.site-hamburger-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 4px;
+  min-width: 160px;
+  background: Canvas;
+  border: 1px solid color-mix(in srgb, GrayText, transparent 60%);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  overflow: hidden;
+}
+
+.site-hamburger-item {
+  display: block;
+  width: 100%;
+  padding: 8px 12px;
+  background: none;
+  border: none;
+  font: inherit;
+  font-size: 0.9rem;
+  color: CanvasText;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.site-hamburger-item:hover {
+  background: color-mix(in srgb, GrayText, transparent 85%);
+}
+
+.site-hamburger-divider {
+  height: 1px;
+  background: color-mix(in srgb, GrayText, transparent 80%);
+  margin: 4px 0;
+}
+
+@media (max-width: 600px) {
+  .site-header {
+    margin: calc(-1 * var(--space-md)) calc(-1 * var(--space-sm)) var(--space-lg);
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  .site-header h1 {
+    font-size: 1.3rem;
+  }
+
+  .site-header-animals {
+    display: none;
+  }
+}
