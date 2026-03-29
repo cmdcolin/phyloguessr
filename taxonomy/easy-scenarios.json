@@ -4758,11 +4758,11 @@
     "organisms": [
       {
         "commonName": "Water bear",
-        "scientificName": "Ramazzottius varieornatus",
-        "ncbiTaxId": 947166,
-        "wikiTitle": "Ramazzottius_varieornatus",
+        "scientificName": "Hypsibius dujardini",
+        "ncbiTaxId": 232323,
+        "wikiTitle": "Tardigrade",
         "group": "invertebrate",
-        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/41598_2019_56965_Fig1_HTML.webp?width=330"
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/08/Waterbear.jpg"
       },
       {
         "commonName": "Pillbug",
@@ -4838,6 +4838,45 @@
     "correctPair": [
       "Acorn worm",
       "Northern Pacific seastar"
+    ]
+  },
+  {
+    "organisms": [
+      {
+        "commonName": "Tinamou",
+        "scientificName": "Eudromia elegans",
+        "ncbiTaxId": 48687,
+        "wikiTitle": "Elegant_crested_tinamou",
+        "group": "bird",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Stavenn_Eudromia_elegans_00.jpg/330px-Stavenn_Eudromia_elegans_00.jpg"
+      },
+      {
+        "commonName": "California quail",
+        "scientificName": "Callipepla californica",
+        "ncbiTaxId": 9077,
+        "wikiTitle": "California_quail",
+        "group": "bird",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/California_quail_%28Callipepla_californica%29_male_Tricao.jpg/330px-California_quail_%28Callipepla_californica%29_male_Tricao.jpg"
+      },
+      {
+        "commonName": "Ostrich",
+        "scientificName": "Struthio camelus",
+        "ncbiTaxId": 8801,
+        "wikiTitle": "Common_ostrich",
+        "group": "bird",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Struthio_camelus_-_Etosha_2014_%283%29.jpg/330px-Struthio_camelus_-_Etosha_2014_%283%29.jpg"
+      }
+    ],
+    "funFact": "Tinamous look almost exactly like quail — small, round, brown, ground-dwelling birds that burst into short flights when startled. But tinamous are palaeognaths, the ancient bird lineage that also includes ostriches, emus, and kiwis. Despite looking nothing alike, the tinamou and ostrich are closer relatives than the tinamou and quail. Quail are galliform neognaths, on a completely separate branch of the bird family tree. The resemblance to quail is pure convergence: both groups independently evolved the same compact ground-dwelling body plan.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Palaeognathae",
+        "label": "Palaeognathae - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Tinamou",
+        "label": "Tinamou - Wikipedia"
+      }
     ]
   }
 ]
