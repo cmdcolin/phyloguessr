@@ -1,14 +1,13 @@
-import { cluster, hierarchy } from 'd3-hierarchy'
-
 import {
   buildTreeFromLineages,
   collapseSingleChildren,
   countLeaves,
   getMaxDepth,
 } from '../utils/taxonomy.ts'
+import { buildClusterLayout } from '../utils/treeLayout.ts'
 
 import type { Organism } from '../data/organisms.ts'
-import type { TaxonomyData, TreeNode } from '../utils/taxonomy.ts'
+import type { TaxonomyData } from '../utils/taxonomy.ts'
 
 interface FullTreeProps {
   organisms: [Organism, Organism, Organism]
@@ -46,35 +45,22 @@ export default function FullTree({
   const leafX = leftMargin + maxDepth * depthStep
   const w = leafX + rightMargin
 
-  const root = hierarchy(tree, n =>
-    n.children.length > 0 ? n.children : undefined,
-  )
-
-  const clusterLayout = cluster<TreeNode>()
-    .size([h - topPad * 2, leafX - leftMargin])
-    .separation(() => 1)
-
-  clusterLayout(root)
-
   const elements = []
-  const nodes = root.descendants()
+  const nodes = buildClusterLayout(tree, h - topPad * 2, leafX - leftMargin)
 
   for (const node of nodes) {
-    const x = (node.y ?? 0) + leftMargin
-    const y = (node.x ?? 0) + topPad
-    const isLeaf = !node.children
+    const x = node.y + leftMargin
+    const y = node.x + topPad
     const isOrganism = orgTaxIds.has(node.data.taxId)
     const color = isOrganism
       ? (organismColors[node.data.taxId] ?? 'var(--accent-tree)')
       : 'var(--accent-tree)'
 
-    // draw links to children
     if (node.children) {
-      const childYs = node.children.map(c => (c.x ?? 0) + topPad)
+      const childYs = node.children.map(c => c.x + topPad)
       const minChildY = Math.min(...childYs)
       const maxChildY = Math.max(...childYs)
 
-      // vertical span
       elements.push(
         <line
           key={`v-${node.data.taxId}`}
@@ -87,10 +73,9 @@ export default function FullTree({
         />,
       )
 
-      // horizontal to each child
       for (const child of node.children) {
-        const cx = (child.y ?? 0) + leftMargin
-        const cy = (child.x ?? 0) + topPad
+        const cx = child.y + leftMargin
+        const cy = child.x + topPad
         const childIsOrg = orgTaxIds.has(child.data.taxId)
         const childColor = childIsOrg
           ? (organismColors[child.data.taxId] ?? 'var(--accent-tree)')
@@ -109,7 +94,6 @@ export default function FullTree({
         )
       }
 
-      // only label actual branching points (2+ children)
       if (node.children.length >= 2) {
         const rank = formatRank(node.data.rank)
         const labelParts = []
@@ -137,9 +121,7 @@ export default function FullTree({
       }
     }
 
-    // leaf rendering
-    if (isLeaf) {
-      // extend to common leaf X
+    if (!node.children) {
       elements.push(
         <line
           key={`ext-${node.data.taxId}`}

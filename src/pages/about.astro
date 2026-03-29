@@ -13,6 +13,10 @@ import '../index.css'
       <h3>How it works</h3>
       <p>Pick which two of three organisms are most closely related — the pair sharing the most recent common ancestor.</p>
 
+      <h3>Scoring</h3>
+      <p>In standard mode, you score points for a correct answer (reduced by 50% if you used a hint).</p>
+      <p>In "closest pair" mode (6 species), you score based on how close your chosen pair's common ancestor is compared to all other possible pairs. Closeness is measured by taxonomic rank — a pair sharing a genus is closer than one sharing a family, which is closer than one sharing an order, and so on. Where the common ancestor has an informal rank (like a "clade" node in NCBI Taxonomy), the score is based on the nearest formally-ranked ancestor above it, with tree depth used as a tiebreaker within the same rank.</p>
+
       <h3>Data sources</h3>
       <ul>
         <li>Taxonomy from <a href="https://www.ncbi.nlm.nih.gov/taxonomy" target="_blank" rel="noopener noreferrer">NCBI Taxonomy</a></li>

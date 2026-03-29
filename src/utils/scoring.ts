@@ -1,4 +1,4 @@
-export const MAX_POINTS = 1000
+export const MAX_POINTS = 100
 export const TOTAL_QUESTIONS = 10
 
 function applyHintPenalty(basePoints: number, hintCount: number) {

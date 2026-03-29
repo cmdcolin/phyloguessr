@@ -86,9 +86,6 @@ export default function Header() {
           </button>
           {showMenu && (
             <div className={styles.hamburgerDropdown}>
-              <a className={styles.hamburgerItem} href="/history">
-                History
-              </a>
               <a className={styles.hamburgerItem} href="/about">
                 About
               </a>

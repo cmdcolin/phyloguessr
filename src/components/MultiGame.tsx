@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 
 import Button from './Button.tsx'
 import Timer from './Timer.tsx'
+import GameOverScreen from './GameOverScreen.tsx'
 import Header from './Header.tsx'
 import MultiResultScreen from './MultiResultScreen.tsx'
 import OrganismCard from './OrganismCard.tsx'
@@ -13,7 +14,8 @@ import {
   resolveOrganism,
   toggleSelect,
 } from './gameUtils.ts'
-import { addHistoryEntry, loadHistory, loadStats } from '../utils/history.ts'
+import { fetchWikipediaAbstract } from '../utils/wikipedia.ts'
+import { TOTAL_QUESTIONS } from '../utils/scoring.ts'
 import {
   findTaxId,
   getAllPairLcas,
@@ -25,11 +27,11 @@ import {
 } from '../utils/taxonomy.ts'
 
 import type { MultiResultData } from './MultiResultScreen.tsx'
+import type { RoundResult } from './GameOverScreen.tsx'
 import type { Organism } from '../data/organisms.ts'
-import type { HistoryEntry, HistoryStats } from '../utils/history.ts'
 import type { SpeciesPoolEntry, TaxonomyData } from '../utils/taxonomy.ts'
 
-type GameState = 'loading' | 'selecting' | 'result'
+type GameState = 'loading' | 'selecting' | 'result' | 'gameOver'
 
 const SPECIES_COUNT = 6
 
@@ -49,11 +51,15 @@ export default function MultiGame() {
   )
   const [loadingMessage, setLoadingMessage] = useState('')
   const [timedOut, setTimedOut] = useState(false)
-  const [stats, setStats] = useState<HistoryStats | null>(null)
+  const [hints, setHints] = useState<Record<number, string | null>>({})
+  const [hintLoading, setHintLoading] = useState(false)
+  const [hintUsed, setHintUsed] = useState(false)
+  const [hintsVisible, setHintsVisible] = useState(false)
+  const [showHintPenalty, setShowHintPenalty] = useState(false)
+  const [questionNumber, setQuestionNumber] = useState(1)
+  const [totalScore, setTotalScore] = useState(0)
+  const [roundResults, setRoundResults] = useState<RoundResult[]>([])
 
-  const refreshStats = () => {
-    loadStats().then(s => setStats(s ?? null))
-  }
   const [randomClade, setRandomClade] = useState<{
     taxId: number
     name: string
@@ -86,6 +92,11 @@ export default function MultiGame() {
     setSelected([])
     setResult(null)
     setTimedOut(false)
+    setHints({})
+    setHintLoading(false)
+    setHintUsed(false)
+    setHintsVisible(false)
+    setShowHintPenalty(false)
 
     let data = taxonomyData
     if (!data) {
@@ -211,7 +222,6 @@ export default function MultiGame() {
   )
 
   useEffect(() => {
-    refreshStats()
     const sharedIds = parseSharedIds()
     if (sharedIds) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -244,11 +254,36 @@ export default function MultiGame() {
     return () => window.removeEventListener('popstate', handler)
   }, [taxonomyData, speciesPool])
 
-  const handleSubmit = async (expired = false) => {
-    if (!expired && (selected.length !== 2 || !taxonomyData || organisms.length === 0)) {
+  const handleHint = useCallback(async () => {
+    if (hintUsed) {
+      setHintsVisible(prev => !prev)
       return
     }
+    setHintUsed(true)
+    setHintsVisible(true)
+    setShowHintPenalty(true)
+    setTimeout(() => setShowHintPenalty(false), 1500)
+    setHintLoading(true)
+    const results = await Promise.all(
+      organisms.map(org =>
+        fetchWikipediaAbstract(
+          org.wikiTitle ?? org.scientificName.replace(/ /g, '_'),
+        ),
+      ),
+    )
+    const newHints: Record<number, string | null> = {}
+    for (let i = 0; i < results.length; i++) {
+      newHints[i] = results[i] ?? 'Hint unavailable'
+    }
+    setHints(newHints)
+    setHintLoading(false)
+  }, [organisms, hintUsed])
+
+  const handleSubmit = async (expired = false) => {
     if (!taxonomyData || organisms.length === 0) {
+      return
+    }
+    if (!expired && selected.length !== 2) {
       return
     }
 
@@ -284,7 +319,7 @@ export default function MultiGame() {
       rank = betterCount + 1
       const totalPairs = allPairs.length
       const t = totalPairs <= 1 ? 1 : (totalPairs - rank) / (totalPairs - 1)
-      score = Math.round(t * t * 100)
+      score = Math.round(t * t * 100 * (hintUsed ? 0.5 : 1))
     }
 
     const totalPairs = allPairs.length
@@ -300,33 +335,32 @@ export default function MultiGame() {
     }
 
     const organismNames = organisms.map(o => o.commonName)
-    const sortedKey = [...organismNames].sort().join(',')
-    const existingHistory = await loadHistory()
-    const alreadyPlayed = existingHistory.some(
-      h => [...h.organisms].sort().join(',') === sortedKey,
-    )
-
-    if (!alreadyPlayed) {
-      const entry: HistoryEntry = {
-        correct: rank === 1,
-        organisms: organismNames,
-        sister: [
-          organisms.find(o => o.ncbiTaxId === bestPair.taxIdA)!.commonName,
-          organisms.find(o => o.ncbiTaxId === bestPair.taxIdB)!.commonName,
-        ],
-        mode: 'multi',
-        timestamp: Date.now(),
-        ncbiTaxIds: taxIds,
-        score,
-      }
-      await addHistoryEntry(entry)
-      refreshStats()
-
-    }
-
+    setTotalScore(prev => prev + score)
+    setRoundResults(prev => [
+      ...prev,
+      { correct: rank === 1, score, organisms: organismNames },
+    ])
     setResult(resultData)
     setState('result')
   }
+
+  const isLastQuestion = questionNumber >= TOTAL_QUESTIONS
+
+  const handleNextQuestion = useCallback(() => {
+    if (isLastQuestion) {
+      setState('gameOver')
+    } else {
+      setQuestionNumber(prev => prev + 1)
+      startRound()
+    }
+  }, [isLastQuestion, startRound])
+
+  const handlePlayAgain = useCallback(() => {
+    setQuestionNumber(1)
+    setTotalScore(0)
+    setRoundResults([])
+    startRound()
+  }, [startRound])
 
   return (
     <div className="game">
@@ -343,30 +377,21 @@ export default function MultiGame() {
 
       {state === 'selecting' && organisms.length > 0 && (
         <div className="selecting">
+          <div className="game-progress">
+            <span className="game-progress-question">
+              Question {questionNumber}/{TOTAL_QUESTIONS}
+            </span>
+            <span className="game-progress-score">
+              Score: <strong>{totalScore}</strong>
+            </span>
+          </div>
           {randomClade && (
             <p className="clade-label">
               Group: {randomClade.name}
               {randomClade.rank ? ` (${randomClade.rank})` : ''}
             </p>
           )}
-          {stats &&
-            stats.multiTotalPlayed !== undefined &&
-            stats.multiTotalPlayed > 0 && (
-              <div className="game-stats">
-                <span className="game-stats-item">
-                  Avg score:{' '}
-                  <strong>
-                    {Math.round(
-                      (stats.multiTotalScore ?? 0) / stats.multiTotalPlayed,
-                    )}
-                  </strong>
-                </span>
-                <span className="game-stats-item">
-                  Total points: <strong>{stats.multiTotalScore ?? 0}</strong>
-                </span>
-              </div>
-            )}
-          <Timer key={organisms.map(o => o.ncbiTaxId).join(',')} onExpire={() => handleSubmit(true)} />
+          <Timer key={questionNumber} duration={60000} onExpire={() => handleSubmit(true)} />
           <p className="selecting-prompt">
             Pick the two species you think are most closely related
           </p>
@@ -378,15 +403,27 @@ export default function MultiGame() {
                 scientificName={org.scientificName}
                 imageUrl={org.imageUrl ?? null}
                 selected={selected.includes(i)}
-                disabled={false}
                 onClick={() => setSelected(prev => toggleSelect(prev, i))}
-                mapColor={undefined}
                 difficulty={difficulty}
+                hint={hintsVisible ? (hintLoading ? 'Loading...' : (hints[i] ?? null)) : undefined}
               />
             ))}
           </div>
           <div className="selecting-actions">
-            <Button onClick={handleSubmit} disabled={selected.length !== 2}>
+            <div className="hint-btn-wrap">
+              <button
+                className="hint-btn"
+                onClick={handleHint}
+                title={hintUsed ? 'Toggle hints' : 'Show hints for all organisms (-50% pts)'}
+                style={{ opacity: hintUsed && !hintsVisible ? 0.4 : 1 }}
+              >
+                💡
+              </button>
+              {showHintPenalty && (
+                <span className="hint-penalty-toast">−50% pts</span>
+              )}
+            </div>
+            <Button onClick={() => handleSubmit()} disabled={selected.length !== 2}>
               Submit
             </Button>
             <button className="nav-icon-btn" onClick={startRound} title="Skip">
@@ -401,8 +438,16 @@ export default function MultiGame() {
           result={result}
           taxonomyData={taxonomyData}
           shareUrl={buildShareUrl(result.organisms)}
-          onPlayAgain={startRound}
+          onPlayAgain={handleNextQuestion}
           timedOut={timedOut}
+          questionLabel={`Question ${questionNumber}/${TOTAL_QUESTIONS} · Score: ${totalScore}`}
+        />
+      )}
+      {state === 'gameOver' && (
+        <GameOverScreen
+          totalScore={totalScore}
+          roundResults={roundResults}
+          onPlayAgain={handlePlayAgain}
         />
       )}
     </div>

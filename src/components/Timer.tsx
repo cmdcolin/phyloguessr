@@ -1,13 +1,13 @@
 import { useState, useEffect, useRef } from 'react'
 
-const TIMER_DURATION_MS = 30000
-
 export default function Timer({
   onExpire,
+  duration = 30000,
 }: {
   onExpire: () => void
+  duration?: number
 }) {
-  const [timeLeft, setTimeLeft] = useState(TIMER_DURATION_MS)
+  const [timeLeft, setTimeLeft] = useState(duration)
   const onExpireRef = useRef(onExpire)
   onExpireRef.current = onExpire
 
@@ -27,7 +27,7 @@ export default function Timer({
   }, [])
 
   const seconds = Math.ceil(timeLeft / 1000)
-  const fraction = timeLeft / TIMER_DURATION_MS
+  const fraction = timeLeft / duration
   const low = fraction < 0.33
 
   return (

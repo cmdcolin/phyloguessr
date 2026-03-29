@@ -8,11 +8,12 @@ interface OrganismCardProps {
   scientificName: string
   imageUrl: string | null
   selected: boolean
-  disabled: boolean
+  disabled?: boolean
   onClick: () => void
   mapColor?: string
   difficulty?: Difficulty
   imageContain?: boolean
+  hint?: string | null
 }
 
 export default function OrganismCard({
@@ -25,9 +26,10 @@ export default function OrganismCard({
   mapColor,
   difficulty = 'normal',
   imageContain = true,
+  hint,
 }: OrganismCardProps) {
   const showLabels = difficulty === 'normal'
-  const showInfo = showLabels || !imageUrl || !!mapColor
+  const showInfo = showLabels || !imageUrl || !!mapColor || hint != null
 
   return (
     <button
@@ -68,6 +70,9 @@ export default function OrganismCard({
           )}
           {showLabels && (
             <div className={styles.scientificName}>{scientificName}</div>
+          )}
+          {hint != null && (
+            <div className={styles.hintText}>{hint}</div>
           )}
         </div>
       )}

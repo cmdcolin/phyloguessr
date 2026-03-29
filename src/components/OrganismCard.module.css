@@ -3,12 +3,14 @@
   border: 2px solid ButtonBorder;
   border-radius: 6px;
   padding: 0;
-  flex: 0 0 min(200px, calc(50% - var(--space-sm)));
   cursor: pointer;
   overflow: hidden;
   text-align: left;
   font-family: inherit;
   font-size: inherit;
+  display: grid;
+  grid-template-rows: 150px auto;
+  align-content: start;
 }
 
 .card:hover:not(:disabled) {
@@ -86,9 +88,18 @@
   font-style: italic;
 }
 
+.hintText {
+  font-size: 0.72rem;
+  color: GrayText;
+  margin-top: var(--space-xs);
+  line-height: 1.4;
+  max-height: 80px;
+  overflow-y: auto;
+}
+
 @media (max-width: 600px) {
   .card {
-    flex: 0 0 calc((100% - 2 * var(--space-sm)) / 3);
+    grid-template-rows: 80px auto;
   }
 
   .image {

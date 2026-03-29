@@ -21,7 +21,6 @@ import {
 } from './gameUtils.ts'
 import { loadSurprisingScenarios } from '../data/surprisingFacts.ts'
 import { DISPLAY_TREE } from '../utils/cladePresets.ts'
-import { addHistoryEntry, loadHistory } from '../utils/history.ts'
 import { calculateScore, TOTAL_QUESTIONS } from '../utils/scoring.ts'
 import { sessionStorageGetItem } from '../utils/storage.ts'
 import {
@@ -40,7 +39,6 @@ import { fetchWikipediaAbstract } from '../utils/wikipedia.ts'
 import type { RoundResult } from './GameOverScreen.tsx'
 import type { Organism } from '../data/organisms.ts'
 import type { SurprisingScenario } from '../data/surprisingFacts.ts'
-import type { HistoryEntry } from '../utils/history.ts'
 import type {
   DiagramNode,
   LcaResult,
@@ -122,6 +120,7 @@ export default function Game({ mode }: { mode: GameMode }) {
   const [hints, setHints] = useState<Record<number, string | null>>({})
   const [hintLoading, setHintLoading] = useState(false)
   const [hintUsed, setHintUsed] = useState(false)
+  const [showHintPenalty, setShowHintPenalty] = useState(false)
   const [timedOut, setTimedOut] = useState(false)
   const [isSharedQuestion, setIsSharedQuestion] = useState(false)
 
@@ -135,13 +134,6 @@ export default function Game({ mode }: { mode: GameMode }) {
       ? (new URLSearchParams(window.location.search).get('id') ?? '')
       : '',
   )
-
-  const effectiveModeKey =
-    mode === 'easy'
-      ? 'easy'
-      : cladeFilter.trim()
-        ? `random:${cladeFilter.trim()}`
-        : 'random'
 
   const [isMulti, setIsMulti] = useState(false)
   const [seenCombos, setSeenCombos] = useState<Set<string>>(() => {
@@ -169,6 +161,7 @@ export default function Game({ mode }: { mode: GameMode }) {
     setHints({})
     setHintLoading(false)
     setHintUsed(false)
+    setShowHintPenalty(false)
     setTimedOut(false)
 
     let data = taxonomyData
@@ -423,6 +416,8 @@ export default function Game({ mode }: { mode: GameMode }) {
       return
     }
     setHintUsed(true)
+    setShowHintPenalty(true)
+    setTimeout(() => setShowHintPenalty(false), 1500)
     setHintLoading(true)
     const results = await Promise.all(
       round.map(org =>
@@ -518,26 +513,6 @@ export default function Game({ mode }: { mode: GameMode }) {
       { correct: resultData.correct, score, organisms: organismNames },
     ])
 
-    const sortedKey = [...organismNames].sort().join(',')
-    const existingHistory = await loadHistory()
-    const alreadyPlayed = existingHistory.some(
-      h => [...h.organisms].sort().join(',') === sortedKey,
-    )
-
-    if (!alreadyPlayed) {
-      const entry: HistoryEntry = {
-        correct: resultData.correct,
-        organisms: organismNames,
-        sister: [resultData.sister1.commonName, resultData.sister2.commonName],
-        mode: effectiveModeKey,
-        timestamp: Date.now(),
-        ncbiTaxIds: round.map(o => o.ncbiTaxId),
-        score,
-      }
-      await addHistoryEntry(entry)
-
-    }
-
     setResult(resultData)
     setState('result')
     history.pushState({ result: true }, '')
@@ -553,13 +528,7 @@ export default function Game({ mode }: { mode: GameMode }) {
       setQuestionNumber(prev => prev + 1)
       startRound()
     }
-  }, [
-    isLastQuestion,
-    isSharedQuestion,
-    totalScore,
-    effectiveModeKey,
-    startRound,
-  ])
+  }, [isLastQuestion, isSharedQuestion, startRound])
 
   const handlePlayAgain = useCallback(() => {
     setQuestionNumber(1)
@@ -591,19 +560,6 @@ export default function Game({ mode }: { mode: GameMode }) {
               6 species
             </button>
           </div>
-
-          <a
-            className={`clade-card-random-banner ${!cladeFilter.trim() ? 'active' : ''}`}
-            href={isMulti ? '/multi' : '/random'}
-          >
-            <span className="clade-card-emoji">🎰</span>
-            <div className="clade-random-banner-text">
-              <span className="clade-card-label">Random</span>
-              <span className="clade-card-sub">all life on Earth</span>
-            </div>
-          </a>
-
-          <p className="custom-subtitle">or explore a specific group</p>
 
           <div className="clade-tree-wrap">
             <div className="clade-tree">
@@ -730,34 +686,29 @@ export default function Game({ mode }: { mode: GameMode }) {
                 scientificName={org.scientificName}
                 imageUrl={org.imageUrl ?? null}
                 selected={selected.includes(i)}
-                disabled={false}
+
                 onClick={() => setSelected(prev => toggleSelect(prev, i))}
                 mapColor={MAP_COLORS[i % MAP_COLORS.length]}
                 difficulty={difficulty}
+                hint={hintUsed ? (hintLoading ? 'Loading...' : (hints[i] ?? null)) : undefined}
               />
             ))}
           </div>
-          {hintUsed && (
-            <div className="hints-row">
-              {round.map((org, i) => (
-                <div key={org.ncbiTaxId} className="hint-text">
-                  <strong>{org.commonName}</strong>
-                  {': '}
-                  {hintLoading ? 'Loading...' : (hints[i] ?? '')}
-                </div>
-              ))}
-            </div>
-          )}
           <div className="selecting-actions">
-            {!hintUsed && (
-              <button
-                className="hint-btn"
-                onClick={handleHint}
-                title="Show hints for all organisms (-50% pts)"
-              >
-                💡
-              </button>
-            )}
+            <div className="hint-btn-wrap">
+              {!hintUsed && (
+                <button
+                  className="hint-btn"
+                  onClick={handleHint}
+                  title="Show hints for all organisms (-50% pts)"
+                >
+                  💡
+                </button>
+              )}
+              {showHintPenalty && (
+                <span className="hint-penalty-toast">−50% pts</span>
+              )}
+            </div>
 
             <Button
               onClick={() => handleSubmit()}

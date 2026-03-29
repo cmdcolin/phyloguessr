@@ -1,5 +1,3 @@
-import { cluster, hierarchy } from 'd3-hierarchy'
-
 import { LineageBreadcrumbs } from './Breadcrumbs.tsx'
 import Button from './Button.tsx'
 import DiagramTree from './DiagramTree.tsx'
@@ -14,9 +12,11 @@ import {
   getMaxDepth,
   treeNodeToDiagramNode,
 } from '../utils/taxonomy.ts'
+import { buildClusterLayout } from '../utils/treeLayout.ts'
 
 import type { Organism } from '../data/organisms.ts'
 import type { LcaResult, TaxonomyData, TreeNode } from '../utils/taxonomy.ts'
+import type { LayoutNode } from '../utils/treeLayout.ts'
 
 export interface PairRanking {
   i: number
@@ -42,6 +42,7 @@ interface MultiResultScreenProps {
   shareUrl: string
   onPlayAgain: () => void
   timedOut?: boolean
+  questionLabel?: string
 }
 
 function PairTable({
@@ -94,47 +95,19 @@ function PairTable({
   )
 }
 
-function MultiDiagramTree({
-  organisms,
-  taxonomyData,
-  userSelectedTaxIds,
-  correct,
-}: {
-  organisms: Organism[]
-  taxonomyData: TaxonomyData
-  userSelectedTaxIds: Set<number>
-  correct: boolean
-}) {
-  const rawTree = buildTreeFromLineages(organisms, {}, undefined, taxonomyData)
-  const orgTaxIds = new Set(organisms.map(o => o.ncbiTaxId))
-  const tree = collapseSingleChildren(rawTree, orgTaxIds)
-  const orgNames = new Map(organisms.map(o => [o.ncbiTaxId, o.commonName]))
-  const diagramRoot = treeNodeToDiagramNode(tree, orgNames)
-  return (
-    <DiagramTree
-      root={diagramRoot}
-      correct={correct}
-      userSelectedTaxIds={userSelectedTaxIds}
-    />
-  )
-}
-
 function MultiTree({
-  organisms,
-  taxonomyData,
+  tree,
+  orgTaxIds,
+  orgNames,
   userSelectedTaxIds,
   correct,
 }: {
-  organisms: Organism[]
-  taxonomyData: TaxonomyData
+  tree: TreeNode
+  orgTaxIds: Set<number>
+  orgNames: Map<number, string>
   userSelectedTaxIds: Set<number>
   correct: boolean
 }) {
-  const rawTree = buildTreeFromLineages(organisms, {}, undefined, taxonomyData)
-  const orgTaxIds = new Set(organisms.map(o => o.ncbiTaxId))
-  const tree = collapseSingleChildren(rawTree, orgTaxIds)
-  const orgNames = new Map(organisms.map(o => [o.ncbiTaxId, o.commonName]))
-
   const numLeaves = countLeaves(tree)
   const rowHeight = 50
   const leftMargin = 60
@@ -146,25 +119,16 @@ function MultiTree({
   const leafX = leftMargin + maxDepth * depthStep
   const w = leafX + rightMargin
 
-  const root = hierarchy(tree, (n: TreeNode) =>
-    n.children.length > 0 ? n.children : undefined,
-  )
-  const clusterLayout = cluster<TreeNode>()
-    .size([h - topPad * 2, leafX - leftMargin])
-    .separation(() => 1)
-  clusterLayout(root)
-
   const elements = []
-  const nodes = root.descendants()
+  const nodes = buildClusterLayout(tree, h - topPad * 2, leafX - leftMargin)
 
   for (const node of nodes) {
-    const x = (node.y ?? 0) + leftMargin
-    const y = (node.x ?? 0) + topPad
-    const isLeaf = !node.children
+    const x = (node.y) + leftMargin
+    const y = (node.x) + topPad
     const isOrganism = orgTaxIds.has(node.data.taxId)
 
     if (node.children) {
-      const childYs = node.children.map(c => (c.x ?? 0) + topPad)
+      const childYs = node.children.map(c => c.x + topPad)
       const minChildY = Math.min(...childYs)
       const maxChildY = Math.max(...childYs)
 
@@ -181,8 +145,8 @@ function MultiTree({
       )
 
       for (const child of node.children) {
-        const cx = (child.y ?? 0) + leftMargin
-        const cy = (child.x ?? 0) + topPad
+        const cx = child.y + leftMargin
+        const cy = child.x + topPad
 
         elements.push(
           <line
@@ -227,7 +191,7 @@ function MultiTree({
       }
     }
 
-    if (isLeaf) {
+    if (!node.children) {
       const isUserPick = userSelectedTaxIds.has(node.data.taxId)
       const pickColor = correct ? 'white' : 'var(--error)'
       const leafColor = isUserPick ? pickColor : 'var(--accent-tree)'
@@ -308,15 +272,26 @@ export default function MultiResultScreen({
   shareUrl,
   onPlayAgain,
   timedOut,
+  questionLabel,
 }: MultiResultScreenProps) {
   const { score, rank, totalPairs, userPair, bestPair, organisms } = result
   const userOrgA = organisms.find(o => o.ncbiTaxId === userPair.taxIdA)!
   const userOrgB = organisms.find(o => o.ncbiTaxId === userPair.taxIdB)!
   const bestOrgA = organisms.find(o => o.ncbiTaxId === bestPair.taxIdA)!
   const bestOrgB = organisms.find(o => o.ncbiTaxId === bestPair.taxIdB)!
+  const orgTaxIds = new Set(organisms.map(o => o.ncbiTaxId))
+  const orgNames = new Map(organisms.map(o => [o.ncbiTaxId, o.commonName]))
+  const rawTree = buildTreeFromLineages(organisms, {}, undefined, taxonomyData)
+  const tree = collapseSingleChildren(rawTree, orgTaxIds)
+  const userSelectedTaxIds = new Set([userPair.taxIdA, userPair.taxIdB])
 
   return (
     <div className="result-screen">
+      {questionLabel && (
+        <div className="game-progress result-progress">
+          <span>{questionLabel}</span>
+        </div>
+      )}
       <div
         className={`result-banner ${timedOut ? 'wrong' : rank === 1 ? 'correct' : score >= 50 ? 'debated' : 'wrong'}`}
       >
@@ -336,24 +311,22 @@ export default function MultiResultScreen({
             ({formatRank(bestPair.lca.rank)}).
           </p>
         ) : (
-          <>
-            <p>
-              You picked <strong>{capitalize(userOrgA.commonName)}</strong>{' '}
-              &amp; <strong>{capitalize(userOrgB.commonName)}</strong> (ranked #
-              {rank} of {totalPairs} pairs). Their common ancestor is{' '}
-              <strong>
-                <TaxLink name={userPair.lca.name} taxId={userPair.lca.taxId} />
-              </strong>{' '}
-              ({formatRank(userPair.lca.rank)}). The closest pair was{' '}
-              <strong>{capitalize(bestOrgA.commonName)}</strong> &amp;{' '}
-              <strong>{capitalize(bestOrgB.commonName)}</strong>, sharing a
-              common ancestor in{' '}
-              <strong>
-                <TaxLink name={bestPair.lca.name} taxId={bestPair.lca.taxId} />
-              </strong>{' '}
-              ({formatRank(bestPair.lca.rank)}).
-            </p>
-          </>
+          <p>
+            You picked <strong>{capitalize(userOrgA.commonName)}</strong>{' '}
+            &amp; <strong>{capitalize(userOrgB.commonName)}</strong> (ranked #
+            {rank} of {totalPairs} pairs). Their common ancestor is{' '}
+            <strong>
+              <TaxLink name={userPair.lca.name} taxId={userPair.lca.taxId} />
+            </strong>{' '}
+            ({formatRank(userPair.lca.rank)}). The closest pair was{' '}
+            <strong>{capitalize(bestOrgA.commonName)}</strong> &amp;{' '}
+            <strong>{capitalize(bestOrgB.commonName)}</strong>, sharing a
+            common ancestor in{' '}
+            <strong>
+              <TaxLink name={bestPair.lca.name} taxId={bestPair.lca.taxId} />
+            </strong>{' '}
+            ({formatRank(bestPair.lca.rank)}).
+          </p>
         )}
       </div>
 
@@ -362,17 +335,17 @@ export default function MultiResultScreen({
       </div>
 
       <MultiTree
-        organisms={organisms}
-        taxonomyData={taxonomyData}
-        userSelectedTaxIds={new Set([userPair.taxIdA, userPair.taxIdB])}
+        tree={tree}
+        orgTaxIds={orgTaxIds}
+        orgNames={orgNames}
+        userSelectedTaxIds={userSelectedTaxIds}
         correct={rank === 1}
       />
 
-      <MultiDiagramTree
-        organisms={organisms}
-        taxonomyData={taxonomyData}
-        userSelectedTaxIds={new Set([userPair.taxIdA, userPair.taxIdB])}
+      <DiagramTree
+        root={treeNodeToDiagramNode(tree, orgNames)}
         correct={rank === 1}
+        userSelectedTaxIds={userSelectedTaxIds}
       />
 
       <details className="multi-pair-details">
@@ -389,7 +362,7 @@ export default function MultiResultScreen({
       <LineageBreadcrumbs
         organisms={organisms}
         taxonomyData={taxonomyData}
-        userSelectedTaxIds={new Set([userPair.taxIdA, userPair.taxIdB])}
+        userSelectedTaxIds={userSelectedTaxIds}
         correct={rank === 1}
       />
 

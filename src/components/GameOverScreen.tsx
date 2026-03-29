@@ -28,13 +28,13 @@ export default function GameOverScreen({
       <div className="game-over-percentage">{percentage}%</div>
       <div className="game-over-rounds">
         {roundResults.map((r, i) => (
-          <div key={i} className={`game-over-round ${r.correct ? 'correct' : 'wrong'}`}>
+          <div key={i} className={`game-over-round ${r.correct ? 'correct' : r.score > 0 ? 'medium' : 'wrong'}`}>
             <span className="game-over-round-num">Q{i + 1}</span>
             <span className="game-over-round-organisms">
               {r.organisms.join(' · ')}
             </span>
-            <span className={`game-over-round-result ${r.correct ? 'correct' : 'wrong'}`}>
-              {r.correct ? '✓' : '✗'}
+            <span className={`game-over-round-result ${r.correct ? 'correct' : r.score > 0 ? 'medium' : 'wrong'}`}>
+              {r.correct ? '✓' : r.score > 0 ? '~' : '✗'}
             </span>
             <span className="game-over-round-score">
               {r.score > 0 ? `+${r.score}` : '0'}
