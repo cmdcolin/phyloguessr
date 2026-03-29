@@ -12,7 +12,6 @@ import com.phyloguessr.data.FirebaseRepository
 import com.phyloguessr.game.Difficulty
 import com.phyloguessr.ui.screens.GameScreen
 import com.phyloguessr.ui.screens.HomeScreen
-import com.phyloguessr.ui.screens.LeaderboardScreen
 import com.phyloguessr.ui.screens.LoginScreen
 
 @Composable
@@ -33,7 +32,6 @@ fun PhyloGuessrApp() {
                 onModeSelected = { mode, difficulty ->
                     navController.navigate("game/$mode/${difficulty.name.lowercase()}")
                 },
-                onLeaderboard = { navController.navigate("leaderboard") },
                 onSignIn = { navController.navigate("login") },
                 onSignOut = { FirebaseRepository.signOut() },
             )
@@ -46,11 +44,6 @@ fun PhyloGuessrApp() {
             GameScreen(
                 mode = mode,
                 difficulty = difficulty,
-                onBack = { navController.popBackStack() },
-            )
-        }
-        composable("leaderboard") {
-            LeaderboardScreen(
                 onBack = { navController.popBackStack() },
             )
         }

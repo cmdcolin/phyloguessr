@@ -41,6 +41,7 @@ interface MultiResultScreenProps {
   taxonomyData: TaxonomyData
   shareUrl: string
   onPlayAgain: () => void
+  timedOut?: boolean
 }
 
 function PairTable({
@@ -306,6 +307,7 @@ export default function MultiResultScreen({
   taxonomyData,
   shareUrl,
   onPlayAgain,
+  timedOut,
 }: MultiResultScreenProps) {
   const { score, rank, totalPairs, userPair, bestPair, organisms } = result
   const userOrgA = organisms.find(o => o.ncbiTaxId === userPair.taxIdA)!
@@ -316,9 +318,9 @@ export default function MultiResultScreen({
   return (
     <div className="result-screen">
       <div
-        className={`result-banner ${rank === 1 ? 'correct' : score >= 50 ? 'debated' : 'wrong'}`}
+        className={`result-banner ${timedOut ? 'wrong' : rank === 1 ? 'correct' : score >= 50 ? 'debated' : 'wrong'}`}
       >
-        {rank === 1 ? 'Perfect!' : `${score} points`}
+        {timedOut ? "Time's up!" : rank === 1 ? 'Perfect!' : `${score} points`}
         <ShareButton url={shareUrl} />
       </div>
 

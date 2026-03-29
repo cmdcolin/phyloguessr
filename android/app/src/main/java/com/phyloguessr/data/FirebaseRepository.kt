@@ -5,22 +5,10 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
-import com.phyloguessr.game.Difficulty
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
-
-data class LeaderboardEntry(
-    val uid: String = "",
-    val displayName: String = "",
-    val mode: String = "",
-    val score: Int = 0,
-    val correct: Int = 0,
-    val total: Int = 0,
-    val timestamp: Long = 0,
-)
 
 data class OnlineUser(
     val uid: String = "",
@@ -91,68 +79,6 @@ object FirebaseRepository {
                     )
                 }
                 trySend(users)
-            }
-        awaitClose { listener.remove() }
-    }
-
-    suspend fun submitScore(mode: String, difficulty: Difficulty, correct: Boolean, score: Int) {
-        val user = auth.currentUser ?: return
-        val diffKey = difficulty.name.lowercase()
-        val statsRef = db.collection("leaderboard").document("${user.uid}_${mode}_$diffKey")
-        db.runTransaction { transaction ->
-            val snap = transaction.get(statsRef)
-            if (snap.exists()) {
-                val prevCorrect = snap.getLong("correct") ?: 0
-                val prevTotal = snap.getLong("total") ?: 0
-                val prevBestScore = snap.getLong("bestScore") ?: 0
-                transaction.update(statsRef, mapOf(
-                    "correct" to prevCorrect + if (correct) 1 else 0,
-                    "total" to prevTotal + 1,
-                    "bestScore" to maxOf(prevBestScore, score.toLong()),
-                    "displayName" to (user.displayName ?: "Anonymous"),
-                    "timestamp" to FieldValue.serverTimestamp(),
-                ))
-            } else {
-                transaction.set(statsRef, hashMapOf(
-                    "uid" to user.uid,
-                    "displayName" to (user.displayName ?: "Anonymous"),
-                    "mode" to mode,
-                    "difficulty" to diffKey,
-                    "correct" to if (correct) 1 else 0,
-                    "total" to 1,
-                    "bestScore" to score.toLong(),
-                    "timestamp" to FieldValue.serverTimestamp(),
-                ))
-            }
-        }.await()
-    }
-
-    fun observeLeaderboard(mode: String): Flow<List<LeaderboardEntry>> = callbackFlow {
-        val listener = db.collection("leaderboard")
-            .whereEqualTo("mode", mode)
-            .orderBy("correct", Query.Direction.DESCENDING)
-            .limit(50)
-            .addSnapshotListener { snapshot, error ->
-                if (error != null || snapshot == null) {
-                    trySend(emptyList())
-                    return@addSnapshotListener
-                }
-                val entries = snapshot.documents.mapNotNull { doc ->
-                    val uid = doc.getString("uid") ?: return@mapNotNull null
-                    val name = doc.getString("displayName") ?: "Anonymous"
-                    val c = doc.getLong("correct")?.toInt() ?: 0
-                    val t = doc.getLong("total")?.toInt() ?: 0
-                    val best = doc.getLong("bestScore")?.toInt() ?: 0
-                    LeaderboardEntry(
-                        uid = uid,
-                        displayName = name,
-                        mode = mode,
-                        score = best,
-                        correct = c,
-                        total = t,
-                    )
-                }
-                trySend(entries)
             }
         awaitClose { listener.remove() }
     }

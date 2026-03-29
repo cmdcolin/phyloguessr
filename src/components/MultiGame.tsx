@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 
 import Button from './Button.tsx'
+import Timer from './Timer.tsx'
 import Header from './Header.tsx'
 import MultiResultScreen from './MultiResultScreen.tsx'
 import OrganismCard from './OrganismCard.tsx'
@@ -12,13 +13,14 @@ import {
   resolveOrganism,
   toggleSelect,
 } from './gameUtils.ts'
-import { recordMultiRound } from '../firebase.ts'
 import { addHistoryEntry, loadHistory, loadStats } from '../utils/history.ts'
 import {
+  findTaxId,
   getAllPairLcas,
   lcaClosenessScore,
   loadSpeciesPool,
   loadTaxonomyData,
+  pickNFromClade,
   pickNHardModeDistance,
 } from '../utils/taxonomy.ts'
 
@@ -29,9 +31,14 @@ import type { SpeciesPoolEntry, TaxonomyData } from '../utils/taxonomy.ts'
 
 type GameState = 'loading' | 'selecting' | 'result'
 
+const SPECIES_COUNT = 6
+
 export default function MultiGame() {
   const difficulty = getDifficulty()
-  const SPECIES_COUNT = 6
+  const cladeFilter =
+    typeof window !== 'undefined'
+      ? (new URLSearchParams(window.location.search).get('id') ?? '')
+      : ''
   const [state, setState] = useState<GameState>('loading')
   const [organisms, setOrganisms] = useState<Organism[]>([])
   const [selected, setSelected] = useState<number[]>([])
@@ -41,6 +48,7 @@ export default function MultiGame() {
     null,
   )
   const [loadingMessage, setLoadingMessage] = useState('')
+  const [timedOut, setTimedOut] = useState(false)
   const [stats, setStats] = useState<HistoryStats | null>(null)
 
   const refreshStats = () => {
@@ -77,6 +85,7 @@ export default function MultiGame() {
     setState('loading')
     setSelected([])
     setResult(null)
+    setTimedOut(false)
 
     let data = taxonomyData
     if (!data) {
@@ -95,17 +104,31 @@ export default function MultiGame() {
     setLoadingMessage('Picking species...')
     setRandomClade(null)
 
+    const cladeTaxId = cladeFilter.trim()
+      ? findTaxId(cladeFilter.trim(), data)
+      : undefined
+
     let finalOrgs: Organism[] = []
     let finalClade: { taxId: number; name: string; rank: string } | undefined
 
     for (let attempt = 0; attempt < 20; attempt++) {
-      const hardResult = pickNHardModeDistance(
-        SPECIES_COUNT,
-        pool,
-        data,
-        'order',
-      )
-      const picks = hardResult.picks
+      let picks: SpeciesPoolEntry[]
+      if (cladeTaxId !== undefined) {
+        const result = pickNFromClade(SPECIES_COUNT, cladeTaxId, pool, data)
+        if (!result) {
+          break
+        }
+        picks = result
+      } else {
+        const hardResult = pickNHardModeDistance(
+          SPECIES_COUNT,
+          pool,
+          data,
+          'order',
+        )
+        picks = hardResult.picks
+        finalClade = hardResult.clade
+      }
 
       const orgs: Organism[] = picks.map(
         ([taxId, commonName, scientificName, imageUrl]) => ({
@@ -130,7 +153,6 @@ export default function MultiGame() {
           lcaClosenessScore(pairs[1].lca, data)
       ) {
         finalOrgs = orgs
-        finalClade = hardResult.clade
         break
       }
     }
@@ -222,35 +244,50 @@ export default function MultiGame() {
     return () => window.removeEventListener('popstate', handler)
   }, [taxonomyData, speciesPool])
 
-  const handleToggleSelect = (idx: number) => {
-    setSelected(prev => toggleSelect(prev, idx))
-  }
-
-  const handleSubmit = async () => {
-    if (selected.length !== 2 || !taxonomyData || organisms.length === 0) {
+  const handleSubmit = async (expired = false) => {
+    if (!expired && (selected.length !== 2 || !taxonomyData || organisms.length === 0)) {
       return
+    }
+    if (!taxonomyData || organisms.length === 0) {
+      return
+    }
+
+    if (expired) {
+      setTimedOut(true)
     }
 
     const taxIds = organisms.map(o => o.ncbiTaxId)
     const allPairs = getAllPairLcas(taxIds, taxonomyData)
-
-    const userTaxA = organisms[selected[0]].ncbiTaxId
-    const userTaxB = organisms[selected[1]].ncbiTaxId
-    const userPair = allPairs.find(
-      p =>
-        (p.taxIdA === userTaxA && p.taxIdB === userTaxB) ||
-        (p.taxIdA === userTaxB && p.taxIdB === userTaxA),
-    )!
-
     const bestPair = allPairs[0]
-    const userScore = lcaClosenessScore(userPair.lca, taxonomyData)
-    const betterCount = allPairs.filter(
-      p => lcaClosenessScore(p.lca, taxonomyData) > userScore,
-    ).length
-    const rank = betterCount + 1
+
+    let userPair: typeof bestPair
+    let rank: number
+    let score: number
+
+    if (expired || selected.length !== 2) {
+      userPair = allPairs[allPairs.length - 1]
+      rank = allPairs.length
+      score = 0
+    } else {
+      const userTaxA = organisms[selected[0]].ncbiTaxId
+      const userTaxB = organisms[selected[1]].ncbiTaxId
+      userPair = allPairs.find(
+        p =>
+          (p.taxIdA === userTaxA && p.taxIdB === userTaxB) ||
+          (p.taxIdA === userTaxB && p.taxIdB === userTaxA),
+      )!
+
+      const userScore = lcaClosenessScore(userPair.lca, taxonomyData)
+      const betterCount = allPairs.filter(
+        p => lcaClosenessScore(p.lca, taxonomyData) > userScore,
+      ).length
+      rank = betterCount + 1
+      const totalPairs = allPairs.length
+      const t = totalPairs <= 1 ? 1 : (totalPairs - rank) / (totalPairs - 1)
+      score = Math.round(t * t * 100)
+    }
+
     const totalPairs = allPairs.length
-    const t = totalPairs <= 1 ? 1 : (totalPairs - rank) / (totalPairs - 1)
-    const score = Math.round(t * t * 100)
 
     const resultData: MultiResultData = {
       score,
@@ -285,10 +322,6 @@ export default function MultiGame() {
       await addHistoryEntry(entry)
       refreshStats()
 
-      const leaderboardName = localStorage.getItem('phyloLeaderboardName')
-      if (leaderboardName) {
-        recordMultiRound(leaderboardName, score).catch(console.error)
-      }
     }
 
     setResult(resultData)
@@ -333,6 +366,7 @@ export default function MultiGame() {
                 </span>
               </div>
             )}
+          <Timer key={organisms.map(o => o.ncbiTaxId).join(',')} onExpire={() => handleSubmit(true)} />
           <p className="selecting-prompt">
             Pick the two species you think are most closely related
           </p>
@@ -345,7 +379,7 @@ export default function MultiGame() {
                 imageUrl={org.imageUrl ?? null}
                 selected={selected.includes(i)}
                 disabled={false}
-                onClick={() => handleToggleSelect(i)}
+                onClick={() => setSelected(prev => toggleSelect(prev, i))}
                 mapColor={undefined}
                 difficulty={difficulty}
               />
@@ -368,6 +402,7 @@ export default function MultiGame() {
           taxonomyData={taxonomyData}
           shareUrl={buildShareUrl(result.organisms)}
           onPlayAgain={startRound}
+          timedOut={timedOut}
         />
       )}
     </div>

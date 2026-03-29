@@ -5,18 +5,20 @@ type TaxonItem = {
   label: string
   name: string
   depth: number
+  emoji?: string
 }
 export type DisplayEntry = TaxonHeader | (TaxonItem & { prefix: string })
 
 const CLADE_TREE: (TaxonHeader | TaxonItem)[] = [
   { type: 'header', label: 'Animals' },
-  { type: 'item', id: '33208', label: 'animals', name: 'Metazoa', depth: -1 },
+  { type: 'item', id: '33208', label: 'all animals', name: 'Metazoa', depth: -1, emoji: '🦁' },
   {
     type: 'item',
     id: '7742',
     label: 'vertebrates',
     name: 'Vertebrata',
     depth: 0,
+    emoji: '🐸',
   },
   {
     type: 'item',
@@ -25,9 +27,9 @@ const CLADE_TREE: (TaxonHeader | TaxonItem)[] = [
     name: 'Tetrapoda',
     depth: 2,
   },
-  { type: 'item', id: '40674', label: 'mammals', name: 'Mammalia', depth: 3 },
-  { type: 'item', id: '9443', label: 'primates', name: 'Primates', depth: 4 },
-  { type: 'item', id: '8782', label: 'birds', name: 'Aves', depth: 3 },
+  { type: 'item', id: '40674', label: 'mammals', name: 'Mammalia', depth: 3, emoji: '🐘' },
+  { type: 'item', id: '9443', label: 'primates', name: 'Primates', depth: 4, emoji: '🐒' },
+  { type: 'item', id: '8782', label: 'birds', name: 'Aves', depth: 3, emoji: '🦜' },
   {
     type: 'item',
     id: '9126',
@@ -41,6 +43,7 @@ const CLADE_TREE: (TaxonHeader | TaxonItem)[] = [
     label: 'lizards & snakes',
     name: 'Lepidosauria',
     depth: 3,
+    emoji: '🦎',
   },
   {
     type: 'item',
@@ -55,6 +58,7 @@ const CLADE_TREE: (TaxonHeader | TaxonItem)[] = [
     label: 'ray-finned fish',
     name: 'Actinopterygii',
     depth: 2,
+    emoji: '🐟',
   },
   {
     type: 'item',
@@ -62,6 +66,7 @@ const CLADE_TREE: (TaxonHeader | TaxonItem)[] = [
     label: 'sharks & rays',
     name: 'Chondrichthyes',
     depth: 2,
+    emoji: '🦈',
   },
   {
     type: 'item',
@@ -70,20 +75,22 @@ const CLADE_TREE: (TaxonHeader | TaxonItem)[] = [
     name: 'Arthropoda',
     depth: 0,
   },
-  { type: 'item', id: '50557', label: 'insects', name: 'Insecta', depth: 1 },
+  { type: 'item', id: '50557', label: 'insects', name: 'Insecta', depth: 1, emoji: '🐛' },
   {
     type: 'item',
     id: '7088',
     label: 'butterflies & moths',
     name: 'Lepidoptera',
     depth: 2,
+    emoji: '🦋',
   },
   {
     type: 'item',
     id: '6854',
-    label: 'arachnids (spiders, scorpions, etc)',
+    label: 'arachnids',
     name: 'Arachnida',
     depth: 1,
+    emoji: '🕷️',
   },
   {
     type: 'item',
@@ -91,13 +98,15 @@ const CLADE_TREE: (TaxonHeader | TaxonItem)[] = [
     label: 'crustaceans',
     name: 'Crustacea',
     depth: 1,
+    emoji: '🦀',
   },
   {
     type: 'item',
     id: '6447',
-    label: 'molluscs (snails, octopuses, etc)',
+    label: 'molluscs',
     name: 'Mollusca',
     depth: 0,
+    emoji: '🐙',
   },
   { type: 'header', label: 'Plants' },
   {
@@ -106,6 +115,7 @@ const CLADE_TREE: (TaxonHeader | TaxonItem)[] = [
     label: 'flowering plants',
     name: 'Magnoliopsida',
     depth: 0,
+    emoji: '🌸',
   },
   {
     type: 'item',
@@ -120,6 +130,7 @@ const CLADE_TREE: (TaxonHeader | TaxonItem)[] = [
     label: 'daisies & asters',
     name: 'Asterales',
     depth: 1,
+    emoji: '🌼',
   },
   {
     type: 'item',
@@ -134,6 +145,7 @@ const CLADE_TREE: (TaxonHeader | TaxonItem)[] = [
     label: 'roses',
     name: 'Rosales',
     depth: 1,
+    emoji: '🌹',
   },
   {
     type: 'item',
@@ -142,7 +154,7 @@ const CLADE_TREE: (TaxonHeader | TaxonItem)[] = [
     name: 'Lamiales',
     depth: 1,
   },
-  { type: 'item', id: '58019', label: 'conifers', name: 'Pinopsida', depth: 0 },
+  { type: 'item', id: '58019', label: 'conifers', name: 'Pinopsida', depth: 0, emoji: '🌲' },
   { type: 'header', label: 'Fungi' },
   {
     type: 'item',
@@ -150,6 +162,7 @@ const CLADE_TREE: (TaxonHeader | TaxonItem)[] = [
     label: 'fungi',
     name: 'Fungi',
     depth: 0,
+    emoji: '🍄',
   },
   {
     type: 'item',
@@ -159,14 +172,15 @@ const CLADE_TREE: (TaxonHeader | TaxonItem)[] = [
     depth: 1,
   },
   { type: 'header', label: 'Microbes' },
-  { type: 'item', id: '2', label: 'bacteria', name: 'Bacteria', depth: 0 },
-  { type: 'item', id: '10239', label: 'viruses', name: 'Viruses', depth: 0 },
+  { type: 'item', id: '2', label: 'bacteria', name: 'Bacteria', depth: 0, emoji: '🦠' },
+  { type: 'item', id: '10239', label: 'viruses', name: 'Viruses', depth: 0, emoji: '🧫' },
   {
     type: 'item',
     id: 'micro',
     label: 'microorganisms',
     name: 'cross-kingdom',
     depth: 0,
+    emoji: '🔬',
   },
 ]
 
@@ -216,6 +230,11 @@ export const DISPLAY_TREE: DisplayEntry[] = (() => {
   }
   return result
 })()
+
+export const FEATURED_CLADES = CLADE_TREE.filter(
+  (e): e is TaxonItem & { emoji: string } =>
+    e.type === 'item' && e.emoji !== undefined,
+)
 
 const CLADE_PRESETS = CLADE_TREE.filter(
   (e): e is TaxonItem => e.type === 'item',

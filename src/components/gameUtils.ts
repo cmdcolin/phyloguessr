@@ -37,7 +37,11 @@ export function parseSharedIds() {
 
 export function buildShareUrl(orgs: Organism[]) {
   const url = new URL(window.location.href)
+  const id = url.searchParams.get('id')
   url.search = ''
+  if (id) {
+    url.searchParams.set('id', id)
+  }
   url.searchParams.set('ids', orgs.map(o => o.ncbiTaxId).join(','))
   return url.toString()
 }

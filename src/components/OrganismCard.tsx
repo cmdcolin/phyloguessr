@@ -12,6 +12,7 @@ interface OrganismCardProps {
   onClick: () => void
   mapColor?: string
   difficulty?: Difficulty
+  imageContain?: boolean
 }
 
 export default function OrganismCard({
@@ -23,6 +24,7 @@ export default function OrganismCard({
   onClick,
   mapColor,
   difficulty = 'normal',
+  imageContain = true,
 }: OrganismCardProps) {
   const showLabels = difficulty === 'normal'
   const showInfo = showLabels || !imageUrl || !!mapColor
@@ -33,7 +35,7 @@ export default function OrganismCard({
       onClick={onClick}
       disabled={disabled}
     >
-      <div className={styles.image}>
+      <div className={cn(styles.image, imageContain && styles.imageContain)}>
         {imageUrl ? (
           <img
             src={toWikimediaThumbnail(imageUrl)}

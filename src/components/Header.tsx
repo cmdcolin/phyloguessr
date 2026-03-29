@@ -8,21 +8,12 @@ import styles from './Header.module.css'
 export default function Header() {
   const [showMenu, setShowMenu] = useState(false)
   const [signedIn, setSignedIn] = useState(false)
-  const [nickname, setNickname] = useState<string | null>(null)
   const menuRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setNickname(localStorage.getItem('phyloLeaderboardName'))
     getCurrentUser().then(user => {
       setSignedIn(user !== null)
     })
-    const onNicknameChanged = () => {
-      setNickname(localStorage.getItem('phyloLeaderboardName'))
-    }
-    window.addEventListener('nickname-changed', onNicknameChanged)
-    return () =>
-      window.removeEventListener('nickname-changed', onNicknameChanged)
   }, [])
 
   useEffect(() => {
@@ -81,7 +72,6 @@ export default function Header() {
         />
       </div>
       <div className={styles.headerRight}>
-        {nickname && <span className={styles.headerNickname}>{nickname}</span>}
         <OnlinePlayers />
         <div className={styles.hamburgerWrapper} ref={menuRef}>
           <button
@@ -96,9 +86,6 @@ export default function Header() {
           </button>
           {showMenu && (
             <div className={styles.hamburgerDropdown}>
-              <a className={styles.hamburgerItem} href="/leaderboard">
-                Leaderboard
-              </a>
               <a className={styles.hamburgerItem} href="/history">
                 History
               </a>

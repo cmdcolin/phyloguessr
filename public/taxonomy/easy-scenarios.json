@@ -127,45 +127,6 @@
   {
     "organisms": [
       {
-        "commonName": "Rock hyrax",
-        "scientificName": "Procavia capensis",
-        "ncbiTaxId": 9813,
-        "wikiTitle": "Rock_hyrax",
-        "group": "mammal",
-        "imageUrl": "https://static.inaturalist.org/photos/131657139/medium.jpeg"
-      },
-      {
-        "commonName": "African elephant",
-        "scientificName": "Loxodonta africana",
-        "ncbiTaxId": 9785,
-        "wikiTitle": "African_elephant",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/178_Male_African_bush_elephant_in_Etosha_National_Park_Photo_by_Giles_Laurent.jpg/330px-178_Male_African_bush_elephant_in_Etosha_National_Park_Photo_by_Giles_Laurent.jpg"
-      },
-      {
-        "commonName": "House mouse",
-        "scientificName": "Mus musculus",
-        "ncbiTaxId": 10090,
-        "wikiTitle": "House_mouse",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/%D0%9C%D1%8B%D1%88%D1%8C_2.jpg/500px-%D0%9C%D1%8B%D1%88%D1%8C_2.jpg"
-      }
-    ],
-    "funFact": "The tiny hyrax is more closely related to the elephant than to any rodent! Both belong to Afrotheria, a superorder of mammals that originated in Africa.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Afrotheria",
-        "label": "Afrotheria - Wikipedia"
-      },
-      {
-        "url": "https://en.wikipedia.org/wiki/Hyrax",
-        "label": "Hyrax - Wikipedia"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
         "commonName": "English oak",
         "scientificName": "Quercus robur",
         "ncbiTaxId": 38942,
@@ -868,45 +829,6 @@
   {
     "organisms": [
       {
-        "commonName": "Bottlenose dolphin",
-        "scientificName": "Tursiops truncatus",
-        "ncbiTaxId": 9739,
-        "wikiTitle": "Common_bottlenose_dolphin",
-        "group": "mammal",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/611231392/medium.jpg"
-      },
-      {
-        "commonName": "Blue whale",
-        "scientificName": "Balaenoptera musculus",
-        "ncbiTaxId": 9771,
-        "wikiTitle": "Blue_whale",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Anim1754_-_Flickr_-_NOAA_Photo_Library.jpg/330px-Anim1754_-_Flickr_-_NOAA_Photo_Library.jpg"
-      },
-      {
-        "commonName": "Great white shark",
-        "scientificName": "Carcharodon carcharias",
-        "ncbiTaxId": 13397,
-        "wikiTitle": "Great_white_shark",
-        "group": "fish",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/White_shark.jpg/330px-White_shark.jpg"
-      }
-    ],
-    "funFact": "A dolphin and a whale are both mammals — they breathe air, nurse their young, and have vestigial leg bones buried inside their bodies. Their ancestors walked on land on four hoofed legs. Sharks have been in the ocean for over 400 million years; whales and dolphins returned to the sea only about 50 million years ago and independently evolved the same streamlined shape.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Evolution_of_cetaceans",
-        "label": "Evolution of cetaceans - Wikipedia"
-      },
-      {
-        "url": "https://us.whales.org/whales-dolphins/how-did-whales-evolve/",
-        "label": "Whale & Dolphin Conservation - How did whales evolve?"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
         "commonName": "West Indian manatee",
         "scientificName": "Trichechus manatus",
         "ncbiTaxId": 9778,
@@ -1059,45 +981,6 @@
   {
     "organisms": [
       {
-        "commonName": "Deer tick",
-        "scientificName": "Ixodes scapularis",
-        "ncbiTaxId": 6945,
-        "wikiTitle": "Ixodes_scapularis",
-        "group": "arthropod",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Adult_deer_tick.jpg/330px-Adult_deer_tick.jpg"
-      },
-      {
-        "commonName": "Garden spider",
-        "scientificName": "Araneus diadematus",
-        "ncbiTaxId": 45920,
-        "wikiTitle": "Araneus_diadematus",
-        "group": "arthropod",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Araneus_diadematus_MHNT_Femelle_Fronton.jpg/330px-Araneus_diadematus_MHNT_Femelle_Fronton.jpg"
-      },
-      {
-        "commonName": "Earwig",
-        "scientificName": "Forficula auricularia",
-        "ncbiTaxId": 13068,
-        "wikiTitle": "Forficula_auricularia",
-        "group": "arthropod",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/European_earwig_%2881241%29.jpg/330px-European_earwig_%2881241%29.jpg"
-      }
-    ],
-    "funFact": "Ticks are arachnids — with eight legs and no antennae — more closely related to a garden spider than to an earwig. Despite their tiny size, ticks and spiders are both chelicerates while insects like earwigs are mandibulates, separated by over 500 million years of evolution.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Tick",
-        "label": "Tick - Wikipedia"
-      },
-      {
-        "url": "https://en.wikipedia.org/wiki/Chelicerata",
-        "label": "Chelicerata - Wikipedia"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
         "commonName": "Common octopus",
         "scientificName": "Octopus vulgaris",
         "ncbiTaxId": 6645,
@@ -1131,41 +1014,6 @@
       {
         "url": "https://www.dgs.udel.edu/node/449",
         "label": "Delaware Geological Survey - Clams, snails, and squid: Phylum Mollusca"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
-        "commonName": "Staghorn coral",
-        "scientificName": "Acropora cervicornis",
-        "ncbiTaxId": 6130,
-        "wikiTitle": "Staghorn_coral",
-        "group": "invertebrate",
-        "imageUrl": "https://static.inaturalist.org/photos/164610234/medium.jpg"
-      },
-      {
-        "commonName": "Moon jellyfish",
-        "scientificName": "Aurelia aurita",
-        "ncbiTaxId": 6145,
-        "wikiTitle": "Moon_jellyfish",
-        "group": "invertebrate",
-        "imageUrl": "https://static.inaturalist.org/photos/128613708/medium.jpg"
-      },
-      {
-        "commonName": "Garden snail",
-        "scientificName": "Cornu aspersum",
-        "ncbiTaxId": 6535,
-        "wikiTitle": "Cornu_aspersum",
-        "group": "invertebrate",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/16302570/medium.jpg"
-      }
-    ],
-    "funFact": "Corals look like colorful rocks, but each coral head is a colony of thousands of tiny animals — each with a mouth ringed by stinging tentacles, just like a jellyfish in miniature. Corals and jellyfish are both cnidarians, while snails are molluscs on a completely different branch of the animal tree.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Cnidaria",
-        "label": "Cnidaria - Wikipedia"
       }
     ]
   },
@@ -1285,45 +1133,6 @@
   {
     "organisms": [
       {
-        "commonName": "Hippopotamus",
-        "scientificName": "Hippopotamus amphibius",
-        "ncbiTaxId": 9833,
-        "wikiTitle": "Hippopotamus",
-        "group": "mammal",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/13896177/medium.jpg"
-      },
-      {
-        "commonName": "Blue whale",
-        "scientificName": "Balaenoptera musculus",
-        "ncbiTaxId": 9771,
-        "wikiTitle": "Blue_whale",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Anim1754_-_Flickr_-_NOAA_Photo_Library.jpg/330px-Anim1754_-_Flickr_-_NOAA_Photo_Library.jpg"
-      },
-      {
-        "commonName": "Cow",
-        "scientificName": "Bos taurus",
-        "ncbiTaxId": 9913,
-        "wikiTitle": "Cattle",
-        "group": "mammal",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/29102489/medium.jpg"
-      }
-    ],
-    "funFact": "Hippos are the closest living relatives of whales! Their shared ancestor was a small, pig-like animal that lived about 55 million years ago — one lineage returned fully to the sea, the other stayed semi-aquatic. Cows diverged from this lineage much earlier.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Hippopotamus#Evolution",
-        "label": "Hippopotamus evolution - Wikipedia"
-      },
-      {
-        "url": "https://evolution.berkeley.edu/what-are-evograms/the-evolution-of-whales/",
-        "label": "UC Berkeley - The evolution of whales"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
         "commonName": "Elephant shrew",
         "scientificName": "Elephantulus edwardii",
         "ncbiTaxId": 28737,
@@ -1357,41 +1166,6 @@
       {
         "url": "https://www.awf.org/wildlife-conservation/elephant-shrew",
         "label": "African Wildlife Foundation - Elephant shrew"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
-        "commonName": "Tenrec",
-        "scientificName": "Tenrec ecaudatus",
-        "ncbiTaxId": 94439,
-        "wikiTitle": "Tailless_tenrec",
-        "group": "mammal",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/32135102/medium.jpg"
-      },
-      {
-        "commonName": "African elephant",
-        "scientificName": "Loxodonta africana",
-        "ncbiTaxId": 9785,
-        "wikiTitle": "African_elephant",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/178_Male_African_bush_elephant_in_Etosha_National_Park_Photo_by_Giles_Laurent.jpg/330px-178_Male_African_bush_elephant_in_Etosha_National_Park_Photo_by_Giles_Laurent.jpg"
-      },
-      {
-        "commonName": "Hedgehog",
-        "scientificName": "Erinaceus europaeus",
-        "ncbiTaxId": 9365,
-        "wikiTitle": "European_hedgehog",
-        "group": "mammal",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/604670731/medium.jpg"
-      }
-    ],
-    "funFact": "Tenrecs look almost identical to hedgehogs — spiny, round, and they even curl into a ball the same way — but they are closer to elephants than to any hedgehog! Tenrecs evolved in Africa alongside elephants and aardvarks; hedgehogs evolved separately in Europe and Asia. One of the most striking examples of convergent evolution in mammals.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Tenrecidae",
-        "label": "Tenrecidae - Wikipedia"
       }
     ]
   },
@@ -1515,45 +1289,6 @@
   {
     "organisms": [
       {
-        "commonName": "Spotted hyena",
-        "scientificName": "Crocuta crocuta",
-        "ncbiTaxId": 9678,
-        "wikiTitle": "Spotted_hyena",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Spotted_hyena_%28Crocuta_crocuta%29.jpg/330px-Spotted_hyena_%28Crocuta_crocuta%29.jpg"
-      },
-      {
-        "commonName": "Domestic cat",
-        "scientificName": "Felis catus",
-        "ncbiTaxId": 9685,
-        "wikiTitle": "Cat",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/330px-Cat_August_2010-4.jpg"
-      },
-      {
-        "commonName": "Gray wolf",
-        "scientificName": "Canis lupus",
-        "ncbiTaxId": 9612,
-        "wikiTitle": "Wolf",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Huskiesatrest.jpg/500px-Huskiesatrest.jpg"
-      }
-    ],
-    "funFact": "Despite looking and acting like dogs, hyenas are on the \"cat side\" of the carnivore family tree — they are more closely related to cats than to wolves! Their dog-like appearance is a classic case of convergent evolution.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Hyena#Evolution",
-        "label": "Hyena evolution - Wikipedia"
-      },
-      {
-        "url": "https://a-z-animals.com/animals/hyena/understanding-hyenas-are-they-canines-felines-or-unique-creatures/",
-        "label": "A-Z Animals - Are hyenas canines, felines, or unique creatures?"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
         "commonName": "Common genet",
         "scientificName": "Genetta genetta",
         "ncbiTaxId": 94190,
@@ -1593,201 +1328,6 @@
   {
     "organisms": [
       {
-        "commonName": "Binturong",
-        "scientificName": "Arctictis binturong",
-        "ncbiTaxId": 94180,
-        "wikiTitle": "Binturong",
-        "group": "mammal",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/145153388/medium.jpg"
-      },
-      {
-        "commonName": "Lion",
-        "scientificName": "Panthera leo",
-        "ncbiTaxId": 9689,
-        "wikiTitle": "Lion",
-        "group": "mammal",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/43633891/medium.jpg"
-      },
-      {
-        "commonName": "Brown bear",
-        "scientificName": "Ursus arctos",
-        "ncbiTaxId": 9644,
-        "wikiTitle": "Brown_bear",
-        "group": "mammal",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/1491897/medium.jpg"
-      }
-    ],
-    "funFact": "The binturong is nicknamed the 'bearcat' — and it looks the part, with a stocky bear-like body and a cat-like face. Yet it belongs to the civet family, on the 'cat side' of the carnivore family tree alongside lions and domestic cats. Bears are on the 'dog side,' making the binturong more closely related to a lion than to a bear.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Binturong",
-        "label": "Binturong - Wikipedia"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
-        "commonName": "Fossa",
-        "scientificName": "Cryptoprocta ferox",
-        "ncbiTaxId": 94188,
-        "wikiTitle": "Fossa_(animal)",
-        "group": "mammal",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/70367976/medium.jpeg"
-      },
-      {
-        "commonName": "Lion",
-        "scientificName": "Panthera leo",
-        "ncbiTaxId": 9689,
-        "wikiTitle": "Lion",
-        "group": "mammal",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/43633891/medium.jpg"
-      },
-      {
-        "commonName": "Egyptian mongoose",
-        "scientificName": "Herpestes ichneumon",
-        "ncbiTaxId": 9700,
-        "wikiTitle": "Egyptian_mongoose",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Herpestes_ichneumon_%D0%95%D0%B3%D0%B8%D0%BF%D0%B5%D1%82%D1%81%D0%BA%D0%B8%D0%B9_%D0%BC%D0%B0%D0%BD%D0%B3%D1%83%D1%81%D1%82%2C_%D0%B8%D0%BB%D0%B8_%D1%84%D0%B0%D1%80%D0%B0%D0%BE%D0%BD%D0%BE%D0%B2%D0%B0_%D0%BA%D1%80%D1%8B%D1%81%D0%B0%2C_%D0%B8%D0%BB%D0%B8_%D0%B8%D1%85%D0%BD%D0%B5%D0%B2%D0%BC%D0%BE%CC%81%D0%BD.jpg/330px-Herpestes_ichneumon_%D0%95%D0%B3%D0%B8%D0%BF%D0%B5%D1%82%D1%81%D0%BA%D0%B8%D0%B9_%D0%BC%D0%B0%D0%BD%D0%B3%D1%83%D1%81%D1%82%2C_%D0%B8%D0%BB%D0%B8_%D1%84%D0%B0%D1%80%D0%B0%D0%BE%D0%BD%D0%BE%D0%B2%D0%B0_%D0%BA%D1%80%D1%8B%D1%81%D0%B0%2C_%D0%B8%D0%BB%D0%B8_%D0%B8%D1%85%D0%BD%D0%B5%D0%B2%D0%BC%D0%BE%CC%81%D0%BD.jpg"
-      }
-    ],
-    "funFact": "The fossa of Madagascar looks like a small wild cat — sleek build, retractile claws, solitary ambush predator. But a 2003 Nature paper by Yoder et al. showed that all Malagasy carnivorans (including the fossa) descend from a single mongoose-like ancestor that rafted from Africa ~20 million years ago. The fossa belongs to Eupleridae, sister family to mongooses (Herpestidae), not cats. Its cat-like traits evolved convergently to fill the apex predator niche on an island with no true cats. (NCBI taxonomy leaves Feliformia families unresolved, but the molecular evidence is strong.)",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Eupleridae",
-        "label": "Eupleridae - Wikipedia"
-      },
-      {
-        "url": "https://animals.sandiegozoo.org/animals/fossa",
-        "label": "San Diego Zoo - Fossa"
-      },
-      {
-        "url": "https://yoderlab.org/cms/wp-content/uploads/2014/05/2003YoderBurnsNature.pdf",
-        "label": "Yoder et al. 2003 - Single origin of Malagasy Carnivora (Nature)"
-      }
-    ],
-    "correctPair": [
-      "Fossa",
-      "Egyptian mongoose"
-    ]
-  },
-  {
-    "organisms": [
-      {
-        "commonName": "Walrus",
-        "scientificName": "Odobenus rosmarus",
-        "ncbiTaxId": 9707,
-        "wikiTitle": "Walrus",
-        "group": "mammal",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/65857/medium.jpg"
-      },
-      {
-        "commonName": "Brown bear",
-        "scientificName": "Ursus arctos",
-        "ncbiTaxId": 9644,
-        "wikiTitle": "Brown_bear",
-        "group": "mammal",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/1491897/medium.jpg"
-      },
-      {
-        "commonName": "Harbor seal",
-        "scientificName": "Phoca vitulina",
-        "ncbiTaxId": 9720,
-        "wikiTitle": "Harbor_seal",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Common_seal_%28Phoca_vitulina%29_2.jpg/330px-Common_seal_%28Phoca_vitulina%29_2.jpg"
-      }
-    ],
-    "funFact": "Walruses, seals, and sea lions all evolved from bear-like ancestors that returned to the sea about 25 million years ago. Despite living in the same ocean as whales and dolphins, pinnipeds are carnivores — on the same branch as bears and dogs, not cetaceans.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Pinniped#Evolution",
-        "label": "Pinniped evolution - Wikipedia"
-      },
-      {
-        "url": "https://ocean.si.edu/ocean-life/marine-mammals/seals-sea-lions-and-walruses",
-        "label": "Smithsonian Ocean - Pinnipeds"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
-        "commonName": "Human",
-        "scientificName": "Homo sapiens",
-        "ncbiTaxId": 9606,
-        "wikiTitle": "Human",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/68/Akha_cropped_hires.JPG"
-      },
-      {
-        "commonName": "House mouse",
-        "scientificName": "Mus musculus",
-        "ncbiTaxId": 10090,
-        "wikiTitle": "House_mouse",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/%D0%9C%D1%8B%D1%88%D1%8C_2.jpg/500px-%D0%9C%D1%8B%D1%88%D1%8C_2.jpg"
-      },
-      {
-        "commonName": "Domestic cat",
-        "scientificName": "Felis catus",
-        "ncbiTaxId": 9685,
-        "wikiTitle": "Cat",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/330px-Cat_August_2010-4.jpg"
-      }
-    ],
-    "funFact": "You are more closely related to a mouse than to your cat. Humans and mice are on the same major branch of the mammal family tree — the one with all primates, rodents, and rabbits. Cats are on a completely different branch, the one that also includes dogs, horses, bats, and whales.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Euarchontoglires",
-        "label": "Euarchontoglires - Wikipedia"
-      },
-      {
-        "url": "https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.0030002",
-        "label": "PLOS Computational Biology - Phylogenomic study of human, dog, and mouse"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
-        "commonName": "Human",
-        "scientificName": "Homo sapiens",
-        "ncbiTaxId": 9606,
-        "wikiTitle": "Human",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/68/Akha_cropped_hires.JPG"
-      },
-      {
-        "commonName": "Philippine tarsier",
-        "scientificName": "Carlito syrichta",
-        "ncbiTaxId": 1868482,
-        "wikiTitle": "Philippine_tarsier",
-        "group": "mammal",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/51885186/medium.jpg"
-      },
-      {
-        "commonName": "Ring-tailed lemur",
-        "scientificName": "Lemur catta",
-        "ncbiTaxId": 9447,
-        "wikiTitle": "Ring-tailed_lemur",
-        "group": "mammal",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/50237086/medium.jpg"
-      }
-    ],
-    "funFact": "Tarsiers are \"dry-nosed\" primates like us — despite their huge eyes and tiny size, they are closer to humans than lemurs are. Lemurs are \"wet-nosed\" primates, an older branch that split off earlier.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Haplorhini",
-        "label": "Haplorhini - Wikipedia"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
         "commonName": "Gorilla",
         "scientificName": "Gorilla gorilla",
         "ncbiTaxId": 9593,
@@ -1821,41 +1361,6 @@
       {
         "url": "https://humanorigins.si.edu/evidence/genetics",
         "label": "Smithsonian Human Origins - Genetics of great ape family tree"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
-        "commonName": "Human",
-        "scientificName": "Homo sapiens",
-        "ncbiTaxId": 9606,
-        "wikiTitle": "Human",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/68/Akha_cropped_hires.JPG"
-      },
-      {
-        "commonName": "European rabbit",
-        "scientificName": "Oryctolagus cuniculus",
-        "ncbiTaxId": 9986,
-        "wikiTitle": "European_rabbit",
-        "group": "mammal",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/520690657/medium.jpg"
-      },
-      {
-        "commonName": "Brown bear",
-        "scientificName": "Ursus arctos",
-        "ncbiTaxId": 9644,
-        "wikiTitle": "Brown_bear",
-        "group": "mammal",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/1491897/medium.jpg"
-      }
-    ],
-    "funFact": "Rabbits are closer to primates than to bears! Rabbits and rodents are on the same major branch of the mammal family tree as primates, while bears are on a completely separate branch.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Glires",
-        "label": "Glires - Wikipedia"
       }
     ]
   },
@@ -2189,115 +1694,6 @@
   {
     "organisms": [
       {
-        "commonName": "Sea squirt",
-        "scientificName": "Ciona intestinalis",
-        "ncbiTaxId": 7719,
-        "wikiTitle": "Ciona_intestinalis",
-        "group": "invertebrate",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Cionaintestinalis.jpg/500px-Cionaintestinalis.jpg"
-      },
-      {
-        "commonName": "Atlantic salmon",
-        "scientificName": "Salmo salar",
-        "ncbiTaxId": 8030,
-        "wikiTitle": "Atlantic_salmon",
-        "group": "fish",
-        "imageUrl": "https://static.inaturalist.org/photos/60703307/medium.jpg"
-      },
-      {
-        "commonName": "Lancelet",
-        "scientificName": "Branchiostoma lanceolatum",
-        "ncbiTaxId": 7740,
-        "wikiTitle": "Branchiostoma_lanceolatum",
-        "group": "invertebrate",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Branchiostoma_lanceolatum.jpg/330px-Branchiostoma_lanceolatum.jpg"
-      }
-    ],
-    "funFact": "A blob stuck to a rock is closer to a salmon than a lancelet is! Sea squirts (tunicates) are the closest invertebrate relatives of all vertebrates. Lancelets — small, translucent, fish-shaped animals that live in sand — look far more vertebrate-like, but DNA evidence shows tunicates are actually our nearest invertebrate cousins. (NCBI taxonomy leaves this unresolved within Chordata, but molecular phylogenetics strongly supports the tunicate–vertebrate grouping called Olfactores.)",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Olfactores",
-        "label": "Olfactores - Wikipedia"
-      }
-    ],
-    "correctPair": [
-      "Sea squirt",
-      "Atlantic salmon"
-    ]
-  },
-  {
-    "organisms": [
-      {
-        "commonName": "Lancelet",
-        "scientificName": "Branchiostoma lanceolatum",
-        "ncbiTaxId": 7740,
-        "wikiTitle": "Branchiostoma_lanceolatum",
-        "group": "invertebrate",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Branchiostoma_lanceolatum.jpg/330px-Branchiostoma_lanceolatum.jpg"
-      },
-      {
-        "commonName": "Atlantic salmon",
-        "scientificName": "Salmo salar",
-        "ncbiTaxId": 8030,
-        "wikiTitle": "Atlantic_salmon",
-        "group": "fish",
-        "imageUrl": "https://static.inaturalist.org/photos/60703307/medium.jpg"
-      },
-      {
-        "commonName": "Sea urchin",
-        "scientificName": "Strongylocentrotus purpuratus",
-        "ncbiTaxId": 7668,
-        "wikiTitle": "Strongylocentrotus_purpuratus",
-        "group": "invertebrate",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Urchin_%289398869414%29.jpg/500px-Urchin_%289398869414%29.jpg"
-      }
-    ],
-    "funFact": "Lancelets (also called amphioxus) are tiny, translucent, blade-shaped animals that live half-buried in sand on the seafloor. They have a notochord — a flexible rod that is the precursor to a spine — but no true backbone, skull, or brain. They are the closest living picture of what our ancestors looked like before evolving bones.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Lancelet",
-        "label": "Lancelet - Wikipedia"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
-        "commonName": "Great white shark",
-        "scientificName": "Carcharodon carcharias",
-        "ncbiTaxId": 13397,
-        "wikiTitle": "Great_white_shark",
-        "group": "fish",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/White_shark.jpg/330px-White_shark.jpg"
-      },
-      {
-        "commonName": "Human",
-        "scientificName": "Homo sapiens",
-        "ncbiTaxId": 9606,
-        "wikiTitle": "Human",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/68/Akha_cropped_hires.JPG"
-      },
-      {
-        "commonName": "Lancelet",
-        "scientificName": "Branchiostoma lanceolatum",
-        "ncbiTaxId": 7740,
-        "wikiTitle": "Branchiostoma_lanceolatum",
-        "group": "invertebrate",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Branchiostoma_lanceolatum.jpg/330px-Branchiostoma_lanceolatum.jpg"
-      }
-    ],
-    "funFact": "Sharks and humans are both jawed vertebrates — your jaw, teeth, and inner ear all trace back to a common ancestor with sharks over 450 million years ago. Lancelets — small, translucent animals that live buried in sand — are chordates but split off before jaws or even a true backbone evolved.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Gnathostomata",
-        "label": "Gnathostomata - Wikipedia"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
         "commonName": "Axolotl",
         "scientificName": "Ambystoma mexicanum",
         "ncbiTaxId": 8296,
@@ -2415,41 +1811,6 @@
   {
     "organisms": [
       {
-        "commonName": "Ladybug",
-        "scientificName": "Coccinella septempunctata",
-        "ncbiTaxId": 41139,
-        "wikiTitle": "Coccinella_septempunctata",
-        "group": "arthropod",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/267168450/medium.jpg"
-      },
-      {
-        "commonName": "Fruit fly",
-        "scientificName": "Drosophila melanogaster",
-        "ncbiTaxId": 7227,
-        "wikiTitle": "Drosophila_melanogaster",
-        "group": "arthropod",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Drosophila_melanogaster_Proboscis.jpg/500px-Drosophila_melanogaster_Proboscis.jpg"
-      },
-      {
-        "commonName": "Dragonfly",
-        "scientificName": "Anax junius",
-        "ncbiTaxId": 214820,
-        "wikiTitle": "Green_darner",
-        "group": "arthropod",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/374837307/medium.jpg"
-      }
-    ],
-    "funFact": "Ladybugs (beetles) and fruit flies both undergo complete metamorphosis — egg, larva, pupa, adult. Dragonflies diverged over 300 million years ago, before insects evolved the pupal stage.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Endopterygota",
-        "label": "Endopterygota - Wikipedia"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
         "commonName": "Bath sponge",
         "scientificName": "Spongia officinalis",
         "ncbiTaxId": 252964,
@@ -2483,41 +1844,6 @@
       {
         "url": "https://www.science.org/doi/10.1126/science.abj2949",
         "label": "Science - Profiling cellular diversity in sponges informs animal cell type and nervous system evolution"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
-        "commonName": "Comb jelly",
-        "scientificName": "Mnemiopsis leidyi",
-        "ncbiTaxId": 27923,
-        "wikiTitle": "Mnemiopsis",
-        "group": "invertebrate",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Sea_walnut%2C_Boston_Aquarium_%28cropped%29.jpg/500px-Sea_walnut%2C_Boston_Aquarium_%28cropped%29.jpg"
-      },
-      {
-        "commonName": "Moon jellyfish",
-        "scientificName": "Aurelia aurita",
-        "ncbiTaxId": 6145,
-        "wikiTitle": "Moon_jellyfish",
-        "group": "invertebrate",
-        "imageUrl": "https://static.inaturalist.org/photos/128613708/medium.jpg"
-      },
-      {
-        "commonName": "Bath sponge",
-        "scientificName": "Spongia officinalis",
-        "ncbiTaxId": 252964,
-        "wikiTitle": "Spongia_officinalis",
-        "group": "invertebrate",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/154760564/medium.jpeg"
-      }
-    ],
-    "funFact": "Comb jellies look like jellyfish but are NOT cnidarians — they are Ctenophora, a completely separate phylum. Which of these two — sponges or comb jellies — represents the earliest-diverging animal lineage is one of the most actively debated questions in biology.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Ctenophora",
-        "label": "Ctenophora - Wikipedia"
       }
     ]
   },
@@ -2564,181 +1890,6 @@
       }
     ],
     "activelyDebated": true
-  },
-  {
-    "organisms": [
-      {
-        "commonName": "Comb jelly",
-        "scientificName": "Mnemiopsis leidyi",
-        "ncbiTaxId": 27923,
-        "wikiTitle": "Mnemiopsis",
-        "group": "invertebrate",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Sea_walnut%2C_Boston_Aquarium_%28cropped%29.jpg/500px-Sea_walnut%2C_Boston_Aquarium_%28cropped%29.jpg"
-      },
-      {
-        "commonName": "Moon jellyfish",
-        "scientificName": "Aurelia aurita",
-        "ncbiTaxId": 6145,
-        "wikiTitle": "Moon_jellyfish",
-        "group": "invertebrate",
-        "imageUrl": "https://static.inaturalist.org/photos/128613708/medium.jpg"
-      },
-      {
-        "commonName": "Salp",
-        "scientificName": "Salpa thompsoni",
-        "ncbiTaxId": 569448,
-        "wikiTitle": "Salp",
-        "group": "invertebrate",
-        "imageUrl": "https://static.inaturalist.org/photos/35333491/medium.jpeg"
-      }
-    ],
-    "funFact": "Three transparent, drifting \"jellies\" — but from three completely different phyla. Moon jellyfish are cnidarians (stinging cells). Comb jellies are ctenophores (no stinging cells — they use sticky colloblasts instead). Salps are barrel-shaped filter feeders that move by pumping water through their gelatinous bodies — and they are chordates, more closely related to humans than to either of the other two.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Jellyfish#Phylogeny",
-        "label": "Jellyfish phylogeny - Wikipedia"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
-        "commonName": "Sea anemone",
-        "scientificName": "Nematostella vectensis",
-        "ncbiTaxId": 45351,
-        "wikiTitle": "Nematostella_vectensis",
-        "group": "invertebrate",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Nematostella_vectensis_%28I1419%29_999_%2830695685804%29.jpg/500px-Nematostella_vectensis_%28I1419%29_999_%2830695685804%29.jpg"
-      },
-      {
-        "commonName": "Staghorn coral",
-        "scientificName": "Acropora cervicornis",
-        "ncbiTaxId": 6130,
-        "wikiTitle": "Staghorn_coral",
-        "group": "invertebrate",
-        "imageUrl": "https://static.inaturalist.org/photos/164610234/medium.jpg"
-      },
-      {
-        "commonName": "Comb jelly",
-        "scientificName": "Mnemiopsis leidyi",
-        "ncbiTaxId": 27923,
-        "wikiTitle": "Mnemiopsis",
-        "group": "invertebrate",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Sea_walnut%2C_Boston_Aquarium_%28cropped%29.jpg/500px-Sea_walnut%2C_Boston_Aquarium_%28cropped%29.jpg"
-      }
-    ],
-    "funFact": "Sea anemones and corals are both cnidarians — animals with stinging cells. Comb jellies may look similar but belong to a completely separate phylum (Ctenophora) that diverged over 600 million years ago.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Cnidaria",
-        "label": "Cnidaria - Wikipedia"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
-        "commonName": "Starfish",
-        "scientificName": "Asterias rubens",
-        "ncbiTaxId": 7604,
-        "wikiTitle": "Common_starfish",
-        "group": "invertebrate",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Asterias_rubens.jpg/500px-Asterias_rubens.jpg"
-      },
-      {
-        "commonName": "Human",
-        "scientificName": "Homo sapiens",
-        "ncbiTaxId": 9606,
-        "wikiTitle": "Human",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/68/Akha_cropped_hires.JPG"
-      },
-      {
-        "commonName": "Moon jellyfish",
-        "scientificName": "Aurelia aurita",
-        "ncbiTaxId": 6145,
-        "wikiTitle": "Moon_jellyfish",
-        "group": "invertebrate",
-        "imageUrl": "https://static.inaturalist.org/photos/128613708/medium.jpg"
-      }
-    ],
-    "funFact": "Starfish are on \"our side\" of the animal family tree! Despite looking alien, starfish share a more recent common ancestor with humans than with jellyfish. Their larvae are even bilaterally symmetric — like us — before transforming into their star shape.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Deuterostome",
-        "label": "Deuterostome - Wikipedia"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
-        "commonName": "Moon jellyfish",
-        "scientificName": "Aurelia aurita",
-        "ncbiTaxId": 6145,
-        "wikiTitle": "Moon_jellyfish",
-        "group": "invertebrate",
-        "imageUrl": "https://static.inaturalist.org/photos/128613708/medium.jpg"
-      },
-      {
-        "commonName": "Sea anemone",
-        "scientificName": "Nematostella vectensis",
-        "ncbiTaxId": 45351,
-        "wikiTitle": "Nematostella_vectensis",
-        "group": "invertebrate",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Nematostella_vectensis_%28I1419%29_999_%2830695685804%29.jpg/500px-Nematostella_vectensis_%28I1419%29_999_%2830695685804%29.jpg"
-      },
-      {
-        "commonName": "Bath sponge",
-        "scientificName": "Spongia officinalis",
-        "ncbiTaxId": 252964,
-        "wikiTitle": "Spongia_officinalis",
-        "group": "invertebrate",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/154760564/medium.jpeg"
-      }
-    ],
-    "funFact": "Jellyfish and sea anemones are both cnidarians — animals with specialized stinging cells (nematocysts). Sponges lack true tissues entirely — no nerves, no muscles, no organs — and represent one of the deepest-diverging animal lineages.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Porifera",
-        "label": "Porifera - Wikipedia"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
-        "commonName": "Staghorn coral",
-        "scientificName": "Acropora cervicornis",
-        "ncbiTaxId": 6130,
-        "wikiTitle": "Staghorn_coral",
-        "group": "invertebrate",
-        "imageUrl": "https://static.inaturalist.org/photos/164610234/medium.jpg"
-      },
-      {
-        "commonName": "Sea anemone",
-        "scientificName": "Nematostella vectensis",
-        "ncbiTaxId": 45351,
-        "wikiTitle": "Nematostella_vectensis",
-        "group": "invertebrate",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Nematostella_vectensis_%28I1419%29_999_%2830695685804%29.jpg/500px-Nematostella_vectensis_%28I1419%29_999_%2830695685804%29.jpg"
-      },
-      {
-        "commonName": "Starfish",
-        "scientificName": "Asterias rubens",
-        "ncbiTaxId": 7604,
-        "wikiTitle": "Common_starfish",
-        "group": "invertebrate",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Asterias_rubens.jpg/500px-Asterias_rubens.jpg"
-      }
-    ],
-    "funFact": "Corals and sea anemones are both anthozoans — cnidarians that gave up the free-swimming jellyfish stage and settled down. They are essentially upside-down jellyfish cemented to the seafloor. Starfish may live on the same reef, but they are deuterostomes — more closely related to humans than to any coral or jellyfish.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Anthozoa",
-        "label": "Anthozoa - Wikipedia"
-      }
-    ]
   },
   {
     "organisms": [
@@ -2817,41 +1968,6 @@
   {
     "organisms": [
       {
-        "commonName": "Common limpet",
-        "scientificName": "Patella vulgata",
-        "ncbiTaxId": 6465,
-        "wikiTitle": "Common_limpet",
-        "group": "invertebrate",
-        "imageUrl": "https://static.inaturalist.org/photos/27603096/medium.jpg"
-      },
-      {
-        "commonName": "Garden snail",
-        "scientificName": "Cornu aspersum",
-        "ncbiTaxId": 6535,
-        "wikiTitle": "Cornu_aspersum",
-        "group": "invertebrate",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/16302570/medium.jpg"
-      },
-      {
-        "commonName": "Barnacle",
-        "scientificName": "Balanus balanus",
-        "ncbiTaxId": 172567,
-        "wikiTitle": "Balanus_balanus",
-        "group": "arthropod",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/5604970/medium.jpeg"
-      }
-    ],
-    "funFact": "Limpets look exactly like barnacles — both are conical, both clamp onto rocks in the surf zone — but a limpet is a gastropod mollusc, essentially a snail with a flattened shell. Barnacles are crustaceans, related to crabs and shrimp. The similar shape evolved independently to handle the same wave-battered habitat.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Limpet",
-        "label": "Limpet - Wikipedia"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
         "commonName": "Red king crab",
         "scientificName": "Paralithodes camtschaticus",
         "ncbiTaxId": 6741,
@@ -2887,46 +2003,6 @@
         "label": "Nature - Evolution of king crabs from hermit crab ancestors"
       }
     ]
-  },
-  {
-    "organisms": [
-      {
-        "commonName": "Earthworm",
-        "scientificName": "Lumbricus terrestris",
-        "ncbiTaxId": 6398,
-        "wikiTitle": "Lumbricus_terrestris",
-        "group": "invertebrate",
-        "imageUrl": "https://static.inaturalist.org/photos/6813438/medium.jpg"
-      },
-      {
-        "commonName": "Common octopus",
-        "scientificName": "Octopus vulgaris",
-        "ncbiTaxId": 6645,
-        "wikiTitle": "Common_octopus",
-        "group": "invertebrate",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/166419253/medium.jpeg"
-      },
-      {
-        "commonName": "Pork tapeworm",
-        "scientificName": "Taenia solium",
-        "ncbiTaxId": 6204,
-        "wikiTitle": "Taenia_solium",
-        "group": "invertebrate",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Taenia_solium_scolex.JPG/330px-Taenia_solium_scolex.JPG"
-      }
-    ],
-    "funFact": "All three are lophotrochozoans — but which pair is closest? The exact relationships between annelids (earthworms), molluscs (octopuses), and flatworms (tapeworms) remain one of the hardest problems in animal phylogenetics. These lineages may have diverged so rapidly that the branching order is nearly impossible to resolve. The word \"worm\" means nothing phylogenetically — any pair here could be correct!",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Lophotrochozoa",
-        "label": "Lophotrochozoa - Wikipedia"
-      },
-      {
-        "url": "https://courses.lumenlearning.com/suny-biology2xmaster/chapter/superphylum-lophotrochozoa/",
-        "label": "Lumen Learning - Superphylum Lophotrochozoa"
-      }
-    ],
-    "activelyDebated": true
   },
   {
     "organisms": [
@@ -3045,41 +2121,6 @@
   {
     "organisms": [
       {
-        "commonName": "Priapulid",
-        "scientificName": "Priapulus caudatus",
-        "ncbiTaxId": 37621,
-        "wikiTitle": "Priapulida",
-        "group": "invertebrate",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Priapulus_caudatus.jpg/500px-Priapulus_caudatus.jpg"
-      },
-      {
-        "commonName": "Fruit fly",
-        "scientificName": "Drosophila melanogaster",
-        "ncbiTaxId": 7227,
-        "wikiTitle": "Drosophila_melanogaster",
-        "group": "arthropod",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Drosophila_melanogaster_Proboscis.jpg/500px-Drosophila_melanogaster_Proboscis.jpg"
-      },
-      {
-        "commonName": "Earthworm",
-        "scientificName": "Lumbricus terrestris",
-        "ncbiTaxId": 6398,
-        "wikiTitle": "Lumbricus_terrestris",
-        "group": "invertebrate",
-        "imageUrl": "https://static.inaturalist.org/photos/6813438/medium.jpg"
-      }
-    ],
-    "funFact": "Priapulids (penis worms) are marine burrowing worms that look superficially like earthworms, but they are in the same major group as insects and spiders — animals that grow by molting their outer skin. A priapulid is more closely related to a fruit fly than to an earthworm.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Priapulida",
-        "label": "Priapulida - Wikipedia"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
         "commonName": "Peanut worm",
         "scientificName": "Sipunculus nudus",
         "ncbiTaxId": 6446,
@@ -3158,45 +2199,6 @@
   {
     "organisms": [
       {
-        "commonName": "Giant panda",
-        "scientificName": "Ailuropoda melanoleuca",
-        "ncbiTaxId": 9646,
-        "wikiTitle": "Giant_panda",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Grosser_Panda.JPG/330px-Grosser_Panda.JPG"
-      },
-      {
-        "commonName": "Brown bear",
-        "scientificName": "Ursus arctos",
-        "ncbiTaxId": 9644,
-        "wikiTitle": "Brown_bear",
-        "group": "mammal",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/1491897/medium.jpg"
-      },
-      {
-        "commonName": "Red panda",
-        "scientificName": "Ailurus fulgens",
-        "ncbiTaxId": 9649,
-        "wikiTitle": "Red_panda",
-        "group": "mammal",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/26989188/medium.jpeg"
-      }
-    ],
-    "funFact": "Giant pandas are bears, while red pandas are in the weasel and raccoon family — not closely related at all! Both independently evolved a \"false thumb\" for gripping bamboo, one of the most famous examples of convergent evolution.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Giant_panda#Classification",
-        "label": "Giant panda classification - Wikipedia"
-      },
-      {
-        "url": "https://nationalzoo.si.edu/animals/news/red-panda-bear-and-more-red-panda-facts",
-        "label": "Smithsonian Zoo - Red panda facts"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
         "commonName": "Common woodlouse",
         "scientificName": "Armadillidium vulgare",
         "ncbiTaxId": 13347,
@@ -3226,115 +2228,6 @@
       {
         "url": "https://en.wikipedia.org/wiki/Woodlouse",
         "label": "Woodlouse - Wikipedia"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
-        "commonName": "Malayan tapir",
-        "scientificName": "Tapirus indicus",
-        "ncbiTaxId": 9802,
-        "wikiTitle": "Malayan_tapir",
-        "group": "mammal",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/299796044/medium.jpg"
-      },
-      {
-        "commonName": "Horse",
-        "scientificName": "Equus caballus",
-        "ncbiTaxId": 9796,
-        "wikiTitle": "Horse",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Nokota_Horses_cropped.jpg/500px-Nokota_Horses_cropped.jpg"
-      },
-      {
-        "commonName": "Cow",
-        "scientificName": "Bos taurus",
-        "ncbiTaxId": 9913,
-        "wikiTitle": "Cattle",
-        "group": "mammal",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/29102489/medium.jpg"
-      }
-    ],
-    "funFact": "Tapirs look like pigs but are odd-toed ungulates, closely related to horses and rhinos! Their pig-like snout evolved convergently. Cows are even-toed ungulates, a completely separate lineage.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Tapir",
-        "label": "Tapir - Wikipedia"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
-        "commonName": "Malayan tapir",
-        "scientificName": "Tapirus indicus",
-        "ncbiTaxId": 9802,
-        "wikiTitle": "Malayan_tapir",
-        "group": "mammal",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/299796044/medium.jpg"
-      },
-      {
-        "commonName": "White rhinoceros",
-        "scientificName": "Ceratotherium simum",
-        "ncbiTaxId": 9807,
-        "wikiTitle": "White_rhinoceros",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/109_Male_White_rhinoceros_walking_in_the_Kalahari_Desert_of_Namibia_Photo_by_Giles_Laurent.jpg/330px-109_Male_White_rhinoceros_walking_in_the_Kalahari_Desert_of_Namibia_Photo_by_Giles_Laurent.jpg"
-      },
-      {
-        "commonName": "Horse",
-        "scientificName": "Equus caballus",
-        "ncbiTaxId": 9796,
-        "wikiTitle": "Horse",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Nokota_Horses_cropped.jpg/500px-Nokota_Horses_cropped.jpg"
-      }
-    ],
-    "funFact": "All three are Perissodactyla — odd-toed ungulates — but the tapir and rhino are each other's closest relatives, forming Ceratomorpha. Horses are the odd one out (Equidae), despite horses and rhinos both seeming like the obvious pair: large, powerful, tough-skinned. The pig-snouted tapir turns out to be the rhino's nearest living kin. (NCBI taxonomy leaves Perissodactyla unresolved, but Ceratomorpha is well-established by molecular and morphological evidence.)",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Ceratomorpha",
-        "label": "Ceratomorpha - Wikipedia"
-      }
-    ],
-    "correctPair": [
-      "Malayan tapir",
-      "White rhinoceros"
-    ]
-  },
-  {
-    "organisms": [
-      {
-        "commonName": "Common octopus",
-        "scientificName": "Octopus vulgaris",
-        "ncbiTaxId": 6645,
-        "wikiTitle": "Common_octopus",
-        "group": "invertebrate",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/166419253/medium.jpeg"
-      },
-      {
-        "commonName": "Human",
-        "scientificName": "Homo sapiens",
-        "ncbiTaxId": 9606,
-        "wikiTitle": "Human",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/68/Akha_cropped_hires.JPG"
-      },
-      {
-        "commonName": "Moon jellyfish",
-        "scientificName": "Aurelia aurita",
-        "ncbiTaxId": 6145,
-        "wikiTitle": "Moon_jellyfish",
-        "group": "invertebrate",
-        "imageUrl": "https://static.inaturalist.org/photos/128613708/medium.jpg"
-      }
-    ],
-    "funFact": "Octopuses and humans both evolved complex camera-type eyes independently — one of the most famous examples of convergent evolution. But phylogenetically, both are bilateria, far more related to each other than to jellyfish (cnidaria).",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Cephalopod_eye",
-        "label": "Cephalopod eye - Wikipedia"
       }
     ]
   },
@@ -3374,80 +2267,6 @@
       {
         "url": "https://en.wikipedia.org/wiki/Sea_angel",
         "label": "Sea angel - Wikipedia"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
-        "commonName": "Phylliroe",
-        "scientificName": "Phylliroe bucephala",
-        "ncbiTaxId": 1903125,
-        "wikiTitle": "Phylliroe_bucephala",
-        "group": "invertebrate",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Phylliroe_bucephalum.jpg/330px-Phylliroe_bucephalum.jpg"
-      },
-      {
-        "commonName": "Garden snail",
-        "scientificName": "Cornu aspersum",
-        "ncbiTaxId": 6535,
-        "wikiTitle": "Cornu_aspersum",
-        "group": "invertebrate",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/16302570/medium.jpg"
-      },
-      {
-        "commonName": "Phronima",
-        "scientificName": "Phronima sedentaria",
-        "ncbiTaxId": 472282,
-        "wikiTitle": "Phronima",
-        "group": "invertebrate",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Phronima_sedentaria_%28YPM_IZ_075000%29.jpeg/330px-Phronima_sedentaria_%28YPM_IZ_075000%29.jpeg"
-      }
-    ],
-    "funFact": "Phylliroe is a nudibranch that looks like a tiny transparent fish — free-swimming in the open ocean, bioluminescent, with no shell at all. Phronima is also transparent and pelagic — a deep-sea amphipod that hollows out salps to live inside, and famously inspired the Alien movies. But Phylliroe is a gastropod mollusc, more closely related to the humble garden snail than to Phronima, which is a crustacean.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Phylliroe_bucephala",
-        "label": "Phylliroe bucephala - Wikipedia"
-      },
-      {
-        "url": "https://en.wikipedia.org/wiki/Phronima",
-        "label": "Phronima - Wikipedia"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
-        "commonName": "Giant squid",
-        "scientificName": "Architeuthis dux",
-        "ncbiTaxId": 256136,
-        "wikiTitle": "Giant_squid",
-        "group": "invertebrate",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/91402900/medium.jpeg"
-      },
-      {
-        "commonName": "Garden snail",
-        "scientificName": "Cornu aspersum",
-        "ncbiTaxId": 6535,
-        "wikiTitle": "Cornu_aspersum",
-        "group": "invertebrate",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/16302570/medium.jpg"
-      },
-      {
-        "commonName": "Earthworm",
-        "scientificName": "Lumbricus terrestris",
-        "ncbiTaxId": 6398,
-        "wikiTitle": "Lumbricus_terrestris",
-        "group": "invertebrate",
-        "imageUrl": "https://static.inaturalist.org/photos/6813438/medium.jpg"
-      }
-    ],
-    "funFact": "The giant squid — with eyes the size of dinner plates and tentacles up to 13 meters long — is a mollusc, just like the humble garden snail! Both share the same body plan at a fundamental level. Earthworms are annelids, a separate phylum.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Giant_squid",
-        "label": "Giant squid - Wikipedia"
       }
     ]
   },
@@ -3528,41 +2347,6 @@
   {
     "organisms": [
       {
-        "commonName": "Giant kelp",
-        "scientificName": "Macrocystis pyrifera",
-        "ncbiTaxId": 35122,
-        "wikiTitle": "Macrocystis_pyrifera",
-        "group": "microbe",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Giantkelp2_300.jpg/330px-Giantkelp2_300.jpg"
-      },
-      {
-        "commonName": "Paramecium",
-        "scientificName": "Paramecium caudatum",
-        "ncbiTaxId": 5885,
-        "wikiTitle": "Paramecium",
-        "group": "microbe",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Paramecium_caudatum_Ehrenberg%2C_1833.jpg/330px-Paramecium_caudatum_Ehrenberg%2C_1833.jpg"
-      },
-      {
-        "commonName": "Candida auris",
-        "scientificName": "Candidozyma auris",
-        "ncbiTaxId": 498019,
-        "wikiTitle": "Candida_auris",
-        "group": "microbe",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Candida-auris_2016-250px.jpg/330px-Candida-auris_2016-250px.jpg"
-      }
-    ],
-    "funFact": "Giant kelp and paramecium are distant cousins in the same deep branch of life — brown algae and ciliates share an ancient common ancestor in the SAR supergroup. Candida auris may be single-celled like paramecium, but it is a fungus, far more distant from both of them.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/SAR_supergroup",
-        "label": "SAR supergroup - Wikipedia"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
         "commonName": "Baker's yeast",
         "scientificName": "Saccharomyces cerevisiae",
         "ncbiTaxId": 4932,
@@ -3592,41 +2376,6 @@
       {
         "url": "https://en.wikipedia.org/wiki/Ascomycota",
         "label": "Ascomycota - Wikipedia"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
-        "commonName": "Candida auris",
-        "scientificName": "Candidozyma auris",
-        "ncbiTaxId": 498019,
-        "wikiTitle": "Candida_auris",
-        "group": "microbe",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Candida-auris_2016-250px.jpg/330px-Candida-auris_2016-250px.jpg"
-      },
-      {
-        "commonName": "Human",
-        "scientificName": "Homo sapiens",
-        "ncbiTaxId": 9606,
-        "wikiTitle": "Human",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/68/Akha_cropped_hires.JPG"
-      },
-      {
-        "commonName": "Paramecium",
-        "scientificName": "Paramecium caudatum",
-        "ncbiTaxId": 5885,
-        "wikiTitle": "Paramecium",
-        "group": "microbe",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Paramecium_caudatum_Ehrenberg%2C_1833.jpg/330px-Paramecium_caudatum_Ehrenberg%2C_1833.jpg"
-      }
-    ],
-    "funFact": "A deadly drug-resistant fungal superbug is more closely related to you than to a paramecium. Fungi and animals are both Opisthokonta — they share a common ancestor that paramecium, on the other side of the eukaryotic tree, does not. The pathogen ravaging hospitals worldwide is, phylogenetically speaking, family.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Opisthokonta",
-        "label": "Opisthokonta - Wikipedia"
       }
     ]
   },
@@ -3707,76 +2456,6 @@
   {
     "organisms": [
       {
-        "commonName": "Sea cucumber",
-        "scientificName": "Apostichopus japonicus",
-        "ncbiTaxId": 307972,
-        "wikiTitle": "Apostichopus_japonicus",
-        "group": "invertebrate",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/154075340/medium.jpg"
-      },
-      {
-        "commonName": "Starfish",
-        "scientificName": "Asterias rubens",
-        "ncbiTaxId": 7604,
-        "wikiTitle": "Common_starfish",
-        "group": "invertebrate",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Asterias_rubens.jpg/500px-Asterias_rubens.jpg"
-      },
-      {
-        "commonName": "Earthworm",
-        "scientificName": "Lumbricus terrestris",
-        "ncbiTaxId": 6398,
-        "wikiTitle": "Lumbricus_terrestris",
-        "group": "invertebrate",
-        "imageUrl": "https://static.inaturalist.org/photos/6813438/medium.jpg"
-      }
-    ],
-    "funFact": "Sea cucumbers are echinoderms — despite their worm-like body, they are closely related to starfish and sea urchins! They have the same five-fold radial symmetry hidden in their body plan and a water vascular system.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Sea_cucumber",
-        "label": "Sea cucumber - Wikipedia"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
-        "commonName": "Sea cucumber",
-        "scientificName": "Apostichopus japonicus",
-        "ncbiTaxId": 307972,
-        "wikiTitle": "Apostichopus_japonicus",
-        "group": "invertebrate",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/154075340/medium.jpg"
-      },
-      {
-        "commonName": "Sea urchin",
-        "scientificName": "Strongylocentrotus purpuratus",
-        "ncbiTaxId": 7668,
-        "wikiTitle": "Strongylocentrotus_purpuratus",
-        "group": "invertebrate",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Urchin_%289398869414%29.jpg/500px-Urchin_%289398869414%29.jpg"
-      },
-      {
-        "commonName": "Garden snail",
-        "scientificName": "Cornu aspersum",
-        "ncbiTaxId": 6535,
-        "wikiTitle": "Cornu_aspersum",
-        "group": "invertebrate",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/16302570/medium.jpg"
-      }
-    ],
-    "funFact": "Sea cucumbers, sea urchins, and starfish are all echinoderms — and they are on the same side of the animal family tree as vertebrates. A soft squishy sea cucumber is more closely related to you than to a snail.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Echinoderm",
-        "label": "Echinoderm - Wikipedia"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
         "commonName": "Baobab",
         "scientificName": "Adansonia digitata",
         "ncbiTaxId": 69109,
@@ -3806,41 +2485,6 @@
       {
         "url": "https://en.wikipedia.org/wiki/Adansonia",
         "label": "Adansonia - Wikipedia"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
-        "commonName": "Coconut palm",
-        "scientificName": "Cocos nucifera",
-        "ncbiTaxId": 13894,
-        "wikiTitle": "Coconut",
-        "group": "plant",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Cocos_nucifera_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-187.jpg/330px-Cocos_nucifera_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-187.jpg"
-      },
-      {
-        "commonName": "Duckweed",
-        "scientificName": "Lemna minor",
-        "ncbiTaxId": 4472,
-        "wikiTitle": "Lemna_minor",
-        "group": "plant",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Eendekroos_dicht_bijeen.JPG/330px-Eendekroos_dicht_bijeen.JPG"
-      },
-      {
-        "commonName": "English oak",
-        "scientificName": "Quercus robur",
-        "ncbiTaxId": 38942,
-        "wikiTitle": "Quercus_robur",
-        "group": "plant",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Quercus_robur.jpg/330px-Quercus_robur.jpg"
-      }
-    ],
-    "funFact": "A 30-meter coconut palm and a 1-centimeter duckweed are both monocots! They share a more recent common ancestor with each other than either does with an oak tree, which is a eudicot.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Monocotyledon",
-        "label": "Monocotyledon - Wikipedia"
       }
     ]
   },
@@ -4279,111 +2923,6 @@
   {
     "organisms": [
       {
-        "commonName": "Avocado",
-        "scientificName": "Persea americana",
-        "ncbiTaxId": 3435,
-        "wikiTitle": "Avocado",
-        "group": "plant",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Persea_americana_fruit_2.JPG/330px-Persea_americana_fruit_2.JPG"
-      },
-      {
-        "commonName": "Cinnamon",
-        "scientificName": "Cinnamomum verum",
-        "ncbiTaxId": 128608,
-        "wikiTitle": "Cinnamomum_verum",
-        "group": "plant",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Cinnamomum_verum1.jpg/330px-Cinnamomum_verum1.jpg"
-      },
-      {
-        "commonName": "Strawberry",
-        "scientificName": "Fragaria vesca",
-        "ncbiTaxId": 57918,
-        "wikiTitle": "Fragaria_vesca",
-        "group": "plant",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/134106423/medium.jpg"
-      }
-    ],
-    "funFact": "An avocado is more closely related to cinnamon than to a strawberry. Avocados and cinnamon are both in the laurel family — an ancient lineage of flowering plants that split off before most modern flowers evolved. Strawberries are rosids, on a completely different branch. The creamy fruit in your guacamole and the bark in your spice rack are relatives.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Lauraceae",
-        "label": "Lauraceae - Wikipedia"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
-        "commonName": "Tomato",
-        "scientificName": "Solanum lycopersicum",
-        "ncbiTaxId": 4081,
-        "wikiTitle": "Tomato",
-        "group": "plant",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Tomato_je.jpg/330px-Tomato_je.jpg"
-      },
-      {
-        "commonName": "Potato",
-        "scientificName": "Solanum tuberosum",
-        "ncbiTaxId": 4113,
-        "wikiTitle": "Potato",
-        "group": "plant",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Patates.jpg/330px-Patates.jpg"
-      },
-      {
-        "commonName": "Hot pepper",
-        "scientificName": "Capsicum annuum",
-        "ncbiTaxId": 4072,
-        "wikiTitle": "Capsicum_annuum",
-        "group": "plant",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Capsicum_annuum_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-027.jpg/330px-Capsicum_annuum_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-027.jpg"
-      }
-    ],
-    "funFact": "A tomato is more closely related to a potato than to a hot pepper — despite tomatoes and peppers both being colorful fruits you'd find together in a salsa. Tomatoes and potatoes are both in the genus Solanum, practically siblings. Peppers are in a separate genus (Capsicum) within the same nightshade family. The spicy fruit is the distant cousin; the starchy tuber is the close one.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Solanum",
-        "label": "Solanum - Wikipedia"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
-        "commonName": "Indian pipe",
-        "scientificName": "Monotropa uniflora",
-        "ncbiTaxId": 50148,
-        "wikiTitle": "Monotropa_uniflora",
-        "group": "plant",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Monotropa_uniflora_in_Penwood_State_Park_3%2C_2009-07-03.jpg/330px-Monotropa_uniflora_in_Penwood_State_Park_3%2C_2009-07-03.jpg"
-      },
-      {
-        "commonName": "Blueberry",
-        "scientificName": "Vaccinium corymbosum",
-        "ncbiTaxId": 69266,
-        "wikiTitle": "Vaccinium_corymbosum",
-        "group": "plant",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/216577733/medium.jpg"
-      },
-      {
-        "commonName": "Orchid",
-        "scientificName": "Phalaenopsis equestris",
-        "ncbiTaxId": 78828,
-        "wikiTitle": "Orchidaceae",
-        "group": "plant",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Plant_Orchid_Cymbidium_aloifolium_P1110661_05_-_cropped.jpg/330px-Plant_Orchid_Cymbidium_aloifolium_P1110661_05_-_cropped.jpg"
-      }
-    ],
-    "funFact": "Indian pipe is a ghostly white plant with no chlorophyll — it looks like a fungus pushing through the leaf litter. But it is a flowering plant in the heath family, the same family as blueberries and rhododendrons! It gets its energy by parasitizing fungi that are connected to tree roots. Orchids are monocots, far more distant despite also being showy forest plants.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Monotropa_uniflora",
-        "label": "Monotropa uniflora - Wikipedia"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
         "commonName": "Tardigrade",
         "scientificName": "Hypsibius dujardini",
         "ncbiTaxId": 232323,
@@ -4413,45 +2952,6 @@
       {
         "url": "https://en.wikipedia.org/wiki/Panarthropoda",
         "label": "Panarthropoda - Wikipedia"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
-        "commonName": "Tardigrade",
-        "scientificName": "Hypsibius dujardini",
-        "ncbiTaxId": 232323,
-        "wikiTitle": "Tardigrade",
-        "group": "arthropod",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/08/Waterbear.jpg"
-      },
-      {
-        "commonName": "Fruit fly",
-        "scientificName": "Drosophila melanogaster",
-        "ncbiTaxId": 7227,
-        "wikiTitle": "Drosophila_melanogaster",
-        "group": "arthropod",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Drosophila_melanogaster_Proboscis.jpg/500px-Drosophila_melanogaster_Proboscis.jpg"
-      },
-      {
-        "commonName": "Sea cucumber",
-        "scientificName": "Apostichopus japonicus",
-        "ncbiTaxId": 307972,
-        "wikiTitle": "Apostichopus_japonicus",
-        "group": "invertebrate",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/154075340/medium.jpg"
-      }
-    ],
-    "funFact": "A microscopic tardigrade is more closely related to a fruit fly than to a sea cucumber! Tardigrades are panarthropods — despite being tiny and blobby, they share a common ancestor with insects, spiders, and crabs. Sea cucumbers are deuterostomes, on the vertebrate side of the animal tree.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Tardigrade",
-        "label": "Tardigrade - Wikipedia"
-      },
-      {
-        "url": "https://www.britannica.com/animal/tardigrade",
-        "label": "Britannica - Tardigrade"
       }
     ]
   },
@@ -4540,41 +3040,6 @@
   {
     "organisms": [
       {
-        "commonName": "Patagonian mara",
-        "scientificName": "Dolichotis patagonum",
-        "ncbiTaxId": 29091,
-        "wikiTitle": "Patagonian_mara",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Dolichotis_patagonum_99386074.jpg/330px-Dolichotis_patagonum_99386074.jpg"
-      },
-      {
-        "commonName": "House mouse",
-        "scientificName": "Mus musculus",
-        "ncbiTaxId": 10090,
-        "wikiTitle": "House_mouse",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/%D0%9C%D1%8B%D1%88%D1%8C_2.jpg/500px-%D0%9C%D1%8B%D1%88%D1%8C_2.jpg"
-      },
-      {
-        "commonName": "White-tailed deer",
-        "scientificName": "Odocoileus virginianus",
-        "ncbiTaxId": 9874,
-        "wikiTitle": "White-tailed_deer",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/White-tailed_deer.jpg/330px-White-tailed_deer.jpg"
-      }
-    ],
-    "funFact": "The Patagonian mara runs on long slender legs across the Argentine pampas and looks convincingly like a small deer or antelope. It is a rodent, closely related to guinea pigs and capybaras — and therefore closer to a house mouse than to any deer. Everything about its body plan, from its hooves-like nails to its upright gait, is convergent with ungulates.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Patagonian_mara",
-        "label": "Patagonian mara - Wikipedia"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
         "commonName": "Shoebill",
         "scientificName": "Balaeniceps rex",
         "ncbiTaxId": 33584,
@@ -4608,45 +3073,6 @@
       {
         "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC44917/",
         "label": "PMC - Molecules vs. morphology in pelecaniform birds"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
-        "commonName": "Wolverine",
-        "scientificName": "Gulo gulo",
-        "ncbiTaxId": 48420,
-        "wikiTitle": "Wolverine",
-        "group": "mammal",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/251363753/medium.jpg"
-      },
-      {
-        "commonName": "Raccoon",
-        "scientificName": "Procyon lotor",
-        "ncbiTaxId": 9654,
-        "wikiTitle": "Raccoon",
-        "group": "mammal",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/46439025/medium.jpg"
-      },
-      {
-        "commonName": "Brown bear",
-        "scientificName": "Ursus arctos",
-        "ncbiTaxId": 9644,
-        "wikiTitle": "Brown_bear",
-        "group": "mammal",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/1491897/medium.jpg"
-      }
-    ],
-    "funFact": "Wolverines look like small bears but are mustelids — the weasel family. Raccoons are musteloids, the broader group that includes weasels and their relatives. Both are closer to each other than either is to a bear.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Wolverine",
-        "label": "Wolverine - Wikipedia"
-      },
-      {
-        "url": "https://www.britannica.com/animal/wolverine",
-        "label": "Britannica - Wolverine"
       }
     ]
   },
@@ -4725,45 +3151,6 @@
       {
         "url": "https://nationalzoo.si.edu/animals/naked-mole-rat",
         "label": "Smithsonian Zoo - Naked mole-rat"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
-        "commonName": "Tree shrew",
-        "scientificName": "Tupaia belangeri",
-        "ncbiTaxId": 37347,
-        "wikiTitle": "Northern_treeshrew",
-        "group": "mammal",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/13757244/medium.jpg"
-      },
-      {
-        "commonName": "Human",
-        "scientificName": "Homo sapiens",
-        "ncbiTaxId": 9606,
-        "wikiTitle": "Human",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/68/Akha_cropped_hires.JPG"
-      },
-      {
-        "commonName": "Common shrew",
-        "scientificName": "Sorex araneus",
-        "ncbiTaxId": 42254,
-        "wikiTitle": "Eurasian_shrew",
-        "group": "mammal",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/19163863/medium.jpg"
-      }
-    ],
-    "funFact": "Tree shrews look like shrews but are among the closest living relatives of primates! Despite the name, they are not shrews at all. True shrews are on a completely different branch of the mammal tree, alongside hedgehogs and moles, far from any primate.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Treeshrew",
-        "label": "Treeshrew - Wikipedia"
-      },
-      {
-        "url": "https://www.britannica.com/animal/tree-shrew",
-        "label": "Britannica - Tree shrews"
       }
     ]
   },
@@ -4988,45 +3375,6 @@
   {
     "organisms": [
       {
-        "commonName": "Myxozoan",
-        "scientificName": "Myxobolus cerebralis",
-        "ncbiTaxId": 59783,
-        "wikiTitle": "Myxobolus_cerebralis",
-        "group": "invertebrate",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Fdl17-9-grey.jpg"
-      },
-      {
-        "commonName": "Moon jellyfish",
-        "scientificName": "Aurelia aurita",
-        "ncbiTaxId": 6145,
-        "wikiTitle": "Moon_jellyfish",
-        "group": "invertebrate",
-        "imageUrl": "https://static.inaturalist.org/photos/128613708/medium.jpg"
-      },
-      {
-        "commonName": "Plasmodium",
-        "scientificName": "Plasmodium falciparum",
-        "ncbiTaxId": 5833,
-        "wikiTitle": "Plasmodium_falciparum",
-        "group": "microbe",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Plasmodium_falciparum_01.png/330px-Plasmodium_falciparum_01.png"
-      }
-    ],
-    "funFact": "Myxozoans are microscopic parasites of fish that were classified as protozoans for over a century — but they are actually cnidarians, related to jellyfish! They even retain tiny stinging-cell-like structures (polar capsules) homologous to jellyfish nematocysts. They are the most extremely reduced animals known, having lost nearly every feature we associate with being an animal.",
-    "sources": [
-      {
-        "url": "https://www.scientificamerican.com/blog/artful-amoeba/when-jellyfish-became-parasites-strange-things-happened/",
-        "label": "When Jellyfish Became Parasites, Strange Things Happened - Scientific American"
-      },
-      {
-        "url": "https://www.pnas.org/doi/10.1073/pnas.1511468112",
-        "label": "PNAS - Genomic insights into the evolutionary origin of Myxozoa within Cnidaria"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
         "commonName": "White shrimp",
         "scientificName": "Penaeus vannamei",
         "ncbiTaxId": 6689,
@@ -5105,41 +3453,6 @@
   {
     "organisms": [
       {
-        "commonName": "Porcelain crab",
-        "scientificName": "Petrolisthes cinctipes",
-        "ncbiTaxId": 88211,
-        "wikiTitle": "Porcelain_crab",
-        "group": "arthropod",
-        "imageUrl": "https://static.inaturalist.org/photos/1390549/medium.JPG"
-      },
-      {
-        "commonName": "Hermit crab",
-        "scientificName": "Pagurus bernhardus",
-        "ncbiTaxId": 174397,
-        "wikiTitle": "Pagurus_bernhardus",
-        "group": "arthropod",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/6221181/medium.jpeg"
-      },
-      {
-        "commonName": "Blue crab",
-        "scientificName": "Callinectes sapidus",
-        "ncbiTaxId": 6763,
-        "wikiTitle": "Callinectes_sapidus",
-        "group": "arthropod",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/175905385/medium.jpg"
-      }
-    ],
-    "funFact": "Porcelain crabs look like perfectly normal small crabs, but they are anomurans — closer to hermit crabs than to any true crab! They independently evolved the crab body plan yet again. Carcinization has happened at least five times: everything, it seems, eventually evolves into a crab.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Porcelain_crab",
-        "label": "Porcelain crab - Wikipedia"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
         "commonName": "Diatom",
         "scientificName": "Thalassiosira pseudonana",
         "ncbiTaxId": 35128,
@@ -5208,76 +3521,6 @@
       {
         "url": "https://www.nps.gov/articles/000/slime-molds.htm",
         "label": "National Park Service - Slime molds are not fungi"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
-        "commonName": "Crinoid",
-        "scientificName": "Antedon mediterranea",
-        "ncbiTaxId": 105859,
-        "wikiTitle": "Crinoid",
-        "group": "invertebrate",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/34137094/medium.jpeg"
-      },
-      {
-        "commonName": "Starfish",
-        "scientificName": "Asterias rubens",
-        "ncbiTaxId": 7604,
-        "wikiTitle": "Common_starfish",
-        "group": "invertebrate",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Asterias_rubens.jpg/500px-Asterias_rubens.jpg"
-      },
-      {
-        "commonName": "Staghorn coral",
-        "scientificName": "Acropora cervicornis",
-        "ncbiTaxId": 6130,
-        "wikiTitle": "Staghorn_coral",
-        "group": "invertebrate",
-        "imageUrl": "https://static.inaturalist.org/photos/164610234/medium.jpg"
-      }
-    ],
-    "funFact": "Crinoids look like underwater plants or corals swaying on the reef, but they are echinoderms — animals related to starfish and sea urchins! Staghorn coral may share the same reef, but corals are cnidarians — a completely different branch of animal life. The feathery crinoid waving next to a coral is secretly on the same team as the starfish.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Crinoid",
-        "label": "Crinoid - Wikipedia"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
-        "commonName": "Sand dollar",
-        "scientificName": "Echinarachnius parma",
-        "ncbiTaxId": 869203,
-        "wikiTitle": "Sand_dollar",
-        "group": "invertebrate",
-        "imageUrl": "https://static.inaturalist.org/photos/100977362/medium.jpeg"
-      },
-      {
-        "commonName": "Sea urchin",
-        "scientificName": "Strongylocentrotus purpuratus",
-        "ncbiTaxId": 7668,
-        "wikiTitle": "Strongylocentrotus_purpuratus",
-        "group": "invertebrate",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Urchin_%289398869414%29.jpg/500px-Urchin_%289398869414%29.jpg"
-      },
-      {
-        "commonName": "Starfish",
-        "scientificName": "Asterias rubens",
-        "ncbiTaxId": 7604,
-        "wikiTitle": "Common_starfish",
-        "group": "invertebrate",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Asterias_rubens.jpg/500px-Asterias_rubens.jpg"
-      }
-    ],
-    "funFact": "A sand dollar is not just a fellow echinoderm — it is literally a sea urchin. Sand dollars are irregular echinoids (class Echinoidea), the same class as spiny sea urchins, and evolved from a spherical urchin ancestor that flattened out to burrow through sand. Starfish are a separate echinoderm class (Asteroidea), making them more distantly related to sand dollars than sea urchins are.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Sand_dollar",
-        "label": "Sand dollar - Wikipedia"
       }
     ]
   },
@@ -5362,41 +3605,6 @@
   {
     "organisms": [
       {
-        "commonName": "Microsporidian",
-        "scientificName": "Fibrillanosema crangonycis",
-        "ncbiTaxId": 253633,
-        "wikiTitle": "Fibrillanosema_crangonycis",
-        "group": "microbe",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Fibrillanosema_spore.jpg/330px-Fibrillanosema_spore.jpg"
-      },
-      {
-        "commonName": "Baker's yeast",
-        "scientificName": "Saccharomyces cerevisiae",
-        "ncbiTaxId": 4932,
-        "wikiTitle": "Saccharomyces_cerevisiae",
-        "group": "microbe",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Saccharomyces_cerevisiae_SEM.jpg/330px-Saccharomyces_cerevisiae_SEM.jpg"
-      },
-      {
-        "commonName": "Paramecium",
-        "scientificName": "Paramecium caudatum",
-        "ncbiTaxId": 5885,
-        "wikiTitle": "Paramecium",
-        "group": "microbe",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Paramecium_caudatum_Ehrenberg%2C_1833.jpg/330px-Paramecium_caudatum_Ehrenberg%2C_1833.jpg"
-      }
-    ],
-    "funFact": "Microsporidia are intracellular parasites so reduced they were classified as ancient protists for decades — they lack mitochondria and were thought to be among the most primitive eukaryotes. Molecular data revealed they are actually fungi, extremely reduced relatives of yeast and mushrooms. One of the biggest reclassifications in microbiology.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Microsporidia",
-        "label": "Microsporidia - Wikipedia"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
         "commonName": "Hoatzin",
         "scientificName": "Opisthocomus hoazin",
         "ncbiTaxId": 30419,
@@ -5436,80 +3644,6 @@
   {
     "organisms": [
       {
-        "commonName": "Caecilian",
-        "scientificName": "Caecilia tentaculata",
-        "ncbiTaxId": 356198,
-        "wikiTitle": "Caecilian",
-        "group": "amphibian",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/607737/medium.jpg"
-      },
-      {
-        "commonName": "Human",
-        "scientificName": "Homo sapiens",
-        "ncbiTaxId": 9606,
-        "wikiTitle": "Human",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/68/Akha_cropped_hires.JPG"
-      },
-      {
-        "commonName": "Earthworm",
-        "scientificName": "Lumbricus terrestris",
-        "ncbiTaxId": 6398,
-        "wikiTitle": "Lumbricus_terrestris",
-        "group": "invertebrate",
-        "imageUrl": "https://static.inaturalist.org/photos/6813438/medium.jpg"
-      }
-    ],
-    "funFact": "Caecilians look identical to earthworms — limbless, burrowing, segmented-looking — but they are vertebrates with a skull, spine, teeth, and eyes (sometimes hidden under bone). A caecilian is closer to a human than to any worm. Most people have never even heard of them, yet there are over 200 species.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Caecilian",
-        "label": "Caecilian - Wikipedia"
-      },
-      {
-        "url": "https://www.nationalgeographic.com/animals/amphibians/facts/caecilians",
-        "label": "National Geographic - Caecilians: limbless amphibians"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
-        "commonName": "African lungfish",
-        "scientificName": "Protopterus annectens",
-        "ncbiTaxId": 7888,
-        "wikiTitle": "West_African_lungfish",
-        "group": "fish",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/28665335/medium.jpg"
-      },
-      {
-        "commonName": "Human",
-        "scientificName": "Homo sapiens",
-        "ncbiTaxId": 9606,
-        "wikiTitle": "Human",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/68/Akha_cropped_hires.JPG"
-      },
-      {
-        "commonName": "European eel",
-        "scientificName": "Anguilla anguilla",
-        "ncbiTaxId": 7936,
-        "wikiTitle": "European_eel",
-        "group": "fish",
-        "imageUrl": "https://static.inaturalist.org/photos/40043710/medium.jpg"
-      }
-    ],
-    "funFact": "The African lungfish looks almost identical to an eel — long, sinuous, with tiny filamentous fins — but it is a lobe-finned fish more closely related to humans than to any eel. In fact, lungfish are even closer to tetrapods than coelacanths are, sitting right at the base of the lineage that crawled onto land. The eel is a ray-finned fish, separated from us by over 400 million years of evolution.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Protopterus",
-        "label": "Protopterus - Wikipedia"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
         "commonName": "Three-toed sloth",
         "scientificName": "Bradypus variegatus",
         "ncbiTaxId": 9355,
@@ -5539,80 +3673,6 @@
       {
         "url": "https://en.wikipedia.org/wiki/Koala",
         "label": "Koala - Wikipedia"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
-        "commonName": "Aardvark",
-        "scientificName": "Orycteropus afer",
-        "ncbiTaxId": 9818,
-        "wikiTitle": "Aardvark",
-        "group": "mammal",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/175359469/medium.jpg"
-      },
-      {
-        "commonName": "African elephant",
-        "scientificName": "Loxodonta africana",
-        "ncbiTaxId": 9785,
-        "wikiTitle": "African_elephant",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/178_Male_African_bush_elephant_in_Etosha_National_Park_Photo_by_Giles_Laurent.jpg/330px-178_Male_African_bush_elephant_in_Etosha_National_Park_Photo_by_Giles_Laurent.jpg"
-      },
-      {
-        "commonName": "Giant anteater",
-        "scientificName": "Myrmecophaga tridactyla",
-        "ncbiTaxId": 71006,
-        "wikiTitle": "Giant_anteater",
-        "group": "mammal",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/108811809/medium.jpg"
-      }
-    ],
-    "funFact": "Aardvarks and giant anteaters do the same job — long snouts, long sticky tongues, powerful claws for ripping open termite mounds — but they are not related at all. Aardvarks are African mammals closer to elephants than to any anteater. Giant anteaters are South American mammals closer to sloths and armadillos. They independently evolved the same ant-eating toolkit on different continents.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Aardvark",
-        "label": "Aardvark - Wikipedia"
-      },
-      {
-        "url": "https://www.livescience.com/55241-aardvark-facts.html",
-        "label": "Live Science - Aardvark facts"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
-        "commonName": "Human",
-        "scientificName": "Homo sapiens",
-        "ncbiTaxId": 9606,
-        "wikiTitle": "Human",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/68/Akha_cropped_hires.JPG"
-      },
-      {
-        "commonName": "Salp",
-        "scientificName": "Salpa thompsoni",
-        "ncbiTaxId": 569448,
-        "wikiTitle": "Salp",
-        "group": "invertebrate",
-        "imageUrl": "https://static.inaturalist.org/photos/35333491/medium.jpeg"
-      },
-      {
-        "commonName": "Starfish",
-        "scientificName": "Asterias rubens",
-        "ncbiTaxId": 7604,
-        "wikiTitle": "Common_starfish",
-        "group": "invertebrate",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Asterias_rubens.jpg/500px-Asterias_rubens.jpg"
-      }
-    ],
-    "funFact": "A salp — a transparent, barrel-shaped animal that drifts through open ocean, pumping water through its body to feed and move — is more closely related to you than a starfish is. Salps are tunicates, which sit inside phylum Chordata as the sister group of all vertebrates. They even have a primitive notochord during their larval stage. Starfish are Echinodermata, a more distant deuterostome branch.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Olfactores",
-        "label": "Olfactores - Wikipedia"
       }
     ]
   },
@@ -5728,45 +3788,6 @@
   {
     "organisms": [
       {
-        "commonName": "Vampire squid",
-        "scientificName": "Vampyroteuthis infernalis",
-        "ncbiTaxId": 55288,
-        "wikiTitle": "Vampire_squid",
-        "group": "invertebrate",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/239331193/medium.jpg"
-      },
-      {
-        "commonName": "Common octopus",
-        "scientificName": "Octopus vulgaris",
-        "ncbiTaxId": 6645,
-        "wikiTitle": "Common_octopus",
-        "group": "invertebrate",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/166419253/medium.jpeg"
-      },
-      {
-        "commonName": "Giant squid",
-        "scientificName": "Architeuthis dux",
-        "ncbiTaxId": 256136,
-        "wikiTitle": "Giant_squid",
-        "group": "invertebrate",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/91402900/medium.jpeg"
-      }
-    ],
-    "funFact": "The vampire squid is neither a squid nor an octopus — it is the last surviving member of its own order, Vampyromorphida, which diverged before squid and octopus split apart. Its name means \"vampire squid from hell,\" but it is a gentle deep-sea detritivore that eats marine snow.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Vampire_squid",
-        "label": "Vampire squid - Wikipedia"
-      },
-      {
-        "url": "https://www.marinebio.org/species/vampire-squid/vampyroteuthis-infernalis/",
-        "label": "MarineBio - Vampire squid"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
         "commonName": "Cashew",
         "scientificName": "Anacardium occidentale",
         "ncbiTaxId": 171929,
@@ -5806,41 +3827,6 @@
   {
     "organisms": [
       {
-        "commonName": "Peanut",
-        "scientificName": "Arachis hypogaea",
-        "ncbiTaxId": 3818,
-        "wikiTitle": "Peanut",
-        "group": "plant",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/105026294/medium.jpeg"
-      },
-      {
-        "commonName": "Strawberry",
-        "scientificName": "Fragaria vesca",
-        "ncbiTaxId": 57918,
-        "wikiTitle": "Fragaria_vesca",
-        "group": "plant",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/134106423/medium.jpg"
-      },
-      {
-        "commonName": "Almond",
-        "scientificName": "Prunus dulcis",
-        "ncbiTaxId": 3755,
-        "wikiTitle": "Almond",
-        "group": "plant",
-        "imageUrl": "https://static.inaturalist.org/photos/113968708/medium.jpeg"
-      }
-    ],
-    "funFact": "Peanuts are not nuts — they are legumes, related to beans, lentils, and clover. Almonds are not true nuts either — they are Rosaceae, in the same family as strawberries, roses, and peaches. A peanut is closer to a bean than to any tree nut, and an almond is closer to a strawberry than to a peanut.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Peanut",
-        "label": "Peanut - Wikipedia"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
         "commonName": "Oomycete",
         "scientificName": "Phytophthora infestans",
         "ncbiTaxId": 4787,
@@ -5874,76 +3860,6 @@
       {
         "url": "https://ucmp.berkeley.edu/chromista/oomycota.html",
         "label": "UC Berkeley - Oomycetes are not fungi"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
-        "commonName": "Dromedary camel",
-        "scientificName": "Camelus dromedarius",
-        "ncbiTaxId": 9838,
-        "wikiTitle": "Dromedary",
-        "group": "mammal",
-        "imageUrl": "https://static.inaturalist.org/photos/254331474/medium.jpg"
-      },
-      {
-        "commonName": "Blue whale",
-        "scientificName": "Balaenoptera musculus",
-        "ncbiTaxId": 9771,
-        "wikiTitle": "Blue_whale",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Anim1754_-_Flickr_-_NOAA_Photo_Library.jpg/330px-Anim1754_-_Flickr_-_NOAA_Photo_Library.jpg"
-      },
-      {
-        "commonName": "White rhinoceros",
-        "scientificName": "Ceratotherium simum",
-        "ncbiTaxId": 9807,
-        "wikiTitle": "White_rhinoceros",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/109_Male_White_rhinoceros_walking_in_the_Kalahari_Desert_of_Namibia_Photo_by_Giles_Laurent.jpg/330px-109_Male_White_rhinoceros_walking_in_the_Kalahari_Desert_of_Namibia_Photo_by_Giles_Laurent.jpg"
-      }
-    ],
-    "funFact": "A camel is more closely related to a whale than to a rhino! Camels are even-toed ungulates (Artiodactyla, with whales, cows, and pigs), while rhinos are odd-toed ungulates (Perissodactyla, with horses and tapirs). Despite camels and rhinos both being large, tough, desert-adapted land mammals, they are on completely different branches.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Camelidae",
-        "label": "Camelidae - Wikipedia"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
-        "commonName": "White-tailed deer",
-        "scientificName": "Odocoileus virginianus",
-        "ncbiTaxId": 9874,
-        "wikiTitle": "White-tailed_deer",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/White-tailed_deer.jpg/330px-White-tailed_deer.jpg"
-      },
-      {
-        "commonName": "Hippopotamus",
-        "scientificName": "Hippopotamus amphibius",
-        "ncbiTaxId": 9833,
-        "wikiTitle": "Hippopotamus",
-        "group": "mammal",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/13896177/medium.jpg"
-      },
-      {
-        "commonName": "Horse",
-        "scientificName": "Equus caballus",
-        "ncbiTaxId": 9796,
-        "wikiTitle": "Horse",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Nokota_Horses_cropped.jpg/500px-Nokota_Horses_cropped.jpg"
-      }
-    ],
-    "funFact": "A graceful deer and a massive hippo are both even-toed ungulates — closer to each other than either is to a horse! Horses look more deer-like but are odd-toed ungulates, in the same group as rhinos and tapirs. Appearances are deeply misleading when it comes to hoofed mammals.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Artiodactyla",
-        "label": "Artiodactyla - Wikipedia"
       }
     ]
   },
@@ -6145,41 +4061,6 @@
   {
     "organisms": [
       {
-        "commonName": "Chicken",
-        "scientificName": "Gallus gallus",
-        "ncbiTaxId": 9031,
-        "wikiTitle": "Chicken",
-        "group": "bird",
-        "imageUrl": "https://static.inaturalist.org/photos/65623665/medium.jpeg"
-      },
-      {
-        "commonName": "Emperor penguin",
-        "scientificName": "Aptenodytes forsteri",
-        "ncbiTaxId": 9233,
-        "wikiTitle": "Emperor_penguin",
-        "group": "bird",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Aptenodytes_forsteri_-Snow_Hill_Island%2C_Antarctica_-adults_and_juvenile-8.jpg/330px-Aptenodytes_forsteri_-Snow_Hill_Island%2C_Antarctica_-adults_and_juvenile-8.jpg"
-      },
-      {
-        "commonName": "Ostrich",
-        "scientificName": "Struthio camelus",
-        "ncbiTaxId": 8801,
-        "wikiTitle": "Common_ostrich",
-        "group": "bird",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Struthio_camelus_-_Etosha_2014_%283%29.jpg/330px-Struthio_camelus_-_Etosha_2014_%283%29.jpg"
-      }
-    ],
-    "funFact": "A chicken and a penguin are more closely related than either is to an ostrich! Both are Neognathae (\"new jaws\"), while ostriches are Palaeognathae (\"old jaws\") — among the most ancient living bird lineages. Despite ostriches and penguins both being large and flightless, they lost flight completely independently.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Neognathae",
-        "label": "Neognathae - Wikipedia"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
         "commonName": "Olive baboon",
         "scientificName": "Papio anubis",
         "ncbiTaxId": 9555,
@@ -6215,41 +4096,6 @@
   {
     "organisms": [
       {
-        "commonName": "Red kangaroo",
-        "scientificName": "Osphranter rufus",
-        "ncbiTaxId": 9321,
-        "wikiTitle": "Red_kangaroo",
-        "group": "mammal",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/164668615/medium.jpg"
-      },
-      {
-        "commonName": "Human",
-        "scientificName": "Homo sapiens",
-        "ncbiTaxId": 9606,
-        "wikiTitle": "Human",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/68/Akha_cropped_hires.JPG"
-      },
-      {
-        "commonName": "Platypus",
-        "scientificName": "Ornithorhynchus anatinus",
-        "ncbiTaxId": 9258,
-        "wikiTitle": "Platypus",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Duck-billed_platypus_%28Ornithorhynchus_anatinus%29_Scottsdale.jpg/330px-Duck-billed_platypus_%28Ornithorhynchus_anatinus%29_Scottsdale.jpg"
-      }
-    ],
-    "funFact": "A kangaroo is closer to a human than to a platypus! Despite both being iconic Australian animals, marsupials and placentals are both therians — sharing a common ancestor long after monotremes diverged ~170 million years ago. The platypus is the true outlier among living mammals.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Theria",
-        "label": "Theria - Wikipedia"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
         "commonName": "Black-tailed prairie dog",
         "scientificName": "Cynomys ludovicianus",
         "ncbiTaxId": 45480,
@@ -6275,41 +4121,6 @@
       }
     ],
     "funFact": "Prairie dogs and flying squirrels are both squirrels (Sciuridae)! A burrowing prairie mammal and a gliding tree mammal are in the same family. Beavers look like similarly chunky rodents but are Castoridae — a completely separate rodent family that diverged tens of millions of years ago.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Sciuridae",
-        "label": "Sciuridae - Wikipedia"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
-        "commonName": "Eastern gray squirrel",
-        "scientificName": "Sciurus carolinensis",
-        "ncbiTaxId": 30640,
-        "wikiTitle": "Eastern_gray_squirrel",
-        "group": "mammal",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/22144449/medium.jpg"
-      },
-      {
-        "commonName": "Black-tailed prairie dog",
-        "scientificName": "Cynomys ludovicianus",
-        "ncbiTaxId": 45480,
-        "wikiTitle": "Black-tailed_prairie_dog",
-        "group": "mammal",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/7688931/medium.jpg"
-      },
-      {
-        "commonName": "House mouse",
-        "scientificName": "Mus musculus",
-        "ncbiTaxId": 10090,
-        "wikiTitle": "House_mouse",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/%D0%9C%D1%8B%D1%88%D1%8C_2.jpg/500px-%D0%9C%D1%8B%D1%88%D1%8C_2.jpg"
-      }
-    ],
-    "funFact": "The squirrel in your yard and a prairie dog are in the same family — Sciuridae! Despite prairie dogs being stocky, burrowing, and colonial, they are tree squirrels' close cousins. Mice look more squirrel-sized and rodent-like, but are in a completely different rodent family (Muridae) that diverged over 70 million years ago.",
     "sources": [
       {
         "url": "https://en.wikipedia.org/wiki/Sciuridae",
@@ -6355,80 +4166,6 @@
   {
     "organisms": [
       {
-        "commonName": "Human",
-        "scientificName": "Homo sapiens",
-        "ncbiTaxId": 9606,
-        "wikiTitle": "Human",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/68/Akha_cropped_hires.JPG"
-      },
-      {
-        "commonName": "Olive baboon",
-        "scientificName": "Papio anubis",
-        "ncbiTaxId": 9555,
-        "wikiTitle": "Olive_baboon",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Olive_baboon_Ngorongoro.jpg/330px-Olive_baboon_Ngorongoro.jpg"
-      },
-      {
-        "commonName": "Capuchin monkey",
-        "scientificName": "Cebus capucinus",
-        "ncbiTaxId": 9516,
-        "wikiTitle": "Colombian_white-faced_capuchin",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Cebus_capucinus_at_the_Bronx_Zoo_001.jpg/330px-Cebus_capucinus_at_the_Bronx_Zoo_001.jpg"
-      }
-    ],
-    "funFact": "You are more closely related to a baboon than a capuchin monkey is. Humans and baboons are both \"Old World\" primates — apes and the monkeys of Africa and Asia. Capuchins are \"New World\" monkeys that split off over 40 million years ago when South America was a separate continent. The word \"monkey\" is not a valid evolutionary group unless you include apes and humans in it.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Catarrhini",
-        "label": "Catarrhini - Wikipedia"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
-        "commonName": "Human",
-        "scientificName": "Homo sapiens",
-        "ncbiTaxId": 9606,
-        "wikiTitle": "Human",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/68/Akha_cropped_hires.JPG"
-      },
-      {
-        "commonName": "Australian lungfish",
-        "scientificName": "Neoceratodus forsteri",
-        "ncbiTaxId": 7892,
-        "wikiTitle": "Australian_lungfish",
-        "group": "fish",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/577691714/medium.jpg"
-      },
-      {
-        "commonName": "Atlantic salmon",
-        "scientificName": "Salmo salar",
-        "ncbiTaxId": 8030,
-        "wikiTitle": "Atlantic_salmon",
-        "group": "fish",
-        "imageUrl": "https://static.inaturalist.org/photos/60703307/medium.jpg"
-      }
-    ],
-    "funFact": "You are more closely related to a lungfish than a salmon is. Both are called \"fish,\" but \"fish\" is not a real evolutionary group. Lungfish have fleshy, limb-like fins and are on the same branch as all land animals — the lineage that crawled onto shore. Salmon are ray-finned fish, a completely separate branch. You are literally inside the fish family tree.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Sarcopterygii",
-        "label": "Sarcopterygii - Wikipedia"
-      },
-      {
-        "url": "https://www.businessinsider.com/fish-do-not-exist-2016-8",
-        "label": "Business Insider - There is no such thing as a fish"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
         "commonName": "Three-toed sloth",
         "scientificName": "Bradypus variegatus",
         "ncbiTaxId": 9355,
@@ -6463,45 +4200,6 @@
     "correctPair": [
       "Three-toed sloth",
       "Rock hyrax"
-    ]
-  },
-  {
-    "organisms": [
-      {
-        "commonName": "Nile crocodile",
-        "scientificName": "Crocodylus niloticus",
-        "ncbiTaxId": 8501,
-        "wikiTitle": "Nile_crocodile",
-        "group": "reptile",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/NileCrocodile.jpg/330px-NileCrocodile.jpg"
-      },
-      {
-        "commonName": "Ruby-throated hummingbird",
-        "scientificName": "Archilochus colubris",
-        "ncbiTaxId": 190676,
-        "wikiTitle": "Ruby-throated_hummingbird",
-        "group": "bird",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/221352761/medium.jpg"
-      },
-      {
-        "commonName": "Komodo dragon",
-        "scientificName": "Varanus komodoensis",
-        "ncbiTaxId": 61221,
-        "wikiTitle": "Komodo_dragon",
-        "group": "reptile",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/1892238/medium.jpg"
-      }
-    ],
-    "funFact": "A crocodile is actually more closely related to a hummingbird than it is to a monitor lizard! Crocodilians and birds are both archosaurs, sharing a common ancestor that lived long after the split from lepidosaurs (the group containing lizards and snakes).",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Archosauria",
-        "label": "Archosauria - Wikipedia"
-      },
-      {
-        "url": "https://www.earth.com/news/crocodiles-birds-archosaurs/",
-        "label": "Earth.com - Crocodiles and birds are archosaurs"
-      }
     ]
   },
   {
@@ -6655,41 +4353,6 @@
   {
     "organisms": [
       {
-        "commonName": "Weeping willow",
-        "scientificName": "Salix babylonica",
-        "ncbiTaxId": 75706,
-        "wikiTitle": "Salix_babylonica",
-        "group": "plant",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Ch%C3%A2teau_de_Chenonceau_-_jardin_Russell-Page_%2801%29.jpg/330px-Ch%C3%A2teau_de_Chenonceau_-_jardin_Russell-Page_%2801%29.jpg"
-      },
-      {
-        "commonName": "Garden violet",
-        "scientificName": "Viola odorata",
-        "ncbiTaxId": 97441,
-        "wikiTitle": "Viola_odorata",
-        "group": "plant",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Viola_odorata_fg01.JPG/330px-Viola_odorata_fg01.JPG"
-      },
-      {
-        "commonName": "Blueberry",
-        "scientificName": "Vaccinium corymbosum",
-        "ncbiTaxId": 69266,
-        "wikiTitle": "Vaccinium_corymbosum",
-        "group": "plant",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/216577733/medium.jpg"
-      }
-    ],
-    "funFact": "The ultimate 'size doesn't matter' surprise: the massive drooping willow and the tiny purple violet are in the same order (Malpighiales). A willow is basically a violet that didn't know when to stop growing. The blueberry bush may look more like a willow's size-mate, but it belongs to a completely different order (Ericales).",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Malpighiales",
-        "label": "Malpighiales - Wikipedia"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
         "commonName": "Dragon blood tree",
         "scientificName": "Dracaena cinnabari",
         "ncbiTaxId": 1142948,
@@ -6721,125 +4384,6 @@
         "label": "Dracaena - Wikipedia"
       }
     ]
-  },
-  {
-    "organisms": [
-      {
-        "commonName": "Trichoplax",
-        "scientificName": "Trichoplax adhaerens",
-        "ncbiTaxId": 10228,
-        "wikiTitle": "Trichoplax_adhaerens",
-        "group": "invertebrate",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Trichoplax_mic.jpg/330px-Trichoplax_mic.jpg"
-      },
-      {
-        "commonName": "Bath sponge",
-        "scientificName": "Spongia officinalis",
-        "ncbiTaxId": 252964,
-        "wikiTitle": "Spongia_officinalis",
-        "group": "invertebrate",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/154760564/medium.jpeg"
-      },
-      {
-        "commonName": "Human",
-        "scientificName": "Homo sapiens",
-        "ncbiTaxId": 9606,
-        "wikiTitle": "Human",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/68/Akha_cropped_hires.JPG"
-      }
-    ],
-    "funFact": "Trichoplax is a flat, transparent animal with no organs, no gut, and no nervous system — it glides over food and digests it externally. Despite this simplicity, most phylogenies place Placozoa as sister to Cnidaria+Bilateria, meaning Trichoplax is more closely related to humans than sponges are.",
-    "sources": [
-      {
-        "url": "https://www.quantamagazine.org/worlds-simplest-animal-reveals-hidden-diversity-20180912/",
-        "label": "World's Simplest Animal Reveals Hidden Diversity - Quanta Magazine"
-      },
-      {
-        "url": "https://www.nature.com/articles/nature07191",
-        "label": "Nature - The Trichoplax genome and the nature of placozoans"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
-        "commonName": "Trichoplax",
-        "scientificName": "Trichoplax adhaerens",
-        "ncbiTaxId": 10228,
-        "wikiTitle": "Trichoplax_adhaerens",
-        "group": "invertebrate",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Trichoplax_mic.jpg/330px-Trichoplax_mic.jpg"
-      },
-      {
-        "commonName": "Comb jelly",
-        "scientificName": "Mnemiopsis leidyi",
-        "ncbiTaxId": 27923,
-        "wikiTitle": "Mnemiopsis",
-        "group": "invertebrate",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Sea_walnut%2C_Boston_Aquarium_%28cropped%29.jpg/500px-Sea_walnut%2C_Boston_Aquarium_%28cropped%29.jpg"
-      },
-      {
-        "commonName": "Bath sponge",
-        "scientificName": "Spongia officinalis",
-        "ncbiTaxId": 252964,
-        "wikiTitle": "Spongia_officinalis",
-        "group": "invertebrate",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/154760564/medium.jpeg"
-      }
-    ],
-    "funFact": "Sponges have no tissues. Trichoplax has no organs. Comb jellies have nerves and muscles but may have evolved them independently. Which of these lineages branched first from the animal tree remains unresolved — and the answer determines whether the common ancestor of all animals had a nervous system.",
-    "sources": [
-      {
-        "url": "https://www.quantamagazine.org/worlds-simplest-animal-reveals-hidden-diversity-20180912/",
-        "label": "World's Simplest Animal Reveals Hidden Diversity - Quanta Magazine"
-      },
-      {
-        "url": "https://onlinelibrary.wiley.com/doi/full/10.1002/bies.202100080",
-        "label": "BioEssays - The enigmatic Placozoa: evolutionary controversies"
-      }
-    ],
-    "activelyDebated": true
-  },
-  {
-    "organisms": [
-      {
-        "commonName": "Acoel flatworm",
-        "scientificName": "Symsagittifera roscoffensis",
-        "ncbiTaxId": 84072,
-        "wikiTitle": "Symsagittifera_roscoffensis",
-        "group": "invertebrate",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Symsagittifera_roscoffensis%28Jersey%29.jpg/330px-Symsagittifera_roscoffensis%28Jersey%29.jpg"
-      },
-      {
-        "commonName": "Planarian",
-        "scientificName": "Schmidtea mediterranea",
-        "ncbiTaxId": 79327,
-        "wikiTitle": "Schmidtea_mediterranea",
-        "group": "invertebrate",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Smed_distribution.png/500px-Smed_distribution.png"
-      },
-      {
-        "commonName": "Human",
-        "scientificName": "Homo sapiens",
-        "ncbiTaxId": 9606,
-        "wikiTitle": "Human",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/68/Akha_cropped_hires.JPG"
-      }
-    ],
-    "funFact": "Acoel flatworms and planarians look nearly identical — small, soft worms that glide on surfaces. But molecular data shows they are not closely related. Planarians are protostomes (with insects and molluscs). Acoels belong to Xenacoelomorpha, which may be the sister group to all other bilaterians, representing the deepest split in the bilaterian tree.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Xenacoelomorpha",
-        "label": "Xenacoelomorpha - Wikipedia"
-      },
-      {
-        "url": "https://www.nature.com/articles/nature16520",
-        "label": "Nature - Xenacoelomorpha is the sister group to Nephrozoa"
-      }
-    ],
-    "activelyDebated": true
   },
   {
     "organisms": [
@@ -7002,45 +4546,6 @@
   {
     "organisms": [
       {
-        "commonName": "Myxozoan",
-        "scientificName": "Myxobolus cerebralis",
-        "ncbiTaxId": 59783,
-        "wikiTitle": "Myxobolus_cerebralis",
-        "group": "invertebrate",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Fdl17-9-grey.jpg"
-      },
-      {
-        "commonName": "Comb jelly",
-        "scientificName": "Mnemiopsis leidyi",
-        "ncbiTaxId": 27923,
-        "wikiTitle": "Mnemiopsis",
-        "group": "invertebrate",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Sea_walnut%2C_Boston_Aquarium_%28cropped%29.jpg/500px-Sea_walnut%2C_Boston_Aquarium_%28cropped%29.jpg"
-      },
-      {
-        "commonName": "Bath sponge",
-        "scientificName": "Spongia officinalis",
-        "ncbiTaxId": 252964,
-        "wikiTitle": "Spongia_officinalis",
-        "group": "invertebrate",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/154760564/medium.jpeg"
-      }
-    ],
-    "funFact": "The myxozoan and comb jelly are both eumetazoans (animals with true tissues), while sponges lack tissues entirely. Within eumetazoans, the myxozoan is a cnidarian — a jellyfish relative reduced to a few cells — while the comb jelly belongs to a separate phylum (Ctenophora).",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Myxozoa",
-        "label": "Myxozoa - Wikipedia"
-      },
-      {
-        "url": "https://www.smithsonianmag.com/smart-news/parasite-really-micro-jellyfish-180957326/",
-        "label": "Smithsonian - This parasite is really a micro-jellyfish"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
         "commonName": "Termite",
         "scientificName": "Reticulitermes flavipes",
         "ncbiTaxId": 36989,
@@ -7118,6 +4623,221 @@
         "url": "https://www.mapress.com/pe/article/view/palaeoentomology.3.6.16",
         "label": "Palaeoentomology - Fleas are parasitic scorpionflies"
       }
+    ]
+  },
+  {
+    "organisms": [
+      {
+        "commonName": "European feather worm",
+        "scientificName": "Sabella spallanzanii",
+        "ncbiTaxId": 85702,
+        "wikiTitle": "Sabella_spallanzanii",
+        "group": "invertebrate",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Espir%C3%B3grafo_(Sabella_spallanzanii)%2C_Parque_natural_de_la_Arr%C3%A1bida%2C_Portugal%2C_2020-07-23%2C_DD_70.jpg?width=330"
+      },
+      {
+        "commonName": "Sea mouse",
+        "scientificName": "Aphrodita aculeata",
+        "ncbiTaxId": 45666,
+        "wikiTitle": "Aphrodita_aculeata",
+        "group": "invertebrate",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Aphrodita_aculeata_(Sea_mouse).jpg?width=330"
+      },
+      {
+        "commonName": "Beef tapeworm",
+        "scientificName": "Taenia saginata",
+        "ncbiTaxId": 6206,
+        "wikiTitle": "Taenia_saginata",
+        "group": "invertebrate",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Taenia_saginata_adult_5260_lores.jpg/500px-Taenia_saginata_adult_5260_lores.jpg"
+      }
+    ],
+    "funFact": "The sea mouse looks like a small furry animal washed ashore, and feather worms look like underwater flowers — but both are polychaete annelids, segmented worms covered in bristles (chaetae). The sea mouse’s “fur” is densely packed iridescent chaetae. Tapeworms, despite the name, are flatworms (Platyhelminthes) — a completely different phylum that evolved their ribbon-like shape independently.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Aphrodita_aculeata",
+        "label": "Sea mouse - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Polychaeta",
+        "label": "Polychaeta - Wikipedia"
+      }
+    ],
+    "correctPair": [
+      "European feather worm",
+      "Sea mouse"
+    ]
+  },
+  {
+    "organisms": [
+      {
+        "commonName": "Common feather star",
+        "scientificName": "Florometra serratissima",
+        "ncbiTaxId": 73431,
+        "wikiTitle": "Florometra_serratissima",
+        "group": "invertebrate",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Sanc1619_-_Flickr_-_NOAA_Photo_Library.jpg?width=330"
+      },
+      {
+        "commonName": "Green sea urchin",
+        "scientificName": "Strongylocentrotus droebachiensis",
+        "ncbiTaxId": 7671,
+        "wikiTitle": "Strongylocentrotus_droebachiensis",
+        "group": "invertebrate",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/S._droe.JPG/330px-S._droe.JPG"
+      },
+      {
+        "commonName": "Calcareous tube worm",
+        "scientificName": "Serpula vermicularis",
+        "ncbiTaxId": 249369,
+        "wikiTitle": "Serpula_vermicularis",
+        "group": "invertebrate",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Serpula_vermicularis_2.jpg?width=330"
+      }
+    ],
+    "funFact": "Feather stars and feather worms both wave feathery arms in the ocean current, but they belong to entirely different branches of the animal tree. Feather stars are crinoids — echinoderms, the same phylum as sea urchins and starfish — making them deuterostomes, closer to vertebrates than to any worm. Feather worms are polychaete annelids, protostomes that diverged from deuterostomes over 600 million years ago.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Crinoidea",
+        "label": "Crinoidea - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Sabellidae",
+        "label": "Sabellidae (feather worms) - Wikipedia"
+      }
+    ],
+    "correctPair": [
+      "Common feather star",
+      "Green sea urchin"
+    ]
+  },
+  {
+    "organisms": [
+      {
+        "commonName": "Velvet worm",
+        "scientificName": "Peripatoides aurorbis",
+        "ncbiTaxId": 123608,
+        "wikiTitle": "Peripatoides_aurorbis",
+        "group": "invertebrate",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Peripatoides_aurorbis_451490847.jpg?width=330"
+      },
+      {
+        "commonName": "House centipede",
+        "scientificName": "Scutigera coleoptrata",
+        "ncbiTaxId": 29022,
+        "wikiTitle": "Scutigera_coleoptrata",
+        "group": "arthropod",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Scutigera_coleoptrata_MHNT_.jpg/330px-Scutigera_coleoptrata_MHNT_.jpg"
+      },
+      {
+        "commonName": "Raccoon roundworm",
+        "scientificName": "Baylisascaris procyonis",
+        "ncbiTaxId": 6259,
+        "wikiTitle": "Baylisascaris_procyonis",
+        "group": "invertebrate",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Baylisascaris_larvae.jpg/330px-Baylisascaris_larvae.jpg"
+      }
+    ],
+    "funFact": "Velvet worms look like caterpillars with soft, stubby un-jointed legs, but they are Onychophora — an ancient phylum that branched from the arthropod lineage around 500 million years ago. Together with arthropods like centipedes, they form Panarthropoda (“all-legged animals”). Roundworms are also ecdysozoans (they shed their cuticle to grow), but they lost legs before panarthropods evolved and diverged long before that split.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Onychophora",
+        "label": "Onychophora - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Panarthropoda",
+        "label": "Panarthropoda - Wikipedia"
+      }
+    ],
+    "correctPair": [
+      "Velvet worm",
+      "House centipede"
+    ]
+  },
+  {
+    "organisms": [
+      {
+        "commonName": "Water bear",
+        "scientificName": "Ramazzottius varieornatus",
+        "ncbiTaxId": 947166,
+        "wikiTitle": "Ramazzottius_varieornatus",
+        "group": "invertebrate",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/41598_2019_56965_Fig1_HTML.webp?width=330"
+      },
+      {
+        "commonName": "Pillbug",
+        "scientificName": "Armadillidium album",
+        "ncbiTaxId": 96802,
+        "wikiTitle": "Armadillidium",
+        "group": "arthropod",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Armadillidium_album_2.jpg?width=330"
+      },
+      {
+        "commonName": "Lung fluke",
+        "scientificName": "Paragonimus westermani",
+        "ncbiTaxId": 34504,
+        "wikiTitle": "Paragonimus_westermani",
+        "group": "invertebrate",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c2/Paragonimus_westermani.png"
+      }
+    ],
+    "funFact": "Water bears (tardigrades) are microscopic survivors famous for withstanding extreme conditions, and they look nothing like a pillbug — but both are panarthropods, sharing the same ancient ancestor that first evolved paired limbs. Tardigrades’ stubby legs are homologous to arthropod legs. Lung flukes are flatworms (Platyhelminthes) — lophotrochozoans on a completely different protostome branch.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Tardigrada",
+        "label": "Tardigrada - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Panarthropoda",
+        "label": "Panarthropoda - Wikipedia"
+      }
+    ],
+    "correctPair": [
+      "Water bear",
+      "Pillbug"
+    ]
+  },
+  {
+    "organisms": [
+      {
+        "commonName": "Acorn worm",
+        "scientificName": "Saccoglossus kowalevskii",
+        "ncbiTaxId": 10224,
+        "wikiTitle": "Saccoglossus_kowalevskii",
+        "group": "invertebrate",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Journal.pbio.0040291.g001.tif/lossy-page1-500px-Journal.pbio.0040291.g001.tif.jpg"
+      },
+      {
+        "commonName": "Northern Pacific seastar",
+        "scientificName": "Asterias amurensis",
+        "ncbiTaxId": 7602,
+        "wikiTitle": "Asterias_amurensis",
+        "group": "invertebrate",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/%E6%B5%B7%E6%98%9F%EF%BC%88%E6%AD%A3%E9%9D%A2%EF%BC%89.JPG/500px-%E6%B5%B7%E6%98%9F%EF%BC%88%E6%AD%A3%E9%9D%A2%EF%BC%89.JPG"
+      },
+      {
+        "commonName": "European feather worm",
+        "scientificName": "Sabella spallanzanii",
+        "ncbiTaxId": 85702,
+        "wikiTitle": "Sabella_spallanzanii",
+        "group": "invertebrate",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Espir%C3%B3grafo_(Sabella_spallanzanii)%2C_Parque_natural_de_la_Arr%C3%A1bida%2C_Portugal%2C_2020-07-23%2C_DD_70.jpg?width=330"
+      }
+    ],
+    "funFact": "Acorn worms burrow through sand like earthworms, but they are hemichordates — deuterostomes, the same major lineage as sea stars, sea urchins, and vertebrates. This group (Ambulacraria) links hemichordates with echinoderms in the evolutionary tree. Feather worms are polychaete annelids — protostomes that split from deuterostomes over 600 million years ago.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Hemichordata",
+        "label": "Hemichordata - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Ambulacraria",
+        "label": "Ambulacraria - Wikipedia"
+      }
+    ],
+    "correctPair": [
+      "Acorn worm",
+      "Northern Pacific seastar"
     ]
   }
 ]

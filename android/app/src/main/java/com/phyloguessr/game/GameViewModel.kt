@@ -343,7 +343,6 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
 
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                FirebaseRepository.submitScore("multi", difficulty, rank == 1, score)
                 FirebaseRepository.updatePresence()
             } catch (_: Exception) {}
         }
@@ -433,7 +432,6 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
 
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                FirebaseRepository.submitScore(mode, difficulty, correct, if (correct) 100 else 0)
                 FirebaseRepository.updatePresence()
             } catch (_: Exception) {}
         }

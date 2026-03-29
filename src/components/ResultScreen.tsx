@@ -11,8 +11,7 @@ import { capitalize, formatRank } from '../utils/format.ts'
 import { expandDiagramUp } from '../utils/taxonomy.ts'
 
 import type { Organism } from '../data/organisms.ts'
-import type { MrcaInfo } from '../utils/format.ts'
-import type { DiagramNode, TaxonomyData } from '../utils/taxonomy.ts'
+import type { DiagramNode, LcaResult, TaxonomyData } from '../utils/taxonomy.ts'
 
 interface ResultScreenProps {
   correct: boolean
@@ -20,8 +19,8 @@ interface ResultScreenProps {
   sister2: Organism
   outgroup: Organism
   cladeLabel: string
-  sisterMrca: MrcaInfo
-  overallMrca: MrcaInfo
+  sisterMrca: LcaResult
+  overallMrca: LcaResult
   isPolytomy: boolean
   taxonomyData: TaxonomyData
   images: Record<number, string | null>
@@ -33,6 +32,9 @@ interface ResultScreenProps {
   activelyDebated?: boolean
   shareUrl: string
   onPlayAgain: () => void
+  score?: number
+  questionLabel?: string
+  timedOut?: boolean
 }
 
 function OrganismLink({ organism }: { organism: Organism }) {
@@ -61,8 +63,8 @@ function Explanation({
   sister1: Organism
   sister2: Organism
   outgroup: Organism
-  sisterMrca: MrcaInfo
-  overallMrca: MrcaInfo
+  sisterMrca: LcaResult
+  overallMrca: LcaResult
   isPolytomy: boolean
   funFact?: string
   sources?: { url: string; label: string }[]
@@ -191,21 +193,20 @@ export default function ResultScreen({
   activelyDebated,
   shareUrl,
   onPlayAgain,
+  score,
+  questionLabel,
+  timedOut,
 }: ResultScreenProps) {
-  const bannerClass = activelyDebated
-    ? 'debated'
-    : correct
-      ? 'correct'
-      : 'wrong'
-  const bannerText = activelyDebated
-    ? 'Actively Debated!'
-    : correct
-      ? 'Correct!'
-      : 'Not quite!'
   return (
     <div className="result-screen">
-      <div className={`result-banner ${bannerClass}`}>
-        {bannerText}
+      {questionLabel && (
+        <div className="result-question-label">{questionLabel}</div>
+      )}
+      <div className={`result-banner ${timedOut ? 'wrong' : activelyDebated ? 'debated' : correct ? 'correct' : 'wrong'}`}>
+        {timedOut ? "Time's up!" : activelyDebated ? 'Actively Debated!' : correct ? 'Correct!' : 'Not quite!'}
+        {score !== undefined && (
+          <span className="result-score">+{score} pts</span>
+        )}
         <ShareButton url={shareUrl} />
       </div>
 

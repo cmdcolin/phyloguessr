@@ -1,6 +1,9 @@
 import { useCallback, useEffect, useState } from 'react'
 
+import AdvancedTaxonSearch from './AdvancedTaxonSearch.tsx'
+import Timer from './Timer.tsx'
 import Button from './Button.tsx'
+import GameOverScreen from './GameOverScreen.tsx'
 import Header from './Header.tsx'
 import { MapToggle } from './MapToggle.tsx'
 import OrganismCard from './OrganismCard.tsx'
@@ -17,9 +20,9 @@ import {
   updateUrlWithQuestion,
 } from './gameUtils.ts'
 import { loadSurprisingScenarios } from '../data/surprisingFacts.ts'
-import { recordRound } from '../firebase.ts'
-import { DISPLAY_TREE, formatModeKey } from '../utils/cladePresets.ts'
-import { addHistoryEntry, loadHistory, loadStats } from '../utils/history.ts'
+import { DISPLAY_TREE } from '../utils/cladePresets.ts'
+import { addHistoryEntry, loadHistory } from '../utils/history.ts'
+import { calculateScore, TOTAL_QUESTIONS } from '../utils/scoring.ts'
 import { sessionStorageGetItem } from '../utils/storage.ts'
 import {
   buildContextDiagram,
@@ -31,15 +34,16 @@ import {
   pickThreeFromClade,
   pickThreeHardModeDistance,
   pickThreeMicrobialCrossKingdom,
-  searchTaxonNames,
 } from '../utils/taxonomy.ts'
+import { fetchWikipediaAbstract } from '../utils/wikipedia.ts'
 
+import type { RoundResult } from './GameOverScreen.tsx'
 import type { Organism } from '../data/organisms.ts'
 import type { SurprisingScenario } from '../data/surprisingFacts.ts'
-import type { MrcaInfo } from '../utils/format.ts'
-import type { HistoryEntry, HistoryStats } from '../utils/history.ts'
+import type { HistoryEntry } from '../utils/history.ts'
 import type {
   DiagramNode,
+  LcaResult,
   SpeciesPoolEntry,
   TaxonomyData,
 } from '../utils/taxonomy.ts'
@@ -50,11 +54,8 @@ type GameState =
   | 'selecting'
   | 'result'
   | 'easyCompleted'
+  | 'gameOver'
 type GameMode = 'easy' | 'random' | 'custom'
-
-interface RoundData {
-  organisms: Organism[]
-}
 
 interface ResultData {
   correct: boolean
@@ -62,34 +63,17 @@ interface ResultData {
   sister2: Organism
   outgroup: Organism
   cladeLabel: string
-  sisterMrca: MrcaInfo
-  overallMrca: MrcaInfo
+  sisterMrca: LcaResult
+  overallMrca: LcaResult
   isPolytomy: boolean
+  score: number
   funFact?: string
   diagram?: DiagramNode
   sources?: { url: string; label: string }[]
   activelyDebated?: boolean
 }
 
-function makeCorrectnessPredicate(orgs: Organism[], selectedIndices: number[]) {
-  const userPickedTaxIds = new Set(
-    selectedIndices
-      .filter(i => i >= 0 && i < orgs.length)
-      .map(i => orgs[i].ncbiTaxId),
-  )
-  return (pair: ReturnType<typeof findClosestPairFromData>) =>
-    pair.isPolytomy ||
-    (userPickedTaxIds.has(pair.sister1TaxId) &&
-      userPickedTaxIds.has(pair.sister2TaxId))
-}
-
-function computeResult(
-  orgs: Organism[],
-  data: TaxonomyData,
-  correct:
-    | boolean
-    | ((pair: ReturnType<typeof findClosestPairFromData>) => boolean),
-) {
+function computeResult(orgs: Organism[], data: TaxonomyData) {
   const taxIds: [number, number, number] = [
     orgs[0].ncbiTaxId,
     orgs[1].ncbiTaxId,
@@ -97,27 +81,14 @@ function computeResult(
   ]
   const pair = findClosestPairFromData(taxIds, data)
   const byTaxId = new Map(orgs.map(o => [o.ncbiTaxId, o]))
-  const sister1 = byTaxId.get(pair.sister1TaxId) ?? orgs[0]
-  const sister2 = byTaxId.get(pair.sister2TaxId) ?? orgs[1]
-  const outgroup = byTaxId.get(pair.outgroupTaxId) ?? orgs[2]
   return {
-    correct: typeof correct === 'function' ? correct(pair) : correct,
-    sister1,
-    sister2,
-    outgroup,
+    sister1: byTaxId.get(pair.sister1TaxId) ?? orgs[0],
+    sister2: byTaxId.get(pair.sister2TaxId) ?? orgs[1],
+    outgroup: byTaxId.get(pair.outgroupTaxId) ?? orgs[2],
     cladeLabel: pair.sisterLca.name,
-    sisterMrca: {
-      taxId: pair.sisterLca.taxId,
-      name: pair.sisterLca.name,
-      rank: pair.sisterLca.rank,
-    },
-    overallMrca: {
-      taxId: pair.overallLca.taxId,
-      name: pair.overallLca.name,
-      rank: pair.overallLca.rank,
-    },
+    sisterMrca: pair.sisterLca,
+    overallMrca: pair.overallLca,
     isPolytomy: pair.isPolytomy,
-    pair,
   }
 }
 
@@ -126,7 +97,7 @@ export default function Game({ mode }: { mode: GameMode }) {
   const [state, setState] = useState<GameState>(
     mode === 'custom' ? 'customizing' : 'loading',
   )
-  const [round, setRound] = useState<RoundData | null>(null)
+  const [round, setRound] = useState<Organism[] | null>(null)
   const [selected, setSelected] = useState<number[]>([])
   const [result, setResult] = useState<ResultData | null>(null)
   const [taxonomyData, setTaxonomyData] = useState<TaxonomyData | null>(null)
@@ -144,8 +115,15 @@ export default function Game({ mode }: { mode: GameMode }) {
       return new Set()
     },
   )
-  const [stats, setStats] = useState<HistoryStats | null>(null)
-  const [modeStats, setModeStats] = useState<HistoryStats | null>(null)
+
+  const [questionNumber, setQuestionNumber] = useState(1)
+  const [totalScore, setTotalScore] = useState(0)
+  const [roundResults, setRoundResults] = useState<RoundResult[]>([])
+  const [hints, setHints] = useState<Record<number, string | null>>({})
+  const [hintLoading, setHintLoading] = useState(false)
+  const [hintUsed, setHintUsed] = useState(false)
+  const [timedOut, setTimedOut] = useState(false)
+  const [isSharedQuestion, setIsSharedQuestion] = useState(false)
 
   const [randomClade, setRandomClade] = useState<{
     taxId: number
@@ -157,27 +135,15 @@ export default function Game({ mode }: { mode: GameMode }) {
       ? (new URLSearchParams(window.location.search).get('id') ?? '')
       : '',
   )
-  const [cladeError, setCladeError] = useState('')
 
-  const effectiveModeKey = (() => {
-    if (mode === 'easy') {
-      return 'easy'
-    }
-    const trimmed = cladeFilter.trim()
-    if (trimmed) {
-      return `random:${trimmed}`
-    }
-    return 'random'
-  })()
+  const effectiveModeKey =
+    mode === 'easy'
+      ? 'easy'
+      : cladeFilter.trim()
+        ? `random:${cladeFilter.trim()}`
+        : 'random'
 
-  const refreshStats = () => {
-    loadStats().then(s => setStats(s ?? null))
-    loadStats(effectiveModeKey).then(s => setModeStats(s ?? null))
-  }
-
-  const [multiMode, setMultiMode] = useState(false)
-
-  const [showSuggestions, setShowSuggestions] = useState(false)
+  const [isMulti, setIsMulti] = useState(false)
   const [seenCombos, setSeenCombos] = useState<Set<string>>(() => {
     const saved = sessionStorageGetItem('phyloSeenCombos')
     if (saved) {
@@ -200,16 +166,18 @@ export default function Game({ mode }: { mode: GameMode }) {
     setState('loading')
     setSelected([])
     setResult(null)
+    setHints({})
+    setHintLoading(false)
+    setHintUsed(false)
+    setTimedOut(false)
 
     let data = taxonomyData
     if (!data) {
-      if (mode === 'easy') {
-        setLoadingMessage('Downloading taxonomy data...')
-        data = await loadEasyTaxonomyData()
-      } else {
-        setLoadingMessage('Downloading taxonomy data...')
-        data = await loadTaxonomyData()
-      }
+      setLoadingMessage('Downloading taxonomy data...')
+      data =
+        mode === 'easy'
+          ? await loadEasyTaxonomyData()
+          : await loadTaxonomyData()
       setTaxonomyData(data)
     }
 
@@ -250,12 +218,16 @@ export default function Game({ mode }: { mode: GameMode }) {
         sessionStorage.setItem('shownScenarios', JSON.stringify([...next]))
         orgs = [...pick.s.organisms]
       } else {
-        setState('easyCompleted')
+        if (roundResults.length > 0) {
+          setState('gameOver')
+        } else {
+          setState('easyCompleted')
+        }
         return
       }
       const shuffled = orgs.sort(() => Math.random() - 0.5)
       recordCombo(shuffled)
-      setRound({ organisms: shuffled })
+      setRound(shuffled)
       updateUrlWithQuestion(shuffled)
       setState('selecting')
     } else {
@@ -268,7 +240,6 @@ export default function Game({ mode }: { mode: GameMode }) {
       }
 
       setLoadingMessage('Picking species...')
-      setCladeError('')
       setRandomClade(null)
 
       const isMicroMode = cladeFilter.trim() === 'micro'
@@ -277,8 +248,7 @@ export default function Game({ mode }: { mode: GameMode }) {
         cladeTaxId = findTaxId(cladeFilter.trim(), data)
         if (cladeTaxId === undefined) {
           if (mode === 'custom') {
-            setCladeError(`"${cladeFilter.trim()}" not found in taxonomy`)
-            setState('customizing')
+            setLoadingMessage(`"${cladeFilter.trim()}" not found in taxonomy`)
             return
           }
           setCladeFilter('')
@@ -298,8 +268,7 @@ export default function Game({ mode }: { mode: GameMode }) {
           const result = pickThreeMicrobialCrossKingdom(pool, data)
           if (!result) {
             if (mode === 'custom') {
-              setCladeError('Not enough microorganisms in the pool')
-              setState('customizing')
+              setLoadingMessage('Not enough microorganisms in the pool')
               return
             }
             setCladeFilter('')
@@ -362,7 +331,7 @@ export default function Game({ mode }: { mode: GameMode }) {
         setRandomClade(finalClade)
       }
       recordCombo(finalOrgs)
-      setRound({ organisms: finalOrgs })
+      setRound(finalOrgs)
       updateUrlWithQuestion(finalOrgs)
       setState('selecting')
     }
@@ -407,20 +376,20 @@ export default function Game({ mode }: { mode: GameMode }) {
       }
 
       recordCombo(orgs)
-      setRound({ organisms: orgs })
+      setRound(orgs)
+      setIsSharedQuestion(true)
       setState('selecting')
     },
     [taxonomyData, speciesPool, startRound],
   )
 
   useEffect(() => {
-    refreshStats()
     const sharedIds = parseSharedIds()
     if (sharedIds) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       loadSharedQuestion(sharedIds)
     } else if (mode === 'custom') {
-      loadTaxonomyData().then(data => setTaxonomyData(data))
+      loadTaxonomyData().then(setTaxonomyData)
     } else {
       startRound()
     }
@@ -438,7 +407,7 @@ export default function Game({ mode }: { mode: GameMode }) {
           }
         }
         if (orgs.length === 3) {
-          setRound({ organisms: orgs })
+          setRound(orgs)
           setResult(null)
           setSelected([])
           setState('selecting')
@@ -449,35 +418,64 @@ export default function Game({ mode }: { mode: GameMode }) {
     return () => window.removeEventListener('popstate', handler)
   }, [taxonomyData, speciesPool])
 
-  const handleToggleSelect = (idx: number) => {
-    setSelected(prev => toggleSelect(prev, idx))
-  }
+  const handleHint = useCallback(async () => {
+    if (!round || hintUsed) {
+      return
+    }
+    setHintUsed(true)
+    setHintLoading(true)
+    const results = await Promise.all(
+      round.map(org =>
+        fetchWikipediaAbstract(
+          org.wikiTitle ?? org.scientificName.replace(/ /g, '_'),
+        ),
+      ),
+    )
+    const newHints: Record<number, string | null> = {}
+    for (let i = 0; i < results.length; i++) {
+      newHints[i] = results[i] ?? 'Hint unavailable'
+    }
+    setHints(newHints)
+    setHintLoading(false)
+  }, [round, hintUsed])
 
-  const handleSubmit = async () => {
-    if (!round || selected.length !== 2 || !taxonomyData) {
+  const handleSubmit = async (expired = false) => {
+    if (!round || !taxonomyData) {
+      return
+    }
+    if (!expired && selected.length !== 2) {
       return
     }
 
-    const orgs = round.organisms
+    if (expired) {
+      setTimedOut(true)
+    }
+
     const scenario = scenarios?.find(
-      s => comboKey(s.organisms) === comboKey(orgs),
+      s => comboKey(s.organisms) === comboKey(round),
     )
 
-    let correctnessFn:
-      | boolean
-      | ((pair: ReturnType<typeof findClosestPairFromData>) => boolean)
-    if (scenario?.correctPair) {
-      const userPicked = new Set(selected.map(i => orgs[i].commonName))
-      correctnessFn = scenario.correctPair.every(name => userPicked.has(name))
+    const pairResult = computeResult(round, taxonomyData)
+
+    let correct: boolean
+    if (expired || selected.length !== 2) {
+      correct = false
+    } else if (scenario?.correctPair) {
+      const userPicked = new Set(selected.map(i => round[i].commonName))
+      correct = scenario.correctPair.every(name => userPicked.has(name))
     } else {
-      correctnessFn = makeCorrectnessPredicate(orgs, selected)
+      const userPickedTaxIds = new Set(selected.map(i => round[i].ncbiTaxId))
+      correct =
+        pairResult.isPolytomy ||
+        (userPickedTaxIds.has(pairResult.sister1.ncbiTaxId) &&
+          userPickedTaxIds.has(pairResult.sister2.ncbiTaxId))
     }
-    const fullResult = computeResult(orgs, taxonomyData, correctnessFn)
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { pair, ...resultData } = fullResult as ReturnType<
-      typeof computeResult
-    > &
-      ResultData
+
+    const resultData: ResultData = {
+      ...pairResult,
+      correct,
+      score: 0,
+    }
 
     if (scenario) {
       resultData.funFact = scenario.funFact
@@ -488,11 +486,11 @@ export default function Game({ mode }: { mode: GameMode }) {
       }
       if (scenario.correctPair) {
         const cp = scenario.correctPair
-        const sister1 = orgs.find(o => o.commonName === cp[0]) ?? orgs[0]
-        const sister2 = orgs.find(o => o.commonName === cp[1]) ?? orgs[1]
+        const sister1 = round.find(o => o.commonName === cp[0]) ?? round[0]
+        const sister2 = round.find(o => o.commonName === cp[1]) ?? round[1]
         const outgroup =
-          orgs.find(o => o.commonName !== cp[0] && o.commonName !== cp[1]) ??
-          orgs[2]
+          round.find(o => o.commonName !== cp[0] && o.commonName !== cp[1]) ??
+          round[2]
         resultData.sister1 = sister1
         resultData.sister2 = sister2
         resultData.outgroup = outgroup
@@ -511,7 +509,15 @@ export default function Game({ mode }: { mode: GameMode }) {
       )
     }
 
-    const organismNames = orgs.map(o => o.commonName)
+    const score = calculateScore(resultData.correct, hintUsed ? 1 : 0)
+    resultData.score = score
+    setTotalScore(prev => prev + score)
+    const organismNames = round.map(o => o.commonName)
+    setRoundResults(prev => [
+      ...prev,
+      { correct: resultData.correct, score, organisms: organismNames },
+    ])
+
     const sortedKey = [...organismNames].sort().join(',')
     const existingHistory = await loadHistory()
     const alreadyPlayed = existingHistory.some(
@@ -525,26 +531,43 @@ export default function Game({ mode }: { mode: GameMode }) {
         sister: [resultData.sister1.commonName, resultData.sister2.commonName],
         mode: effectiveModeKey,
         timestamp: Date.now(),
-        ncbiTaxIds: orgs.map(o => o.ncbiTaxId),
+        ncbiTaxIds: round.map(o => o.ncbiTaxId),
+        score,
       }
       await addHistoryEntry(entry)
-      refreshStats()
 
-      const leaderboardName = localStorage.getItem('phyloLeaderboardName')
-      if (leaderboardName) {
-        recordRound(
-          leaderboardName,
-          resultData.correct,
-          effectiveModeKey,
-        ).catch(console.error)
-      }
     }
 
     setResult(resultData)
     setState('result')
-    setSelected(selected)
     history.pushState({ result: true }, '')
   }
+
+  const maxQuestions = isSharedQuestion ? 1 : TOTAL_QUESTIONS
+  const isLastQuestion = questionNumber >= maxQuestions
+
+  const handleNextQuestion = useCallback(() => {
+    if (isLastQuestion && !isSharedQuestion) {
+      setState('gameOver')
+    } else {
+      setQuestionNumber(prev => prev + 1)
+      startRound()
+    }
+  }, [
+    isLastQuestion,
+    isSharedQuestion,
+    totalScore,
+    effectiveModeKey,
+    startRound,
+  ])
+
+  const handlePlayAgain = useCallback(() => {
+    setQuestionNumber(1)
+    setTotalScore(0)
+    setRoundResults([])
+    setIsSharedQuestion(false)
+    startRound()
+  }, [startRound])
 
   return (
     <div className="game">
@@ -552,203 +575,77 @@ export default function Game({ mode }: { mode: GameMode }) {
 
       {state === 'customizing' && (
         <div className="custom-screen">
-          <h2>Custom Mode</h2>
-          <div className="custom-form">
-            <fieldset className="custom-fieldset">
-              <legend>Game format</legend>
-              <ul className="clade-presets-list">
-                <li
-                  className={`clade-preset-item ${!multiMode ? 'active' : ''}`}
-                  onClick={() => setMultiMode(false)}
-                >
-                  Classic{' '}
-                  <span className="clade-preset-scientific">
-                    (pick 2 from 3)
-                  </span>
-                </li>
-                <li
-                  className={`clade-preset-item ${multiMode ? 'active' : ''}`}
-                  onClick={() => setMultiMode(true)}
-                >
-                  Multi{' '}
-                  <span className="clade-preset-scientific">
-                    (pick 2 from 6)
-                  </span>
-                </li>
-              </ul>
-            </fieldset>
-            <fieldset className="custom-fieldset">
-              <legend>Taxon quiz</legend>
-              <ul className="clade-presets-list">
-                {DISPLAY_TREE.map(entry =>
-                  entry.type === 'header' ? (
-                    <li key={entry.label} className="clade-tree-header">
-                      {entry.label}
-                    </li>
-                  ) : (
-                    <li
-                      key={entry.id}
-                      className={`clade-preset-item ${cladeFilter === entry.id ? 'active' : ''}`}
-                      onClick={() => {
-                        setCladeFilter(prev =>
-                          prev === entry.id ? '' : entry.id,
-                        )
-                        setCladeError('')
-                        setShowSuggestions(false)
-                      }}
-                    >
-                      <span className="clade-tree-prefix">{entry.prefix}</span>
-                      {entry.label}{' '}
-                      <span className="clade-preset-scientific">
-                        ({entry.name})
-                      </span>
-                    </li>
-                  ),
-                )}
-                <li className="clade-preset-item clade-custom-item">
-                  or, enter custom taxon name/id:{' '}
-                  <div className="clade-autocomplete-inline">
-                    <input
-                      type="text"
-                      className="clade-input-inline"
-                      placeholder="taxon name or ID..."
-                      value={cladeFilter}
-                      onChange={e => {
-                        setCladeFilter(e.target.value)
-                        setCladeError('')
-                      }}
-                      onBlur={() => {
-                        setTimeout(() => setShowSuggestions(false), 150)
-                      }}
-                      onFocus={() => setShowSuggestions(true)}
-                    />
-                    {showSuggestions &&
-                      taxonomyData &&
-                      (() => {
-                        const suggestions = searchTaxonNames(
-                          cladeFilter,
-                          taxonomyData,
-                        )
-                        if (suggestions.length === 0) {
-                          return null
-                        }
-                        return (
-                          <ul className="clade-suggestions">
-                            {suggestions.map(s => (
-                              <li key={s.id}>
-                                <button
-                                  onMouseDown={e => e.preventDefault()}
-                                  onClick={() => {
-                                    setCladeFilter(s.name)
-                                    setCladeError('')
-                                    setShowSuggestions(false)
-                                  }}
-                                >
-                                  <span className="suggestion-name">
-                                    {s.name}
-                                  </span>
-                                  {s.rank && (
-                                    <span className="suggestion-rank">
-                                      {s.rank}
-                                    </span>
-                                  )}
-                                </button>
-                              </li>
-                            ))}
-                          </ul>
-                        )
-                      })()}
-                  </div>
-                </li>
-              </ul>
-              {cladeError && <p className="clade-error">{cladeError}</p>}
-              {taxonomyData &&
-                cladeFilter.trim().length >= 2 &&
-                (() => {
-                  const trimmed = cladeFilter.trim()
-                  if (trimmed === 'micro') {
-                    return (
-                      <p className="clade-resolved">
-                        <span className="clade-check">✓</span> Microorganisms
-                        (cross-kingdom)
-                      </p>
-                    )
-                  }
-                  const isNumeric = /^\d+$/.test(trimmed)
-                  if (isNumeric) {
-                    const name = taxonomyData.names[trimmed]
-                    const hasParent =
-                      taxonomyData.parents[trimmed] !== undefined
-                    if (name || hasParent) {
-                      const rank = taxonomyData.ranks[trimmed]
-                      return (
-                        <p className="clade-resolved">
-                          <span className="clade-check">✓</span>{' '}
-                          {name ?? `Taxon ${trimmed}`}
-                          {rank ? ` (${rank})` : ''}
-                        </p>
-                      )
-                    }
-                    return (
-                      <p className="clade-error">
-                        <span className="clade-x">✕</span> No taxon found for ID{' '}
-                        {trimmed}
-                      </p>
-                    )
-                  }
-                  const match = findTaxId(trimmed, taxonomyData)
-                  if (match !== undefined) {
-                    const name = taxonomyData.names[String(match)]
-                    const rank = taxonomyData.ranks[String(match)]
-                    return (
-                      <p className="clade-resolved">
-                        <span className="clade-check">✓</span> {name ?? trimmed}
-                        {rank ? ` (${rank})` : ''}
-                      </p>
-                    )
-                  }
-                  return (
-                    <p className="clade-error">
-                      <span className="clade-x">✕</span> No taxon found for "
-                      {trimmed}"
-                    </p>
-                  )
-                })()}
-            </fieldset>
-          </div>
-          <div className="custom-actions">
-            <Button
-              disabled={
-                !multiMode &&
-                (!cladeFilter.trim() ||
-                  (!!taxonomyData &&
-                    cladeFilter.trim() !== 'micro' &&
-                    findTaxId(cladeFilter.trim(), taxonomyData) === undefined))
-              }
-              href={(() => {
-                if (multiMode) {
-                  return '/multi'
-                }
-                const params = new URLSearchParams()
-                const trimmed = cladeFilter.trim()
-                if (trimmed) {
-                  if (trimmed === 'micro') {
-                    params.set('id', 'micro')
-                  } else if (/^\d+$/.test(trimmed)) {
-                    params.set('id', trimmed)
-                  } else if (taxonomyData) {
-                    const taxId = findTaxId(trimmed, taxonomyData)
-                    if (taxId !== undefined) {
-                      params.set('id', String(taxId))
-                    }
-                  }
-                }
-                const qs = params.toString()
-                return `/random${qs ? `?${qs}` : ''}`
-              })()}
+          <h2>Choose Your Challenge</h2>
+
+          <div className="custom-species-toggle">
+            <button
+              className={`species-toggle-btn ${!isMulti ? 'active' : ''}`}
+              onClick={() => setIsMulti(false)}
             >
-              Play
-            </Button>
+              3 species
+            </button>
+            <button
+              className={`species-toggle-btn ${isMulti ? 'active' : ''}`}
+              onClick={() => setIsMulti(true)}
+            >
+              6 species
+            </button>
+          </div>
+
+          <a
+            className={`clade-card-random-banner ${!cladeFilter.trim() ? 'active' : ''}`}
+            href={isMulti ? '/multi' : '/random'}
+          >
+            <span className="clade-card-emoji">🎰</span>
+            <div className="clade-random-banner-text">
+              <span className="clade-card-label">Random</span>
+              <span className="clade-card-sub">all life on Earth</span>
+            </div>
+          </a>
+
+          <p className="custom-subtitle">or explore a specific group</p>
+
+          <div className="clade-tree-wrap">
+            <div className="clade-tree">
+              {DISPLAY_TREE.map((entry, i) => {
+                if (entry.type === 'header') {
+                  return (
+                    <div key={`h${i}`} className="clade-tree-header">
+                      {entry.label}
+                    </div>
+                  )
+                }
+                const href = isMulti
+                  ? `/multi?id=${entry.id}`
+                  : entry.id === 'micro'
+                    ? '/random?id=micro'
+                    : `/random?id=${entry.id}`
+                return (
+                  <a
+                    key={entry.id}
+                    className={`clade-tree-item clade-tree-link ${cladeFilter === entry.id ? 'active' : ''}`}
+                    href={href}
+                  >
+                    <span className="clade-tree-prefix">{entry.prefix}</span>
+                    <span className="clade-tree-node">
+                      {entry.emoji && (
+                        <span className="clade-tree-emoji">{entry.emoji}</span>
+                      )}
+                      <span
+                        className={`clade-tree-label${entry.emoji ? '' : ' clade-tree-label-muted'}`}
+                      >
+                        {entry.label}
+                      </span>
+                    </span>
+                  </a>
+                )
+              })}
+            </div>
+          </div>
+
+          <AdvancedTaxonSearch taxonomyData={taxonomyData} />
+
+          <div className="custom-actions">
             <Button variant="secondary" href="/">
               ⏮ Back
             </Button>
@@ -796,46 +693,37 @@ export default function Game({ mode }: { mode: GameMode }) {
 
       {state === 'selecting' && round && (
         <div className="selecting">
-          {mode === 'easy' && (
-            <p className="easy-disclaimer">
-              Easy mode. Just kidding — these are actually curated tricky and
-              surprising examples!
-            </p>
-          )}
-          {randomClade && (
-            <p className="clade-label">
-              Group:{' '}
-              <TaxLink name={randomClade.name} taxId={randomClade.taxId} />
-              {randomClade.rank ? ` (${randomClade.rank})` : ''}
-            </p>
-          )}
-          {stats && (
-            <div className="game-stats">
-              <span className="game-stats-item">
-                Total wins: <strong>{stats.totalWins}</strong>
-              </span>
-              <span className="game-stats-item game-stats-streak">
-                Streak: <strong>{stats.currentStreak}</strong>
-              </span>
-              {modeStats && effectiveModeKey !== 'random' && (
-                <span className="game-stats-item game-stats-mode">
-                  {formatModeKey(effectiveModeKey)}:{' '}
-                  <strong>{modeStats.currentStreak}</strong>
-                  {modeStats.bestStreak > 1 && (
-                    <span className="game-stats-best">
-                      {' '}
-                      (best {modeStats.bestStreak})
-                    </span>
-                  )}
+          <div className="game-meta">
+            {!isSharedQuestion && (
+              <div className="game-progress">
+                <span className="game-progress-question">
+                  Question {questionNumber}/{maxQuestions}
                 </span>
-              )}
-            </div>
-          )}
+                <span className="game-progress-score">
+                  Score: <strong>{totalScore}</strong>
+                </span>
+              </div>
+            )}
+            {mode === 'easy' && (
+              <p className="easy-disclaimer">
+                Easy mode. Just kidding — these are actually curated tricky and
+                surprising examples!
+              </p>
+            )}
+            {randomClade && (
+              <p className="clade-label">
+                Group:{' '}
+                <TaxLink name={randomClade.name} taxId={randomClade.taxId} />
+                {randomClade.rank ? ` (${randomClade.rank})` : ''}
+              </p>
+            )}
+          </div>
+          <Timer key={questionNumber} onExpire={() => handleSubmit(true)} />
           <p className="selecting-prompt">
             Choose the two organisms you think are most closely related
           </p>
           <div className="cards">
-            {round.organisms.map((org, i) => (
+            {round.map((org, i) => (
               <OrganismCard
                 key={org.ncbiTaxId}
                 commonName={org.commonName}
@@ -843,21 +731,45 @@ export default function Game({ mode }: { mode: GameMode }) {
                 imageUrl={org.imageUrl ?? null}
                 selected={selected.includes(i)}
                 disabled={false}
-                onClick={() => handleToggleSelect(i)}
+                onClick={() => setSelected(prev => toggleSelect(prev, i))}
                 mapColor={MAP_COLORS[i % MAP_COLORS.length]}
                 difficulty={difficulty}
               />
             ))}
           </div>
+          {hintUsed && (
+            <div className="hints-row">
+              {round.map((org, i) => (
+                <div key={org.ncbiTaxId} className="hint-text">
+                  <strong>{org.commonName}</strong>
+                  {': '}
+                  {hintLoading ? 'Loading...' : (hints[i] ?? '')}
+                </div>
+              ))}
+            </div>
+          )}
           <div className="selecting-actions">
-            <Button onClick={handleSubmit} disabled={selected.length !== 2}>
+            {!hintUsed && (
+              <button
+                className="hint-btn"
+                onClick={handleHint}
+                title="Show hints for all organisms (-50% pts)"
+              >
+                💡
+              </button>
+            )}
+
+            <Button
+              onClick={() => handleSubmit()}
+              disabled={selected.length !== 2}
+            >
               Submit
             </Button>
             <button className="nav-icon-btn" onClick={startRound} title="Skip">
               <span className="nav-icon-btn-label">Skip</span> →
             </button>
           </div>
-          <MapToggle organisms={round.organisms} difficulty={difficulty} />
+          <MapToggle organisms={round} difficulty={difficulty} />
         </div>
       )}
 
@@ -873,13 +785,11 @@ export default function Game({ mode }: { mode: GameMode }) {
           isPolytomy={result.isPolytomy}
           taxonomyData={taxonomyData}
           images={Object.fromEntries(
-            round.organisms.map(o => [o.ncbiTaxId, o.imageUrl ?? null]),
+            round.map(o => [o.ncbiTaxId, o.imageUrl ?? null]),
           )}
-          userSelectedTaxIds={
-            new Set(selected.map(i => round.organisms[i].ncbiTaxId))
-          }
+          userSelectedTaxIds={new Set(selected.map(i => round[i].ncbiTaxId))}
           organismColors={Object.fromEntries(
-            round.organisms.map((o, i) => [
+            round.map((o, i) => [
               o.ncbiTaxId,
               MAP_COLORS[i % MAP_COLORS.length],
             ]),
@@ -888,8 +798,23 @@ export default function Game({ mode }: { mode: GameMode }) {
           diagram={result.diagram}
           sources={result.sources}
           activelyDebated={result.activelyDebated}
-          shareUrl={buildShareUrl(round.organisms)}
-          onPlayAgain={startRound}
+          shareUrl={buildShareUrl(round)}
+          onPlayAgain={handleNextQuestion}
+          timedOut={timedOut}
+          score={result.score}
+          questionLabel={
+            isSharedQuestion
+              ? undefined
+              : `Question ${questionNumber}/${maxQuestions} · Score: ${totalScore}`
+          }
+        />
+      )}
+
+      {state === 'gameOver' && (
+        <GameOverScreen
+          totalScore={totalScore}
+          roundResults={roundResults}
+          onPlayAgain={handlePlayAgain}
         />
       )}
     </div>

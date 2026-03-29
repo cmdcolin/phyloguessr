@@ -45,6 +45,10 @@
   -webkit-user-drag: none;
 }
 
+.imageContain img {
+  object-fit: contain;
+}
+
 .noImage {
   width: 100%;
   height: 100%;

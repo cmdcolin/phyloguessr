@@ -331,6 +331,33 @@ export function searchTaxonNames(query: string, data: TaxonomyData, limit = 8) {
   return [...prefixMatches, ...containsMatches].slice(0, limit)
 }
 
+function getGenus(lineage: number[], data: TaxonomyData) {
+  for (const id of lineage) {
+    if (data.ranks[String(id)] === 'genus') {
+      return id
+    }
+  }
+  return -1
+}
+
+function allDistinctGenera(
+  lineages: number[][],
+  data: TaxonomyData,
+) {
+  const genera = lineages.map(l => getGenus(l, data))
+  for (let i = 0; i < genera.length; i++) {
+    if (genera[i] === -1) {
+      continue
+    }
+    for (let j = i + 1; j < genera.length; j++) {
+      if (genera[i] === genera[j]) {
+        return false
+      }
+    }
+  }
+  return true
+}
+
 function pickFromAncestor(
   ancestorId: number,
   pool: SpeciesPoolEntry[],
@@ -382,7 +409,10 @@ function pickFromAncestor(
     const g1 = genusOrFamily(lineage1)
     const g2 = genusOrFamily(lineage2)
 
-    if (g0 !== g1 && g0 !== g2 && g1 !== g2) {
+    if (
+      g0 !== g1 && g0 !== g2 && g1 !== g2 &&
+      allDistinctGenera([lineage0, lineage1, lineage2], data)
+    ) {
       return picks
     }
   }
@@ -690,7 +720,10 @@ export function pickThreeHardMode(
     const g1 = genusOrFamily(lineage1)
     const g2 = genusOrFamily(lineage2)
 
-    if (g0 !== g1 && g0 !== g2 && g1 !== g2) {
+    if (
+      g0 !== g1 && g0 !== g2 && g1 !== g2 &&
+      allDistinctGenera([lineage0, lineage1, lineage2], data)
+    ) {
       return picks
     }
   }
@@ -784,22 +817,19 @@ export function pickNFromClade(
     }
     const picks = [...indices].map(i => matches[i])
 
-    const genera = new Map<number, number>()
-    let tooMany = false
+    const genera = new Set<number>()
+    let duplicate = false
     for (const pick of picks) {
-      const lineage = getLineageFromParents(pick[0], data.parents)
-      for (const id of lineage) {
-        const rank = data.ranks[String(id)]
-        if (rank === 'genus') {
-          genera.set(id, (genera.get(id) ?? 0) + 1)
-          if (genera.get(id)! > 2) {
-            tooMany = true
-          }
+      const g = getGenus(getLineageFromParents(pick[0], data.parents), data)
+      if (g !== -1) {
+        if (genera.has(g)) {
+          duplicate = true
           break
         }
+        genera.add(g)
       }
     }
-    if (!tooMany) {
+    if (!duplicate) {
       return picks
     }
   }
@@ -900,8 +930,7 @@ const landmarks: Record<string, string> = {
   Vertebrata: 'animals with backbones',
   Gnathostomata: 'jawed vertebrates',
   Osteichthyes: 'bony fish and technically all their descendants',
-  Sarcopterygii:
-    'you are a lobe-finned fish! includes lungfish, coelacanths, and all land animals',
+  Sarcopterygii: 'lobe-finned fish — includes all land animals too!',
   Tetrapoda: 'four-limbed vertebrates — includes snakes, which lost theirs!',
   Amniota: 'land-egg vertebrates — includes reptiles, birds, mammals',
 
@@ -912,26 +941,23 @@ const landmarks: Record<string, string> = {
   Eutheria: 'placental mammals',
   Marsupialia: 'pouched mammals, e.g. kangaroos, koalas, possums',
   Monotremata: 'egg-laying mammals! just platypus + echidnas',
-  Afrotheria:
-    'a superorder of placental mammals — includes elephants, manatees, aardvarks, tenrecs',
-  Xenarthra:
-    'a superorder of placental mammals — includes sloths, armadillos, anteaters',
-  Laurasiatheria:
-    'a superorder of placental mammals — includes bats, cats, whales, horses',
-  Euarchontoglires:
-    'a superorder of placental mammals — includes primates, rodents, rabbits',
+  Afrotheria: 'includes elephants, manatees, aardvarks',
+  Xenarthra: 'sloths, armadillos, anteaters',
+  Laurasiatheria: 'bats, cats, whales, horses',
+  Euarchontoglires: 'primates, rodents, rabbits',
   Boreoeutheria: 'includes most placental mammals',
   Primates: 'includes monkeys, apes, lemurs, tarsiers',
+  Strepsirrhini: 'wet-nosed primates — lemurs, lorises, galagos',
+  Haplorhini: 'dry-nosed primates — tarsiers, monkeys, apes',
+  Simiiformes: 'monkeys and apes',
+  Catarrhini: 'Old World monkeys + apes — baboons to humans',
   Hominidae: 'the great apes — includes humans!',
   Homininae: 'African great apes + humans',
-  Rodentia:
-    '40% of all mammal species! includes mice, rats, squirrels, beavers',
+  Rodentia: '40% of all mammal species — mice, rats, squirrels',
   Lagomorpha: 'rabbits, hares, pikas — not rodents!',
   Carnivora: 'includes cats, dogs, bears, seals, and pandas',
-  Feliformia:
-    'cat-side of Carnivora — includes cats, hyenas, mongooses, civets',
-  Caniformia:
-    'dog-side of Carnivora — includes dogs, bears, seals, weasels, raccoons',
+  Feliformia: 'cat-side — cats, hyenas, mongooses, civets',
+  Caniformia: 'dog-side — dogs, bears, seals, weasels, raccoons',
   Mustelidae: 'includes weasels, otters, wolverines, badgers',
   Cetacea: 'whales and dolphins — descended from land animals!',
   Cetartiodactyla: 'hippos are the closest living relatives of whales!',
@@ -943,6 +969,20 @@ const landmarks: Record<string, string> = {
   Cervidae: 'deer family, e.g. deer, elk, moose',
   Suina: 'pigs and peccaries',
   Proboscidea: 'elephants — closest relatives are hyraxes and manatees!',
+  Hyracoidea: 'hyraxes — look like guinea pigs, but closest relatives are elephants!',
+  Tubulidentata: 'aardvark — the sole member of its entire order',
+  Didelphimorphia: 'American opossums — only marsupials in North America',
+  Canidae: 'dogs, wolves, foxes, jackals, dholes',
+  Felidae: 'cats — from domestic cats to lions and cheetahs',
+  Ursidae: 'bears — includes polar bears, giant pandas, sun bears',
+  Equidae: 'horses, donkeys, zebras — interbreed but offspring are sterile',
+  Camelidae: 'camels, llamas, alpacas, vicuñas',
+  Muridae: 'mice and rats — most species-rich mammal family',
+  Sciuridae: 'squirrels, ground squirrels, prairie dogs, chipmunks',
+  Cercopithecidae: 'Old World monkeys — baboons, macaques, vervets',
+  Platyrrhini: 'New World monkeys — spider monkeys, capuchins',
+  Phocidae: 'earless seals — harbor, leopard, elephant seals',
+  Procyonidae: 'raccoons, coatis, ringtails, kinkajous',
   Pilosa: 'sloths and anteaters',
   Cingulata: 'armadillos',
   Eulipotyphla: 'includes hedgehogs, shrews, moles',
@@ -961,8 +1001,7 @@ const landmarks: Record<string, string> = {
   Neognathae: 'most living birds',
   Palaeognathae: 'includes ostriches, emus, kiwis',
   Neoaves: 'most modern birds',
-  Passeriformes:
-    'perching birds — over half of all bird species! e.g. crows, sparrows',
+  Passeriformes: 'perching birds — over half of all bird species!',
   Accipitriformes: 'includes hawks, eagles, vultures',
   Psittaciformes: 'parrots — includes macaws, cockatoos',
   Strigiformes: 'owls',
@@ -972,23 +1011,39 @@ const landmarks: Record<string, string> = {
   Pelecaniformes: 'includes pelicans, herons, ibises',
   Falconiformes: 'falcons — closer to parrots than to hawks!',
   Caprimulgiformes: 'includes nightjars and hummingbirds — unlikely relatives!',
+  Columbiformes: 'pigeons and doves — one of the most widespread bird orders',
+  Charadriiformes: 'shorebirds — gulls, sandpipers, auks, puffins',
+  Piciformes: 'includes woodpeckers, toucans, and honeyguides',
+  Coraciiformes: 'kingfishers, bee-eaters, rollers',
+  Gruiformes: 'cranes, rails, coots',
+  Cuculiformes: 'cuckoos — lay eggs in other birds\' nests',
+  Corvidae: 'crows, ravens, jays — make tools, recognize faces',
+  Trochilidae: 'hummingbirds — can hover and fly backwards',
   Lepidosauria: 'includes lizards, snakes, tuatara',
-  Squamata: 'lizards and snakes — snakes evolved from lizards!',
-  Serpentes: 'snakes',
-  Testudines: 'turtles and tortoises',
+  Squamata: 'lizards and snakes — snakes evolved from lizards',
+  Serpentes: 'snakes — 3,700+ species',
+  Viperidae: 'vipers — rattlesnakes, puff adders, gaboon vipers',
+  Elapidae: 'cobras, mambas, coral snakes, sea snakes',
+  Gekkota: 'geckos — grip smooth ceilings with adhesive toes',
+  Varanidae: 'monitor lizards — includes Komodo dragon',
+  Chamaeleonidae: 'chameleons — mobile eyes, ballistic tongue',
+  Testudines: 'turtles and tortoises — some live over 150 years',
   Crocodylia: 'crocodiles and alligators — closer to birds than to lizards!',
   Reptilia: 'includes turtles, lizards, snakes, crocodilians',
   Rhynchocephalia: 'tuatara — sole survivor of its entire order!',
 
   // amphibians
-  Amphibia: 'includes frogs, salamanders, caecilians',
-  Anura: 'frogs and toads',
-  Caudata: 'salamanders and newts',
-  Gymnophiona: 'caecilians — legless burrowing amphibians',
+  Amphibia: 'frogs, salamanders, caecilians',
+  Anura: 'frogs and toads — 7,000+ species',
+  Caudata: 'salamanders and newts — can regenerate lost limbs',
+  Gymnophiona: 'caecilians — legless, mistaken for worms',
+  Dendrobatidae: 'poison dart frogs — toxins used on blowgun darts',
 
   // fish
   Actinopterygii: 'ray-finned fishes — 99% of fish species',
-  Teleostei: 'most living bony fishes',
+  Teleostei: 'most living bony fishes — over 30,000 species',
+  Ostariophysi: 'carps, catfish, characins, electric eels',
+  Acanthomorpha: 'spiny-rayed fishes — ~1/3 of all vertebrates',
   Chondrichthyes: 'sharks, rays, skates — skeletons made of cartilage',
   Dipnoi: 'lungfishes — can breathe air!',
   Perciformes: 'perch-like fishes',
@@ -997,7 +1052,20 @@ const landmarks: Record<string, string> = {
   Tetraodontiformes: 'includes pufferfish and ocean sunfish',
   Anguilliformes: 'eels',
   Syngnathiformes: 'includes seahorses and pipefish',
-  Petromyzontiformes: 'lampreys — jawless fish',
+  Petromyzontiformes: 'lampreys — jawless parasitic fish',
+  Myxini: 'hagfish — produce slime to escape predators',
+  Clupeiformes: 'herrings, sardines, anchovies',
+  Siluriformes: 'catfish — named for their whisker-like barbels',
+  Gadiformes: 'cod, haddock, pollock',
+  Pleuronectiformes: 'flatfishes — flounder, halibut; eyes on one side',
+  Lamniformes: 'mackerel sharks — great white, mako, thresher',
+  Orectolobiformes: 'carpet sharks — includes whale shark',
+  Carcharhiniformes: 'ground sharks — tiger, bull, hammerhead',
+  Acipenseriformes: 'sturgeons and paddlefish — source of caviar',
+  Coelacanthiformes: 'coelacanths — thought extinct until 1938',
+  Cichliformes: 'cichlids — rapid evolution in African rift lakes',
+  Myliobatiformes: 'stingrays, manta rays, eagle rays',
+  Batoidea: 'rays and skates — flat relatives of sharks',
 
   // arthropods
   Arthropoda: 'includes insects, spiders, crabs — most species on Earth',
@@ -1005,10 +1073,15 @@ const landmarks: Record<string, string> = {
   Hexapoda: 'six-legged arthropods — includes insects and springtails',
   Insecta:
     'includes beetles, butterflies, ants — ~80% of known animal species!',
+  Pterygota: 'winged insects — all insects except silverfish and springtails',
+  Neoptera: 'most winged insects — can fold wings flat',
+  Polyneoptera: 'cockroaches, grasshoppers, mantises, earwigs',
+  Paraneoptera: 'includes Hemiptera, lice, and thrips',
   Endopterygota:
     'insects with complete metamorphosis, e.g. beetles, flies, butterflies',
   Coleoptera: 'beetles — 1 in 4 animal species is a beetle!',
-  Lepidoptera: 'butterflies and moths',
+  Lepidoptera: 'butterflies and moths — larvae are caterpillars',
+  Phasmatodea: 'stick insects — elaborate camouflage',
   Hymenoptera: 'includes ants, bees, wasps',
   Diptera: 'true flies — only two wings, not four!',
   Hemiptera: 'includes true bugs, cicadas, aphids',
@@ -1020,15 +1093,19 @@ const landmarks: Record<string, string> = {
   Neuroptera: 'includes lacewings and antlions',
   Mecoptera: 'scorpionflies',
   Dermaptera: 'earwigs',
+  Ephemeroptera: 'mayflies — adults live only hours to days',
+  Trichoptera: 'caddisflies — larvae build silk and sand cases',
+  Collembola: 'springtails — jump with spring-loaded abdomen',
   Chelicerata: 'includes spiders, scorpions, horseshoe crabs',
   Arachnida:
     'eight-legged arthropods — includes spiders, scorpions, ticks, mites',
-  Araneae: 'spiders',
-  Acari: 'ticks and mites',
+  Araneae: 'spiders — all produce silk; ~45,000 species',
+  Acari: 'ticks and mites — most species-rich arachnids',
+  Opiliones: 'harvestmen (daddy longlegs) — not spiders; no silk',
   Scorpiones: 'scorpions — older than dinosaurs!',
   Crustacea: 'includes crabs, shrimp, lobsters, barnacles',
   Decapoda: 'ten-legged crustaceans, e.g. crabs, lobsters, shrimp',
-  Anomura: 'includes hermit crabs and coconut crabs — not true crabs!',
+  Anomura: 'hermit crabs and coconut crabs — not true crabs!',
   Brachyura: 'true crabs',
   Isopoda: 'includes woodlice, pill bugs — crustaceans on land!',
   Cirripedia: 'barnacles — Darwin spent 8 years studying them',
@@ -1039,6 +1116,7 @@ const landmarks: Record<string, string> = {
   Cephalopoda: 'includes octopuses, squid, nautilus',
   Gastropoda: 'snails and slugs',
   Bivalvia: 'includes clams, mussels, oysters',
+  Polyplacophora: 'chitons — 8 shell plates; curl into a ball',
   Cnidaria: 'includes jellyfish, corals, anemones',
   Anthozoa: 'corals and sea anemones',
   Hydrozoa: 'includes hydroids and man-o-war',
@@ -1048,18 +1126,23 @@ const landmarks: Record<string, string> = {
   Echinoidea: 'sea urchins and sand dollars',
   Crinoidea: 'feather stars and sea lilies',
   Ophiuroidea: 'brittle stars',
-  Holothuroidea: 'sea cucumbers',
-  Annelida: 'segmented worms, e.g. earthworms, leeches',
+  Holothuroidea: 'sea cucumbers — eject organs as defense',
+  Annelida: 'segmented worms, e.g. earthworms, leeches, bristle worms',
+  Polychaeta: 'bristle worms — tube worms, Christmas tree worms',
+  Brachiopoda: 'lamp shells — look like clams, separate phylum',
+  Stomatopoda: 'mantis shrimp — 16 color receptors vs our 3',
+  Xiphosura: 'horseshoe crabs — closer to spiders than crabs',
+  Nudibranchia: 'sea slugs — steal stinging cells from prey',
+  Foraminifera: 'forams — shells make up many limestones',
   Nematoda: 'roundworms — 4 out of 5 animals on Earth!',
   Platyhelminthes: 'flatworms and tapeworms',
   Porifera: 'sponges — among the simplest animals',
   Ctenophora: 'comb jellies — possibly the oldest animal lineage',
   Tardigrada: 'tardigrades — can survive in space!',
   Onychophora: 'velvet worms — shoot slime to catch prey',
-  Tunicata:
-    'sea squirts and salps — blobs stuck to rocks, yet our closest invertebrate relatives!',
-  Nemertea: 'ribbon worms',
-  Sipuncula: 'peanut worms',
+  Tunicata: 'sea squirts — blobs on rocks, yet our nearest relatives!',
+  Nemertea: 'ribbon worms — possibly the longest animals ever',
+  Sipuncula: 'peanut worms — retract front end like a peanut',
   Xenacoelomorpha: 'simple worm-like animals',
   Lophotrochozoa: 'includes molluscs, worms, bryozoans',
   Ecdysozoa: 'animals that moult, e.g. insects, crabs, roundworms',
@@ -1077,16 +1160,15 @@ const landmarks: Record<string, string> = {
   Rosidae: 'includes roses, legumes, oaks, maples',
   Asteridae: 'includes sunflowers, mints, carrots, tomatoes',
   Fabales: 'includes legumes, peanuts, beans',
-  Fabaceae:
-    'legumes — includes peanuts, beans, clover. they fix nitrogen from the air!',
+  Fabaceae: 'legumes — peanuts, beans; fix nitrogen from air',
   Rosaceae: 'includes roses, strawberries, almonds, apples, cherries',
   Asteraceae: 'largest plant family! includes daisies, sunflowers, dandelions',
   Solanaceae: 'nightshades — includes tomatoes, potatoes, peppers, tobacco',
   Brassicaceae: 'one species gave us cabbage, broccoli, kale, and cauliflower!',
   Poaceae: 'grasses — includes wheat, rice, bamboo, corn',
   Orchidaceae: 'orchids — second-largest flowering plant family',
-  Arecaceae: 'palms',
-  Cactaceae: 'cacti',
+  Arecaceae: 'palms — coconut, date, oil palm, rattan',
+  Cactaceae: 'cacti — open stomata at night to conserve water',
   Malvaceae: 'includes cacao, cotton, baobabs, hibiscus',
   Apiaceae: 'includes carrots, celery, parsley, and poison hemlock',
   Ericaceae: 'includes blueberries, cranberries, rhododendrons',
@@ -1097,20 +1179,41 @@ const landmarks: Record<string, string> = {
   Lamiales: 'includes mints, olives, snapdragons',
   Gentianales: 'includes coffee and milkweed',
   Malpighiales: 'includes willows, violets, poinsettias, rubber trees',
-  Pinopsida: 'conifers — includes pines, spruces, redwoods',
+  Cucurbitaceae: 'cucurbits — includes cucumbers, melons, pumpkins, squash',
+  Rutaceae: 'citrus family — includes oranges, lemons, limes',
+  Euphorbiaceae: 'includes rubber tree, cassava, poinsettia',
+  Vitaceae: 'grapes, Virginia creeper',
+  Moraceae: 'figs, mulberries, breadfruit',
+  Amaryllidaceae: 'onions, garlic, leeks, daffodils',
+  Cycadopsida: 'cycads — lived alongside dinosaurs; some 1000+ yrs',
+  Musaceae: 'bananas — "trunk" is not woody tissue',
+  Zingiberaceae: 'ginger, turmeric, cardamom, galangal',
+  Bromeliaceae: 'bromeliads — includes pineapple',
+  Myrtaceae: 'includes eucalyptus, cloves, guava, allspice, feijoa',
+  Ranunculales: 'includes buttercups, poppies, barberries, columbines',
+  Pinopsida: 'conifers — pines, spruces, firs, tallest and oldest trees',
   Ginkgoopsida: 'ginkgo — sole survivor, unchanged for 200M years',
   Gnetales: 'includes welwitschia — lives 1000+ years with just 2 leaves!',
-  Bryophyta: 'mosses',
+  Bryophyta: 'mosses — survive complete desiccation and rehydrate',
   Polypodiopsida: 'ferns — older than flowering plants',
   Magnoliidae: 'includes magnolias, avocados, black pepper',
 
   // fungi and microbes
   Fungi: 'mushrooms, yeasts, molds — closer to animals than plants!',
+  Agaricomycetes: 'most gilled mushrooms — chanterelles, porcini, amanitas',
+  Glomeromycota: 'mycorrhizal fungi — in roots of 80% of land plants',
+  Chytridiomycota: 'chytrids — one species decimated dozens of frog species',
   Ascomycota: 'includes yeasts, morels, truffles, penicillium',
   Basidiomycota: 'includes mushrooms, puffballs, rusts',
   Saccharomycetes: "baker's yeast, brewer's yeast",
   Bacteria: 'single-celled organisms without nuclei',
+  Cyanobacteria: 'produced Earth\'s oxygen 2.4 Bya; gave us chloroplasts',
+  Proteobacteria: 'largest bacterial phylum — E. coli, Salmonella, rhizobia',
+  Actinomycetota: 'soil bacteria — source of most antibiotic drugs',
+  Spirochaetota: 'spiral bacteria — Lyme disease, syphilis',
+  Dinoflagellata: 'cause red tides; some bioluminescent, some in coral',
   Archaea: 'single-celled organisms — not bacteria!',
+  Asgardarchaeota: 'archaea closest to eukaryotes — our nearest prokaryotic relatives',
   Alveolata: 'includes ciliates, dinoflagellates, malaria parasites',
   Amoebozoa: 'amoebas and slime molds',
   Stramenopiles: 'includes kelp, diatoms, water molds',
@@ -1118,13 +1221,16 @@ const landmarks: Record<string, string> = {
   Apicomplexa: 'includes malaria parasites',
   Ciliophora: 'ciliates, e.g. paramecium, stentor',
   Microsporidia: 'tiny intracellular parasites — actually degenerate fungi!',
-  Oomycota: 'water molds — look like fungi but are not!',
+  Oomycota: 'water molds — caused the Irish potato famine',
   Bacillariophyta: 'diatoms — tiny algae in glass shells',
   Phaeophyceae: 'brown algae, e.g. kelp, sargassum',
   Myxozoa: 'tiny animal parasites — degenerate jellyfish relatives!',
   Euglenozoa: 'includes euglenids and trypanosomes',
   Rhodophyta: 'red algae — used to make agar and nori',
   Chlorophyta: 'green algae — ancestors of all land plants',
+  Haptophyta: 'coccolithophores — built White Cliffs of Dover',
+  Choanoflagellatea: 'closest unicellular relatives of animals',
+  Bacillota: 'gram-positive bacteria — Lactobacillus, Bacillus, Clostridium',
 }
 
 function annotateLabel(name: string) {

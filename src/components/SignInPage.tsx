@@ -1,26 +1,12 @@
 import { useEffect, useState } from 'react'
 
-import {
-  getCurrentUser,
-  isNameTaken,
-  signInWithGoogle,
-  signOut,
-} from '../firebase.ts'
-import { localStorageGetItem } from '../utils/storage.ts'
+import { getCurrentUser, signInWithGoogle, signOut } from '../firebase.ts'
 
 export default function SignInPage() {
   const [signedIn, setSignedIn] = useState(false)
   const [googleName, setGoogleName] = useState<string | null>(null)
   const [signingIn, setSigningIn] = useState(false)
   const [error, setError] = useState('')
-  const [nickname, setNickname] = useState(
-    () => localStorageGetItem('phyloLeaderboardName') ?? '',
-  )
-  const [nicknameSaved, setNicknameSaved] = useState(
-    () => !!localStorageGetItem('phyloLeaderboardName'),
-  )
-  const [nameError, setNameError] = useState('')
-  const [checking, setChecking] = useState(false)
 
   useEffect(() => {
     getCurrentUser().then(user => {
@@ -33,54 +19,11 @@ export default function SignInPage() {
     })
   }, [])
 
-  const handleSaveNickname = async () => {
-    const trimmed = nickname.trim()
-    if (!trimmed || trimmed.length > 20) {
-      return
-    }
-    setNameError('')
-    setChecking(true)
-    try {
-      const taken = await isNameTaken(trimmed)
-      if (taken) {
-        setNameError('That name is already taken')
-      } else {
-        localStorage.setItem('phyloLeaderboardName', trimmed)
-        window.dispatchEvent(new Event('nickname-changed'))
-        setNicknameSaved(true)
-      }
-    } catch {
-      setNameError('Could not check name availability')
-    }
-    setChecking(false)
-  }
-
   const handleSignIn = async () => {
-    const trimmed = nickname.trim()
-    if (!trimmed || trimmed.length > 20) {
-      setNameError('Please choose a nickname first')
-      return
-    }
-    setNameError('')
     setSigningIn(true)
     setError('')
     try {
-      const taken = await isNameTaken(trimmed)
-      if (taken) {
-        setNameError('That name is already taken')
-        setSigningIn(false)
-        return
-      }
-    } catch {
-      setNameError('Could not check name availability')
-      setSigningIn(false)
-      return
-    }
-    try {
       const user = await signInWithGoogle()
-      localStorage.setItem('phyloLeaderboardName', trimmed)
-      window.dispatchEvent(new Event('nickname-changed'))
-      setNicknameSaved(true)
       setSignedIn(true)
       if (user.displayName) {
         setGoogleName(user.displayName)
@@ -104,48 +47,6 @@ export default function SignInPage() {
         <p className="signin-success">
           Signed in with Google{googleName ? ` (${googleName})` : ''}
         </p>
-        <p className="signin-detail">
-          Your scores are linked to your Google account. You can play on
-          different devices and your leaderboard entry will stay connected.
-        </p>
-        <p>
-          Leaderboard nickname: <strong>{nickname}</strong>
-          {' \u2014 '}
-          <button
-            className="leaderboard-change-btn"
-            onClick={() => setNicknameSaved(false)}
-          >
-            change
-          </button>
-        </p>
-        {!nicknameSaved && (
-          <div className="signin-nickname-form">
-            <input
-              type="text"
-              className="leaderboard-name-input"
-              placeholder="Nickname (max 20 chars)"
-              maxLength={20}
-              value={nickname}
-              onChange={e => {
-                setNickname(e.target.value)
-                setNameError('')
-              }}
-              onKeyDown={e => {
-                if (e.key === 'Enter' && nickname.trim()) {
-                  handleSaveNickname()
-                }
-              }}
-            />
-            <button
-              className="leaderboard-submit-btn"
-              disabled={!nickname.trim() || checking}
-              onClick={handleSaveNickname}
-            >
-              {checking ? 'Checking...' : 'Save'}
-            </button>
-            {nameError && <p className="signin-error">{nameError}</p>}
-          </div>
-        )}
         <div className="signin-actions">
           <a className="btn btn-primary" href="/">
             Play
@@ -160,35 +61,13 @@ export default function SignInPage() {
 
   return (
     <div className="signin-prompt">
-      <h3>Create an account</h3>
-      <p>
-        Choose a nickname and sign in with Google to save your scores to the
-        leaderboard.
-      </p>
-      <div className="signin-nickname-form">
-        <input
-          type="text"
-          className="leaderboard-name-input"
-          placeholder="Nickname (max 20 chars)"
-          maxLength={20}
-          value={nickname}
-          onChange={e => {
-            setNickname(e.target.value)
-            setNameError('')
-          }}
-          onKeyDown={e => {
-            if (e.key === 'Enter' && nickname.trim()) {
-              handleSignIn()
-            }
-          }}
-        />
-        {nameError && <p className="signin-error">{nameError}</p>}
-      </div>
+      <h3>Sign in</h3>
+      <p>Sign in with Google to be counted among online players.</p>
       {error && <p className="signin-error">{error}</p>}
       <div className="signin-actions">
         <button
           className="btn btn-primary"
-          disabled={signingIn || !nickname.trim()}
+          disabled={signingIn}
           onClick={handleSignIn}
         >
           {signingIn ? 'Signing in...' : 'Sign in with Google'}

@@ -75,9 +75,7 @@ export default function InteractiveMap({
   const speciesLayersRef = useRef<L.GridLayer[]>([])
   const [resolvedKeys, setResolvedKeys] = useState<(number | null)[]>([])
   const onMapReadyRef = useRef(onMapReady)
-  useEffect(() => {
-    onMapReadyRef.current = onMapReady
-  }, [onMapReady])
+  onMapReadyRef.current = onMapReady
 
   const taxIdKey = useMemo(
     () => organisms.map(o => o.ncbiTaxId).join(','),

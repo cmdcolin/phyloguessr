@@ -10,12 +10,8 @@ import {
   deleteDoc,
   doc,
   getCount,
-  getDocs,
   getFirestore,
-  limit,
-  orderBy,
   query,
-  runTransaction,
   setDoc,
   where,
 } from 'firebase/firestore/lite'
@@ -34,7 +30,6 @@ const app = initializeApp({
 
 const auth = getAuth(app)
 const db = getFirestore(app)
-const scoresRef = collection(db, 'scores')
 const googleProvider = new GoogleAuthProvider()
 
 let currentUser: User | null = null
@@ -71,227 +66,6 @@ export async function signOut() {
   await auth.signOut()
 }
 
-export interface LeaderboardEntry {
-  uid: string
-  name: string
-  bestStreak: number
-  currentStreak: number
-  totalWins: number
-  totalPlayed: number
-  timestamp: number
-}
-
-function toLeaderboardEntry(
-  uid: string,
-  data: Record<string, unknown>,
-): LeaderboardEntry {
-  return {
-    uid: typeof data.uid === 'string' ? data.uid : uid,
-    name: typeof data.name === 'string' ? data.name : 'Anonymous',
-    bestStreak: typeof data.bestStreak === 'number' ? data.bestStreak : 0,
-    currentStreak:
-      typeof data.currentStreak === 'number' ? data.currentStreak : 0,
-    totalWins: typeof data.totalWins === 'number' ? data.totalWins : 0,
-    totalPlayed: typeof data.totalPlayed === 'number' ? data.totalPlayed : 0,
-    timestamp: typeof data.timestamp === 'number' ? data.timestamp : 0,
-  }
-}
-
-export async function isNameTaken(name: string) {
-  await authReady
-  const q = query(scoresRef, where('name', '==', name), limit(1))
-  const snap = await getDocs(q)
-  return snap.docs.some(d => d.id !== currentUser?.uid)
-}
-
-function computeStreakUpdate(
-  prev: {
-    bestStreak: number
-    currentStreak: number
-    totalWins: number
-    totalPlayed: number
-  },
-  correct: boolean,
-) {
-  const currentStreak = correct ? prev.currentStreak + 1 : 0
-  return {
-    bestStreak: Math.max(prev.bestStreak, currentStreak),
-    currentStreak,
-    totalWins: prev.totalWins + (correct ? 1 : 0),
-    totalPlayed: prev.totalPlayed + 1,
-  }
-}
-
-function upsertStreakDoc(
-  docRef: ReturnType<typeof doc>,
-  uid: string,
-  name: string,
-  correct: boolean,
-  extraFields?: Record<string, string>,
-) {
-  return runTransaction(db, async transaction => {
-    const existing = await transaction.get(docRef)
-    const prev = existing.exists()
-      ? toLeaderboardEntry(uid, existing.data())
-      : { bestStreak: 0, currentStreak: 0, totalWins: 0, totalPlayed: 0 }
-    const entry = {
-      uid,
-      name,
-      ...computeStreakUpdate(prev, correct),
-      timestamp: Date.now(),
-    } satisfies LeaderboardEntry
-    transaction.set(docRef, extraFields ? { ...entry, ...extraFields } : entry)
-  })
-}
-
-export async function recordRound(
-  name: string,
-  correct: boolean,
-  modeKey?: string,
-) {
-  await authReady
-  if (!currentUser) {
-    return
-  }
-  const uid = currentUser.uid
-
-  const promises: Promise<void>[] = [
-    upsertStreakDoc(doc(scoresRef, uid), uid, name, correct),
-  ]
-  if (modeKey && modeKey !== 'random') {
-    promises.push(
-      upsertStreakDoc(
-        doc(modeScoresRef, `${uid}_${modeKey}`),
-        uid,
-        name,
-        correct,
-        { modeKey },
-      ),
-    )
-  }
-  await Promise.all(promises)
-}
-
-export async function getTopStreaks(count = 20) {
-  const q = query(scoresRef, orderBy('bestStreak', 'desc'), limit(count))
-  const snap = await getDocs(q)
-  return snap.docs.map(d => toLeaderboardEntry(d.id, d.data()))
-}
-
-const modeScoresRef = collection(db, 'modeScores')
-
-export async function getTopModeStreaks(modeKey: string, count = 20) {
-  const q = query(
-    modeScoresRef,
-    where('modeKey', '==', modeKey),
-    orderBy('bestStreak', 'desc'),
-    limit(count),
-  )
-  const snap = await getDocs(q)
-  return snap.docs.map(d => toLeaderboardEntry(d.id, d.data()))
-}
-
-const multiScoresRef = collection(db, 'multiScores')
-const modeMultiScoresRef = collection(db, 'modeMultiScores')
-
-export interface MultiLeaderboardEntry {
-  uid: string
-  name: string
-  totalPoints: number
-  totalPlayed: number
-  perfects: number
-  timestamp: number
-}
-
-function toMultiLeaderboardEntry(
-  uid: string,
-  data: Record<string, unknown>,
-): MultiLeaderboardEntry {
-  return {
-    uid: typeof data.uid === 'string' ? data.uid : uid,
-    name: typeof data.name === 'string' ? data.name : 'Anonymous',
-    totalPoints: typeof data.totalPoints === 'number' ? data.totalPoints : 0,
-    totalPlayed: typeof data.totalPlayed === 'number' ? data.totalPlayed : 0,
-    perfects: typeof data.perfects === 'number' ? data.perfects : 0,
-    timestamp: typeof data.timestamp === 'number' ? data.timestamp : 0,
-  }
-}
-
-async function upsertMultiDoc(
-  docRef: ReturnType<typeof doc>,
-  uid: string,
-  name: string,
-  score: number,
-  extra?: Record<string, unknown>,
-) {
-  await runTransaction(db, async transaction => {
-    const existing = await transaction.get(docRef)
-    if (existing.exists()) {
-      const prev = toMultiLeaderboardEntry(uid, existing.data())
-      transaction.set(docRef, {
-        uid,
-        name,
-        totalPoints: prev.totalPoints + score,
-        totalPlayed: prev.totalPlayed + 1,
-        perfects: prev.perfects + (score === 100 ? 1 : 0),
-        timestamp: Date.now(),
-        ...extra,
-      })
-    } else {
-      transaction.set(docRef, {
-        uid,
-        name,
-        totalPoints: score,
-        totalPlayed: 1,
-        perfects: score === 100 ? 1 : 0,
-        timestamp: Date.now(),
-        ...extra,
-      })
-    }
-  })
-}
-
-export async function recordMultiRound(
-  name: string,
-  score: number,
-  modeKey?: string,
-) {
-  await authReady
-  if (!currentUser) {
-    return
-  }
-  const uid = currentUser.uid
-  const promises = [upsertMultiDoc(doc(multiScoresRef, uid), uid, name, score)]
-  if (modeKey) {
-    promises.push(
-      upsertMultiDoc(
-        doc(modeMultiScoresRef, `${uid}_${modeKey}`),
-        uid,
-        name,
-        score,
-        { modeKey },
-      ),
-    )
-  }
-  await Promise.all(promises)
-}
-
-export async function getTopMultiScores(count = 20) {
-  const q = query(multiScoresRef, orderBy('totalPoints', 'desc'), limit(count))
-  const snap = await getDocs(q)
-  return snap.docs.map(d => toMultiLeaderboardEntry(d.id, d.data()))
-}
-
-export async function getTopModeMultiScores(modeKey: string, count = 20) {
-  const q = query(
-    modeMultiScoresRef,
-    where('modeKey', '==', modeKey),
-    orderBy('totalPoints', 'desc'),
-    limit(count),
-  )
-  const snap = await getDocs(q)
-  return snap.docs.map(d => toMultiLeaderboardEntry(d.id, d.data()))
-}
 
 const presenceRef = collection(db, 'presence')
 const PRESENCE_INTERVAL_MS = 5 * 60 * 1000
@@ -308,7 +82,7 @@ async function updatePresence() {
   if (!currentUser) {
     return
   }
-  const name = localStorage.getItem('phyloLeaderboardName') ?? 'Anonymous'
+  const name = currentUser.displayName ?? 'Anonymous'
   await setDoc(doc(presenceRef, currentUser.uid), {
     uid: currentUser.uid,
     name,

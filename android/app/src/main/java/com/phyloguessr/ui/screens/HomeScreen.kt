@@ -2,7 +2,6 @@ package com.phyloguessr.ui.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -35,7 +34,6 @@ import com.phyloguessr.ui.theme.TreeLogo
 @Composable
 fun HomeScreen(
     onModeSelected: (String, Difficulty) -> Unit,
-    onLeaderboard: () -> Unit,
     onSignIn: () -> Unit,
     onSignOut: () -> Unit,
 ) {
@@ -114,39 +112,25 @@ fun HomeScreen(
 
         Spacer(modifier = Modifier.height(12.dp))
 
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-        ) {
+        if (authState == null) {
             OutlinedButton(
-                onClick = onLeaderboard,
+                onClick = onSignIn,
                 modifier = Modifier
-                    .weight(1f)
+                    .fillMaxWidth()
                     .height(44.dp),
                 shape = RoundedCornerShape(8.dp),
             ) {
-                Text("Leaderboard", fontSize = 13.sp)
+                Text("Sign In", fontSize = 13.sp)
             }
-            if (authState == null) {
-                OutlinedButton(
-                    onClick = onSignIn,
-                    modifier = Modifier
-                        .weight(1f)
-                        .height(44.dp),
-                    shape = RoundedCornerShape(8.dp),
-                ) {
-                    Text("Sign In", fontSize = 13.sp)
-                }
-            } else {
-                OutlinedButton(
-                    onClick = onSignOut,
-                    modifier = Modifier
-                        .weight(1f)
-                        .height(44.dp),
-                    shape = RoundedCornerShape(8.dp),
-                ) {
-                    Text("Sign Out", fontSize = 13.sp)
-                }
+        } else {
+            OutlinedButton(
+                onClick = onSignOut,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(44.dp),
+                shape = RoundedCornerShape(8.dp),
+            ) {
+                Text("Sign Out", fontSize = 13.sp)
             }
         }
     }
