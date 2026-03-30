@@ -569,7 +569,7 @@ const MICROBIAL_GROUP_NAMES = [
   'Haptista',
   'Haptophyta',
   'Cryptophyceae',
-  'SAR',
+  'Sar',
 ] as const
 
 function getMicrobialGroup(taxId: number, data: TaxonomyData) {
@@ -1222,7 +1222,7 @@ const landmarks: Record<string, string> = {
   Alveolata: 'includes ciliates, dinoflagellates, malaria parasites',
   Amoebozoa: 'amoebas and slime molds',
   Stramenopiles: 'includes kelp, diatoms, water molds',
-  SAR: 'a vast group of mostly single-celled life',
+  Sar: 'a vast group of mostly single-celled life',
   Apicomplexa: 'includes malaria parasites',
   Ciliophora: 'ciliates, e.g. paramecium, stentor',
   Microsporidia: 'tiny intracellular parasites — actually degenerate fungi!',
@@ -1239,11 +1239,12 @@ const landmarks: Record<string, string> = {
 }
 
 function annotateLabel(name: string) {
+  const displayName = displayNameOverrides[name] ?? name
   const hint = landmarks[name]
   if (hint) {
-    return `${name} (${hint})`
+    return `${displayName} (${hint})`
   }
-  return name
+  return displayName
 }
 
 const contextRanks = new Set([
@@ -1313,8 +1314,17 @@ function makeLeafLabel(
   return organism.commonName
 }
 
+const wikiNameOverrides: Record<string, string> = {
+  Sar: 'SAR_supergroup',
+}
+
+const displayNameOverrides: Record<string, string> = {
+  Sar: 'SAR supergroup',
+}
+
 function wikiUrl(name: string) {
-  return `https://en.wikipedia.org/wiki/${encodeURIComponent(name)}`
+  const wikiName = wikiNameOverrides[name] ?? name
+  return `https://en.wikipedia.org/wiki/${encodeURIComponent(wikiName)}`
 }
 
 function makeBranchNode(

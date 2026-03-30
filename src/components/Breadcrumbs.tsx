@@ -113,7 +113,7 @@ export function OrganismBreadcrumbs({
           <>
             <a
               className="breadcrumb-secondary-link"
-              href={`https://en.wikipedia.org/wiki/${organism.scientificName}`}
+              href={`https://en.wikipedia.org/wiki/${encodeURIComponent(organism.scientificName)}`}
               target="_blank"
               rel="noopener noreferrer"
             >

@@ -1,3 +1,5 @@
+import { capitalize } from './format.ts'
+
 type TaxonHeader = { type: 'header'; label: string }
 type TaxonItem = {
   type: 'item'
@@ -256,7 +258,7 @@ export function formatModeKey(key: string) {
     const id = key.slice(7)
     const preset = CLADE_PRESETS.find(([presetId]) => presetId === id)
     if (preset) {
-      return preset[1].charAt(0).toUpperCase() + preset[1].slice(1)
+      return capitalize(preset[1])
     }
     return id
   }

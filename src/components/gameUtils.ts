@@ -50,6 +50,19 @@ export function updateUrlWithQuestion(orgs: Organism[]) {
   history.replaceState(null, '', buildShareUrl(orgs))
 }
 
+export function buildTimedOutUrl() {
+  const url = new URL(window.location.href)
+  url.searchParams.set('timedout', '1')
+  return url.toString()
+}
+
+export function buildRetryUrl() {
+  const url = new URL(window.location.href)
+  url.searchParams.delete('timedout')
+  url.searchParams.set('retry', '1')
+  return url.toString()
+}
+
 export function resolveOrganism(
   taxId: number,
   pool: SpeciesPoolEntry[] | null,

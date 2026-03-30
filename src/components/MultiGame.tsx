@@ -7,13 +7,16 @@ import Header from './Header.tsx'
 import MultiResultScreen from './MultiResultScreen.tsx'
 import OrganismCard from './OrganismCard.tsx'
 import {
+  buildRetryUrl,
   buildShareUrl,
+  buildTimedOutUrl,
   comboKey,
   getDifficulty,
   parseSharedIds,
   resolveOrganism,
   toggleSelect,
 } from './gameUtils.ts'
+import { sessionStorageGetItem } from '../utils/storage.ts'
 import { fetchWikipediaAbstract } from '../utils/wikipedia.ts'
 import { TOTAL_QUESTIONS } from '../utils/scoring.ts'
 import {
@@ -31,7 +34,7 @@ import type { RoundResult } from './GameOverScreen.tsx'
 import type { Organism } from '../data/organisms.ts'
 import type { SpeciesPoolEntry, TaxonomyData } from '../utils/taxonomy.ts'
 
-type GameState = 'loading' | 'selecting' | 'result' | 'gameOver'
+type GameState = 'loading' | 'selecting' | 'timedOut' | 'result' | 'gameOver'
 
 const SPECIES_COUNT = 6
 
@@ -50,7 +53,6 @@ export default function MultiGame() {
     null,
   )
   const [loadingMessage, setLoadingMessage] = useState('')
-  const [timedOut, setTimedOut] = useState(false)
   const [hints, setHints] = useState<Record<number, string | null>>({})
   const [hintLoading, setHintLoading] = useState(false)
   const [hintUsed, setHintUsed] = useState(false)
@@ -66,13 +68,9 @@ export default function MultiGame() {
     rank: string
   } | null>(null)
   const [seenCombos, setSeenCombos] = useState<Set<string>>(() => {
-    try {
-      const saved = sessionStorage.getItem('phyloMultiSeenCombos')
-      if (saved) {
-        return new Set(JSON.parse(saved) as string[])
-      }
-    } catch {
-      // ignore
+    const saved = sessionStorageGetItem('phyloMultiSeenCombos')
+    if (saved) {
+      return new Set(JSON.parse(saved) as string[])
     }
     return new Set()
   })
@@ -91,7 +89,6 @@ export default function MultiGame() {
     setState('loading')
     setSelected([])
     setResult(null)
-    setTimedOut(false)
     setHints({})
     setHintLoading(false)
     setHintUsed(false)
@@ -185,7 +182,7 @@ export default function MultiGame() {
   }, [taxonomyData, speciesPool, seenCombos])
 
   const loadSharedQuestion = useCallback(
-    async (taxIds: number[]) => {
+    async (taxIds: number[], targetState: 'selecting' | 'timedOut' = 'selecting') => {
       setState('loading')
       setLoadingMessage('Loading shared question...')
 
@@ -216,14 +213,20 @@ export default function MultiGame() {
 
       recordCombo(orgs)
       setOrganisms(orgs)
-      setState('selecting')
+      setState(targetState)
     },
     [taxonomyData, speciesPool, startRound],
   )
 
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    const isTimedOut = params.get('timedout') === '1'
     const sharedIds = parseSharedIds()
-    if (sharedIds) {
+
+    if (isTimedOut && sharedIds) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      loadSharedQuestion(sharedIds, 'timedOut')
+    } else if (sharedIds) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       loadSharedQuestion(sharedIds)
     } else {
@@ -279,55 +282,38 @@ export default function MultiGame() {
     setHintLoading(false)
   }, [organisms, hintUsed])
 
-  const handleSubmit = async (expired = false) => {
+  const handleSubmit = async () => {
     if (!taxonomyData || organisms.length === 0) {
       return
     }
-    if (!expired && selected.length !== 2) {
+    if (selected.length !== 2) {
       return
-    }
-
-    if (expired) {
-      setTimedOut(true)
     }
 
     const taxIds = organisms.map(o => o.ncbiTaxId)
     const allPairs = getAllPairLcas(taxIds, taxonomyData)
     const bestPair = allPairs[0]
 
-    let userPair: typeof bestPair
-    let rank: number
-    let score: number
+    const userTaxA = organisms[selected[0]].ncbiTaxId
+    const userTaxB = organisms[selected[1]].ncbiTaxId
+    const userPair = allPairs.find(
+      p =>
+        (p.taxIdA === userTaxA && p.taxIdB === userTaxB) ||
+        (p.taxIdA === userTaxB && p.taxIdB === userTaxA),
+    )!
 
-    if (expired || selected.length !== 2) {
-      userPair = allPairs[allPairs.length - 1]
-      rank = allPairs.length
-      score = 0
-    } else {
-      const userTaxA = organisms[selected[0]].ncbiTaxId
-      const userTaxB = organisms[selected[1]].ncbiTaxId
-      userPair = allPairs.find(
-        p =>
-          (p.taxIdA === userTaxA && p.taxIdB === userTaxB) ||
-          (p.taxIdA === userTaxB && p.taxIdB === userTaxA),
-      )!
-
-      const userScore = lcaClosenessScore(userPair.lca, taxonomyData)
-      const betterCount = allPairs.filter(
-        p => lcaClosenessScore(p.lca, taxonomyData) > userScore,
-      ).length
-      rank = betterCount + 1
-      const totalPairs = allPairs.length
-      const t = totalPairs <= 1 ? 1 : (totalPairs - rank) / (totalPairs - 1)
-      score = Math.round(t * t * 100 * (hintUsed ? 0.5 : 1))
-    }
-
-    const totalPairs = allPairs.length
+    const userScore = lcaClosenessScore(userPair.lca, taxonomyData)
+    const betterCount = allPairs.filter(
+      p => lcaClosenessScore(p.lca, taxonomyData) > userScore,
+    ).length
+    const rank = betterCount + 1
+    const t = allPairs.length <= 1 ? 1 : (allPairs.length - rank) / (allPairs.length - 1)
+    const score = Math.round(t * t * 100 * (hintUsed ? 0.5 : 1))
 
     const resultData: MultiResultData = {
       score,
       rank,
-      totalPairs,
+      totalPairs: allPairs.length,
       userPair,
       bestPair,
       allPairs,
@@ -391,7 +377,14 @@ export default function MultiGame() {
               {randomClade.rank ? ` (${randomClade.rank})` : ''}
             </p>
           )}
-          <Timer key={questionNumber} duration={60000} onExpire={() => handleSubmit(true)} />
+          <Timer
+            key={questionNumber}
+            duration={60000}
+            onExpire={() => {
+              history.pushState(null, '', buildTimedOutUrl())
+              setState('timedOut')
+            }}
+          />
           <p className="selecting-prompt">
             Pick the two species you think are most closely related
           </p>
@@ -433,13 +426,26 @@ export default function MultiGame() {
         </div>
       )}
 
+      {state === 'timedOut' && (
+        <div className="timed-out">
+          <div className="result-banner wrong">Time's up!</div>
+          <div className="selecting-actions">
+            <a className="btn btn-primary" href={buildRetryUrl()}>
+              Try Again
+            </a>
+            <button className="nav-icon-btn" onClick={startRound} title="Skip">
+              <span className="nav-icon-btn-label">Skip</span> →
+            </button>
+          </div>
+        </div>
+      )}
+
       {state === 'result' && result && taxonomyData && (
         <MultiResultScreen
           result={result}
           taxonomyData={taxonomyData}
           shareUrl={buildShareUrl(result.organisms)}
           onPlayAgain={handleNextQuestion}
-          timedOut={timedOut}
           questionLabel={`Question ${questionNumber}/${TOTAL_QUESTIONS} · Score: ${totalScore}`}
         />
       )}

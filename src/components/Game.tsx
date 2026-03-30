@@ -12,6 +12,8 @@ import { MAP_COLORS } from './SpeciesMap.tsx'
 import { TaxLink } from './TaxLink.tsx'
 import {
   buildShareUrl,
+  buildRetryUrl,
+  buildTimedOutUrl,
   comboKey,
   getDifficulty,
   parseSharedIds,
@@ -50,6 +52,7 @@ type GameState =
   | 'customizing'
   | 'loading'
   | 'selecting'
+  | 'timedOut'
   | 'result'
   | 'easyCompleted'
   | 'gameOver'
@@ -121,7 +124,6 @@ export default function Game({ mode }: { mode: GameMode }) {
   const [hintLoading, setHintLoading] = useState(false)
   const [hintUsed, setHintUsed] = useState(false)
   const [showHintPenalty, setShowHintPenalty] = useState(false)
-  const [timedOut, setTimedOut] = useState(false)
   const [isSharedQuestion, setIsSharedQuestion] = useState(false)
 
   const [randomClade, setRandomClade] = useState<{
@@ -162,7 +164,6 @@ export default function Game({ mode }: { mode: GameMode }) {
     setHintLoading(false)
     setHintUsed(false)
     setShowHintPenalty(false)
-    setTimedOut(false)
 
     let data = taxonomyData
     if (!data) {
@@ -339,7 +340,11 @@ export default function Game({ mode }: { mode: GameMode }) {
   ])
 
   const loadSharedQuestion = useCallback(
-    async (taxIds: number[]) => {
+    async (
+      taxIds: number[],
+      opts: { isShared?: boolean; targetState?: 'selecting' | 'timedOut' } = {},
+    ) => {
+      const { isShared = true, targetState = 'selecting' } = opts
       setState('loading')
       setLoadingMessage('Loading shared question...')
 
@@ -370,15 +375,25 @@ export default function Game({ mode }: { mode: GameMode }) {
 
       recordCombo(orgs)
       setRound(orgs)
-      setIsSharedQuestion(true)
-      setState('selecting')
+      if (isShared) setIsSharedQuestion(true)
+      setState(targetState)
     },
     [taxonomyData, speciesPool, startRound],
   )
 
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    const isTimedOut = params.get('timedout') === '1'
+    const isRetry = params.get('retry') === '1'
     const sharedIds = parseSharedIds()
-    if (sharedIds) {
+
+    if (isTimedOut && sharedIds) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      loadSharedQuestion(sharedIds, { isShared: false, targetState: 'timedOut' })
+    } else if (isRetry && sharedIds) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      loadSharedQuestion(sharedIds, { isShared: false })
+    } else if (sharedIds) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       loadSharedQuestion(sharedIds)
     } else if (mode === 'custom') {
@@ -434,16 +449,12 @@ export default function Game({ mode }: { mode: GameMode }) {
     setHintLoading(false)
   }, [round, hintUsed])
 
-  const handleSubmit = async (expired = false) => {
+  const handleSubmit = async () => {
     if (!round || !taxonomyData) {
       return
     }
-    if (!expired && selected.length !== 2) {
+    if (selected.length !== 2) {
       return
-    }
-
-    if (expired) {
-      setTimedOut(true)
     }
 
     const scenario = scenarios?.find(
@@ -453,9 +464,7 @@ export default function Game({ mode }: { mode: GameMode }) {
     const pairResult = computeResult(round, taxonomyData)
 
     let correct: boolean
-    if (expired || selected.length !== 2) {
-      correct = false
-    } else if (scenario?.correctPair) {
+    if (scenario?.correctPair) {
       const userPicked = new Set(selected.map(i => round[i].commonName))
       correct = scenario.correctPair.every(name => userPicked.has(name))
     } else {
@@ -674,7 +683,13 @@ export default function Game({ mode }: { mode: GameMode }) {
               </p>
             )}
           </div>
-          <Timer key={questionNumber} onExpire={() => handleSubmit(true)} />
+          <Timer
+            key={questionNumber}
+            onExpire={() => {
+              history.pushState(null, '', buildTimedOutUrl())
+              setState('timedOut')
+            }}
+          />
           <p className="selecting-prompt">
             Choose the two organisms you think are most closely related
           </p>
@@ -724,6 +739,20 @@ export default function Game({ mode }: { mode: GameMode }) {
         </div>
       )}
 
+      {state === 'timedOut' && round && (
+        <div className="timed-out">
+          <div className="result-banner wrong">Time's up!</div>
+          <div className="selecting-actions">
+            <a className="btn btn-primary" href={buildRetryUrl()}>
+              Try Again
+            </a>
+            <button className="nav-icon-btn" onClick={startRound} title="Skip">
+              <span className="nav-icon-btn-label">Skip</span> →
+            </button>
+          </div>
+        </div>
+      )}
+
       {state === 'result' && result && taxonomyData && round && (
         <ResultScreen
           correct={result.correct}
@@ -751,7 +780,6 @@ export default function Game({ mode }: { mode: GameMode }) {
           activelyDebated={result.activelyDebated}
           shareUrl={buildShareUrl(round)}
           onPlayAgain={handleNextQuestion}
-          timedOut={timedOut}
           score={result.score}
           questionLabel={
             isSharedQuestion

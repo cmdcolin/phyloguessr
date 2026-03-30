@@ -8,7 +8,7 @@ export function TaxLink({ name, taxId }: { name: string; taxId: number }) {
       >
         {name}
       </a>
-      {taxId >= 0 && (
+      {taxId > 0 && (
         <>
           {' '}
           <a
