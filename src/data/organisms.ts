@@ -2329,8 +2329,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 79327,
     wikiTitle: 'Schmidtea_mediterranea',
     group: 'invertebrate',
-    imageUrl:
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Smed_distribution.png/500px-Smed_distribution.png',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/d/df/Smed.jpg',
   },
   {
     commonName: 'Acoel flatworm',
