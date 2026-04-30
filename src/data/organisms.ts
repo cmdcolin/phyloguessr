@@ -2335,7 +2335,7 @@ export const organisms: Organism[] = [
     commonName: 'Acoel flatworm',
     scientificName: 'Symsagittifera roscoffensis',
     ncbiTaxId: 84072,
-    wikiTitle: 'Symsagittifera_roscoffensis',
+    wikiTitle: 'Neochildia',
     group: 'invertebrate',
     imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/6/60/Neochildia_fusca.jpg',
   },
