@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'preact/hooks'
 
-import { MAP_COLORS } from './SpeciesMap.tsx'
 import { getGbifTaxonKey } from '../api/gbif.ts'
 
 import type { Organism } from '../data/organisms.ts'
@@ -16,50 +15,16 @@ const TILE_CONFIG: TileMode = {
   params: '&bin=square&squareSize=32',
 }
 
-function parseHexColor(hex: string) {
-  return {
-    r: parseInt(hex.slice(1, 3), 16),
-    g: parseInt(hex.slice(3, 5), 16),
-    b: parseInt(hex.slice(5, 7), 16),
-  }
-}
-
-function createColoredTileLayer(
+function createTileLayer(
   leaflet: typeof L,
   taxonKey: number,
-  color: string,
   style: string,
   extraParams: string,
 ) {
-  const { r, g, b } = parseHexColor(color)
-  return leaflet.GridLayer.extend({
-    createTile(coords: L.Coords, done: L.DoneCallback) {
-      const canvas = document.createElement('canvas')
-      canvas.width = 256
-      canvas.height = 256
-      const ctx = canvas.getContext('2d')!
-      const img = new Image()
-      img.crossOrigin = 'anonymous'
-      img.onload = () => {
-        ctx.drawImage(img, 0, 0, 256, 256)
-        const imageData = ctx.getImageData(0, 0, 256, 256)
-        const pixels = imageData.data
-        for (let i = 0; i < pixels.length; i += 4) {
-          if (pixels[i + 3] > 0) {
-            const alpha = pixels[i + 3]
-            pixels[i] = r
-            pixels[i + 1] = g
-            pixels[i + 2] = b
-            pixels[i + 3] = alpha
-          }
-        }
-        ctx.putImageData(imageData, 0, 0)
-        done(undefined, canvas)
-      }
-      img.onerror = () => done(undefined, canvas)
-      img.src = `https://api.gbif.org/v2/map/occurrence/density/${coords.z}/${coords.x}/${coords.y}@1x.png?taxonKey=${taxonKey}&style=${style}${extraParams}`
-      return canvas
-    },
+  const url = `https://api.gbif.org/v2/map/occurrence/density/{z}/{x}/{y}@1x.png?taxonKey=${taxonKey}&style=${style}${extraParams}`
+  return leaflet.tileLayer(url, {
+    opacity: 0.7,
+    maxZoom: 10,
   })
 }
 
@@ -165,18 +130,12 @@ export default function InteractiveMap({
     for (let i = 0; i < resolvedKeys.length; i++) {
       const key = resolvedKeys[i]
       if (key) {
-        const color = MAP_COLORS[i % MAP_COLORS.length]
-        const LayerClass = createColoredTileLayer(
+        const layer = createTileLayer(
           leaflet,
           key,
-          color,
           TILE_CONFIG.style,
           TILE_CONFIG.params,
-        )
-
-        const layer = new (LayerClass as unknown as new (
-          opts: L.GridLayerOptions,
-        ) => L.GridLayer)({ opacity: 0.7, maxZoom: 10 }).addTo(map)
+        ).addTo(map)
         speciesLayersRef.current.push(layer)
       }
     }
