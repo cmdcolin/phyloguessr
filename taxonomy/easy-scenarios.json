@@ -96,15 +96,15 @@
         "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/109_Male_White_rhinoceros_walking_in_the_Kalahari_Desert_of_Namibia_Photo_by_Giles_Laurent.jpg/330px-109_Male_White_rhinoceros_walking_in_the_Kalahari_Desert_of_Namibia_Photo_by_Giles_Laurent.jpg"
       },
       {
-        "commonName": "Impala",
-        "scientificName": "Aepyceros melampus",
-        "ncbiTaxId": 9897,
-        "wikiTitle": "Impala",
+        "commonName": "Llama",
+        "scientificName": "Lama glama",
+        "ncbiTaxId": 9844,
+        "wikiTitle": "Llama",
         "group": "mammal",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/64268875/medium.jpg"
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Llama_M82_DSCF3628.JPG/330px-Llama_M82_DSCF3628.JPG"
       }
     ],
-    "funFact": "Horses and rhinos are both odd-toed ungulates (Perissodactyla), despite looking very different. Antelopes are even-toed ungulates, a separate lineage.",
+    "funFact": "Horses and rhinos are both odd-toed ungulates (Perissodactyla), despite looking very different. Llamas look like they'd belong with horses and rhinos, but they're actually even-toed ungulates (Artiodactyla) — a completely separate branch of the hoofed mammal family tree.",
     "sources": [
       {
         "url": "https://en.wikipedia.org/wiki/Odd-toed_ungulate",
@@ -1177,7 +1177,7 @@
         "ncbiTaxId": 7892,
         "wikiTitle": "Australian_lungfish",
         "group": "fish",
-        "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/577691714/medium.jpg"
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Neoceratodus_forsteri%2C_2014-09-19.JPG/330px-Neoceratodus_forsteri%2C_2014-09-19.JPG"
       },
       {
         "commonName": "Common frog",
@@ -1523,23 +1523,23 @@
         "imageUrl": "https://inaturalist-open-data.s3.amazonaws.com/photos/77029090/medium.jpg"
       },
       {
-        "commonName": "English oak",
-        "scientificName": "Quercus robur",
-        "ncbiTaxId": 38942,
-        "wikiTitle": "Quercus_robur",
+        "commonName": "American pitcher plant",
+        "scientificName": "Sarracenia purpurea",
+        "ncbiTaxId": 45176,
+        "wikiTitle": "Sarracenia_purpurea",
         "group": "plant",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Quercus_robur.jpg/330px-Quercus_robur.jpg"
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Sarracenia_purpurea_Flowers.JPG/330px-Sarracenia_purpurea_Flowers.JPG"
       }
     ],
-    "funFact": "Venus flytraps and cacti are both in the order Caryophyllales! This bizarrely diverse group also includes spinach, bougainvillea, carnations, and buckwheat.",
+    "funFact": "Venus flytraps and cacti are both in the order Caryophyllales, making them much more closely related than they appear! American pitcher plants, though they also eat insects, are in a completely different order (Ericales) and are actually more distantly related to Venus flytraps than cacti are.",
     "sources": [
       {
         "url": "https://en.wikipedia.org/wiki/Caryophyllales",
         "label": "Caryophyllales - Wikipedia"
       },
       {
-        "url": "https://www.britannica.com/plant/Caryophyllales/Characteristic-morphological-features",
-        "label": "Britannica - Caryophyllales"
+        "url": "https://en.wikipedia.org/wiki/Ericales",
+        "label": "Ericales - Wikipedia"
       }
     ]
   },
@@ -2237,9 +2237,9 @@
         "commonName": "Chiton",
         "scientificName": "Chiton tuberculatus",
         "ncbiTaxId": 1539881,
-        "wikiTitle": "Chiton_tuberculatus",
+        "wikiTitle": "Tonicella_lineata",
         "group": "invertebrate",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Chiton_tuberculatus.jpg/330px-Chiton_tuberculatus.jpg"
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Tonicella-lineata.jpg/330px-Tonicella-lineata.jpg"
       },
       {
         "commonName": "Sea angel",
