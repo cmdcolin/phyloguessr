@@ -2337,8 +2337,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 84072,
     wikiTitle: 'Symsagittifera_roscoffensis',
     group: 'invertebrate',
-    imageUrl:
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Symsagittifera_roscoffensis%28Jersey%29.jpg/500px-Symsagittifera_roscoffensis%28Jersey%29.jpg',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/6/60/Neochildia_fusca.jpg',
   },
   {
     commonName: 'Termite',
