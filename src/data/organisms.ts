@@ -451,6 +451,15 @@ export const organisms: Organism[] = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Camelus_dromedarius_in_Nuweiba.jpg/330px-Camelus_dromedarius_in_Nuweiba.jpg',
   },
   {
+    commonName: 'Llama',
+    scientificName: 'Lama glama',
+    ncbiTaxId: 9844,
+    wikiTitle: 'Llama',
+    group: 'mammal',
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Llama_M82_DSCF3628.JPG/330px-Llama_M82_DSCF3628.JPG',
+  },
+  {
     commonName: 'American bison',
     scientificName: 'Bison bison',
     ncbiTaxId: 9901,
