@@ -71,9 +71,7 @@ export default function OrganismCard({
           {showLabels && (
             <div className={styles.scientificName}>{scientificName}</div>
           )}
-          {hint != null && (
-            <div className={styles.hintText}>{hint}</div>
-          )}
+          {hint != null && <div className={styles.hintText}>{hint}</div>}
         </div>
       )}
     </button>

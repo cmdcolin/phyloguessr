@@ -340,10 +340,17 @@ function getGenus(lineage: number[], data: TaxonomyData) {
   return -1
 }
 
-function allDistinctGenera(
-  lineages: number[][],
-  data: TaxonomyData,
-) {
+function genusOrFamily(lin: number[], data: TaxonomyData) {
+  for (const id of lin) {
+    const rank = data.ranks[String(id)]
+    if (rank === 'genus' || rank === 'family') {
+      return id
+    }
+  }
+  return -1
+}
+
+function allDistinctGenera(lineages: number[][], data: TaxonomyData) {
   const genera = lineages.map(l => getGenus(l, data))
   for (let i = 0; i < genera.length; i++) {
     if (genera[i] === -1) {
@@ -395,22 +402,14 @@ function pickFromAncestor(
     const lineage1 = getLineageFromParents(picks[1][0], data.parents)
     const lineage2 = getLineageFromParents(picks[2][0], data.parents)
 
-    const genusOrFamily = (lin: number[]) => {
-      for (const id of lin) {
-        const rank = data.ranks[String(id)]
-        if (rank === 'genus' || rank === 'family') {
-          return id
-        }
-      }
-      return -1
-    }
-
-    const g0 = genusOrFamily(lineage0)
-    const g1 = genusOrFamily(lineage1)
-    const g2 = genusOrFamily(lineage2)
+    const g0 = genusOrFamily(lineage0, data)
+    const g1 = genusOrFamily(lineage1, data)
+    const g2 = genusOrFamily(lineage2, data)
 
     if (
-      g0 !== g1 && g0 !== g2 && g1 !== g2 &&
+      g0 !== g1 &&
+      g0 !== g2 &&
+      g1 !== g2 &&
       allDistinctGenera([lineage0, lineage1, lineage2], data)
     ) {
       return picks
@@ -433,6 +432,13 @@ export function pickThreeFromClade(
 }
 
 const targetRankList = ['family', 'order', 'class', 'phylum'] as const
+
+const RANK_WEIGHTS: Record<string, number> = {
+  family: 5,
+  order: 35,
+  class: 40,
+  phylum: 20,
+}
 
 // NCBI taxonomy IDs for major kingdoms
 const KINGDOM_IDS = {
@@ -679,7 +685,19 @@ export function pickThreeHardModeDistance(
   )
 
   for (let attempt = 0; attempt < 20; attempt++) {
-    const rank = nonEmptyRanks[Math.floor(Math.random() * nonEmptyRanks.length)]
+    const totalRankWeight = nonEmptyRanks.reduce(
+      (s, r) => s + (RANK_WEIGHTS[r] ?? 1),
+      0,
+    )
+    let rw = Math.random() * totalRankWeight
+    let rank = nonEmptyRanks[0]
+    for (const r of nonEmptyRanks) {
+      rw -= RANK_WEIGHTS[r] ?? 1
+      if (rw <= 0) {
+        rank = r
+        break
+      }
+    }
     const bucket = byRank.get(rank)!
     const clade = weightedPickFromBucket(bucket)
     const result = pickFromAncestor(clade.taxId, pool, data)
@@ -706,22 +724,14 @@ export function pickThreeHardMode(
     const lineage1 = getLineageFromParents(picks[1][0], data.parents)
     const lineage2 = getLineageFromParents(picks[2][0], data.parents)
 
-    const genusOrFamily = (lin: number[]) => {
-      for (const id of lin) {
-        const rank = data.ranks[String(id)]
-        if (rank === 'genus' || rank === 'family') {
-          return id
-        }
-      }
-      return -1
-    }
-
-    const g0 = genusOrFamily(lineage0)
-    const g1 = genusOrFamily(lineage1)
-    const g2 = genusOrFamily(lineage2)
+    const g0 = genusOrFamily(lineage0, data)
+    const g1 = genusOrFamily(lineage1, data)
+    const g2 = genusOrFamily(lineage2, data)
 
     if (
-      g0 !== g1 && g0 !== g2 && g1 !== g2 &&
+      g0 !== g1 &&
+      g0 !== g2 &&
+      g1 !== g2 &&
       allDistinctGenera([lineage0, lineage1, lineage2], data)
     ) {
       return picks
@@ -969,7 +979,8 @@ const landmarks: Record<string, string> = {
   Cervidae: 'deer family, e.g. deer, elk, moose',
   Suina: 'pigs and peccaries',
   Proboscidea: 'elephants — closest relatives are hyraxes and manatees!',
-  Hyracoidea: 'hyraxes — look like guinea pigs, but closest relatives are elephants!',
+  Hyracoidea:
+    'hyraxes — look like guinea pigs, but closest relatives are elephants!',
   Tubulidentata: 'aardvark — the sole member of its entire order',
   Didelphimorphia: 'American opossums — only marsupials in North America',
   Canidae: 'dogs, wolves, foxes, jackals, dholes',
@@ -1016,7 +1027,7 @@ const landmarks: Record<string, string> = {
   Piciformes: 'includes woodpeckers, toucans, and honeyguides',
   Coraciiformes: 'kingfishers, bee-eaters, rollers',
   Gruiformes: 'cranes, rails, coots',
-  Cuculiformes: 'cuckoos — lay eggs in other birds\' nests',
+  Cuculiformes: "cuckoos — lay eggs in other birds' nests",
   Corvidae: 'crows, ravens, jays — make tools, recognize faces',
   Trochilidae: 'hummingbirds — can hover and fly backwards',
   Lepidosauria: 'includes lizards, snakes, tuatara',
@@ -1122,14 +1133,16 @@ const landmarks: Record<string, string> = {
   Hydrozoa: 'includes hydroids and man-o-war',
   Scyphozoa: 'true jellyfish',
   Echinodermata: 'includes starfish, sea urchins, sea cucumbers',
-  Eleutherozoa: 'echinoderms that move freely — starfish, urchins, cucumbers; excludes sessile crinoids',
+  Eleutherozoa:
+    'echinoderms that move freely — starfish, urchins, cucumbers; excludes sessile crinoids',
   Asterozoa: 'star-shaped echinoderms — starfish + brittle stars',
   Echinozoa: 'sea urchins + sea cucumbers — the non-star Eleutherozoa',
   Asteroidea: 'starfish',
   Echinoidea: 'sea urchins and sand dollars',
   Crinoidea: 'feather stars and sea lilies',
   Articulata: 'all living crinoids — feather stars and stalked sea lilies',
-  Comatulida: 'feather stars — free-moving crinoids; sea lilies are their stalked relatives',
+  Comatulida:
+    'feather stars — free-moving crinoids; sea lilies are their stalked relatives',
   Ophiuroidea: 'brittle stars',
   Holothuroidea: 'sea cucumbers — eject organs as defense',
   Annelida: 'segmented worms, e.g. earthworms, leeches, bristle worms',
@@ -1212,13 +1225,14 @@ const landmarks: Record<string, string> = {
   Basidiomycota: 'includes mushrooms, puffballs, rusts',
   Saccharomycetes: "baker's yeast, brewer's yeast",
   Bacteria: 'single-celled organisms without nuclei',
-  Cyanobacteria: 'produced Earth\'s oxygen 2.4 Bya; gave us chloroplasts',
+  Cyanobacteria: "produced Earth's oxygen 2.4 Bya; gave us chloroplasts",
   Proteobacteria: 'largest bacterial phylum — E. coli, Salmonella, rhizobia',
   Actinomycetota: 'soil bacteria — source of most antibiotic drugs',
   Spirochaetota: 'spiral bacteria — Lyme disease, syphilis',
   Dinoflagellata: 'cause red tides; some bioluminescent, some in coral',
   Archaea: 'single-celled organisms — not bacteria!',
-  Asgardarchaeota: 'archaea closest to eukaryotes — our nearest prokaryotic relatives',
+  Asgardarchaeota:
+    'archaea closest to eukaryotes — our nearest prokaryotic relatives',
   Alveolata: 'includes ciliates, dinoflagellates, malaria parasites',
   Amoebozoa: 'amoebas and slime molds',
   Stramenopiles: 'includes kelp, diatoms, water molds',
@@ -1414,12 +1428,11 @@ export function expandDiagramUp(
   data: TaxonomyData,
 ): { diagram: DiagramNode; rootTaxId: number } | undefined {
   const lineage = getLineageFromParents(rootTaxId, data.parents)
-  const rootIdx = lineage.indexOf(rootTaxId)
-  if (rootIdx < 0 || rootIdx >= lineage.length - 1) {
+  if (lineage.length <= 1) {
     return undefined
   }
 
-  for (let i = rootIdx + 1; i < lineage.length; i++) {
+  for (let i = 1; i < lineage.length; i++) {
     const taxId = lineage[i]
     const name = data.names[String(taxId)]
     const rank = data.ranks[String(taxId)]
@@ -1435,7 +1448,7 @@ export function expandDiagramUp(
     }
   }
 
-  const parentTaxId = lineage[rootIdx + 1]
+  const parentTaxId = lineage[1]
   const parentName = data.names[String(parentTaxId)] ?? String(parentTaxId)
   return {
     diagram: {

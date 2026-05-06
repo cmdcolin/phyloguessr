@@ -1,13 +1,13 @@
 import js from '@eslint/js'
 import { defineConfig, globalIgnores } from 'eslint/config'
-import importPlugin from 'eslint-plugin-import'
+import { flatConfigs } from 'eslint-plugin-import-x'
 import reactHooks from 'eslint-plugin-react-hooks'
 import globals from 'globals'
 import tseslint from 'typescript-eslint'
 
 export default defineConfig([
   globalIgnores(['dist', 'scripts', '.astro', 'android']),
-  importPlugin.flatConfigs.recommended,
+  flatConfigs.recommended,
   {
     files: ['**/*.{ts,tsx}'],
     extends: [
@@ -31,9 +31,9 @@ export default defineConfig([
   },
   {
     rules: {
-      'import/extensions': ['error', 'ignorePackages'],
-      'import/no-unresolved': 'off',
-      'import/order': [
+      'import-x/extensions': ['error', 'ignorePackages'],
+      'import-x/no-unresolved': 'off',
+      'import-x/order': [
         'error',
         {
           named: true,

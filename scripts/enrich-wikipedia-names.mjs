@@ -211,7 +211,8 @@ async function main() {
       currentName === entry[2] ||
       currentName.toLowerCase() === entry[2].toLowerCase() ||
       /^[A-Z][a-z]+ [a-z]+/.test(currentName)
-    const currentHasAssemblyCode = /\([a-zA-Z0-9]+\.[a-zA-Z0-9.]+\s+\d{4}\)/.test(currentName)
+    const currentHasAssemblyCode =
+      /\([a-zA-Z0-9]+\.[a-zA-Z0-9.]+\s+\d{4}\)/.test(currentName)
 
     if (currentLooksScientific || currentHasAssemblyCode || !currentName) {
       entry[1] = bestName

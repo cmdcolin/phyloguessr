@@ -60,7 +60,10 @@ async function main() {
   const needsReplacement = new Map() // scientificName -> { wikiTitle, commonName }
   for (const scenario of scenarios) {
     for (const org of scenario.organisms) {
-      if (org.imageUrl?.includes('inaturalist') && !needsReplacement.has(org.scientificName)) {
+      if (
+        org.imageUrl?.includes('inaturalist') &&
+        !needsReplacement.has(org.scientificName)
+      ) {
         needsReplacement.set(org.scientificName, {
           wikiTitle: org.wikiTitle,
           commonName: org.commonName,
@@ -69,7 +72,9 @@ async function main() {
     }
   }
 
-  console.log(`Found ${needsReplacement.size} unique organisms with iNaturalist images`)
+  console.log(
+    `Found ${needsReplacement.size} unique organisms with iNaturalist images`,
+  )
 
   // Determine which need fetching (not already in cache with a URL)
   const toFetch = []
@@ -80,7 +85,9 @@ async function main() {
     }
   }
 
-  console.log(`${needsReplacement.size - toFetch.length} already cached, ${toFetch.length} need fetching`)
+  console.log(
+    `${needsReplacement.size - toFetch.length} already cached, ${toFetch.length} need fetching`,
+  )
 
   // Fetch in batches
   for (let i = 0; i < toFetch.length; i += CONCURRENCY) {
@@ -113,14 +120,18 @@ async function main() {
         org.imageUrl = cached.url
         replaced++
       } else {
-        console.warn(`  No Wikipedia image for ${org.commonName} (${org.scientificName}), keeping iNaturalist URL`)
+        console.warn(
+          `  No Wikipedia image for ${org.commonName} (${org.scientificName}), keeping iNaturalist URL`,
+        )
         failed++
       }
     }
   }
 
   writeFileSync(SCENARIOS_PATH, JSON.stringify(scenarios, null, 2) + '\n')
-  console.log(`\nDone: ${replaced} images replaced, ${failed} kept iNaturalist (no Wikipedia image found)`)
+  console.log(
+    `\nDone: ${replaced} images replaced, ${failed} kept iNaturalist (no Wikipedia image found)`,
+  )
 }
 
 main().catch(err => {

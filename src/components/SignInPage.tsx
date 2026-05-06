@@ -51,7 +51,12 @@ export default function SignInPage() {
           <a className="btn btn-primary" href="/">
             Play
           </a>
-          <button className="btn btn-secondary" onClick={handleSignOut}>
+          <button
+            className="btn btn-secondary"
+            onClick={() => {
+              handleSignOut()
+            }}
+          >
             Sign out
           </button>
         </div>
@@ -68,7 +73,9 @@ export default function SignInPage() {
         <button
           className="btn btn-primary"
           disabled={signingIn}
-          onClick={handleSignIn}
+          onClick={() => {
+            handleSignIn()
+          }}
         >
           {signingIn ? 'Signing in...' : 'Sign in with Google'}
         </button>

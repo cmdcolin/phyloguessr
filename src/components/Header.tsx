@@ -105,10 +105,11 @@ export default function Header() {
                   </a>
                   <button
                     className="site-hamburger-item"
-                    onClick={async () => {
-                      await signOut()
-                      setSignedIn(false)
-                      setShowMenu(false)
+                    onClick={() => {
+                      signOut().then(() => {
+                        setSignedIn(false)
+                        setShowMenu(false)
+                      })
                     }}
                   >
                     Sign out

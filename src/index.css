@@ -61,7 +61,6 @@ body {
   font-weight: 600;
 }
 
-
 .reset-btn:hover {
   background: var(--error);
   color: white;
@@ -196,15 +195,15 @@ body {
   cursor: pointer;
   font-size: 0.85rem;
   font-weight: 600;
-  transition: background 0.15s, color 0.15s;
+  transition:
+    background 0.15s,
+    color 0.15s;
 }
 
 .species-toggle-btn.active {
   background: var(--accent-tree);
   color: white;
 }
-
-
 
 .clade-tree-wrap {
   display: flex;
@@ -266,7 +265,9 @@ body {
   gap: 5px;
   padding: 0 4px;
   border-radius: 5px;
-  transition: background 0.1s, color 0.1s;
+  transition:
+    background 0.1s,
+    color 0.1s;
 }
 
 .clade-tree-emoji {
@@ -812,6 +813,23 @@ body {
   margin-bottom: var(--space-sm);
 }
 
+.fun-fact-blurb {
+  margin: var(--space-md) 0 var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--success-bg-strong);
+  border-left: 3px solid var(--accent-tree);
+  border-radius: 4px;
+  font-size: 0.95rem;
+  font-style: italic;
+}
+
+.fun-fact-label {
+  font-style: normal;
+  font-weight: 700;
+  color: var(--accent-tree);
+  margin-right: 4px;
+}
+
 .fun-fact-source {
   font-size: 0.95rem;
 }
@@ -1350,7 +1368,6 @@ a.breadcrumb-link:hover,
   color: inherit;
 }
 
-
 /* Game progress */
 .game-progress {
   display: flex;
@@ -1370,9 +1387,18 @@ a.breadcrumb-link:hover,
 }
 
 @keyframes hint-penalty-fade {
-  0% { opacity: 1; transform: translateY(0); }
-  70% { opacity: 1; transform: translateY(-10px); }
-  100% { opacity: 0; transform: translateY(-16px); }
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
 }
 
 .hint-penalty-toast {
@@ -1395,7 +1421,9 @@ a.breadcrumb-link:hover,
   border: 2px solid var(--accent-tree);
   background: transparent;
   cursor: pointer;
-  transition: background 0.15s, transform 0.1s;
+  transition:
+    background 0.15s,
+    transform 0.1s;
   line-height: 1;
 }
 
@@ -1403,7 +1431,6 @@ a.breadcrumb-link:hover,
   background: color-mix(in srgb, var(--accent-tree) 15%, transparent);
   transform: scale(1.1);
 }
-
 
 /* Result score */
 .result-question-label {
@@ -1694,7 +1721,8 @@ a.breadcrumb-link:hover,
 
 @media (max-width: 600px) {
   .site-header {
-    margin: calc(-1 * var(--space-md)) calc(-1 * var(--space-sm)) var(--space-lg);
+    margin: calc(-1 * var(--space-md)) calc(-1 * var(--space-sm))
+      var(--space-lg);
     padding: var(--space-sm) var(--space-md);
   }
 

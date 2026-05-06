@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 
 export default function Timer({
   onExpire,
@@ -9,7 +9,9 @@ export default function Timer({
 }) {
   const [timeLeft, setTimeLeft] = useState(duration)
   const onExpireRef = useRef(onExpire)
-  onExpireRef.current = onExpire
+  useLayoutEffect(() => {
+    onExpireRef.current = onExpire
+  })
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -32,7 +34,10 @@ export default function Timer({
 
   return (
     <div className="timer-container">
-      <div className="timer-display" style={{ color: low ? 'var(--error)' : undefined }}>
+      <div
+        className="timer-display"
+        style={{ color: low ? 'var(--error)' : undefined }}
+      >
         {seconds}s
       </div>
       <div className="timer-track">

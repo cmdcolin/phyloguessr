@@ -1,3 +1,4 @@
+/* eslint-disable import-x/named */
 import { initializeApp } from 'firebase/app'
 import {
   GoogleAuthProvider,
@@ -65,7 +66,6 @@ export async function signOut() {
   }
   await auth.signOut()
 }
-
 
 const presenceRef = collection(db, 'presence')
 const PRESENCE_INTERVAL_MS = 5 * 60 * 1000

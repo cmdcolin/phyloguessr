@@ -56,8 +56,7 @@ export function buildClusterLayout(
   }
   collectLeaves(root)
   leaves.forEach((leaf, i) => {
-    leaf.x =
-      leaves.length <= 1 ? sizeX / 2 : (i / (leaves.length - 1)) * sizeX
+    leaf.x = leaves.length <= 1 ? sizeX / 2 : (i / (leaves.length - 1)) * sizeX
   })
 
   function assignX(node: LayoutNode) {

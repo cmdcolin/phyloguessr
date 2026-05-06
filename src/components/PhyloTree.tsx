@@ -45,6 +45,8 @@ export default function PhyloTree({
 
   // inner node y = midpoint of sister pair
   const innerY = (y1 + y2) / 2
+  // root node y = midpoint between inner node and outgroup
+  const rootY = (innerY + y3) / 2
 
   return (
     <svg viewBox={`0 0 ${w} ${h}`} className="phylo-tree">
@@ -59,7 +61,7 @@ export default function PhyloTree({
       {/* Root to inner node */}
       <line
         x1={rootX}
-        y1={innerY + (y3 - innerY) / 2}
+        y1={rootY}
         x2={rootX}
         y2={innerY}
         stroke="GrayText"
@@ -113,7 +115,7 @@ export default function PhyloTree({
       {/* Root to outgroup */}
       <line
         x1={rootX}
-        y1={innerY + (y3 - innerY) / 2}
+        y1={rootY}
         x2={rootX}
         y2={y3}
         stroke="GrayText"
@@ -131,9 +133,9 @@ export default function PhyloTree({
       {/* Root vertical line */}
       <line
         x1={rootX - 20}
-        y1={innerY + (y3 - innerY) / 2}
+        y1={rootY}
         x2={rootX}
-        y2={innerY + (y3 - innerY) / 2}
+        y2={rootY}
         stroke="GrayText"
         strokeWidth={2}
       />
@@ -155,7 +157,7 @@ export default function PhyloTree({
       {rootLabel && (
         <text
           x={rootX + 4}
-          y={innerY + (y3 - innerY) / 2 - 8}
+          y={rootY - 8}
           fontSize={11}
           fill="GrayText"
           fontStyle="italic"
@@ -208,7 +210,7 @@ export default function PhyloTree({
             <text x={textX} y={y + 31} fontSize={11} fill="GrayText">
               {'('}
               <a
-                href={`https://en.wikipedia.org/wiki/${org.scientificName}`}
+                href={`https://en.wikipedia.org/wiki/${encodeURIComponent(org.scientificName)}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >

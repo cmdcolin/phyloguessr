@@ -16,9 +16,24 @@ import '../index.css'
         <button class="diff-btn" data-difficulty="nolabels">Don't show species labels</button>
       </div>
       <div class="mode-selector">
-        <a class="mode-btn mode-btn-easy" href="/easy">Easy <span class="btn-emoji">🍿</span></a>
-        <a class="mode-btn mode-btn-random" href="/random">Random <span class="btn-emoji">🎰</span></a>
+        <a class="mode-btn mode-btn-easy" id="easy-btn" href="/easy">Easy <span class="btn-emoji">🍿</span></a>
+        <a class="mode-btn mode-btn-random" id="random-btn" href="/random">Random <span class="btn-emoji">🎰</span></a>
         <a class="mode-btn mode-btn-custom" href="/custom">Custom <span class="btn-emoji">📠</span></a>
+      </div>
+      <div class="mode-notice easy-notice" id="easy-notice" style="display:none">
+        <p>Just kidding! These are curated tricky examples. Don't worry, just take your best guess.</p>
+        <div class="notice-actions">
+          <a class="notice-continue-btn" href="/easy">Let's go</a>
+          <button class="notice-back-btn" id="easy-back-btn">Go back</button>
+        </div>
+      </div>
+      <div class="mode-notice random-notice" id="random-notice" style="display:none">
+        <p><strong>Warning:</strong> Completely random across all of life (bacteria, fungi, obscure invertebrates). Very hard.</p>
+        <p>For a narrower random (e.g. birds only), try <a href="/custom">Custom mode</a>.</p>
+        <div class="notice-actions">
+          <a class="notice-continue-btn" href="/random">Continue anyway</a>
+          <button class="notice-back-btn" id="random-back-btn">Go back</button>
+        </div>
       </div>
     </div>
   </div>
@@ -32,6 +47,28 @@ import '../index.css'
   diffBtns.forEach(btn => {
     btn.classList.toggle('active', btn.dataset.difficulty === active)
   })
+
+  const modeSelector = document.querySelector('.mode-selector')
+
+  function showNotice(noticeId, btnId) {
+    document.getElementById(btnId)?.addEventListener('click', e => {
+      e.preventDefault()
+      modeSelector.style.display = 'none'
+      document.getElementById(noticeId).style.display = 'block'
+    })
+  }
+
+  function hideNotice(noticeId, backBtnId) {
+    document.getElementById(backBtnId)?.addEventListener('click', () => {
+      document.getElementById(noticeId).style.display = 'none'
+      modeSelector.style.display = 'flex'
+    })
+  }
+
+  showNotice('easy-notice', 'easy-btn')
+  hideNotice('easy-notice', 'easy-back-btn')
+  showNotice('random-notice', 'random-btn')
+  hideNotice('random-notice', 'random-back-btn')
 
   diffBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -70,5 +107,90 @@ import '../index.css'
   .diff-btn.active {
     background: var(--color-primary, #2e7d32);
     color: white;
+  }
+
+  .easy-notice {
+    --notice-fg: #a8e6b0;
+    --notice-border: #2a7a2a;
+    --notice-bg: #0d2010;
+    --notice-btn-color: #0d2010;
+    --notice-btn-hover: #35a035;
+  }
+
+  .random-notice {
+    --notice-fg: #e8c84a;
+    --notice-border: #c89000;
+    --notice-bg: #2a2000;
+    --notice-btn-color: #1a1000;
+    --notice-btn-hover: #e0a800;
+  }
+
+  .mode-notice {
+    max-width: 360px;
+    margin: 0 auto;
+    padding: 16px 20px;
+    background: var(--notice-bg);
+    border: 2px solid var(--notice-border);
+    border-radius: 12px;
+    text-align: center;
+    color: var(--notice-fg);
+  }
+
+  .mode-notice p {
+    margin: 0 0 14px;
+    font-size: 0.95rem;
+  }
+
+  .mode-notice p a {
+    color: var(--notice-fg);
+    text-decoration: underline;
+    opacity: 0.85;
+  }
+
+  .mode-notice p a:hover {
+    opacity: 1;
+  }
+
+  .notice-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .notice-continue-btn {
+    padding: 10px 22px;
+    border-radius: 20px;
+    border: 2px solid var(--notice-border);
+    background: var(--notice-border);
+    color: var(--notice-btn-color);
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+  }
+
+  .notice-continue-btn:hover {
+    background: var(--notice-btn-hover);
+    border-color: var(--notice-btn-hover);
+  }
+
+  .notice-back-btn {
+    padding: 10px 22px;
+    border-radius: 20px;
+    border: 2px solid #555;
+    background: transparent;
+    color: #999;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .notice-back-btn:hover {
+    background: #333;
+    color: #ddd;
   }
 </style>

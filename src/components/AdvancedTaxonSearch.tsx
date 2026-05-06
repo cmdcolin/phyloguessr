@@ -6,14 +6,107 @@ import { findTaxId, searchTaxonNames } from '../utils/taxonomy.ts'
 
 import type { TaxonomyData } from '../utils/taxonomy.ts'
 
+function ResolvedStatus({
+  trimmed,
+  taxonomyData,
+  resolvedTaxId,
+}: {
+  trimmed: string
+  taxonomyData: TaxonomyData
+  resolvedTaxId: number | undefined
+}) {
+  if (trimmed === 'micro') {
+    return (
+      <p className="clade-resolved">
+        <span className="clade-check">✓</span> Microorganisms (cross-kingdom)
+      </p>
+    )
+  }
+  if (/^\d+$/.test(trimmed)) {
+    const name = taxonomyData.names[trimmed]
+    const hasParent = taxonomyData.parents[trimmed] !== undefined
+    if (name || hasParent) {
+      const rank = taxonomyData.ranks[trimmed]
+      return (
+        <p className="clade-resolved">
+          <span className="clade-check">✓</span> {name ?? `Taxon ${trimmed}`}
+          {rank ? ` (${rank})` : ''}
+        </p>
+      )
+    }
+    return (
+      <p className="clade-error">
+        <span className="clade-x">✕</span> No taxon found for ID {trimmed}
+      </p>
+    )
+  }
+  if (resolvedTaxId !== undefined) {
+    const name = taxonomyData.names[String(resolvedTaxId)]
+    const rank = taxonomyData.ranks[String(resolvedTaxId)]
+    return (
+      <p className="clade-resolved">
+        <span className="clade-check">✓</span> {name ?? trimmed}
+        {rank ? ` (${rank})` : ''}
+      </p>
+    )
+  }
+  return (
+    <p className="clade-error">
+      <span className="clade-x">✕</span> No taxon found for "{trimmed}"
+    </p>
+  )
+}
+
+function buildPlayUrl(
+  trimmed: string,
+  taxonomyData: TaxonomyData | null,
+  resolvedTaxId: number | undefined,
+) {
+  const params = new URLSearchParams()
+  if (trimmed === 'micro') {
+    params.set('id', 'micro')
+  } else if (/^\d+$/.test(trimmed)) {
+    params.set('id', trimmed)
+  } else if (resolvedTaxId !== undefined) {
+    params.set('id', String(resolvedTaxId))
+  }
+  const qs = params.toString()
+  return `/random${qs ? `?${qs}` : ''}`
+}
+
 export default function AdvancedTaxonSearch({
   taxonomyData,
 }: {
   taxonomyData: TaxonomyData | null
 }) {
   const [cladeFilter, setCladeFilter] = useState('')
-  const [cladeError, setCladeError] = useState('')
   const [showSuggestions, setShowSuggestions] = useState(false)
+
+  const trimmed = cladeFilter.trim()
+  const isNumeric = trimmed.length > 0 && /^\d+$/.test(trimmed)
+
+  const resolvedTaxId =
+    taxonomyData && trimmed.length >= 2 && trimmed !== 'micro' && !isNumeric
+      ? findTaxId(trimmed, taxonomyData)
+      : undefined
+
+  const numericFound =
+    isNumeric && taxonomyData
+      ? taxonomyData.names[trimmed] !== undefined ||
+        taxonomyData.parents[trimmed] !== undefined
+      : false
+
+  const isValid =
+    !trimmed ||
+    !taxonomyData ||
+    trimmed === 'micro' ||
+    numericFound ||
+    resolvedTaxId !== undefined
+
+  const suggestions =
+    showSuggestions && taxonomyData
+      ? searchTaxonNames(cladeFilter, taxonomyData)
+      : []
 
   return (
     <details className="advanced-tree-details">
@@ -32,18 +125,13 @@ export default function AdvancedTaxonSearch({
                 key={entry.id}
                 className={`clade-preset-item ${cladeFilter === entry.id ? 'active' : ''}`}
                 onClick={() => {
-                  setCladeFilter(prev =>
-                    prev === entry.id ? '' : entry.id,
-                  )
-                  setCladeError('')
+                  setCladeFilter(prev => (prev === entry.id ? '' : entry.id))
                   setShowSuggestions(false)
                 }}
               >
                 <span className="clade-tree-prefix">{entry.prefix}</span>
                 {entry.label}{' '}
-                <span className="clade-preset-scientific">
-                  ({entry.name})
-                </span>
+                <span className="clade-preset-scientific">({entry.name})</span>
               </li>
             ),
           )}
@@ -59,131 +147,46 @@ export default function AdvancedTaxonSearch({
               value={cladeFilter}
               onChange={e => {
                 setCladeFilter(e.target.value)
-                setCladeError('')
               }}
               onBlur={() => {
                 setTimeout(() => setShowSuggestions(false), 150)
               }}
               onFocus={() => setShowSuggestions(true)}
             />
-            {showSuggestions &&
-              taxonomyData &&
-              (() => {
-                const suggestions = searchTaxonNames(
-                  cladeFilter,
-                  taxonomyData,
-                )
-                if (suggestions.length === 0) {
-                  return null
-                }
-                return (
-                  <ul className="clade-suggestions">
-                    {suggestions.map(s => (
-                      <li key={s.id}>
-                        <button
-                          onMouseDown={e => e.preventDefault()}
-                          onClick={() => {
-                            setCladeFilter(s.name)
-                            setCladeError('')
-                            setShowSuggestions(false)
-                          }}
-                        >
-                          <span className="suggestion-name">
-                            {s.name}
-                          </span>
-                          {s.rank && (
-                            <span className="suggestion-rank">
-                              {s.rank}
-                            </span>
-                          )}
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
-                )
-              })()}
+            {suggestions.length > 0 && (
+              <ul className="clade-suggestions">
+                {suggestions.map(s => (
+                  <li key={s.id}>
+                    <button
+                      onMouseDown={e => e.preventDefault()}
+                      onClick={() => {
+                        setCladeFilter(s.name)
+                        setShowSuggestions(false)
+                      }}
+                    >
+                      <span className="suggestion-name">{s.name}</span>
+                      {s.rank && (
+                        <span className="suggestion-rank">{s.rank}</span>
+                      )}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         </div>
-        {cladeError && <p className="clade-error">{cladeError}</p>}
-        {taxonomyData &&
-          cladeFilter.trim().length >= 2 &&
-          (() => {
-            const trimmed = cladeFilter.trim()
-            if (trimmed === 'micro') {
-              return (
-                <p className="clade-resolved">
-                  <span className="clade-check">✓</span> Microorganisms
-                  (cross-kingdom)
-                </p>
-              )
-            }
-            const isNumeric = /^\d+$/.test(trimmed)
-            if (isNumeric) {
-              const name = taxonomyData.names[trimmed]
-              const hasParent =
-                taxonomyData.parents[trimmed] !== undefined
-              if (name || hasParent) {
-                const rank = taxonomyData.ranks[trimmed]
-                return (
-                  <p className="clade-resolved">
-                    <span className="clade-check">✓</span>{' '}
-                    {name ?? `Taxon ${trimmed}`}
-                    {rank ? ` (${rank})` : ''}
-                  </p>
-                )
-              }
-              return (
-                <p className="clade-error">
-                  <span className="clade-x">✕</span> No taxon found for ID{' '}
-                  {trimmed}
-                </p>
-              )
-            }
-            const match = findTaxId(trimmed, taxonomyData)
-            if (match !== undefined) {
-              const name = taxonomyData.names[String(match)]
-              const rank = taxonomyData.ranks[String(match)]
-              return (
-                <p className="clade-resolved">
-                  <span className="clade-check">✓</span> {name ?? trimmed}
-                  {rank ? ` (${rank})` : ''}
-                </p>
-              )
-            }
-            return (
-              <p className="clade-error">
-                <span className="clade-x">✕</span> No taxon found for "
-                {trimmed}"
-              </p>
-            )
-          })()}
+        {taxonomyData && trimmed.length >= 2 && (
+          <ResolvedStatus
+            trimmed={trimmed}
+            taxonomyData={taxonomyData}
+            resolvedTaxId={resolvedTaxId}
+          />
+        )}
 
         <div className="custom-actions">
           <Button
-            disabled={
-              !cladeFilter.trim() ||
-              (!!taxonomyData &&
-                cladeFilter.trim() !== 'micro' &&
-                findTaxId(cladeFilter.trim(), taxonomyData) === undefined)
-            }
-            href={(() => {
-              const params = new URLSearchParams()
-              const trimmed = cladeFilter.trim()
-              if (trimmed) {
-                if (trimmed === 'micro') {
-                  params.set('id', 'micro')
-                } else if (/^\d+$/.test(trimmed)) {
-                  params.set('id', trimmed)
-                } else if (taxonomyData) {
-                  const taxId = findTaxId(trimmed, taxonomyData)
-                  if (taxId !== undefined) {
-                    params.set('id', String(taxId))
-                  }
-                }
-              }
-              const qs = params.toString()
-              return `/random${qs ? `?${qs}` : ''}`
-            })()}
+            disabled={!trimmed || !isValid}
+            href={buildPlayUrl(trimmed, taxonomyData, resolvedTaxId)}
           >
             Play
           </Button>

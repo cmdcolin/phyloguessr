@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useState } from 'react'
 
 import Button from './Button.tsx'
-import Timer from './Timer.tsx'
 import GameOverScreen from './GameOverScreen.tsx'
 import Header from './Header.tsx'
 import MultiResultScreen from './MultiResultScreen.tsx'
 import OrganismCard from './OrganismCard.tsx'
+import Timer from './Timer.tsx'
 import {
   buildRetryUrl,
   buildShareUrl,
@@ -16,9 +16,8 @@ import {
   resolveOrganism,
   toggleSelect,
 } from './gameUtils.ts'
-import { sessionStorageGetItem } from '../utils/storage.ts'
-import { fetchWikipediaAbstract } from '../utils/wikipedia.ts'
 import { TOTAL_QUESTIONS } from '../utils/scoring.ts'
+import { sessionStorageGetItem } from '../utils/storage.ts'
 import {
   findTaxId,
   getAllPairLcas,
@@ -28,9 +27,10 @@ import {
   pickNFromClade,
   pickNHardModeDistance,
 } from '../utils/taxonomy.ts'
+import { fetchWikipediaAbstract } from '../utils/wikipedia.ts'
 
-import type { MultiResultData } from './MultiResultScreen.tsx'
 import type { RoundResult } from './GameOverScreen.tsx'
+import type { MultiResultData } from './MultiResultScreen.tsx'
 import type { Organism } from '../data/organisms.ts'
 import type { SpeciesPoolEntry, TaxonomyData } from '../utils/taxonomy.ts'
 
@@ -175,14 +175,22 @@ export default function MultiGame() {
       setRandomClade(finalClade)
     }
     recordCombo(finalOrgs)
-    const shuffled = finalOrgs.sort(() => Math.random() - 0.5)
-    setOrganisms(shuffled)
-    history.pushState(null, '', buildShareUrl(shuffled))
+    for (let i = finalOrgs.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      const tmp = finalOrgs[i]
+      finalOrgs[i] = finalOrgs[j]
+      finalOrgs[j] = tmp
+    }
+    setOrganisms(finalOrgs)
+    history.pushState(null, '', buildShareUrl(finalOrgs))
     setState('selecting')
-  }, [taxonomyData, speciesPool, seenCombos])
+  }, [taxonomyData, speciesPool, seenCombos, cladeFilter])
 
   const loadSharedQuestion = useCallback(
-    async (taxIds: number[], targetState: 'selecting' | 'timedOut' = 'selecting') => {
+    async (
+      taxIds: number[],
+      targetState: 'selecting' | 'timedOut' = 'selecting',
+    ) => {
       setState('loading')
       setLoadingMessage('Loading shared question...')
 
@@ -227,7 +235,6 @@ export default function MultiGame() {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       loadSharedQuestion(sharedIds, 'timedOut')
     } else if (sharedIds) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       loadSharedQuestion(sharedIds)
     } else {
       startRound()
@@ -307,7 +314,10 @@ export default function MultiGame() {
       p => lcaClosenessScore(p.lca, taxonomyData) > userScore,
     ).length
     const rank = betterCount + 1
-    const t = allPairs.length <= 1 ? 1 : (allPairs.length - rank) / (allPairs.length - 1)
+    const t =
+      allPairs.length <= 1
+        ? 1
+        : (allPairs.length - rank) / (allPairs.length - 1)
     const score = Math.round(t * t * 100 * (hintUsed ? 0.5 : 1))
 
     const resultData: MultiResultData = {
@@ -356,7 +366,13 @@ export default function MultiGame() {
         <div className="loading">
           {loadingMessage}
           {loadingMessage.includes('try again') && (
-            <Button onClick={startRound}>Retry</Button>
+            <Button
+              onClick={() => {
+                startRound()
+              }}
+            >
+              Retry
+            </Button>
           )}
         </div>
       )}
@@ -398,7 +414,13 @@ export default function MultiGame() {
                 selected={selected.includes(i)}
                 onClick={() => setSelected(prev => toggleSelect(prev, i))}
                 difficulty={difficulty}
-                hint={hintsVisible ? (hintLoading ? 'Loading...' : (hints[i] ?? null)) : undefined}
+                hint={
+                  hintsVisible
+                    ? hintLoading
+                      ? 'Loading...'
+                      : (hints[i] ?? null)
+                    : undefined
+                }
               />
             ))}
           </div>
@@ -406,8 +428,14 @@ export default function MultiGame() {
             <div className="hint-btn-wrap">
               <button
                 className="hint-btn"
-                onClick={handleHint}
-                title={hintUsed ? 'Toggle hints' : 'Show hints for all organisms (-50% pts)'}
+                onClick={() => {
+                  handleHint()
+                }}
+                title={
+                  hintUsed
+                    ? 'Toggle hints'
+                    : 'Show hints for all organisms (-50% pts)'
+                }
                 style={{ opacity: hintUsed && !hintsVisible ? 0.4 : 1 }}
               >
                 💡
@@ -416,10 +444,21 @@ export default function MultiGame() {
                 <span className="hint-penalty-toast">−50% pts</span>
               )}
             </div>
-            <Button onClick={() => handleSubmit()} disabled={selected.length !== 2}>
+            <Button
+              onClick={() => {
+                handleSubmit()
+              }}
+              disabled={selected.length !== 2}
+            >
               Submit
             </Button>
-            <button className="nav-icon-btn" onClick={startRound} title="Skip">
+            <button
+              className="nav-icon-btn"
+              onClick={() => {
+                startRound()
+              }}
+              title="Skip"
+            >
               <span className="nav-icon-btn-label">Skip</span> →
             </button>
           </div>
@@ -433,7 +472,13 @@ export default function MultiGame() {
             <a className="btn btn-primary" href={buildRetryUrl()}>
               Try Again
             </a>
-            <button className="nav-icon-btn" onClick={startRound} title="Skip">
+            <button
+              className="nav-icon-btn"
+              onClick={() => {
+                startRound()
+              }}
+              title="Skip"
+            >
               <span className="nav-icon-btn-label">Skip</span> →
             </button>
           </div>

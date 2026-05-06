@@ -80,10 +80,10 @@ function SpeciesCard({
 
   return (
     <div
-      class={`qc-card ${isFlagged ? 'qc-card-flagged' : ''}`}
+      className={`qc-card ${isFlagged ? 'qc-card-flagged' : ''}`}
       onClick={onToggle}
     >
-      <div class="qc-card-img">
+      <div className="qc-card-img">
         {imageUrl && !imgError ? (
           <img
             src={imageUrl}
@@ -92,28 +92,28 @@ function SpeciesCard({
             onError={onImgError}
           />
         ) : (
-          <div class="qc-card-noimg">No image</div>
+          <div className="qc-card-noimg">No image</div>
         )}
       </div>
-      <div class="qc-card-info">
-        <div class="qc-card-common">{commonName || scientificName}</div>
-        <div class="qc-card-sci">
+      <div className="qc-card-info">
+        <div className="qc-card-common">{commonName || scientificName}</div>
+        <div className="qc-card-sci">
           <em>{scientificName}</em>
         </div>
-        <div class="qc-card-tax">
+        <div className="qc-card-tax">
           {taxonomy.kingdom} &gt; {taxonomy.phylum} &gt; {taxonomy.family}
         </div>
-        <div class="qc-card-meta">
-          <span class="qc-card-id">NCBI: {taxId}</span>
+        <div className="qc-card-meta">
+          <span className="qc-card-id">NCBI: {taxId}</span>
           <span
-            class="qc-card-source"
+            className="qc-card-source"
             style={{ background: SOURCE_COLORS[nameSource] }}
           >
             {SOURCE_LABELS[nameSource]}
           </span>
         </div>
       </div>
-      {isFlagged && <div class="qc-card-flag-badge">FLAGGED</div>}
+      {isFlagged && <div className="qc-card-flag-badge">FLAGGED</div>}
     </div>
   )
 }
@@ -386,22 +386,22 @@ export default function QualityControl() {
 
   if (loading) {
     return (
-      <div class="qc-container">
+      <div className="qc-container">
         <h2>Loading species data...</h2>
       </div>
     )
   }
 
   return (
-    <div class="qc-container" ref={containerRef}>
-      <div class="qc-header">
+    <div className="qc-container" ref={containerRef}>
+      <div className="qc-header">
         <h2>Species Quality Control</h2>
-        <div class="qc-stats">
+        <div className="qc-stats">
           {pool.length} total | {flagged.size} flagged | {sorted.length} shown
         </div>
       </div>
 
-      <div class="qc-toolbar">
+      <div className="qc-toolbar">
         <input
           type="text"
           placeholder="Search by name or taxId..."
@@ -410,7 +410,7 @@ export default function QualityControl() {
             setSearch((e.target as HTMLInputElement).value)
             setPage(0)
           }}
-          class="qc-search"
+          className="qc-search"
         />
 
         <select
@@ -420,7 +420,7 @@ export default function QualityControl() {
             setPhylumFilter('all')
             setPage(0)
           }}
-          class="qc-select"
+          className="qc-select"
         >
           <option value="all">All kingdoms</option>
           {kingdoms.map(k => (
@@ -436,7 +436,7 @@ export default function QualityControl() {
             setPhylumFilter((e.target as HTMLSelectElement).value)
             setPage(0)
           }}
-          class="qc-select"
+          className="qc-select"
         >
           <option value="all">All phyla</option>
           {phyla.map(p => (
@@ -457,14 +457,14 @@ export default function QualityControl() {
             )
             setPage(0)
           }}
-          class="qc-select"
+          className="qc-select"
         >
           <option value="name">Sort: Name</option>
           <option value="kingdom">Sort: Kingdom</option>
           <option value="phylum">Sort: Phylum</option>
         </select>
 
-        <div class="qc-filter-btns">
+        <div className="qc-filter-btns">
           {(['all', 'flagged', 'unflagged', 'broken-img'] as FilterMode[]).map(
             mode => {
               const labels: Record<FilterMode, string> = {
@@ -476,7 +476,7 @@ export default function QualityControl() {
               return (
                 <button
                   key={mode}
-                  class={`qc-filter-btn ${filterMode === mode ? 'active' : ''}`}
+                  className={`qc-filter-btn ${filterMode === mode ? 'active' : ''}`}
                   onClick={() => {
                     setFilterMode(mode)
                     setPage(0)
@@ -490,23 +490,23 @@ export default function QualityControl() {
         </div>
       </div>
 
-      <div class="qc-actions">
-        <button onClick={saveToProject} class="qc-btn qc-btn-save">
+      <div className="qc-actions">
+        <button onClick={saveToProject} className="qc-btn qc-btn-save">
           Save to project ({flagged.size})
         </button>
-        <button onClick={exportFlagged} class="qc-btn">
+        <button onClick={exportFlagged} className="qc-btn">
           Export JSON
         </button>
-        <button onClick={importFlagged} class="qc-btn">
+        <button onClick={importFlagged} className="qc-btn">
           Import
         </button>
-        <button onClick={clearFlagged} class="qc-btn qc-btn-danger">
+        <button onClick={clearFlagged} className="qc-btn qc-btn-danger">
           Clear all
         </button>
-        {saveStatus && <span class="qc-save-status">{saveStatus}</span>}
+        {saveStatus && <span className="qc-save-status">{saveStatus}</span>}
       </div>
 
-      <div class="qc-grid">
+      <div className="qc-grid">
         {paged.map(entry => (
           <SpeciesCard
             key={entry[0]}
@@ -527,7 +527,7 @@ export default function QualityControl() {
       </div>
 
       {totalPages > 1 && (
-        <div class="qc-pagination">
+        <div className="qc-pagination">
           <button
             disabled={page === 0}
             onClick={() => {

@@ -37,6 +37,38 @@ interface ResultScreenProps {
   timedOut?: boolean
 }
 
+function FunFactSources({
+  funFact,
+  sources,
+}: {
+  funFact?: string
+  sources?: { url: string; label: string }[]
+}) {
+  return (
+    <>
+      {funFact && (
+        <p className="fun-fact-blurb">
+          <span className="fun-fact-label">Fun fact:</span>
+          {funFact}
+        </p>
+      )}
+      {sources && sources.length > 0 && (
+        <p className="fun-fact-source">
+          {sources.length === 1 ? 'Source: ' : 'Sources: '}
+          {sources.map((s, i) => (
+            <span key={s.url}>
+              {i > 0 && ' · '}
+              <a href={s.url} target="_blank" rel="noopener noreferrer">
+                {s.label}
+              </a>
+            </span>
+          ))}
+        </p>
+      )}
+    </>
+  )
+}
+
 function OrganismLink({ organism }: { organism: Organism }) {
   return (
     <a
@@ -78,20 +110,7 @@ function Explanation({
           {formatRank(sisterMrca.rank)}). None of the three is more closely
           related to another — any pair is equally correct!
         </p>
-        {funFact && <p>Fun fact: {funFact}</p>}
-        {sources && sources.length > 0 && (
-          <p className="fun-fact-source">
-            {sources.length === 1 ? 'Source: ' : 'Sources: '}
-            {sources.map((s, i) => (
-              <span key={s.url}>
-                {i > 0 && ' · '}
-                <a href={s.url} target="_blank" rel="noopener noreferrer">
-                  {s.label}
-                </a>
-              </span>
-            ))}
-          </p>
-        )}
+        <FunFactSources funFact={funFact} sources={sources} />
       </div>
     )
   }
@@ -112,20 +131,7 @@ function Explanation({
           </>
         )}
       </p>
-      {funFact && <p>Fun fact: {funFact}</p>}
-      {sources && sources.length > 0 && (
-        <p className="fun-fact-source">
-          {sources.length === 1 ? 'Source: ' : 'Sources: '}
-          {sources.map((s, i) => (
-            <span key={s.url}>
-              {i > 0 && ' · '}
-              <a href={s.url} target="_blank" rel="noopener noreferrer">
-                {s.label}
-              </a>
-            </span>
-          ))}
-        </p>
-      )}
+      <FunFactSources funFact={funFact} sources={sources} />
     </div>
   )
 }
@@ -202,8 +208,16 @@ export default function ResultScreen({
       {questionLabel && (
         <div className="result-question-label">{questionLabel}</div>
       )}
-      <div className={`result-banner ${timedOut ? 'wrong' : activelyDebated ? 'debated' : correct ? 'correct' : 'wrong'}`}>
-        {timedOut ? "Time's up!" : activelyDebated ? 'Actively Debated!' : correct ? 'Correct!' : 'Not quite!'}
+      <div
+        className={`result-banner ${timedOut ? 'wrong' : activelyDebated ? 'debated' : correct ? 'correct' : 'wrong'}`}
+      >
+        {timedOut
+          ? "Time's up!"
+          : activelyDebated
+            ? 'Actively Debated!'
+            : correct
+              ? 'Correct!'
+              : 'Not quite!'}
         {score !== undefined && (
           <span className="result-score">+{score} pts</span>
         )}

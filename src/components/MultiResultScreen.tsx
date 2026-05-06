@@ -16,7 +16,6 @@ import { buildClusterLayout } from '../utils/treeLayout.ts'
 
 import type { Organism } from '../data/organisms.ts'
 import type { LcaResult, TaxonomyData, TreeNode } from '../utils/taxonomy.ts'
-import type { LayoutNode } from '../utils/treeLayout.ts'
 
 export interface PairRanking {
   i: number
@@ -123,8 +122,8 @@ function MultiTree({
   const nodes = buildClusterLayout(tree, h - topPad * 2, leafX - leftMargin)
 
   for (const node of nodes) {
-    const x = (node.y) + leftMargin
-    const y = (node.x) + topPad
+    const x = node.y + leftMargin
+    const y = node.x + topPad
     const isOrganism = orgTaxIds.has(node.data.taxId)
 
     if (node.children) {
@@ -312,16 +311,16 @@ export default function MultiResultScreen({
           </p>
         ) : (
           <p>
-            You picked <strong>{capitalize(userOrgA.commonName)}</strong>{' '}
-            &amp; <strong>{capitalize(userOrgB.commonName)}</strong> (ranked #
-            {rank} of {totalPairs} pairs). Their common ancestor is{' '}
+            You picked <strong>{capitalize(userOrgA.commonName)}</strong> &amp;{' '}
+            <strong>{capitalize(userOrgB.commonName)}</strong> (ranked #{rank}{' '}
+            of {totalPairs} pairs). Their common ancestor is{' '}
             <strong>
               <TaxLink name={userPair.lca.name} taxId={userPair.lca.taxId} />
             </strong>{' '}
             ({formatRank(userPair.lca.rank)}). The closest pair was{' '}
             <strong>{capitalize(bestOrgA.commonName)}</strong> &amp;{' '}
-            <strong>{capitalize(bestOrgB.commonName)}</strong>, sharing a
-            common ancestor in{' '}
+            <strong>{capitalize(bestOrgB.commonName)}</strong>, sharing a common
+            ancestor in{' '}
             <strong>
               <TaxLink name={bestPair.lca.name} taxId={bestPair.lca.taxId} />
             </strong>{' '}

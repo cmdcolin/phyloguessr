@@ -1,4 +1,10 @@
-import { useEffect, useMemo, useRef, useState } from 'preact/hooks'
+import {
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'preact/hooks'
 
 import { getGbifTaxonKey } from '../api/gbif.ts'
 
@@ -40,7 +46,9 @@ export default function InteractiveMap({
   const speciesLayersRef = useRef<L.GridLayer[]>([])
   const [resolvedKeys, setResolvedKeys] = useState<(number | null)[]>([])
   const onMapReadyRef = useRef(onMapReady)
-  onMapReadyRef.current = onMapReady
+  useLayoutEffect(() => {
+    onMapReadyRef.current = onMapReady
+  })
 
   const taxIdKey = useMemo(
     () => organisms.map(o => o.ncbiTaxId).join(','),

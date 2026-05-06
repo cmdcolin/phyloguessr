@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 
 import AdvancedTaxonSearch from './AdvancedTaxonSearch.tsx'
-import Timer from './Timer.tsx'
 import Button from './Button.tsx'
 import GameOverScreen from './GameOverScreen.tsx'
 import Header from './Header.tsx'
@@ -10,9 +9,10 @@ import OrganismCard from './OrganismCard.tsx'
 import ResultScreen from './ResultScreen.tsx'
 import { MAP_COLORS } from './SpeciesMap.tsx'
 import { TaxLink } from './TaxLink.tsx'
+import Timer from './Timer.tsx'
 import {
-  buildShareUrl,
   buildRetryUrl,
+  buildShareUrl,
   buildTimedOutUrl,
   comboKey,
   getDifficulty,
@@ -23,7 +23,7 @@ import {
 } from './gameUtils.ts'
 import { loadSurprisingScenarios } from '../data/surprisingFacts.ts'
 import { DISPLAY_TREE } from '../utils/cladePresets.ts'
-import { calculateScore, TOTAL_QUESTIONS } from '../utils/scoring.ts'
+import { TOTAL_QUESTIONS, calculateScore } from '../utils/scoring.ts'
 import { sessionStorageGetItem } from '../utils/storage.ts'
 import {
   buildContextDiagram,
@@ -219,10 +219,15 @@ export default function Game({ mode }: { mode: GameMode }) {
         }
         return
       }
-      const shuffled = orgs.sort(() => Math.random() - 0.5)
-      recordCombo(shuffled)
-      setRound(shuffled)
-      updateUrlWithQuestion(shuffled)
+      for (let i = orgs.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1))
+        const tmp = orgs[i]
+        orgs[i] = orgs[j]
+        orgs[j] = tmp
+      }
+      recordCombo(orgs)
+      setRound(orgs)
+      updateUrlWithQuestion(orgs)
       setState('selecting')
     } else {
       let pool = speciesPool
@@ -337,6 +342,7 @@ export default function Game({ mode }: { mode: GameMode }) {
     cladeFilter,
     shownScenarioIndices,
     seenCombos,
+    roundResults.length,
   ])
 
   const loadSharedQuestion = useCallback(
@@ -389,12 +395,13 @@ export default function Game({ mode }: { mode: GameMode }) {
 
     if (isTimedOut && sharedIds) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
-      loadSharedQuestion(sharedIds, { isShared: false, targetState: 'timedOut' })
+      loadSharedQuestion(sharedIds, {
+        isShared: false,
+        targetState: 'timedOut',
+      })
     } else if (isRetry && sharedIds) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       loadSharedQuestion(sharedIds, { isShared: false })
     } else if (sharedIds) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       loadSharedQuestion(sharedIds)
     } else if (mode === 'custom') {
       loadTaxonomyData().then(setTaxonomyData)
@@ -646,7 +653,13 @@ export default function Game({ mode }: { mode: GameMode }) {
         <div className="loading">
           {loadingMessage}
           {loadingMessage.includes('try again') && (
-            <Button onClick={startRound}>Retry</Button>
+            <Button
+              onClick={() => {
+                startRound()
+              }}
+            >
+              Retry
+            </Button>
           )}
           {loadingMessage.includes('try a broader group') && (
             <Button variant="secondary" href="/custom">
@@ -701,11 +714,16 @@ export default function Game({ mode }: { mode: GameMode }) {
                 scientificName={org.scientificName}
                 imageUrl={org.imageUrl ?? null}
                 selected={selected.includes(i)}
-
                 onClick={() => setSelected(prev => toggleSelect(prev, i))}
                 mapColor={MAP_COLORS[i % MAP_COLORS.length]}
                 difficulty={difficulty}
-                hint={hintUsed ? (hintLoading ? 'Loading...' : (hints[i] ?? null)) : undefined}
+                hint={
+                  hintUsed
+                    ? hintLoading
+                      ? 'Loading...'
+                      : (hints[i] ?? null)
+                    : undefined
+                }
               />
             ))}
           </div>
@@ -714,7 +732,9 @@ export default function Game({ mode }: { mode: GameMode }) {
               {!hintUsed && (
                 <button
                   className="hint-btn"
-                  onClick={handleHint}
+                  onClick={() => {
+                    handleHint()
+                  }}
                   title="Show hints for all organisms (-50% pts)"
                 >
                   💡
@@ -726,12 +746,20 @@ export default function Game({ mode }: { mode: GameMode }) {
             </div>
 
             <Button
-              onClick={() => handleSubmit()}
+              onClick={() => {
+                handleSubmit()
+              }}
               disabled={selected.length !== 2}
             >
               Submit
             </Button>
-            <button className="nav-icon-btn" onClick={startRound} title="Skip">
+            <button
+              className="nav-icon-btn"
+              onClick={() => {
+                startRound()
+              }}
+              title="Skip"
+            >
               <span className="nav-icon-btn-label">Skip</span> →
             </button>
           </div>
@@ -746,7 +774,13 @@ export default function Game({ mode }: { mode: GameMode }) {
             <a className="btn btn-primary" href={buildRetryUrl()}>
               Try Again
             </a>
-            <button className="nav-icon-btn" onClick={startRound} title="Skip">
+            <button
+              className="nav-icon-btn"
+              onClick={() => {
+                startRound()
+              }}
+              title="Skip"
+            >
               <span className="nav-icon-btn-label">Skip</span> →
             </button>
           </div>
