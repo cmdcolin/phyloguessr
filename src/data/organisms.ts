@@ -334,6 +334,15 @@ export const organisms: Organism[] = [
       'https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/EasternGraySquirrel_GAm.jpg/330px-EasternGraySquirrel_GAm.jpg',
   },
   {
+    commonName: 'Yellow-bellied marmot',
+    scientificName: 'Marmota flaviventris',
+    ncbiTaxId: 93162,
+    wikiTitle: 'Yellow-bellied_marmot',
+    group: 'mammal',
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Marmota_flaviventris_%28Yellow_Bellied_Marmot%29%2C_Yosemite_NP_-_Diliff.jpg/330px-Marmota_flaviventris_%28Yellow_Bellied_Marmot%29%2C_Yosemite_NP_-_Diliff.jpg',
+  },
+  {
     commonName: 'Black-tailed prairie dog',
     scientificName: 'Cynomys ludovicianus',
     ncbiTaxId: 45480,
