@@ -307,7 +307,7 @@
         "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/%D0%9C%D1%8B%D1%88%D1%8C_2.jpg/500px-%D0%9C%D1%8B%D1%88%D1%8C_2.jpg"
       }
     ],
-    "funFact": "Despite looking like tiny mice, shrews are closer to cats than to mice! Shrews and cats share an ancestor from the same ancient group of mammals, while mice and rodents are on a completely different branch — the same branch as primates.",
+    "funFact": "Despite looking like tiny mice, shrews are closer to cats than to mice! Shrews and cats are both Laurasiatheria — the same major mammal branch that also includes dogs, horses, and whales. Mice are Euarchontoglires, a completely separate branch that includes rodents, rabbits, and primates.",
     "sources": [
       {
         "url": "https://en.wikipedia.org/wiki/Eulipotyphla",
@@ -385,7 +385,7 @@
         "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Saccharomyces_cerevisiae_SEM.jpg/330px-Saccharomyces_cerevisiae_SEM.jpg"
       }
     ],
-    "funFact": "The malaria parasite and paramecium are both single-celled organisms that share a deep common ancestor, despite one being a deadly parasite and the other a free-living pond dweller. Yeast is a fungus — actually more closely related to animals than to either of them.",
+    "funFact": "The malaria parasite and paramecium are both Alveolata — a major protist group defined by distinctive membrane folds under the cell surface — despite one being a deadly intracellular parasite and the other a free-living pond dweller. Yeast is a fungus, on a completely separate branch actually more closely related to animals than to either of them.",
     "sources": [
       {
         "url": "https://en.wikipedia.org/wiki/Alveolata",
@@ -1313,11 +1313,15 @@
         "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Herpestes_ichneumon_%D0%95%D0%B3%D0%B8%D0%BF%D0%B5%D1%82%D1%81%D0%BA%D0%B8%D0%B9_%D0%BC%D0%B0%D0%BD%D0%B3%D1%83%D1%81%D1%82%2C_%D0%B8%D0%BB%D0%B8_%D1%84%D0%B0%D1%80%D0%B0%D0%BE%D0%BD%D0%BE%D0%B2%D0%B0_%D0%BA%D1%80%D1%8B%D1%81%D0%B0%2C_%D0%B8%D0%BB%D0%B8_%D0%B8%D1%85%D0%BD%D0%B5%D0%B2%D0%BC%D0%BE%CC%81%D0%BD.jpg/330px-Herpestes_ichneumon_%D0%95%D0%B3%D0%B8%D0%BF%D0%B5%D1%82%D1%81%D0%BA%D0%B8%D0%B9_%D0%BC%D0%B0%D0%BD%D0%B3%D1%83%D1%81%D1%82%2C_%D0%B8%D0%BB%D0%B8_%D1%84%D0%B0%D1%80%D0%B0%D0%BE%D0%BD%D0%BE%D0%B2%D0%B0_%D0%BA%D1%80%D1%8B%D1%81%D0%B0%2C_%D0%B8%D0%BB%D0%B8_%D0%B8%D1%85%D0%BD%D0%B5%D0%B2%D0%BC%D0%BE%CC%81%D0%BD.jpg"
       }
     ],
-    "funFact": "The common genet looks uncannily like a small spotted wild cat — slim body, spotted coat, retractile claws, solitary hunter. But genets are in the civet family (Viverridae), which molecular studies place closer to mongooses (Herpestidae) than to true cats (Felidae) within Feliformia. (NCBI taxonomy leaves Feliformia families unresolved, but molecular phylogenetics consistently supports this grouping.)",
+    "funFact": "The common genet looks uncannily like a small spotted wild cat — slim body, spotted coat, retractile claws, solitary hunter. But genets are in the civet family (Viverridae), which molecular studies place closer to mongooses (Herpestidae) than to true cats (Felidae) within Feliformia. NCBI taxonomy leaves the internal Feliformia branching unresolved, but molecular phylogenetics consistently supports this grouping.",
     "sources": [
       {
         "url": "https://en.wikipedia.org/wiki/Feliformia",
         "label": "Feliformia - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Viverridae",
+        "label": "Viverridae - Wikipedia"
       }
     ],
     "correctPair": [
@@ -1796,7 +1800,7 @@
         "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Apis_mellifera_Western_honey_bee.jpg/500px-Apis_mellifera_Western_honey_bee.jpg"
       }
     ],
-    "funFact": "Butterflies and bees both undergo complete metamorphosis — transforming from larva to pupa to adult. Dragonflies are far more ancient and skip the pupa stage entirely, making them a more primitive branch of insects.",
+    "funFact": "Butterflies and bees are both Holometabola — the insect clade that evolved complete metamorphosis, passing through larva and pupa stages. Dragonflies are Paleoptera, the earliest-diverging lineage of winged insects, which never evolved a pupal stage. Despite bees and butterflies looking more different from each other than from a dragonfly, they share a more recent common ancestor with each other.",
     "sources": [
       {
         "url": "https://en.wikipedia.org/wiki/Holometabolism",
@@ -2982,7 +2986,7 @@
         "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Southern_Flying_Squirrel_-_Glaucomys_volans%2C_Arlington%2C_Virginia%2C_December_22%2C_2020_%2853406816432%29.jpg/330px-Southern_Flying_Squirrel_-_Glaucomys_volans%2C_Arlington%2C_Virginia%2C_December_22%2C_2020_%2853406816432%29.jpg"
       }
     ],
-    "funFact": "The closest non-primate relative of humans is a gliding rainforest mammal that looks like a large flying squirrel. Colugos are the closest living relatives of all primates — closer to every human, ape, and monkey than to any rodent, bat, or other mammal. Flying squirrels are rodents; they and colugos evolved near-identical gliding membranes completely independently. (Note: NCBI taxonomy leaves this unresolved, but phylogenetic studies confirm the colugo–primate grouping.)",
+    "funFact": "The closest non-primate relative of humans is a gliding rainforest mammal that looks like a large flying squirrel. Colugos are the closest living relatives of all primates — closer to every human, ape, and monkey than to any rodent, bat, or other mammal. Flying squirrels are rodents; they and colugos evolved near-identical gliding membranes completely independently. NCBI taxonomy leaves this unresolved, but phylogenetic studies consistently confirm the colugo–primate grouping.",
     "sources": [
       {
         "url": "https://en.wikipedia.org/wiki/Colugo",
@@ -3477,7 +3481,7 @@
         "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Radiolarian.png"
       }
     ],
-    "funFact": "A microscopic diatom and a 60-meter giant kelp are both Stramenopiles — the same branch of the eukaryotic tree! Polycystines also have silica shells like diatoms, but are Rhizaria, a completely separate lineage. Diatoms produce about 20% of Earth's oxygen — more than all the world's rainforests.",
+    "funFact": "A microscopic diatom and a 60-meter giant kelp are both Stramenopiles — the same branch of the eukaryotic tree! Polycystines look similar to diatoms because they also build intricate silica shells, but that's convergent evolution: Polycystines are Rhizaria, a completely separate eukaryotic supergroup with no close relation to diatoms. Diatoms produce about 20% of Earth's oxygen — more than all the world's rainforests.",
     "sources": [
       {
         "url": "https://en.wikipedia.org/wiki/Diatom",
@@ -3590,7 +3594,7 @@
         "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Gavia_immer_-Minocqua%2C_Wisconsin%2C_USA_-swimming-8.jpg/330px-Gavia_immer_-Minocqua%2C_Wisconsin%2C_USA_-swimming-8.jpg"
       }
     ],
-    "funFact": "Grebes and loons are nearly indistinguishable — same diving body, same habitat, same behavior — and were long classified together. But grebes are actually closest relatives of flamingos, not loons! Flamingos and grebes form Mirandornithes (\"wonderful birds\"), one of the biggest surprises of modern bird phylogenetics.",
+    "funFact": "Grebes and loons share such similar diving bodies, habitat, and behavior that they were classified together for over a century. But grebes are actually the closest relatives of flamingos, not loons! Flamingos and grebes form Mirandornithes (\"wonderful birds\"), one of the biggest surprises of modern bird phylogenetics.",
     "sources": [
       {
         "url": "https://en.wikipedia.org/wiki/Mirandornithes",
@@ -3629,7 +3633,7 @@
         "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Corvus-brachyrhynchos-001.jpg/330px-Corvus-brachyrhynchos-001.jpg"
       }
     ],
-    "funFact": "The hoatzin — a bizarre South American bird whose chicks have clawed wings for climbing — was an evolutionary enigma for over a century. Its phylogenetic position bounced between gamebirds, cuckoos, and turacos. Recent genomic studies finally placed it as one of the earliest-diverging lineages of Neoaves, on its own branch with no close living relatives.",
+    "funFact": "The hoatzin was an evolutionary enigma for over a century, bouncing between gamebirds, cuckoos, and turacos. Recent genomic studies placed it as one of the earliest-diverging lineages of Neoaves — the same major bird group as crows, parrots, and most living birds. Chickens are Galloanserae, an older lineage that split off before Neoaves even existed. Despite the hoatzin's gamebird-like look, it shares a more recent common ancestor with the crow.",
     "sources": [
       {
         "url": "https://en.wikipedia.org/wiki/Hoatzin",
@@ -3925,15 +3929,15 @@
         "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Impala_%28Aepyceros_melampus%29_male_Kruger.jpg/330px-Impala_%28Aepyceros_melampus%29_male_Kruger.jpg"
       }
     ],
-    "funFact": "The pronghorn is called the \"American antelope\" but is not an antelope at all — it is the sole surviving member of Antilocapridae, closer to giraffes than to any true antelope! Impala and other antelopes are Bovidae (with cattle and goats). The pronghorn's family was once diverse across North America, but only one species survives. (NCBI taxonomy leaves Pecora unresolved, but molecular studies consistently group Antilocapridae with Giraffidae.)",
+    "funFact": "The pronghorn is called the \"American antelope\" but is not an antelope at all — it is the sole surviving member of Antilocapridae, closer to giraffes than to any true antelope! Impala and other antelopes are Bovidae (with cattle and goats). The pronghorn's family was once diverse across North America, but only one species survives. NCBI taxonomy leaves Pecora unresolved, but molecular studies consistently group Antilocapridae with Giraffidae.",
     "sources": [
       {
         "url": "https://en.wikipedia.org/wiki/Pronghorn",
         "label": "Pronghorn - Wikipedia"
       },
       {
-        "url": "https://www.nps.gov/articles/000/pronghorn.htm",
-        "label": "National Park Service - Pronghorn"
+        "url": "https://en.wikipedia.org/wiki/Antilocapridae",
+        "label": "Antilocapridae - Wikipedia"
       }
     ],
     "correctPair": [
@@ -4166,14 +4170,6 @@
   {
     "organisms": [
       {
-        "commonName": "Three-toed sloth",
-        "scientificName": "Bradypus variegatus",
-        "ncbiTaxId": 9355,
-        "wikiTitle": "Brown-throated_sloth",
-        "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Bradypus.jpg/330px-Bradypus.jpg"
-      },
-      {
         "commonName": "Rock hyrax",
         "scientificName": "Procavia capensis",
         "ncbiTaxId": 9813,
@@ -4182,24 +4178,36 @@
         "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/188_Rock_hyrax_in_Damaraland_Photo_by_Giles_Laurent.jpg/330px-188_Rock_hyrax_in_Damaraland_Photo_by_Giles_Laurent.jpg"
       },
       {
-        "commonName": "Gray wolf",
-        "scientificName": "Canis lupus",
-        "ncbiTaxId": 9612,
-        "wikiTitle": "Wolf",
+        "commonName": "West Indian manatee",
+        "scientificName": "Trichechus manatus",
+        "ncbiTaxId": 9778,
+        "wikiTitle": "West_Indian_manatee",
         "group": "mammal",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Huskiesatrest.jpg/500px-Huskiesatrest.jpg"
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Manatee_with_calf.PD_-_colour_corrected.jpg/330px-Manatee_with_calf.PD_-_colour_corrected.jpg"
+      },
+      {
+        "commonName": "Raccoon dog",
+        "scientificName": "Nyctereutes procyonoides",
+        "ncbiTaxId": 9647,
+        "wikiTitle": "Raccoon_dog",
+        "group": "mammal",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Nyctereutes_procyonoides_-_Raccoon_Dog_-_Jenot.png/330px-Nyctereutes_procyonoides_-_Raccoon_Dog_-_Jenot.png"
       }
     ],
-    "funFact": "A sloth and a hyrax are more closely related to each other than either is to a wolf! Sloths (Xenarthra, from South America) and hyraxes (Afrotheria, from Africa) form a clade called Atlantogenata — named for the Atlantic Ocean that separated their ancestral continents. Wolves belong to Boreoeutheria, the other major branch of placental mammals. (NCBI taxonomy leaves the base of Eutheria unresolved, but large-scale genomic studies strongly support Atlantogenata.)",
+    "funFact": "The rock hyrax looks exactly like a large guinea pig — but it shares a more recent ancestor with the aquatic manatee than with the raccoon dog. Both hyrax and manatee are Paenungulata, a subgroup of Afrotheria — the ancient African mammal lineage that also includes elephants and aardvarks. The raccoon dog, despite its similarly round and fluffy build, is a true canid, on the dog branch of the carnivore tree.",
     "sources": [
       {
-        "url": "https://en.wikipedia.org/wiki/Atlantogenata",
-        "label": "Atlantogenata - Wikipedia"
+        "url": "https://en.wikipedia.org/wiki/Paenungulata",
+        "label": "Paenungulata - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Afrotheria",
+        "label": "Afrotheria - Wikipedia"
       }
     ],
     "correctPair": [
-      "Three-toed sloth",
-      "Rock hyrax"
+      "Rock hyrax",
+      "West Indian manatee"
     ]
   },
   {
