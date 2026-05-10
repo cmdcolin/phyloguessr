@@ -29,20 +29,6 @@ import '../index.css'
         >
       </div>
       <div
-        class="mode-notice easy-notice"
-        id="easy-notice"
-        style="display:none"
-      >
-        <p>
-          Just kidding! These are curated tricky examples. Don't worry, just
-          take your best guess.
-        </p>
-        <div class="notice-actions">
-          <a class="notice-continue-btn" href="/easy">Let's go</a>
-          <button class="notice-back-btn" id="easy-back-btn">Go back</button>
-        </div>
-      </div>
-      <div
         class="mode-notice random-notice"
         id="random-notice"
         style="display:none"
@@ -94,8 +80,6 @@ import '../index.css'
     })
   }
 
-  showNotice('easy-notice', 'easy-btn')
-  hideNotice('easy-notice', 'easy-back-btn')
   showNotice('random-notice', 'random-btn')
   hideNotice('random-notice', 'random-back-btn')
 
@@ -138,14 +122,6 @@ import '../index.css'
   .diff-btn.active {
     background: var(--color-primary, #2e7d32);
     color: white;
-  }
-
-  .easy-notice {
-    --notice-fg: #a8e6b0;
-    --notice-border: #2a7a2a;
-    --notice-bg: #0d2010;
-    --notice-btn-color: #0d2010;
-    --notice-btn-hover: #35a035;
   }
 
   .random-notice {
