@@ -10,13 +10,6 @@ import '../index.css'
     <div class="about-page">
       <h2>About PhyloGuessr</h2>
 
-      <h3>How it works</h3>
-      <p>Pick which two of three organisms are most closely related — the pair sharing the most recent common ancestor.</p>
-
-      <h3>Scoring</h3>
-      <p>In standard mode, you score points for a correct answer (reduced by 50% if you used a hint).</p>
-      <p>In "closest pair" mode (6 species), you score based on how close your chosen pair's common ancestor is compared to all other possible pairs. Closeness is measured by taxonomic rank — a pair sharing a genus is closer than one sharing a family, which is closer than one sharing an order, and so on. Where the common ancestor has an informal rank (like a "clade" node in NCBI Taxonomy), the score is based on the nearest formally-ranked ancestor above it, with tree depth used as a tiebreaker within the same rank.</p>
-
       <h3>Data sources</h3>
       <ul>
         <li>Taxonomy from <a href="https://www.ncbi.nlm.nih.gov/taxonomy" target="_blank" rel="noopener noreferrer">NCBI Taxonomy</a></li>
@@ -25,30 +18,33 @@ import '../index.css'
 
       <h3>Contribute</h3>
       <p><a href="https://github.com/cmdcolin/phyloguessr" target="_blank" rel="noopener noreferrer">GitHub</a> · <a href="https://github.com/cmdcolin/phyloguessr/issues" target="_blank" rel="noopener noreferrer">Report bugs or suggest trios</a> · <a href="/donate">Donate</a></p>
-
-      <h3>A note on NCBI Taxonomy</h3>
-      <p>NCBI Taxonomy is a classification, not a true phylogeny — it draws from multiple sources and may not reflect the latest phylogenetic understanding. See the <a href="https://www.ncbi.nlm.nih.gov/books/NBK53759/" target="_blank" rel="noopener noreferrer">NCBI Taxonomy Help</a> for details.</p>
-
-
-      <h3>Use of AI</h3>
-      <p>Claude Code AI was used to help create this website including both code and various text on our easy mode aka surprisingFacts, but we tried to ensure correctness of the facts and code also. If you spot any errors please report them on <a href="https://github.com/cmdcolin/phyloguessr/issues" target="_blank" rel="noopener noreferrer">GitHub</a> or email <a href="mailto:colin.diesh@gmail.com">colin.diesh@gmail.com</a>.</p>
-
-      <h3>Why phylogeny and taxonomy matter</h3>
-      <p>Learn about the importance of phylogeny, taxonomy, and model organisms on our <a href="/why">Why it matters</a> page.</p>
-
       <h3>FAQ</h3>
 
-      <h4>Where did the idea come from?</h4>
-      <p>I attended a Science on Tap trivia night long ago and they did this type of game live with a powerpoint and it was very entertaining, and I thought it would make a fun web game. The name is obviously indebted to <a href="https://www.geoguessr.com" target="_blank" rel="noopener noreferrer">GeoGuessr</a> for making the "-guessr" format iconic.</p>
+      <h4>How do I play?</h4>
+      <p>Pick which two of three organisms are most closely related — the pair sharing the most recent common ancestor.</p>
 
-      <h4>Can I use this for my own trivia night or classroom?</h4>
-      <p>Absolutely! Feel free to use the website or any of the data on it for trivia, teaching, or anything else.</p>
+      <h4>How does scoring work?</h4>
+      <p>In standard mode, you score points for a correct answer (reduced by 50% if you used a hint).</p>
+      <p>In "closest pair" mode (6 species), your score reflects how close your chosen pair's common ancestor is relative to all other possible pairs. Closeness is measured by taxonomic rank — genus is closer than family, which is closer than order, and so on. For pairs whose common ancestor has an informal rank (like a clade node in NCBI Taxonomy), scoring uses the nearest formally-ranked ancestor above it, with tree depth as a tiebreaker within the same rank.</p>
+
+      <h4>Is the taxonomy always accurate?</h4>
+      <p>NCBI Taxonomy is a classification, not a true phylogeny — it draws from multiple sources and may not reflect the latest phylogenetic understanding. See the <a href="https://www.ncbi.nlm.nih.gov/books/NBK53759/" target="_blank" rel="noopener noreferrer">NCBI Taxonomy Help</a> for details.</p>
 
       <h4>Why does phylogeny matter?</h4>
-      <p>Phylogeny has applications across medicine, agriculture, conservation, forensics, and more. See our <a href="/why">Why it matters</a> page for examples and a guide to model organisms.</p>
+      <p>Phylogeny has applications across medicine, agriculture, conservation, forensics, and more. See the <a href="/why">Why it matters</a> page for examples and a guide to model organisms.</p>
 
-      <h4>Is the name inspired by GeoGuessr?</h4>
-      <p>Obviously yes — we are indebted to <a href="https://www.geoguessr.com" target="_blank" rel="noopener noreferrer">GeoGuessr</a> for the naming inspiration. They made the "-guessr" format iconic and we happily borrowed it for the phylogenetics world.</p>
+      <h4>Where did the idea come from?</h4>
+      <p>I attended a Science on Tap trivia night where they played this type of game live — it was entertaining, and I thought it would make a fun web game. The name borrows the "-guessr" format made iconic by <a href="https://www.geoguessr.com" target="_blank" rel="noopener noreferrer">GeoGuessr</a>.</p>
+
+      <h4>Can I use this for my own trivia night or classroom?</h4>
+      <p>Absolutely! Feel free to use it for trivia, teaching, or anything else.</p>
+
+
     </div>
+
+    <h3>Use of AI</h3>
+    <p>I used Claude Code to help build this website and even to suggest ideas for species comparisons in the 'easy' scenarios and fun facts. If you find any issues feel free to report to <a href="https://github.com/cmdcolin/phyloguessr/issues" target="_blank" rel="noopener noreferrer">GitHub</a> or email <a href="mailto:colin.diesh@gmail.com">colin.diesh@gmail.com</a>.</p>
+
+
   </div>
 </Layout>
