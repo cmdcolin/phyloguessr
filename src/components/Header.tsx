@@ -88,9 +88,6 @@ export default function Header() {
               <a className="site-hamburger-item" href="/about">
                 About
               </a>
-              <a className="site-hamburger-item" href="/why">
-                Why
-              </a>
               <a className="site-hamburger-item" href="/donate">
                 Donate
               </a>
