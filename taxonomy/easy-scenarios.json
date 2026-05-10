@@ -268,7 +268,7 @@
         "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/330px-Cat_August_2010-4.jpg"
       }
     ],
-    "funFact": "Seals are more closely related to bears than to cats! Seals and bears are both on the \"dog side\" of the carnivore family tree, while cats are on the other side. Seals actually evolved from bear-like ancestors.",
+    "funFact": "Seals are more closely related to bears than to cats! Seals and bears are both on the \"dog side\" of the carnivore family tree (Caniformia), while cats are on the other side. Seals' closest living relatives are actually musteloids — weasels, otters, and raccoons — with bears sitting further out on that same branch.",
     "sources": [
       {
         "url": "https://en.wikipedia.org/wiki/Caniformia",
@@ -277,6 +277,14 @@
       {
         "url": "https://www.youtube.com/watch?v=aAOsf004FqQ",
         "label": "YouTube - Seals are related to dogs and bears"
+      },
+      {
+        "url": "https://academic.oup.com/evolut/article/78/7/1212/7655703",
+        "label": "Cullen et al. 2024 - Charting the course of pinniped evolution (Evolution)"
+      },
+      {
+        "url": "https://www.frontiersin.org/journals/ecology-and-evolution/articles/10.3389/fevo.2019.00457/full",
+        "label": "Frontiers 2019 - Total Evidence Phylogenetic Analysis of Pinniped Phylogeny"
       }
     ]
   },
@@ -541,15 +549,23 @@
         "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Red-tailed_Hawk_%2845812546121%29.jpg/330px-Red-tailed_Hawk_%2845812546121%29.jpg"
       }
     ],
-    "funFact": "Owls are not hawks — molecular phylogenetics places owls (Strigiformes) as close relatives of nightjars and nighthawks (Caprimulgiformes), not of hawks and eagles (Accipitriformes). The barn owl and the common nighthawk are on the same branch; the red-tailed hawk is on a completely different one.",
+    "funFact": "Despite the name, the common nighthawk is the odd one out here. Owls (Strigiformes) and hawks (Accipitriformes) both belong to Telluraves, a major land-bird clade supported by genome-scale studies. Nightjars and nighthawks (Caprimulgiformes) sit in a completely separate branch called Strisores. The barn owl's nocturnal habits make it seem like a nightjar relative, but molecularly owls (Strigiformes) and hawks (Accipitriformes) are sister groups within Afroaves — firmly on the opposite side of Telluraves from nightjars.",
     "sources": [
       {
-        "url": "https://en.wikipedia.org/wiki/Strigiformes",
-        "label": "Strigiformes - Wikipedia"
+        "url": "https://en.wikipedia.org/wiki/Telluraves",
+        "label": "Telluraves - Wikipedia"
       },
       {
-        "url": "https://www.britannica.com/animal/caprimulgiform/Evolution-and-paleontology",
-        "label": "Britannica - Caprimulgiform evolution and paleontology"
+        "url": "https://en.wikipedia.org/wiki/Strisores",
+        "label": "Strisores - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Afroaves",
+        "label": "Afroaves - Wikipedia"
+      },
+      {
+        "url": "https://www.pnas.org/doi/10.1073/pnas.2319696121",
+        "label": "Wu et al. 2024 - Genomes, fossils, and the concurrent rise of modern birds (PNAS)"
       }
     ]
   },
@@ -1722,7 +1738,7 @@
         "imageUrl": "https://api.ncbi.nlm.nih.gov/datasets/v2/taxonomy/taxon/8030/image"
       }
     ],
-    "funFact": "As Neil Shubin describes in \"Your Inner Fish,\" the limb bones in your arm (humerus, radius, ulna) are homologous to the same bones in an axolotl's leg — inherited from a common ancestor that crawled out of water ~375 million years ago.",
+    "funFact": "The limb bones in your arm (humerus, radius, ulna) are homologous to the same bones in an axolotl's leg — inherited from a common ancestor that crawled out of water ~375 million years ago.",
     "sources": [
       {
         "url": "https://en.wikipedia.org/wiki/Your_Inner_Fish",
@@ -1891,6 +1907,14 @@
       {
         "url": "https://www.mbari.org/news/genetic-research-offers-new-perspective-on-the-early-evolution-of-animals/",
         "label": "MBARI - New perspective on early animal evolution"
+      },
+      {
+        "url": "https://www.science.org/doi/10.1126/science.adw9456",
+        "label": "Steenwyk & King 2025 (RETRACTED) - Integrative phylogenomics positions sponges at the root (Science)"
+      },
+      {
+        "url": "https://www.nature.com/articles/d41586-026-00238-z",
+        "label": "Nature News 2026 - What were the first animals? The sponge–jelly battle that won't end"
       }
     ],
     "activelyDebated": true
@@ -2219,15 +2243,15 @@
         "imageUrl": "https://api.ncbi.nlm.nih.gov/datasets/v2/taxonomy/taxon/6706/image"
       },
       {
-        "commonName": "Ladybug",
-        "scientificName": "Coccinella septempunctata",
-        "ncbiTaxId": 41139,
-        "wikiTitle": "Coccinella_septempunctata",
+        "commonName": "Pill millipede",
+        "scientificName": "Glomeris sublimbata",
+        "ncbiTaxId": 62005,
+        "wikiTitle": "Glomeris_sublimbata",
         "group": "arthropod",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/7-Spotted-Ladybug-Coccinella-septempunctata-sq1.jpg/330px-7-Spotted-Ladybug-Coccinella-septempunctata-sq1.jpg"
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Glomeris_sublimbata.png/330px-Glomeris_sublimbata.png"
       }
     ],
-    "funFact": "Woodlice (pill bugs) are crustaceans, not insects! They are isopods, more closely related to lobsters and crabs than to any beetle. They are the most successful group of crustaceans to colonize land.",
+    "funFact": "Woodlice (pill bugs) and pill millipedes look almost identical when rolled up, but woodlice and lobsters are crustaceans while pill millipedes are myriapods. All three are arthropods, but the pill millipede is the odd one out.",
     "sources": [
       {
         "url": "https://en.wikipedia.org/wiki/Woodlouse",
@@ -2259,7 +2283,7 @@
         "ncbiTaxId": 569448,
         "wikiTitle": "Salp",
         "group": "invertebrate",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Salp.jpg/330px-Salp.jpg"
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Salp_colony%2C_Aorangaia_PA171899.JPG/500px-Salp_colony%2C_Aorangaia_PA171899.JPG"
       }
     ],
     "funFact": "The armored, rock-clinging chiton and the translucent, wing-flapping sea angel are both molluscs — relatives of snails and squid. The salp looks far more like the sea angel — transparent, gelatinous, drifting through open water — but salps are tunicates, chordates more closely related to humans than to any mollusc.",
@@ -2336,7 +2360,7 @@
         "imageUrl": "https://api.ncbi.nlm.nih.gov/datasets/v2/taxonomy/taxon/3702/image"
       }
     ],
-    "funFact": "Giant kelp is NOT a plant — it is technically a protist! Despite growing 60 meters tall with leaf-like blades, it is a brown alga that evolved photosynthesis independently by engulfing an ancient alga and keeping its chloroplasts (secondary endosymbiosis). Kelp shares a deep common ancestor with the malaria parasite in the SAR supergroup, both completely unrelated to plants.",
+    "funFact": "Giant kelp is NOT a plant — it is technically a protist! Despite growing up to 45 meters tall with leaf-like blades, it is a brown alga that evolved photosynthesis independently by engulfing an ancient alga and keeping its chloroplasts (secondary endosymbiosis). Kelp shares a deep common ancestor with the malaria parasite in the SAR supergroup, both completely unrelated to plants.",
     "sources": [
       {
         "url": "https://en.wikipedia.org/wiki/Brown_algae",
@@ -2847,45 +2871,6 @@
       {
         "url": "https://en.wikipedia.org/wiki/Monocotyledon",
         "label": "Monocotyledon - Wikipedia"
-      }
-    ]
-  },
-  {
-    "organisms": [
-      {
-        "commonName": "Corpse lily",
-        "scientificName": "Rafflesia arnoldii",
-        "ncbiTaxId": 577516,
-        "wikiTitle": "Rafflesia_arnoldii",
-        "group": "plant",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Rafflesia_arnoldii%2C_Sumatra.jpg/330px-Rafflesia_arnoldii%2C_Sumatra.jpg"
-      },
-      {
-        "commonName": "Mistletoe",
-        "scientificName": "Viscum album",
-        "ncbiTaxId": 3972,
-        "wikiTitle": "Viscum_album",
-        "group": "plant",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Viscum_album_2026_G1.jpg/330px-Viscum_album_2026_G1.jpg"
-      },
-      {
-        "commonName": "Sphagnum moss",
-        "scientificName": "Sphagnum palustre",
-        "ncbiTaxId": 13805,
-        "wikiTitle": "Sphagnum",
-        "group": "plant",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Sphagnum.flexuosum.jpg/330px-Sphagnum.flexuosum.jpg"
-      }
-    ],
-    "funFact": "The corpse lily (Rafflesia) — which produces the world's largest flower at nearly a meter across and smells like rotting meat — is a flowering plant related to mistletoe and poinsettias. It has no leaves, stems, or roots and lives entirely as a parasite inside grapevines. Despite looking like a fungus growing on the forest floor, it is closer to the mistletoe on your doorframe than to any moss.",
-    "sources": [
-      {
-        "url": "https://en.wikipedia.org/wiki/Rafflesia",
-        "label": "Rafflesia - Wikipedia"
-      },
-      {
-        "url": "https://www.pnas.org/doi/10.1073/pnas.0305562101",
-        "label": "PNAS - Photosynthetic relatives of Rafflesia"
       }
     ]
   },
@@ -3688,7 +3673,7 @@
         "ncbiTaxId": 569448,
         "wikiTitle": "Salp",
         "group": "invertebrate",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Salp.jpg/330px-Salp.jpg"
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Salp_colony%2C_Aorangaia_PA171899.JPG/500px-Salp_colony%2C_Aorangaia_PA171899.JPG?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail"
       },
       {
         "commonName": "Sea squirt",
@@ -3972,7 +3957,7 @@
         "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/202306_Varanus_komodoensis.jpg/330px-202306_Varanus_komodoensis.jpg"
       }
     ],
-    "funFact": "Turtles are closer to birds and crocodilians than to lizards! The reptile family tree has two main branches: one leading to lizards and snakes, the other to turtles, dinosaurs, birds, and crocs. Despite looking like the most \"primitive\" reptile, turtles are on the same branch as a T. rex — not dinosaurs themselves, but the closest relatives of that whole lineage.",
+    "funFact": "Turtles are closer to birds and crocodilians than to lizards! The reptile family tree has two main branches: one leading to lizards and snakes, the other to turtles, crocodilians, and birds. Turtles sit just outside Archosauria — the clade of crocodilians, dinosaurs, and birds — making crocodilians the closest living relatives of birds, not turtles. Despite looking like the most \"primitive\" reptile, a turtle is on the bird-and-croc side of the tree, not the lizard side.",
     "sources": [
       {
         "url": "https://en.wikipedia.org/wiki/Archelosauria",
@@ -4159,11 +4144,19 @@
         "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Oscaecilia_ochrocephala_%2816983972190%29.jpg/330px-Oscaecilia_ochrocephala_%2816983972190%29.jpg"
       }
     ],
-    "funFact": "Within amphibians, frogs and salamanders (like the axolotl) form a clade called Batrachia — they are each other's closest relatives. Caecilians — limbless, burrowing, worm-like amphibians — represent the earliest-diverging of the three amphibian orders, having split off before frogs and salamanders went their separate ways.",
+    "funFact": "Within amphibians, frogs and salamanders (like the axolotl) form a clade called Batrachia — they are each other's closest relatives. Caecilians — limbless, burrowing, worm-like amphibians — are in most analyses the earliest-diverging of the three amphibian orders, having split off before frogs and salamanders went their separate ways, though ancient incomplete lineage sorting makes this one of the harder nodes in vertebrate phylogenetics.",
     "sources": [
       {
         "url": "https://en.wikipedia.org/wiki/Batrachia",
         "label": "Batrachia - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Lissamphibia",
+        "label": "Lissamphibia - Wikipedia"
+      },
+      {
+        "url": "https://academic.oup.com/sysbio/article/70/1/49/5828236",
+        "label": "Irisarri et al. 2021 - Phylogenomics Reveals Ancient Gene Tree Discordance in the Amphibian Tree of Life (Systematic Biology)"
       }
     ]
   },
@@ -4276,7 +4269,7 @@
         "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Cocos_nucifera_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-187.jpg/330px-Cocos_nucifera_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-187.jpg"
       }
     ],
-    "funFact": "Despite both being tall tropical trees with massive fruit, the papaya and the coconut palm are total strangers. The papaya is actually just a mustard-flavored weed that grew into a tower — it shares 'mustard oil' DNA (glucosinolates) with cabbage, wasabi, and your coleslaw! They all belong to the order Brassicales.",
+    "funFact": "Despite both being tall tropical trees with massive fruit, the papaya and the coconut palm are total strangers. Papayas belong to the order Brassicales — the same order as cabbage, mustard, and wasabi. They share glucosinolates (mustard oil compounds), a chemical signature that unites this otherwise unlikely group.",
     "sources": [
       {
         "url": "https://en.wikipedia.org/wiki/Brassicales",
