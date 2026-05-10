@@ -915,7 +915,9 @@ export function pickNHardModeDistance(
     }
   }
 
-  return { picks: pickNFromClade(count, 1, pool, data) ?? pool.slice(0, count) }
+  return {
+    picks: pickNFromClade(count, 1, pool, data) ?? pool.slice(0, count),
+  }
 }
 
 export interface DiagramNode {

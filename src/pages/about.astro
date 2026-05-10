@@ -12,39 +12,75 @@ import '../index.css'
 
       <h3>Data sources</h3>
       <ul>
-        <li>Taxonomy from <a href="https://www.ncbi.nlm.nih.gov/taxonomy" target="_blank" rel="noopener noreferrer">NCBI Taxonomy</a></li>
-        <li>Images from <a href="https://en.wikipedia.org/" target="_blank" rel="noopener noreferrer">Wikipedia</a></li>
+        <li>
+          Taxonomy from <a
+            href="https://www.ncbi.nlm.nih.gov/taxonomy"
+            target="_blank"
+            rel="noopener noreferrer">NCBI Taxonomy</a
+          >
+        </li>
+        <li>
+          Images from <a
+            href="https://en.wikipedia.org/"
+            target="_blank"
+            rel="noopener noreferrer">Wikipedia</a
+          >
+        </li>
       </ul>
 
       <h3>Contribute</h3>
-      <p><a href="https://github.com/cmdcolin/phyloguessr" target="_blank" rel="noopener noreferrer">GitHub</a> · <a href="https://github.com/cmdcolin/phyloguessr/issues" target="_blank" rel="noopener noreferrer">Report bugs or suggest trios</a> · <a href="/donate">Donate</a></p>
+      <p>
+        <a
+          href="https://github.com/cmdcolin/phyloguessr"
+          target="_blank"
+          rel="noopener noreferrer">GitHub</a
+        > · <a
+          href="https://github.com/cmdcolin/phyloguessr/issues"
+          target="_blank"
+          rel="noopener noreferrer">Report bugs or suggest new comparisons</a
+        > · <a href="/donate">Donate</a>
+      </p>
+
       <h3>FAQ</h3>
-
-      <h4>How do I play?</h4>
-      <p>Pick which two of three organisms are most closely related — the pair sharing the most recent common ancestor.</p>
-
-      <h4>How does scoring work?</h4>
-      <p>In standard mode, you score points for a correct answer (reduced by 50% if you used a hint).</p>
-      <p>In "closest pair" mode (6 species), your score reflects how close your chosen pair's common ancestor is relative to all other possible pairs. Closeness is measured by taxonomic rank — genus is closer than family, which is closer than order, and so on. For pairs whose common ancestor has an informal rank (like a clade node in NCBI Taxonomy), scoring uses the nearest formally-ranked ancestor above it, with tree depth as a tiebreaker within the same rank.</p>
-
-      <h4>Is the taxonomy always accurate?</h4>
-      <p>NCBI Taxonomy is a classification, not a true phylogeny — it draws from multiple sources and may not reflect the latest phylogenetic understanding. See the <a href="https://www.ncbi.nlm.nih.gov/books/NBK53759/" target="_blank" rel="noopener noreferrer">NCBI Taxonomy Help</a> for details.</p>
-
-      <h4>Why does phylogeny matter?</h4>
-      <p>Phylogeny has applications across medicine, agriculture, conservation, forensics, and more. See the <a href="/why">Why it matters</a> page for examples and a guide to model organisms.</p>
+      <h4>What is the relationship between taxonomy and phylogeny?</h4>
+      <p>
+        Taxonomy is for naming and grouping organisms, while phylogeny describes
+        evolutionary history. While taxonomy aims to mirror phylogeny, they can
+        differ in some cases due to evolving understanding or legacy categorizations. We
+        use NCBI Taxonomy, which is a classification system and may not reflect
+        every recent phylogenetic discovery.
+      </p>
 
       <h4>Where did the idea come from?</h4>
-      <p>I attended a Science on Tap trivia night where they played this type of game live — it was entertaining, and I thought it would make a fun web game. The name borrows the "-guessr" format made iconic by <a href="https://www.geoguessr.com" target="_blank" rel="noopener noreferrer">GeoGuessr</a>.</p>
+      <p>
+        I once attended a 'Science on Tap' trivia night, and they played a game
+        like this on powerpoint slides. It was quite fun. I had a small list of
+        funny evolutionary relationships on my 'oddbiology' github repo also and
+        thought it would be fun to make it into a game. If you have any ideas
+        for the game feel free to contact me! And yes, the name is inspired by
+        the GeoGuessr game.
+      </p>
 
       <h4>Can I use this for my own trivia night or classroom?</h4>
-      <p>Absolutely! Feel free to use it for trivia, teaching, or anything else.</p>
+      <p>
+        Yes! Feel free to use it for any purpose. You can even change it for
+        your needs. It is free and open source
+      </p>
 
-
+      <h3>Use of AI</h3>
+      <p>
+        I used Claude Code extensively to help development, and even to create
+        scenario ideas, and narrate the 'fun facts'. I know it's a weird thing
+        but I feel it helps to be transparent about such things. If you find any
+        issues, please report on
+        <a
+          href="https://github.com/cmdcolin/phyloguessr/issues"
+          target="_blank"
+          rel="noopener noreferrer">GitHub</a
+        > or email <a href="mailto:colin.diesh@gmail.com"
+          >colin.diesh@gmail.com</a
+        >.
+      </p>
     </div>
-
-    <h3>Use of AI</h3>
-    <p>I used Claude Code to help build this website and even to suggest ideas for species comparisons in the 'easy' scenarios and fun facts. If you find any issues feel free to report to <a href="https://github.com/cmdcolin/phyloguessr/issues" target="_blank" rel="noopener noreferrer">GitHub</a> or email <a href="mailto:colin.diesh@gmail.com">colin.diesh@gmail.com</a>.</p>
-
-
   </div>
 </Layout>

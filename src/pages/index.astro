@@ -8,28 +8,54 @@ import '../index.css'
   <div class="game">
     <Header client:load />
     <div class="start-screen">
-      <h3 class="wordart-subtitle">
-        The evolutionary guessing game
-      </h3>
+      <h3 class="wordart-subtitle">The evolutionary guessing game</h3>
       <div class="difficulty-selector">
-        <button class="diff-btn" data-difficulty="normal">Show species labels</button>
-        <button class="diff-btn" data-difficulty="nolabels">Don't show species labels</button>
+        <button class="diff-btn" data-difficulty="normal"
+          >Show species labels</button
+        >
+        <button class="diff-btn" data-difficulty="nolabels"
+          >Don't show species labels</button
+        >
       </div>
       <div class="mode-selector">
-        <a class="mode-btn mode-btn-easy" id="easy-btn" href="/easy">Easy <span class="btn-emoji">🍿</span></a>
-        <a class="mode-btn mode-btn-random" id="random-btn" href="/random">Random <span class="btn-emoji">🎰</span></a>
-        <a class="mode-btn mode-btn-custom" href="/custom">Custom <span class="btn-emoji">📠</span></a>
+        <a class="mode-btn mode-btn-easy" id="easy-btn" href="/easy"
+          >Easy <span class="btn-emoji">🍿</span></a
+        >
+        <a class="mode-btn mode-btn-random" id="random-btn" href="/random"
+          >Random <span class="btn-emoji">🎰</span></a
+        >
+        <a class="mode-btn mode-btn-custom" href="/custom"
+          >Custom <span class="btn-emoji">📠</span></a
+        >
       </div>
-      <div class="mode-notice easy-notice" id="easy-notice" style="display:none">
-        <p>Just kidding! These are curated tricky examples. Don't worry, just take your best guess.</p>
+      <div
+        class="mode-notice easy-notice"
+        id="easy-notice"
+        style="display:none"
+      >
+        <p>
+          Just kidding! These are curated tricky examples. Don't worry, just
+          take your best guess.
+        </p>
         <div class="notice-actions">
           <a class="notice-continue-btn" href="/easy">Let's go</a>
           <button class="notice-back-btn" id="easy-back-btn">Go back</button>
         </div>
       </div>
-      <div class="mode-notice random-notice" id="random-notice" style="display:none">
-        <p><strong>Warning:</strong> Completely random across all of life (bacteria, fungi, obscure invertebrates). Very hard.</p>
-        <p>For a narrower random (e.g. birds only), try <a href="/custom">Custom mode</a>.</p>
+      <div
+        class="mode-notice random-notice"
+        id="random-notice"
+        style="display:none"
+      >
+        <p>
+          <strong>Warning:</strong> Completely random across all of life (bacteria,
+          fungi, obscure invertebrates). Very hard.
+        </p>
+        <p>
+          For a narrower random (e.g. birds only), try <a href="/custom"
+            >Custom mode</a
+          >.
+        </p>
         <div class="notice-actions">
           <a class="notice-continue-btn" href="/random">Continue anyway</a>
           <button class="notice-back-btn" id="random-back-btn">Go back</button>
@@ -43,7 +69,10 @@ import '../index.css'
   const diffBtns = document.querySelectorAll('.diff-btn')
 
   const saved = localStorage.getItem('phyloDifficulty')
-  const active = (saved === 'nolabels' || saved === 'hard' || saved === 'expert') ? 'nolabels' : 'normal'
+  const active =
+    saved === 'nolabels' || saved === 'hard' || saved === 'expert'
+      ? 'nolabels'
+      : 'normal'
   diffBtns.forEach(btn => {
     btn.classList.toggle('active', btn.dataset.difficulty === active)
   })
@@ -101,7 +130,9 @@ import '../index.css'
     cursor: pointer;
     font-size: 0.9rem;
     font-weight: 600;
-    transition: background 0.15s, color 0.15s;
+    transition:
+      background 0.15s,
+      color 0.15s;
   }
 
   .diff-btn.active {
@@ -169,7 +200,9 @@ import '../index.css'
     font-weight: 700;
     text-decoration: none;
     cursor: pointer;
-    transition: background 0.15s, border-color 0.15s;
+    transition:
+      background 0.15s,
+      border-color 0.15s;
   }
 
   .notice-continue-btn:hover {
@@ -186,7 +219,9 @@ import '../index.css'
     cursor: pointer;
     font-size: 1rem;
     font-weight: 600;
-    transition: background 0.15s, color 0.15s;
+    transition:
+      background 0.15s,
+      color 0.15s;
   }
 
   .notice-back-btn:hover {
