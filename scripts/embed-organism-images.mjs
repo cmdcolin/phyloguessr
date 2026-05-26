@@ -1,51 +1,24 @@
 #!/usr/bin/env node
 
-// Fetches image URLs for the curated organisms in organisms.ts and embeds
-// them directly into the file, eliminating runtime Wikipedia/iNaturalist API
-// calls for easy mode.
-//
-// Uses the same image-cache.json as validate-pool-images.mjs.
+// Fetches Wikipedia thumbnail URLs for organisms in organisms.ts that don't
+// already have a Wikipedia image, replacing NCBI/iNaturalist/stale URLs.
 //
 // Usage:
 //   node scripts/embed-organism-images.mjs
 
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs'
+import { readFileSync, writeFileSync } from 'fs'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
 const ORGANISMS_PATH = join(ROOT, 'src', 'data', 'organisms.ts')
-const CACHE_DIR = join(ROOT, '.taxonomy-build')
-const CACHE_PATH = join(CACHE_DIR, 'image-cache.json')
 
 const CONCURRENCY = 3
 const RATE_DELAY_MS = 500
 
-function loadCache() {
-  if (existsSync(CACHE_PATH)) {
-    const raw = JSON.parse(readFileSync(CACHE_PATH, 'utf8'))
-    const cache = new Map()
-    for (const [key, value] of Object.entries(raw)) {
-      if (typeof value === 'object' && value !== null && 'ts' in value) {
-        cache.set(key, value)
-      } else {
-        cache.set(key, {
-          url: value === 'NONE' ? null : value,
-          ts: 0,
-        })
-      }
-    }
-    return cache
-  }
-  return new Map()
-}
-
-function saveCache(cache) {
-  if (!existsSync(CACHE_DIR)) {
-    mkdirSync(CACHE_DIR, { recursive: true })
-  }
-  writeFileSync(CACHE_PATH, JSON.stringify(Object.fromEntries(cache), null, 2))
+function isWikipediaUrl(url) {
+  return url.includes('upload.wikimedia.org')
 }
 
 async function fetchWikiThumbnail(wikiTitle) {
@@ -102,41 +75,36 @@ async function main() {
   const organisms = parseOrganisms(src)
   console.log(`Found ${organisms.length} organisms in organisms.ts`)
 
-  const cache = loadCache()
-  const now = Date.now()
-
-  const needFetch = organisms.filter(o => {
-    const cached = cache.get(o.scientificName)
-    return !cached || !cached.url
-  })
-
-  console.log(
-    `${organisms.length - needFetch.length} already cached, ${needFetch.length} need fetching`,
+  const needFetch = organisms.filter(
+    o => !o.imageUrl || !isWikipediaUrl(o.imageUrl),
   )
 
-  if (needFetch.length > 0) {
-    console.log('Fetching images...')
-    let fetched = 0
-    await processInBatches(needFetch, async o => {
-      const url = await fetchWikiThumbnail(o.wikiTitle)
-      cache.set(o.scientificName, { url, ts: now })
-      fetched++
-      if (fetched % 20 === 0) {
-        console.log(`  ${fetched}/${needFetch.length}`)
-      }
-      return url
-    })
-    saveCache(cache)
-    console.log(`Fetched ${fetched} images, cache saved`)
+  console.log(
+    `${organisms.length - needFetch.length} already have Wikipedia images, ${needFetch.length} need fetching`,
+  )
+
+  if (needFetch.length === 0) {
+    console.log('Nothing to update.')
+    return
   }
+
+  console.log('Fetching images from Wikipedia...')
+  let fetched = 0
+  const fetchResults = await processInBatches(needFetch, async o => {
+    const url = await fetchWikiThumbnail(o.wikiTitle)
+    fetched++
+    if (fetched % 10 === 0) {
+      console.log(`  ${fetched}/${needFetch.length}`)
+    }
+    return url
+  })
 
   let updated = src
   let embedded = 0
   let failed = 0
 
-  for (const o of organisms) {
-    const cached = cache.get(o.scientificName)
-    const imageUrl = cached?.url
+  for (const o of needFetch) {
+    const imageUrl = fetchResults.get(o.scientificName)
     if (!imageUrl) {
       console.warn(`  No image found for ${o.commonName} (${o.scientificName})`)
       failed++
@@ -157,7 +125,7 @@ async function main() {
 
   writeFileSync(ORGANISMS_PATH, updated)
   console.log(
-    `\nDone: ${embedded} organisms updated with image URLs, ${failed} without images`,
+    `\nDone: ${embedded} organisms updated with Wikipedia image URLs, ${failed} without images`,
   )
 }
 

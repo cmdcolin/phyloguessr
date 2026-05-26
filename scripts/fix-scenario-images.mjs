@@ -1,40 +1,20 @@
 #!/usr/bin/env node
-// Replaces iNaturalist image URLs in easy-scenarios.json with Wikipedia thumbnails.
+// Replaces non-Wikipedia image URLs (NCBI, iNaturalist, etc.) in
+// easy-scenarios.json with Wikipedia thumbnails.
 
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs'
+import { readFileSync, writeFileSync } from 'fs'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
 const SCENARIOS_PATH = join(ROOT, 'public', 'taxonomy', 'easy-scenarios.json')
-const CACHE_DIR = join(ROOT, '.taxonomy-build')
-const CACHE_PATH = join(CACHE_DIR, 'image-cache.json')
 
 const CONCURRENCY = 4
 const RATE_DELAY_MS = 300
 
-function loadCache() {
-  if (existsSync(CACHE_PATH)) {
-    const raw = JSON.parse(readFileSync(CACHE_PATH, 'utf8'))
-    const cache = new Map()
-    for (const [key, value] of Object.entries(raw)) {
-      if (typeof value === 'object' && value !== null && 'ts' in value) {
-        cache.set(key, value)
-      } else {
-        cache.set(key, { url: value === 'NONE' ? null : value, ts: 0 })
-      }
-    }
-    return cache
-  }
-  return new Map()
-}
-
-function saveCache(cache) {
-  if (!existsSync(CACHE_DIR)) {
-    mkdirSync(CACHE_DIR, { recursive: true })
-  }
-  writeFileSync(CACHE_PATH, JSON.stringify(Object.fromEntries(cache), null, 2))
+function isWikipediaUrl(url) {
+  return url.includes('upload.wikimedia.org')
 }
 
 async function fetchWikiThumbnail(wikiTitle) {
@@ -54,14 +34,13 @@ async function fetchWikiThumbnail(wikiTitle) {
 
 async function main() {
   const scenarios = JSON.parse(readFileSync(SCENARIOS_PATH, 'utf8'))
-  const cache = loadCache()
 
-  // Collect all unique organisms using iNaturalist images
-  const needsReplacement = new Map() // scientificName -> { wikiTitle, commonName }
+  const needsReplacement = new Map()
   for (const scenario of scenarios) {
     for (const org of scenario.organisms) {
       if (
-        org.imageUrl?.includes('inaturalist') &&
+        org.imageUrl &&
+        !isWikipediaUrl(org.imageUrl) &&
         !needsReplacement.has(org.scientificName)
       ) {
         needsReplacement.set(org.scientificName, {
@@ -73,29 +52,26 @@ async function main() {
   }
 
   console.log(
-    `Found ${needsReplacement.size} unique organisms with iNaturalist images`,
+    `Found ${needsReplacement.size} unique organisms with non-Wikipedia images`,
   )
 
-  // Determine which need fetching (not already in cache with a URL)
-  const toFetch = []
-  for (const [sciName, info] of needsReplacement) {
-    const cached = cache.get(sciName)
-    if (!cached?.url) {
-      toFetch.push({ sciName, ...info })
-    }
+  if (needsReplacement.size === 0) {
+    console.log('Nothing to update.')
+    return
   }
 
-  console.log(
-    `${needsReplacement.size - toFetch.length} already cached, ${toFetch.length} need fetching`,
-  )
+  const toFetch = [...needsReplacement.entries()].map(([sciName, info]) => ({
+    sciName,
+    ...info,
+  }))
 
-  // Fetch in batches
+  const urlMap = new Map()
   for (let i = 0; i < toFetch.length; i += CONCURRENCY) {
     const batch = toFetch.slice(i, i + CONCURRENCY)
     await Promise.all(
       batch.map(async ({ sciName, wikiTitle, commonName }) => {
         const url = await fetchWikiThumbnail(wikiTitle)
-        cache.set(sciName, { url, ts: Date.now() })
+        urlMap.set(sciName, url)
         const status = url ? '✓' : '✗ no image'
         console.log(`  ${commonName}: ${status}`)
       }),
@@ -105,23 +81,20 @@ async function main() {
     }
   }
 
-  saveCache(cache)
-
-  // Replace iNaturalist URLs in scenarios
   let replaced = 0
   let failed = 0
   for (const scenario of scenarios) {
     for (const org of scenario.organisms) {
-      if (!org.imageUrl?.includes('inaturalist')) {
+      if (!org.imageUrl || isWikipediaUrl(org.imageUrl)) {
         continue
       }
-      const cached = cache.get(org.scientificName)
-      if (cached?.url) {
-        org.imageUrl = cached.url
+      const url = urlMap.get(org.scientificName)
+      if (url) {
+        org.imageUrl = url
         replaced++
       } else {
         console.warn(
-          `  No Wikipedia image for ${org.commonName} (${org.scientificName}), keeping iNaturalist URL`,
+          `  No Wikipedia image for ${org.commonName} (${org.scientificName}), keeping existing URL`,
         )
         failed++
       }
@@ -130,7 +103,7 @@ async function main() {
 
   writeFileSync(SCENARIOS_PATH, JSON.stringify(scenarios, null, 2) + '\n')
   console.log(
-    `\nDone: ${replaced} images replaced, ${failed} kept iNaturalist (no Wikipedia image found)`,
+    `\nDone: ${replaced} images replaced, ${failed} kept existing (no Wikipedia image found)`,
   )
 }
 

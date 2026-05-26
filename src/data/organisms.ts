@@ -348,8 +348,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 93162,
     wikiTitle: 'Yellow-bellied_marmot',
     group: 'mammal',
-    imageUrl:
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Marmot-edit1.jpg?width=330',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Marmota_flaviventris_%28Yellow_Bellied_Marmot%29%2C_Yosemite_NP_-_Diliff.jpg/330px-Marmota_flaviventris_%28Yellow_Bellied_Marmot%29%2C_Yosemite_NP_-_Diliff.jpg',
   },
   {
     commonName: 'Black-tailed prairie dog',
@@ -474,8 +473,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 9844,
     wikiTitle: 'Llama',
     group: 'mammal',
-    imageUrl:
-      'https://commons.wikimedia.org/wiki/Special:FilePath/18-08-25-%C3%85land_RRK6596a.jpg?width=330',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Llamas%2C_Vernagt-Stausee%2C_Italy.jpg/330px-Llamas%2C_Vernagt-Stausee%2C_Italy.jpg',
   },
   {
     commonName: 'American bison',
@@ -1042,8 +1040,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 8030,
     wikiTitle: 'Atlantic_salmon',
     group: 'fish',
-    imageUrl:
-      'https://api.ncbi.nlm.nih.gov/datasets/v2/taxonomy/taxon/8030/image',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Wst_atlantischer_lachs_stoer_001.jpg/330px-Wst_atlantischer_lachs_stoer_001.jpg',
   },
   {
     commonName: 'Australian lungfish',
@@ -1069,8 +1066,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 7888,
     wikiTitle: 'West_African_lungfish',
     group: 'fish',
-    imageUrl:
-      'https://api.ncbi.nlm.nih.gov/datasets/v2/taxonomy/taxon/7888/image',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Protopterus_annectens_Natural_History_Museum_University_of_Pisa.jpg/330px-Protopterus_annectens_Natural_History_Museum_University_of_Pisa.jpg',
   },
   {
     commonName: 'European eel',
@@ -1078,8 +1074,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 7936,
     wikiTitle: 'European_eel',
     group: 'fish',
-    imageUrl:
-      'https://api.ncbi.nlm.nih.gov/datasets/v2/taxonomy/taxon/7936/image',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Anguilla_anguilla.jpg/330px-Anguilla_anguilla.jpg',
   },
   {
     commonName: 'Ocean sunfish',
@@ -1188,8 +1183,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 6850,
     wikiTitle: 'Atlantic_horseshoe_crab',
     group: 'arthropod',
-    imageUrl:
-      'https://api.ncbi.nlm.nih.gov/datasets/v2/taxonomy/taxon/6850/image',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Limulus_polyphemus_%28aq.%29.jpg/330px-Limulus_polyphemus_%28aq.%29.jpg',
   },
   {
     commonName: 'Tardigrade',
@@ -1251,8 +1245,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 6706,
     wikiTitle: 'American_lobster',
     group: 'arthropod',
-    imageUrl:
-      'https://api.ncbi.nlm.nih.gov/datasets/v2/taxonomy/taxon/6706/image',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Nur01521_-_Flickr_-_NOAA_Photo_Library.jpg/330px-Nur01521_-_Flickr_-_NOAA_Photo_Library.jpg',
   },
   {
     commonName: 'Red king crab',
@@ -1260,8 +1253,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 6741,
     wikiTitle: 'Red_king_crab',
     group: 'arthropod',
-    imageUrl:
-      'https://api.ncbi.nlm.nih.gov/datasets/v2/taxonomy/taxon/6741/image',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Spider_crab.jpg/330px-Spider_crab.jpg',
   },
   {
     commonName: 'Hermit crab',
@@ -1278,8 +1270,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 6763,
     wikiTitle: 'Callinectes_sapidus',
     group: 'arthropod',
-    imageUrl:
-      'https://api.ncbi.nlm.nih.gov/datasets/v2/taxonomy/taxon/6763/image',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/The_Childrens_Museum_of_Indianapolis_-_Atlantic_blue_crab.jpg/330px-The_Childrens_Museum_of_Indianapolis_-_Atlantic_blue_crab.jpg',
   },
   {
     commonName: 'Common woodlouse',
@@ -1332,8 +1323,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 7507,
     wikiTitle: 'Mantis_religiosa',
     group: 'arthropod',
-    imageUrl:
-      'https://api.ncbi.nlm.nih.gov/datasets/v2/taxonomy/taxon/7507/image',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/European_praying_mantis_%28Mantis_religiosa%29_green_female_Dobruja.jpg/330px-European_praying_mantis_%28Mantis_religiosa%29_green_female_Dobruja.jpg',
   },
   {
     commonName: 'Green lacewing',
@@ -1352,8 +1342,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 6645,
     wikiTitle: 'Common_octopus',
     group: 'invertebrate',
-    imageUrl:
-      'https://api.ncbi.nlm.nih.gov/datasets/v2/taxonomy/taxon/6645/image',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Octopus2.jpg/330px-Octopus2.jpg',
   },
   {
     commonName: 'Common limpet',
@@ -1361,8 +1350,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 6465,
     wikiTitle: 'Common_limpet',
     group: 'invertebrate',
-    imageUrl:
-      'https://api.ncbi.nlm.nih.gov/datasets/v2/taxonomy/taxon/6465/image',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Common_limpets1.jpg/330px-Common_limpets1.jpg',
   },
   {
     commonName: 'Sand dollar',
@@ -1370,8 +1358,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 869203,
     wikiTitle: 'Sand_dollar',
     group: 'invertebrate',
-    imageUrl:
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Echinarachnius_parma.jpg?width=330',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Clypeaster_reticulatus.jpg/330px-Clypeaster_reticulatus.jpg',
   },
   {
     commonName: 'Garden snail',
@@ -1379,8 +1366,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 6535,
     wikiTitle: 'Cornu_aspersum',
     group: 'invertebrate',
-    imageUrl:
-      'https://api.ncbi.nlm.nih.gov/datasets/v2/taxonomy/taxon/6535/image',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Snail1web.jpg/330px-Snail1web.jpg',
   },
   {
     commonName: 'Milky ribbon worm',
@@ -1433,8 +1419,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 6145,
     wikiTitle: 'Moon_jellyfish',
     group: 'invertebrate',
-    imageUrl:
-      'https://api.ncbi.nlm.nih.gov/datasets/v2/taxonomy/taxon/6145/image',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Aurelia_aurita_%28Cnidaria%29_Luc_Viatour.jpg/330px-Aurelia_aurita_%28Cnidaria%29_Luc_Viatour.jpg',
   },
   {
     commonName: 'Staghorn coral',
@@ -1442,8 +1427,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 6130,
     wikiTitle: 'Staghorn_coral',
     group: 'invertebrate',
-    imageUrl:
-      'https://api.ncbi.nlm.nih.gov/datasets/v2/taxonomy/taxon/6130/image',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Hertshoon.jpg/330px-Hertshoon.jpg',
   },
   {
     commonName: 'Giant squid',
@@ -1487,8 +1471,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 6446,
     wikiTitle: 'Peanut_worm',
     group: 'invertebrate',
-    imageUrl:
-      'https://api.ncbi.nlm.nih.gov/datasets/v2/taxonomy/taxon/6446/image',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Thysanocardia_nigra.jpg/330px-Thysanocardia_nigra.jpg',
   },
   {
     commonName: 'Pork tapeworm',
@@ -1543,6 +1526,24 @@ export const organisms: Organism[] = [
     group: 'invertebrate',
     imageUrl:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Branchiostoma_lanceolatum.jpg/330px-Branchiostoma_lanceolatum.jpg',
+  },
+  {
+    commonName: 'Common cuttlefish',
+    scientificName: 'Sepia officinalis',
+    ncbiTaxId: 6610,
+    wikiTitle: 'Common_cuttlefish',
+    group: 'invertebrate',
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Sepia_officinalis_%28aquarium%29.jpg/330px-Sepia_officinalis_%28aquarium%29.jpg',
+  },
+  {
+    commonName: 'Sea pig',
+    scientificName: 'Scotoplanes globosa',
+    ncbiTaxId: 2665651,
+    wikiTitle: 'Scotoplanes_globosa',
+    group: 'invertebrate',
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Scotoplanes_globosa_and_crab_%28cropped%29.jpg/250px-Scotoplanes_globosa_and_crab_%28cropped%29.jpg',
   },
   {
     commonName: 'Sea cucumber',
@@ -1631,8 +1632,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 1903125,
     wikiTitle: 'Phylliroe_bucephala',
     group: 'invertebrate',
-    imageUrl:
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Phylliroe_bucephalum.jpg?width=330',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Phylliroe_bucephala_592203188.jpg/330px-Phylliroe_bucephala_592203188.jpg',
   },
   {
     commonName: 'Phronima',
@@ -1640,8 +1640,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 472282,
     wikiTitle: 'Phronima',
     group: 'invertebrate',
-    imageUrl:
-      'https://commons.wikimedia.org/wiki/Special:FilePath/Phronima_sedentaria_(YPM_IZ_075000).jpeg?width=330',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Phronima_sedentaria_%28YPM_IZ_075000%29.jpeg/330px-Phronima_sedentaria_%28YPM_IZ_075000%29.jpeg',
   },
 
   // Plants
@@ -1651,8 +1650,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 3702,
     wikiTitle: 'Arabidopsis_thaliana',
     group: 'plant',
-    imageUrl:
-      'https://api.ncbi.nlm.nih.gov/datasets/v2/taxonomy/taxon/3702/image',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Arabidopsis_thaliana.jpg/330px-Arabidopsis_thaliana.jpg',
   },
   {
     commonName: 'English oak',
@@ -1741,8 +1739,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 3635,
     wikiTitle: 'Gossypium_hirsutum',
     group: 'plant',
-    imageUrl:
-      'https://api.ncbi.nlm.nih.gov/datasets/v2/taxonomy/taxon/3635/image',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/CottonPlant.JPG/330px-CottonPlant.JPG',
   },
   {
     commonName: 'Cacao',
@@ -1751,7 +1748,7 @@ export const organisms: Organism[] = [
     wikiTitle: 'Theobroma_cacao',
     group: 'plant',
     imageUrl:
-      'https://api.ncbi.nlm.nih.gov/datasets/v2/taxonomy/taxon/3641/image',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Matadecacao.jpg/330px-Matadecacao.jpg',
   },
   {
     commonName: 'Venus flytrap',
@@ -1759,8 +1756,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 4362,
     wikiTitle: 'Venus_flytrap',
     group: 'plant',
-    imageUrl:
-      'https://api.ncbi.nlm.nih.gov/datasets/v2/taxonomy/taxon/4362/image',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Venus_Flytrap_showing_trigger_hairs.jpg/330px-Venus_Flytrap_showing_trigger_hairs.jpg',
   },
   {
     commonName: 'Saguaro cactus',
@@ -1814,7 +1810,7 @@ export const organisms: Organism[] = [
     wikiTitle: 'Peanut',
     group: 'plant',
     imageUrl:
-      'https://api.ncbi.nlm.nih.gov/datasets/v2/taxonomy/taxon/3818/image',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Arachis_hypogaea_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-163.jpg/330px-Arachis_hypogaea_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-163.jpg',
   },
   {
     commonName: 'Cashew',
@@ -1832,7 +1828,7 @@ export const organisms: Organism[] = [
     wikiTitle: 'Almond',
     group: 'plant',
     imageUrl:
-      'https://api.ncbi.nlm.nih.gov/datasets/v2/taxonomy/taxon/3755/image',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Almonds_-_in_shell%2C_shell_cracked_open%2C_shelled%2C_blanched.jpg/330px-Almonds_-_in_shell%2C_shell_cracked_open%2C_shelled%2C_blanched.jpg',
   },
   {
     commonName: 'Rose',
@@ -2041,7 +2037,7 @@ export const organisms: Organism[] = [
     wikiTitle: 'Common_wheat',
     group: 'plant',
     imageUrl:
-      'https://api.ncbi.nlm.nih.gov/datasets/v2/taxonomy/taxon/4565/image',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Bl%C3%A9_tendre_%28GRAPELLI%29_AO-5-cliche_Jean_Weber_%285%29_%2823975019962%29.jpg/330px-Bl%C3%A9_tendre_%28GRAPELLI%29_AO-5-cliche_Jean_Weber_%285%29_%2823975019962%29.jpg',
   },
   {
     commonName: 'Corpse lily',
@@ -2175,8 +2171,7 @@ export const organisms: Organism[] = [
     ncbiTaxId: 3712,
     wikiTitle: 'Brassica_oleracea',
     group: 'plant',
-    imageUrl:
-      'https://api.ncbi.nlm.nih.gov/datasets/v2/taxonomy/taxon/3712/image',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Brassica_oleracea0.jpg/330px-Brassica_oleracea0.jpg',
   },
   {
     commonName: 'American pitcher plant',
