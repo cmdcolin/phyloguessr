@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Emperor penguin",
+      "scientificName": "Aptenodytes forsteri",
+      "ncbiTaxId": 9233,
+      "wikiTitle": "Emperor_penguin",
+      "group": "bird",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Aptenodytes_forsteri_-Snow_Hill_Island%2C_Antarctica_-adults_and_juvenile-8.jpg/330px-Aptenodytes_forsteri_-Snow_Hill_Island%2C_Antarctica_-adults_and_juvenile-8.jpg"
+    },
+    {
+      "commonName": "Snapping turtle",
+      "scientificName": "Chelydra serpentina",
+      "ncbiTaxId": 8475,
+      "wikiTitle": "Common_snapping_turtle",
+      "group": "reptile",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Snapping_Turtle_Heinz.png/330px-Snapping_Turtle_Heinz.png"
+    },
+    {
+      "commonName": "Corn snake",
+      "scientificName": "Pantherophis guttatus",
+      "ncbiTaxId": 94885,
+      "wikiTitle": "Corn_snake",
+      "group": "reptile",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/CornSnake.jpg/500px-CornSnake.jpg"
+    }
+  ],
+  "funFact": "A penguin is more closely related to a snapping turtle than a snake is — because birds are reptiles. \"Reptilia\" is not a valid group unless you include birds. The reptile family tree splits into two main branches: lizards and snakes on one side, turtles, dinosaurs, birds, and crocs on the other. The snake is the odd one out.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Reptile#Phylogenetics",
+      "label": "Reptile phylogenetics - Wikipedia"
+    },
+    {
+      "url": "https://askabiologist.asu.edu/questions/birds-dinosaurs-reptiles",
+      "label": "ASU Ask A Biologist - Are birds reptiles?"
+    }
+  ]
+}

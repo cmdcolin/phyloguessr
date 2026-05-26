@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Okapi",
+      "scientificName": "Okapia johnstoni",
+      "ncbiTaxId": 86973,
+      "wikiTitle": "Okapi",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Saint-Aignan_%28Loir-et-Cher%29._Okapi.jpg/330px-Saint-Aignan_%28Loir-et-Cher%29._Okapi.jpg"
+    },
+    {
+      "commonName": "Giraffe",
+      "scientificName": "Giraffa camelopardalis",
+      "ncbiTaxId": 9894,
+      "wikiTitle": "Giraffe",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Rothschild%27s_giraffe_%28Giraffa_camelopardalis_rothschildi%29_-_Murchison_Falls_National_Park.jpg/330px-Rothschild%27s_giraffe_%28Giraffa_camelopardalis_rothschildi%29_-_Murchison_Falls_National_Park.jpg"
+    },
+    {
+      "commonName": "Horse",
+      "scientificName": "Equus caballus",
+      "ncbiTaxId": 9796,
+      "wikiTitle": "Horse",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Nokota_Horses_cropped.jpg/500px-Nokota_Horses_cropped.jpg"
+    }
+  ],
+  "funFact": "The okapi has striped legs like a zebra and a horse-like body, but it is the giraffe's only living relative! Both are in the family Giraffidae. Horses are odd-toed ungulates, a completely separate lineage of hoofed mammals.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Okapi",
+      "label": "Okapi - Wikipedia"
+    },
+    {
+      "url": "https://giraffeconservation.org/facts-about-giraffe/what-are-the-closest-relatives-of-giraffe/",
+      "label": "Giraffe Conservation Foundation - Okapi as closest giraffe relative"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Welwitschia",
+      "scientificName": "Welwitschia mirabilis",
+      "ncbiTaxId": 3377,
+      "wikiTitle": "Welwitschia",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Welwitschia_mirabilis%282%29.jpg/330px-Welwitschia_mirabilis%282%29.jpg"
+    },
+    {
+      "commonName": "Redwood",
+      "scientificName": "Sequoia sempervirens",
+      "ncbiTaxId": 28980,
+      "wikiTitle": "Sequoia_sempervirens",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/US_199_Redwood_Highway.jpg/330px-US_199_Redwood_Highway.jpg"
+    },
+    {
+      "commonName": "Banana",
+      "scientificName": "Musa acuminata",
+      "ncbiTaxId": 4641,
+      "wikiTitle": "Banana",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Bananavarieties.jpg/330px-Bananavarieties.jpg"
+    }
+  ],
+  "funFact": "Welwitschia — a bizarre desert plant that grows only two leaves its entire life, which can last over 1,000 years — is a gymnosperm, on the same branch as redwoods and pines. Despite looking nothing like any conifer, it produces cones and has no flowers. Banana plants are flowering plants, a completely separate lineage.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Welwitschia",
+      "label": "Welwitschia - Wikipedia"
+    },
+    {
+      "url": "https://www.britannica.com/plant/tumboa",
+      "label": "Britannica - Welwitschia"
+    }
+  ]
+}

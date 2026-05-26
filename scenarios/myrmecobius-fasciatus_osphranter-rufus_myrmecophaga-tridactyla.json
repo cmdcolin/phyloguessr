@@ -1,0 +1,35 @@
+{
+  "organisms": [
+    {
+      "commonName": "Numbat",
+      "scientificName": "Myrmecobius fasciatus",
+      "ncbiTaxId": 55782,
+      "wikiTitle": "Numbat",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Numbat%2C_Dryandra_Woodland%2C_Western_Australia.jpg/330px-Numbat%2C_Dryandra_Woodland%2C_Western_Australia.jpg"
+    },
+    {
+      "commonName": "Red kangaroo",
+      "scientificName": "Osphranter rufus",
+      "ncbiTaxId": 9321,
+      "wikiTitle": "Red_kangaroo",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Red_kangaroo_-_melbourne_zoo.jpg/330px-Red_kangaroo_-_melbourne_zoo.jpg"
+    },
+    {
+      "commonName": "Giant anteater",
+      "scientificName": "Myrmecophaga tridactyla",
+      "ncbiTaxId": 71006,
+      "wikiTitle": "Giant_anteater",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Myresluger2.jpg/330px-Myresluger2.jpg"
+    }
+  ],
+  "funFact": "The numbat is a termite-eating Australian marsupial with a long sticky tongue — the same toolkit as aardvarks (from Africa) and anteaters (from South America). Three completely unrelated mammals on three different continents independently evolved the same termite-specialist body plan. The numbat is closer to a kangaroo than to either of them.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Numbat",
+      "label": "Numbat - Wikipedia"
+    }
+  ]
+}

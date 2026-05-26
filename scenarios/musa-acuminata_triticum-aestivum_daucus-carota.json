@@ -1,0 +1,35 @@
+{
+  "organisms": [
+    {
+      "commonName": "Banana",
+      "scientificName": "Musa acuminata",
+      "ncbiTaxId": 4641,
+      "wikiTitle": "Banana",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Bananavarieties.jpg/330px-Bananavarieties.jpg"
+    },
+    {
+      "commonName": "Wheat",
+      "scientificName": "Triticum aestivum",
+      "ncbiTaxId": 4565,
+      "wikiTitle": "Common_wheat",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Bl%C3%A9_tendre_%28GRAPELLI%29_AO-5-cliche_Jean_Weber_%285%29_%2823975019962%29.jpg/330px-Bl%C3%A9_tendre_%28GRAPELLI%29_AO-5-cliche_Jean_Weber_%285%29_%2823975019962%29.jpg"
+    },
+    {
+      "commonName": "Carrot",
+      "scientificName": "Daucus carota",
+      "ncbiTaxId": 4039,
+      "wikiTitle": "Carrot",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Daucus_carota_May_2008-1_edit.jpg/330px-Daucus_carota_May_2008-1_edit.jpg"
+    }
+  ],
+  "funFact": "A banana plant and a wheat stalk are both monocots — plants that sprout with a single seed leaf. Despite one being a tropical tree-like herb and the other a temperate grass, they share a more recent ancestor with each other than either does with a carrot, which is a eudicot on the other side of the flowering plant tree.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Monocotyledon",
+      "label": "Monocotyledon - Wikipedia"
+    }
+  ]
+}

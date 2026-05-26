@@ -1,0 +1,35 @@
+{
+  "organisms": [
+    {
+      "commonName": "Olive baboon",
+      "scientificName": "Papio anubis",
+      "ncbiTaxId": 9555,
+      "wikiTitle": "Olive_baboon",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Olive_baboon_Ngorongoro.jpg/330px-Olive_baboon_Ngorongoro.jpg"
+    },
+    {
+      "commonName": "Gorilla",
+      "scientificName": "Gorilla gorilla",
+      "ncbiTaxId": 9593,
+      "wikiTitle": "Western_gorilla",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Male_gorilla_in_SF_zoo.jpg/330px-Male_gorilla_in_SF_zoo.jpg"
+    },
+    {
+      "commonName": "Capuchin monkey",
+      "scientificName": "Cebus capucinus",
+      "ncbiTaxId": 9516,
+      "wikiTitle": "Colombian_white-faced_capuchin",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Cebus_capucinus_at_the_Bronx_Zoo_001.jpg/330px-Cebus_capucinus_at_the_Bronx_Zoo_001.jpg"
+    }
+  ],
+  "funFact": "A baboon is closer to a gorilla than to a capuchin — despite baboons and capuchins both being \"monkeys\"! Baboons and apes both evolved in Africa and Asia, while capuchins are New World monkeys that split off over 40 million years ago. \"Monkey\" is not a valid evolutionary group unless you include apes.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Catarrhini",
+      "label": "Catarrhini - Wikipedia"
+    }
+  ]
+}

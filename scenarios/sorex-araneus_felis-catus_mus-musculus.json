@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Common shrew",
+      "scientificName": "Sorex araneus",
+      "ncbiTaxId": 42254,
+      "wikiTitle": "Eurasian_shrew",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Sorex-araneus.jpg/330px-Sorex-araneus.jpg"
+    },
+    {
+      "commonName": "Domestic cat",
+      "scientificName": "Felis catus",
+      "ncbiTaxId": 9685,
+      "wikiTitle": "Cat",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/330px-Cat_August_2010-4.jpg"
+    },
+    {
+      "commonName": "House mouse",
+      "scientificName": "Mus musculus",
+      "ncbiTaxId": 10090,
+      "wikiTitle": "House_mouse",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/%D0%9C%D1%8B%D1%88%D1%8C_2.jpg/500px-%D0%9C%D1%8B%D1%88%D1%8C_2.jpg"
+    }
+  ],
+  "funFact": "Despite looking like tiny mice, shrews are closer to cats than to mice! Shrews and cats are both Laurasiatheria — the same major mammal branch that also includes dogs, horses, and whales. Mice are Euarchontoglires, a completely separate branch that includes rodents, rabbits, and primates.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Eulipotyphla",
+      "label": "Eulipotyphla - Wikipedia"
+    },
+    {
+      "url": "https://www.youtube.com/shorts/jRPiiXKmZIA",
+      "label": "YouTube - Shrews are closer to cats than mice"
+    }
+  ]
+}

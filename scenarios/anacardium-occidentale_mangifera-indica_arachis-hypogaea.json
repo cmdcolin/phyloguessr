@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Cashew",
+      "scientificName": "Anacardium occidentale",
+      "ncbiTaxId": 171929,
+      "wikiTitle": "Cashew",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Cashew_apples.jpg/330px-Cashew_apples.jpg"
+    },
+    {
+      "commonName": "Mango",
+      "scientificName": "Mangifera indica",
+      "ncbiTaxId": 29780,
+      "wikiTitle": "Mango",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Mangoes_%28Magnifera_indica%29_from_India.jpg/330px-Mangoes_%28Magnifera_indica%29_from_India.jpg"
+    },
+    {
+      "commonName": "Peanut",
+      "scientificName": "Arachis hypogaea",
+      "ncbiTaxId": 3818,
+      "wikiTitle": "Peanut",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Arachis_hypogaea_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-163.jpg/330px-Arachis_hypogaea_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-163.jpg"
+    }
+  ],
+  "funFact": "Cashews and mangoes are in the same family — Anacardiaceae — alongside poison ivy! Cashew shells even contain urushiol, the same compound that makes poison ivy itch. Most people would pair cashews with peanuts as \"nuts,\" but peanuts are legumes (related to beans), while cashews are closer to the mango on your plate.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Anacardiaceae",
+      "label": "Anacardiaceae - Wikipedia"
+    },
+    {
+      "url": "https://www.scientificamerican.com/article/what-do-cashews-mangoes-and-poison-ivy-have-in-common/",
+      "label": "Scientific American - Cashews, mangoes, and poison ivy"
+    }
+  ]
+}

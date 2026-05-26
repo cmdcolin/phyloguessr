@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Giant kelp",
+      "scientificName": "Macrocystis pyrifera",
+      "ncbiTaxId": 35122,
+      "wikiTitle": "Macrocystis_pyrifera",
+      "group": "microbe",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Giantkelp2_300.jpg/330px-Giantkelp2_300.jpg"
+    },
+    {
+      "commonName": "Plasmodium",
+      "scientificName": "Plasmodium falciparum",
+      "ncbiTaxId": 5833,
+      "wikiTitle": "Plasmodium_falciparum",
+      "group": "microbe",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Plasmodium_falciparum_01.png/330px-Plasmodium_falciparum_01.png"
+    },
+    {
+      "commonName": "Thale cress",
+      "scientificName": "Arabidopsis thaliana",
+      "ncbiTaxId": 3702,
+      "wikiTitle": "Arabidopsis_thaliana",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Arabidopsis_thaliana.jpg/330px-Arabidopsis_thaliana.jpg"
+    }
+  ],
+  "funFact": "Giant kelp is NOT a plant — it is technically a protist! Despite growing up to 45 meters tall with leaf-like blades, it is a brown alga that evolved photosynthesis independently by engulfing an ancient alga and keeping its chloroplasts (secondary endosymbiosis). Kelp shares a deep common ancestor with the malaria parasite in the SAR supergroup, both completely unrelated to plants.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Brown_algae",
+      "label": "Brown algae - Wikipedia"
+    },
+    {
+      "url": "https://bio.libretexts.org/Bookshelves/Introductory_and_General_Biology/General_Biology_(Boundless)/23:_Protists/23.03:_Groups_of_Protists/23.3C:_Chromalveolata-_Stramenopiles",
+      "label": "Biology LibreTexts - Stramenopiles"
+    }
+  ]
+}

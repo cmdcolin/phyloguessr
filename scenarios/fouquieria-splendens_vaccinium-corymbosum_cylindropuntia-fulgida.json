@@ -1,0 +1,35 @@
+{
+  "organisms": [
+    {
+      "commonName": "Ocotillo",
+      "scientificName": "Fouquieria splendens",
+      "ncbiTaxId": 13533,
+      "wikiTitle": "Fouquieria_splendens",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Ocotillo_GB.jpg/330px-Ocotillo_GB.jpg"
+    },
+    {
+      "commonName": "Blueberry",
+      "scientificName": "Vaccinium corymbosum",
+      "ncbiTaxId": 69266,
+      "wikiTitle": "Vaccinium_corymbosum",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Vaccinium_corymbosum%2801%29.jpg/330px-Vaccinium_corymbosum%2801%29.jpg"
+    },
+    {
+      "commonName": "Jumping cholla",
+      "scientificName": "Cylindropuntia fulgida",
+      "ncbiTaxId": 701512,
+      "wikiTitle": "Cylindropuntia_fulgida",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Choya_brincadora_-_panoramio.jpg/330px-Choya_brincadora_-_panoramio.jpg"
+    }
+  ],
+  "funFact": "The spiny desert ocotillo and the bog-loving blueberry are both in the order Ericales! This remarkably diverse order also includes tea, kiwi, and Brazil nuts.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Ericales",
+      "label": "Ericales - Wikipedia"
+    }
+  ]
+}

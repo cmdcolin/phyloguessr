@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Walrus",
+      "scientificName": "Odobenus rosmarus",
+      "ncbiTaxId": 9707,
+      "wikiTitle": "Walrus",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Walrus_in_the_Russian_Arctic_National_Park%2C_Novaya_Zemlya_2015-2.jpg/330px-Walrus_in_the_Russian_Arctic_National_Park%2C_Novaya_Zemlya_2015-2.jpg"
+    },
+    {
+      "commonName": "Sea otter",
+      "scientificName": "Enhydra lutris",
+      "ncbiTaxId": 34882,
+      "wikiTitle": "Sea_otter",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Sea_Otter_%28Enhydra_lutris%29_%2825169790524%29_crop.jpg/330px-Sea_Otter_%28Enhydra_lutris%29_%2825169790524%29_crop.jpg"
+    },
+    {
+      "commonName": "Blue whale",
+      "scientificName": "Balaenoptera musculus",
+      "ncbiTaxId": 9771,
+      "wikiTitle": "Blue_whale",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Anim1754_-_Flickr_-_NOAA_Photo_Library.jpg/330px-Anim1754_-_Flickr_-_NOAA_Photo_Library.jpg"
+    }
+  ],
+  "funFact": "A walrus is more closely related to a sea otter than to a whale — despite the walrus and whale both being fully aquatic. Walruses and sea otters are both carnivores that returned to the sea from land-dwelling ancestors related to bears and weasels. Whales returned to the sea separately, from hoofed mammals related to hippos. Three ocean mammals, but only two share a carnivore ancestor.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Marine_mammal#Evolution",
+      "label": "Marine mammal evolution - Wikipedia"
+    },
+    {
+      "url": "https://www.britannica.com/animal/pinniped",
+      "label": "Britannica - Pinnipeds"
+    }
+  ]
+}

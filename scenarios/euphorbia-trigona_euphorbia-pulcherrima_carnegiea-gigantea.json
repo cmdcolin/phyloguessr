@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "African milk tree",
+      "scientificName": "Euphorbia trigona",
+      "ncbiTaxId": 1492770,
+      "wikiTitle": "Euphorbia_trigona",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/T%C3%ADas-Yaiza_-_LZ-2-LZ-706_-_Euphorbia_trigona_02_ies.jpg/330px-T%C3%ADas-Yaiza_-_LZ-2-LZ-706_-_Euphorbia_trigona_02_ies.jpg"
+    },
+    {
+      "commonName": "Poinsettia",
+      "scientificName": "Euphorbia pulcherrima",
+      "ncbiTaxId": 37495,
+      "wikiTitle": "Poinsettia",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Weihnachtsstern_-_gro%C3%9F.jpg/330px-Weihnachtsstern_-_gro%C3%9F.jpg"
+    },
+    {
+      "commonName": "Saguaro cactus",
+      "scientificName": "Carnegiea gigantea",
+      "ncbiTaxId": 171969,
+      "wikiTitle": "Saguaro",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Carnegiea_gigantea_in_Saguaro_National_Park_near_Tucson%2C_Arizona_during_November_%2858%29.jpg/330px-Carnegiea_gigantea_in_Saguaro_National_Park_near_Tucson%2C_Arizona_during_November_%2858%29.jpg"
+    }
+  ],
+  "funFact": "African milk trees look exactly like cacti — tall, ribbed, thorny, and succulent — but they are Euphorbias, more closely related to Poinsettias (the red Christmas plant) than to any cactus. Cacti and Euphorbias are separated by oceans and millions of years of evolution, yet independently arrived at the same ribbed, leafless, thorny design because it is the most efficient way to store water and defend against thirsty animals in a desert.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Euphorbia",
+      "label": "Euphorbia - Wikipedia"
+    },
+    {
+      "url": "https://plantconvergentevolution.weebly.com/convergent-evolution.html",
+      "label": "Convergent evolution of cacti and euphorbias"
+    }
+  ]
+}

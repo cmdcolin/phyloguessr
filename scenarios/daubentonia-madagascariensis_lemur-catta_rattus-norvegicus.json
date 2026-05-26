@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Aye-aye",
+      "scientificName": "Daubentonia madagascariensis",
+      "ncbiTaxId": 31869,
+      "wikiTitle": "Aye-aye",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Wild_aye_aye.jpg/330px-Wild_aye_aye.jpg"
+    },
+    {
+      "commonName": "Ring-tailed lemur",
+      "scientificName": "Lemur catta",
+      "ncbiTaxId": 9447,
+      "wikiTitle": "Ring-tailed_lemur",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Ring-tailed_lemur_%28Lemur_catta%29.jpg/330px-Ring-tailed_lemur_%28Lemur_catta%29.jpg"
+    },
+    {
+      "commonName": "Brown rat",
+      "scientificName": "Rattus norvegicus",
+      "ncbiTaxId": 10116,
+      "wikiTitle": "Brown_rat",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Rattus_norvegicus_-_Brown_rat_02.jpg/500px-Rattus_norvegicus_-_Brown_rat_02.jpg"
+    }
+  ],
+  "funFact": "The aye-aye looks like a demented rodent — huge ever-growing gnawing teeth, bony fingers, big ears — but it is a primate, a type of lemur! Its rodent-like incisors evolved convergently. Despite looking far more rat-like than any lemur, it shares a recent common ancestor with the ring-tailed lemur.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Aye-aye",
+      "label": "Aye-aye - Wikipedia"
+    },
+    {
+      "url": "https://lemur.duke.edu/discover/meet-the-lemurs/aye-aye/",
+      "label": "Duke Lemur Center - Aye-aye"
+    }
+  ]
+}

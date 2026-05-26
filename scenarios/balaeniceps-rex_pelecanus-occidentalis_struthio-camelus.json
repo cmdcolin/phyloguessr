@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Shoebill",
+      "scientificName": "Balaeniceps rex",
+      "ncbiTaxId": 33584,
+      "wikiTitle": "Shoebill",
+      "group": "bird",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Balaeniceps_rex_-Ueno_Zoo%2C_Tokyo%2C_Japan-8a.jpg/330px-Balaeniceps_rex_-Ueno_Zoo%2C_Tokyo%2C_Japan-8a.jpg"
+    },
+    {
+      "commonName": "Brown pelican",
+      "scientificName": "Pelecanus occidentalis",
+      "ncbiTaxId": 37043,
+      "wikiTitle": "Brown_pelican",
+      "group": "bird",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Brown_pelican_in_flight_%28Bodega_Bay%29.jpg/330px-Brown_pelican_in_flight_%28Bodega_Bay%29.jpg"
+    },
+    {
+      "commonName": "Ostrich",
+      "scientificName": "Struthio camelus",
+      "ncbiTaxId": 8801,
+      "wikiTitle": "Common_ostrich",
+      "group": "bird",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Struthio_camelus_-_Etosha_2014_%283%29.jpg/330px-Struthio_camelus_-_Etosha_2014_%283%29.jpg"
+    }
+  ],
+  "funFact": "The shoebill was long classified as a stork, but DNA reveals it is closest to pelicans and herons! Both are Pelecaniformes within Neoaves. Ostriches are palaeognaths — among the most ancient living bird lineages.",
+  "sources": [
+    {
+      "url": "https://sandiegozoowildlifealliance.org/story-hub/2019/09/25/7-revealing-facts-about-shoebills",
+      "label": "San Diego Zoo - 7 Revealing Facts about Shoebills"
+    },
+    {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC44917/",
+      "label": "PMC - Molecules vs. morphology in pelecaniform birds"
+    }
+  ]
+}

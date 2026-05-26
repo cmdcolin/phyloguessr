@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Barnacle",
+      "scientificName": "Balanus balanus",
+      "ncbiTaxId": 172567,
+      "wikiTitle": "Balanus_balanus",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Rough_barnacle%2C_Ammoniakhavnen_imported_from_iNaturalist_photo_327952133.jpg/330px-Rough_barnacle%2C_Ammoniakhavnen_imported_from_iNaturalist_photo_327952133.jpg"
+    },
+    {
+      "commonName": "American lobster",
+      "scientificName": "Homarus americanus",
+      "ncbiTaxId": 6706,
+      "wikiTitle": "American_lobster",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Nur01521_-_Flickr_-_NOAA_Photo_Library.jpg/330px-Nur01521_-_Flickr_-_NOAA_Photo_Library.jpg"
+    },
+    {
+      "commonName": "Garden snail",
+      "scientificName": "Cornu aspersum",
+      "ncbiTaxId": 6535,
+      "wikiTitle": "Cornu_aspersum",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Snail1web.jpg/330px-Snail1web.jpg"
+    }
+  ],
+  "funFact": "Barnacles are crustaceans, not molluscs! Despite their hard shells and sedentary lifestyle making them look like limpets, barnacles are related to lobsters, crabs, and shrimp. Charles Darwin spent 8 years studying them.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Barnacle",
+      "label": "Barnacle - Wikipedia"
+    },
+    {
+      "url": "https://oceanservice.noaa.gov/facts/barnacles.html",
+      "label": "NOAA - What are barnacles?"
+    }
+  ]
+}

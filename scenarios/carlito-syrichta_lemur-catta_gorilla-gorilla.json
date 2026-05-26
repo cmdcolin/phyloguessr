@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Philippine tarsier",
+      "scientificName": "Carlito syrichta",
+      "ncbiTaxId": 1868482,
+      "wikiTitle": "Philippine_tarsier",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Tarsier-GG.jpg/330px-Tarsier-GG.jpg"
+    },
+    {
+      "commonName": "Ring-tailed lemur",
+      "scientificName": "Lemur catta",
+      "ncbiTaxId": 9447,
+      "wikiTitle": "Ring-tailed_lemur",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Ring-tailed_lemur_%28Lemur_catta%29.jpg/330px-Ring-tailed_lemur_%28Lemur_catta%29.jpg"
+    },
+    {
+      "commonName": "Gorilla",
+      "scientificName": "Gorilla gorilla",
+      "ncbiTaxId": 9593,
+      "wikiTitle": "Western_gorilla",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Male_gorilla_in_SF_zoo.jpg/330px-Male_gorilla_in_SF_zoo.jpg"
+    }
+  ],
+  "correctPair": [
+    "Philippine tarsier",
+    "Gorilla"
+  ],
+  "funFact": "Tarsiers look nothing like apes — tiny, nocturnal, huge-eyed — yet they are on the monkey-and-ape side of the primate tree. Tarsiers and gorillas are both Haplorhini, while ring-tailed lemurs are Strepsirrhini, the branch that diverged earliest. Despite the tarsier's lemur-like appearance, it shares a more recent common ancestor with every monkey and ape than with any lemur.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Haplorhini",
+      "label": "Haplorhini - Wikipedia"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "organisms": [
+    {
+      "commonName": "Musk ox",
+      "scientificName": "Ovibos moschatus",
+      "ncbiTaxId": 37176,
+      "wikiTitle": "Muskox",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Muskox_%28Ovibos_moschatus%29_male_Dovrefjell_4.jpg/330px-Muskox_%28Ovibos_moschatus%29_male_Dovrefjell_4.jpg"
+    },
+    {
+      "commonName": "Mountain goat",
+      "scientificName": "Oreamnos americanus",
+      "ncbiTaxId": 34873,
+      "wikiTitle": "Mountain_goat",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Mountain_Goat%2C_Enchantments_Basin.jpg/330px-Mountain_Goat%2C_Enchantments_Basin.jpg"
+    },
+    {
+      "commonName": "American bison",
+      "scientificName": "Bison bison",
+      "ncbiTaxId": 9901,
+      "wikiTitle": "American_bison",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/American_bison_k5680-1.jpg/330px-American_bison_k5680-1.jpg"
+    }
+  ],
+  "funFact": "Musk oxen look like massive shaggy bison, but they are Caprinae — closer to mountain goats and sheep than to any bison or cattle! Bison are Bovinae, a separate subfamily. The name \"ox\" and the bison-like appearance are both misleading.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Muskox",
+      "label": "Muskox - Wikipedia"
+    }
+  ]
+}

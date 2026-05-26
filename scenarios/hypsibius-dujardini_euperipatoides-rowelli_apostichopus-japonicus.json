@@ -1,0 +1,35 @@
+{
+  "organisms": [
+    {
+      "commonName": "Tardigrade",
+      "scientificName": "Hypsibius dujardini",
+      "ncbiTaxId": 232323,
+      "wikiTitle": "Tardigrade",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/08/Waterbear.jpg"
+    },
+    {
+      "commonName": "Velvet worm",
+      "scientificName": "Euperipatoides rowelli",
+      "ncbiTaxId": 49087,
+      "wikiTitle": "Velvet_worm",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Velvet_worm_rotated%2C_mirror.png/330px-Velvet_worm_rotated%2C_mirror.png"
+    },
+    {
+      "commonName": "Sea cucumber",
+      "scientificName": "Apostichopus japonicus",
+      "ncbiTaxId": 307972,
+      "wikiTitle": "Apostichopus_japonicus",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Apostichopus_japonicus.jpg/330px-Apostichopus_japonicus.jpg"
+    }
+  ],
+  "funFact": "Tardigrades and velvet worms are both panarthropods — relatives of insects and spiders! Velvet worms look like caterpillars and tardigrades look like microscopic gummy bears, but both have legs, molt their cuticle, and share a common ancestor with all arthropods. Sea cucumbers may look blobby and similar, but they are echinoderms — closer to humans than to any bug.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Panarthropoda",
+      "label": "Panarthropoda - Wikipedia"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Axolotl",
+      "scientificName": "Ambystoma mexicanum",
+      "ncbiTaxId": 8296,
+      "wikiTitle": "Axolotl",
+      "group": "amphibian",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Axolotl_ganz.jpg/330px-Axolotl_ganz.jpg"
+    },
+    {
+      "commonName": "Human",
+      "scientificName": "Homo sapiens",
+      "ncbiTaxId": 9606,
+      "wikiTitle": "Human",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/68/Akha_cropped_hires.JPG"
+    },
+    {
+      "commonName": "Atlantic salmon",
+      "scientificName": "Salmo salar",
+      "ncbiTaxId": 8030,
+      "wikiTitle": "Atlantic_salmon",
+      "group": "fish",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Wst_atlantischer_lachs_stoer_001.jpg/330px-Wst_atlantischer_lachs_stoer_001.jpg"
+    }
+  ],
+  "funFact": "The limb bones in your arm (humerus, radius, ulna) are homologous to the same bones in an axolotl's leg — inherited from a common ancestor that crawled out of water ~375 million years ago.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Your_Inner_Fish",
+      "label": "Your Inner Fish - Wikipedia"
+    },
+    {
+      "url": "https://www.pbs.org/your-inner-fish/about/overview/",
+      "label": "PBS - Your Inner Fish series overview"
+    }
+  ]
+}

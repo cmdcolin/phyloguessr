@@ -1,0 +1,43 @@
+{
+  "organisms": [
+    {
+      "commonName": "Common genet",
+      "scientificName": "Genetta genetta",
+      "ncbiTaxId": 94190,
+      "wikiTitle": "Common_genet",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Genetta_in_Botswana.jpg/330px-Genetta_in_Botswana.jpg"
+    },
+    {
+      "commonName": "Lion",
+      "scientificName": "Panthera leo",
+      "ncbiTaxId": 9689,
+      "wikiTitle": "Lion",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/020_The_lion_king_Snyggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/330px-020_The_lion_king_Snyggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg"
+    },
+    {
+      "commonName": "Egyptian mongoose",
+      "scientificName": "Herpestes ichneumon",
+      "ncbiTaxId": 9700,
+      "wikiTitle": "Egyptian_mongoose",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Herpestes_ichneumon_%D0%95%D0%B3%D0%B8%D0%BF%D0%B5%D1%82%D1%81%D0%BA%D0%B8%D0%B9_%D0%BC%D0%B0%D0%BD%D0%B3%D1%83%D1%81%D1%82%2C_%D0%B8%D0%BB%D0%B8_%D1%84%D0%B0%D1%80%D0%B0%D0%BE%D0%BD%D0%BE%D0%B2%D0%B0_%D0%BA%D1%80%D1%8B%D1%81%D0%B0%2C_%D0%B8%D0%BB%D0%B8_%D0%B8%D1%85%D0%BD%D0%B5%D0%B2%D0%BC%D0%BE%CC%81%D0%BD.jpg/330px-Herpestes_ichneumon_%D0%95%D0%B3%D0%B8%D0%BF%D0%B5%D1%82%D1%81%D0%BA%D0%B8%D0%B9_%D0%BC%D0%B0%D0%BD%D0%B3%D1%83%D1%81%D1%82%2C_%D0%B8%D0%BB%D0%B8_%D1%84%D0%B0%D1%80%D0%B0%D0%BE%D0%BD%D0%BE%D0%B2%D0%B0_%D0%BA%D1%80%D1%8B%D1%81%D0%B0%2C_%D0%B8%D0%BB%D0%B8_%D0%B8%D1%85%D0%BD%D0%B5%D0%B2%D0%BC%D0%BE%CC%81%D0%BD.jpg"
+    }
+  ],
+  "funFact": "The common genet looks uncannily like a small spotted wild cat, but genets are in the civet family (Viverridae), which molecular studies place closer to mongooses (Herpestidae) than to true cats (Felidae) within Feliformia. NCBI taxonomy leaves the internal Feliformia branching unresolved, but molecular phylogenetics consistently supports this grouping.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Feliformia",
+      "label": "Feliformia - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Viverridae",
+      "label": "Viverridae - Wikipedia"
+    }
+  ],
+  "correctPair": [
+    "Common genet",
+    "Egyptian mongoose"
+  ]
+}

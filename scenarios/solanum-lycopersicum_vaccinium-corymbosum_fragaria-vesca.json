@@ -1,0 +1,35 @@
+{
+  "organisms": [
+    {
+      "commonName": "Tomato",
+      "scientificName": "Solanum lycopersicum",
+      "ncbiTaxId": 4081,
+      "wikiTitle": "Tomato",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Tomato_je.jpg/330px-Tomato_je.jpg"
+    },
+    {
+      "commonName": "Blueberry",
+      "scientificName": "Vaccinium corymbosum",
+      "ncbiTaxId": 69266,
+      "wikiTitle": "Vaccinium_corymbosum",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Vaccinium_corymbosum%2801%29.jpg/330px-Vaccinium_corymbosum%2801%29.jpg"
+    },
+    {
+      "commonName": "Strawberry",
+      "scientificName": "Fragaria vesca",
+      "ncbiTaxId": 57918,
+      "wikiTitle": "Fragaria_vesca",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Illustration_Fragaria_vesca0.jpg/330px-Illustration_Fragaria_vesca0.jpg"
+    }
+  ],
+  "funFact": "A tomato and a blueberry are more closely related than either is to a strawberry. Tomatoes (nightshade family) and blueberries (heath family) are both asterids — a huge branch of flowering plants. Strawberries are rosids, a completely separate branch. The two 'berries' are not even on the same side of the family tree.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Asterids",
+      "label": "Asterids - Wikipedia"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Oomycete",
+      "scientificName": "Phytophthora infestans",
+      "ncbiTaxId": 4787,
+      "wikiTitle": "Phytophthora_infestans",
+      "group": "microbe",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Late_blight_on_potato_leaf_2.jpg/330px-Late_blight_on_potato_leaf_2.jpg"
+    },
+    {
+      "commonName": "Diatom",
+      "scientificName": "Thalassiosira pseudonana",
+      "ncbiTaxId": 35128,
+      "wikiTitle": "Diatom",
+      "group": "microbe",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Oogonium_--_3_%2834809275943%29.jpg/330px-Oogonium_--_3_%2834809275943%29.jpg"
+    },
+    {
+      "commonName": "Penicillium",
+      "scientificName": "Penicillium chrysogenum",
+      "ncbiTaxId": 5076,
+      "wikiTitle": "Penicillium_chrysogenum",
+      "group": "microbe",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Penicillium_notatum.jpg/330px-Penicillium_notatum.jpg"
+    }
+  ],
+  "funFact": "Oomycetes (water molds) look identical to fungi under a microscope — same filamentous hyphae, same growth pattern — and were classified as fungi for centuries. But they are stramenopiles, closer to photosynthetic diatoms than to any true fungus. Phytophthora infestans, the oomycete that caused the Irish potato famine, is one of the most devastating plant pathogens in history.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Oomycete",
+      "label": "Oomycete - Wikipedia"
+    },
+    {
+      "url": "https://ucmp.berkeley.edu/chromista/oomycota.html",
+      "label": "UC Berkeley - Oomycetes are not fungi"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Axolotl",
+      "scientificName": "Ambystoma mexicanum",
+      "ncbiTaxId": 8296,
+      "wikiTitle": "Axolotl",
+      "group": "amphibian",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Axolotl_ganz.jpg/330px-Axolotl_ganz.jpg"
+    },
+    {
+      "commonName": "Tiger salamander",
+      "scientificName": "Ambystoma tigrinum",
+      "ncbiTaxId": 8305,
+      "wikiTitle": "Tiger_salamander",
+      "group": "amphibian",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Salamandra_Tigre.png/330px-Salamandra_Tigre.png"
+    },
+    {
+      "commonName": "Olm",
+      "scientificName": "Proteus anguinus",
+      "ncbiTaxId": 221568,
+      "wikiTitle": "Olm",
+      "group": "amphibian",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Proteus_anguinus_Postojnska_Jama_Slovenija.jpg/330px-Proteus_anguinus_Postojnska_Jama_Slovenija.jpg"
+    }
+  ],
+  "funFact": "The axolotl is a tiger salamander — it is a neotenic form of Ambystoma, retaining juvenile features (external gills, aquatic lifestyle) into adulthood. The olm is a blind cave salamander that also has external gills and lives permanently in water, looking strikingly similar to an axolotl — but it belongs to a completely different salamander family (Proteidae). The axolotl looks nothing like a tiger salamander, yet they are essentially the same animal.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Axolotl",
+      "label": "Axolotl - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Olm",
+      "label": "Olm - Wikipedia"
+    }
+  ]
+}

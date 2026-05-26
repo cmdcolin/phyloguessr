@@ -1,0 +1,40 @@
+{
+  "organisms": [
+    {
+      "commonName": "Trichoplax",
+      "scientificName": "Trichoplax adhaerens",
+      "ncbiTaxId": 10228,
+      "wikiTitle": "Trichoplax_adhaerens",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Trichoplax_mic.jpg/330px-Trichoplax_mic.jpg"
+    },
+    {
+      "commonName": "Moon jellyfish",
+      "scientificName": "Aurelia aurita",
+      "ncbiTaxId": 6145,
+      "wikiTitle": "Moon_jellyfish",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Aurelia_aurita_%28Cnidaria%29_Luc_Viatour.jpg/330px-Aurelia_aurita_%28Cnidaria%29_Luc_Viatour.jpg"
+    },
+    {
+      "commonName": "Comb jelly",
+      "scientificName": "Mnemiopsis leidyi",
+      "ncbiTaxId": 27923,
+      "wikiTitle": "Mnemiopsis",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Sea_walnut%2C_Boston_Aquarium_%28cropped%29.jpg/500px-Sea_walnut%2C_Boston_Aquarium_%28cropped%29.jpg"
+    }
+  ],
+  "funFact": "Trichoplax has no neurons, yet it is a eumetazoan like jellyfish and comb jellies. Did the ancestor of all animals have a nervous system, with Trichoplax and sponges losing it? Or did neurons evolve separately in comb jellies and in the cnidarian+bilaterian lineage? The answer depends on where Placozoa sits relative to Cnidaria and Ctenophora.",
+  "sources": [
+    {
+      "url": "https://www.quantamagazine.org/worlds-simplest-animal-reveals-hidden-diversity-20180912/",
+      "label": "World's Simplest Animal Reveals Hidden Diversity - Quanta Magazine"
+    },
+    {
+      "url": "https://www.cell.com/trends/neurosciences/fulltext/S0166-2236(22)00180-1",
+      "label": "Trends in Neurosciences - Ctenophores and the evolutionary origin(s) of neurons"
+    }
+  ],
+  "activelyDebated": true
+}

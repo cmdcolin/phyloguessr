@@ -1,0 +1,43 @@
+{
+  "organisms": [
+    {
+      "commonName": "Termite",
+      "scientificName": "Reticulitermes flavipes",
+      "ncbiTaxId": 36989,
+      "wikiTitle": "Eastern_subterranean_termite",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Reticulitermes_flavipes_K8085-6.jpg/330px-Reticulitermes_flavipes_K8085-6.jpg"
+    },
+    {
+      "commonName": "American cockroach",
+      "scientificName": "Periplaneta americana",
+      "ncbiTaxId": 6978,
+      "wikiTitle": "American_cockroach",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/American-cockroach.jpg/330px-American-cockroach.jpg"
+    },
+    {
+      "commonName": "Honeybee",
+      "scientificName": "Apis mellifera",
+      "ncbiTaxId": 7460,
+      "wikiTitle": "Western_honey_bee",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Apis_mellifera_Western_honey_bee.jpg/500px-Apis_mellifera_Western_honey_bee.jpg"
+    }
+  ],
+  "funFact": "Termites are cockroaches. Molecular phylogenetics showed that termites are nested within Blattodea (the cockroach order), and they were reclassified in 2007. Their closest living relative is the wood-eating cockroach Cryptocercus, which shares the same gut bacteria. Termites are essentially social cockroaches that evolved a caste system.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Termite",
+      "label": "Termite - Wikipedia"
+    },
+    {
+      "url": "https://www.smithsonianmag.com/smart-news/termites-are-moving-cockroaches-taxonomically-180968332/",
+      "label": "Smithsonian - Termites are moving in with cockroaches"
+    },
+    {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2464702/",
+      "label": "PMC - Termites are eusocial cockroaches"
+    }
+  ]
+}

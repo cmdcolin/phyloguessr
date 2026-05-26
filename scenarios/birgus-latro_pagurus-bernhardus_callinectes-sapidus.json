@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Coconut crab",
+      "scientificName": "Birgus latro",
+      "ncbiTaxId": 177283,
+      "wikiTitle": "Coconut_crab",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Coconut_Crab_Birgus_latro.jpg/330px-Coconut_Crab_Birgus_latro.jpg"
+    },
+    {
+      "commonName": "Hermit crab",
+      "scientificName": "Pagurus bernhardus",
+      "ncbiTaxId": 174397,
+      "wikiTitle": "Pagurus_bernhardus",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Pagurus_bernhardus.jpg/330px-Pagurus_bernhardus.jpg"
+    },
+    {
+      "commonName": "Blue crab",
+      "scientificName": "Callinectes sapidus",
+      "ncbiTaxId": 6763,
+      "wikiTitle": "Callinectes_sapidus",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/The_Childrens_Museum_of_Indianapolis_-_Atlantic_blue_crab.jpg/330px-The_Childrens_Museum_of_Indianapolis_-_Atlantic_blue_crab.jpg"
+    }
+  ],
+  "funFact": "The coconut crab — the largest land arthropod on Earth, strong enough to crack coconuts — is NOT a true crab. It is a hermit crab that evolved to ditch its shell and grew enormous, convergently evolving a crab-like body. This is carcinization: the repeated, independent evolution of the crab form.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Coconut_crab",
+      "label": "Coconut crab - Wikipedia"
+    },
+    {
+      "url": "https://www.nhm.ac.uk/discover/coconut-crabs-bird-eating-giants-on-tropical-islands.html",
+      "label": "Natural History Museum London - Coconut crabs"
+    }
+  ]
+}

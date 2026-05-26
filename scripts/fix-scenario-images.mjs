@@ -1,14 +1,15 @@
 #!/usr/bin/env node
-// Replaces non-Wikipedia image URLs (NCBI, iNaturalist, etc.) in
-// easy-scenarios.json with Wikipedia thumbnails.
+// Replaces non-Wikipedia image URLs (NCBI, iNaturalist, etc.) in the
+// per-scenario source files under scenarios/ with Wikipedia thumbnails.
+// Run build-easy-scenarios.mjs afterward to rebuild the runtime bundle.
 
-import { readFileSync, writeFileSync } from 'fs'
+import { readFileSync, writeFileSync, readdirSync } from 'fs'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
-const SCENARIOS_PATH = join(ROOT, 'public', 'taxonomy', 'easy-scenarios.json')
+const SCENARIOS_DIR = join(ROOT, 'scenarios')
 
 const CONCURRENCY = 4
 const RATE_DELAY_MS = 300
@@ -33,10 +34,14 @@ async function fetchWikiThumbnail(wikiTitle) {
 }
 
 async function main() {
-  const scenarios = JSON.parse(readFileSync(SCENARIOS_PATH, 'utf8'))
+  const files = readdirSync(SCENARIOS_DIR).filter(f => f.endsWith('.json'))
+  const scenarios = files.map(f => ({
+    file: f,
+    data: JSON.parse(readFileSync(join(SCENARIOS_DIR, f), 'utf8')),
+  }))
 
   const needsReplacement = new Map()
-  for (const scenario of scenarios) {
+  for (const { data: scenario } of scenarios) {
     for (const org of scenario.organisms) {
       if (
         org.imageUrl &&
@@ -83,7 +88,8 @@ async function main() {
 
   let replaced = 0
   let failed = 0
-  for (const scenario of scenarios) {
+  const dirtyFiles = new Set()
+  for (const { file, data: scenario } of scenarios) {
     for (const org of scenario.organisms) {
       if (!org.imageUrl || isWikipediaUrl(org.imageUrl)) {
         continue
@@ -92,6 +98,7 @@ async function main() {
       if (url) {
         org.imageUrl = url
         replaced++
+        dirtyFiles.add(file)
       } else {
         console.warn(
           `  No Wikipedia image for ${org.commonName} (${org.scientificName}), keeping existing URL`,
@@ -101,7 +108,11 @@ async function main() {
     }
   }
 
-  writeFileSync(SCENARIOS_PATH, JSON.stringify(scenarios, null, 2) + '\n')
+  for (const { file, data } of scenarios) {
+    if (dirtyFiles.has(file)) {
+      writeFileSync(join(SCENARIOS_DIR, file), JSON.stringify(data, null, 2) + '\n')
+    }
+  }
   console.log(
     `\nDone: ${replaced} images replaced, ${failed} kept existing (no Wikipedia image found)`,
   )

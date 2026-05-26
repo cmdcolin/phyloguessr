@@ -1,0 +1,35 @@
+{
+  "organisms": [
+    {
+      "commonName": "Diatom",
+      "scientificName": "Thalassiosira pseudonana",
+      "ncbiTaxId": 35128,
+      "wikiTitle": "Diatom",
+      "group": "microbe",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Oogonium_--_3_%2834809275943%29.jpg/330px-Oogonium_--_3_%2834809275943%29.jpg"
+    },
+    {
+      "commonName": "Giant kelp",
+      "scientificName": "Macrocystis pyrifera",
+      "ncbiTaxId": 35122,
+      "wikiTitle": "Macrocystis_pyrifera",
+      "group": "microbe",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Giantkelp2_300.jpg/330px-Giantkelp2_300.jpg"
+    },
+    {
+      "commonName": "Polycystine",
+      "scientificName": "Polycystinea",
+      "ncbiTaxId": 65582,
+      "wikiTitle": "Polycystine",
+      "group": "microbe",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Radiolarian.png"
+    }
+  ],
+  "funFact": "A microscopic diatom and a 60-meter giant kelp are both Stramenopiles — the same branch of the eukaryotic tree! Polycystines look similar to diatoms because they also build intricate silica shells, but that's convergent evolution: Polycystines are Rhizaria, a completely separate eukaryotic supergroup with no close relation to diatoms. Diatoms produce about 20% of Earth's oxygen — more than all the world's rainforests.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Diatom",
+      "label": "Diatom - Wikipedia"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Sacred lotus",
+      "scientificName": "Nelumbo nucifera",
+      "ncbiTaxId": 4432,
+      "wikiTitle": "Nelumbo_nucifera",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Sacred_lotus_Nelumbo_nucifera.jpg/500px-Sacred_lotus_Nelumbo_nucifera.jpg"
+    },
+    {
+      "commonName": "English oak",
+      "scientificName": "Quercus robur",
+      "ncbiTaxId": 38942,
+      "wikiTitle": "Quercus_robur",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Quercus_robur.jpg/330px-Quercus_robur.jpg"
+    },
+    {
+      "commonName": "Water lily",
+      "scientificName": "Nymphaea alba",
+      "ncbiTaxId": 34301,
+      "wikiTitle": "Nymphaea_alba",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/2016_Kwiat_grzybieni_bia%C5%82ych_2.jpg/330px-2016_Kwiat_grzybieni_bia%C5%82ych_2.jpg"
+    }
+  ],
+  "funFact": "Despite looking nearly identical to water lilies, the sacred lotus is actually closer to oak trees! Molecular studies moved lotus out of the water lily order into Proteales. One of the biggest surprises of plant phylogenetics.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Nelumbo",
+      "label": "Nelumbo - Wikipedia"
+    },
+    {
+      "url": "https://laidbackgardener.blog/2018/10/23/water-lily-pond-lily-or-lotus/",
+      "label": "Laidback Gardener - Lotus is not a water lily"
+    }
+  ]
+}

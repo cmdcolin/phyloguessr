@@ -1,0 +1,35 @@
+{
+  "organisms": [
+    {
+      "commonName": "Shipworm",
+      "scientificName": "Teredo navalis",
+      "ncbiTaxId": 263429,
+      "wikiTitle": "Shipworm",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Shipworm.jpg/330px-Shipworm.jpg"
+    },
+    {
+      "commonName": "Giant clam",
+      "scientificName": "Tridacna gigas",
+      "ncbiTaxId": 80829,
+      "wikiTitle": "Giant_clam",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Giant_clam_%28Tridacna_gigas%29_Michaelmas_Cay.jpg/330px-Giant_clam_%28Tridacna_gigas%29_Michaelmas_Cay.jpg"
+    },
+    {
+      "commonName": "Earthworm",
+      "scientificName": "Lumbricus terrestris",
+      "ncbiTaxId": 6398,
+      "wikiTitle": "Lumbricus_terrestris",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Regenwurm1.jpg/330px-Regenwurm1.jpg"
+    }
+  ],
+  "funFact": "Shipworms bore through wooden ship hulls and dock pilings with a long, naked, worm-like body — but they are bivalve molluscs, a kind of clam. They even retain two tiny vestigial shells at the head end. A shipworm is more closely related to a giant clam than to any earthworm.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Shipworm",
+      "label": "Shipworm - Wikipedia"
+    }
+  ]
+}

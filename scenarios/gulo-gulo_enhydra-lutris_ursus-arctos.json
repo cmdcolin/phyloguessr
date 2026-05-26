@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Wolverine",
+      "scientificName": "Gulo gulo",
+      "ncbiTaxId": 48420,
+      "wikiTitle": "Wolverine",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Gulo_gulo_2.jpg/330px-Gulo_gulo_2.jpg"
+    },
+    {
+      "commonName": "Sea otter",
+      "scientificName": "Enhydra lutris",
+      "ncbiTaxId": 34882,
+      "wikiTitle": "Sea_otter",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Sea_Otter_%28Enhydra_lutris%29_%2825169790524%29_crop.jpg/330px-Sea_Otter_%28Enhydra_lutris%29_%2825169790524%29_crop.jpg"
+    },
+    {
+      "commonName": "Brown bear",
+      "scientificName": "Ursus arctos",
+      "ncbiTaxId": 9644,
+      "wikiTitle": "Brown_bear",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/2010-kodiak-bear-1.jpg/330px-2010-kodiak-bear-1.jpg"
+    }
+  ],
+  "funFact": "The sea otter and the wolverine are both mustelids — the weasel family. Despite the sea otter living its entire life at sea, cracking clams on its chest, it shares more recent common ancestry with the land-dwelling wolverine than with any bear. Bears are a separate carnivoran family (Ursidae).",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Mustelidae",
+      "label": "Mustelidae - Wikipedia"
+    },
+    {
+      "url": "https://www.britannica.com/animal/wolverine",
+      "label": "Britannica - Wolverine"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Ginkgo",
+      "scientificName": "Ginkgo biloba",
+      "ncbiTaxId": 3311,
+      "wikiTitle": "Ginkgo_biloba",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/GINKGOBAUM-2.jpg/330px-GINKGOBAUM-2.jpg"
+    },
+    {
+      "commonName": "Redwood",
+      "scientificName": "Sequoia sempervirens",
+      "ncbiTaxId": 28980,
+      "wikiTitle": "Sequoia_sempervirens",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/US_199_Redwood_Highway.jpg/330px-US_199_Redwood_Highway.jpg"
+    },
+    {
+      "commonName": "Common fern",
+      "scientificName": "Pteridium aquilinum",
+      "ncbiTaxId": 32101,
+      "wikiTitle": "Pteridium_aquilinum",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Adelaarsvaren_planten_Pteridium_aquilinum.jpg/330px-Adelaarsvaren_planten_Pteridium_aquilinum.jpg"
+    }
+  ],
+  "funFact": "The ginkgo tree is the last surviving member of a plant group that was diverse during the age of dinosaurs. It is a gymnosperm like redwoods — both produce seeds without flowers — but ginkgos and conifers are on different branches of the gymnosperm tree. Ferns are even more distant, having diverged before seeds evolved at all.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Ginkgo_biloba",
+      "label": "Ginkgo biloba - Wikipedia"
+    },
+    {
+      "url": "https://www.nature.com/articles/s41467-019-12133-5",
+      "label": "Nature Communications - Evolutionary history of ginkgo, the living fossil"
+    }
+  ]
+}

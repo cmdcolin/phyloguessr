@@ -1,0 +1,35 @@
+{
+  "organisms": [
+    {
+      "commonName": "Dragon blood tree",
+      "scientificName": "Dracaena cinnabari",
+      "ncbiTaxId": 1142948,
+      "wikiTitle": "Dracaena_cinnabari",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Dragonblood_tree_in_Socotra_2.jpg/330px-Dragonblood_tree_in_Socotra_2.jpg"
+    },
+    {
+      "commonName": "Orchid",
+      "scientificName": "Phalaenopsis equestris",
+      "ncbiTaxId": 78828,
+      "wikiTitle": "Orchidaceae",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Plant_Orchid_Cymbidium_aloifolium_P1110661_05_-_cropped.jpg/330px-Plant_Orchid_Cymbidium_aloifolium_P1110661_05_-_cropped.jpg"
+    },
+    {
+      "commonName": "Cinnamon",
+      "scientificName": "Cinnamomum verum",
+      "ncbiTaxId": 128608,
+      "wikiTitle": "Cinnamomum_verum",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Cinnamomum_verum1.jpg/330px-Cinnamomum_verum1.jpg"
+    }
+  ],
+  "funFact": "The bizarre umbrella-shaped dragon blood tree from Yemen is secretly an orchid relative! Both are monocots — plants that sprout with a single seed leaf. The dragon blood tree doesn't have true wood rings; it builds its thick trunk from fibrous tissue. Cinnamon, despite also being a tree, is a magnoliid — an ancient lineage of flowering plants that is neither monocot nor eudicot.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Dracaena_(plant)",
+      "label": "Dracaena - Wikipedia"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "organisms": [
+    {
+      "commonName": "Nautilus",
+      "scientificName": "Nautilus pompilius",
+      "ncbiTaxId": 34573,
+      "wikiTitle": "Chambered_nautilus",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Nautilus_pompilius_%28detail%29.jpg/500px-Nautilus_pompilius_%28detail%29.jpg"
+    },
+    {
+      "commonName": "Giant squid",
+      "scientificName": "Architeuthis dux",
+      "ncbiTaxId": 256136,
+      "wikiTitle": "Giant_squid",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Giant_squid_Ranheim.jpg/330px-Giant_squid_Ranheim.jpg"
+    },
+    {
+      "commonName": "Horseshoe crab",
+      "scientificName": "Limulus polyphemus",
+      "ncbiTaxId": 6850,
+      "wikiTitle": "Atlantic_horseshoe_crab",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Limulus_polyphemus_%28aq.%29.jpg/330px-Limulus_polyphemus_%28aq.%29.jpg"
+    }
+  ],
+  "funFact": "The nautilus is a living fossil cephalopod — the last surviving lineage with an external shell. It is more closely related to the giant squid, a fellow cephalopod, than to horseshoe crabs, despite all three looking like armored sea creatures.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Nautilus",
+      "label": "Nautilus - Wikipedia"
+    }
+  ]
+}

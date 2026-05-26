@@ -1,0 +1,47 @@
+{
+  "organisms": [
+    {
+      "commonName": "Horse",
+      "scientificName": "Equus caballus",
+      "ncbiTaxId": 9796,
+      "wikiTitle": "Horse",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Nokota_Horses_cropped.jpg/500px-Nokota_Horses_cropped.jpg"
+    },
+    {
+      "commonName": "White rhinoceros",
+      "scientificName": "Ceratotherium simum",
+      "ncbiTaxId": 9807,
+      "wikiTitle": "White_rhinoceros",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/109_Male_White_rhinoceros_walking_in_the_Kalahari_Desert_of_Namibia_Photo_by_Giles_Laurent.jpg/330px-109_Male_White_rhinoceros_walking_in_the_Kalahari_Desert_of_Namibia_Photo_by_Giles_Laurent.jpg"
+    },
+    {
+      "commonName": "Llama",
+      "scientificName": "Lama glama",
+      "ncbiTaxId": 9844,
+      "wikiTitle": "Llama",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Llama_M82_DSCF3628.JPG/330px-Llama_M82_DSCF3628.JPG"
+    }
+  ],
+  "funFact": "Horses and rhinos are both odd-toed ungulates (Perissodactyla), despite looking very different. Llamas look like they'd belong with horses and rhinos, but they're actually even-toed ungulates (Artiodactyla) — a completely separate branch of the hoofed mammal family tree.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Odd-toed_ungulate",
+      "label": "Odd-toed ungulate - Wikipedia"
+    },
+    {
+      "url": "https://positivepeerpressure.blog/quirky-evolution-5-unlikely-animal-relatives-hiding-in-plain-sight-6e08cfd299a7",
+      "label": "Quirky Evolution - Unlikely animal relatives"
+    },
+    {
+      "url": "https://www.sci.news/paleontology/modern-horse-toes-12022.html",
+      "label": "Sci.News - Modern horse toes"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Evolution_of_the_horse",
+      "label": "Evolution of the horse - Wikipedia"
+    }
+  ]
+}

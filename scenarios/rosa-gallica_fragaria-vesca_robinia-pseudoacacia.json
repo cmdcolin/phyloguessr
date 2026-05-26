@@ -1,0 +1,35 @@
+{
+  "organisms": [
+    {
+      "commonName": "Rose",
+      "scientificName": "Rosa gallica",
+      "ncbiTaxId": 74632,
+      "wikiTitle": "Rosa_gallica",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Wild_Rosa_gallica_Romania.jpg/330px-Wild_Rosa_gallica_Romania.jpg"
+    },
+    {
+      "commonName": "Strawberry",
+      "scientificName": "Fragaria vesca",
+      "ncbiTaxId": 57918,
+      "wikiTitle": "Fragaria_vesca",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Illustration_Fragaria_vesca0.jpg/330px-Illustration_Fragaria_vesca0.jpg"
+    },
+    {
+      "commonName": "Black locust",
+      "scientificName": "Robinia pseudoacacia",
+      "ncbiTaxId": 35938,
+      "wikiTitle": "Robinia_pseudoacacia",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/86/Robina9146.JPG"
+    }
+  ],
+  "funFact": "Don't let the thorns fool you! The black locust is actually a giant pea plant (a legume), not related to the rose at all. The tiny ground-creeping strawberry and the woody thorny rose bush are the real cousins — both in the family Rosaceae, which also includes almonds, apples, cherries, and peaches.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Rosaceae",
+      "label": "Rosaceae - Wikipedia"
+    }
+  ]
+}

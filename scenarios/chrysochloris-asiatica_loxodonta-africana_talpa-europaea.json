@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Golden mole",
+      "scientificName": "Chrysochloris asiatica",
+      "ncbiTaxId": 185453,
+      "wikiTitle": "Cape_golden_mole",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Chrysochloris_asiatica_270437025.jpg/330px-Chrysochloris_asiatica_270437025.jpg"
+    },
+    {
+      "commonName": "African elephant",
+      "scientificName": "Loxodonta africana",
+      "ncbiTaxId": 9785,
+      "wikiTitle": "African_elephant",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/178_Male_African_bush_elephant_in_Etosha_National_Park_Photo_by_Giles_Laurent.jpg/330px-178_Male_African_bush_elephant_in_Etosha_National_Park_Photo_by_Giles_Laurent.jpg"
+    },
+    {
+      "commonName": "European mole",
+      "scientificName": "Talpa europaea",
+      "ncbiTaxId": 9375,
+      "wikiTitle": "European_mole",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Talpa_europaea_MHNT.jpg/330px-Talpa_europaea_MHNT.jpg"
+    }
+  ],
+  "funFact": "Golden moles look identical to European moles — same sleek body, same powerful digging claws, same tiny eyes — but they are more closely related to elephants than to any true mole! Golden moles evolved in Africa alongside elephants and aardvarks; European moles evolved separately alongside shrews and hedgehogs. They arrived at the same body plan independently on different continents.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Golden_mole",
+      "label": "Golden mole - Wikipedia"
+    },
+    {
+      "url": "https://www.afrotheria.net/golden-moles/",
+      "label": "IUCN Afrotheria Specialist Group - Golden moles"
+    }
+  ]
+}

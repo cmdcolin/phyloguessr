@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Naked mole rat",
+      "scientificName": "Heterocephalus glaber",
+      "ncbiTaxId": 10181,
+      "wikiTitle": "Naked_mole-rat",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Nacktmull.jpg/330px-Nacktmull.jpg"
+    },
+    {
+      "commonName": "House mouse",
+      "scientificName": "Mus musculus",
+      "ncbiTaxId": 10090,
+      "wikiTitle": "House_mouse",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/%D0%9C%D1%8B%D1%88%D1%8C_2.jpg/500px-%D0%9C%D1%8B%D1%88%D1%8C_2.jpg"
+    },
+    {
+      "commonName": "European mole",
+      "scientificName": "Talpa europaea",
+      "ncbiTaxId": 9375,
+      "wikiTitle": "European_mole",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Talpa_europaea_MHNT.jpg/330px-Talpa_europaea_MHNT.jpg"
+    }
+  ],
+  "funFact": "Naked mole rats live underground like moles, but they are rodents — closer to mice than to any mole! True moles are on a completely different branch of the mammal tree, alongside shrews and hedgehogs. Naked mole rats are in the same order as mice, rats, and guinea pigs.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Naked_mole-rat",
+      "label": "Naked mole-rat - Wikipedia"
+    },
+    {
+      "url": "https://nationalzoo.si.edu/animals/naked-mole-rat",
+      "label": "Smithsonian Zoo - Naked mole-rat"
+    }
+  ]
+}

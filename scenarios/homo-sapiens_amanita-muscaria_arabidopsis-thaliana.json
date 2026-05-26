@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Human",
+      "scientificName": "Homo sapiens",
+      "ncbiTaxId": 9606,
+      "wikiTitle": "Human",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/68/Akha_cropped_hires.JPG"
+    },
+    {
+      "commonName": "Fly agaric",
+      "scientificName": "Amanita muscaria",
+      "ncbiTaxId": 41956,
+      "wikiTitle": "Amanita_muscaria",
+      "group": "microbe",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Amanita_muscaria_3_vliegenzwammen_op_rij.jpg/330px-Amanita_muscaria_3_vliegenzwammen_op_rij.jpg"
+    },
+    {
+      "commonName": "Thale cress",
+      "scientificName": "Arabidopsis thaliana",
+      "ncbiTaxId": 3702,
+      "wikiTitle": "Arabidopsis_thaliana",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Arabidopsis_thaliana.jpg/330px-Arabidopsis_thaliana.jpg"
+    }
+  ],
+  "funFact": "Humans are more closely related to mushrooms than to plants! Animals and fungi share a more recent common ancestor than either does with plants — we split from fungi long after plants went their own way.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Opisthokonta",
+      "label": "Opisthokonta - Wikipedia"
+    },
+    {
+      "url": "https://gizmodo.com/why-are-mushrooms-more-like-humans-than-they-are-like-p-5940434",
+      "label": "Gizmodo - Why mushrooms are more like humans than plants"
+    }
+  ]
+}

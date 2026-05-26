@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Greater flamingo",
+      "scientificName": "Phoenicopterus roseus",
+      "ncbiTaxId": 435638,
+      "wikiTitle": "Greater_flamingo",
+      "group": "bird",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/010_Greater_flamingos_male_and_female_in_the_Camargue_during_mating_season_Photo_by_Giles_Laurent.jpg/330px-010_Greater_flamingos_male_and_female_in_the_Camargue_during_mating_season_Photo_by_Giles_Laurent.jpg"
+    },
+    {
+      "commonName": "Great crested grebe",
+      "scientificName": "Podiceps cristatus",
+      "ncbiTaxId": 345573,
+      "wikiTitle": "Great_crested_grebe",
+      "group": "bird",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Podiceps_cristatus_2_-_Lake_Dulverton.jpg/330px-Podiceps_cristatus_2_-_Lake_Dulverton.jpg"
+    },
+    {
+      "commonName": "Common loon",
+      "scientificName": "Gavia immer",
+      "ncbiTaxId": 37039,
+      "wikiTitle": "Common_loon",
+      "group": "bird",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Gavia_immer_-Minocqua%2C_Wisconsin%2C_USA_-swimming-8.jpg/330px-Gavia_immer_-Minocqua%2C_Wisconsin%2C_USA_-swimming-8.jpg"
+    }
+  ],
+  "funFact": "Grebes and loons share such similar diving bodies, habitat, and behavior that they were classified together for over a century. But grebes are actually the closest relatives of flamingos, not loons! Flamingos and grebes form Mirandornithes (\"wonderful birds\"), one of the biggest surprises of modern bird phylogenetics.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Mirandornithes",
+      "label": "Mirandornithes - Wikipedia"
+    },
+    {
+      "url": "https://www.10000birds.com/exploring-the-relationship-between-flamingos-and-grebes-the-wonderful-birds.htm",
+      "label": "10,000 Birds - Flamingos and grebes relationship"
+    }
+  ]
+}

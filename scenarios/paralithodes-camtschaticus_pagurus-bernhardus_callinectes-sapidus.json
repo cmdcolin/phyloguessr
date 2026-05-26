@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Red king crab",
+      "scientificName": "Paralithodes camtschaticus",
+      "ncbiTaxId": 6741,
+      "wikiTitle": "Red_king_crab",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Spider_crab.jpg/330px-Spider_crab.jpg"
+    },
+    {
+      "commonName": "Hermit crab",
+      "scientificName": "Pagurus bernhardus",
+      "ncbiTaxId": 174397,
+      "wikiTitle": "Pagurus_bernhardus",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Pagurus_bernhardus.jpg/330px-Pagurus_bernhardus.jpg"
+    },
+    {
+      "commonName": "Blue crab",
+      "scientificName": "Callinectes sapidus",
+      "ncbiTaxId": 6763,
+      "wikiTitle": "Callinectes_sapidus",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/The_Childrens_Museum_of_Indianapolis_-_Atlantic_blue_crab.jpg/330px-The_Childrens_Museum_of_Indianapolis_-_Atlantic_blue_crab.jpg"
+    }
+  ],
+  "funFact": "King crabs are NOT true crabs — they are actually hermit crabs that evolved a crab-like body shape! This is called \"carcinization,\" and it has happened at least five times independently in crustacean evolution.",
+  "sources": [
+    {
+      "url": "https://www.scientificamerican.com/article/why-do-animals-keep-evolving-into-crabs/",
+      "label": "Why Do Animals Keep Evolving into Crabs? - Scientific American"
+    },
+    {
+      "url": "https://www.nature.com/articles/355539a0",
+      "label": "Nature - Evolution of king crabs from hermit crab ancestors"
+    }
+  ]
+}

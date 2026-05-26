@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "West Indian manatee",
+      "scientificName": "Trichechus manatus",
+      "ncbiTaxId": 9778,
+      "wikiTitle": "West_Indian_manatee",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Manatee_with_calf.PD_-_colour_corrected.jpg/330px-Manatee_with_calf.PD_-_colour_corrected.jpg"
+    },
+    {
+      "commonName": "Bottlenose dolphin",
+      "scientificName": "Tursiops truncatus",
+      "ncbiTaxId": 9739,
+      "wikiTitle": "Common_bottlenose_dolphin",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Tursiops_truncatus_01-cropped.jpg/330px-Tursiops_truncatus_01-cropped.jpg"
+    },
+    {
+      "commonName": "African elephant",
+      "scientificName": "Loxodonta africana",
+      "ncbiTaxId": 9785,
+      "wikiTitle": "African_elephant",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/178_Male_African_bush_elephant_in_Etosha_National_Park_Photo_by_Giles_Laurent.jpg/330px-178_Male_African_bush_elephant_in_Etosha_National_Park_Photo_by_Giles_Laurent.jpg"
+    }
+  ],
+  "funFact": "A manatee is more closely related to an elephant than to a dolphin. Manatees and elephants share ancestors that lived in Africa — manatees still have toenails on their flippers from their land-dwelling past. Dolphins descended from a completely different group of land mammals related to hippos. Two separate lineages of land mammals independently returned to the sea.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Sirenia#Evolution",
+      "label": "Sirenia evolution - Wikipedia"
+    },
+    {
+      "url": "https://www.livescience.com/weird-relatives-of-elephants.html",
+      "label": "Live Science - Weird relatives of elephants"
+    }
+  ]
+}

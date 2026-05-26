@@ -1,0 +1,43 @@
+{
+  "organisms": [
+    {
+      "commonName": "Colugo",
+      "scientificName": "Galeopterus variegatus",
+      "ncbiTaxId": 482537,
+      "wikiTitle": "Colugo",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Colugo_%28Galeopterus_variegatus%2C_adult_female%29%2C_Central_Catchment_Area%2C_Singapore_-_20060618.jpg/330px-Colugo_%28Galeopterus_variegatus%2C_adult_female%29%2C_Central_Catchment_Area%2C_Singapore_-_20060618.jpg"
+    },
+    {
+      "commonName": "Human",
+      "scientificName": "Homo sapiens",
+      "ncbiTaxId": 9606,
+      "wikiTitle": "Human",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/68/Akha_cropped_hires.JPG"
+    },
+    {
+      "commonName": "Flying squirrel",
+      "scientificName": "Glaucomys volans",
+      "ncbiTaxId": 64683,
+      "wikiTitle": "Southern_flying_squirrel",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Southern_Flying_Squirrel_-_Glaucomys_volans%2C_Arlington%2C_Virginia%2C_December_22%2C_2020_%2853406816432%29.jpg/330px-Southern_Flying_Squirrel_-_Glaucomys_volans%2C_Arlington%2C_Virginia%2C_December_22%2C_2020_%2853406816432%29.jpg"
+    }
+  ],
+  "funFact": "The closest non-primate relative of humans is a gliding rainforest mammal that looks like a large flying squirrel. Colugos are the closest living relatives of all primates — closer to every human, ape, and monkey than to any rodent, bat, or other mammal. Flying squirrels are rodents; they and colugos evolved near-identical gliding membranes completely independently. NCBI taxonomy leaves this unresolved, but phylogenetic studies consistently confirm the colugo–primate grouping.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Colugo",
+      "label": "Colugo - Wikipedia"
+    },
+    {
+      "url": "https://www.sciencedaily.com/releases/2007/11/071101145003.htm",
+      "label": "ScienceDaily - Flying lemurs are closest relatives of primates"
+    }
+  ],
+  "correctPair": [
+    "Colugo",
+    "Human"
+  ]
+}

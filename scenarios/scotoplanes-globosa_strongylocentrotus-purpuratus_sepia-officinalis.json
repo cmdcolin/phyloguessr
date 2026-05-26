@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Sea pig",
+      "scientificName": "Scotoplanes globosa",
+      "ncbiTaxId": 2665651,
+      "wikiTitle": "Scotoplanes_globosa",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Scotoplanes_globosa_and_crab_%28cropped%29.jpg/250px-Scotoplanes_globosa_and_crab_%28cropped%29.jpg"
+    },
+    {
+      "commonName": "Sea urchin",
+      "scientificName": "Strongylocentrotus purpuratus",
+      "ncbiTaxId": 7668,
+      "wikiTitle": "Strongylocentrotus_purpuratus",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Urchin_%289398869414%29.jpg/500px-Urchin_%289398869414%29.jpg"
+    },
+    {
+      "commonName": "Common cuttlefish",
+      "scientificName": "Sepia officinalis",
+      "ncbiTaxId": 6610,
+      "wikiTitle": "Common_cuttlefish",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Sepia_officinalis_%28aquarium%29.jpg/330px-Sepia_officinalis_%28aquarium%29.jpg"
+    }
+  ],
+  "funFact": "The sea pig (Scotoplanes globosa) is actually a sea cucumber — a deep-sea echinoderm that crawls along the ocean floor on water-filled tube feet. Despite looking nothing alike, sea pigs and sea urchins are both echinoderms, sharing the same water vascular system and calcite skeleton. The cuttlefish is a mollusc, more closely related to snails and octopuses than to any echinoderm.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Holothuroidea",
+      "label": "Holothuroidea - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Echinoderm",
+      "label": "Echinoderm - Wikipedia"
+    }
+  ]
+}

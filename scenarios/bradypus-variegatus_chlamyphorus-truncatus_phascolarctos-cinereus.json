@@ -1,0 +1,35 @@
+{
+  "organisms": [
+    {
+      "commonName": "Three-toed sloth",
+      "scientificName": "Bradypus variegatus",
+      "ncbiTaxId": 9355,
+      "wikiTitle": "Brown-throated_sloth",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Bradypus.jpg/330px-Bradypus.jpg"
+    },
+    {
+      "commonName": "Pink fairy armadillo",
+      "scientificName": "Chlamyphorus truncatus",
+      "ncbiTaxId": 450267,
+      "wikiTitle": "Pink_fairy_armadillo",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Pink_Fairy_Armadillo_%28Chlamyphorus_truncatus%29.jpg/330px-Pink_Fairy_Armadillo_%28Chlamyphorus_truncatus%29.jpg"
+    },
+    {
+      "commonName": "Koala",
+      "scientificName": "Phascolarctos cinereus",
+      "ncbiTaxId": 38626,
+      "wikiTitle": "Koala",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Koala_climbing_tree.jpg/330px-Koala_climbing_tree.jpg"
+    }
+  ],
+  "funFact": "A slow, fuzzy tree-hugger and a tiny pink armored burrower share a common ancestor that evolved in South America — sloths, armadillos, and anteaters are all part of the same ancient group. Despite looking far more similar to a sloth, koalas are marsupials on a completely different branch of the mammal tree.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Koala",
+      "label": "Koala - Wikipedia"
+    }
+  ]
+}

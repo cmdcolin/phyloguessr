@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Slime mold",
+      "scientificName": "Badhamia polycephala",
+      "ncbiTaxId": 5791,
+      "wikiTitle": "Physarum_polycephalum",
+      "group": "microbe",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Physarum_polycephalum_plasmodium.jpg/330px-Physarum_polycephalum_plasmodium.jpg"
+    },
+    {
+      "commonName": "Amoeba",
+      "scientificName": "Amoeba proteus",
+      "ncbiTaxId": 5775,
+      "wikiTitle": "Amoeba_proteus",
+      "group": "microbe",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Amoeba_proteus_with_many_pseudopodia.jpg/330px-Amoeba_proteus_with_many_pseudopodia.jpg"
+    },
+    {
+      "commonName": "Fly agaric",
+      "scientificName": "Amanita muscaria",
+      "ncbiTaxId": 41956,
+      "wikiTitle": "Amanita_muscaria",
+      "group": "microbe",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Amanita_muscaria_3_vliegenzwammen_op_rij.jpg/330px-Amanita_muscaria_3_vliegenzwammen_op_rij.jpg"
+    }
+  ],
+  "funFact": "Slime molds grow on rotting logs, produce spores, and were classified as fungi for over a century — but they are not fungi at all! They are Amoebozoa, closer to amoebae than to any mushroom. Physarum polycephalum can even solve mazes and optimize networks, despite being a single giant cell with no brain.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Slime_mold",
+      "label": "Slime mold - Wikipedia"
+    },
+    {
+      "url": "https://www.nps.gov/articles/000/slime-molds.htm",
+      "label": "National Park Service - Slime molds are not fungi"
+    }
+  ]
+}

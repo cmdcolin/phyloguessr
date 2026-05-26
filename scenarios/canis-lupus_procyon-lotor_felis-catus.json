@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Gray wolf",
+      "scientificName": "Canis lupus",
+      "ncbiTaxId": 9612,
+      "wikiTitle": "Wolf",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Huskiesatrest.jpg/500px-Huskiesatrest.jpg"
+    },
+    {
+      "commonName": "Raccoon",
+      "scientificName": "Procyon lotor",
+      "ncbiTaxId": 9654,
+      "wikiTitle": "Raccoon",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Raccoon_in_Central_Park_%2835264%29.jpg/330px-Raccoon_in_Central_Park_%2835264%29.jpg"
+    },
+    {
+      "commonName": "Domestic cat",
+      "scientificName": "Felis catus",
+      "ncbiTaxId": 9685,
+      "wikiTitle": "Cat",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/330px-Cat_August_2010-4.jpg"
+    }
+  ],
+  "funFact": "Raccoons are on the \"dog side\" of the carnivore family tree (Caniformia), more closely related to wolves than to cats. Cats are on the other side (Feliformia) with hyenas and mongooses.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Caniformia",
+      "label": "Caniformia - Wikipedia"
+    },
+    {
+      "url": "https://www.acsh.org/news/2018/12/12/are-raccoons-more-dogs-or-cats-13660",
+      "label": "ACSH - Are raccoons more like dogs or cats?"
+    }
+  ]
+}

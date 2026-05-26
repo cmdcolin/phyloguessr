@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Common bat",
+      "scientificName": "Myotis lucifugus",
+      "ncbiTaxId": 59463,
+      "wikiTitle": "Little_brown_bat",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Little_Brown_Myotis_%28cropped%29.JPG/330px-Little_Brown_Myotis_%28cropped%29.JPG"
+    },
+    {
+      "commonName": "Cow",
+      "scientificName": "Bos taurus",
+      "ncbiTaxId": 9913,
+      "wikiTitle": "Cattle",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Cow_%28Fleckvieh_breed%29_Oeschinensee_Slaunger_2009-07-07.jpg/330px-Cow_%28Fleckvieh_breed%29_Oeschinensee_Slaunger_2009-07-07.jpg"
+    },
+    {
+      "commonName": "Human",
+      "scientificName": "Homo sapiens",
+      "ncbiTaxId": 9606,
+      "wikiTitle": "Human",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/68/Akha_cropped_hires.JPG"
+    }
+  ],
+  "funFact": "Bats are more closely related to cows than to humans. Bats and cows are both Laurasiatheria — the same major branch of the mammal family tree that also includes dogs, cats, horses, and whales. Humans are on a completely separate branch (Euarchontoglires), with primates, rodents, and rabbits.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Laurasiatheria",
+      "label": "Laurasiatheria - Wikipedia"
+    },
+    {
+      "url": "https://www.batcon.org/surprising-bat-relatives/",
+      "label": "Bat Conservation International - Surprising bat relatives"
+    }
+  ]
+}

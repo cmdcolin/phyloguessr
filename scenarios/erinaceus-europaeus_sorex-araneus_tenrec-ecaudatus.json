@@ -1,0 +1,35 @@
+{
+  "organisms": [
+    {
+      "commonName": "Hedgehog",
+      "scientificName": "Erinaceus europaeus",
+      "ncbiTaxId": 9365,
+      "wikiTitle": "European_hedgehog",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Erinaceus_europaeus_LC0119.jpg/330px-Erinaceus_europaeus_LC0119.jpg"
+    },
+    {
+      "commonName": "Common shrew",
+      "scientificName": "Sorex araneus",
+      "ncbiTaxId": 42254,
+      "wikiTitle": "Eurasian_shrew",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Sorex-araneus.jpg/330px-Sorex-araneus.jpg"
+    },
+    {
+      "commonName": "Tenrec",
+      "scientificName": "Tenrec ecaudatus",
+      "ncbiTaxId": 94439,
+      "wikiTitle": "Tailless_tenrec",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Tanrek.jpg/330px-Tanrek.jpg"
+    }
+  ],
+  "funFact": "Hedgehogs and shrews are both true insectivores that evolved together in Europe and Asia. Tenrecs independently evolved spines nearly identical to a hedgehog's, but they are African mammals — closer to elephants and aardvarks than to any hedgehog.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Eulipotyphla",
+      "label": "Eulipotyphla - Wikipedia"
+    }
+  ]
+}

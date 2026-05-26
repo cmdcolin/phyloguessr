@@ -1,0 +1,35 @@
+{
+  "organisms": [
+    {
+      "commonName": "American pika",
+      "scientificName": "Ochotona princeps",
+      "ncbiTaxId": 9978,
+      "wikiTitle": "American_pika",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Ochotona_princeps_rockies.JPG/330px-Ochotona_princeps_rockies.JPG"
+    },
+    {
+      "commonName": "European rabbit",
+      "scientificName": "Oryctolagus cuniculus",
+      "ncbiTaxId": 9986,
+      "wikiTitle": "European_rabbit",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Oryctolagus_cuniculus_Tasmania_2_%28cropped%29.jpg/330px-Oryctolagus_cuniculus_Tasmania_2_%28cropped%29.jpg"
+    },
+    {
+      "commonName": "Brown rat",
+      "scientificName": "Rattus norvegicus",
+      "ncbiTaxId": 10116,
+      "wikiTitle": "Brown_rat",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Rattus_norvegicus_-_Brown_rat_02.jpg/500px-Rattus_norvegicus_-_Brown_rat_02.jpg"
+    }
+  ],
+  "funFact": "The pika looks like a tiny round-eared mouse, but it is a lagomorph — the same order as rabbits and hares! Rats are rodents, a completely separate order. Despite the pika's mousey appearance, it is more closely related to a rabbit than to any rat.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Lagomorpha",
+      "label": "Lagomorpha - Wikipedia"
+    }
+  ]
+}

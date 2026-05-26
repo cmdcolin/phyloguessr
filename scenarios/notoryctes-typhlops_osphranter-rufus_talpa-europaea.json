@@ -1,0 +1,35 @@
+{
+  "organisms": [
+    {
+      "commonName": "Marsupial mole",
+      "scientificName": "Notoryctes typhlops",
+      "ncbiTaxId": 37699,
+      "wikiTitle": "Southern_marsupial_mole",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Notoryctes_typhlops.jpg/330px-Notoryctes_typhlops.jpg"
+    },
+    {
+      "commonName": "Red kangaroo",
+      "scientificName": "Osphranter rufus",
+      "ncbiTaxId": 9321,
+      "wikiTitle": "Red_kangaroo",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Red_kangaroo_-_melbourne_zoo.jpg/330px-Red_kangaroo_-_melbourne_zoo.jpg"
+    },
+    {
+      "commonName": "European mole",
+      "scientificName": "Talpa europaea",
+      "ncbiTaxId": 9375,
+      "wikiTitle": "European_mole",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Talpa_europaea_MHNT.jpg/330px-Talpa_europaea_MHNT.jpg"
+    }
+  ],
+  "funFact": "The marsupial mole looks identical to a European mole — same tubular body, same shovel-like claws, same vestigial eyes — but it is a marsupial, closer to kangaroos than to any true mole! With golden moles (African relatives of elephants) and European moles (relatives of shrews), that makes three separate lineages on three continents that independently evolved the same burrowing body plan.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Marsupial_mole",
+      "label": "Marsupial mole - Wikipedia"
+    }
+  ]
+}

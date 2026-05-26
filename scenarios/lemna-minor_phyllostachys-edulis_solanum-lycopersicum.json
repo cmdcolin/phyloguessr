@@ -1,0 +1,35 @@
+{
+  "organisms": [
+    {
+      "commonName": "Duckweed",
+      "scientificName": "Lemna minor",
+      "ncbiTaxId": 4472,
+      "wikiTitle": "Lemna_minor",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Eendekroos_dicht_bijeen.JPG/330px-Eendekroos_dicht_bijeen.JPG"
+    },
+    {
+      "commonName": "Bamboo",
+      "scientificName": "Phyllostachys edulis",
+      "ncbiTaxId": 38705,
+      "wikiTitle": "Phyllostachys_edulis",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Bamboo_forest.jpg/330px-Bamboo_forest.jpg"
+    },
+    {
+      "commonName": "Tomato",
+      "scientificName": "Solanum lycopersicum",
+      "ncbiTaxId": 4081,
+      "wikiTitle": "Tomato",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Tomato_je.jpg/330px-Tomato_je.jpg"
+    }
+  ],
+  "funFact": "Duckweed — the smallest flowering plant in the world at just a few millimeters — and bamboo — which can grow 30 meters tall — are both monocots! Size tells you nothing about evolutionary relationships.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Lemnoideae",
+      "label": "Duckweed - Wikipedia"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "organisms": [
+    {
+      "commonName": "Dandelion",
+      "scientificName": "Taraxacum officinale",
+      "ncbiTaxId": 50225,
+      "wikiTitle": "Taraxacum_officinale",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Taraxacum_officinale_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-135.jpg/330px-Taraxacum_officinale_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-135.jpg"
+    },
+    {
+      "commonName": "Giant groundsel",
+      "scientificName": "Dendrosenecio kilimanjari",
+      "ncbiTaxId": 109559,
+      "wikiTitle": "Dendrosenecio_kilimanjari",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Senecio_kilimanjari_Barranco.jpg/330px-Senecio_kilimanjari_Barranco.jpg"
+    },
+    {
+      "commonName": "Ginkgo",
+      "scientificName": "Ginkgo biloba",
+      "ncbiTaxId": 3311,
+      "wikiTitle": "Ginkgo_biloba",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/GINKGOBAUM-2.jpg/330px-GINKGOBAUM-2.jpg"
+    }
+  ],
+  "funFact": "The giant groundsel is a 20-foot tall woody tree from Mount Kilimanjaro — and it is basically a dandelion that moved to a mountain and decided to become the boss. Both are in the daisy family (Asteraceae). The ginkgo tree is a completely different branch of life (a gymnosperm) that doesn't even make flowers — a living fossil barely changed since the age of dinosaurs.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Dendrosenecio",
+      "label": "Dendrosenecio - Wikipedia"
+    }
+  ]
+}

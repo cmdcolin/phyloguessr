@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Plasmodium",
+      "scientificName": "Plasmodium falciparum",
+      "ncbiTaxId": 5833,
+      "wikiTitle": "Plasmodium_falciparum",
+      "group": "microbe",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Plasmodium_falciparum_01.png/330px-Plasmodium_falciparum_01.png"
+    },
+    {
+      "commonName": "Paramecium",
+      "scientificName": "Paramecium caudatum",
+      "ncbiTaxId": 5885,
+      "wikiTitle": "Paramecium",
+      "group": "microbe",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Paramecium_caudatum_Ehrenberg%2C_1833.jpg/330px-Paramecium_caudatum_Ehrenberg%2C_1833.jpg"
+    },
+    {
+      "commonName": "Baker's yeast",
+      "scientificName": "Saccharomyces cerevisiae",
+      "ncbiTaxId": 4932,
+      "wikiTitle": "Saccharomyces_cerevisiae",
+      "group": "microbe",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Saccharomyces_cerevisiae_SEM.jpg/330px-Saccharomyces_cerevisiae_SEM.jpg"
+    }
+  ],
+  "funFact": "The malaria parasite and paramecium are both Alveolata — a major protist group defined by distinctive membrane folds under the cell surface — despite one being a deadly intracellular parasite and the other a free-living pond dweller. Yeast is a fungus, on a completely separate branch actually more closely related to animals than to either of them.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Alveolata",
+      "label": "Alveolata - Wikipedia"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=4ejoVBcLP4U",
+      "label": "PBS Eons - How Our Deadliest Parasite Turned To The Dark Side"
+    }
+  ]
+}

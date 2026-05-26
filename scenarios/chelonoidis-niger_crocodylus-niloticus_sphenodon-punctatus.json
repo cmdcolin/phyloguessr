@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Galápagos tortoise",
+      "scientificName": "Chelonoidis niger",
+      "ncbiTaxId": 66189,
+      "wikiTitle": "Galápagos_tortoise",
+      "group": "reptile",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Galapagos_giant_tortoise_Geochelone_elephantopus.jpg/330px-Galapagos_giant_tortoise_Geochelone_elephantopus.jpg"
+    },
+    {
+      "commonName": "Nile crocodile",
+      "scientificName": "Crocodylus niloticus",
+      "ncbiTaxId": 8501,
+      "wikiTitle": "Nile_crocodile",
+      "group": "reptile",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/NileCrocodile.jpg/330px-NileCrocodile.jpg"
+    },
+    {
+      "commonName": "Tuatara",
+      "scientificName": "Sphenodon punctatus",
+      "ncbiTaxId": 8508,
+      "wikiTitle": "Tuatara",
+      "group": "reptile",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Tuatara_%285205719005%29.jpg/330px-Tuatara_%285205719005%29.jpg"
+    }
+  ],
+  "funFact": "Tortoises and tuataras both look like primordial reptiles frozen in time — but they are on opposite sides of the reptile family tree. The tree splits into two main branches: one leading to lizards, snakes, and tuataras, the other to turtles, dinosaurs, birds, and crocs. Despite both looking equally ancient, a tortoise is on the dinosaur side and a tuatara is on the lizard side.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Archelosauria",
+      "label": "Archelosauria - Wikipedia"
+    },
+    {
+      "url": "https://bmcbiol.biomedcentral.com/articles/10.1186/1741-7007-10-65",
+      "label": "BMC Biology - Turtles are sister group of birds and crocodiles"
+    }
+  ]
+}

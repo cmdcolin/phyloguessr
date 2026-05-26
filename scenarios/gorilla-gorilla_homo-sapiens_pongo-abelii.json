@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Gorilla",
+      "scientificName": "Gorilla gorilla",
+      "ncbiTaxId": 9593,
+      "wikiTitle": "Western_gorilla",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Male_gorilla_in_SF_zoo.jpg/330px-Male_gorilla_in_SF_zoo.jpg"
+    },
+    {
+      "commonName": "Human",
+      "scientificName": "Homo sapiens",
+      "ncbiTaxId": 9606,
+      "wikiTitle": "Human",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/68/Akha_cropped_hires.JPG"
+    },
+    {
+      "commonName": "Orangutan",
+      "scientificName": "Pongo abelii",
+      "ncbiTaxId": 9601,
+      "wikiTitle": "Sumatran_orangutan",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Sumatra-Orang-Utan_im_Pongoland.jpg/330px-Sumatra-Orang-Utan_im_Pongoland.jpg"
+    }
+  ],
+  "funFact": "Gorillas are our second-closest living relative after chimps. The gorilla lineage split from ours ~8 million years ago; orangutans split ~14 million years ago — making gorillas about twice as recently related to us as orangutans.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Hominidae",
+      "label": "Hominidae - Wikipedia"
+    },
+    {
+      "url": "https://humanorigins.si.edu/evidence/genetics",
+      "label": "Smithsonian Human Origins - Genetics of great ape family tree"
+    }
+  ]
+}

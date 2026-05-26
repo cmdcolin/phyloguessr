@@ -1,0 +1,35 @@
+{
+  "organisms": [
+    {
+      "commonName": "Dodder",
+      "scientificName": "Cuscuta campestris",
+      "ncbiTaxId": 132261,
+      "wikiTitle": "Cuscuta",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Cuscuta_europaea_bgiu.jpg/330px-Cuscuta_europaea_bgiu.jpg"
+    },
+    {
+      "commonName": "Potato",
+      "scientificName": "Solanum tuberosum",
+      "ncbiTaxId": 4113,
+      "wikiTitle": "Potato",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Patates.jpg/330px-Patates.jpg"
+    },
+    {
+      "commonName": "Corpse lily",
+      "scientificName": "Rafflesia arnoldii",
+      "ncbiTaxId": 577516,
+      "wikiTitle": "Rafflesia_arnoldii",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Rafflesia_arnoldii%2C_Sumatra.jpg/330px-Rafflesia_arnoldii%2C_Sumatra.jpg"
+    }
+  ],
+  "funFact": "Dodder looks like tangled orange string draped over other plants — no leaves, no chlorophyll, just parasitic vines tapping into their hosts. But it is a flowering plant in the morning glory family, more closely related to a potato than to the corpse lily. Both dodder and potatoes are asterids; the corpse lily is on a completely different branch.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Cuscuta",
+      "label": "Cuscuta - Wikipedia"
+    }
+  ]
+}

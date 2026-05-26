@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Human",
+      "scientificName": "Homo sapiens",
+      "ncbiTaxId": 9606,
+      "wikiTitle": "Human",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/68/Akha_cropped_hires.JPG"
+    },
+    {
+      "commonName": "Sea urchin",
+      "scientificName": "Strongylocentrotus purpuratus",
+      "ncbiTaxId": 7668,
+      "wikiTitle": "Strongylocentrotus_purpuratus",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Urchin_%289398869414%29.jpg/500px-Urchin_%289398869414%29.jpg"
+    },
+    {
+      "commonName": "Fruit fly",
+      "scientificName": "Drosophila melanogaster",
+      "ncbiTaxId": 7227,
+      "wikiTitle": "Drosophila_melanogaster",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Drosophila_melanogaster_Proboscis.jpg/500px-Drosophila_melanogaster_Proboscis.jpg"
+    }
+  ],
+  "funFact": "Humans and sea urchins are both deuterostomes — a group of animals whose embryos develop the same way, forming the anus before the mouth. Insects develop the other way around, putting them on a completely different branch of the animal tree.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Deuterostome",
+      "label": "Deuterostome - Wikipedia"
+    },
+    {
+      "url": "https://www.abc.net.au/science/articles/2006/11/10/1785449.htm",
+      "label": "ABC Science - Sea urchins are our cousins"
+    }
+  ]
+}

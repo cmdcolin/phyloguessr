@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Peanut worm",
+      "scientificName": "Sipunculus nudus",
+      "ncbiTaxId": 6446,
+      "wikiTitle": "Peanut_worm",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Thysanocardia_nigra.jpg/330px-Thysanocardia_nigra.jpg"
+    },
+    {
+      "commonName": "Earthworm",
+      "scientificName": "Lumbricus terrestris",
+      "ncbiTaxId": 6398,
+      "wikiTitle": "Lumbricus_terrestris",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Regenwurm1.jpg/330px-Regenwurm1.jpg"
+    },
+    {
+      "commonName": "Milky ribbon worm",
+      "scientificName": "Cerebratulus lacteus",
+      "ncbiTaxId": 6221,
+      "wikiTitle": "Cerebratulus_lacteus",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Cerebratulus_lacteus_%28YPM_IZ_103854%29.jpeg/330px-Cerebratulus_lacteus_%28YPM_IZ_103854%29.jpeg"
+    }
+  ],
+  "funFact": "Peanut worms (sipunculans) were classified as their own phylum for over a century, but modern genomics placed them firmly within Annelida — the same phylum as earthworms and lugworms. Despite both being soft marine 'worms', a peanut worm is closer to an earthworm than to a ribbon worm — ribbon worms (nemerteans) belong to an entirely different phylum.",
+  "sources": [
+    {
+      "url": "https://www.sciencedaily.com/releases/2011/03/110302184042.htm",
+      "label": "Peanut worms are annelids - ScienceDaily"
+    },
+    {
+      "url": "https://bmcgenomics.biomedcentral.com/articles/10.1186/1471-2164-10-136",
+      "label": "Mitochondrial genome evidence for Sipuncula-Annelida relationship - BMC Genomics"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Bottlenose dolphin",
+      "scientificName": "Tursiops truncatus",
+      "ncbiTaxId": 9739,
+      "wikiTitle": "Common_bottlenose_dolphin",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Tursiops_truncatus_01-cropped.jpg/330px-Tursiops_truncatus_01-cropped.jpg"
+    },
+    {
+      "commonName": "Hippopotamus",
+      "scientificName": "Hippopotamus amphibius",
+      "ncbiTaxId": 9833,
+      "wikiTitle": "Hippopotamus",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Portrait_Hippopotamus_in_the_water.jpg/330px-Portrait_Hippopotamus_in_the_water.jpg"
+    },
+    {
+      "commonName": "Harbor seal",
+      "scientificName": "Phoca vitulina",
+      "ncbiTaxId": 9720,
+      "wikiTitle": "Harbor_seal",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Common_seal_%28Phoca_vitulina%29_2.jpg/330px-Common_seal_%28Phoca_vitulina%29_2.jpg"
+    }
+  ],
+  "funFact": "Dolphins and hippos share an ancestor — whales actually evolved from the same group of hoofed mammals as hippos. Seals evolved from a completely different lineage of land carnivores related to bears and dogs.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Cetartiodactyla",
+      "label": "Cetartiodactyla - Wikipedia"
+    },
+    {
+      "url": "https://www.pnas.org/doi/10.1073/pnas.96.18.10261",
+      "label": "PNAS - Hippopotamuses are the closest extant relatives of whales"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Sugar glider",
+      "scientificName": "Petaurus breviceps",
+      "ncbiTaxId": 34899,
+      "wikiTitle": "Sugar_glider",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Petaurus_breviceps-Cayley.jpg/330px-Petaurus_breviceps-Cayley.jpg"
+    },
+    {
+      "commonName": "Red kangaroo",
+      "scientificName": "Osphranter rufus",
+      "ncbiTaxId": 9321,
+      "wikiTitle": "Red_kangaroo",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Red_kangaroo_-_melbourne_zoo.jpg/330px-Red_kangaroo_-_melbourne_zoo.jpg"
+    },
+    {
+      "commonName": "Flying squirrel",
+      "scientificName": "Glaucomys volans",
+      "ncbiTaxId": 64683,
+      "wikiTitle": "Southern_flying_squirrel",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Southern_Flying_Squirrel_-_Glaucomys_volans%2C_Arlington%2C_Virginia%2C_December_22%2C_2020_%2853406816432%29.jpg/330px-Southern_Flying_Squirrel_-_Glaucomys_volans%2C_Arlington%2C_Virginia%2C_December_22%2C_2020_%2853406816432%29.jpg"
+    }
+  ],
+  "funFact": "Sugar gliders look almost identical to flying squirrels — same size, same gliding membranes, same big eyes — but they are marsupials! Sugar gliders are closer to kangaroos than to any rodent. This is a textbook case of convergent evolution.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Sugar_glider",
+      "label": "Sugar glider - Wikipedia"
+    },
+    {
+      "url": "https://evolution.berkeley.edu/examples-of-analogies/squirrels-and-sugar-gliders/",
+      "label": "UC Berkeley - Squirrels and sugar gliders convergent evolution"
+    }
+  ]
+}

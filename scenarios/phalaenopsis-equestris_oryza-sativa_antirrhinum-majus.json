@@ -1,0 +1,35 @@
+{
+  "organisms": [
+    {
+      "commonName": "Orchid",
+      "scientificName": "Phalaenopsis equestris",
+      "ncbiTaxId": 78828,
+      "wikiTitle": "Orchidaceae",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Plant_Orchid_Cymbidium_aloifolium_P1110661_05_-_cropped.jpg/330px-Plant_Orchid_Cymbidium_aloifolium_P1110661_05_-_cropped.jpg"
+    },
+    {
+      "commonName": "Rice",
+      "scientificName": "Oryza sativa",
+      "ncbiTaxId": 4530,
+      "wikiTitle": "Rice",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Mature_Rice_%28India%29_by_Augustus_Binu.jpg/330px-Mature_Rice_%28India%29_by_Augustus_Binu.jpg"
+    },
+    {
+      "commonName": "Snapdragon",
+      "scientificName": "Antirrhinum majus",
+      "ncbiTaxId": 4151,
+      "wikiTitle": "Antirrhinum_majus",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Antirrhinum_majus_BCBG_%2802%29.jpg/330px-Antirrhinum_majus_BCBG_%2802%29.jpg"
+    }
+  ],
+  "funFact": "An orchid is more closely related to a rice plant than to a snapdragon — despite orchids and snapdragons both having showy, bilaterally symmetric flowers. Orchids are monocots, on the same branch as grasses, palms, and lilies. Snapdragons are eudicots, on the other side of the flowering plant tree. The similar flower shapes evolved independently.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Orchidaceae",
+      "label": "Orchidaceae - Wikipedia"
+    }
+  ]
+}

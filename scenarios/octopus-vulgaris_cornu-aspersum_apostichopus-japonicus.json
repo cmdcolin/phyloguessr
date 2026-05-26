@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Common octopus",
+      "scientificName": "Octopus vulgaris",
+      "ncbiTaxId": 6645,
+      "wikiTitle": "Common_octopus",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Octopus2.jpg/330px-Octopus2.jpg"
+    },
+    {
+      "commonName": "Garden snail",
+      "scientificName": "Cornu aspersum",
+      "ncbiTaxId": 6535,
+      "wikiTitle": "Cornu_aspersum",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Snail1web.jpg/330px-Snail1web.jpg"
+    },
+    {
+      "commonName": "Sea cucumber",
+      "scientificName": "Apostichopus japonicus",
+      "ncbiTaxId": 307972,
+      "wikiTitle": "Apostichopus_japonicus",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Apostichopus_japonicus.jpg/330px-Apostichopus_japonicus.jpg"
+    }
+  ],
+  "funFact": "Octopuses and snails are both molluscs! Despite octopuses having complex brains and no shell, they share a common ancestor with humble snails. Sea cucumbers may be soft and squishy, but they are echinoderms — more closely related to starfish and sea urchins than to any mollusc.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Mollusca",
+      "label": "Mollusca - Wikipedia"
+    },
+    {
+      "url": "https://www.dgs.udel.edu/node/449",
+      "label": "Delaware Geological Survey - Clams, snails, and squid: Phylum Mollusca"
+    }
+  ]
+}

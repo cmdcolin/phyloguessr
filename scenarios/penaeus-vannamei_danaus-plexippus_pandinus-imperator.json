@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "White shrimp",
+      "scientificName": "Penaeus vannamei",
+      "ncbiTaxId": 6689,
+      "wikiTitle": "Whiteleg_shrimp",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Litopenaeus_vannamei_specimen.jpg/330px-Litopenaeus_vannamei_specimen.jpg"
+    },
+    {
+      "commonName": "Monarch butterfly",
+      "scientificName": "Danaus plexippus",
+      "ncbiTaxId": 13037,
+      "wikiTitle": "Monarch_butterfly",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Monarch_Butterfly_Danaus_plexippus_Male_2664px.jpg/330px-Monarch_Butterfly_Danaus_plexippus_Male_2664px.jpg"
+    },
+    {
+      "commonName": "Scorpion",
+      "scientificName": "Pandinus imperator",
+      "ncbiTaxId": 55084,
+      "wikiTitle": "Emperor_scorpion",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Female_Emperor_Scorpion.jpg/330px-Female_Emperor_Scorpion.jpg"
+    }
+  ],
+  "funFact": "A shrimp is more closely related to a butterfly than to a scorpion! Insects actually evolved from within crustaceans, making them \"land shrimp\" in a sense. Traditional \"Crustacea\" is not a real group without including insects. Scorpions are chelicerates — on a completely separate branch of arthropods.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Pancrustacea",
+      "label": "Pancrustacea - Wikipedia"
+    },
+    {
+      "url": "https://academic.oup.com/icb/article/55/5/765/604304",
+      "label": "Integrative and Comparative Biology - Linking insects with Crustacea"
+    }
+  ]
+}

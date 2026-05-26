@@ -1,0 +1,43 @@
+{
+  "organisms": [
+    {
+      "commonName": "Rock hyrax",
+      "scientificName": "Procavia capensis",
+      "ncbiTaxId": 9813,
+      "wikiTitle": "Rock_hyrax",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/188_Rock_hyrax_in_Damaraland_Photo_by_Giles_Laurent.jpg/330px-188_Rock_hyrax_in_Damaraland_Photo_by_Giles_Laurent.jpg"
+    },
+    {
+      "commonName": "West Indian manatee",
+      "scientificName": "Trichechus manatus",
+      "ncbiTaxId": 9778,
+      "wikiTitle": "West_Indian_manatee",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Manatee_with_calf.PD_-_colour_corrected.jpg/330px-Manatee_with_calf.PD_-_colour_corrected.jpg"
+    },
+    {
+      "commonName": "Raccoon dog",
+      "scientificName": "Nyctereutes procyonoides",
+      "ncbiTaxId": 9647,
+      "wikiTitle": "Raccoon_dog",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Nyctereutes_procyonoides_-_Raccoon_Dog_-_Jenot.png/330px-Nyctereutes_procyonoides_-_Raccoon_Dog_-_Jenot.png"
+    }
+  ],
+  "funFact": "The rock hyrax looks exactly like a large guinea pig — but it shares a more recent ancestor with the aquatic manatee than with the raccoon dog. Both hyrax and manatee are Paenungulata, a subgroup of Afrotheria — the ancient African mammal lineage that also includes elephants and aardvarks. The raccoon dog, despite its similarly round and fluffy build, is a true canid, on the dog branch of the carnivore tree.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Paenungulata",
+      "label": "Paenungulata - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Afrotheria",
+      "label": "Afrotheria - Wikipedia"
+    }
+  ],
+  "correctPair": [
+    "Rock hyrax",
+    "West Indian manatee"
+  ]
+}

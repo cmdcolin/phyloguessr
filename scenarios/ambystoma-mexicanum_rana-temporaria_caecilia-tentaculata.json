@@ -1,0 +1,43 @@
+{
+  "organisms": [
+    {
+      "commonName": "Axolotl",
+      "scientificName": "Ambystoma mexicanum",
+      "ncbiTaxId": 8296,
+      "wikiTitle": "Axolotl",
+      "group": "amphibian",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Axolotl_ganz.jpg/330px-Axolotl_ganz.jpg"
+    },
+    {
+      "commonName": "Common frog",
+      "scientificName": "Rana temporaria",
+      "ncbiTaxId": 8407,
+      "wikiTitle": "Common_frog",
+      "group": "amphibian",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/European_Common_Frog_Rana_temporaria.jpg/330px-European_Common_Frog_Rana_temporaria.jpg"
+    },
+    {
+      "commonName": "Caecilian",
+      "scientificName": "Caecilia tentaculata",
+      "ncbiTaxId": 356198,
+      "wikiTitle": "Caecilian",
+      "group": "amphibian",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Oscaecilia_ochrocephala_%2816983972190%29.jpg/330px-Oscaecilia_ochrocephala_%2816983972190%29.jpg"
+    }
+  ],
+  "funFact": "Within amphibians, frogs and salamanders (like the axolotl) form a clade called Batrachia — they are each other's closest relatives. Caecilians — limbless, burrowing, worm-like amphibians — are in most analyses the earliest-diverging of the three amphibian orders, having split off before frogs and salamanders went their separate ways, though ancient incomplete lineage sorting makes this one of the harder nodes in vertebrate phylogenetics.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Batrachia",
+      "label": "Batrachia - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Lissamphibia",
+      "label": "Lissamphibia - Wikipedia"
+    },
+    {
+      "url": "https://academic.oup.com/sysbio/article/70/1/49/5828236",
+      "label": "Irisarri et al. 2021 - Phylogenomics Reveals Ancient Gene Tree Discordance in the Amphibian Tree of Life (Systematic Biology)"
+    }
+  ]
+}

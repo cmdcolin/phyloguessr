@@ -1,0 +1,35 @@
+{
+  "organisms": [
+    {
+      "commonName": "Baobab",
+      "scientificName": "Adansonia digitata",
+      "ncbiTaxId": 69109,
+      "wikiTitle": "Adansonia_digitata",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Baobab_and_elephant%2C_Tanzania.jpg/330px-Baobab_and_elephant%2C_Tanzania.jpg"
+    },
+    {
+      "commonName": "Cotton",
+      "scientificName": "Gossypium hirsutum",
+      "ncbiTaxId": 3635,
+      "wikiTitle": "Gossypium_hirsutum",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/CottonPlant.JPG/330px-CottonPlant.JPG"
+    },
+    {
+      "commonName": "Scots pine",
+      "scientificName": "Pinus sylvestris",
+      "ncbiTaxId": 3349,
+      "wikiTitle": "Scots_pine",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Skuleskogen_pine.jpg/330px-Skuleskogen_pine.jpg"
+    }
+  ],
+  "funFact": "The massive baobab tree — with trunks up to 11 meters wide — is in the family Malvaceae alongside cotton and hibiscus! Despite one being a towering African icon and the other a fluffy crop, they share a recent common ancestor.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Adansonia",
+      "label": "Adansonia - Wikipedia"
+    }
+  ]
+}

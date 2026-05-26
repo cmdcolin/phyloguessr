@@ -1,0 +1,35 @@
+{
+  "organisms": [
+    {
+      "commonName": "Seahorse",
+      "scientificName": "Hippocampus kuda",
+      "ncbiTaxId": 103715,
+      "wikiTitle": "Seahorse",
+      "group": "fish",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Hippocampus_hippocampus_%28on_Ascophyllum_nodosum%29.jpg/330px-Hippocampus_hippocampus_%28on_Ascophyllum_nodosum%29.jpg"
+    },
+    {
+      "commonName": "Clownfish",
+      "scientificName": "Amphiprion ocellaris",
+      "ncbiTaxId": 80972,
+      "wikiTitle": "Ocellaris_clownfish",
+      "group": "fish",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Clown_fish_in_the_Andaman_Coral_Reef.jpg/330px-Clown_fish_in_the_Andaman_Coral_Reef.jpg"
+    },
+    {
+      "commonName": "Great white shark",
+      "scientificName": "Carcharodon carcharias",
+      "ncbiTaxId": 13397,
+      "wikiTitle": "Great_white_shark",
+      "group": "fish",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/White_shark.jpg/330px-White_shark.jpg"
+    }
+  ],
+  "funFact": "A seahorse barely looks like a fish — upright posture, prehensile tail, no scales, and the males get pregnant. But it is a bony fish (a pipefish relative), closer to a clownfish than to any shark. Sharks have cartilaginous skeletons and diverged from bony fish over 400 million years ago.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Osteichthyes",
+      "label": "Osteichthyes - Wikipedia"
+    }
+  ]
+}

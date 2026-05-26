@@ -1,0 +1,35 @@
+{
+  "organisms": [
+    {
+      "commonName": "Brown rat",
+      "scientificName": "Rattus norvegicus",
+      "ncbiTaxId": 10116,
+      "wikiTitle": "Brown_rat",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Rattus_norvegicus_-_Brown_rat_02.jpg/500px-Rattus_norvegicus_-_Brown_rat_02.jpg"
+    },
+    {
+      "commonName": "House mouse",
+      "scientificName": "Mus musculus",
+      "ncbiTaxId": 10090,
+      "wikiTitle": "House_mouse",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/%D0%9C%D1%8B%D1%88%D1%8C_2.jpg/500px-%D0%9C%D1%8B%D1%88%D1%8C_2.jpg"
+    },
+    {
+      "commonName": "European rabbit",
+      "scientificName": "Oryctolagus cuniculus",
+      "ncbiTaxId": 9986,
+      "wikiTitle": "European_rabbit",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Oryctolagus_cuniculus_Tasmania_2_%28cropped%29.jpg/330px-Oryctolagus_cuniculus_Tasmania_2_%28cropped%29.jpg"
+    }
+  ],
+  "funFact": "Rats and mice are in the same family (Muridae)! Despite rabbits looking like large, fluffy mice, rabbits are not rodents at all — they are lagomorphs, in their own separate order. You can tell by the teeth: rodents have one pair of upper incisors, while rabbits have a second tiny pair hidden behind the first.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Muridae",
+      "label": "Muridae - Wikipedia"
+    }
+  ]
+}

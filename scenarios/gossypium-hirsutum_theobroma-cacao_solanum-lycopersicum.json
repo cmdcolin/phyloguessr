@@ -1,0 +1,35 @@
+{
+  "organisms": [
+    {
+      "commonName": "Cotton",
+      "scientificName": "Gossypium hirsutum",
+      "ncbiTaxId": 3635,
+      "wikiTitle": "Gossypium_hirsutum",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/CottonPlant.JPG/330px-CottonPlant.JPG"
+    },
+    {
+      "commonName": "Cacao",
+      "scientificName": "Theobroma cacao",
+      "ncbiTaxId": 3641,
+      "wikiTitle": "Theobroma_cacao",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Matadecacao.jpg/330px-Matadecacao.jpg"
+    },
+    {
+      "commonName": "Tomato",
+      "scientificName": "Solanum lycopersicum",
+      "ncbiTaxId": 4081,
+      "wikiTitle": "Tomato",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Tomato_je.jpg/330px-Tomato_je.jpg"
+    }
+  ],
+  "funFact": "Cotton and chocolate (cacao) are in the same family — Malvaceae! This family also includes okra, durian, and hibiscus. They were only united after DNA studies.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Malvaceae",
+      "label": "Malvaceae - Wikipedia"
+    }
+  ]
+}

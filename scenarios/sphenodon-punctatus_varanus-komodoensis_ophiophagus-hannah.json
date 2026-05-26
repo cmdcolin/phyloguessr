@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Tuatara",
+      "scientificName": "Sphenodon punctatus",
+      "ncbiTaxId": 8508,
+      "wikiTitle": "Tuatara",
+      "group": "reptile",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Tuatara_%285205719005%29.jpg/330px-Tuatara_%285205719005%29.jpg"
+    },
+    {
+      "commonName": "Komodo dragon",
+      "scientificName": "Varanus komodoensis",
+      "ncbiTaxId": 61221,
+      "wikiTitle": "Komodo_dragon",
+      "group": "reptile",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/202306_Varanus_komodoensis.jpg/330px-202306_Varanus_komodoensis.jpg"
+    },
+    {
+      "commonName": "King cobra",
+      "scientificName": "Ophiophagus hannah",
+      "ncbiTaxId": 8665,
+      "wikiTitle": "King_cobra",
+      "group": "reptile",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/12_-_The_Mystical_King_Cobra_and_Coffee_Forests.jpg/330px-12_-_The_Mystical_King_Cobra_and_Coffee_Forests.jpg"
+    }
+  ],
+  "funFact": "The tuatara looks like a large lizard, but it is the sole survivor of Rhynchocephalia — a reptile order that diverged from squamates (the order containing all lizards and snakes) over 240 million years ago. The Komodo dragon and king cobra are both squamates, more closely related to each other than either is to the tuatara.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Rhynchocephalia",
+      "label": "Rhynchocephalia - Wikipedia"
+    },
+    {
+      "url": "https://theconversation.com/not-a-lizard-nor-a-dinosaur-tuatara-is-the-sole-survivor-of-a-once-widespread-reptile-group-75921",
+      "label": "The Conversation - Tuatara is the sole survivor of a once-widespread reptile group"
+    }
+  ]
+}

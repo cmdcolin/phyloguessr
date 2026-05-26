@@ -1,0 +1,35 @@
+{
+  "organisms": [
+    {
+      "commonName": "Black-tailed prairie dog",
+      "scientificName": "Cynomys ludovicianus",
+      "ncbiTaxId": 45480,
+      "wikiTitle": "Black-tailed_prairie_dog",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Cynomys_ludovicianus_%2854906540630%29.jpg/330px-Cynomys_ludovicianus_%2854906540630%29.jpg"
+    },
+    {
+      "commonName": "Flying squirrel",
+      "scientificName": "Glaucomys volans",
+      "ncbiTaxId": 64683,
+      "wikiTitle": "Southern_flying_squirrel",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Southern_Flying_Squirrel_-_Glaucomys_volans%2C_Arlington%2C_Virginia%2C_December_22%2C_2020_%2853406816432%29.jpg/330px-Southern_Flying_Squirrel_-_Glaucomys_volans%2C_Arlington%2C_Virginia%2C_December_22%2C_2020_%2853406816432%29.jpg"
+    },
+    {
+      "commonName": "American beaver",
+      "scientificName": "Castor canadensis",
+      "ncbiTaxId": 51338,
+      "wikiTitle": "North_American_beaver",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/American_Beaver.jpg/330px-American_Beaver.jpg"
+    }
+  ],
+  "funFact": "Prairie dogs and flying squirrels are both squirrels (Sciuridae)! A burrowing prairie mammal and a gliding tree mammal are in the same family. Beavers look like similarly chunky rodents but are Castoridae — a completely separate rodent family that diverged tens of millions of years ago.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Sciuridae",
+      "label": "Sciuridae - Wikipedia"
+    }
+  ]
+}

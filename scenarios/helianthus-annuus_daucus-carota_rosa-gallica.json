@@ -1,0 +1,35 @@
+{
+  "organisms": [
+    {
+      "commonName": "Sunflower",
+      "scientificName": "Helianthus annuus",
+      "ncbiTaxId": 4232,
+      "wikiTitle": "Common_sunflower",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Sunflower_sky_backdrop.jpg/330px-Sunflower_sky_backdrop.jpg"
+    },
+    {
+      "commonName": "Carrot",
+      "scientificName": "Daucus carota",
+      "ncbiTaxId": 4039,
+      "wikiTitle": "Carrot",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Daucus_carota_May_2008-1_edit.jpg/330px-Daucus_carota_May_2008-1_edit.jpg"
+    },
+    {
+      "commonName": "Rose",
+      "scientificName": "Rosa gallica",
+      "ncbiTaxId": 74632,
+      "wikiTitle": "Rosa_gallica",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Wild_Rosa_gallica_Romania.jpg/330px-Wild_Rosa_gallica_Romania.jpg"
+    }
+  ],
+  "funFact": "A sunflower is more closely related to a carrot than to a rose, despite sunflowers and roses both being classic garden flowers. Sunflowers and carrots are both asterids — a huge branch of flowering plants that also includes coffee, mint, and tomatoes. Roses are rosids, a separate branch.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Asterids",
+      "label": "Asterids - Wikipedia"
+    }
+  ]
+}

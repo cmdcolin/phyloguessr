@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "American pitcher plant",
+      "scientificName": "Sarracenia purpurea",
+      "ncbiTaxId": 45176,
+      "wikiTitle": "Sarracenia_purpurea",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Sarracenia_purpurea_Flowers.JPG/330px-Sarracenia_purpurea_Flowers.JPG"
+    },
+    {
+      "commonName": "Tropical pitcher plant",
+      "scientificName": "Nepenthes rajah",
+      "ncbiTaxId": 150991,
+      "wikiTitle": "Nepenthes_rajah",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Nepenthes_rajah.png/330px-Nepenthes_rajah.png"
+    },
+    {
+      "commonName": "Blueberry",
+      "scientificName": "Vaccinium corymbosum",
+      "ncbiTaxId": 69266,
+      "wikiTitle": "Vaccinium_corymbosum",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Vaccinium_corymbosum%2801%29.jpg/330px-Vaccinium_corymbosum%2801%29.jpg"
+    }
+  ],
+  "funFact": "The American pitcher plant (Sarracenia) and the tropical pitcher plant (Nepenthes) both have deep tubes of digestive acid to eat bugs, but they are not related at all! The American ones are closer to blueberries and kiwis (order Ericales), while the Asian ones are closer to buckwheat and rhubarb (order Caryophyllales). Evolution invented the pitcher trap at least five separate times because eating bugs is a great way to get nitrogen in poor soil.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Pitcher_plant",
+      "label": "Pitcher plant - Wikipedia"
+    },
+    {
+      "url": "https://www.science.org/doi/10.1126/science.ade0529",
+      "label": "Science - Convergence in carnivorous pitcher plants"
+    }
+  ]
+}

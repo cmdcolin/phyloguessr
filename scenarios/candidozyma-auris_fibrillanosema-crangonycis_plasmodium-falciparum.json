@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Candida auris",
+      "scientificName": "Candidozyma auris",
+      "ncbiTaxId": 498019,
+      "wikiTitle": "Candida_auris",
+      "group": "microbe",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Candida-auris_2016-250px.jpg/330px-Candida-auris_2016-250px.jpg"
+    },
+    {
+      "commonName": "Microsporidian",
+      "scientificName": "Fibrillanosema crangonycis",
+      "ncbiTaxId": 253633,
+      "wikiTitle": "Fibrillanosema_crangonycis",
+      "group": "microbe",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Fibrillanosema_spore.jpg/330px-Fibrillanosema_spore.jpg"
+    },
+    {
+      "commonName": "Plasmodium",
+      "scientificName": "Plasmodium falciparum",
+      "ncbiTaxId": 5833,
+      "wikiTitle": "Plasmodium_falciparum",
+      "group": "microbe",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Plasmodium_falciparum_01.png/330px-Plasmodium_falciparum_01.png"
+    }
+  ],
+  "funFact": "Microsporidia are intracellular parasites so stripped-down they lack mitochondria and were long classified as ancient protists. But they are actually degenerate fungi — closer to Candida auris than to the malaria parasite. Two very different strategies for parasitism, one shared fungal ancestry.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Microsporidia",
+      "label": "Microsporidia - Wikipedia"
+    },
+    {
+      "url": "https://journals.asm.org/doi/10.1128/microbiolspec.funk-0018-2016",
+      "label": "ASM Microbiology Spectrum - Microsporidia within the fungal kingdom"
+    }
+  ]
+}

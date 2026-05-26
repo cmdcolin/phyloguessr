@@ -99,6 +99,9 @@ run(
 // Step 5: Split taxonomy for easy mode
 run('Step 5: Split taxonomy for easy mode', 'scripts/split-taxonomy.mjs')
 
+// Step 5b: Build easy-scenarios.json from scenarios/ source files
+run('Step 5b: Build easy-scenarios bundle', 'scripts/build-easy-scenarios.mjs')
+
 // Step 6: Run tests
 runShell('Step 6: Run tests', 'npx vitest run')
 

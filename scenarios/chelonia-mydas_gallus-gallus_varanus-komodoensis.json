@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Green sea turtle",
+      "scientificName": "Chelonia mydas",
+      "ncbiTaxId": 8469,
+      "wikiTitle": "Green_sea_turtle",
+      "group": "reptile",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Green_sea_turtle_%28Chelonia_mydas%29_Moorea.jpg/330px-Green_sea_turtle_%28Chelonia_mydas%29_Moorea.jpg"
+    },
+    {
+      "commonName": "Chicken",
+      "scientificName": "Gallus gallus",
+      "ncbiTaxId": 9031,
+      "wikiTitle": "Chicken",
+      "group": "bird",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Red_jungle_fowl.png/330px-Red_jungle_fowl.png"
+    },
+    {
+      "commonName": "Komodo dragon",
+      "scientificName": "Varanus komodoensis",
+      "ncbiTaxId": 61221,
+      "wikiTitle": "Komodo_dragon",
+      "group": "reptile",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/202306_Varanus_komodoensis.jpg/330px-202306_Varanus_komodoensis.jpg"
+    }
+  ],
+  "funFact": "Turtles are closer to birds and crocodilians than to lizards! The reptile family tree has two main branches: one leading to lizards and snakes, the other to turtles, crocodilians, and birds. Turtles sit just outside Archosauria — the clade of crocodilians, dinosaurs, and birds — making crocodilians the closest living relatives of birds, not turtles. Despite looking like the most \"primitive\" reptile, a turtle is on the bird-and-croc side of the tree, not the lizard side.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Archelosauria",
+      "label": "Archelosauria - Wikipedia"
+    },
+    {
+      "url": "https://bmcbiol.biomedcentral.com/articles/10.1186/1741-7007-10-65",
+      "label": "BMC Biology - Turtles are sister group of birds and crocodiles"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "organisms": [
+    {
+      "commonName": "Harbor seal",
+      "scientificName": "Phoca vitulina",
+      "ncbiTaxId": 9720,
+      "wikiTitle": "Harbor_seal",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Common_seal_%28Phoca_vitulina%29_2.jpg/330px-Common_seal_%28Phoca_vitulina%29_2.jpg"
+    },
+    {
+      "commonName": "Brown bear",
+      "scientificName": "Ursus arctos",
+      "ncbiTaxId": 9644,
+      "wikiTitle": "Brown_bear",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/2010-kodiak-bear-1.jpg/330px-2010-kodiak-bear-1.jpg"
+    },
+    {
+      "commonName": "Domestic cat",
+      "scientificName": "Felis catus",
+      "ncbiTaxId": 9685,
+      "wikiTitle": "Cat",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/330px-Cat_August_2010-4.jpg"
+    }
+  ],
+  "funFact": "Seals are more closely related to bears than to cats! Seals and bears are both on the \"dog side\" of the carnivore family tree (Caniformia), while cats are on the other side. Seals' closest living relatives are actually musteloids — weasels, otters, and raccoons — with bears sitting further out on that same branch.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Caniformia",
+      "label": "Caniformia - Wikipedia"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=aAOsf004FqQ",
+      "label": "YouTube - Seals are related to dogs and bears"
+    },
+    {
+      "url": "https://academic.oup.com/evolut/article/78/7/1212/7655703",
+      "label": "Cullen et al. 2024 - Charting the course of pinniped evolution (Evolution)"
+    },
+    {
+      "url": "https://www.frontiersin.org/journals/ecology-and-evolution/articles/10.3389/fevo.2019.00457/full",
+      "label": "Frontiers 2019 - Total Evidence Phylogenetic Analysis of Pinniped Phylogeny"
+    }
+  ]
+}

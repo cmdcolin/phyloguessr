@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Cat flea",
+      "scientificName": "Ctenocephalides felis",
+      "ncbiTaxId": 7515,
+      "wikiTitle": "Cat_flea",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/%D0%9A%D0%BE%D1%88%D0%B0%D1%87%D1%8C%D1%8F_%D0%B1%D0%BB%D0%BE%D1%85%D0%B0.jpg/330px-%D0%9A%D0%BE%D1%88%D0%B0%D1%87%D1%8C%D1%8F_%D0%B1%D0%BB%D0%BE%D1%85%D0%B0.jpg"
+    },
+    {
+      "commonName": "Scorpionfly",
+      "scientificName": "Panorpa communis",
+      "ncbiTaxId": 52816,
+      "wikiTitle": "Panorpa_communis",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Panorpa_communis_with_prey_Diogma_glabrata_glabrata.jpg/330px-Panorpa_communis_with_prey_Diogma_glabrata_glabrata.jpg"
+    },
+    {
+      "commonName": "Dragonfly",
+      "scientificName": "Anax junius",
+      "ncbiTaxId": 214820,
+      "wikiTitle": "Green_darner",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Common_Green_Darner_Anax_junius_JG.jpg/330px-Common_Green_Darner_Anax_junius_JG.jpg"
+    }
+  ],
+  "funFact": "Fleas and scorpionflies are both holometabolous insects (undergoing complete metamorphosis), while dragonflies are not — they develop through incomplete metamorphosis. Recent molecular studies go further, showing fleas are likely nested within Mecoptera (scorpionflies), making them highly modified, wingless, blood-sucking scorpionflies rather than a separate order.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Flea",
+      "label": "Flea - Wikipedia"
+    },
+    {
+      "url": "https://www.mapress.com/pe/article/view/palaeoentomology.3.6.16",
+      "label": "Palaeoentomology - Fleas are parasitic scorpionflies"
+    }
+  ]
+}

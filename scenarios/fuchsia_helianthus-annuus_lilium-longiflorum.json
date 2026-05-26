@@ -1,0 +1,35 @@
+{
+  "organisms": [
+    {
+      "commonName": "Fuchsia",
+      "scientificName": "Fuchsia",
+      "ncbiTaxId": 13069,
+      "wikiTitle": "Fuchsia",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Brincos_De_Princesa.jpg/330px-Brincos_De_Princesa.jpg"
+    },
+    {
+      "commonName": "Sunflower",
+      "scientificName": "Helianthus annuus",
+      "ncbiTaxId": 4232,
+      "wikiTitle": "Common_sunflower",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Sunflower_sky_backdrop.jpg/330px-Sunflower_sky_backdrop.jpg"
+    },
+    {
+      "commonName": "Lily",
+      "scientificName": "Lilium longiflorum",
+      "ncbiTaxId": 4690,
+      "wikiTitle": "Lilium",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Lilium_candidum_1.jpg/330px-Lilium_candidum_1.jpg"
+    }
+  ],
+  "funFact": "A fuchsia and a sunflower are both eudicots — they share a closer common ancestor with each other than either does with a lily. Lilies may look like typical garden flowers, but they are monocots — on the grass-and-palm side of the flowering plant tree. Fuchsias (evening primrose family) and sunflowers (daisy family) independently evolved showy flowers to attract pollinators.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Eudicots",
+      "label": "Eudicots - Wikipedia"
+    }
+  ]
+}

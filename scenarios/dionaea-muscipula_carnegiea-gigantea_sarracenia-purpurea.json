@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Venus flytrap",
+      "scientificName": "Dionaea muscipula",
+      "ncbiTaxId": 4362,
+      "wikiTitle": "Venus_flytrap",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Venus_Flytrap_showing_trigger_hairs.jpg/330px-Venus_Flytrap_showing_trigger_hairs.jpg"
+    },
+    {
+      "commonName": "Saguaro cactus",
+      "scientificName": "Carnegiea gigantea",
+      "ncbiTaxId": 171969,
+      "wikiTitle": "Saguaro",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Carnegiea_gigantea_in_Saguaro_National_Park_near_Tucson%2C_Arizona_during_November_%2858%29.jpg/330px-Carnegiea_gigantea_in_Saguaro_National_Park_near_Tucson%2C_Arizona_during_November_%2858%29.jpg"
+    },
+    {
+      "commonName": "American pitcher plant",
+      "scientificName": "Sarracenia purpurea",
+      "ncbiTaxId": 45176,
+      "wikiTitle": "Sarracenia_purpurea",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Sarracenia_purpurea_Flowers.JPG/330px-Sarracenia_purpurea_Flowers.JPG"
+    }
+  ],
+  "funFact": "Venus flytraps and cacti are both in the order Caryophyllales, making them much more closely related than they appear! American pitcher plants, though they also eat insects, are in a completely different order (Ericales) and are actually more distantly related to Venus flytraps than cacti are.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Caryophyllales",
+      "label": "Caryophyllales - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Ericales",
+      "label": "Ericales - Wikipedia"
+    }
+  ]
+}

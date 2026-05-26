@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Mango",
+      "scientificName": "Mangifera indica",
+      "ncbiTaxId": 29780,
+      "wikiTitle": "Mango",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Mangoes_%28Magnifera_indica%29_from_India.jpg/330px-Mangoes_%28Magnifera_indica%29_from_India.jpg"
+    },
+    {
+      "commonName": "Poison ivy",
+      "scientificName": "Toxicodendron radicans",
+      "ncbiTaxId": 43853,
+      "wikiTitle": "Toxicodendron_radicans",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/2014-10-29_13_43_39_Poison_Ivy_foliage_during_autumn_leaf_coloration_in_Ewing%2C_New_Jersey.JPG/330px-2014-10-29_13_43_39_Poison_Ivy_foliage_during_autumn_leaf_coloration_in_Ewing%2C_New_Jersey.JPG"
+    },
+    {
+      "commonName": "English ivy",
+      "scientificName": "Hedera helix",
+      "ncbiTaxId": 4052,
+      "wikiTitle": "Hedera_helix",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Hedera_helix_Dover.jpg/330px-Hedera_helix_Dover.jpg"
+    }
+  ],
+  "funFact": "Despite the name, poison ivy is not related to English ivy — but it is related to mangoes! Mango and poison ivy are both Anacardiaceae, and the same urushiol that causes the poison ivy rash is found in mango skin.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Anacardiaceae",
+      "label": "Anacardiaceae - Wikipedia"
+    },
+    {
+      "url": "https://www.scientificamerican.com/article/what-do-cashews-mangoes-and-poison-ivy-have-in-common/",
+      "label": "Scientific American - Cashews, mangoes, and poison ivy"
+    }
+  ]
+}

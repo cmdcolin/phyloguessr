@@ -1,0 +1,35 @@
+{
+  "organisms": [
+    {
+      "commonName": "Pink fairy armadillo",
+      "scientificName": "Chlamyphorus truncatus",
+      "ncbiTaxId": 450267,
+      "wikiTitle": "Pink_fairy_armadillo",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Pink_Fairy_Armadillo_%28Chlamyphorus_truncatus%29.jpg/330px-Pink_Fairy_Armadillo_%28Chlamyphorus_truncatus%29.jpg"
+    },
+    {
+      "commonName": "Nine-banded armadillo",
+      "scientificName": "Dasypus novemcinctus",
+      "ncbiTaxId": 9361,
+      "wikiTitle": "Nine-banded_armadillo",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Nine-banded_Armadillo_%28Dasypus_novemcinctus%29_%2837649606094%29.jpg/330px-Nine-banded_Armadillo_%28Dasypus_novemcinctus%29_%2837649606094%29.jpg"
+    },
+    {
+      "commonName": "Pangolin",
+      "scientificName": "Manis javanica",
+      "ncbiTaxId": 9974,
+      "wikiTitle": "Sunda_pangolin",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Pangolin_borneo.jpg/330px-Pangolin_borneo.jpg"
+    }
+  ],
+  "funFact": "The tiny pink fairy armadillo — just 13 cm long with a rosy shell — and the nine-banded armadillo are both part of the same ancient South American group that includes sloths and anteaters. Pangolins look armored too, but their scales evolved completely independently — pangolins are actually closest to carnivores like dogs and cats!",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Pink_fairy_armadillo",
+      "label": "Pink fairy armadillo - Wikipedia"
+    }
+  ]
+}

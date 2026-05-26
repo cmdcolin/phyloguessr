@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Echidna",
+      "scientificName": "Tachyglossus aculeatus",
+      "ncbiTaxId": 9261,
+      "wikiTitle": "Short-beaked_echidna",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Wild_shortbeak_echidna.jpg/330px-Wild_shortbeak_echidna.jpg"
+    },
+    {
+      "commonName": "Platypus",
+      "scientificName": "Ornithorhynchus anatinus",
+      "ncbiTaxId": 9258,
+      "wikiTitle": "Platypus",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Duck-billed_platypus_%28Ornithorhynchus_anatinus%29_Scottsdale.jpg/330px-Duck-billed_platypus_%28Ornithorhynchus_anatinus%29_Scottsdale.jpg"
+    },
+    {
+      "commonName": "Hedgehog",
+      "scientificName": "Erinaceus europaeus",
+      "ncbiTaxId": 9365,
+      "wikiTitle": "European_hedgehog",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Erinaceus_europaeus_LC0119.jpg/330px-Erinaceus_europaeus_LC0119.jpg"
+    }
+  ],
+  "funFact": "Echidnas look like hedgehogs — covered in spines, round, and snuffly — but they are monotremes, egg-laying mammals related to the platypus! Echidna spines and hedgehog spines evolved completely independently. One lays eggs, the other gives live birth.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Echidna",
+      "label": "Echidna - Wikipedia"
+    },
+    {
+      "url": "https://www.scientificamerican.com/article/extreme-monotremes/",
+      "label": "Scientific American - Extreme monotremes"
+    }
+  ]
+}

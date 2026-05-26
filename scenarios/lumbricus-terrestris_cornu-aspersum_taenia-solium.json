@@ -1,0 +1,40 @@
+{
+  "organisms": [
+    {
+      "commonName": "Earthworm",
+      "scientificName": "Lumbricus terrestris",
+      "ncbiTaxId": 6398,
+      "wikiTitle": "Lumbricus_terrestris",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Regenwurm1.jpg/330px-Regenwurm1.jpg"
+    },
+    {
+      "commonName": "Garden snail",
+      "scientificName": "Cornu aspersum",
+      "ncbiTaxId": 6535,
+      "wikiTitle": "Cornu_aspersum",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Snail1web.jpg/330px-Snail1web.jpg"
+    },
+    {
+      "commonName": "Pork tapeworm",
+      "scientificName": "Taenia solium",
+      "ncbiTaxId": 6204,
+      "wikiTitle": "Taenia_solium",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Taenia_solium_scolex.JPG/330px-Taenia_solium_scolex.JPG"
+    }
+  ],
+  "funFact": "All three are spiralians — animals whose embryos share a distinctive spiral pattern of cell division. But the exact branching order of annelids, molluscs, and flatworms within Spiralia is hotly debated. Recent phylogenomic studies suggest these phyla diverged in such a rapid burst that the true tree may be nearly impossible to resolve. Any pair here could be correct!",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Spiralia",
+      "label": "Spiralia - Wikipedia"
+    },
+    {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2614230/",
+      "label": "PMC - Assembling the lophotrochozoan (spiralian) tree of life"
+    }
+  ],
+  "activelyDebated": true
+}

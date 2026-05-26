@@ -1,0 +1,35 @@
+{
+  "organisms": [
+    {
+      "commonName": "Common fern",
+      "scientificName": "Pteridium aquilinum",
+      "ncbiTaxId": 32101,
+      "wikiTitle": "Pteridium_aquilinum",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Adelaarsvaren_planten_Pteridium_aquilinum.jpg/330px-Adelaarsvaren_planten_Pteridium_aquilinum.jpg"
+    },
+    {
+      "commonName": "Sunflower",
+      "scientificName": "Helianthus annuus",
+      "ncbiTaxId": 4232,
+      "wikiTitle": "Common_sunflower",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Sunflower_sky_backdrop.jpg/330px-Sunflower_sky_backdrop.jpg"
+    },
+    {
+      "commonName": "Sphagnum moss",
+      "scientificName": "Sphagnum palustre",
+      "ncbiTaxId": 13805,
+      "wikiTitle": "Sphagnum",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Sphagnum.flexuosum.jpg/330px-Sphagnum.flexuosum.jpg"
+    }
+  ],
+  "funFact": "A fern is more closely related to a sunflower than to a moss. Ferns and flowering plants are both vascular plants — they have internal plumbing to transport water and nutrients. Mosses never evolved this system and diverged from all other land plants over 400 million years ago. Ferns just look 'primitive' because they reproduce with spores instead of seeds.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Fern",
+      "label": "Fern - Wikipedia"
+    }
+  ]
+}

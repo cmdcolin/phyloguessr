@@ -1,0 +1,43 @@
+{
+  "organisms": [
+    {
+      "commonName": "Water bear",
+      "scientificName": "Hypsibius dujardini",
+      "ncbiTaxId": 232323,
+      "wikiTitle": "Tardigrade",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/08/Waterbear.jpg"
+    },
+    {
+      "commonName": "Pillbug",
+      "scientificName": "Armadillidium album",
+      "ncbiTaxId": 96802,
+      "wikiTitle": "Armadillidium",
+      "group": "arthropod",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Armadillidium_album_2.jpg?width=330"
+    },
+    {
+      "commonName": "Lung fluke",
+      "scientificName": "Paragonimus westermani",
+      "ncbiTaxId": 34504,
+      "wikiTitle": "Paragonimus_westermani",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c2/Paragonimus_westermani.png"
+    }
+  ],
+  "funFact": "Water bears (tardigrades) are microscopic survivors famous for withstanding extreme conditions, and they look nothing like a pillbug — but both are panarthropods, sharing the same ancient ancestor that first evolved paired limbs. Tardigrades’ stubby legs are homologous to arthropod legs. Lung flukes are flatworms (Platyhelminthes) — lophotrochozoans on a completely different protostome branch.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Tardigrada",
+      "label": "Tardigrada - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Panarthropoda",
+      "label": "Panarthropoda - Wikipedia"
+    }
+  ],
+  "correctPair": [
+    "Water bear",
+    "Pillbug"
+  ]
+}

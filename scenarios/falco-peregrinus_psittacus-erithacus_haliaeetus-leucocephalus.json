@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Peregrine falcon",
+      "scientificName": "Falco peregrinus",
+      "ncbiTaxId": 8954,
+      "wikiTitle": "Peregrine_falcon",
+      "group": "bird",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Falco_peregrinus_m_Humber_Bay_Park_Toronto.jpg/330px-Falco_peregrinus_m_Humber_Bay_Park_Toronto.jpg"
+    },
+    {
+      "commonName": "African grey parrot",
+      "scientificName": "Psittacus erithacus",
+      "ncbiTaxId": 57247,
+      "wikiTitle": "African_grey_parrot",
+      "group": "bird",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Psittacus_erithacus_-perching_on_tray-8d.jpg/330px-Psittacus_erithacus_-perching_on_tray-8d.jpg"
+    },
+    {
+      "commonName": "Bald eagle",
+      "scientificName": "Haliaeetus leucocephalus",
+      "ncbiTaxId": 52644,
+      "wikiTitle": "Bald_eagle",
+      "group": "bird",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Bald_eagle_about_to_fly_in_Alaska_%282016%29.jpg/330px-Bald_eagle_about_to_fly_in_Alaska_%282016%29.jpg"
+    }
+  ],
+  "funFact": "Falcons are not hawks — they are closer to parrots! DNA studies place Falconiformes as the sister group to Psittacopasserae (parrots and songbirds), while eagles and hawks are Accipitriformes, a completely separate bird order. The peregrine falcon's kinship with the parrot is one of the most counterintuitive findings in modern bird phylogenetics.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Falconidae",
+      "label": "Falconidae - Wikipedia"
+    },
+    {
+      "url": "https://www.birdnote.org/explore/field-notes/2015/02/parrots-and-falcons-long-lost-cousins",
+      "label": "BirdNote - Parrots and falcons: long-lost cousins"
+    }
+  ]
+}

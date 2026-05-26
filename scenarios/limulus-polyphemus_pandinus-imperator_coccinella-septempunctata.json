@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Horseshoe crab",
+      "scientificName": "Limulus polyphemus",
+      "ncbiTaxId": 6850,
+      "wikiTitle": "Atlantic_horseshoe_crab",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Limulus_polyphemus_%28aq.%29.jpg/330px-Limulus_polyphemus_%28aq.%29.jpg"
+    },
+    {
+      "commonName": "Scorpion",
+      "scientificName": "Pandinus imperator",
+      "ncbiTaxId": 55084,
+      "wikiTitle": "Emperor_scorpion",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Female_Emperor_Scorpion.jpg/330px-Female_Emperor_Scorpion.jpg"
+    },
+    {
+      "commonName": "Ladybug",
+      "scientificName": "Coccinella septempunctata",
+      "ncbiTaxId": 41139,
+      "wikiTitle": "Coccinella_septempunctata",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/7-Spotted-Ladybug-Coccinella-septempunctata-sq1.jpg/330px-7-Spotted-Ladybug-Coccinella-septempunctata-sq1.jpg"
+    }
+  ],
+  "funFact": "Despite being called crabs, horseshoe crabs are chelicerates — more closely related to scorpions and spiders than to any true crustacean. They have blue copper-based blood and have barely changed in over 450 million years of fossil record.",
+  "sources": [
+    {
+      "url": "https://www.nationalgeographic.com/animals/article/horseshoe-crabs-related-to-spiders",
+      "label": "Horseshoe crabs are spider relatives, genes reveal - National Geographic"
+    },
+    {
+      "url": "https://oceanservice.noaa.gov/facts/horseshoe-crab.html",
+      "label": "NOAA - Are horseshoe crabs really crabs?"
+    }
+  ]
+}

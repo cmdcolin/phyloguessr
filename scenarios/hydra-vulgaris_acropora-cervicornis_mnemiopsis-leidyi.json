@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Hydra",
+      "scientificName": "Hydra vulgaris",
+      "ncbiTaxId": 6087,
+      "wikiTitle": "Hydra_(genus)",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Hydra_biology.jpg/500px-Hydra_biology.jpg"
+    },
+    {
+      "commonName": "Staghorn coral",
+      "scientificName": "Acropora cervicornis",
+      "ncbiTaxId": 6130,
+      "wikiTitle": "Staghorn_coral",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Hertshoon.jpg/330px-Hertshoon.jpg"
+    },
+    {
+      "commonName": "Comb jelly",
+      "scientificName": "Mnemiopsis leidyi",
+      "ncbiTaxId": 27923,
+      "wikiTitle": "Mnemiopsis",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Sea_walnut%2C_Boston_Aquarium_%28cropped%29.jpg/500px-Sea_walnut%2C_Boston_Aquarium_%28cropped%29.jpg"
+    }
+  ],
+  "funFact": "Hydra — a tiny freshwater polyp, just a few millimeters long, that can regenerate its entire body from a small fragment — and corals are both cnidarians, animals with stinging cells (nematocysts). Despite the vast difference in size and habitat, they share the same basic body plan. Comb jellies look similar but belong to a separate phylum (Ctenophora) and use sticky colloblast cells instead of stinging ones.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Hydra_(genus)",
+      "label": "Hydra - Wikipedia"
+    },
+    {
+      "url": "https://biology.ucdavis.edu/news/hydra-and-quest-understand-immortality",
+      "label": "UC Davis - Hydra and the quest to understand immortality"
+    }
+  ]
+}

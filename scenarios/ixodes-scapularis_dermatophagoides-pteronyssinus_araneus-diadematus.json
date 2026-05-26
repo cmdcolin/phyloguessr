@@ -1,0 +1,35 @@
+{
+  "organisms": [
+    {
+      "commonName": "Deer tick",
+      "scientificName": "Ixodes scapularis",
+      "ncbiTaxId": 6945,
+      "wikiTitle": "Ixodes_scapularis",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Adult_deer_tick.jpg/330px-Adult_deer_tick.jpg"
+    },
+    {
+      "commonName": "Dust mite",
+      "scientificName": "Dermatophagoides pteronyssinus",
+      "ncbiTaxId": 6956,
+      "wikiTitle": "Dermatophagoides_pteronyssinus",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/House_Dust_Mite.jpg/330px-House_Dust_Mite.jpg"
+    },
+    {
+      "commonName": "Garden spider",
+      "scientificName": "Araneus diadematus",
+      "ncbiTaxId": 45920,
+      "wikiTitle": "Araneus_diadematus",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Araneus_diadematus_MHNT_Femelle_Fronton.jpg/330px-Araneus_diadematus_MHNT_Femelle_Fronton.jpg"
+    }
+  ],
+  "funFact": "Ticks and mites are both Acari — the same group of arachnids. Despite looking nothing alike (one is a blood-sucking parasite, the other a microscopic dust-dweller), they are more closely related to each other than either is to a spider. All three are arachnids, but spiders (Araneae) are on a separate branch.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Acari",
+      "label": "Acari - Wikipedia"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Brittle star",
+      "scientificName": "Ophiothrix fragilis",
+      "ncbiTaxId": 70180,
+      "wikiTitle": "Brittle_star",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Ophiura_ophiura.jpg/330px-Ophiura_ophiura.jpg"
+    },
+    {
+      "commonName": "Sea urchin",
+      "scientificName": "Strongylocentrotus purpuratus",
+      "ncbiTaxId": 7668,
+      "wikiTitle": "Strongylocentrotus_purpuratus",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Urchin_%289398869414%29.jpg/500px-Urchin_%289398869414%29.jpg"
+    },
+    {
+      "commonName": "Starfish",
+      "scientificName": "Asterias rubens",
+      "ncbiTaxId": 7604,
+      "wikiTitle": "Common_starfish",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Asterias_rubens.jpg/500px-Asterias_rubens.jpg"
+    }
+  ],
+  "funFact": "Biologists once thought brittle stars were closer to sea urchins than to starfish — both share a distinctive pluteus larva and enclosed ambulacral grooves. But genomic studies disproved this \"Cryptosyringida\" hypothesis: the shared larval skeleton turns out to be convergent evolution, and brittle stars are actually sister to starfish in the clade Asterozoa.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Brittle_star",
+      "label": "Brittle star - Wikipedia"
+    },
+    {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4046411/",
+      "label": "Phylogenomic analysis of echinoderm class relationships supports Asterozoa"
+    }
+  ]
+}

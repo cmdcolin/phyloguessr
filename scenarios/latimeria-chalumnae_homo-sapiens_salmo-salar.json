@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Coelacanth",
+      "scientificName": "Latimeria chalumnae",
+      "ncbiTaxId": 7897,
+      "wikiTitle": "Coelacanth",
+      "group": "fish",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Coelacanth_off_Pumula_on_the_KwaZulu-Natal_South_Coast%2C_South_Africa%2C_on_22_November_2019.png/330px-Coelacanth_off_Pumula_on_the_KwaZulu-Natal_South_Coast%2C_South_Africa%2C_on_22_November_2019.png"
+    },
+    {
+      "commonName": "Human",
+      "scientificName": "Homo sapiens",
+      "ncbiTaxId": 9606,
+      "wikiTitle": "Human",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/68/Akha_cropped_hires.JPG"
+    },
+    {
+      "commonName": "Atlantic salmon",
+      "scientificName": "Salmo salar",
+      "ncbiTaxId": 8030,
+      "wikiTitle": "Atlantic_salmon",
+      "group": "fish",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Wst_atlantischer_lachs_stoer_001.jpg/330px-Wst_atlantischer_lachs_stoer_001.jpg"
+    }
+  ],
+  "funFact": "Coelacanths are more closely related to humans than to salmon! As lobe-finned fish, coelacanths share a common ancestor with all land vertebrates (tetrapods).",
+  "sources": [
+    {
+      "url": "https://www.scientificamerican.com/article/slow-evolving-lobe-finned-coelacanth-genome-unlocked/",
+      "label": "Coelacanth Genome Unlocked - Scientific American"
+    },
+    {
+      "url": "https://ocean.si.edu/ocean-life/fish/coelacanth",
+      "label": "Smithsonian Ocean - Coelacanth"
+    }
+  ]
+}

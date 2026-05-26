@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Aardvark",
+      "scientificName": "Orycteropus afer",
+      "ncbiTaxId": 9818,
+      "wikiTitle": "Aardvark",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Orycteropus_afer_175359469.jpg/330px-Orycteropus_afer_175359469.jpg"
+    },
+    {
+      "commonName": "Elephant shrew",
+      "scientificName": "Elephantulus edwardii",
+      "ncbiTaxId": 28737,
+      "wikiTitle": "Cape_elephant_shrew",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Macroscelides_edwardii_-_1700-1880_-_Print_-_Iconographia_Zoologica_-_Special_Collections_University_of_Amsterdam_-_UBA01_IZ20900065_2.jpg/330px-Macroscelides_edwardii_-_1700-1880_-_Print_-_Iconographia_Zoologica_-_Special_Collections_University_of_Amsterdam_-_UBA01_IZ20900065_2.jpg"
+    },
+    {
+      "commonName": "Nine-banded armadillo",
+      "scientificName": "Dasypus novemcinctus",
+      "ncbiTaxId": 9361,
+      "wikiTitle": "Nine-banded_armadillo",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Nine-banded_Armadillo_%28Dasypus_novemcinctus%29_%2837649606094%29.jpg/330px-Nine-banded_Armadillo_%28Dasypus_novemcinctus%29_%2837649606094%29.jpg"
+    }
+  ],
+  "funFact": "An aardvark digging up termite mounds in Africa shares more recent common ancestry with a tiny elephant shrew darting through leaf litter than either does with a nine-banded armadillo — which has a nearly identical lifestyle to the aardvark. Aardvarks and elephant shrews both descend from an ancient group of African mammals (Afrotheria); armadillos evolved separately in South America.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Afrotheria",
+      "label": "Afrotheria - Wikipedia"
+    },
+    {
+      "url": "https://www.livescience.com/55241-aardvark-facts.html",
+      "label": "Live Science - Aardvark facts"
+    }
+  ]
+}

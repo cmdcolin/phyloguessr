@@ -1,0 +1,35 @@
+{
+  "organisms": [
+    {
+      "commonName": "Baker's yeast",
+      "scientificName": "Saccharomyces cerevisiae",
+      "ncbiTaxId": 4932,
+      "wikiTitle": "Saccharomyces_cerevisiae",
+      "group": "microbe",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Saccharomyces_cerevisiae_SEM.jpg/330px-Saccharomyces_cerevisiae_SEM.jpg"
+    },
+    {
+      "commonName": "Penicillium",
+      "scientificName": "Penicillium chrysogenum",
+      "ncbiTaxId": 5076,
+      "wikiTitle": "Penicillium_chrysogenum",
+      "group": "microbe",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Penicillium_notatum.jpg/330px-Penicillium_notatum.jpg"
+    },
+    {
+      "commonName": "Fly agaric",
+      "scientificName": "Amanita muscaria",
+      "ncbiTaxId": 41956,
+      "wikiTitle": "Amanita_muscaria",
+      "group": "microbe",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Amanita_muscaria_3_vliegenzwammen_op_rij.jpg/330px-Amanita_muscaria_3_vliegenzwammen_op_rij.jpg"
+    }
+  ],
+  "funFact": "Baker's yeast and Penicillium mold are both \"sac fungi\" — they produce spores in tiny sac-like structures. The fly agaric is a \"club fungus\" that produces spores on club-shaped cells instead. These two types of fungi diverged over 500 million years ago.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Ascomycota",
+      "label": "Ascomycota - Wikipedia"
+    }
+  ]
+}

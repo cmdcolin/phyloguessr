@@ -1,0 +1,52 @@
+{
+  "organisms": [
+    {
+      "commonName": "Bath sponge",
+      "scientificName": "Spongia officinalis",
+      "ncbiTaxId": 252964,
+      "wikiTitle": "Spongia_officinalis",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c9/Spongia_officinalis.jpg"
+    },
+    {
+      "commonName": "Comb jelly",
+      "scientificName": "Mnemiopsis leidyi",
+      "ncbiTaxId": 27923,
+      "wikiTitle": "Mnemiopsis",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Sea_walnut%2C_Boston_Aquarium_%28cropped%29.jpg/500px-Sea_walnut%2C_Boston_Aquarium_%28cropped%29.jpg"
+    },
+    {
+      "commonName": "Human",
+      "scientificName": "Homo sapiens",
+      "ncbiTaxId": 9606,
+      "wikiTitle": "Human",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/68/Akha_cropped_hires.JPG"
+    }
+  ],
+  "funFact": "Which animal lineage came first — sponges or comb jellies? This is one of the biggest open questions in animal evolution. For over a century, simple, brainless sponges were assumed to be first. Then in 2008, genomic studies pointed to comb jellies — animals with nerves and muscles. A 2023 chromosome-level study supported comb jellies, a 2025 study supported sponges but was retracted after errors were found, and the debate continues.",
+  "sources": [
+    {
+      "url": "https://github.com/caseywdunn/sk25",
+      "label": "Dunn et al. - Reanalysis of sponge-sister evidence"
+    },
+    {
+      "url": "https://www.nature.com/articles/s41586-023-05936-6",
+      "label": "Ancient gene linkages support ctenophores as sister to other animals"
+    },
+    {
+      "url": "https://www.mbari.org/news/genetic-research-offers-new-perspective-on-the-early-evolution-of-animals/",
+      "label": "MBARI - New perspective on early animal evolution"
+    },
+    {
+      "url": "https://www.science.org/doi/10.1126/science.adw9456",
+      "label": "Steenwyk & King 2025 (RETRACTED) - Integrative phylogenomics positions sponges at the root (Science)"
+    },
+    {
+      "url": "https://www.nature.com/articles/d41586-026-00238-z",
+      "label": "Nature News 2026 - What were the first animals? The sponge–jelly battle that won't end"
+    }
+  ],
+  "activelyDebated": true
+}

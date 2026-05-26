@@ -1,0 +1,47 @@
+{
+  "organisms": [
+    {
+      "commonName": "Barn owl",
+      "scientificName": "Tyto alba",
+      "ncbiTaxId": 56313,
+      "wikiTitle": "Tyto_alba",
+      "group": "bird",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Barn_Owl%2C_Lancashire.jpg/330px-Barn_Owl%2C_Lancashire.jpg"
+    },
+    {
+      "commonName": "Common nighthawk",
+      "scientificName": "Chordeiles minor",
+      "ncbiTaxId": 48398,
+      "wikiTitle": "Common_nighthawk",
+      "group": "bird",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Common_Nighthawk_%2814428313550%29.jpg/330px-Common_Nighthawk_%2814428313550%29.jpg"
+    },
+    {
+      "commonName": "Red-tailed hawk",
+      "scientificName": "Buteo jamaicensis",
+      "ncbiTaxId": 56263,
+      "wikiTitle": "Red-tailed_hawk",
+      "group": "bird",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Red-tailed_Hawk_%2845812546121%29.jpg/330px-Red-tailed_Hawk_%2845812546121%29.jpg"
+    }
+  ],
+  "funFact": "Despite appearances, the common nighthawk is the odd one out. Owls and hawks are closely related, both falling within the major land-bird clade Telluraves. Nightjars and nighthawks (Caprimulgiformes) belong to a separate branch, Strisores. While the barn owl's nocturnal lifestyle might suggest a link to nightjars, molecular data shows owls and hawks are sister groups within Afroaves, firmly separating them from nightjars",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Telluraves",
+      "label": "Telluraves - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Strisores",
+      "label": "Strisores - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Afroaves",
+      "label": "Afroaves - Wikipedia"
+    },
+    {
+      "url": "https://www.pnas.org/doi/10.1073/pnas.2319696121",
+      "label": "Wu et al. 2024 - Genomes, fossils, and the concurrent rise of modern birds (PNAS)"
+    }
+  ]
+}

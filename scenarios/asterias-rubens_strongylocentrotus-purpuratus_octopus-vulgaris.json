@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Starfish",
+      "scientificName": "Asterias rubens",
+      "ncbiTaxId": 7604,
+      "wikiTitle": "Common_starfish",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Asterias_rubens.jpg/500px-Asterias_rubens.jpg"
+    },
+    {
+      "commonName": "Sea urchin",
+      "scientificName": "Strongylocentrotus purpuratus",
+      "ncbiTaxId": 7668,
+      "wikiTitle": "Strongylocentrotus_purpuratus",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Urchin_%289398869414%29.jpg/500px-Urchin_%289398869414%29.jpg"
+    },
+    {
+      "commonName": "Common octopus",
+      "scientificName": "Octopus vulgaris",
+      "ncbiTaxId": 6645,
+      "wikiTitle": "Common_octopus",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Octopus2.jpg/330px-Octopus2.jpg"
+    }
+  ],
+  "funFact": "A spiny ball and a five-armed star seem like completely different animals, but starfish and sea urchins are both echinoderms — they share five-fold radial symmetry, a unique water vascular system, and are actually on the vertebrate side of the animal tree, more closely related to humans than to octopuses. Octopuses are molluscs, a completely separate phylum.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Echinoderm",
+      "label": "Echinoderm - Wikipedia"
+    },
+    {
+      "url": "https://ucmp.berkeley.edu/phyla/deuterostomia.html",
+      "label": "UC Berkeley - Introduction to the Deuterostomia"
+    }
+  ]
+}

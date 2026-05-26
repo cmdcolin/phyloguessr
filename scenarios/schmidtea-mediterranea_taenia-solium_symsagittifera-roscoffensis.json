@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Planarian",
+      "scientificName": "Schmidtea mediterranea",
+      "ncbiTaxId": 79327,
+      "wikiTitle": "Schmidtea_mediterranea",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Smed_distribution.png/500px-Smed_distribution.png"
+    },
+    {
+      "commonName": "Pork tapeworm",
+      "scientificName": "Taenia solium",
+      "ncbiTaxId": 6204,
+      "wikiTitle": "Taenia_solium",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Taenia_solium_scolex.JPG/330px-Taenia_solium_scolex.JPG"
+    },
+    {
+      "commonName": "Acoel flatworm",
+      "scientificName": "Symsagittifera roscoffensis",
+      "ncbiTaxId": 84072,
+      "wikiTitle": "Symsagittifera_roscoffensis",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Symsagittifera_roscoffensis%28Jersey%29.jpg/330px-Symsagittifera_roscoffensis%28Jersey%29.jpg"
+    }
+  ],
+  "funFact": "Planarians and tapeworms are both flatworms (Platyhelminthes), despite looking and living very differently — one is a free-living predator, the other an internal parasite with no gut. The acoel resembles a planarian more than a tapeworm does, but it belongs to a separate phylum (Xenacoelomorpha) near the base of the bilaterian tree.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Platyhelminthes",
+      "label": "Platyhelminthes - Wikipedia"
+    },
+    {
+      "url": "https://elifesciences.org/articles/05503",
+      "label": "eLife - Nuclear genomic signals of platyhelminth evolutionary innovation"
+    }
+  ]
+}

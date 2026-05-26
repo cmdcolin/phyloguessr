@@ -1,0 +1,40 @@
+{
+  "organisms": [
+    {
+      "commonName": "Acoel flatworm",
+      "scientificName": "Symsagittifera roscoffensis",
+      "ncbiTaxId": 84072,
+      "wikiTitle": "Symsagittifera_roscoffensis",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Symsagittifera_roscoffensis%28Jersey%29.jpg/330px-Symsagittifera_roscoffensis%28Jersey%29.jpg"
+    },
+    {
+      "commonName": "Starfish",
+      "scientificName": "Asterias rubens",
+      "ncbiTaxId": 7604,
+      "wikiTitle": "Common_starfish",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Asterias_rubens.jpg/500px-Asterias_rubens.jpg"
+    },
+    {
+      "commonName": "Fruit fly",
+      "scientificName": "Drosophila melanogaster",
+      "ncbiTaxId": 7227,
+      "wikiTitle": "Drosophila_melanogaster",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Drosophila_melanogaster_Proboscis.jpg/500px-Drosophila_melanogaster_Proboscis.jpg"
+    }
+  ],
+  "funFact": "Where acoels sit on the animal tree has been debated for over 20 years. Some analyses place Xenacoelomorpha as sister to all other bilaterians (Nephrozoa hypothesis), making the acoel equally distant from starfish and flies. Others nest them inside deuterostomes, closer to starfish. The answer shapes our picture of what the last common ancestor of bilaterians looked like.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Xenacoelomorpha#Phylogenetic_position",
+      "label": "Xenacoelomorpha phylogenetic position - Wikipedia"
+    },
+    {
+      "url": "https://link.springer.com/article/10.1007/s13127-015-0239-1",
+      "label": "Organisms Diversity & Evolution - Acoelomorpha: earliest branching bilaterians or deuterostomes?"
+    }
+  ],
+  "activelyDebated": true
+}

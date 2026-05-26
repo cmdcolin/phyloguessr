@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Elephant shrew",
+      "scientificName": "Elephantulus edwardii",
+      "ncbiTaxId": 28737,
+      "wikiTitle": "Cape_elephant_shrew",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Macroscelides_edwardii_-_1700-1880_-_Print_-_Iconographia_Zoologica_-_Special_Collections_University_of_Amsterdam_-_UBA01_IZ20900065_2.jpg/330px-Macroscelides_edwardii_-_1700-1880_-_Print_-_Iconographia_Zoologica_-_Special_Collections_University_of_Amsterdam_-_UBA01_IZ20900065_2.jpg"
+    },
+    {
+      "commonName": "African elephant",
+      "scientificName": "Loxodonta africana",
+      "ncbiTaxId": 9785,
+      "wikiTitle": "African_elephant",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/178_Male_African_bush_elephant_in_Etosha_National_Park_Photo_by_Giles_Laurent.jpg/330px-178_Male_African_bush_elephant_in_Etosha_National_Park_Photo_by_Giles_Laurent.jpg"
+    },
+    {
+      "commonName": "Common shrew",
+      "scientificName": "Sorex araneus",
+      "ncbiTaxId": 42254,
+      "wikiTitle": "Eurasian_shrew",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Sorex-araneus.jpg/330px-Sorex-araneus.jpg"
+    }
+  ],
+  "funFact": "Despite being named \"shrews\" and looking like mice, elephant shrews are more closely related to actual elephants than to true shrews! Both descend from an ancient group of African mammals that also includes manatees, aardvarks, and tenrecs.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Elephant_shrew",
+      "label": "Elephant shrew - Wikipedia"
+    },
+    {
+      "url": "https://www.awf.org/wildlife-conservation/elephant-shrew",
+      "label": "African Wildlife Foundation - Elephant shrew"
+    }
+  ]
+}

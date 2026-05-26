@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Nautilus",
+      "scientificName": "Nautilus pompilius",
+      "ncbiTaxId": 34573,
+      "wikiTitle": "Chambered_nautilus",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Nautilus_pompilius_%28detail%29.jpg/500px-Nautilus_pompilius_%28detail%29.jpg"
+    },
+    {
+      "commonName": "Giant clam",
+      "scientificName": "Tridacna gigas",
+      "ncbiTaxId": 80829,
+      "wikiTitle": "Giant_clam",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Giant_clam_%28Tridacna_gigas%29_Michaelmas_Cay.jpg/330px-Giant_clam_%28Tridacna_gigas%29_Michaelmas_Cay.jpg"
+    },
+    {
+      "commonName": "Horseshoe crab",
+      "scientificName": "Limulus polyphemus",
+      "ncbiTaxId": 6850,
+      "wikiTitle": "Atlantic_horseshoe_crab",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Limulus_polyphemus_%28aq.%29.jpg/330px-Limulus_polyphemus_%28aq.%29.jpg"
+    }
+  ],
+  "funFact": "The nautilus — a jet-propelled predator with 90 tentacles and a 500-million-year-old lineage — is a mollusc, just like the sedentary giant clam cemented to a reef. Horseshoe crabs may have a similar ancient look, but they are chelicerates, closer to spiders than to any shelled sea creature.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Mollusca",
+      "label": "Mollusca - Wikipedia"
+    },
+    {
+      "url": "https://www.dgs.udel.edu/node/449",
+      "label": "Delaware Geological Survey - Clams, snails, and squid: Phylum Mollusca"
+    }
+  ]
+}

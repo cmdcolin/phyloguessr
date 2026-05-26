@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Portuguese man o' war",
+      "scientificName": "Physalia physalis",
+      "ncbiTaxId": 168775,
+      "wikiTitle": "Portuguese_man_o'_war",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Portuguese_Man-O-War_%28Physalia_physalis%29.jpg/330px-Portuguese_Man-O-War_%28Physalia_physalis%29.jpg"
+    },
+    {
+      "commonName": "Moon jellyfish",
+      "scientificName": "Aurelia aurita",
+      "ncbiTaxId": 6145,
+      "wikiTitle": "Moon_jellyfish",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Aurelia_aurita_%28Cnidaria%29_Luc_Viatour.jpg/330px-Aurelia_aurita_%28Cnidaria%29_Luc_Viatour.jpg"
+    },
+    {
+      "commonName": "Bath sponge",
+      "scientificName": "Spongia officinalis",
+      "ncbiTaxId": 252964,
+      "wikiTitle": "Spongia_officinalis",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c9/Spongia_officinalis.jpg"
+    }
+  ],
+  "funFact": "The Portuguese man o' war looks like a jellyfish but is not even a single animal — it is a siphonophore, a colony of specialized organisms (zooids) each performing a different function: floating, stinging, digesting, reproducing. It is still a cnidarian like jellyfish, but its colonial nature makes it one of the strangest organisms in the ocean.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Portuguese_man_o%27_war",
+      "label": "Portuguese man o' war - Wikipedia"
+    },
+    {
+      "url": "https://oceanservice.noaa.gov/facts/portuguese-man-o-war.html",
+      "label": "NOAA - What is a Portuguese man o' war?"
+    }
+  ]
+}

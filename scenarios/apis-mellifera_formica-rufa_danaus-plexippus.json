@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Honeybee",
+      "scientificName": "Apis mellifera",
+      "ncbiTaxId": 7460,
+      "wikiTitle": "Western_honey_bee",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Apis_mellifera_Western_honey_bee.jpg/500px-Apis_mellifera_Western_honey_bee.jpg"
+    },
+    {
+      "commonName": "Ant",
+      "scientificName": "Formica rufa",
+      "ncbiTaxId": 258706,
+      "wikiTitle": "Red_wood_ant",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/A_Formica_rufa_sideview.jpg/330px-A_Formica_rufa_sideview.jpg"
+    },
+    {
+      "commonName": "Monarch butterfly",
+      "scientificName": "Danaus plexippus",
+      "ncbiTaxId": 13037,
+      "wikiTitle": "Monarch_butterfly",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Monarch_Butterfly_Danaus_plexippus_Male_2664px.jpg/330px-Monarch_Butterfly_Danaus_plexippus_Male_2664px.jpg"
+    }
+  ],
+  "funFact": "Ants are wingless wasps — and so are bees. Both are Hymenoptera. Butterflies are Lepidoptera, a completely separate insect order.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Hymenoptera",
+      "label": "Hymenoptera - Wikipedia"
+    },
+    {
+      "url": "https://www.si.edu/spotlight/buginfo/hymenoptera",
+      "label": "Smithsonian - Wasps, ants, and bees (Hymenoptera)"
+    }
+  ]
+}

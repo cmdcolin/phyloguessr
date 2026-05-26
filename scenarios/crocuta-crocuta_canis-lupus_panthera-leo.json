@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Spotted hyena",
+      "scientificName": "Crocuta crocuta",
+      "ncbiTaxId": 9678,
+      "wikiTitle": "Spotted_hyena",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Spotted_hyena_%28Crocuta_crocuta%29.jpg/330px-Spotted_hyena_%28Crocuta_crocuta%29.jpg"
+    },
+    {
+      "commonName": "Gray wolf",
+      "scientificName": "Canis lupus",
+      "ncbiTaxId": 9612,
+      "wikiTitle": "Wolf",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Huskiesatrest.jpg/500px-Huskiesatrest.jpg"
+    },
+    {
+      "commonName": "Lion",
+      "scientificName": "Panthera leo",
+      "ncbiTaxId": 9689,
+      "wikiTitle": "Lion",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/020_The_lion_king_Snyggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/330px-020_The_lion_king_Snyggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg"
+    }
+  ],
+  "correctPair": [
+    "Spotted hyena",
+    "Lion"
+  ],
+  "funFact": "Despite their dog-like build and loping pack hunts, spotted hyenas are on the cat side of the carnivore family tree (Feliformia). Hyenas and lions share a more recent ancestor than either does with the gray wolf. Wolves are Caniformia — the dog side. The wolf-like appearance of hyenas is convergent evolution: two separate carnivore lineages independently arrived at a similar cursorial predator body plan.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Feliformia",
+      "label": "Feliformia - Wikipedia"
+    }
+  ]
+}

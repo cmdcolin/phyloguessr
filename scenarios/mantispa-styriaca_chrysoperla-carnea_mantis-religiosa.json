@@ -1,0 +1,35 @@
+{
+  "organisms": [
+    {
+      "commonName": "Mantisfly",
+      "scientificName": "Mantispa styriaca",
+      "ncbiTaxId": 279447,
+      "wikiTitle": "Mantispidae",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Mantispa_styriaca_%289566952168%29.jpg/330px-Mantispa_styriaca_%289566952168%29.jpg"
+    },
+    {
+      "commonName": "Green lacewing",
+      "scientificName": "Chrysoperla carnea",
+      "ncbiTaxId": 189513,
+      "wikiTitle": "Chrysoperla_carnea",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/%28MHNT%29_Chrysoperla_carnea_-_dorsal_view.jpg/500px-%28MHNT%29_Chrysoperla_carnea_-_dorsal_view.jpg"
+    },
+    {
+      "commonName": "Praying mantis",
+      "scientificName": "Mantis religiosa",
+      "ncbiTaxId": 7507,
+      "wikiTitle": "Mantis_religiosa",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/European_praying_mantis_%28Mantis_religiosa%29_green_female_Dobruja.jpg/330px-European_praying_mantis_%28Mantis_religiosa%29_green_female_Dobruja.jpg"
+    }
+  ],
+  "funFact": "Mantisflies look exactly like praying mantises — same raptorial forelegs, same triangular head, same ambush hunting posture — but they are Neuroptera, closely related to delicate lacewings and antlions! Mantises are in their own order (Mantodea). The two lineages independently evolved the same predatory body plan, one of the most extreme convergences in all of insects.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Mantispidae",
+      "label": "Mantispidae - Wikipedia"
+    }
+  ]
+}

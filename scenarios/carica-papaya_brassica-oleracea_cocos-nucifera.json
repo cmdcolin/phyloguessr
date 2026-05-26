@@ -1,0 +1,35 @@
+{
+  "organisms": [
+    {
+      "commonName": "Papaya",
+      "scientificName": "Carica papaya",
+      "ncbiTaxId": 3649,
+      "wikiTitle": "Papaya",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Carica_papaya_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-029.jpg/330px-Carica_papaya_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-029.jpg"
+    },
+    {
+      "commonName": "Cabbage",
+      "scientificName": "Brassica oleracea",
+      "ncbiTaxId": 3712,
+      "wikiTitle": "Brassica_oleracea",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Brassica_oleracea0.jpg/330px-Brassica_oleracea0.jpg"
+    },
+    {
+      "commonName": "Coconut palm",
+      "scientificName": "Cocos nucifera",
+      "ncbiTaxId": 13894,
+      "wikiTitle": "Coconut",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Cocos_nucifera_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-187.jpg/330px-Cocos_nucifera_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-187.jpg"
+    }
+  ],
+  "funFact": "Despite both being tall tropical trees with massive fruit, the papaya and the coconut palm are total strangers. Papayas belong to the order Brassicales — the same order as cabbage, mustard, and wasabi. They share glucosinolates (mustard oil compounds), a chemical signature that unites this otherwise unlikely group.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Brassicales",
+      "label": "Brassicales - Wikipedia"
+    }
+  ]
+}

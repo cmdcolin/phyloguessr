@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "English oak",
+      "scientificName": "Quercus robur",
+      "ncbiTaxId": 38942,
+      "wikiTitle": "Quercus_robur",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Quercus_robur.jpg/330px-Quercus_robur.jpg"
+    },
+    {
+      "commonName": "Pumpkin",
+      "scientificName": "Cucurbita pepo",
+      "ncbiTaxId": 3663,
+      "wikiTitle": "Cucurbita_pepo",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Cucurbita_pepo_collage_1.png/500px-Cucurbita_pepo_collage_1.png"
+    },
+    {
+      "commonName": "Scots pine",
+      "scientificName": "Pinus sylvestris",
+      "ncbiTaxId": 3349,
+      "wikiTitle": "Scots_pine",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Skuleskogen_pine.jpg/330px-Skuleskogen_pine.jpg"
+    }
+  ],
+  "funFact": "Oak trees are closer to pumpkins than to pines. Oaks and pumpkins are both flowering plants (angiosperms), while pines are gymnosperms — a much older lineage.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Flowering_plant",
+      "label": "Flowering plant - Wikipedia"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=ONVpFtiD-fo",
+      "label": "Domain of Life - The Surprising Map of Plants"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Hoatzin",
+      "scientificName": "Opisthocomus hoazin",
+      "ncbiTaxId": 30419,
+      "wikiTitle": "Hoatzin",
+      "group": "bird",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Hoatzin_%28Opisthocomus_hoazin%29_Rio_Napo.jpg/330px-Hoatzin_%28Opisthocomus_hoazin%29_Rio_Napo.jpg"
+    },
+    {
+      "commonName": "Chicken",
+      "scientificName": "Gallus gallus",
+      "ncbiTaxId": 9031,
+      "wikiTitle": "Chicken",
+      "group": "bird",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Red_jungle_fowl.png/330px-Red_jungle_fowl.png"
+    },
+    {
+      "commonName": "Common crow",
+      "scientificName": "Corvus brachyrhynchos",
+      "ncbiTaxId": 85066,
+      "wikiTitle": "American_crow",
+      "group": "bird",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Corvus-brachyrhynchos-001.jpg/330px-Corvus-brachyrhynchos-001.jpg"
+    }
+  ],
+  "funFact": "The hoatzin was an evolutionary enigma for over a century, bouncing between gamebirds, cuckoos, and turacos. Recent genomic studies placed it as one of the earliest-diverging lineages of Neoaves — the same major bird group as crows, parrots, and most living birds. Chickens are Galloanserae, an older lineage that split off before Neoaves even existed. Despite the hoatzin's gamebird-like look, it shares a more recent common ancestor with the crow.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Hoatzin",
+      "label": "Hoatzin - Wikipedia"
+    },
+    {
+      "url": "https://www.pnas.org/doi/10.1073/pnas.92.25.11662",
+      "label": "PNAS - Phylogenetic relationships of the hoatzin"
+    }
+  ]
+}

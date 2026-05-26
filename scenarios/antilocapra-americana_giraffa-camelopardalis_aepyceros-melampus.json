@@ -1,0 +1,43 @@
+{
+  "organisms": [
+    {
+      "commonName": "American pronghorn",
+      "scientificName": "Antilocapra americana",
+      "ncbiTaxId": 9891,
+      "wikiTitle": "Pronghorn",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Antilocapra_americana.jpg/330px-Antilocapra_americana.jpg"
+    },
+    {
+      "commonName": "Giraffe",
+      "scientificName": "Giraffa camelopardalis",
+      "ncbiTaxId": 9894,
+      "wikiTitle": "Giraffe",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Rothschild%27s_giraffe_%28Giraffa_camelopardalis_rothschildi%29_-_Murchison_Falls_National_Park.jpg/330px-Rothschild%27s_giraffe_%28Giraffa_camelopardalis_rothschildi%29_-_Murchison_Falls_National_Park.jpg"
+    },
+    {
+      "commonName": "Impala",
+      "scientificName": "Aepyceros melampus",
+      "ncbiTaxId": 9897,
+      "wikiTitle": "Impala",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Impala_%28Aepyceros_melampus%29_male_Kruger.jpg/330px-Impala_%28Aepyceros_melampus%29_male_Kruger.jpg"
+    }
+  ],
+  "funFact": "The pronghorn is called the \"American antelope\" but is not an antelope at all — it is the sole surviving member of Antilocapridae, closer to giraffes than to any true antelope! Impala and other antelopes are Bovidae (with cattle and goats). The pronghorn's family was once diverse across North America, but only one species survives. NCBI taxonomy leaves Pecora unresolved, but molecular studies consistently group Antilocapridae with Giraffidae.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Pronghorn",
+      "label": "Pronghorn - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Antilocapridae",
+      "label": "Antilocapridae - Wikipedia"
+    }
+  ],
+  "correctPair": [
+    "American pronghorn",
+    "Giraffe"
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Australian lungfish",
+      "scientificName": "Neoceratodus forsteri",
+      "ncbiTaxId": 7892,
+      "wikiTitle": "Australian_lungfish",
+      "group": "fish",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Neoceratodus_forsteri%2C_2014-09-19.JPG/330px-Neoceratodus_forsteri%2C_2014-09-19.JPG"
+    },
+    {
+      "commonName": "Common frog",
+      "scientificName": "Rana temporaria",
+      "ncbiTaxId": 8407,
+      "wikiTitle": "Common_frog",
+      "group": "amphibian",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/European_Common_Frog_Rana_temporaria.jpg/330px-European_Common_Frog_Rana_temporaria.jpg"
+    },
+    {
+      "commonName": "Atlantic salmon",
+      "scientificName": "Salmo salar",
+      "ncbiTaxId": 8030,
+      "wikiTitle": "Atlantic_salmon",
+      "group": "fish",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Wst_atlantischer_lachs_stoer_001.jpg/330px-Wst_atlantischer_lachs_stoer_001.jpg"
+    }
+  ],
+  "funFact": "The Australian lungfish breathes air and can survive in stagnant, oxygen-poor water. It is a lobe-finned fish — more closely related to a frog than to a salmon. The lineage that became all land vertebrates passed through something that looked like this.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Lungfish",
+      "label": "Lungfish - Wikipedia"
+    },
+    {
+      "url": "https://www.nature.com/articles/s41586-021-03198-8",
+      "label": "Nature - Giant lungfish genome elucidates the conquest of land"
+    }
+  ]
+}

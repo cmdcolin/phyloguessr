@@ -1,0 +1,43 @@
+{
+  "organisms": [
+    {
+      "commonName": "European feather worm",
+      "scientificName": "Sabella spallanzanii",
+      "ncbiTaxId": 85702,
+      "wikiTitle": "Sabella_spallanzanii",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Espir%C3%B3grafo_%28Sabella_spallanzanii%29%2C_Parque_natural_de_la_Arr%C3%A1bida%2C_Portugal%2C_2020-07-23%2C_DD_70.jpg/330px-Espir%C3%B3grafo_%28Sabella_spallanzanii%29%2C_Parque_natural_de_la_Arr%C3%A1bida%2C_Portugal%2C_2020-07-23%2C_DD_70.jpg"
+    },
+    {
+      "commonName": "Sea mouse",
+      "scientificName": "Aphrodita aculeata",
+      "ncbiTaxId": 45666,
+      "wikiTitle": "Aphrodita_aculeata",
+      "group": "invertebrate",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Aphrodita_aculeata_(Sea_mouse).jpg?width=330"
+    },
+    {
+      "commonName": "Beef tapeworm",
+      "scientificName": "Taenia saginata",
+      "ncbiTaxId": 6206,
+      "wikiTitle": "Taenia_saginata",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Taenia_saginata_adult_5260_lores.jpg/500px-Taenia_saginata_adult_5260_lores.jpg"
+    }
+  ],
+  "funFact": "The sea mouse looks like a small furry animal washed ashore, and feather worms look like underwater flowers — but both are polychaete annelids, segmented worms covered in bristles (chaetae). The sea mouse’s “fur” is densely packed iridescent chaetae. Tapeworms, despite the name, are flatworms (Platyhelminthes) — a completely different phylum that evolved their ribbon-like shape independently.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Aphrodita_aculeata",
+      "label": "Sea mouse - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Polychaeta",
+      "label": "Polychaeta - Wikipedia"
+    }
+  ],
+  "correctPair": [
+    "European feather worm",
+    "Sea mouse"
+  ]
+}

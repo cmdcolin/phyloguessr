@@ -1,0 +1,35 @@
+{
+  "organisms": [
+    {
+      "commonName": "Iris",
+      "scientificName": "Iris germanica",
+      "ncbiTaxId": 34205,
+      "wikiTitle": "Iris_(plant)",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Iris_sanguinea_cultivar%2C_Wakehurst_Place%2C_UK_-_Diliff.jpg/330px-Iris_sanguinea_cultivar%2C_Wakehurst_Place%2C_UK_-_Diliff.jpg"
+    },
+    {
+      "commonName": "Orchid",
+      "scientificName": "Phalaenopsis equestris",
+      "ncbiTaxId": 78828,
+      "wikiTitle": "Orchidaceae",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Plant_Orchid_Cymbidium_aloifolium_P1110661_05_-_cropped.jpg/330px-Plant_Orchid_Cymbidium_aloifolium_P1110661_05_-_cropped.jpg"
+    },
+    {
+      "commonName": "Fuchsia",
+      "scientificName": "Fuchsia",
+      "ncbiTaxId": 13069,
+      "wikiTitle": "Fuchsia",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Brincos_De_Princesa.jpg/330px-Brincos_De_Princesa.jpg"
+    }
+  ],
+  "funFact": "An iris and an orchid are both monocots — despite looking like typical garden flowers, they are on the grass-and-palm side of the flowering plant tree. A fuchsia is a eudicot, more closely related to oaks and roses than to either iris or orchid. The showy petals evolved independently in both groups.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Monocotyledon",
+      "label": "Monocotyledon - Wikipedia"
+    }
+  ]
+}

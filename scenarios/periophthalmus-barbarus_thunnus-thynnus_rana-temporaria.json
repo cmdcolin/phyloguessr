@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Atlantic mudskipper",
+      "scientificName": "Periophthalmus barbarus",
+      "ncbiTaxId": 166755,
+      "wikiTitle": "Atlantic_mudskipper",
+      "group": "fish",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/GambianMudskippers.jpg/330px-GambianMudskippers.jpg"
+    },
+    {
+      "commonName": "Atlantic bluefin tuna",
+      "scientificName": "Thunnus thynnus",
+      "ncbiTaxId": 8237,
+      "wikiTitle": "Atlantic_bluefin_tuna",
+      "group": "fish",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Bluefin-big.jpg/330px-Bluefin-big.jpg"
+    },
+    {
+      "commonName": "Common frog",
+      "scientificName": "Rana temporaria",
+      "ncbiTaxId": 8407,
+      "wikiTitle": "Common_frog",
+      "group": "amphibian",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/European_Common_Frog_Rana_temporaria.jpg/330px-European_Common_Frog_Rana_temporaria.jpg"
+    }
+  ],
+  "funFact": "Mudskippers walk on land, breathe air, and climb trees — but they are ray-finned fish (gobies), more closely related to a tuna than to any frog. Their land-living lifestyle evolved completely independently from the tetrapod lineage that produced all amphibians, reptiles, birds, and mammals.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Mudskipper",
+      "label": "Mudskipper - Wikipedia"
+    },
+    {
+      "url": "https://www.discovermagazine.com/meet-the-mudskipper-the-fish-that-walks-on-land-44915",
+      "label": "Discover Magazine - Meet the mudskipper"
+    }
+  ]
+}

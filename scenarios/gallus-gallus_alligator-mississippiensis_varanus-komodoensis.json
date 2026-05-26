@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Chicken",
+      "scientificName": "Gallus gallus",
+      "ncbiTaxId": 9031,
+      "wikiTitle": "Chicken",
+      "group": "bird",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Red_jungle_fowl.png/330px-Red_jungle_fowl.png"
+    },
+    {
+      "commonName": "American alligator",
+      "scientificName": "Alligator mississippiensis",
+      "ncbiTaxId": 8496,
+      "wikiTitle": "American_alligator",
+      "group": "reptile",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/American_Alligator.jpg/330px-American_Alligator.jpg"
+    },
+    {
+      "commonName": "Komodo dragon",
+      "scientificName": "Varanus komodoensis",
+      "ncbiTaxId": 61221,
+      "wikiTitle": "Komodo_dragon",
+      "group": "reptile",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/202306_Varanus_komodoensis.jpg/330px-202306_Varanus_komodoensis.jpg"
+    }
+  ],
+  "funFact": "A chicken and an alligator are closer relatives than either is to a Komodo dragon. Despite \"dinosaur\" meaning \"terrible lizard,\" dinosaurs have nothing to do with lizards. The reptile family tree splits into two branches: lizards and snakes on one side, and turtles, crocodilians, dinosaurs, and birds on the other. A chicken is a living dinosaur; a Komodo dragon is not.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Archosaur",
+      "label": "Archosaur - Wikipedia"
+    },
+    {
+      "url": "https://www.earth.com/news/crocodiles-birds-archosaurs/",
+      "label": "Earth.com - Crocodiles and birds are archosaurs"
+    }
+  ]
+}

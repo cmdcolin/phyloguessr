@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Ocean sunfish",
+      "scientificName": "Mola mola",
+      "ncbiTaxId": 94237,
+      "wikiTitle": "Ocean_sunfish",
+      "group": "fish",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Mola_mola.jpg/330px-Mola_mola.jpg"
+    },
+    {
+      "commonName": "Pufferfish",
+      "scientificName": "Takifugu rubripes",
+      "ncbiTaxId": 31033,
+      "wikiTitle": "Takifugu_rubripes",
+      "group": "fish",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Fugu_in_Tank.jpg/330px-Fugu_in_Tank.jpg"
+    },
+    {
+      "commonName": "Atlantic bluefin tuna",
+      "scientificName": "Thunnus thynnus",
+      "ncbiTaxId": 8237,
+      "wikiTitle": "Atlantic_bluefin_tuna",
+      "group": "fish",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Bluefin-big.jpg/330px-Bluefin-big.jpg"
+    }
+  ],
+  "funFact": "The ocean sunfish — the world's heaviest bony fish, with no tail and a bizarre flattened body — is a pufferfish relative! Both are Tetraodontiformes. Tuna are perciform fish, a completely separate lineage. Everything about the sunfish looks alien, but inside it is just a massively modified puffer.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Tetraodontiformes",
+      "label": "Tetraodontiformes - Wikipedia"
+    },
+    {
+      "url": "https://ocean.si.edu/ocean-life/fish/pufferfishes-and-their-relatives",
+      "label": "Smithsonian Ocean - Pufferfishes and their relatives"
+    }
+  ]
+}

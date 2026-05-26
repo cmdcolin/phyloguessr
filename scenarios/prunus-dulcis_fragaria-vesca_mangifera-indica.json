@@ -1,0 +1,35 @@
+{
+  "organisms": [
+    {
+      "commonName": "Almond",
+      "scientificName": "Prunus dulcis",
+      "ncbiTaxId": 3755,
+      "wikiTitle": "Almond",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Almonds_-_in_shell%2C_shell_cracked_open%2C_shelled%2C_blanched.jpg/330px-Almonds_-_in_shell%2C_shell_cracked_open%2C_shelled%2C_blanched.jpg"
+    },
+    {
+      "commonName": "Strawberry",
+      "scientificName": "Fragaria vesca",
+      "ncbiTaxId": 57918,
+      "wikiTitle": "Fragaria_vesca",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Illustration_Fragaria_vesca0.jpg/330px-Illustration_Fragaria_vesca0.jpg"
+    },
+    {
+      "commonName": "Mango",
+      "scientificName": "Mangifera indica",
+      "ncbiTaxId": 29780,
+      "wikiTitle": "Mango",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Mangoes_%28Magnifera_indica%29_from_India.jpg/330px-Mangoes_%28Magnifera_indica%29_from_India.jpg"
+    }
+  ],
+  "funFact": "Almonds and strawberries are both Rosaceae — the rose family. Despite one being a stone fruit from a tree and the other a ground-level accessory fruit, they share a common ancestor.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Rosaceae",
+      "label": "Rosaceae - Wikipedia"
+    }
+  ]
+}

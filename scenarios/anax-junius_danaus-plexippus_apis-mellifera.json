@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Dragonfly",
+      "scientificName": "Anax junius",
+      "ncbiTaxId": 214820,
+      "wikiTitle": "Green_darner",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Common_Green_Darner_Anax_junius_JG.jpg/330px-Common_Green_Darner_Anax_junius_JG.jpg"
+    },
+    {
+      "commonName": "Monarch butterfly",
+      "scientificName": "Danaus plexippus",
+      "ncbiTaxId": 13037,
+      "wikiTitle": "Monarch_butterfly",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Monarch_Butterfly_Danaus_plexippus_Male_2664px.jpg/330px-Monarch_Butterfly_Danaus_plexippus_Male_2664px.jpg"
+    },
+    {
+      "commonName": "Honeybee",
+      "scientificName": "Apis mellifera",
+      "ncbiTaxId": 7460,
+      "wikiTitle": "Western_honey_bee",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Apis_mellifera_Western_honey_bee.jpg/500px-Apis_mellifera_Western_honey_bee.jpg"
+    }
+  ],
+  "funFact": "Butterflies and bees are both Holometabola — the insect clade that evolved complete metamorphosis, passing through larva and pupa stages. Dragonflies are Paleoptera, the earliest-diverging lineage of winged insects, which never evolved a pupal stage. Despite bees and butterflies looking more different from each other than from a dragonfly, they share a more recent common ancestor with each other.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Holometabolism",
+      "label": "Holometabolism - Wikipedia"
+    },
+    {
+      "url": "https://www.scientificamerican.com/article/insect-metamorphosis-evolution/",
+      "label": "Scientific American - How did insect metamorphosis evolve?"
+    }
+  ]
+}

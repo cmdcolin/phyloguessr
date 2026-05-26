@@ -1,0 +1,35 @@
+{
+  "organisms": [
+    {
+      "commonName": "Bamboo",
+      "scientificName": "Phyllostachys edulis",
+      "ncbiTaxId": 38705,
+      "wikiTitle": "Phyllostachys_edulis",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Bamboo_forest.jpg/330px-Bamboo_forest.jpg"
+    },
+    {
+      "commonName": "Rice",
+      "scientificName": "Oryza sativa",
+      "ncbiTaxId": 4530,
+      "wikiTitle": "Rice",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Mature_Rice_%28India%29_by_Augustus_Binu.jpg/330px-Mature_Rice_%28India%29_by_Augustus_Binu.jpg"
+    },
+    {
+      "commonName": "Scots pine",
+      "scientificName": "Pinus sylvestris",
+      "ncbiTaxId": 3349,
+      "wikiTitle": "Scots_pine",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Skuleskogen_pine.jpg/330px-Skuleskogen_pine.jpg"
+    }
+  ],
+  "funFact": "Bamboo is a grass! Despite growing 30 meters tall with woody stems, bamboo is in the family Poaceae alongside rice, wheat, and your lawn. Pines are gymnosperms — a completely separate lineage that diverged over 300 million years ago.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Bamboo",
+      "label": "Bamboo - Wikipedia"
+    }
+  ]
+}

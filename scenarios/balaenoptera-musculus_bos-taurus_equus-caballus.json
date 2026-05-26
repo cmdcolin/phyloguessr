@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Blue whale",
+      "scientificName": "Balaenoptera musculus",
+      "ncbiTaxId": 9771,
+      "wikiTitle": "Blue_whale",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Anim1754_-_Flickr_-_NOAA_Photo_Library.jpg/330px-Anim1754_-_Flickr_-_NOAA_Photo_Library.jpg"
+    },
+    {
+      "commonName": "Cow",
+      "scientificName": "Bos taurus",
+      "ncbiTaxId": 9913,
+      "wikiTitle": "Cattle",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Cow_%28Fleckvieh_breed%29_Oeschinensee_Slaunger_2009-07-07.jpg/330px-Cow_%28Fleckvieh_breed%29_Oeschinensee_Slaunger_2009-07-07.jpg"
+    },
+    {
+      "commonName": "Horse",
+      "scientificName": "Equus caballus",
+      "ncbiTaxId": 9796,
+      "wikiTitle": "Horse",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Nokota_Horses_cropped.jpg/500px-Nokota_Horses_cropped.jpg"
+    }
+  ],
+  "funFact": "Whales evolved from the same group of hoofed mammals as cows, hippos, and pigs — they are essentially aquatic even-toed ungulates! Horses split off much earlier as odd-toed ungulates.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Cetartiodactyla",
+      "label": "Cetartiodactyla - Wikipedia"
+    },
+    {
+      "url": "https://evolution.berkeley.edu/what-are-evograms/the-evolution-of-whales/",
+      "label": "UC Berkeley - The evolution of whales"
+    }
+  ]
+}

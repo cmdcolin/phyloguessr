@@ -1,0 +1,39 @@
+{
+  "organisms": [
+    {
+      "commonName": "Red panda",
+      "scientificName": "Ailurus fulgens",
+      "ncbiTaxId": 9649,
+      "wikiTitle": "Red_panda",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Red_Panda%2C_Gentle_Tree-Dweller_of_the_Himalayas.jpg/330px-Red_Panda%2C_Gentle_Tree-Dweller_of_the_Himalayas.jpg"
+    },
+    {
+      "commonName": "Raccoon",
+      "scientificName": "Procyon lotor",
+      "ncbiTaxId": 9654,
+      "wikiTitle": "Raccoon",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Raccoon_in_Central_Park_%2835264%29.jpg/330px-Raccoon_in_Central_Park_%2835264%29.jpg"
+    },
+    {
+      "commonName": "Giant panda",
+      "scientificName": "Ailuropoda melanoleuca",
+      "ncbiTaxId": 9646,
+      "wikiTitle": "Giant_panda",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Grosser_Panda.JPG/330px-Grosser_Panda.JPG"
+    }
+  ],
+  "funFact": "Red pandas are musteloids — the same superfamily as weasels, badgers, and raccoons. Giant pandas are true bears (Ursidae), on a completely separate branch. Despite both being called pandas and both eating bamboo, the two species are not closely related — the bamboo diet evolved independently.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Red_panda",
+      "label": "Red panda - Wikipedia"
+    },
+    {
+      "url": "https://nationalzoo.si.edu/animals/news/red-panda-bear-and-more-red-panda-facts",
+      "label": "Smithsonian Zoo - Red panda facts"
+    }
+  ]
+}
