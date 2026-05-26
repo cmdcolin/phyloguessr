@@ -10,11 +10,23 @@ import {
   getAllPairLcas,
   getLineageFromParents,
   lcaClosenessScore,
+  unpackTaxonomyData,
 } from './taxonomy.ts'
 import { CURATED_MICROORGANISMS } from '../../scripts/curated-microorganisms.mjs'
 import { organisms } from '../data/organisms.ts'
 
-import type { TaxonomyData } from './taxonomy.ts'
+import type { CompactTaxonomyData, TaxonomyData } from './taxonomy.ts'
+
+function loadTaxonomyFile(path: string): TaxonomyData {
+  try {
+    const raw = JSON.parse(readFileSync(path, 'utf8')) as
+      | CompactTaxonomyData
+      | TaxonomyData
+    return 'D' in raw ? unpackTaxonomyData(raw) : raw
+  } catch {
+    return { parents: {}, names: {}, ranks: {} }
+  }
+}
 
 // A small mock taxonomy tree:
 //
@@ -438,75 +450,33 @@ describe('compact format round-trip', () => {
       ranks: { '10': 'domain', '20': 'kingdom', '21': 'species' },
     }
 
-    // Simulate compact format (same logic as build script)
     const rankList = [...new Set(Object.values(original.ranks))].sort()
     const rankMap = Object.fromEntries(rankList.map((r, i) => [r, i]))
-    const compact = {
+    const compact: CompactTaxonomyData = {
       R: rankList,
       D: Object.fromEntries(
         Object.keys(original.parents).map(id => [
           id,
           [
             original.parents[id],
-            original.names[id] || '',
+            original.names[id] ?? '',
             rankMap[original.ranks[id]] ?? -1,
           ],
         ]),
       ),
     }
 
-    // Unpack (same logic as client)
-    const parents: Record<string, number> = {}
-    const names: Record<string, string> = {}
-    const ranks: Record<string, string> = {}
-    for (const [id, [parent, name, rankIdx]] of Object.entries(compact.D) as [
-      string,
-      [number, string, number],
-    ][]) {
-      parents[id] = parent
-      if (name) {
-        names[id] = name
-      }
-      if (rankIdx >= 0) {
-        ranks[id] = compact.R[rankIdx]
-      }
-    }
-
-    expect(parents).toEqual(original.parents)
-    expect(names).toEqual(original.names)
-    expect(ranks).toEqual(original.ranks)
+    const unpacked = unpackTaxonomyData(compact)
+    expect(unpacked.parents).toEqual(original.parents)
+    expect(unpacked.names).toEqual(original.names)
+    expect(unpacked.ranks).toEqual(original.ranks)
   })
 })
 
 describe('all curated organisms have valid taxonomy data', () => {
-  const dataPath = resolve(__dirname, '../../public/taxonomy/parents.json')
-  let data: TaxonomyData
-
-  try {
-    const raw = JSON.parse(readFileSync(dataPath, 'utf8'))
-    if (raw.D && raw.R) {
-      const parents: Record<string, number> = {}
-      const names: Record<string, string> = {}
-      const ranks: Record<string, string> = {}
-      for (const [id, [parent, name, rankIdx]] of Object.entries(raw.D) as [
-        string,
-        [number, string, number],
-      ][]) {
-        parents[id] = parent
-        if (name) {
-          names[id] = name
-        }
-        if (rankIdx >= 0) {
-          ranks[id] = raw.R[rankIdx]
-        }
-      }
-      data = { parents, names, ranks }
-    } else {
-      data = raw
-    }
-  } catch {
-    data = { parents: {}, names: {}, ranks: {} }
-  }
+  const data = loadTaxonomyFile(
+    resolve(__dirname, '../../public/taxonomy/parents.json'),
+  )
 
   it('every organism has a parent entry in taxonomy data', () => {
     const missing: { name: string; taxId: number }[] = []
@@ -560,6 +530,95 @@ describe('curated microorganisms have valid taxonomy data', () => {
         dupes.push([taxId, name])
       }
       seen.add(taxId)
+    }
+    expect(dupes).toEqual([])
+  })
+})
+
+describe('easy-mode data consistency', () => {
+  const easyData = loadTaxonomyFile(
+    resolve(__dirname, '../../public/taxonomy/parents-easy.json'),
+  )
+
+  type ScenarioOrganism = { ncbiTaxId: number; commonName: string }
+  type Scenario = {
+    organisms: [ScenarioOrganism, ScenarioOrganism, ScenarioOrganism]
+    correctPair?: [string, string]
+  }
+
+  let scenarios: Scenario[] = []
+  try {
+    scenarios = JSON.parse(
+      readFileSync(
+        resolve(__dirname, '../../public/taxonomy/easy-scenarios.json'),
+        'utf8',
+      ),
+    ) as Scenario[]
+  } catch {
+    // file missing — tests below will pass vacuously, flagging in CI only when file exists
+  }
+
+  it('all organisms.ts taxIds present in easy taxonomy', () => {
+    const missing = organisms
+      .filter(o => easyData.parents[String(o.ncbiTaxId)] === undefined)
+      .map(o => ({ name: o.commonName, taxId: o.ncbiTaxId }))
+    expect(missing).toEqual([])
+  })
+
+  it('all organisms.ts imageUrls use Wikimedia', () => {
+    const nonWiki = organisms
+      .filter(
+        o =>
+          o.imageUrl !== undefined &&
+          !o.imageUrl.includes('wikimedia.org'),
+      )
+      .map(o => ({ name: o.commonName, imageUrl: o.imageUrl }))
+    expect(nonWiki).toEqual([])
+  })
+
+  it('all scenario organism taxIds present in easy taxonomy', () => {
+    const missing: { scenario: number; name: string; taxId: number }[] = []
+    for (let i = 0; i < scenarios.length; i++) {
+      for (const org of scenarios[i].organisms) {
+        if (easyData.parents[String(org.ncbiTaxId)] === undefined) {
+          missing.push({
+            scenario: i,
+            name: org.commonName,
+            taxId: org.ncbiTaxId,
+          })
+        }
+      }
+    }
+    expect(missing).toEqual([])
+  })
+
+  it('scenario correctPair names reference organisms in that scenario', () => {
+    const bad: { scenario: number; name: string }[] = []
+    for (let i = 0; i < scenarios.length; i++) {
+      const { correctPair, organisms: orgs } = scenarios[i]
+      if (!correctPair) continue
+      const orgNames = new Set(orgs.map(o => o.commonName))
+      for (const name of correctPair) {
+        if (!orgNames.has(name)) {
+          bad.push({ scenario: i, name })
+        }
+      }
+    }
+    expect(bad).toEqual([])
+  })
+
+  it('no duplicate organism combos across scenarios', () => {
+    const seen = new Set<string>()
+    const dupes: number[] = []
+    for (let i = 0; i < scenarios.length; i++) {
+      const key = scenarios[i].organisms
+        .map(o => o.ncbiTaxId)
+        .sort((a, b) => a - b)
+        .join(',')
+      if (seen.has(key)) {
+        dupes.push(i)
+      }
+      seen.add(key)
     }
     expect(dupes).toEqual([])
   })
@@ -629,7 +688,9 @@ describe('buildContextDiagram', () => {
     )
     expect(outBranch.highlight).toBeFalsy()
     expect(outBranch.children).toHaveLength(1)
-    expect(outBranch.children![0].label).toBe('Serpentes — snakes (Snake)')
+    expect(outBranch.children![0].label).toBe(
+      'Serpentes — snakes — 3,700+ species (Snake)',
+    )
 
     const sisterBranch = result!.children![1]
     expect(sisterBranch.label).toBe(

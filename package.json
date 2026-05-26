@@ -16,6 +16,7 @@
     "postdep": "git push --follow-tags",
     "build-taxonomy": "node scripts/build-taxonomy.mjs",
     "update-data": "node scripts/update-all.mjs",
+    "check": "tsc --noEmit && eslint --report-unused-disable-directives --max-warnings 0 && vitest run",
     "test": "vitest run",
     "firebase-deploy": "firebase deploy --only firestore:rules"
   },

@@ -15,18 +15,16 @@ export default function Timer({
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setTimeLeft(prev => {
-        const next = prev - 1000
-        if (next <= 0) {
-          clearInterval(interval)
-          setTimeout(() => onExpireRef.current(), 0)
-          return 0
-        }
-        return next
-      })
+      setTimeLeft(prev => Math.max(0, prev - 1000))
     }, 1000)
     return () => clearInterval(interval)
   }, [])
+
+  useEffect(() => {
+    if (timeLeft <= 0) {
+      onExpireRef.current()
+    }
+  }, [timeLeft])
 
   const seconds = Math.ceil(timeLeft / 1000)
   const fraction = timeLeft / duration

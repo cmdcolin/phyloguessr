@@ -5,6 +5,7 @@ import GameOverScreen from './GameOverScreen.tsx'
 import Header from './Header.tsx'
 import MultiResultScreen from './MultiResultScreen.tsx'
 import OrganismCard from './OrganismCard.tsx'
+import SkipButton from './SkipButton.tsx'
 import Timer from './Timer.tsx'
 import {
   buildRetryUrl,
@@ -452,15 +453,11 @@ export default function MultiGame() {
             >
               Submit
             </Button>
-            <button
-              className="nav-icon-btn"
+            <SkipButton
               onClick={() => {
                 startRound()
               }}
-              title="Skip"
-            >
-              <span className="nav-icon-btn-label">Skip</span> →
-            </button>
+            />
           </div>
         </div>
       )}
@@ -472,15 +469,11 @@ export default function MultiGame() {
             <a className="btn btn-primary" href={buildRetryUrl()}>
               Try Again
             </a>
-            <button
-              className="nav-icon-btn"
+            <SkipButton
               onClick={() => {
                 startRound()
               }}
-              title="Skip"
-            >
-              <span className="nav-icon-btn-label">Skip</span> →
-            </button>
+            />
           </div>
         </div>
       )}

@@ -151,28 +151,25 @@ function ZoomableDiagram({
   userSelectedTaxIds?: Set<number>
   organismColors?: Record<number, string>
 }) {
-  const [currentDiagram, setCurrentDiagram] = useState(diagram)
-  const [currentRootTaxId, setCurrentRootTaxId] = useState(rootTaxId)
-  const [canZoom, setCanZoom] = useState(true)
+  const [zoom, setZoom] = useState({ diagram, rootTaxId, canZoom: true })
 
   const handleZoomOut = () => {
-    const expanded = expandDiagramUp(
-      currentDiagram,
-      currentRootTaxId,
-      taxonomyData,
-    )
+    const expanded = expandDiagramUp(zoom.diagram, zoom.rootTaxId, taxonomyData)
     if (expanded) {
-      setCurrentDiagram(expanded.diagram)
-      setCurrentRootTaxId(expanded.rootTaxId)
+      setZoom({
+        diagram: expanded.diagram,
+        rootTaxId: expanded.rootTaxId,
+        canZoom: true,
+      })
     } else {
-      setCanZoom(false)
+      setZoom(prev => ({ ...prev, canZoom: false }))
     }
   }
 
   return (
     <DiagramTree
-      root={currentDiagram}
-      onZoomOut={canZoom ? handleZoomOut : undefined}
+      root={zoom.diagram}
+      onZoomOut={zoom.canZoom ? handleZoomOut : undefined}
       correct={correct}
       userSelectedTaxIds={userSelectedTaxIds}
       organismColors={organismColors}

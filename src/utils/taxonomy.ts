@@ -1,3 +1,5 @@
+import { shuffled } from './format.ts'
+
 export interface LcaResult {
   taxId: number
   name: string
@@ -204,12 +206,12 @@ let easyTaxonomyPromise: Promise<TaxonomyData> | undefined
 let fullTaxonomyPromise: Promise<TaxonomyData> | undefined
 let speciesPoolPromise: Promise<SpeciesPoolEntry[]> | undefined
 
-interface CompactTaxonomyData {
+export interface CompactTaxonomyData {
   R: string[]
   D: Record<string, [number, string, number]>
 }
 
-function unpackTaxonomyData(compact: CompactTaxonomyData) {
+export function unpackTaxonomyData(compact: CompactTaxonomyData) {
   const parents: Record<string, number> = {}
   const names: Record<string, string> = {}
   const ranks: Record<string, string> = {}
@@ -351,18 +353,17 @@ function genusOrFamily(lin: number[], data: TaxonomyData) {
 }
 
 function allDistinctGenera(lineages: number[][], data: TaxonomyData) {
-  const genera = lineages.map(l => getGenus(l, data))
-  for (let i = 0; i < genera.length; i++) {
-    if (genera[i] === -1) {
-      continue
-    }
-    for (let j = i + 1; j < genera.length; j++) {
-      if (genera[i] === genera[j]) {
-        return false
-      }
-    }
+  const genera = lineages.map(l => getGenus(l, data)).filter(g => g !== -1)
+  return new Set(genera).size === genera.length
+}
+
+/** Pick n items at random from arr (without replacement). Assumes arr.length >= n. */
+function randomSampleN<T>(arr: T[], n: number): T[] {
+  const indices = new Set<number>()
+  while (indices.size < n) {
+    indices.add(Math.floor(Math.random() * arr.length))
   }
-  return true
+  return [...indices].map(i => arr[i])
 }
 
 function pickFromAncestor(
@@ -388,11 +389,7 @@ function pickFromAncestor(
     ancestorRank === 'species group'
 
   for (let pickAttempt = 0; pickAttempt < 50; pickAttempt++) {
-    const indices = new Set<number>()
-    while (indices.size < 3) {
-      indices.add(Math.floor(Math.random() * matches.length))
-    }
-    const picks = [...indices].map(i => matches[i])
+    const picks = randomSampleN(matches, 3)
 
     if (skipDiversityCheck) {
       return picks
@@ -416,11 +413,7 @@ function pickFromAncestor(
     }
   }
 
-  const indices = new Set<number>()
-  while (indices.size < 3) {
-    indices.add(Math.floor(Math.random() * matches.length))
-  }
-  return [...indices].map(i => matches[i])
+  return randomSampleN(matches, 3)
 }
 
 export function pickThreeFromClade(
@@ -629,22 +622,13 @@ export function pickThreeMicrobialCrossKingdom(
   data: TaxonomyData,
 ) {
   const byGroup = getMicrobialGroups(pool, data)
-  const groupNames = [...byGroup.keys()].filter(
-    g => (byGroup.get(g)?.length ?? 0) > 0,
-  )
+  const groupNames = [...byGroup.keys()]
   if (groupNames.length < 3) {
     return undefined
   }
 
   for (let attempt = 0; attempt < 30; attempt++) {
-    const shuffled = [...groupNames]
-    for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1))
-      const tmp = shuffled[i]
-      shuffled[i] = shuffled[j]
-      shuffled[j] = tmp
-    }
-    const threeGroups = shuffled.slice(0, 3)
+    const threeGroups = shuffled(groupNames).slice(0, 3)
     const picks: SpeciesPoolEntry[] = []
     for (const g of threeGroups) {
       const bucket = byGroup.get(g)!
@@ -714,11 +698,7 @@ export function pickThreeHardMode(
   data: TaxonomyData,
 ) {
   for (let attempt = 0; attempt < 100; attempt++) {
-    const indices = new Set<number>()
-    while (indices.size < 3) {
-      indices.add(Math.floor(Math.random() * pool.length))
-    }
-    const picks = [...indices].map(i => pool[i])
+    const picks = randomSampleN(pool, 3)
 
     const lineage0 = getLineageFromParents(picks[0][0], data.parents)
     const lineage1 = getLineageFromParents(picks[1][0], data.parents)
@@ -737,11 +717,7 @@ export function pickThreeHardMode(
       return picks
     }
   }
-  const indices = new Set<number>()
-  while (indices.size < 3) {
-    indices.add(Math.floor(Math.random() * pool.length))
-  }
-  return [...indices].map(i => pool[i])
+  return randomSampleN(pool, 3)
 }
 
 const rankScore: Record<string, number> = {
@@ -821,11 +797,7 @@ export function pickNFromClade(
   }
 
   for (let pickAttempt = 0; pickAttempt < 50; pickAttempt++) {
-    const indices = new Set<number>()
-    while (indices.size < count) {
-      indices.add(Math.floor(Math.random() * matches.length))
-    }
-    const picks = [...indices].map(i => matches[i])
+    const picks = randomSampleN(matches, count)
 
     const genera = new Set<number>()
     let duplicate = false
@@ -844,11 +816,7 @@ export function pickNFromClade(
     }
   }
 
-  const indices = new Set<number>()
-  while (indices.size < count) {
-    indices.add(Math.floor(Math.random() * matches.length))
-  }
-  return [...indices].map(i => matches[i])
+  return randomSampleN(matches, count)
 }
 
 export function pickNHardModeDistance(
@@ -1528,12 +1496,12 @@ export function buildTreeFromLineages(
       return undefined
     }
 
-    const info = nameMap[taxId] ?? taxonomyData?.names[String(taxId)]
-    const name = typeof info === 'string' ? info : (info?.name ?? String(taxId))
+    const name =
+      nameMap[taxId]?.name ??
+      taxonomyData?.names[String(taxId)] ??
+      String(taxId)
     const rank =
-      typeof info === 'string'
-        ? (taxonomyData?.ranks[String(taxId)] ?? 'no rank')
-        : (info?.rank ?? 'no rank')
+      nameMap[taxId]?.rank ?? taxonomyData?.ranks[String(taxId)] ?? 'no rank'
 
     return { taxId, label: name, rank, children }
   }

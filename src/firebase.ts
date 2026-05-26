@@ -1,4 +1,3 @@
-/* eslint-disable import-x/named */
 import { initializeApp } from 'firebase/app'
 import {
   GoogleAuthProvider,

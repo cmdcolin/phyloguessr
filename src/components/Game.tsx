@@ -7,6 +7,7 @@ import Header from './Header.tsx'
 import { MapToggle } from './MapToggle.tsx'
 import OrganismCard from './OrganismCard.tsx'
 import ResultScreen from './ResultScreen.tsx'
+import SkipButton from './SkipButton.tsx'
 import { MAP_COLORS } from './SpeciesMap.tsx'
 import { TaxLink } from './TaxLink.tsx'
 import Timer from './Timer.tsx'
@@ -23,6 +24,7 @@ import {
 } from './gameUtils.ts'
 import { loadSurprisingScenarios } from '../data/surprisingFacts.ts'
 import { DISPLAY_TREE } from '../utils/cladePresets.ts'
+import { shuffled } from '../utils/format.ts'
 import { TOTAL_QUESTIONS, calculateScore } from '../utils/scoring.ts'
 import { sessionStorageGetItem } from '../utils/storage.ts'
 import {
@@ -107,6 +109,9 @@ export default function Game({ mode }: { mode: GameMode }) {
   )
   const [scenarios, setScenarios] = useState<SurprisingScenario[] | null>(null)
   const [loadingMessage, setLoadingMessage] = useState('')
+  const [loadingAction, setLoadingAction] = useState<
+    'retry' | 'back' | undefined
+  >(undefined)
   const [shownScenarioIndices, setShownScenarioIndices] = useState<Set<number>>(
     () => {
       const saved = sessionStorageGetItem('shownScenarios')
@@ -158,6 +163,7 @@ export default function Game({ mode }: { mode: GameMode }) {
 
   const startRound = useCallback(async () => {
     setState('loading')
+    setLoadingAction(undefined)
     setSelected([])
     setResult(null)
     setHints({})
@@ -219,15 +225,10 @@ export default function Game({ mode }: { mode: GameMode }) {
         }
         return
       }
-      for (let i = orgs.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1))
-        const tmp = orgs[i]
-        orgs[i] = orgs[j]
-        orgs[j] = tmp
-      }
-      recordCombo(orgs)
-      setRound(orgs)
-      updateUrlWithQuestion(orgs)
+      const shuffledOrgs = shuffled(orgs)
+      recordCombo(shuffledOrgs)
+      setRound(shuffledOrgs)
+      updateUrlWithQuestion(shuffledOrgs)
       setState('selecting')
     } else {
       let pool = speciesPool
@@ -282,6 +283,7 @@ export default function Game({ mode }: { mode: GameMode }) {
             setLoadingMessage(
               `Not enough species in "${label}" — try a broader group`,
             )
+            setLoadingAction('back')
             return
           }
           picks = result
@@ -324,6 +326,7 @@ export default function Game({ mode }: { mode: GameMode }) {
         setLoadingMessage(
           "Couldn't find a valid set of species — please try again",
         )
+        setLoadingAction('retry')
         return
       }
       if (finalClade) {
@@ -442,11 +445,7 @@ export default function Game({ mode }: { mode: GameMode }) {
     setTimeout(() => setShowHintPenalty(false), 1500)
     setHintLoading(true)
     const results = await Promise.all(
-      round.map(org =>
-        fetchWikipediaAbstract(
-          org.wikiTitle ?? org.scientificName.replace(/ /g, '_'),
-        ),
-      ),
+      round.map(org => fetchWikipediaAbstract(org.wikiTitle)),
     )
     const newHints: Record<number, string | null> = {}
     for (let i = 0; i < results.length; i++) {
@@ -456,7 +455,7 @@ export default function Game({ mode }: { mode: GameMode }) {
     setHintLoading(false)
   }, [round, hintUsed])
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     if (!round || !taxonomyData) {
       return
     }
@@ -652,7 +651,7 @@ export default function Game({ mode }: { mode: GameMode }) {
       {state === 'loading' && (
         <div className="loading">
           {loadingMessage}
-          {loadingMessage.includes('try again') && (
+          {loadingAction === 'retry' && (
             <Button
               onClick={() => {
                 startRound()
@@ -661,7 +660,7 @@ export default function Game({ mode }: { mode: GameMode }) {
               Retry
             </Button>
           )}
-          {loadingMessage.includes('try a broader group') && (
+          {loadingAction === 'back' && (
             <Button variant="secondary" href="/custom">
               ⏮ Back
             </Button>
@@ -753,15 +752,11 @@ export default function Game({ mode }: { mode: GameMode }) {
             >
               Submit
             </Button>
-            <button
-              className="nav-icon-btn"
+            <SkipButton
               onClick={() => {
                 startRound()
               }}
-              title="Skip"
-            >
-              <span className="nav-icon-btn-label">Skip</span> →
-            </button>
+            />
           </div>
           <MapToggle organisms={round} difficulty={difficulty} />
         </div>
@@ -774,15 +769,11 @@ export default function Game({ mode }: { mode: GameMode }) {
             <a className="btn btn-primary" href={buildRetryUrl()}>
               Try Again
             </a>
-            <button
-              className="nav-icon-btn"
+            <SkipButton
               onClick={() => {
                 startRound()
               }}
-              title="Skip"
-            >
-              <span className="nav-icon-btn-label">Skip</span> →
-            </button>
+            />
           </div>
         </div>
       )}

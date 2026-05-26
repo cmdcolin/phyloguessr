@@ -5039,5 +5039,91 @@
         "label": "Echinoderm - Wikipedia"
       }
     ]
+  },
+  {
+    "organisms": [
+      {
+        "commonName": "Moon jellyfish",
+        "scientificName": "Aurelia aurita",
+        "ncbiTaxId": 6145,
+        "wikiTitle": "Moon_jellyfish",
+        "group": "invertebrate",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Aurelia_aurita_%28Cnidaria%29_Luc_Viatour.jpg/330px-Aurelia_aurita_%28Cnidaria%29_Luc_Viatour.jpg"
+      },
+      {
+        "commonName": "Great star coral",
+        "scientificName": "Montastraea cavernosa",
+        "ncbiTaxId": 63558,
+        "wikiTitle": "Montastraea_cavernosa",
+        "group": "invertebrate",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Montastraea_cavernosa.jpg?width=330"
+      },
+      {
+        "commonName": "Feather star",
+        "scientificName": "Florometra serratissima",
+        "ncbiTaxId": 73431,
+        "wikiTitle": "Florometra_serratissima",
+        "group": "invertebrate",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Sanc1619_-_Flickr_-_NOAA_Photo_Library.jpg/330px-Sanc1619_-_Flickr_-_NOAA_Photo_Library.jpg"
+      }
+    ],
+    "funFact": "A coral polyp and a jellyfish medusa are both cnidarians — radially symmetric animals whose tentacles carry stinging nematocysts. Feather stars live on the same reefs and wave their arms like filter-feeding coral polyps, but they are crinoids: echinoderms, the same phylum as sea urchins and starfish.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Cnidaria",
+        "label": "Cnidaria - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Crinoidea",
+        "label": "Crinoidea - Wikipedia"
+      }
+    ],
+    "correctPair": [
+      "Moon jellyfish",
+      "Great star coral"
+    ]
+  },
+  {
+    "organisms": [
+      {
+        "commonName": "Fire coral",
+        "scientificName": "Millepora intricata",
+        "ncbiTaxId": 544499,
+        "wikiTitle": "Millepora",
+        "group": "invertebrate",
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Millepora_intricata_(murrayi).jpg?width=330"
+      },
+      {
+        "commonName": "Moon jellyfish",
+        "scientificName": "Aurelia aurita",
+        "ncbiTaxId": 6145,
+        "wikiTitle": "Moon_jellyfish",
+        "group": "invertebrate",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Aurelia_aurita_%28Cnidaria%29_Luc_Viatour.jpg/330px-Aurelia_aurita_%28Cnidaria%29_Luc_Viatour.jpg"
+      },
+      {
+        "commonName": "Staghorn coral",
+        "scientificName": "Acropora cervicornis",
+        "ncbiTaxId": 6130,
+        "wikiTitle": "Staghorn_coral",
+        "group": "invertebrate",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Hertshoon.jpg/330px-Hertshoon.jpg"
+      }
+    ],
+    "funFact": "Fire coral looks just like staghorn coral — a branching reef-builder with a calcium carbonate skeleton — but it is a hydrozoan, in the same subphylum (Medusozoa) as jellyfish. True stony corals are Anthozoa, the most basal cnidarian class, which makes fire coral and moon jellyfish closer relatives than fire coral and staghorn coral.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Millepora",
+        "label": "Millepora (fire coral) - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Medusozoa",
+        "label": "Medusozoa - Wikipedia"
+      }
+    ],
+    "correctPair": [
+      "Fire coral",
+      "Moon jellyfish"
+    ]
   }
 ]
