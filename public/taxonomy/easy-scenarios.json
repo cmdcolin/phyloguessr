@@ -5059,23 +5059,23 @@
         "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Montastraea_cavernosa.jpg?width=330"
       },
       {
-        "commonName": "Feather star",
-        "scientificName": "Florometra serratissima",
-        "ncbiTaxId": 73431,
-        "wikiTitle": "Florometra_serratissima",
+        "commonName": "Ross coral",
+        "scientificName": "Pentapora foliacea",
+        "ncbiTaxId": 1445003,
+        "wikiTitle": "Pentapora_foliacea",
         "group": "invertebrate",
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Sanc1619_-_Flickr_-_NOAA_Photo_Library.jpg/330px-Sanc1619_-_Flickr_-_NOAA_Photo_Library.jpg"
+        "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Vi_-_Pentopora_foliacea.jpg?width=330"
       }
     ],
-    "funFact": "A coral polyp and a jellyfish medusa are both cnidarians — radially symmetric animals whose tentacles carry stinging nematocysts. Feather stars live on the same reefs and wave their arms like filter-feeding coral polyps, but they are crinoids: echinoderms, the same phylum as sea urchins and starfish.",
+    "funFact": "Jellyfish and coral are both cnidarians — radially symmetric animals with stinging nematocysts. Ross coral forms large folded colonies that look just like a stony coral head and is even named 'coral,' but it is a bryozoan: a colonial animal in phylum Bryozoa, more closely related to snails and worms than to any cnidarian.",
     "sources": [
       {
         "url": "https://en.wikipedia.org/wiki/Cnidaria",
         "label": "Cnidaria - Wikipedia"
       },
       {
-        "url": "https://en.wikipedia.org/wiki/Crinoidea",
-        "label": "Crinoidea - Wikipedia"
+        "url": "https://en.wikipedia.org/wiki/Pentapora_foliacea",
+        "label": "Pentapora foliacea (ross coral) - Wikipedia"
       }
     ],
     "correctPair": [
