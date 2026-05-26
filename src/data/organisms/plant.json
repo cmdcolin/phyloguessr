@@ -1,0 +1,490 @@
+[
+  {
+    "commonName": "Thale cress",
+    "scientificName": "Arabidopsis thaliana",
+    "ncbiTaxId": 3702,
+    "wikiTitle": "Arabidopsis_thaliana",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Arabidopsis_thaliana.jpg/330px-Arabidopsis_thaliana.jpg"
+  },
+  {
+    "commonName": "English oak",
+    "scientificName": "Quercus robur",
+    "ncbiTaxId": 38942,
+    "wikiTitle": "Quercus_robur",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Quercus_robur.jpg/330px-Quercus_robur.jpg"
+  },
+  {
+    "commonName": "Pumpkin",
+    "scientificName": "Cucurbita pepo",
+    "ncbiTaxId": 3663,
+    "wikiTitle": "Cucurbita_pepo",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Cucurbita_pepo_collage_1.png/500px-Cucurbita_pepo_collage_1.png"
+  },
+  {
+    "commonName": "Scots pine",
+    "scientificName": "Pinus sylvestris",
+    "ncbiTaxId": 3349,
+    "wikiTitle": "Scots_pine",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Skuleskogen_pine.jpg/330px-Skuleskogen_pine.jpg"
+  },
+  {
+    "commonName": "Mango",
+    "scientificName": "Mangifera indica",
+    "ncbiTaxId": 29780,
+    "wikiTitle": "Mango",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Mangoes_%28Magnifera_indica%29_from_India.jpg/330px-Mangoes_%28Magnifera_indica%29_from_India.jpg"
+  },
+  {
+    "commonName": "Poison ivy",
+    "scientificName": "Toxicodendron radicans",
+    "ncbiTaxId": 43853,
+    "wikiTitle": "Toxicodendron_radicans",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/2014-10-29_13_43_39_Poison_Ivy_foliage_during_autumn_leaf_coloration_in_Ewing%2C_New_Jersey.JPG/330px-2014-10-29_13_43_39_Poison_Ivy_foliage_during_autumn_leaf_coloration_in_Ewing%2C_New_Jersey.JPG"
+  },
+  {
+    "commonName": "English ivy",
+    "scientificName": "Hedera helix",
+    "ncbiTaxId": 4052,
+    "wikiTitle": "Hedera_helix",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Hedera_helix_Dover.jpg/330px-Hedera_helix_Dover.jpg"
+  },
+  {
+    "commonName": "Tomato",
+    "scientificName": "Solanum lycopersicum",
+    "ncbiTaxId": 4081,
+    "wikiTitle": "Tomato",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Tomato_je.jpg/330px-Tomato_je.jpg"
+  },
+  {
+    "commonName": "Ocotillo",
+    "scientificName": "Fouquieria splendens",
+    "ncbiTaxId": 13533,
+    "wikiTitle": "Fouquieria_splendens",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Ocotillo_GB.jpg/330px-Ocotillo_GB.jpg"
+  },
+  {
+    "commonName": "Blueberry",
+    "scientificName": "Vaccinium corymbosum",
+    "ncbiTaxId": 69266,
+    "wikiTitle": "Vaccinium_corymbosum",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Vaccinium_corymbosum%2801%29.jpg/330px-Vaccinium_corymbosum%2801%29.jpg"
+  },
+  {
+    "commonName": "Cotton",
+    "scientificName": "Gossypium hirsutum",
+    "ncbiTaxId": 3635,
+    "wikiTitle": "Gossypium_hirsutum",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/CottonPlant.JPG/330px-CottonPlant.JPG"
+  },
+  {
+    "commonName": "Cacao",
+    "scientificName": "Theobroma cacao",
+    "ncbiTaxId": 3641,
+    "wikiTitle": "Theobroma_cacao",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Matadecacao.jpg/330px-Matadecacao.jpg"
+  },
+  {
+    "commonName": "Venus flytrap",
+    "scientificName": "Dionaea muscipula",
+    "ncbiTaxId": 4362,
+    "wikiTitle": "Venus_flytrap",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Venus_Flytrap_showing_trigger_hairs.jpg/330px-Venus_Flytrap_showing_trigger_hairs.jpg"
+  },
+  {
+    "commonName": "Saguaro cactus",
+    "scientificName": "Carnegiea gigantea",
+    "ncbiTaxId": 171969,
+    "wikiTitle": "Saguaro",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Carnegiea_gigantea_in_Saguaro_National_Park_near_Tucson%2C_Arizona_during_November_%2858%29.jpg/330px-Carnegiea_gigantea_in_Saguaro_National_Park_near_Tucson%2C_Arizona_during_November_%2858%29.jpg"
+  },
+  {
+    "commonName": "Jumping cholla",
+    "scientificName": "Cylindropuntia fulgida",
+    "ncbiTaxId": 701512,
+    "wikiTitle": "Cylindropuntia_fulgida",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Choya_brincadora_-_panoramio.jpg/330px-Choya_brincadora_-_panoramio.jpg"
+  },
+  {
+    "commonName": "Sacred lotus",
+    "scientificName": "Nelumbo nucifera",
+    "ncbiTaxId": 4432,
+    "wikiTitle": "Nelumbo_nucifera",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Sacred_lotus_Nelumbo_nucifera.jpg/500px-Sacred_lotus_Nelumbo_nucifera.jpg"
+  },
+  {
+    "commonName": "Water lily",
+    "scientificName": "Nymphaea alba",
+    "ncbiTaxId": 34301,
+    "wikiTitle": "Nymphaea_alba",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/2016_Kwiat_grzybieni_bia%C5%82ych_2.jpg/330px-2016_Kwiat_grzybieni_bia%C5%82ych_2.jpg"
+  },
+  {
+    "commonName": "Strawberry",
+    "scientificName": "Fragaria vesca",
+    "ncbiTaxId": 57918,
+    "wikiTitle": "Fragaria_vesca",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Illustration_Fragaria_vesca0.jpg/330px-Illustration_Fragaria_vesca0.jpg"
+  },
+  {
+    "commonName": "Peanut",
+    "scientificName": "Arachis hypogaea",
+    "ncbiTaxId": 3818,
+    "wikiTitle": "Peanut",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Arachis_hypogaea_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-163.jpg/330px-Arachis_hypogaea_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-163.jpg"
+  },
+  {
+    "commonName": "Cashew",
+    "scientificName": "Anacardium occidentale",
+    "ncbiTaxId": 171929,
+    "wikiTitle": "Cashew",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Cashew_apples.jpg/330px-Cashew_apples.jpg"
+  },
+  {
+    "commonName": "Almond",
+    "scientificName": "Prunus dulcis",
+    "ncbiTaxId": 3755,
+    "wikiTitle": "Almond",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Almonds_-_in_shell%2C_shell_cracked_open%2C_shelled%2C_blanched.jpg/330px-Almonds_-_in_shell%2C_shell_cracked_open%2C_shelled%2C_blanched.jpg"
+  },
+  {
+    "commonName": "Rose",
+    "scientificName": "Rosa gallica",
+    "ncbiTaxId": 74632,
+    "wikiTitle": "Rosa_gallica",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Wild_Rosa_gallica_Romania.jpg/330px-Wild_Rosa_gallica_Romania.jpg"
+  },
+  {
+    "commonName": "Bamboo",
+    "scientificName": "Phyllostachys edulis",
+    "ncbiTaxId": 38705,
+    "wikiTitle": "Phyllostachys_edulis",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Bamboo_forest.jpg/330px-Bamboo_forest.jpg"
+  },
+  {
+    "commonName": "Rice",
+    "scientificName": "Oryza sativa",
+    "ncbiTaxId": 4530,
+    "wikiTitle": "Rice",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Mature_Rice_%28India%29_by_Augustus_Binu.jpg/330px-Mature_Rice_%28India%29_by_Augustus_Binu.jpg"
+  },
+  {
+    "commonName": "Baobab",
+    "scientificName": "Adansonia digitata",
+    "ncbiTaxId": 69109,
+    "wikiTitle": "Adansonia_digitata",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Baobab_and_elephant%2C_Tanzania.jpg/330px-Baobab_and_elephant%2C_Tanzania.jpg"
+  },
+  {
+    "commonName": "Duckweed",
+    "scientificName": "Lemna minor",
+    "ncbiTaxId": 4472,
+    "wikiTitle": "Lemna_minor",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Eendekroos_dicht_bijeen.JPG/330px-Eendekroos_dicht_bijeen.JPG"
+  },
+  {
+    "commonName": "Coconut palm",
+    "scientificName": "Cocos nucifera",
+    "ncbiTaxId": 13894,
+    "wikiTitle": "Coconut",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Cocos_nucifera_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-187.jpg/330px-Cocos_nucifera_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-187.jpg"
+  },
+  {
+    "commonName": "Orchid",
+    "scientificName": "Phalaenopsis equestris",
+    "ncbiTaxId": 78828,
+    "wikiTitle": "Orchidaceae",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Phalaenopsis_equestris.jpg/500px-Phalaenopsis_equestris.jpg"
+  },
+  {
+    "commonName": "Sunflower",
+    "scientificName": "Helianthus annuus",
+    "ncbiTaxId": 4232,
+    "wikiTitle": "Common_sunflower",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Sunflower_sky_backdrop.jpg/330px-Sunflower_sky_backdrop.jpg"
+  },
+  {
+    "commonName": "Fuchsia",
+    "scientificName": "Fuchsia",
+    "ncbiTaxId": 13069,
+    "wikiTitle": "Fuchsia",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Brincos_De_Princesa.jpg/330px-Brincos_De_Princesa.jpg"
+  },
+  {
+    "commonName": "Carrot",
+    "scientificName": "Daucus carota",
+    "ncbiTaxId": 4039,
+    "wikiTitle": "Carrot",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Daucus_carota_May_2008-1_edit.jpg/330px-Daucus_carota_May_2008-1_edit.jpg"
+  },
+  {
+    "commonName": "Sphagnum moss",
+    "scientificName": "Sphagnum palustre",
+    "ncbiTaxId": 13805,
+    "wikiTitle": "Sphagnum",
+    "group": "plant",
+    "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Sphagnum.palustre.-.lindsey.jpg?width=330"
+  },
+  {
+    "commonName": "Common fern",
+    "scientificName": "Pteridium aquilinum",
+    "ncbiTaxId": 32101,
+    "wikiTitle": "Pteridium_aquilinum",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Adelaarsvaren_planten_Pteridium_aquilinum.jpg/330px-Adelaarsvaren_planten_Pteridium_aquilinum.jpg"
+  },
+  {
+    "commonName": "Welwitschia",
+    "scientificName": "Welwitschia mirabilis",
+    "ncbiTaxId": 3377,
+    "wikiTitle": "Welwitschia",
+    "group": "plant",
+    "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Welwitschia_mirablis_%5E_Ragnhild-4657_-_Flickr_-_Ragnhild_%26_Neil_Crawford.jpg?width=330"
+  },
+  {
+    "commonName": "Ginkgo",
+    "scientificName": "Ginkgo biloba",
+    "ncbiTaxId": 3311,
+    "wikiTitle": "Ginkgo_biloba",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/GINKGOBAUM-2.jpg/330px-GINKGOBAUM-2.jpg"
+  },
+  {
+    "commonName": "Iris",
+    "scientificName": "Iris germanica",
+    "ncbiTaxId": 34205,
+    "wikiTitle": "Iris_(plant)",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Iris_sanguinea_cultivar%2C_Wakehurst_Place%2C_UK_-_Diliff.jpg/330px-Iris_sanguinea_cultivar%2C_Wakehurst_Place%2C_UK_-_Diliff.jpg"
+  },
+  {
+    "commonName": "Snapdragon",
+    "scientificName": "Antirrhinum majus",
+    "ncbiTaxId": 4151,
+    "wikiTitle": "Antirrhinum_majus",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Antirrhinum_majus_BCBG_%2802%29.jpg/330px-Antirrhinum_majus_BCBG_%2802%29.jpg"
+  },
+  {
+    "commonName": "Avocado",
+    "scientificName": "Persea americana",
+    "ncbiTaxId": 3435,
+    "wikiTitle": "Avocado",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Persea_americana_fruit_2.JPG/330px-Persea_americana_fruit_2.JPG"
+  },
+  {
+    "commonName": "Cinnamon",
+    "scientificName": "Cinnamomum verum",
+    "ncbiTaxId": 128608,
+    "wikiTitle": "Cinnamomum_verum",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Cinnamomum_verum1.jpg/330px-Cinnamomum_verum1.jpg"
+  },
+  {
+    "commonName": "Potato",
+    "scientificName": "Solanum tuberosum",
+    "ncbiTaxId": 4113,
+    "wikiTitle": "Potato",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Patates.jpg/330px-Patates.jpg"
+  },
+  {
+    "commonName": "Hot pepper",
+    "scientificName": "Capsicum annuum",
+    "ncbiTaxId": 4072,
+    "wikiTitle": "Capsicum_annuum",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Capsicum_annuum_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-027.jpg/330px-Capsicum_annuum_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-027.jpg"
+  },
+  {
+    "commonName": "Dodder",
+    "scientificName": "Cuscuta campestris",
+    "ncbiTaxId": 132261,
+    "wikiTitle": "Cuscuta",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Cuscuta_europaea_bgiu.jpg/330px-Cuscuta_europaea_bgiu.jpg"
+  },
+  {
+    "commonName": "Indian pipe",
+    "scientificName": "Monotropa uniflora",
+    "ncbiTaxId": 50148,
+    "wikiTitle": "Monotropa_uniflora",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Monotropa_uniflora_in_Penwood_State_Park_3%2C_2009-07-03.jpg/330px-Monotropa_uniflora_in_Penwood_State_Park_3%2C_2009-07-03.jpg"
+  },
+  {
+    "commonName": "Wheat",
+    "scientificName": "Triticum aestivum",
+    "ncbiTaxId": 4565,
+    "wikiTitle": "Common_wheat",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Bl%C3%A9_tendre_%28GRAPELLI%29_AO-5-cliche_Jean_Weber_%285%29_%2823975019962%29.jpg/330px-Bl%C3%A9_tendre_%28GRAPELLI%29_AO-5-cliche_Jean_Weber_%285%29_%2823975019962%29.jpg"
+  },
+  {
+    "commonName": "Corpse lily",
+    "scientificName": "Rafflesia arnoldii",
+    "ncbiTaxId": 577516,
+    "wikiTitle": "Rafflesia_arnoldii",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Rafflesia_arnoldii%2C_Sumatra.jpg/330px-Rafflesia_arnoldii%2C_Sumatra.jpg"
+  },
+  {
+    "commonName": "Mistletoe",
+    "scientificName": "Viscum album",
+    "ncbiTaxId": 3972,
+    "wikiTitle": "Viscum_album",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Viscum_album_2026_G1.jpg/330px-Viscum_album_2026_G1.jpg"
+  },
+  {
+    "commonName": "Redwood",
+    "scientificName": "Sequoia sempervirens",
+    "ncbiTaxId": 28980,
+    "wikiTitle": "Sequoia_sempervirens",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/US_199_Redwood_Highway.jpg/330px-US_199_Redwood_Highway.jpg"
+  },
+  {
+    "commonName": "Lily",
+    "scientificName": "Lilium longiflorum",
+    "ncbiTaxId": 4690,
+    "wikiTitle": "Lilium",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Lilium_candidum_1.jpg/330px-Lilium_candidum_1.jpg"
+  },
+  {
+    "commonName": "Banana",
+    "scientificName": "Musa acuminata",
+    "ncbiTaxId": 4641,
+    "wikiTitle": "Banana",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Bananavarieties.jpg/330px-Bananavarieties.jpg"
+  },
+  {
+    "commonName": "Black locust",
+    "scientificName": "Robinia pseudoacacia",
+    "ncbiTaxId": 35938,
+    "wikiTitle": "Robinia_pseudoacacia",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/86/Robina9146.JPG"
+  },
+  {
+    "commonName": "Dandelion",
+    "scientificName": "Taraxacum officinale",
+    "ncbiTaxId": 50225,
+    "wikiTitle": "Taraxacum_officinale",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Taraxacum_officinale_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-135.jpg/330px-Taraxacum_officinale_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-135.jpg"
+  },
+  {
+    "commonName": "Giant groundsel",
+    "scientificName": "Dendrosenecio kilimanjari",
+    "ncbiTaxId": 109559,
+    "wikiTitle": "Dendrosenecio_kilimanjari",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Senecio_kilimanjari_Barranco.jpg/330px-Senecio_kilimanjari_Barranco.jpg"
+  },
+  {
+    "commonName": "Weeping willow",
+    "scientificName": "Salix babylonica",
+    "ncbiTaxId": 75706,
+    "wikiTitle": "Salix_babylonica",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Ch%C3%A2teau_de_Chenonceau_-_jardin_Russell-Page_%2801%29.jpg/330px-Ch%C3%A2teau_de_Chenonceau_-_jardin_Russell-Page_%2801%29.jpg"
+  },
+  {
+    "commonName": "Garden violet",
+    "scientificName": "Viola odorata",
+    "ncbiTaxId": 97441,
+    "wikiTitle": "Viola_odorata",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Viola_odorata_fg01.JPG/330px-Viola_odorata_fg01.JPG"
+  },
+  {
+    "commonName": "Dragon blood tree",
+    "scientificName": "Dracaena cinnabari",
+    "ncbiTaxId": 1142948,
+    "wikiTitle": "Dracaena_cinnabari",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Dragonblood_tree_in_Socotra_2.jpg/330px-Dragonblood_tree_in_Socotra_2.jpg"
+  },
+  {
+    "commonName": "African milk tree",
+    "scientificName": "Euphorbia trigona",
+    "ncbiTaxId": 1492770,
+    "wikiTitle": "Euphorbia_trigona",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/T%C3%ADas-Yaiza_-_LZ-2-LZ-706_-_Euphorbia_trigona_02_ies.jpg/330px-T%C3%ADas-Yaiza_-_LZ-2-LZ-706_-_Euphorbia_trigona_02_ies.jpg"
+  },
+  {
+    "commonName": "Poinsettia",
+    "scientificName": "Euphorbia pulcherrima",
+    "ncbiTaxId": 37495,
+    "wikiTitle": "Poinsettia",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Weihnachtsstern_-_gro%C3%9F.jpg/330px-Weihnachtsstern_-_gro%C3%9F.jpg"
+  },
+  {
+    "commonName": "Papaya",
+    "scientificName": "Carica papaya",
+    "ncbiTaxId": 3649,
+    "wikiTitle": "Papaya",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Carica_papaya_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-029.jpg/330px-Carica_papaya_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-029.jpg"
+  },
+  {
+    "commonName": "Cabbage",
+    "scientificName": "Brassica oleracea",
+    "ncbiTaxId": 3712,
+    "wikiTitle": "Brassica_oleracea",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Brassica_oleracea0.jpg/330px-Brassica_oleracea0.jpg"
+  },
+  {
+    "commonName": "American pitcher plant",
+    "scientificName": "Sarracenia purpurea",
+    "ncbiTaxId": 45176,
+    "wikiTitle": "Sarracenia_purpurea",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Sarracenia_purpurea_Flowers.JPG/330px-Sarracenia_purpurea_Flowers.JPG"
+  },
+  {
+    "commonName": "Tropical pitcher plant",
+    "scientificName": "Nepenthes rajah",
+    "ncbiTaxId": 150991,
+    "wikiTitle": "Nepenthes_rajah",
+    "group": "plant",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Nepenthes_rajah.png/330px-Nepenthes_rajah.png"
+  }
+]

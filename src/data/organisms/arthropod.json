@@ -1,0 +1,202 @@
+[
+  {
+    "commonName": "Honeybee",
+    "scientificName": "Apis mellifera",
+    "ncbiTaxId": 7460,
+    "wikiTitle": "Western_honey_bee",
+    "group": "arthropod",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Apis_mellifera_Western_honey_bee.jpg/500px-Apis_mellifera_Western_honey_bee.jpg"
+  },
+  {
+    "commonName": "Monarch butterfly",
+    "scientificName": "Danaus plexippus",
+    "ncbiTaxId": 13037,
+    "wikiTitle": "Monarch_butterfly",
+    "group": "arthropod",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Monarch_Butterfly_Danaus_plexippus_Male_2664px.jpg/330px-Monarch_Butterfly_Danaus_plexippus_Male_2664px.jpg"
+  },
+  {
+    "commonName": "Fruit fly",
+    "scientificName": "Drosophila melanogaster",
+    "ncbiTaxId": 7227,
+    "wikiTitle": "Drosophila_melanogaster",
+    "group": "arthropod",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Drosophila_melanogaster_Proboscis.jpg/500px-Drosophila_melanogaster_Proboscis.jpg"
+  },
+  {
+    "commonName": "Ant",
+    "scientificName": "Formica rufa",
+    "ncbiTaxId": 258706,
+    "wikiTitle": "Red_wood_ant",
+    "group": "arthropod",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/A_Formica_rufa_sideview.jpg/330px-A_Formica_rufa_sideview.jpg"
+  },
+  {
+    "commonName": "Ladybug",
+    "scientificName": "Coccinella septempunctata",
+    "ncbiTaxId": 41139,
+    "wikiTitle": "Coccinella_septempunctata",
+    "group": "arthropod",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/7-Spotted-Ladybug-Coccinella-septempunctata-sq1.jpg/330px-7-Spotted-Ladybug-Coccinella-septempunctata-sq1.jpg"
+  },
+  {
+    "commonName": "Earwig",
+    "scientificName": "Forficula auricularia",
+    "ncbiTaxId": 13068,
+    "wikiTitle": "Forficula_auricularia",
+    "group": "arthropod",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/European_earwig_%2881241%29.jpg/330px-European_earwig_%2881241%29.jpg"
+  },
+  {
+    "commonName": "Dragonfly",
+    "scientificName": "Anax junius",
+    "ncbiTaxId": 214820,
+    "wikiTitle": "Green_darner",
+    "group": "arthropod",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Common_Green_Darner_Anax_junius_JG.jpg/330px-Common_Green_Darner_Anax_junius_JG.jpg"
+  },
+  {
+    "commonName": "Horseshoe crab",
+    "scientificName": "Limulus polyphemus",
+    "ncbiTaxId": 6850,
+    "wikiTitle": "Atlantic_horseshoe_crab",
+    "group": "arthropod",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Limulus_polyphemus_%28aq.%29.jpg/330px-Limulus_polyphemus_%28aq.%29.jpg"
+  },
+  {
+    "commonName": "Tardigrade",
+    "scientificName": "Hypsibius dujardini",
+    "ncbiTaxId": 232323,
+    "wikiTitle": "Tardigrade",
+    "group": "arthropod",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/08/Waterbear.jpg"
+  },
+  {
+    "commonName": "Scorpion",
+    "scientificName": "Pandinus imperator",
+    "ncbiTaxId": 55084,
+    "wikiTitle": "Emperor_scorpion",
+    "group": "arthropod",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Female_Emperor_Scorpion.jpg/330px-Female_Emperor_Scorpion.jpg"
+  },
+  {
+    "commonName": "Garden spider",
+    "scientificName": "Araneus diadematus",
+    "ncbiTaxId": 45920,
+    "wikiTitle": "Araneus_diadematus",
+    "group": "arthropod",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Araneus_diadematus_MHNT_Femelle_Fronton.jpg/330px-Araneus_diadematus_MHNT_Femelle_Fronton.jpg"
+  },
+  {
+    "commonName": "Deer tick",
+    "scientificName": "Ixodes scapularis",
+    "ncbiTaxId": 6945,
+    "wikiTitle": "Ixodes_scapularis",
+    "group": "arthropod",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Adult_deer_tick.jpg/330px-Adult_deer_tick.jpg"
+  },
+  {
+    "commonName": "Dust mite",
+    "scientificName": "Dermatophagoides pteronyssinus",
+    "ncbiTaxId": 6956,
+    "wikiTitle": "Dermatophagoides_pteronyssinus",
+    "group": "arthropod",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/House_Dust_Mite.jpg/330px-House_Dust_Mite.jpg"
+  },
+  {
+    "commonName": "Barnacle",
+    "scientificName": "Balanus balanus",
+    "ncbiTaxId": 172567,
+    "wikiTitle": "Balanus_balanus",
+    "group": "arthropod",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Rough_barnacle%2C_Ammoniakhavnen_imported_from_iNaturalist_photo_327952133.jpg/330px-Rough_barnacle%2C_Ammoniakhavnen_imported_from_iNaturalist_photo_327952133.jpg"
+  },
+  {
+    "commonName": "American lobster",
+    "scientificName": "Homarus americanus",
+    "ncbiTaxId": 6706,
+    "wikiTitle": "American_lobster",
+    "group": "arthropod",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Nur01521_-_Flickr_-_NOAA_Photo_Library.jpg/330px-Nur01521_-_Flickr_-_NOAA_Photo_Library.jpg"
+  },
+  {
+    "commonName": "Red king crab",
+    "scientificName": "Paralithodes camtschaticus",
+    "ncbiTaxId": 6741,
+    "wikiTitle": "Red_king_crab",
+    "group": "arthropod",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Spider_crab.jpg/330px-Spider_crab.jpg"
+  },
+  {
+    "commonName": "Hermit crab",
+    "scientificName": "Pagurus bernhardus",
+    "ncbiTaxId": 174397,
+    "wikiTitle": "Pagurus_bernhardus",
+    "group": "arthropod",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Pagurus_bernhardus.jpg/330px-Pagurus_bernhardus.jpg"
+  },
+  {
+    "commonName": "Blue crab",
+    "scientificName": "Callinectes sapidus",
+    "ncbiTaxId": 6763,
+    "wikiTitle": "Callinectes_sapidus",
+    "group": "arthropod",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/The_Childrens_Museum_of_Indianapolis_-_Atlantic_blue_crab.jpg/330px-The_Childrens_Museum_of_Indianapolis_-_Atlantic_blue_crab.jpg"
+  },
+  {
+    "commonName": "Common woodlouse",
+    "scientificName": "Armadillidium vulgare",
+    "ncbiTaxId": 13347,
+    "wikiTitle": "Armadillidium_vulgare",
+    "group": "arthropod",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Armadillidium_vulgare_male.jpg/330px-Armadillidium_vulgare_male.jpg"
+  },
+  {
+    "commonName": "Coconut crab",
+    "scientificName": "Birgus latro",
+    "ncbiTaxId": 177283,
+    "wikiTitle": "Coconut_crab",
+    "group": "arthropod",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Coconut_Crab_Birgus_latro.jpg/330px-Coconut_Crab_Birgus_latro.jpg"
+  },
+  {
+    "commonName": "Porcelain crab",
+    "scientificName": "Petrolisthes cinctipes",
+    "ncbiTaxId": 88211,
+    "wikiTitle": "Porcelain_crab",
+    "group": "arthropod",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/South_eastern_Pacific_species_of_Petrolisthes%2C_Allopetrolisthes%2C_and_Liopetrolisthes_%28Porcellanidae%29.jpg/330px-South_eastern_Pacific_species_of_Petrolisthes%2C_Allopetrolisthes%2C_and_Liopetrolisthes_%28Porcellanidae%29.jpg"
+  },
+  {
+    "commonName": "White shrimp",
+    "scientificName": "Penaeus vannamei",
+    "ncbiTaxId": 6689,
+    "wikiTitle": "Whiteleg_shrimp",
+    "group": "arthropod",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Litopenaeus_vannamei_specimen.jpg/330px-Litopenaeus_vannamei_specimen.jpg"
+  },
+  {
+    "commonName": "Mantisfly",
+    "scientificName": "Mantispa styriaca",
+    "ncbiTaxId": 279447,
+    "wikiTitle": "Mantispidae",
+    "group": "arthropod",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Mantispa_styriaca_%289566952168%29.jpg/330px-Mantispa_styriaca_%289566952168%29.jpg"
+  },
+  {
+    "commonName": "Praying mantis",
+    "scientificName": "Mantis religiosa",
+    "ncbiTaxId": 7507,
+    "wikiTitle": "Mantis_religiosa",
+    "group": "arthropod",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/European_praying_mantis_%28Mantis_religiosa%29_green_female_Dobruja.jpg/330px-European_praying_mantis_%28Mantis_religiosa%29_green_female_Dobruja.jpg"
+  },
+  {
+    "commonName": "Green lacewing",
+    "scientificName": "Chrysoperla carnea",
+    "ncbiTaxId": 189513,
+    "wikiTitle": "Chrysoperla_carnea",
+    "group": "arthropod",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/%28MHNT%29_Chrysoperla_carnea_-_dorsal_view.jpg/500px-%28MHNT%29_Chrysoperla_carnea_-_dorsal_view.jpg"
+  }
+]

@@ -1,0 +1,626 @@
+[
+  {
+    "commonName": "Lion",
+    "scientificName": "Panthera leo",
+    "ncbiTaxId": 9689,
+    "wikiTitle": "Lion",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/020_The_lion_king_Snyggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/330px-020_The_lion_king_Snyggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg"
+  },
+  {
+    "commonName": "Domestic cat",
+    "scientificName": "Felis catus",
+    "ncbiTaxId": 9685,
+    "wikiTitle": "Cat",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/330px-Cat_August_2010-4.jpg"
+  },
+  {
+    "commonName": "Gray wolf",
+    "scientificName": "Canis lupus",
+    "ncbiTaxId": 9612,
+    "wikiTitle": "Wolf",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Huskiesatrest.jpg/500px-Huskiesatrest.jpg"
+  },
+  {
+    "commonName": "Brown bear",
+    "scientificName": "Ursus arctos",
+    "ncbiTaxId": 9644,
+    "wikiTitle": "Brown_bear",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/2010-kodiak-bear-1.jpg/330px-2010-kodiak-bear-1.jpg"
+  },
+  {
+    "commonName": "Horse",
+    "scientificName": "Equus caballus",
+    "ncbiTaxId": 9796,
+    "wikiTitle": "Horse",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Nokota_Horses_cropped.jpg/500px-Nokota_Horses_cropped.jpg"
+  },
+  {
+    "commonName": "African elephant",
+    "scientificName": "Loxodonta africana",
+    "ncbiTaxId": 9785,
+    "wikiTitle": "African_elephant",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/178_Male_African_bush_elephant_in_Etosha_National_Park_Photo_by_Giles_Laurent.jpg/330px-178_Male_African_bush_elephant_in_Etosha_National_Park_Photo_by_Giles_Laurent.jpg"
+  },
+  {
+    "commonName": "Blue whale",
+    "scientificName": "Balaenoptera musculus",
+    "ncbiTaxId": 9771,
+    "wikiTitle": "Blue_whale",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Anim1754_-_Flickr_-_NOAA_Photo_Library.jpg/330px-Anim1754_-_Flickr_-_NOAA_Photo_Library.jpg"
+  },
+  {
+    "commonName": "Human",
+    "scientificName": "Homo sapiens",
+    "ncbiTaxId": 9606,
+    "wikiTitle": "Human",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/68/Akha_cropped_hires.JPG"
+  },
+  {
+    "commonName": "Platypus",
+    "scientificName": "Ornithorhynchus anatinus",
+    "ncbiTaxId": 9258,
+    "wikiTitle": "Platypus",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Duck-billed_platypus_%28Ornithorhynchus_anatinus%29_Scottsdale.jpg/330px-Duck-billed_platypus_%28Ornithorhynchus_anatinus%29_Scottsdale.jpg"
+  },
+  {
+    "commonName": "Red kangaroo",
+    "scientificName": "Osphranter rufus",
+    "ncbiTaxId": 9321,
+    "wikiTitle": "Red_kangaroo",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Red_kangaroo_-_melbourne_zoo.jpg/330px-Red_kangaroo_-_melbourne_zoo.jpg"
+  },
+  {
+    "commonName": "Common bat",
+    "scientificName": "Myotis lucifugus",
+    "ncbiTaxId": 59463,
+    "wikiTitle": "Little_brown_bat",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Little_Brown_Myotis_%28cropped%29.JPG/330px-Little_Brown_Myotis_%28cropped%29.JPG"
+  },
+  {
+    "commonName": "White rhinoceros",
+    "scientificName": "Ceratotherium simum",
+    "ncbiTaxId": 9807,
+    "wikiTitle": "White_rhinoceros",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/109_Male_White_rhinoceros_walking_in_the_Kalahari_Desert_of_Namibia_Photo_by_Giles_Laurent.jpg/330px-109_Male_White_rhinoceros_walking_in_the_Kalahari_Desert_of_Namibia_Photo_by_Giles_Laurent.jpg"
+  },
+  {
+    "commonName": "Rock hyrax",
+    "scientificName": "Procavia capensis",
+    "ncbiTaxId": 9813,
+    "wikiTitle": "Rock_hyrax",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/188_Rock_hyrax_in_Damaraland_Photo_by_Giles_Laurent.jpg/330px-188_Rock_hyrax_in_Damaraland_Photo_by_Giles_Laurent.jpg"
+  },
+  {
+    "commonName": "Cow",
+    "scientificName": "Bos taurus",
+    "ncbiTaxId": 9913,
+    "wikiTitle": "Cattle",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Cow_%28Fleckvieh_breed%29_Oeschinensee_Slaunger_2009-07-07.jpg/330px-Cow_%28Fleckvieh_breed%29_Oeschinensee_Slaunger_2009-07-07.jpg"
+  },
+  {
+    "commonName": "Impala",
+    "scientificName": "Aepyceros melampus",
+    "ncbiTaxId": 9897,
+    "wikiTitle": "Impala",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Impala_%28Aepyceros_melampus%29_male_Kruger.jpg/330px-Impala_%28Aepyceros_melampus%29_male_Kruger.jpg"
+  },
+  {
+    "commonName": "Flying squirrel",
+    "scientificName": "Glaucomys volans",
+    "ncbiTaxId": 64683,
+    "wikiTitle": "Southern_flying_squirrel",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Southern_Flying_Squirrel_-_Glaucomys_volans%2C_Arlington%2C_Virginia%2C_December_22%2C_2020_%2853406816432%29.jpg/330px-Southern_Flying_Squirrel_-_Glaucomys_volans%2C_Arlington%2C_Virginia%2C_December_22%2C_2020_%2853406816432%29.jpg"
+  },
+  {
+    "commonName": "Aardvark",
+    "scientificName": "Orycteropus afer",
+    "ncbiTaxId": 9818,
+    "wikiTitle": "Aardvark",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Orycteropus_afer_175359469.jpg/330px-Orycteropus_afer_175359469.jpg"
+  },
+  {
+    "commonName": "West Indian manatee",
+    "scientificName": "Trichechus manatus",
+    "ncbiTaxId": 9778,
+    "wikiTitle": "West_Indian_manatee",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Manatee_with_calf.PD_-_colour_corrected.jpg/330px-Manatee_with_calf.PD_-_colour_corrected.jpg"
+  },
+  {
+    "commonName": "Nine-banded armadillo",
+    "scientificName": "Dasypus novemcinctus",
+    "ncbiTaxId": 9361,
+    "wikiTitle": "Nine-banded_armadillo",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Nine-banded_Armadillo_%28Dasypus_novemcinctus%29_%2837649606094%29.jpg/330px-Nine-banded_Armadillo_%28Dasypus_novemcinctus%29_%2837649606094%29.jpg"
+  },
+  {
+    "commonName": "Harbor seal",
+    "scientificName": "Phoca vitulina",
+    "ncbiTaxId": 9720,
+    "wikiTitle": "Harbor_seal",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Common_seal_%28Phoca_vitulina%29_2.jpg/330px-Common_seal_%28Phoca_vitulina%29_2.jpg"
+  },
+  {
+    "commonName": "Walrus",
+    "scientificName": "Odobenus rosmarus",
+    "ncbiTaxId": 9707,
+    "wikiTitle": "Walrus",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Walrus_in_the_Russian_Arctic_National_Park%2C_Novaya_Zemlya_2015-2.jpg/330px-Walrus_in_the_Russian_Arctic_National_Park%2C_Novaya_Zemlya_2015-2.jpg"
+  },
+  {
+    "commonName": "Common shrew",
+    "scientificName": "Sorex araneus",
+    "ncbiTaxId": 42254,
+    "wikiTitle": "Eurasian_shrew",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Sorex-araneus.jpg/330px-Sorex-araneus.jpg"
+  },
+  {
+    "commonName": "House mouse",
+    "scientificName": "Mus musculus",
+    "ncbiTaxId": 10090,
+    "wikiTitle": "House_mouse",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/%D0%9C%D1%8B%D1%88%D1%8C_2.jpg/500px-%D0%9C%D1%8B%D1%88%D1%8C_2.jpg"
+  },
+  {
+    "commonName": "Hippopotamus",
+    "scientificName": "Hippopotamus amphibius",
+    "ncbiTaxId": 9833,
+    "wikiTitle": "Hippopotamus",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Portrait_Hippopotamus_in_the_water.jpg/330px-Portrait_Hippopotamus_in_the_water.jpg"
+  },
+  {
+    "commonName": "Bottlenose dolphin",
+    "scientificName": "Tursiops truncatus",
+    "ncbiTaxId": 9739,
+    "wikiTitle": "Common_bottlenose_dolphin",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Tursiops_truncatus_01-cropped.jpg/330px-Tursiops_truncatus_01-cropped.jpg"
+  },
+  {
+    "commonName": "Elephant shrew",
+    "scientificName": "Elephantulus edwardii",
+    "ncbiTaxId": 28737,
+    "wikiTitle": "Cape_elephant_shrew",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Macroscelides_edwardii_-_1700-1880_-_Print_-_Iconographia_Zoologica_-_Special_Collections_University_of_Amsterdam_-_UBA01_IZ20900065_2.jpg/330px-Macroscelides_edwardii_-_1700-1880_-_Print_-_Iconographia_Zoologica_-_Special_Collections_University_of_Amsterdam_-_UBA01_IZ20900065_2.jpg"
+  },
+  {
+    "commonName": "Hedgehog",
+    "scientificName": "Erinaceus europaeus",
+    "ncbiTaxId": 9365,
+    "wikiTitle": "European_hedgehog",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Erinaceus_europaeus_LC0119.jpg/330px-Erinaceus_europaeus_LC0119.jpg"
+  },
+  {
+    "commonName": "Tenrec",
+    "scientificName": "Tenrec ecaudatus",
+    "ncbiTaxId": 94439,
+    "wikiTitle": "Tailless_tenrec",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Tanrek.jpg/330px-Tanrek.jpg"
+  },
+  {
+    "commonName": "Raccoon",
+    "scientificName": "Procyon lotor",
+    "ncbiTaxId": 9654,
+    "wikiTitle": "Raccoon",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Raccoon_in_Central_Park_%2835264%29.jpg/330px-Raccoon_in_Central_Park_%2835264%29.jpg"
+  },
+  {
+    "commonName": "Raccoon dog",
+    "scientificName": "Nyctereutes procyonoides",
+    "ncbiTaxId": 9647,
+    "wikiTitle": "Raccoon_dog",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Nyctereutes_procyonoides_-_Raccoon_Dog_-_Jenot.png/330px-Nyctereutes_procyonoides_-_Raccoon_Dog_-_Jenot.png"
+  },
+  {
+    "commonName": "Red panda",
+    "scientificName": "Ailurus fulgens",
+    "ncbiTaxId": 9649,
+    "wikiTitle": "Red_panda",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Red_Panda%2C_Gentle_Tree-Dweller_of_the_Himalayas.jpg/330px-Red_Panda%2C_Gentle_Tree-Dweller_of_the_Himalayas.jpg"
+  },
+  {
+    "commonName": "Spotted hyena",
+    "scientificName": "Crocuta crocuta",
+    "ncbiTaxId": 9678,
+    "wikiTitle": "Spotted_hyena",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Spotted_hyena_%28Crocuta_crocuta%29.jpg/330px-Spotted_hyena_%28Crocuta_crocuta%29.jpg"
+  },
+  {
+    "commonName": "Brown rat",
+    "scientificName": "Rattus norvegicus",
+    "ncbiTaxId": 10116,
+    "wikiTitle": "Brown_rat",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Rattus_norvegicus_-_Brown_rat_02.jpg/500px-Rattus_norvegicus_-_Brown_rat_02.jpg"
+  },
+  {
+    "commonName": "European rabbit",
+    "scientificName": "Oryctolagus cuniculus",
+    "ncbiTaxId": 9986,
+    "wikiTitle": "European_rabbit",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Oryctolagus_cuniculus_Tasmania_2_%28cropped%29.jpg/330px-Oryctolagus_cuniculus_Tasmania_2_%28cropped%29.jpg"
+  },
+  {
+    "commonName": "American pika",
+    "scientificName": "Ochotona princeps",
+    "ncbiTaxId": 9978,
+    "wikiTitle": "American_pika",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Ochotona_princeps_rockies.JPG/330px-Ochotona_princeps_rockies.JPG"
+  },
+  {
+    "commonName": "American beaver",
+    "scientificName": "Castor canadensis",
+    "ncbiTaxId": 51338,
+    "wikiTitle": "North_American_beaver",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/American_Beaver.jpg/330px-American_Beaver.jpg"
+  },
+  {
+    "commonName": "Eastern gray squirrel",
+    "scientificName": "Sciurus carolinensis",
+    "ncbiTaxId": 30640,
+    "wikiTitle": "Eastern_gray_squirrel",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/EasternGraySquirrel_GAm.jpg/330px-EasternGraySquirrel_GAm.jpg"
+  },
+  {
+    "commonName": "Yellow-bellied marmot",
+    "scientificName": "Marmota flaviventris",
+    "ncbiTaxId": 93162,
+    "wikiTitle": "Yellow-bellied_marmot",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Marmota_flaviventris_%28Yellow_Bellied_Marmot%29%2C_Yosemite_NP_-_Diliff.jpg/330px-Marmota_flaviventris_%28Yellow_Bellied_Marmot%29%2C_Yosemite_NP_-_Diliff.jpg"
+  },
+  {
+    "commonName": "Black-tailed prairie dog",
+    "scientificName": "Cynomys ludovicianus",
+    "ncbiTaxId": 45480,
+    "wikiTitle": "Black-tailed_prairie_dog",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Cynomys_ludovicianus_%2854906540630%29.jpg/330px-Cynomys_ludovicianus_%2854906540630%29.jpg"
+  },
+  {
+    "commonName": "Philippine tarsier",
+    "scientificName": "Carlito syrichta",
+    "ncbiTaxId": 1868482,
+    "wikiTitle": "Philippine_tarsier",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Tarsier-GG.jpg/330px-Tarsier-GG.jpg"
+  },
+  {
+    "commonName": "Ring-tailed lemur",
+    "scientificName": "Lemur catta",
+    "ncbiTaxId": 9447,
+    "wikiTitle": "Ring-tailed_lemur",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Ring-tailed_lemur_%28Lemur_catta%29.jpg/330px-Ring-tailed_lemur_%28Lemur_catta%29.jpg"
+  },
+  {
+    "commonName": "Orangutan",
+    "scientificName": "Pongo abelii",
+    "ncbiTaxId": 9601,
+    "wikiTitle": "Sumatran_orangutan",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Sumatra-Orang-Utan_im_Pongoland.jpg/330px-Sumatra-Orang-Utan_im_Pongoland.jpg"
+  },
+  {
+    "commonName": "Gorilla",
+    "scientificName": "Gorilla gorilla",
+    "ncbiTaxId": 9593,
+    "wikiTitle": "Western_gorilla",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Male_gorilla_in_SF_zoo.jpg/330px-Male_gorilla_in_SF_zoo.jpg"
+  },
+  {
+    "commonName": "Olive baboon",
+    "scientificName": "Papio anubis",
+    "ncbiTaxId": 9555,
+    "wikiTitle": "Olive_baboon",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Olive_baboon_Ngorongoro.jpg/330px-Olive_baboon_Ngorongoro.jpg"
+  },
+  {
+    "commonName": "Capuchin monkey",
+    "scientificName": "Cebus capucinus",
+    "ncbiTaxId": 9516,
+    "wikiTitle": "Colombian_white-faced_capuchin",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Cebus_capucinus_at_the_Bronx_Zoo_001.jpg/330px-Cebus_capucinus_at_the_Bronx_Zoo_001.jpg"
+  },
+  {
+    "commonName": "Pangolin",
+    "scientificName": "Manis javanica",
+    "ncbiTaxId": 9974,
+    "wikiTitle": "Sunda_pangolin",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Pangolin_borneo.jpg/330px-Pangolin_borneo.jpg"
+  },
+  {
+    "commonName": "Sugar glider",
+    "scientificName": "Petaurus breviceps",
+    "ncbiTaxId": 34899,
+    "wikiTitle": "Sugar_glider",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Petaurus_breviceps-Cayley.jpg/330px-Petaurus_breviceps-Cayley.jpg"
+  },
+  {
+    "commonName": "Koala",
+    "scientificName": "Phascolarctos cinereus",
+    "ncbiTaxId": 38626,
+    "wikiTitle": "Koala",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Koala_climbing_tree.jpg/330px-Koala_climbing_tree.jpg"
+  },
+  {
+    "commonName": "Three-toed sloth",
+    "scientificName": "Bradypus variegatus",
+    "ncbiTaxId": 9355,
+    "wikiTitle": "Brown-throated_sloth",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Bradypus.jpg/330px-Bradypus.jpg"
+  },
+  {
+    "commonName": "Giant anteater",
+    "scientificName": "Myrmecophaga tridactyla",
+    "ncbiTaxId": 71006,
+    "wikiTitle": "Giant_anteater",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Myresluger2.jpg/330px-Myresluger2.jpg"
+  },
+  {
+    "commonName": "Dromedary camel",
+    "scientificName": "Camelus dromedarius",
+    "ncbiTaxId": 9838,
+    "wikiTitle": "Dromedary",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Camelus_dromedarius_in_Nuweiba.jpg/330px-Camelus_dromedarius_in_Nuweiba.jpg"
+  },
+  {
+    "commonName": "Llama",
+    "scientificName": "Lama glama",
+    "ncbiTaxId": 9844,
+    "wikiTitle": "Llama",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Llamas%2C_Vernagt-Stausee%2C_Italy.jpg/330px-Llamas%2C_Vernagt-Stausee%2C_Italy.jpg"
+  },
+  {
+    "commonName": "American bison",
+    "scientificName": "Bison bison",
+    "ncbiTaxId": 9901,
+    "wikiTitle": "American_bison",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/American_bison_k5680-1.jpg/330px-American_bison_k5680-1.jpg"
+  },
+  {
+    "commonName": "Musk ox",
+    "scientificName": "Ovibos moschatus",
+    "ncbiTaxId": 37176,
+    "wikiTitle": "Muskox",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Muskox_%28Ovibos_moschatus%29_male_Dovrefjell_4.jpg/330px-Muskox_%28Ovibos_moschatus%29_male_Dovrefjell_4.jpg"
+  },
+  {
+    "commonName": "Mountain goat",
+    "scientificName": "Oreamnos americanus",
+    "ncbiTaxId": 34873,
+    "wikiTitle": "Mountain_goat",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Mountain_Goat%2C_Enchantments_Basin.jpg/330px-Mountain_Goat%2C_Enchantments_Basin.jpg"
+  },
+  {
+    "commonName": "American pronghorn",
+    "scientificName": "Antilocapra americana",
+    "ncbiTaxId": 9891,
+    "wikiTitle": "Pronghorn",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Antilocapra_americana.jpg/330px-Antilocapra_americana.jpg"
+  },
+  {
+    "commonName": "White-tailed deer",
+    "scientificName": "Odocoileus virginianus",
+    "ncbiTaxId": 9874,
+    "wikiTitle": "White-tailed_deer",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/White-tailed_deer.jpg/330px-White-tailed_deer.jpg"
+  },
+  {
+    "commonName": "Numbat",
+    "scientificName": "Myrmecobius fasciatus",
+    "ncbiTaxId": 55782,
+    "wikiTitle": "Numbat",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Numbat%2C_Dryandra_Woodland%2C_Western_Australia.jpg/330px-Numbat%2C_Dryandra_Woodland%2C_Western_Australia.jpg"
+  },
+  {
+    "commonName": "Giant panda",
+    "scientificName": "Ailuropoda melanoleuca",
+    "ncbiTaxId": 9646,
+    "wikiTitle": "Giant_panda",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Grosser_Panda.JPG/330px-Grosser_Panda.JPG"
+  },
+  {
+    "commonName": "Malayan tapir",
+    "scientificName": "Tapirus indicus",
+    "ncbiTaxId": 9802,
+    "wikiTitle": "Malayan_tapir",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Schabrackentapir_Tapirus_indicus_Tiergarten-Nuernberg-1.jpg/330px-Schabrackentapir_Tapirus_indicus_Tiergarten-Nuernberg-1.jpg"
+  },
+  {
+    "commonName": "Common genet",
+    "scientificName": "Genetta genetta",
+    "ncbiTaxId": 94190,
+    "wikiTitle": "Common_genet",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Genetta_genetta_felina_%28Wroclaw_zoo%29.JPG/330px-Genetta_genetta_felina_%28Wroclaw_zoo%29.JPG"
+  },
+  {
+    "commonName": "Binturong",
+    "scientificName": "Arctictis binturong",
+    "ncbiTaxId": 94180,
+    "wikiTitle": "Binturong",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Binturong_in_Overloon.jpg/330px-Binturong_in_Overloon.jpg"
+  },
+  {
+    "commonName": "Fossa",
+    "scientificName": "Cryptoprocta ferox",
+    "ncbiTaxId": 94188,
+    "wikiTitle": "Fossa_(animal)",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Cryptoprocta_Ferox.JPG/330px-Cryptoprocta_Ferox.JPG"
+  },
+  {
+    "commonName": "Egyptian mongoose",
+    "scientificName": "Herpestes ichneumon",
+    "ncbiTaxId": 9700,
+    "wikiTitle": "Egyptian_mongoose",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Herpestes_ichneumon_%D0%95%D0%B3%D0%B8%D0%BF%D0%B5%D1%82%D1%81%D0%BA%D0%B8%D0%B9_%D0%BC%D0%B0%D0%BD%D0%B3%D1%83%D1%81%D1%82%2C_%D0%B8%D0%BB%D0%B8_%D1%84%D0%B0%D1%80%D0%B0%D0%BE%D0%BD%D0%BE%D0%B2%D0%B0_%D0%BA%D1%80%D1%8B%D1%81%D0%B0%2C_%D0%B8%D0%BB%D0%B8_%D0%B8%D1%85%D0%BD%D0%B5%D0%B2%D0%BC%D0%BE%CC%81%D0%BD.jpg/330px-Herpestes_ichneumon_%D0%95%D0%B3%D0%B8%D0%BF%D0%B5%D1%82%D1%81%D0%BA%D0%B8%D0%B9_%D0%BC%D0%B0%D0%BD%D0%B3%D1%83%D1%81%D1%82%2C_%D0%B8%D0%BB%D0%B8_%D1%84%D0%B0%D1%80%D0%B0%D0%BE%D0%BD%D0%BE%D0%B2%D0%B0_%D0%BA%D1%80%D1%8B%D1%81%D0%B0%2C_%D0%B8%D0%BB%D0%B8_%D0%B8%D1%85%D0%BD%D0%B5%D0%B2%D0%BC%D0%BE%CC%81%D0%BD.jpg"
+  },
+  {
+    "commonName": "Colugo",
+    "scientificName": "Galeopterus variegatus",
+    "ncbiTaxId": 482537,
+    "wikiTitle": "Colugo",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Colugo_%28Galeopterus_variegatus%2C_adult_female%29%2C_Central_Catchment_Area%2C_Singapore_-_20060618.jpg/330px-Colugo_%28Galeopterus_variegatus%2C_adult_female%29%2C_Central_Catchment_Area%2C_Singapore_-_20060618.jpg"
+  },
+  {
+    "commonName": "Okapi",
+    "scientificName": "Okapia johnstoni",
+    "ncbiTaxId": 86973,
+    "wikiTitle": "Okapi",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Saint-Aignan_%28Loir-et-Cher%29._Okapi.jpg/330px-Saint-Aignan_%28Loir-et-Cher%29._Okapi.jpg"
+  },
+  {
+    "commonName": "Giraffe",
+    "scientificName": "Giraffa camelopardalis",
+    "ncbiTaxId": 9894,
+    "wikiTitle": "Giraffe",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Rothschild%27s_giraffe_%28Giraffa_camelopardalis_rothschildi%29_-_Murchison_Falls_National_Park.jpg/330px-Rothschild%27s_giraffe_%28Giraffa_camelopardalis_rothschildi%29_-_Murchison_Falls_National_Park.jpg"
+  },
+  {
+    "commonName": "Patagonian mara",
+    "scientificName": "Dolichotis patagonum",
+    "ncbiTaxId": 29091,
+    "wikiTitle": "Patagonian_mara",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Dolichotis_patagonum_99386074.jpg/330px-Dolichotis_patagonum_99386074.jpg"
+  },
+  {
+    "commonName": "Wolverine",
+    "scientificName": "Gulo gulo",
+    "ncbiTaxId": 48420,
+    "wikiTitle": "Wolverine",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Gulo_gulo_2.jpg/330px-Gulo_gulo_2.jpg"
+  },
+  {
+    "commonName": "Sea otter",
+    "scientificName": "Enhydra lutris",
+    "ncbiTaxId": 34882,
+    "wikiTitle": "Sea_otter",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Sea_Otter_%28Enhydra_lutris%29_%2825169790524%29_crop.jpg/330px-Sea_Otter_%28Enhydra_lutris%29_%2825169790524%29_crop.jpg"
+  },
+  {
+    "commonName": "Golden mole",
+    "scientificName": "Chrysochloris asiatica",
+    "ncbiTaxId": 185453,
+    "wikiTitle": "Cape_golden_mole",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Chrysochloris_asiatica_270437025.jpg/330px-Chrysochloris_asiatica_270437025.jpg"
+  },
+  {
+    "commonName": "European mole",
+    "scientificName": "Talpa europaea",
+    "ncbiTaxId": 9375,
+    "wikiTitle": "European_mole",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Talpa_europaea_MHNT.jpg/330px-Talpa_europaea_MHNT.jpg"
+  },
+  {
+    "commonName": "Naked mole rat",
+    "scientificName": "Heterocephalus glaber",
+    "ncbiTaxId": 10181,
+    "wikiTitle": "Naked_mole-rat",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Nacktmull.jpg/330px-Nacktmull.jpg"
+  },
+  {
+    "commonName": "Tree shrew",
+    "scientificName": "Tupaia belangeri",
+    "ncbiTaxId": 37347,
+    "wikiTitle": "Northern_treeshrew",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Tupaia_belangeri_99597342.jpg/330px-Tupaia_belangeri_99597342.jpg"
+  },
+  {
+    "commonName": "Marsupial mole",
+    "scientificName": "Notoryctes typhlops",
+    "ncbiTaxId": 37699,
+    "wikiTitle": "Southern_marsupial_mole",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Notoryctes_typhlops.jpg/330px-Notoryctes_typhlops.jpg"
+  },
+  {
+    "commonName": "Echidna",
+    "scientificName": "Tachyglossus aculeatus",
+    "ncbiTaxId": 9261,
+    "wikiTitle": "Short-beaked_echidna",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Wild_shortbeak_echidna.jpg/330px-Wild_shortbeak_echidna.jpg"
+  },
+  {
+    "commonName": "Aye-aye",
+    "scientificName": "Daubentonia madagascariensis",
+    "ncbiTaxId": 31869,
+    "wikiTitle": "Aye-aye",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Wild_aye_aye.jpg/330px-Wild_aye_aye.jpg"
+  },
+  {
+    "commonName": "Pink fairy armadillo",
+    "scientificName": "Chlamyphorus truncatus",
+    "ncbiTaxId": 450267,
+    "wikiTitle": "Pink_fairy_armadillo",
+    "group": "mammal",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Pink_Fairy_Armadillo_%28Chlamyphorus_truncatus%29.jpg/330px-Pink_Fairy_Armadillo_%28Chlamyphorus_truncatus%29.jpg"
+  }
+]

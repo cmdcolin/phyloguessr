@@ -1,121 +1,86 @@
 #!/usr/bin/env node
-// Replaces non-Wikipedia image URLs (NCBI, iNaturalist, etc.) in the
-// per-scenario source files under scenarios/ with Wikipedia thumbnails.
-// Run build-easy-scenarios.mjs afterward to rebuild the runtime bundle.
+
+// Replaces non-Wikipedia image URLs in scenarios/*.json with Wikipedia
+// thumbnails. Run build-easy-scenarios.mjs afterward to rebuild the bundle.
+//
+// Usage: node scripts/fix-scenario-images.mjs
 
 import { readFileSync, writeFileSync, readdirSync } from 'fs'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
+import {
+  fetchWikipediaThumbnail,
+  isWikipediaUrl,
+  mapWithConcurrency,
+} from './lib/wikipedia.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
-const ROOT = join(__dirname, '..')
-const SCENARIOS_DIR = join(ROOT, 'scenarios')
+const SCENARIOS_DIR = join(__dirname, '..', 'scenarios')
 
-const CONCURRENCY = 4
-const RATE_DELAY_MS = 300
-
-function isWikipediaUrl(url) {
-  return url.includes('upload.wikimedia.org')
+function loadScenarios() {
+  return readdirSync(SCENARIOS_DIR)
+    .filter(f => f.endsWith('.json'))
+    .map(file => ({
+      file,
+      data: JSON.parse(readFileSync(join(SCENARIOS_DIR, file), 'utf8')),
+    }))
 }
 
-async function fetchWikiThumbnail(wikiTitle) {
-  try {
-    const res = await fetch(
-      `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(wikiTitle)}`,
-    )
-    if (!res.ok) {
-      return null
-    }
-    const data = await res.json()
-    return data.thumbnail?.source ?? null
-  } catch {
-    return null
-  }
+function needsReplacement(o) {
+  return o.imageUrl && !isWikipediaUrl(o.imageUrl)
 }
 
 async function main() {
-  const files = readdirSync(SCENARIOS_DIR).filter(f => f.endsWith('.json'))
-  const scenarios = files.map(f => ({
-    file: f,
-    data: JSON.parse(readFileSync(join(SCENARIOS_DIR, f), 'utf8')),
-  }))
+  const scenarios = loadScenarios()
+  const allOrgs = scenarios.flatMap(s => s.data.organisms)
 
-  const needsReplacement = new Map()
-  for (const { data: scenario } of scenarios) {
-    for (const org of scenario.organisms) {
-      if (
-        org.imageUrl &&
-        !isWikipediaUrl(org.imageUrl) &&
-        !needsReplacement.has(org.scientificName)
-      ) {
-        needsReplacement.set(org.scientificName, {
-          wikiTitle: org.wikiTitle,
-          commonName: org.commonName,
-        })
-      }
-    }
-  }
+  const toFetch = [
+    ...new Map(
+      allOrgs.filter(needsReplacement).map(o => [o.scientificName, o]),
+    ).values(),
+  ]
+  console.log(`${toFetch.length} unique organisms need Wikipedia images`)
 
-  console.log(
-    `Found ${needsReplacement.size} unique organisms with non-Wikipedia images`,
-  )
-
-  if (needsReplacement.size === 0) {
-    console.log('Nothing to update.')
+  if (toFetch.length === 0) {
     return
   }
 
-  const toFetch = [...needsReplacement.entries()].map(([sciName, info]) => ({
-    sciName,
-    ...info,
-  }))
-
-  const urlMap = new Map()
-  for (let i = 0; i < toFetch.length; i += CONCURRENCY) {
-    const batch = toFetch.slice(i, i + CONCURRENCY)
-    await Promise.all(
-      batch.map(async ({ sciName, wikiTitle, commonName }) => {
-        const url = await fetchWikiThumbnail(wikiTitle)
-        urlMap.set(sciName, url)
-        const status = url ? '✓' : '✗ no image'
-        console.log(`  ${commonName}: ${status}`)
-      }),
-    )
-    if (i + CONCURRENCY < toFetch.length) {
-      await new Promise(r => setTimeout(r, RATE_DELAY_MS))
-    }
-  }
+  const urlByName = await mapWithConcurrency(
+    toFetch,
+    async o => {
+      const url = await fetchWikipediaThumbnail(o.wikiTitle)
+      console.log(`  ${o.commonName}: ${url ? '✓' : '✗ no image'}`)
+      return url
+    },
+    { concurrency: 4, delayMs: 300, keyOf: o => o.scientificName },
+  )
 
   let replaced = 0
-  let failed = 0
-  const dirtyFiles = new Set()
-  for (const { file, data: scenario } of scenarios) {
-    for (const org of scenario.organisms) {
-      if (!org.imageUrl || isWikipediaUrl(org.imageUrl)) {
+  const dirty = new Set()
+  for (const { file, data } of scenarios) {
+    for (const o of data.organisms) {
+      if (!needsReplacement(o)) {
         continue
       }
-      const url = urlMap.get(org.scientificName)
+      const url = urlByName.get(o.scientificName)
       if (url) {
-        org.imageUrl = url
+        o.imageUrl = url
         replaced++
-        dirtyFiles.add(file)
-      } else {
-        console.warn(
-          `  No Wikipedia image for ${org.commonName} (${org.scientificName}), keeping existing URL`,
-        )
-        failed++
+        dirty.add(file)
       }
     }
   }
 
   for (const { file, data } of scenarios) {
-    if (dirtyFiles.has(file)) {
-      writeFileSync(join(SCENARIOS_DIR, file), JSON.stringify(data, null, 2) + '\n')
+    if (dirty.has(file)) {
+      writeFileSync(
+        join(SCENARIOS_DIR, file),
+        JSON.stringify(data, null, 2) + '\n',
+      )
     }
   }
-  console.log(
-    `\nDone: ${replaced} images replaced, ${failed} kept existing (no Wikipedia image found)`,
-  )
+
+  console.log(`\nReplaced ${replaced} URLs across ${dirty.size} files`)
 }
 
 main().catch(err => {

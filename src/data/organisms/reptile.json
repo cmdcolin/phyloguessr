@@ -1,0 +1,74 @@
+[
+  {
+    "commonName": "Komodo dragon",
+    "scientificName": "Varanus komodoensis",
+    "ncbiTaxId": 61221,
+    "wikiTitle": "Komodo_dragon",
+    "group": "reptile",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/202306_Varanus_komodoensis.jpg/330px-202306_Varanus_komodoensis.jpg"
+  },
+  {
+    "commonName": "American alligator",
+    "scientificName": "Alligator mississippiensis",
+    "ncbiTaxId": 8496,
+    "wikiTitle": "American_alligator",
+    "group": "reptile",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/American_Alligator.jpg/330px-American_Alligator.jpg"
+  },
+  {
+    "commonName": "Green sea turtle",
+    "scientificName": "Chelonia mydas",
+    "ncbiTaxId": 8469,
+    "wikiTitle": "Green_sea_turtle",
+    "group": "reptile",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Green_sea_turtle_%28Chelonia_mydas%29_Moorea.jpg/330px-Green_sea_turtle_%28Chelonia_mydas%29_Moorea.jpg"
+  },
+  {
+    "commonName": "King cobra",
+    "scientificName": "Ophiophagus hannah",
+    "ncbiTaxId": 8665,
+    "wikiTitle": "King_cobra",
+    "group": "reptile",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/12_-_The_Mystical_King_Cobra_and_Coffee_Forests.jpg/330px-12_-_The_Mystical_King_Cobra_and_Coffee_Forests.jpg"
+  },
+  {
+    "commonName": "Tuatara",
+    "scientificName": "Sphenodon punctatus",
+    "ncbiTaxId": 8508,
+    "wikiTitle": "Tuatara",
+    "group": "reptile",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Tuatara_%285205719005%29.jpg/330px-Tuatara_%285205719005%29.jpg"
+  },
+  {
+    "commonName": "Galápagos tortoise",
+    "scientificName": "Chelonoidis niger",
+    "ncbiTaxId": 66189,
+    "wikiTitle": "Galápagos_tortoise",
+    "group": "reptile",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Galapagos_giant_tortoise_Geochelone_elephantopus.jpg/330px-Galapagos_giant_tortoise_Geochelone_elephantopus.jpg"
+  },
+  {
+    "commonName": "Snapping turtle",
+    "scientificName": "Chelydra serpentina",
+    "ncbiTaxId": 8475,
+    "wikiTitle": "Common_snapping_turtle",
+    "group": "reptile",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Snapping_Turtle_Heinz.png/330px-Snapping_Turtle_Heinz.png"
+  },
+  {
+    "commonName": "Nile crocodile",
+    "scientificName": "Crocodylus niloticus",
+    "ncbiTaxId": 8501,
+    "wikiTitle": "Nile_crocodile",
+    "group": "reptile",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/NileCrocodile.jpg/330px-NileCrocodile.jpg"
+  },
+  {
+    "commonName": "Corn snake",
+    "scientificName": "Pantherophis guttatus",
+    "ncbiTaxId": 94885,
+    "wikiTitle": "Corn_snake",
+    "group": "reptile",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/CornSnake.jpg/500px-CornSnake.jpg"
+  }
+]

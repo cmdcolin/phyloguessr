@@ -1,0 +1,138 @@
+[
+  {
+    "commonName": "Bald eagle",
+    "scientificName": "Haliaeetus leucocephalus",
+    "ncbiTaxId": 52644,
+    "wikiTitle": "Bald_eagle",
+    "group": "bird",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Bald_eagle_about_to_fly_in_Alaska_%282016%29.jpg/330px-Bald_eagle_about_to_fly_in_Alaska_%282016%29.jpg"
+  },
+  {
+    "commonName": "Chicken",
+    "scientificName": "Gallus gallus",
+    "ncbiTaxId": 9031,
+    "wikiTitle": "Chicken",
+    "group": "bird",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Red_jungle_fowl.png/330px-Red_jungle_fowl.png"
+  },
+  {
+    "commonName": "Emperor penguin",
+    "scientificName": "Aptenodytes forsteri",
+    "ncbiTaxId": 9233,
+    "wikiTitle": "Emperor_penguin",
+    "group": "bird",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Aptenodytes_forsteri_-Snow_Hill_Island%2C_Antarctica_-adults_and_juvenile-8.jpg/330px-Aptenodytes_forsteri_-Snow_Hill_Island%2C_Antarctica_-adults_and_juvenile-8.jpg"
+  },
+  {
+    "commonName": "Ostrich",
+    "scientificName": "Struthio camelus",
+    "ncbiTaxId": 8801,
+    "wikiTitle": "Common_ostrich",
+    "group": "bird",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Struthio_camelus_-_Etosha_2014_%283%29.jpg/330px-Struthio_camelus_-_Etosha_2014_%283%29.jpg"
+  },
+  {
+    "commonName": "Common crow",
+    "scientificName": "Corvus brachyrhynchos",
+    "ncbiTaxId": 85066,
+    "wikiTitle": "American_crow",
+    "group": "bird",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Corvus-brachyrhynchos-001.jpg/330px-Corvus-brachyrhynchos-001.jpg"
+  },
+  {
+    "commonName": "Greater flamingo",
+    "scientificName": "Phoenicopterus roseus",
+    "ncbiTaxId": 435638,
+    "wikiTitle": "Greater_flamingo",
+    "group": "bird",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/010_Greater_flamingos_male_and_female_in_the_Camargue_during_mating_season_Photo_by_Giles_Laurent.jpg/330px-010_Greater_flamingos_male_and_female_in_the_Camargue_during_mating_season_Photo_by_Giles_Laurent.jpg"
+  },
+  {
+    "commonName": "Great crested grebe",
+    "scientificName": "Podiceps cristatus",
+    "ncbiTaxId": 345573,
+    "wikiTitle": "Great_crested_grebe",
+    "group": "bird",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Podiceps_cristatus_2_-_Lake_Dulverton.jpg/330px-Podiceps_cristatus_2_-_Lake_Dulverton.jpg"
+  },
+  {
+    "commonName": "Hoatzin",
+    "scientificName": "Opisthocomus hoazin",
+    "ncbiTaxId": 30419,
+    "wikiTitle": "Hoatzin",
+    "group": "bird",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Hoatzin_%28Opisthocomus_hoazin%29_Rio_Napo.jpg/330px-Hoatzin_%28Opisthocomus_hoazin%29_Rio_Napo.jpg"
+  },
+  {
+    "commonName": "Common loon",
+    "scientificName": "Gavia immer",
+    "ncbiTaxId": 37039,
+    "wikiTitle": "Common_loon",
+    "group": "bird",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Gavia_immer_-Minocqua%2C_Wisconsin%2C_USA_-swimming-8.jpg/330px-Gavia_immer_-Minocqua%2C_Wisconsin%2C_USA_-swimming-8.jpg"
+  },
+  {
+    "commonName": "Shoebill",
+    "scientificName": "Balaeniceps rex",
+    "ncbiTaxId": 33584,
+    "wikiTitle": "Shoebill",
+    "group": "bird",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Balaeniceps_rex_-Ueno_Zoo%2C_Tokyo%2C_Japan-8a.jpg/330px-Balaeniceps_rex_-Ueno_Zoo%2C_Tokyo%2C_Japan-8a.jpg"
+  },
+  {
+    "commonName": "Brown pelican",
+    "scientificName": "Pelecanus occidentalis",
+    "ncbiTaxId": 37043,
+    "wikiTitle": "Brown_pelican",
+    "group": "bird",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Brown_pelican_in_flight_%28Bodega_Bay%29.jpg/330px-Brown_pelican_in_flight_%28Bodega_Bay%29.jpg"
+  },
+  {
+    "commonName": "Peregrine falcon",
+    "scientificName": "Falco peregrinus",
+    "ncbiTaxId": 8954,
+    "wikiTitle": "Peregrine_falcon",
+    "group": "bird",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Falco_peregrinus_m_Humber_Bay_Park_Toronto.jpg/330px-Falco_peregrinus_m_Humber_Bay_Park_Toronto.jpg"
+  },
+  {
+    "commonName": "African grey parrot",
+    "scientificName": "Psittacus erithacus",
+    "ncbiTaxId": 57247,
+    "wikiTitle": "African_grey_parrot",
+    "group": "bird",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Psittacus_erithacus_-perching_on_tray-8d.jpg/330px-Psittacus_erithacus_-perching_on_tray-8d.jpg"
+  },
+  {
+    "commonName": "Barn owl",
+    "scientificName": "Tyto alba",
+    "ncbiTaxId": 56313,
+    "wikiTitle": "Tyto_alba",
+    "group": "bird",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Barn_Owl%2C_Lancashire.jpg/330px-Barn_Owl%2C_Lancashire.jpg"
+  },
+  {
+    "commonName": "Common nighthawk",
+    "scientificName": "Chordeiles minor",
+    "ncbiTaxId": 48398,
+    "wikiTitle": "Common_nighthawk",
+    "group": "bird",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Common_Nighthawk_%2814428313550%29.jpg/330px-Common_Nighthawk_%2814428313550%29.jpg"
+  },
+  {
+    "commonName": "Red-tailed hawk",
+    "scientificName": "Buteo jamaicensis",
+    "ncbiTaxId": 56263,
+    "wikiTitle": "Red-tailed_hawk",
+    "group": "bird",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Red-tailed_Hawk_%2845812546121%29.jpg/330px-Red-tailed_Hawk_%2845812546121%29.jpg"
+  },
+  {
+    "commonName": "Ruby-throated hummingbird",
+    "scientificName": "Archilochus colubris",
+    "ncbiTaxId": 190676,
+    "wikiTitle": "Ruby-throated_hummingbird",
+    "group": "bird",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Archilochus_colubris_-flying_-male-8.jpg/330px-Archilochus_colubris_-flying_-male-8.jpg"
+  }
+]

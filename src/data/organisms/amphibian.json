@@ -1,0 +1,42 @@
+[
+  {
+    "commonName": "Axolotl",
+    "scientificName": "Ambystoma mexicanum",
+    "ncbiTaxId": 8296,
+    "wikiTitle": "Axolotl",
+    "group": "amphibian",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Axolotl_ganz.jpg/330px-Axolotl_ganz.jpg"
+  },
+  {
+    "commonName": "Tiger salamander",
+    "scientificName": "Ambystoma tigrinum",
+    "ncbiTaxId": 8305,
+    "wikiTitle": "Tiger_salamander",
+    "group": "amphibian",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Salamandra_Tigre.png/330px-Salamandra_Tigre.png"
+  },
+  {
+    "commonName": "Common frog",
+    "scientificName": "Rana temporaria",
+    "ncbiTaxId": 8407,
+    "wikiTitle": "Common_frog",
+    "group": "amphibian",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/European_Common_Frog_Rana_temporaria.jpg/330px-European_Common_Frog_Rana_temporaria.jpg"
+  },
+  {
+    "commonName": "Caecilian",
+    "scientificName": "Caecilia tentaculata",
+    "ncbiTaxId": 356198,
+    "wikiTitle": "Caecilian",
+    "group": "amphibian",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Oscaecilia_ochrocephala_%2816983972190%29.jpg/330px-Oscaecilia_ochrocephala_%2816983972190%29.jpg"
+  },
+  {
+    "commonName": "Olm",
+    "scientificName": "Proteus anguinus",
+    "ncbiTaxId": 221568,
+    "wikiTitle": "Olm",
+    "group": "amphibian",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Proteus_anguinus_Postojnska_Jama_Slovenija.jpg/330px-Proteus_anguinus_Postojnska_Jama_Slovenija.jpg"
+  }
+]
