@@ -574,7 +574,7 @@ body {
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(3, min(200px, calc(50% - var(--space-sm))));
+  grid-template-columns: repeat(3, min(220px, calc(50% - var(--space-sm))));
   gap: var(--space-md);
   justify-content: center;
   margin-bottom: var(--space-lg);

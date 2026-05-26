@@ -9,7 +9,7 @@
   font-family: inherit;
   font-size: inherit;
   display: grid;
-  grid-template-rows: 150px auto;
+  grid-template-rows: 200px auto;
   align-content: start;
 }
 
@@ -34,7 +34,7 @@
 
 .image {
   width: 100%;
-  height: 150px;
+  height: 200px;
   overflow: hidden;
   background: ButtonFace;
 }
@@ -99,11 +99,11 @@
 
 @media (max-width: 600px) {
   .card {
-    grid-template-rows: 80px auto;
+    grid-template-rows: 110px auto;
   }
 
   .image {
-    height: 80px;
+    height: 110px;
   }
 
   .info {
