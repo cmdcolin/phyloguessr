@@ -36,8 +36,5 @@
       "label": "ScienceDaily - Flying lemurs are closest relatives of primates"
     }
   ],
-  "correctPair": [
-    "Colugo",
-    "Human"
-  ]
+  "correctPair": ["Colugo", "Human"]
 }

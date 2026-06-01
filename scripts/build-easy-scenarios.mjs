@@ -13,8 +13,12 @@ const ROOT = join(__dirname, '..')
 const SRC_DIR = join(ROOT, 'scenarios')
 const OUT = join(ROOT, 'public', 'taxonomy', 'easy-scenarios.json')
 
-const files = readdirSync(SRC_DIR).filter(f => f.endsWith('.json')).sort()
-const scenarios = files.map(f => JSON.parse(readFileSync(join(SRC_DIR, f), 'utf8')))
+const files = readdirSync(SRC_DIR)
+  .filter(f => f.endsWith('.json'))
+  .sort()
+const scenarios = files.map(f =>
+  JSON.parse(readFileSync(join(SRC_DIR, f), 'utf8')),
+)
 
 writeFileSync(OUT, JSON.stringify(scenarios, null, 2) + '\n')
 console.log(`Built ${OUT} from ${files.length} scenario files`)

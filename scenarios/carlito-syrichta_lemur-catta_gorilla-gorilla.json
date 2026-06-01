@@ -25,10 +25,7 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Male_gorilla_in_SF_zoo.jpg/330px-Male_gorilla_in_SF_zoo.jpg"
     }
   ],
-  "correctPair": [
-    "Philippine tarsier",
-    "Gorilla"
-  ],
+  "correctPair": ["Philippine tarsier", "Gorilla"],
   "funFact": "Tarsiers look nothing like apes — tiny, nocturnal, huge-eyed — yet they are on the monkey-and-ape side of the primate tree. Tarsiers and gorillas are both Haplorhini, while ring-tailed lemurs are Strepsirrhini, the branch that diverged earliest. Despite the tarsier's lemur-like appearance, it shares a more recent common ancestor with every monkey and ape than with any lemur.",
   "sources": [
     {

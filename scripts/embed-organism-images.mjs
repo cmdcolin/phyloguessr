@@ -79,7 +79,9 @@ async function main() {
     }
   }
 
-  console.log(`\nUpdated ${embedded} organism images across ${dirty.size} files`)
+  console.log(
+    `\nUpdated ${embedded} organism images across ${dirty.size} files`,
+  )
 }
 
 main().catch(err => {

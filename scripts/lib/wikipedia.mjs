@@ -23,7 +23,11 @@ export async function fetchWikipediaThumbnail(wikiTitle) {
 
 // Runs `fn` over `items` in batches of `concurrency`, waiting `delayMs`
 // between batches. Returns a Map keyed by `keyOf(item)`.
-export async function mapWithConcurrency(items, fn, { concurrency, delayMs, keyOf }) {
+export async function mapWithConcurrency(
+  items,
+  fn,
+  { concurrency, delayMs, keyOf },
+) {
   const results = new Map()
   for (let i = 0; i < items.length; i += concurrency) {
     const batch = items.slice(i, i + concurrency)

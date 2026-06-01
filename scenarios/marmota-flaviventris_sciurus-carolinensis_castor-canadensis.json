@@ -25,10 +25,7 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/American_Beaver.jpg/330px-American_Beaver.jpg"
     }
   ],
-  "correctPair": [
-    "Yellow-bellied marmot",
-    "Eastern gray squirrel"
-  ],
+  "correctPair": ["Yellow-bellied marmot", "Eastern gray squirrel"],
   "funFact": "Marmots look chunky and beaver-like, but they are squirrels! Marmots are in the family Sciuridae alongside squirrels, chipmunks, and prairie dogs. Beavers belong to Castoridae, a completely separate rodent family. Despite the similar stocky build, marmots and beavers are much more distantly related than marmots and squirrels.",
   "sources": [
     {

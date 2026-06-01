@@ -76,5 +76,7 @@ console.log(
 )
 console.log(`Reduction: ${((1 - easySize / fullSize) * 100).toFixed(0)}%`)
 if (missingCount > 0) {
-  console.warn(`\n${missingCount} taxId(s) missing from full taxonomy — run update-all.mjs to rebuild`)
+  console.warn(
+    `\n${missingCount} taxId(s) missing from full taxonomy — run update-all.mjs to rebuild`,
+  )
 }

@@ -568,9 +568,7 @@ describe('easy-mode data consistency', () => {
   it('all organisms.ts imageUrls use Wikimedia', () => {
     const nonWiki = organisms
       .filter(
-        o =>
-          o.imageUrl !== undefined &&
-          !o.imageUrl.includes('wikimedia.org'),
+        o => o.imageUrl !== undefined && !o.imageUrl.includes('wikimedia.org'),
       )
       .map(o => ({ name: o.commonName, imageUrl: o.imageUrl }))
     expect(nonWiki).toEqual([])

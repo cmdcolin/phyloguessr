@@ -25,10 +25,7 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/020_The_lion_king_Snyggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/330px-020_The_lion_king_Snyggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg"
     }
   ],
-  "correctPair": [
-    "Spotted hyena",
-    "Lion"
-  ],
+  "correctPair": ["Spotted hyena", "Lion"],
   "funFact": "Despite their dog-like build and loping pack hunts, spotted hyenas are on the cat side of the carnivore family tree (Feliformia). Hyenas and lions share a more recent ancestor than either does with the gray wolf. Wolves are Caniformia — the dog side. The wolf-like appearance of hyenas is convergent evolution: two separate carnivore lineages independently arrived at a similar cursorial predator body plan.",
   "sources": [
     {
