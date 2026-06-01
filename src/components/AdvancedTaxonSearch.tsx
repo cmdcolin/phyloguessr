@@ -57,11 +57,7 @@ function ResolvedStatus({
   )
 }
 
-function buildPlayUrl(
-  trimmed: string,
-  taxonomyData: TaxonomyData | null,
-  resolvedTaxId: number | undefined,
-) {
+function buildPlayUrl(trimmed: string, resolvedTaxId: number | undefined) {
   const params = new URLSearchParams()
   if (trimmed === 'micro') {
     params.set('id', 'micro')
@@ -97,7 +93,6 @@ export default function AdvancedTaxonSearch({
       : false
 
   const isValid =
-    !trimmed ||
     !taxonomyData ||
     trimmed === 'micro' ||
     numericFound ||
@@ -186,7 +181,7 @@ export default function AdvancedTaxonSearch({
         <div className="custom-actions">
           <Button
             disabled={!trimmed || !isValid}
-            href={buildPlayUrl(trimmed, taxonomyData, resolvedTaxId)}
+            href={buildPlayUrl(trimmed, resolvedTaxId)}
           >
             Play
           </Button>

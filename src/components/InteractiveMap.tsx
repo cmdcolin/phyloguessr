@@ -48,7 +48,7 @@ export default function InteractiveMap({
   const onMapReadyRef = useRef(onMapReady)
   useLayoutEffect(() => {
     onMapReadyRef.current = onMapReady
-  })
+  }, [onMapReady])
 
   const taxIdKey = useMemo(
     () => organisms.map(o => o.ncbiTaxId).join(','),

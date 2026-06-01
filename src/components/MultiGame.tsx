@@ -7,6 +7,7 @@ import MultiResultScreen from './MultiResultScreen.tsx'
 import OrganismCard from './OrganismCard.tsx'
 import SkipButton from './SkipButton.tsx'
 import Timer from './Timer.tsx'
+import { useHints, useSeenCombos } from './gameHooks.ts'
 import {
   buildRetryUrl,
   buildShareUrl,
@@ -18,7 +19,6 @@ import {
   toggleSelect,
 } from './gameUtils.ts'
 import { TOTAL_QUESTIONS } from '../utils/scoring.ts'
-import { sessionStorageGetItem } from '../utils/storage.ts'
 import {
   findTaxId,
   getAllPairLcas,
@@ -28,7 +28,6 @@ import {
   pickNFromClade,
   pickNHardModeDistance,
 } from '../utils/taxonomy.ts'
-import { fetchWikipediaAbstract } from '../utils/wikipedia.ts'
 
 import type { RoundResult } from './GameOverScreen.tsx'
 import type { MultiResultData } from './MultiResultScreen.tsx'
@@ -54,11 +53,9 @@ export default function MultiGame() {
     null,
   )
   const [loadingMessage, setLoadingMessage] = useState('')
-  const [hints, setHints] = useState<Record<number, string | null>>({})
-  const [hintLoading, setHintLoading] = useState(false)
-  const [hintUsed, setHintUsed] = useState(false)
+  const { hints, hintLoading, hintUsed, showHintPenalty, resetHints, loadHints } =
+    useHints()
   const [hintsVisible, setHintsVisible] = useState(false)
-  const [showHintPenalty, setShowHintPenalty] = useState(false)
   const [questionNumber, setQuestionNumber] = useState(1)
   const [totalScore, setTotalScore] = useState(0)
   const [roundResults, setRoundResults] = useState<RoundResult[]>([])
@@ -68,33 +65,14 @@ export default function MultiGame() {
     name: string
     rank: string
   } | null>(null)
-  const [seenCombos, setSeenCombos] = useState<Set<string>>(() => {
-    const saved = sessionStorageGetItem('phyloMultiSeenCombos')
-    if (saved) {
-      return new Set(JSON.parse(saved) as string[])
-    }
-    return new Set()
-  })
-
-  const recordCombo = (orgs: { ncbiTaxId: number }[]) => {
-    const key = comboKey(orgs)
-    setSeenCombos(prev => {
-      const next = new Set(prev)
-      next.add(key)
-      sessionStorage.setItem('phyloMultiSeenCombos', JSON.stringify([...next]))
-      return next
-    })
-  }
+  const { seenCombos, recordCombo } = useSeenCombos('phyloMultiSeenCombos')
 
   const startRound = useCallback(async () => {
     setState('loading')
     setSelected([])
     setResult(null)
-    setHints({})
-    setHintLoading(false)
-    setHintUsed(false)
+    resetHints()
     setHintsVisible(false)
-    setShowHintPenalty(false)
 
     let data = taxonomyData
     if (!data) {
@@ -185,7 +163,7 @@ export default function MultiGame() {
     setOrganisms(finalOrgs)
     history.pushState(null, '', buildShareUrl(finalOrgs))
     setState('selecting')
-  }, [taxonomyData, speciesPool, seenCombos, cladeFilter])
+  }, [taxonomyData, speciesPool, seenCombos, cladeFilter, resetHints, recordCombo])
 
   const loadSharedQuestion = useCallback(
     async (
@@ -224,7 +202,7 @@ export default function MultiGame() {
       setOrganisms(orgs)
       setState(targetState)
     },
-    [taxonomyData, speciesPool, startRound],
+    [taxonomyData, speciesPool, startRound, recordCombo],
   )
 
   useEffect(() => {
@@ -270,25 +248,9 @@ export default function MultiGame() {
       setHintsVisible(prev => !prev)
       return
     }
-    setHintUsed(true)
     setHintsVisible(true)
-    setShowHintPenalty(true)
-    setTimeout(() => setShowHintPenalty(false), 1500)
-    setHintLoading(true)
-    const results = await Promise.all(
-      organisms.map(org =>
-        fetchWikipediaAbstract(
-          org.wikiTitle ?? org.scientificName.replace(/ /g, '_'),
-        ),
-      ),
-    )
-    const newHints: Record<number, string | null> = {}
-    for (let i = 0; i < results.length; i++) {
-      newHints[i] = results[i] ?? 'Hint unavailable'
-    }
-    setHints(newHints)
-    setHintLoading(false)
-  }, [organisms, hintUsed])
+    await loadHints(organisms)
+  }, [hintUsed, loadHints, organisms])
 
   const handleSubmit = async () => {
     if (!taxonomyData || organisms.length === 0) {
@@ -308,7 +270,10 @@ export default function MultiGame() {
       p =>
         (p.taxIdA === userTaxA && p.taxIdB === userTaxB) ||
         (p.taxIdA === userTaxB && p.taxIdB === userTaxA),
-    )!
+    )
+    if (!userPair) {
+      return
+    }
 
     const userScore = lcaClosenessScore(userPair.lca, taxonomyData)
     const betterCount = allPairs.filter(
@@ -419,7 +384,7 @@ export default function MultiGame() {
                   hintsVisible
                     ? hintLoading
                       ? 'Loading...'
-                      : (hints[i] ?? null)
+                      : hints[i]
                     : undefined
                 }
               />

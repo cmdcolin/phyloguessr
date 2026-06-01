@@ -11,6 +11,7 @@ import SkipButton from './SkipButton.tsx'
 import { MAP_COLORS } from './SpeciesMap.tsx'
 import { TaxLink } from './TaxLink.tsx'
 import Timer from './Timer.tsx'
+import { useHints, useSeenCombos } from './gameHooks.ts'
 import {
   buildRetryUrl,
   buildShareUrl,
@@ -38,7 +39,6 @@ import {
   pickThreeHardModeDistance,
   pickThreeMicrobialCrossKingdom,
 } from '../utils/taxonomy.ts'
-import { fetchWikipediaAbstract } from '../utils/wikipedia.ts'
 
 import type { RoundResult } from './GameOverScreen.tsx'
 import type { Organism } from '../data/organisms.ts'
@@ -83,11 +83,11 @@ function computeResult(orgs: Organism[], data: TaxonomyData) {
     orgs[2].ncbiTaxId,
   ]
   const pair = findClosestPairFromData(taxIds, data)
-  const byTaxId = new Map(orgs.map(o => [o.ncbiTaxId, o]))
+  const byTaxId = (taxId: number) => orgs[taxIds.indexOf(taxId)]
   return {
-    sister1: byTaxId.get(pair.sister1TaxId) ?? orgs[0],
-    sister2: byTaxId.get(pair.sister2TaxId) ?? orgs[1],
-    outgroup: byTaxId.get(pair.outgroupTaxId) ?? orgs[2],
+    sister1: byTaxId(pair.sister1TaxId),
+    sister2: byTaxId(pair.sister2TaxId),
+    outgroup: byTaxId(pair.outgroupTaxId),
     cladeLabel: pair.sisterLca.name,
     sisterMrca: pair.sisterLca,
     overallMrca: pair.overallLca,
@@ -125,10 +125,8 @@ export default function Game({ mode }: { mode: GameMode }) {
   const [questionNumber, setQuestionNumber] = useState(1)
   const [totalScore, setTotalScore] = useState(0)
   const [roundResults, setRoundResults] = useState<RoundResult[]>([])
-  const [hints, setHints] = useState<Record<number, string | null>>({})
-  const [hintLoading, setHintLoading] = useState(false)
-  const [hintUsed, setHintUsed] = useState(false)
-  const [showHintPenalty, setShowHintPenalty] = useState(false)
+  const { hints, hintLoading, hintUsed, showHintPenalty, resetHints, loadHints } =
+    useHints()
   const [isSharedQuestion, setIsSharedQuestion] = useState(false)
 
   const [randomClade, setRandomClade] = useState<{
@@ -143,33 +141,14 @@ export default function Game({ mode }: { mode: GameMode }) {
   )
 
   const [isMulti, setIsMulti] = useState(false)
-  const [seenCombos, setSeenCombos] = useState<Set<string>>(() => {
-    const saved = sessionStorageGetItem('phyloSeenCombos')
-    if (saved) {
-      return new Set(JSON.parse(saved) as string[])
-    }
-    return new Set()
-  })
-
-  const recordCombo = (orgs: { ncbiTaxId: number }[]) => {
-    const key = comboKey(orgs)
-    setSeenCombos(prev => {
-      const next = new Set(prev)
-      next.add(key)
-      sessionStorage.setItem('phyloSeenCombos', JSON.stringify([...next]))
-      return next
-    })
-  }
+  const { seenCombos, recordCombo, clearSeenCombos } = useSeenCombos('phyloSeenCombos')
 
   const startRound = useCallback(async () => {
     setState('loading')
     setLoadingAction(undefined)
     setSelected([])
     setResult(null)
-    setHints({})
-    setHintLoading(false)
-    setHintUsed(false)
-    setShowHintPenalty(false)
+    resetHints()
 
     let data = taxonomyData
     if (!data) {
@@ -346,6 +325,8 @@ export default function Game({ mode }: { mode: GameMode }) {
     shownScenarioIndices,
     seenCombos,
     roundResults.length,
+    resetHints,
+    recordCombo,
   ])
 
   const loadSharedQuestion = useCallback(
@@ -387,7 +368,7 @@ export default function Game({ mode }: { mode: GameMode }) {
       if (isShared) setIsSharedQuestion(true)
       setState(targetState)
     },
-    [taxonomyData, speciesPool, startRound],
+    [taxonomyData, speciesPool, startRound, recordCombo],
   )
 
   useEffect(() => {
@@ -437,23 +418,9 @@ export default function Game({ mode }: { mode: GameMode }) {
   }, [taxonomyData, speciesPool])
 
   const handleHint = useCallback(async () => {
-    if (!round || hintUsed) {
-      return
-    }
-    setHintUsed(true)
-    setShowHintPenalty(true)
-    setTimeout(() => setShowHintPenalty(false), 1500)
-    setHintLoading(true)
-    const results = await Promise.all(
-      round.map(org => fetchWikipediaAbstract(org.wikiTitle)),
-    )
-    const newHints: Record<number, string | null> = {}
-    for (let i = 0; i < results.length; i++) {
-      newHints[i] = results[i] ?? 'Hint unavailable'
-    }
-    setHints(newHints)
-    setHintLoading(false)
-  }, [round, hintUsed])
+    if (!round || hintUsed) return
+    await loadHints(round)
+  }, [round, hintUsed, loadHints])
 
   const handleSubmit = () => {
     if (!round || !taxonomyData) {
@@ -496,15 +463,23 @@ export default function Game({ mode }: { mode: GameMode }) {
       }
       if (scenario.correctPair) {
         const cp = scenario.correctPair
-        const sister1 = round.find(o => o.commonName === cp[0]) ?? round[0]
-        const sister2 = round.find(o => o.commonName === cp[1]) ?? round[1]
-        const outgroup =
-          round.find(o => o.commonName !== cp[0] && o.commonName !== cp[1]) ??
-          round[2]
-        resultData.sister1 = sister1
-        resultData.sister2 = sister2
-        resultData.outgroup = outgroup
-        resultData.isPolytomy = false
+        const sister1 = round.find(o => o.commonName === cp[0])
+        const sister2 = round.find(o => o.commonName === cp[1])
+        const outgroup = round.find(
+          o => o.commonName !== cp[0] && o.commonName !== cp[1],
+        )
+        if (sister1 && sister2 && outgroup) {
+          resultData.sister1 = sister1
+          resultData.sister2 = sister2
+          resultData.outgroup = outgroup
+          resultData.isPolytomy = false
+        } else {
+          console.error(
+            'correctPair names not found in round',
+            cp,
+            round.map(o => o.commonName),
+          )
+        }
       }
     }
 
@@ -635,7 +610,7 @@ export default function Game({ mode }: { mode: GameMode }) {
               onClick={() => {
                 setShownScenarioIndices(new Set())
                 sessionStorage.removeItem('shownScenarios')
-                setSeenCombos(new Set())
+                clearSeenCombos()
                 startRound()
               }}
             >
@@ -720,7 +695,7 @@ export default function Game({ mode }: { mode: GameMode }) {
                   hintUsed
                     ? hintLoading
                       ? 'Loading...'
-                      : (hints[i] ?? null)
+                      : hints[i]
                     : undefined
                 }
               />
