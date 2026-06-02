@@ -16,6 +16,7 @@ import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
 import { execSync } from 'child_process'
 import { CURATED_MICROORGANISMS } from './curated-microorganisms.mjs'
+import { loadCuratedTaxIds } from './lib/organisms.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
@@ -25,13 +26,7 @@ const WORK_DIR = join(ROOT, '.taxonomy-build')
 const OUT_DIR = join(ROOT, 'public', 'taxonomy')
 const FLAGGED_PATH = join(ROOT, 'public', 'flagged-species.json')
 
-function extractCuratedTaxIds() {
-  const src = readFileSync(join(ROOT, 'src', 'data', 'organisms.ts'), 'utf8')
-  const ids = [...src.matchAll(/ncbiTaxId:\s*(\d+)/g)].map(m => Number(m[1]))
-  return [...new Set(ids)]
-}
-
-const CURATED_TAX_IDS = extractCuratedTaxIds()
+const CURATED_TAX_IDS = loadCuratedTaxIds()
 
 const EXCLUDE_PATTERNS = [
   /unidentified/i,

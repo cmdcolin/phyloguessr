@@ -11,18 +11,18 @@ import { readFileSync, writeFileSync, statSync, existsSync } from 'fs'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
 
+import { loadCuratedTaxIds } from './lib/organisms.mjs'
+
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
 const PARENTS_PATH = join(ROOT, 'public', 'taxonomy', 'parents.json')
 const EASY_PATH = join(ROOT, 'public', 'taxonomy', 'parents-easy.json')
 const SCENARIOS_PATH = join(ROOT, 'public', 'taxonomy', 'easy-scenarios.json')
-const ORGANISMS_PATH = join(ROOT, 'src', 'data', 'organisms.ts')
 
 const parents = JSON.parse(readFileSync(PARENTS_PATH, 'utf8'))
 
-// Collect all taxIds from organisms.ts
-const src = readFileSync(ORGANISMS_PATH, 'utf8')
-const ids = [...src.matchAll(/ncbiTaxId:\s*(\d+)/g)].map(m => Number(m[1]))
+// Collect all taxIds from curated organisms
+const ids = loadCuratedTaxIds()
 
 // Also collect taxIds from easy-scenarios.json if it exists
 if (existsSync(SCENARIOS_PATH)) {

@@ -5,6 +5,8 @@ export async function fetchWikipediaAbstract(title: string) {
   if (!response.ok) {
     return null
   }
-  const data = await response.json()
-  return (data.extract as string) ?? null
+  const data: unknown = await response.json()
+  return data && typeof data === 'object' && 'extract' in data && typeof data.extract === 'string'
+    ? data.extract
+    : null
 }

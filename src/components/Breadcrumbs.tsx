@@ -2,6 +2,7 @@ import { Fragment } from 'react'
 
 import { TaxLink } from './TaxLink.tsx'
 import { capitalize, formatRank } from '../utils/format.ts'
+import { ncbiTaxonomyUrl, wikipediaUrl } from '../utils/links.ts'
 import { getLineageFromParents } from '../utils/taxonomy.ts'
 
 import type { Organism } from '../data/organisms.ts'
@@ -113,7 +114,7 @@ export function OrganismBreadcrumbs({
           <>
             <a
               className="breadcrumb-secondary-link"
-              href={`https://en.wikipedia.org/wiki/${encodeURIComponent(organism.scientificName)}`}
+              href={wikipediaUrl(organism.scientificName)}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -121,7 +122,7 @@ export function OrganismBreadcrumbs({
             </a>{' '}
             <a
               className="breadcrumb-secondary-link"
-              href={`https://www.ncbi.nlm.nih.gov/datasets/taxonomy/${organism.ncbiTaxId}`}
+              href={ncbiTaxonomyUrl(organism.ncbiTaxId)}
               target="_blank"
               rel="noopener noreferrer"
             >

@@ -13,8 +13,11 @@ export async function getGbifTaxonKey(scientificName: string) {
       gbifKeyCache.set(scientificName, null)
       return null
     }
-    const data = await res.json()
-    const key = (data.usageKey as number) ?? null
+    const data: unknown = await res.json()
+    const key =
+      data && typeof data === 'object' && 'usageKey' in data && typeof data.usageKey === 'number'
+        ? data.usageKey
+        : null
     gbifKeyCache.set(scientificName, key)
     return key
   } catch {

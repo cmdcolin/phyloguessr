@@ -289,7 +289,7 @@ export function findTaxId(query: string, data: TaxonomyData) {
   const trimmed = query.trim()
   if (/^\d+$/.test(trimmed)) {
     const id = Number(trimmed)
-    if (data.parents[id] !== undefined || data.names[id] !== undefined) {
+    if (data.parents[trimmed] !== undefined || data.names[trimmed] !== undefined) {
       return id
     }
   }

@@ -14,7 +14,7 @@ export function cn(...classes: (string | false | undefined | null)[]) {
 }
 
 export function capitalize(s: string) {
-  return s[0].toUpperCase() + s.slice(1)
+  return s ? s[0].toUpperCase() + s.slice(1) : s
 }
 
 export function formatRank(rank: string) {

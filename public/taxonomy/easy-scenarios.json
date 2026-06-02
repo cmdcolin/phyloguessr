@@ -1509,7 +1509,7 @@
       {
         "commonName": "Tinamou",
         "scientificName": "Eudromia elegans",
-        "ncbiTaxId": 48687,
+        "ncbiTaxId": 8805,
         "wikiTitle": "Elegant_crested_tinamou",
         "group": "bird",
         "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Stavenn_Eudromia_elegans_00.jpg/330px-Stavenn_Eudromia_elegans_00.jpg"
@@ -1517,7 +1517,7 @@
       {
         "commonName": "California quail",
         "scientificName": "Callipepla californica",
-        "ncbiTaxId": 9077,
+        "ncbiTaxId": 67771,
         "wikiTitle": "California_quail",
         "group": "bird",
         "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/California_quail_%28Callipepla_californica%29_male_Tricao.jpg/330px-California_quail_%28Callipepla_californica%29_male_Tricao.jpg"

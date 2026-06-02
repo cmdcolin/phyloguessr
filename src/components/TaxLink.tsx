@@ -1,11 +1,9 @@
+import { ncbiTaxonomyUrl, wikipediaUrl } from '../utils/links.ts'
+
 export function TaxLink({ name, taxId }: { name: string; taxId: number }) {
   return (
     <span className="breadcrumb-link">
-      <a
-        href={`https://en.wikipedia.org/wiki/${encodeURIComponent(name)}`}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <a href={wikipediaUrl(name)} target="_blank" rel="noopener noreferrer">
         {name}
       </a>
       {taxId > 0 && (
@@ -13,7 +11,7 @@ export function TaxLink({ name, taxId }: { name: string; taxId: number }) {
           {' '}
           <a
             className="breadcrumb-secondary-link"
-            href={`https://www.ncbi.nlm.nih.gov/datasets/taxonomy/${taxId}`}
+            href={ncbiTaxonomyUrl(taxId)}
             target="_blank"
             rel="noopener noreferrer"
           >

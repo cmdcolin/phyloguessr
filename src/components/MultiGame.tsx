@@ -6,6 +6,7 @@ import Header from './Header.tsx'
 import MultiResultScreen from './MultiResultScreen.tsx'
 import OrganismCard from './OrganismCard.tsx'
 import SkipButton from './SkipButton.tsx'
+import { TaxLink } from './TaxLink.tsx'
 import Timer from './Timer.tsx'
 import { useHints, useSeenCombos } from './gameHooks.ts'
 import {
@@ -18,6 +19,7 @@ import {
   resolveOrganism,
   toggleSelect,
 } from './gameUtils.ts'
+import { shuffled } from '../utils/format.ts'
 import { TOTAL_QUESTIONS } from '../utils/scoring.ts'
 import {
   findTaxId,
@@ -53,6 +55,9 @@ export default function MultiGame() {
     null,
   )
   const [loadingMessage, setLoadingMessage] = useState('')
+  const [loadingAction, setLoadingAction] = useState<
+    'retry' | 'back' | undefined
+  >(undefined)
   const { hints, hintLoading, hintUsed, showHintPenalty, resetHints, loadHints } =
     useHints()
   const [hintsVisible, setHintsVisible] = useState(false)
@@ -69,6 +74,7 @@ export default function MultiGame() {
 
   const startRound = useCallback(async () => {
     setState('loading')
+    setLoadingAction(undefined)
     setSelected([])
     setResult(null)
     resetHints()
@@ -91,9 +97,8 @@ export default function MultiGame() {
     setLoadingMessage('Picking species...')
     setRandomClade(null)
 
-    const cladeTaxId = cladeFilter.trim()
-      ? findTaxId(cladeFilter.trim(), data)
-      : undefined
+    const cladeQuery = cladeFilter.trim()
+    const cladeTaxId = cladeQuery ? findTaxId(cladeQuery, data) : undefined
 
     let finalOrgs: Organism[] = []
     let finalClade: { taxId: number; name: string; rank: string } | undefined
@@ -103,9 +108,17 @@ export default function MultiGame() {
       if (cladeTaxId !== undefined) {
         const result = pickNFromClade(SPECIES_COUNT, cladeTaxId, pool, data)
         if (!result) {
-          break
+          const label = data.names[String(cladeTaxId)] ?? cladeQuery
+          setLoadingMessage(
+            `Not enough species in "${label}" — try a broader group`,
+          )
+          setLoadingAction('back')
+          return
         }
         picks = result
+        const name = data.names[String(cladeTaxId)] ?? cladeQuery
+        const rank = data.ranks[String(cladeTaxId)] ?? ''
+        finalClade = { taxId: cladeTaxId, name, rank }
       } else {
         const hardResult = pickNHardModeDistance(
           SPECIES_COUNT,
@@ -148,20 +161,16 @@ export default function MultiGame() {
       setLoadingMessage(
         "Couldn't find a valid set of species — please try again",
       )
+      setLoadingAction('retry')
       return
     }
     if (finalClade) {
       setRandomClade(finalClade)
     }
     recordCombo(finalOrgs)
-    for (let i = finalOrgs.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1))
-      const tmp = finalOrgs[i]
-      finalOrgs[i] = finalOrgs[j]
-      finalOrgs[j] = tmp
-    }
-    setOrganisms(finalOrgs)
-    history.pushState(null, '', buildShareUrl(finalOrgs))
+    const shuffledOrgs = shuffled(finalOrgs)
+    setOrganisms(shuffledOrgs)
+    history.pushState(null, '', buildShareUrl(shuffledOrgs))
     setState('selecting')
   }, [taxonomyData, speciesPool, seenCombos, cladeFilter, resetHints, recordCombo])
 
@@ -331,13 +340,18 @@ export default function MultiGame() {
       {state === 'loading' && (
         <div className="loading">
           {loadingMessage}
-          {loadingMessage.includes('try again') && (
+          {loadingAction === 'retry' && (
             <Button
               onClick={() => {
                 startRound()
               }}
             >
               Retry
+            </Button>
+          )}
+          {loadingAction === 'back' && (
+            <Button variant="secondary" href="/custom">
+              ⏮ Back
             </Button>
           )}
         </div>
@@ -355,7 +369,8 @@ export default function MultiGame() {
           </div>
           {randomClade && (
             <p className="clade-label">
-              Group: {randomClade.name}
+              Group:{' '}
+              <TaxLink name={randomClade.name} taxId={randomClade.taxId} />
               {randomClade.rank ? ` (${randomClade.rank})` : ''}
             </p>
           )}

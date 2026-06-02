@@ -1,4 +1,5 @@
 import { capitalize } from '../utils/format.ts'
+import { ncbiTaxonomyUrl, wikipediaUrl } from '../utils/links.ts'
 
 import type { Organism } from '../data/organisms.ts'
 
@@ -210,7 +211,7 @@ export default function PhyloTree({
             <text x={textX} y={y + 31} fontSize={11} fill="GrayText">
               {'('}
               <a
-                href={`https://en.wikipedia.org/wiki/${encodeURIComponent(org.scientificName)}`}
+                href={wikipediaUrl(org.scientificName)}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -218,7 +219,7 @@ export default function PhyloTree({
               </a>
               {', '}
               <a
-                href={`https://www.ncbi.nlm.nih.gov/datasets/taxonomy/${org.ncbiTaxId}`}
+                href={ncbiTaxonomyUrl(org.ncbiTaxId)}
                 target="_blank"
                 rel="noopener noreferrer"
               >

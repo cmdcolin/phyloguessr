@@ -6,8 +6,5 @@ function applyHintPenalty(basePoints: number, hintCount: number) {
 }
 
 export function calculateScore(correct: boolean, hintCount: number) {
-  if (!correct) {
-    return 0
-  }
-  return applyHintPenalty(MAX_POINTS, hintCount)
+  return correct ? applyHintPenalty(MAX_POINTS, hintCount) : 0
 }

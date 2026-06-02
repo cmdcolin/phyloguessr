@@ -3,21 +3,13 @@
 // Verifies that each curated organism's NCBI tax ID matches
 // its scientific name by checking the NCBI taxonomy API.
 
-import { readFileSync } from 'fs'
-import { join, dirname } from 'path'
-import { fileURLToPath } from 'url'
+import { loadCuratedOrganisms } from './lib/organisms.mjs'
 
-const __dirname = dirname(fileURLToPath(import.meta.url))
-const ROOT = join(__dirname, '..')
-
-const src = readFileSync(join(ROOT, 'src', 'data', 'organisms.ts'), 'utf8')
-const entries = []
-const re =
-  /commonName:\s*'([^']+)'[^}]*scientificName:\s*'([^']+)'[^}]*ncbiTaxId:\s*(\d+)/gs
-let m
-while ((m = re.exec(src)) !== null) {
-  entries.push({ commonName: m[1], scientificName: m[2], taxId: Number(m[3]) })
-}
+const entries = loadCuratedOrganisms().map(o => ({
+  commonName: o.commonName,
+  scientificName: o.scientificName,
+  taxId: o.ncbiTaxId,
+}))
 
 const DELAY_MS = 400
 
