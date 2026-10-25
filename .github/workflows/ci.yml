@@ -28,7 +28,7 @@ jobs:
       - run: pnpm install --frozen-lockfile
 
       - name: Type check
-        run: pnpm tsc --noEmit
+        run: pnpm astro sync && pnpm tsc --noEmit
 
       - name: Lint
         run: pnpm lint
