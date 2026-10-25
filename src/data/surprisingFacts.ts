@@ -6,6 +6,7 @@ export interface Source {
 }
 
 export interface SurprisingScenario {
+  difficulty: 'easy' | 'tricky'
   organisms: [Organism, Organism, Organism]
   funFact: string
   sources: Source[]

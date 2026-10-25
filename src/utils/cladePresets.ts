@@ -314,6 +314,9 @@ export function formatModeKey(key: string) {
   if (key === 'easy') {
     return 'Easy'
   }
+  if (key === 'tricky') {
+    return 'Tricky'
+  }
   if (key === 'random') {
     return 'Random'
   }

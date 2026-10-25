@@ -542,6 +542,7 @@ describe('easy-mode data consistency', () => {
 
   type ScenarioOrganism = { ncbiTaxId: number; commonName: string }
   type Scenario = {
+    difficulty: string
     organisms: [ScenarioOrganism, ScenarioOrganism, ScenarioOrganism]
     correctPair?: [string, string]
   }
@@ -602,6 +603,15 @@ describe('easy-mode data consistency', () => {
         }
       }
     }
+    expect(bad).toEqual([])
+  })
+
+  it('every scenario has an easy or tricky difficulty', () => {
+    const bad = scenarios
+      .map((s, i) => ({ scenario: i, difficulty: s.difficulty }))
+      .filter(
+        ({ difficulty }) => difficulty !== 'easy' && difficulty !== 'tricky',
+      )
     expect(bad).toEqual([])
   })
 

@@ -56,9 +56,9 @@ type GameState =
   | 'selecting'
   | 'timedOut'
   | 'result'
-  | 'easyCompleted'
+  | 'scenariosCompleted'
   | 'gameOver'
-type GameMode = 'easy' | 'random' | 'custom'
+type GameMode = 'easy' | 'tricky' | 'random' | 'custom'
 
 interface ResultData {
   correct: boolean
@@ -96,6 +96,8 @@ function computeResult(orgs: Organism[], data: TaxonomyData) {
 }
 
 export default function Game({ mode }: { mode: GameMode }) {
+  const isScenarioMode = mode === 'easy' || mode === 'tricky'
+  const shownScenariosKey = `shownScenarios:${mode}`
   const difficulty = getDifficulty()
   const [state, setState] = useState<GameState>(
     mode === 'custom' ? 'customizing' : 'loading',
@@ -114,7 +116,7 @@ export default function Game({ mode }: { mode: GameMode }) {
   >(undefined)
   const [shownScenarioIndices, setShownScenarioIndices] = useState<Set<number>>(
     () => {
-      const saved = sessionStorageGetItem('shownScenarios')
+      const saved = sessionStorageGetItem(shownScenariosKey)
       if (saved) {
         return new Set(JSON.parse(saved) as number[])
       }
@@ -125,8 +127,14 @@ export default function Game({ mode }: { mode: GameMode }) {
   const [questionNumber, setQuestionNumber] = useState(1)
   const [totalScore, setTotalScore] = useState(0)
   const [roundResults, setRoundResults] = useState<RoundResult[]>([])
-  const { hints, hintLoading, hintUsed, showHintPenalty, resetHints, loadHints } =
-    useHints()
+  const {
+    hints,
+    hintLoading,
+    hintUsed,
+    showHintPenalty,
+    resetHints,
+    loadHints,
+  } = useHints()
   const [isSharedQuestion, setIsSharedQuestion] = useState(false)
 
   const [randomClade, setRandomClade] = useState<{
@@ -141,7 +149,8 @@ export default function Game({ mode }: { mode: GameMode }) {
   )
 
   const [isMulti, setIsMulti] = useState(false)
-  const { seenCombos, recordCombo, clearSeenCombos } = useSeenCombos('phyloSeenCombos')
+  const { seenCombos, recordCombo, clearSeenCombos } =
+    useSeenCombos('phyloSeenCombos')
 
   const startRound = useCallback(async () => {
     setState('loading')
@@ -153,14 +162,13 @@ export default function Game({ mode }: { mode: GameMode }) {
     let data = taxonomyData
     if (!data) {
       setLoadingMessage('Downloading taxonomy data...')
-      data =
-        mode === 'easy'
-          ? await loadEasyTaxonomyData()
-          : await loadTaxonomyData()
+      data = isScenarioMode
+        ? await loadEasyTaxonomyData()
+        : await loadTaxonomyData()
       setTaxonomyData(data)
     }
 
-    if (mode === 'easy') {
+    if (isScenarioMode) {
       let loadedScenarios = scenarios
       if (!loadedScenarios) {
         setLoadingMessage('Loading scenarios...')
@@ -172,6 +180,7 @@ export default function Game({ mode }: { mode: GameMode }) {
         .map((s, i) => ({ s, i }))
         .filter(({ s, i }) => {
           if (
+            s.difficulty !== mode ||
             shownScenarioIndices.has(i) ||
             seenCombos.has(comboKey(s.organisms))
           ) {
@@ -194,13 +203,13 @@ export default function Game({ mode }: { mode: GameMode }) {
         const next = new Set(shownScenarioIndices)
         next.add(pick.i)
         setShownScenarioIndices(next)
-        sessionStorage.setItem('shownScenarios', JSON.stringify([...next]))
+        sessionStorage.setItem(shownScenariosKey, JSON.stringify([...next]))
         orgs = [...pick.s.organisms]
       } else {
         if (roundResults.length > 0) {
           setState('gameOver')
         } else {
-          setState('easyCompleted')
+          setState('scenariosCompleted')
         }
         return
       }
@@ -318,6 +327,8 @@ export default function Game({ mode }: { mode: GameMode }) {
     }
   }, [
     mode,
+    isScenarioMode,
+    shownScenariosKey,
     taxonomyData,
     speciesPool,
     scenarios,
@@ -599,22 +610,23 @@ export default function Game({ mode }: { mode: GameMode }) {
         </div>
       )}
 
-      {state === 'easyCompleted' && (
+      {state === 'scenariosCompleted' && (
         <div className="easy-completed">
           <p>
-            You&apos;ve completed all {scenarios?.length ?? 0} curated
+            You&apos;ve completed all{' '}
+            {scenarios?.filter(s => s.difficulty === mode).length ?? 0} curated
             scenarios!
           </p>
           <div className="selecting-actions">
             <Button
               onClick={() => {
                 setShownScenarioIndices(new Set())
-                sessionStorage.removeItem('shownScenarios')
+                sessionStorage.removeItem(shownScenariosKey)
                 clearSeenCombos()
                 startRound()
               }}
             >
-              Restart Easy Mode
+              Restart {mode === 'easy' ? 'Easy' : 'Tricky'} Mode
             </Button>
             <Button variant="secondary" href="/">
               ⏮ Back
@@ -656,10 +668,9 @@ export default function Game({ mode }: { mode: GameMode }) {
                 </span>
               </div>
             )}
-            {mode === 'easy' && (
-              <p className="easy-disclaimer">
-                Easy mode. Just kidding — these are actually curated tricky and
-                surprising examples!
+            {mode === 'tricky' && (
+              <p className="mode-note">
+                Tricky mode: obscure species and surprising relatives.
               </p>
             )}
             {randomClade && (
@@ -692,11 +703,7 @@ export default function Game({ mode }: { mode: GameMode }) {
                 mapColor={MAP_COLORS[i % MAP_COLORS.length]}
                 difficulty={difficulty}
                 hint={
-                  hintUsed
-                    ? hintLoading
-                      ? 'Loading...'
-                      : hints[i]
-                    : undefined
+                  hintUsed ? (hintLoading ? 'Loading...' : hints[i]) : undefined
                 }
               />
             ))}

@@ -145,6 +145,11 @@ body {
   border: 3px solid #1a5a1a;
   color: white;
 }
+.mode-btn-tricky {
+  background: #5a3a9a;
+  border: 3px solid #3d2470;
+  color: white;
+}
 .mode-btn-random {
   background: #c89000;
   border: 3px solid #a07000;
@@ -158,6 +163,10 @@ body {
 .mode-btn-easy.active {
   background: #1a5a1a;
   border-color: #0d3a0d;
+}
+.mode-btn-tricky.active {
+  background: #3d2470;
+  border-color: #25144a;
 }
 .mode-btn-random.active {
   background: #a07000;
@@ -563,7 +572,7 @@ body {
   margin-bottom: var(--space-md);
 }
 
-.easy-disclaimer,
+.mode-note,
 .clade-label {
   text-align: center;
   margin: 0;
@@ -1191,7 +1200,7 @@ a.breadcrumb-link:hover,
     margin-bottom: var(--space-sm);
   }
 
-  .easy-disclaimer,
+  .mode-note,
   .clade-label {
     font-size: 0.75rem;
   }
