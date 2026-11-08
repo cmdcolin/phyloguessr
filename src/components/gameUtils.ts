@@ -7,7 +7,7 @@ import type { SpeciesPoolEntry, TaxonomyData } from '../utils/taxonomy.ts'
 export function comboKey(orgs: { ncbiTaxId: number }[]) {
   return orgs
     .map(o => o.ncbiTaxId)
-    .sort((a, b) => a - b)
+    .toSorted((a, b) => a - b)
     .join(',')
 }
 
@@ -15,7 +15,7 @@ export function parseSharedIds() {
   const params = new URLSearchParams(window.location.search)
 
   const idsParam = params.get('ids')
-  if (idsParam) {
+  if (idsParam !== null) {
     const ids = idsParam.split(',').map(Number)
     if (ids.length >= 3 && ids.every(n => Number.isFinite(n) && n > 0)) {
       return ids
@@ -25,7 +25,7 @@ export function parseSharedIds() {
   const a = params.get('a')
   const b = params.get('b')
   const c = params.get('c')
-  if (a && b && c) {
+  if (a !== null && b !== null && c !== null) {
     const ids = [Number(a), Number(b), Number(c)]
     if (ids.every(n => Number.isFinite(n) && n > 0)) {
       return ids
@@ -39,7 +39,7 @@ export function buildShareUrl(orgs: Organism[]) {
   const url = new URL(window.location.href)
   const id = url.searchParams.get('id')
   url.search = ''
-  if (id) {
+  if (id !== null) {
     url.searchParams.set('id', id)
   }
   url.searchParams.set('ids', orgs.map(o => o.ncbiTaxId).join(','))

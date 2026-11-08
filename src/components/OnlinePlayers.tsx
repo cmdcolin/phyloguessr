@@ -7,16 +7,16 @@ export default function OnlinePlayers() {
 
   useEffect(() => {
     let id: ReturnType<typeof setInterval> | undefined
-    const setup = async () => {
-      await startPresence()
-      const poll = () => {
-        getOnlineCount().then(setCount).catch(console.error)
-      }
+    const poll = () => {
+      getOnlineCount().then(setCount).catch(console.error)
+    }
+    void startPresence().then(() => {
       poll()
       id = setInterval(poll, 30_000)
+    })
+    return () => {
+      clearInterval(id)
     }
-    setup()
-    return () => clearInterval(id)
   }, [])
 
   if (count === 0) {

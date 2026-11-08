@@ -9,10 +9,10 @@ export default function SignInPage() {
   const [error, setError] = useState('')
 
   useEffect(() => {
-    getCurrentUser().then(user => {
+    void getCurrentUser().then(user => {
       if (user) {
         setSignedIn(true)
-        if (user.displayName) {
+        if (user.displayName !== null) {
           setGoogleName(user.displayName)
         }
       }
@@ -25,7 +25,7 @@ export default function SignInPage() {
     try {
       const user = await signInWithGoogle()
       setSignedIn(true)
-      if (user.displayName) {
+      if (user.displayName !== null) {
         setGoogleName(user.displayName)
       }
     } catch (err) {
@@ -45,7 +45,7 @@ export default function SignInPage() {
     return (
       <div className="signin-status">
         <p className="signin-success">
-          Signed in with Google{googleName ? ` (${googleName})` : ''}
+          Signed in with Google{googleName !== null ? ` (${googleName})` : ''}
         </p>
         <div className="signin-actions">
           <a className="btn btn-primary" href="/">
@@ -54,7 +54,7 @@ export default function SignInPage() {
           <button
             className="btn btn-secondary"
             onClick={() => {
-              handleSignOut()
+              void handleSignOut()
             }}
           >
             Sign out
@@ -74,7 +74,7 @@ export default function SignInPage() {
           className="btn btn-primary"
           disabled={signingIn}
           onClick={() => {
-            handleSignIn()
+            void handleSignIn()
           }}
         >
           {signingIn ? 'Signing in...' : 'Sign in with Google'}

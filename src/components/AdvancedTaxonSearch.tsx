@@ -1,8 +1,8 @@
 import { useState } from 'react'
 
-import Button from './Button.tsx'
 import { DISPLAY_TREE } from '../utils/cladePresets.ts'
 import { findTaxId, searchTaxonNames } from '../utils/taxonomy.ts'
+import Button from './Button.tsx'
 
 import type { TaxonomyData } from '../utils/taxonomy.ts'
 
@@ -25,12 +25,12 @@ function ResolvedStatus({
   if (/^\d+$/.test(trimmed)) {
     const name = taxonomyData.names[trimmed]
     const hasParent = taxonomyData.parents[trimmed] !== undefined
-    if (name || hasParent) {
+    if (name !== undefined || hasParent) {
       const rank = taxonomyData.ranks[trimmed]
       return (
         <p className="clade-resolved">
           <span className="clade-check">✓</span> {name ?? `Taxon ${trimmed}`}
-          {rank ? ` (${rank})` : ''}
+          {rank !== undefined ? ` (${rank})` : ''}
         </p>
       )
     }
@@ -46,7 +46,7 @@ function ResolvedStatus({
     return (
       <p className="clade-resolved">
         <span className="clade-check">✓</span> {name ?? trimmed}
-        {rank ? ` (${rank})` : ''}
+        {rank !== undefined ? ` (${rank})` : ''}
       </p>
     )
   }

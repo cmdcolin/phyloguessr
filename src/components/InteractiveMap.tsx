@@ -59,7 +59,7 @@ export default function InteractiveMap({
 
   useEffect(() => {
     if (!mapRef.current) {
-      return
+      return undefined
     }
 
     let cancelled = false
@@ -70,7 +70,7 @@ export default function InteractiveMap({
         import('leaflet/dist/leaflet.css'),
       ])
       if (cancelled || !mapRef.current) {
-        return
+        return null
       }
       leafletRef.current = leaflet
 
@@ -106,12 +106,14 @@ export default function InteractiveMap({
         const key = await getGbifTaxonKey(organisms[i].scientificName)
         keys.push(key)
       }
-      if (!cancelled) {
-        setResolvedKeys(keys)
-      }
+      return keys
     }
 
-    init()
+    void init().then(keys => {
+      if (keys && !cancelled) {
+        setResolvedKeys(keys)
+      }
+    })
 
     return () => {
       cancelled = true
@@ -137,7 +139,7 @@ export default function InteractiveMap({
 
     for (let i = 0; i < resolvedKeys.length; i++) {
       const key = resolvedKeys[i]
-      if (key) {
+      if (key !== null) {
         const layer = createTileLayer(
           leaflet,
           key,

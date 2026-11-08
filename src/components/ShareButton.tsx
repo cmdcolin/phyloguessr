@@ -7,7 +7,7 @@ export function ShareButton({ url }: { url: string }) {
       className="share-icon-btn"
       title={copied ? 'Copied!' : 'Share link'}
       onClick={() => {
-        navigator.clipboard.writeText(url).then(() => {
+        void navigator.clipboard.writeText(url).then(() => {
           setCopied(true)
           setTimeout(() => setCopied(false), 2000)
         })

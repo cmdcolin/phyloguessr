@@ -60,9 +60,9 @@ export function collapseSingleChildren(
 }
 
 export interface TaxonomyData {
-  parents: Record<string, number>
-  names: Record<string, string>
-  ranks: Record<string, string>
+  parents: Partial<Record<string, number>>
+  names: Partial<Record<string, string>>
+  ranks: Partial<Record<string, string>>
 }
 
 export type SpeciesPoolEntry = [number, string, string, string?]
@@ -105,7 +105,7 @@ export function resolveOrganism(
   }
   if (data) {
     const name = data.names[String(taxId)]
-    if (name) {
+    if (name !== undefined) {
       return {
         commonName: name,
         scientificName: name,
@@ -120,7 +120,7 @@ export function resolveOrganism(
 
 export function getLineageFromParents(
   taxId: number,
-  parents: Record<string, number>,
+  parents: TaxonomyData['parents'],
 ) {
   const lineage: number[] = []
   let current = taxId
@@ -227,47 +227,72 @@ export function unpackTaxonomyData(compact: CompactTaxonomyData) {
   return { parents, names, ranks } satisfies TaxonomyData
 }
 
-function fetchTaxonomy(file: string) {
-  return fetch(`/taxonomy/${file}`)
-    .then(r => {
-      if (!r.ok) {
-        throw new Error(`Failed to load taxonomy data: ${r.status}`)
-      }
-      return r.json() as Promise<CompactTaxonomyData>
-    })
-    .then(unpackTaxonomyData)
+export function isCompactTaxonomyData(
+  value: unknown,
+): value is CompactTaxonomyData {
+  return (
+    typeof value === 'object' &&
+    value !== null &&
+    'R' in value &&
+    Array.isArray(value.R) &&
+    'D' in value &&
+    typeof value.D === 'object' &&
+    value.D !== null
+  )
+}
+
+async function fetchTaxonomy(file: string) {
+  const r = await fetch(`/taxonomy/${file}`)
+  if (!r.ok) {
+    throw new Error(`Failed to load taxonomy data: ${r.status}`)
+  }
+  const data: unknown = await r.json()
+  if (!isCompactTaxonomyData(data)) {
+    throw new Error(`Malformed taxonomy data in ${file}`)
+  }
+  return unpackTaxonomyData(data)
 }
 
 export function loadEasyTaxonomyData() {
-  if (!easyTaxonomyPromise) {
-    easyTaxonomyPromise = fetchTaxonomy('parents-easy.json')
-  }
+  easyTaxonomyPromise ??= fetchTaxonomy('parents-easy.json')
   return easyTaxonomyPromise
 }
 
 export function loadTaxonomyData() {
-  if (!fullTaxonomyPromise) {
-    fullTaxonomyPromise = fetchTaxonomy('parents.json')
-  }
+  fullTaxonomyPromise ??= fetchTaxonomy('parents.json')
   return fullTaxonomyPromise
 }
 
-export function loadSpeciesPool() {
-  if (!speciesPoolPromise) {
-    speciesPoolPromise = fetch(`/taxonomy/species-pool.json`).then(r => {
-      if (!r.ok) {
-        throw new Error(`Failed to load species pool: ${r.status}`)
-      }
-      return r.json()
-    })
+function isSpeciesPool(value: unknown): value is SpeciesPoolEntry[] {
+  return (
+    Array.isArray(value) &&
+    value.every(
+      (entry: unknown) => Array.isArray(entry) && typeof entry[0] === 'number',
+    )
+  )
+}
+
+async function fetchSpeciesPool() {
+  const r = await fetch(`/taxonomy/species-pool.json`)
+  if (!r.ok) {
+    throw new Error(`Failed to load species pool: ${r.status}`)
   }
+  const data: unknown = await r.json()
+  if (!isSpeciesPool(data)) {
+    throw new Error('Malformed species pool')
+  }
+  return data
+}
+
+export function loadSpeciesPool() {
+  speciesPoolPromise ??= fetchSpeciesPool()
   return speciesPoolPromise
 }
 
 function isDescendantOf(
   taxId: number,
   ancestorId: number,
-  parents: Record<string, number>,
+  parents: TaxonomyData['parents'],
 ) {
   let current = taxId
   const seen = new Set<number>()
@@ -289,7 +314,10 @@ export function findTaxId(query: string, data: TaxonomyData) {
   const trimmed = query.trim()
   if (/^\d+$/.test(trimmed)) {
     const id = Number(trimmed)
-    if (data.parents[trimmed] !== undefined || data.names[trimmed] !== undefined) {
+    if (
+      data.parents[trimmed] !== undefined ||
+      data.names[trimmed] !== undefined
+    ) {
       return id
     }
   }
@@ -299,7 +327,7 @@ export function findTaxId(query: string, data: TaxonomyData) {
 export function findTaxIdByName(query: string, data: TaxonomyData) {
   const lower = query.toLowerCase()
   for (const [id, name] of Object.entries(data.names)) {
-    if (name.toLowerCase() === lower) {
+    if (name?.toLowerCase() === lower) {
       return Number(id)
     }
   }
@@ -317,7 +345,7 @@ export function searchTaxonNames(query: string, data: TaxonomyData, limit = 8) {
   const containsMatches: { id: string; name: string; rank: string }[] = []
   for (const [id, name] of Object.entries(data.names)) {
     const rank = data.ranks[id] ?? ''
-    if (speciesRanks.has(rank)) {
+    if (name === undefined || speciesRanks.has(rank)) {
       continue
     }
     const nameLower = name.toLowerCase()
@@ -441,14 +469,14 @@ const KINGDOM_IDS = {
 } as const
 
 // Weights for kingdom-based sampling (higher = more frequent)
-const KINGDOM_WEIGHTS = {
-  Metazoa: 70,
-  Viridiplantae: 20,
-  Fungi: 5,
-  Other: 5,
-} as const
+const KINGDOM_WEIGHTS = [
+  ['Metazoa', 70],
+  ['Viridiplantae', 20],
+  ['Fungi', 5],
+  ['Other', 5],
+] as const
 
-type KingdomKey = keyof typeof KINGDOM_WEIGHTS
+type KingdomKey = (typeof KINGDOM_WEIGHTS)[number][0]
 
 interface CladeEntry {
   taxId: number
@@ -465,7 +493,7 @@ let cladeIndexCache:
   | undefined
 
 function buildCladeIndex(pool: SpeciesPoolEntry[], data: TaxonomyData) {
-  if (cladeIndexCache && cladeIndexCache.pool === pool) {
+  if (cladeIndexCache?.pool === pool) {
     return cladeIndexCache.byRank
   }
 
@@ -533,9 +561,9 @@ function weightedPickFromBucket(clades: CladeEntry[]) {
   }
 
   const available: { key: KingdomKey; weight: number }[] = []
-  for (const key of Object.keys(KINGDOM_WEIGHTS) as KingdomKey[]) {
+  for (const [key, weight] of KINGDOM_WEIGHTS) {
     if (byKingdom[key].length > 0) {
-      available.push({ key, weight: KINGDOM_WEIGHTS[key] })
+      available.push({ key, weight })
     }
   }
 
@@ -577,7 +605,7 @@ function getMicrobialGroup(taxId: number, data: TaxonomyData) {
   while (current !== 1 && !seen.has(current)) {
     seen.add(current)
     const name = data.names[String(current)]
-    if (name) {
+    if (name !== undefined) {
       for (const group of MICROBIAL_GROUP_NAMES) {
         if (name === group) {
           return group
@@ -598,7 +626,7 @@ let microbialGroupCache:
   | undefined
 
 function getMicrobialGroups(pool: SpeciesPoolEntry[], data: TaxonomyData) {
-  if (microbialGroupCache && microbialGroupCache.pool === pool) {
+  if (microbialGroupCache?.pool === pool) {
     return microbialGroupCache.byGroup
   }
   const byGroup = new Map<string, SpeciesPoolEntry[]>()
@@ -720,7 +748,7 @@ export function pickThreeHardMode(
   return randomSampleN(pool, 3)
 }
 
-const rankScore: Record<string, number> = {
+const rankScore: Partial<Record<string, number>> = {
   subspecies: 9,
   species: 8,
   subgenus: 7,
@@ -752,8 +780,10 @@ export function lcaClosenessScore(lca: LcaResult, data?: TaxonomyData) {
     const lineage = getLineageFromParents(lca.taxId, data.parents)
     for (let i = 1; i < lineage.length; i++) {
       const ancestorRank = data.ranks[String(lineage[i])]
-      if (ancestorRank !== undefined && rankScore[ancestorRank] !== undefined) {
-        return rankScore[ancestorRank] * 1000 + lca.depth
+      const ancestorScore =
+        ancestorRank === undefined ? undefined : rankScore[ancestorRank]
+      if (ancestorScore !== undefined) {
+        return ancestorScore * 1000 + lca.depth
       }
     }
   }
@@ -1264,7 +1294,7 @@ function findClades(
   const clades: { taxId: number; name: string }[] = []
   for (let i = idx - 1; i >= 0; i--) {
     const rank = data.ranks[String(lineage[i])]
-    if (rank && contextRanks.has(rank)) {
+    if (rank !== undefined && contextRanks.has(rank)) {
       clades.push({
         taxId: lineage[i],
         name: data.names[String(lineage[i])] ?? String(lineage[i]),
@@ -1323,7 +1353,7 @@ function makeBranchNode(
     wikiLink: wikiUrl(leafClade?.name ?? organism.commonName),
     taxId: organism.ncbiTaxId,
   }
-  if (highlight) {
+  if (highlight === true) {
     leaf.highlight = true
   }
   if (
@@ -1336,7 +1366,7 @@ function makeBranchNode(
       wikiLink: wikiUrl(clades.branch.name),
       children: [leaf],
     }
-    if (highlight) {
+    if (highlight === true) {
       node.highlight = true
     }
     return node
@@ -1406,7 +1436,7 @@ export function expandDiagramUp(
     const taxId = lineage[i]
     const name = data.names[String(taxId)]
     const rank = data.ranks[String(taxId)]
-    if (name && rank && contextRanks.has(rank)) {
+    if (name !== undefined && rank !== undefined && contextRanks.has(rank)) {
       return {
         diagram: {
           label: annotateLabel(name),
@@ -1436,8 +1466,8 @@ export function buildTreeFromLineages(
     commonName: string
     scientificName: string
   }[],
-  nameMap: Record<number, { name: string; rank: string }>,
-  lineageMap?: Record<number, number[]>,
+  nameMap: Partial<Record<number, { name: string; rank: string }>>,
+  lineageMap?: Partial<Record<number, number[]>>,
   taxonomyData?: TaxonomyData,
 ) {
   const importantRanks = new Set([
@@ -1454,8 +1484,9 @@ export function buildTreeFromLineages(
   const orgTaxIds = new Set(organisms.map(o => o.ncbiTaxId))
   const orgLineages = new Map<number, number[]>()
   for (const org of organisms) {
-    if (lineageMap && lineageMap[org.ncbiTaxId]) {
-      orgLineages.set(org.ncbiTaxId, lineageMap[org.ncbiTaxId])
+    const lineage = lineageMap?.[org.ncbiTaxId]
+    if (lineage) {
+      orgLineages.set(org.ncbiTaxId, lineage)
     } else if (taxonomyData) {
       orgLineages.set(
         org.ncbiTaxId,

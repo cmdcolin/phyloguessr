@@ -33,11 +33,12 @@ const { title } = Astro.props
           s.src = 'https://www.googletagmanager.com/gtag/js?id=G-PT07Q2BEQR'
           document.head.appendChild(s)
           window.dataLayer = window.dataLayer || []
-          function gtag() {
-            dataLayer.push(arguments)
-          }
           gtag('js', new Date())
           gtag('config', 'G-PT07Q2BEQR')
+        }
+
+        function gtag() {
+          dataLayer.push(arguments)
         }
 
         function showBanner() {

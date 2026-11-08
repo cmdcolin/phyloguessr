@@ -1,9 +1,9 @@
 import { Fragment } from 'react'
 
-import { TaxLink } from './TaxLink.tsx'
 import { capitalize, formatRank } from '../utils/format.ts'
 import { ncbiTaxonomyUrl, wikipediaUrl } from '../utils/links.ts'
 import { getLineageFromParents } from '../utils/taxonomy.ts'
+import { TaxLink } from './TaxLink.tsx'
 
 import type { Organism } from '../data/organisms.ts'
 import type { TaxonomyData } from '../utils/taxonomy.ts'
@@ -32,7 +32,7 @@ export function getFullLineage(taxId: number, data: TaxonomyData) {
     const id = lin[i]
     const name = data.names[String(id)]
     const rank = data.ranks[String(id)]
-    if (name) {
+    if (name !== undefined) {
       steps.push({ taxId: id, name, rank: rank ?? 'no rank' })
     }
   }
@@ -88,7 +88,7 @@ export function OrganismBreadcrumbs({
   correct?: boolean
   startIndex: number
 }) {
-  const allSteps = getFullLineage(organism.ncbiTaxId, taxonomyData).reverse()
+  const allSteps = getFullLineage(organism.ncbiTaxId, taxonomyData).toReversed()
   const pinnedRanks = new Set(['domain', 'kingdom', 'phylum'])
   const pinned = allSteps.filter(s => pinnedRanks.has(s.rank))
   const tail = allSteps.slice(startIndex)
@@ -99,18 +99,18 @@ export function OrganismBreadcrumbs({
   return (
     <>
       <span className="breadcrumb-label">
-        {isUserPick && (
+        {isUserPick === true && (
           <span
             className={`breadcrumb-pick-arrow ${correct === false ? 'breadcrumb-pick-wrong' : ''}`}
           >
             {'→ '}
           </span>
         )}
-        {color && (
+        {color !== undefined && (
           <span className="map-color-dot" style={{ backgroundColor: color }} />
         )}
         {capitalize(organism.commonName)}{' '}
-        {color && (
+        {color !== undefined && (
           <>
             <a
               className="breadcrumb-secondary-link"
@@ -162,12 +162,12 @@ export function LineageBreadcrumbs({
   correct?: boolean
 }) {
   const lineages = organisms.map(o =>
-    getFullLineage(o.ncbiTaxId, taxonomyData).reverse(),
+    getFullLineage(o.ncbiTaxId, taxonomyData).toReversed(),
   )
   const startIndex = getDivergenceStart(lineages)
 
   const sortedIndices = userSelectedTaxIds
-    ? [...organisms.keys()].sort((a, b) => {
+    ? [...organisms.keys()].toSorted((a, b) => {
         const aSelected = userSelectedTaxIds.has(organisms[a].ncbiTaxId) ? 0 : 1
         const bSelected = userSelectedTaxIds.has(organisms[b].ncbiTaxId) ? 0 : 1
         return aSelected - bSelected

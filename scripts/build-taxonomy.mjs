@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import { execSync } from 'child_process'
 import {
   createWriteStream,
   createReadStream,
@@ -10,11 +11,11 @@ import {
   statSync,
 } from 'fs'
 import { writeFile } from 'fs/promises'
+import { join, dirname } from 'path'
 import { createInterface } from 'readline'
 import { pipeline } from 'stream/promises'
-import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
-import { execSync } from 'child_process'
+
 import { CURATED_MICROORGANISMS } from './curated-microorganisms.mjs'
 import { loadCuratedTaxIds } from './lib/organisms.mjs'
 

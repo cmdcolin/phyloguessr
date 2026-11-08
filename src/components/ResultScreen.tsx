@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+import { capitalize, formatRank } from '../utils/format.ts'
+import { expandDiagramUp } from '../utils/taxonomy.ts'
 import { LineageBreadcrumbs } from './Breadcrumbs.tsx'
 import Button from './Button.tsx'
 import DiagramTree from './DiagramTree.tsx'
@@ -7,8 +9,6 @@ import { MapToggle } from './MapToggle.tsx'
 import PhyloTree from './PhyloTree.tsx'
 import { ShareButton } from './ShareButton.tsx'
 import { TaxLink } from './TaxLink.tsx'
-import { capitalize, formatRank } from '../utils/format.ts'
-import { expandDiagramUp } from '../utils/taxonomy.ts'
 
 import type { Organism } from '../data/organisms.ts'
 import type { DiagramNode, LcaResult, TaxonomyData } from '../utils/taxonomy.ts'
@@ -46,7 +46,7 @@ function FunFactSources({
 }) {
   return (
     <>
-      {funFact && (
+      {funFact !== undefined && (
         <p className="fun-fact-blurb">
           <span className="fun-fact-label">Fun fact:</span>
           {funFact}
@@ -193,16 +193,16 @@ export default function ResultScreen({
   funFact,
   diagram,
   sources,
-  activelyDebated,
+  activelyDebated = false,
   shareUrl,
   onPlayAgain,
   score,
   questionLabel,
-  timedOut,
+  timedOut = false,
 }: ResultScreenProps) {
   return (
     <div className="result-screen">
-      {questionLabel && (
+      {questionLabel !== undefined && (
         <div className="result-question-label">{questionLabel}</div>
       )}
       <div

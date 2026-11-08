@@ -142,7 +142,7 @@ export default function PhyloTree({
       />
 
       {/* Clade label */}
-      {cladeLabel && (
+      {cladeLabel !== undefined && (
         <text
           x={innerX + 4}
           y={innerY - 8}
@@ -155,7 +155,7 @@ export default function PhyloTree({
       )}
 
       {/* Root label */}
-      {rootLabel && (
+      {rootLabel !== undefined && (
         <text
           x={rootX + 4}
           y={rootY - 8}
@@ -174,10 +174,10 @@ export default function PhyloTree({
         { org: outgroup, y: y3 },
       ].map(({ org, y }) => {
         const imgUrl = images[org.ncbiTaxId]
-        const textX = leafX + 8 + (imgUrl ? imgSize + 6 : 0)
+        const textX = leafX + 8 + (imgUrl != null ? imgSize + 6 : 0)
         return (
           <g key={org.ncbiTaxId}>
-            {imgUrl && (
+            {imgUrl != null && (
               <g transform={`translate(${leafX + 8 + imgSize / 2}, ${y})`}>
                 <image
                   href={imgUrl}

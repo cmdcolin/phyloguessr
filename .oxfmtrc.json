@@ -1,0 +1,19 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "semi": false,
+  "singleQuote": true,
+  "trailingComma": "all",
+  "arrowParens": "avoid",
+  "proseWrap": "always",
+  "printWidth": 80,
+  "sortImports": {
+    "groups": [
+      "builtin",
+      ["external", "internal"],
+      ["parent", "sibling", "index"],
+      "type"
+    ]
+  },
+  "sortPackageJson": false,
+  "ignorePatterns": ["pnpm-lock.yaml", "public/taxonomy/", "android"]
+}

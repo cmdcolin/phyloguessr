@@ -1,5 +1,5 @@
-import styles from './OrganismCard.module.css'
 import { capitalize, cn } from '../utils/format.ts'
+import styles from './OrganismCard.module.css'
 
 import type { Difficulty } from './gameUtils.ts'
 
@@ -29,7 +29,8 @@ export default function OrganismCard({
   hint,
 }: OrganismCardProps) {
   const showLabels = difficulty === 'normal'
-  const showInfo = showLabels || !imageUrl || !!mapColor || hint != null
+  const showInfo =
+    showLabels || imageUrl === null || mapColor !== undefined || hint != null
 
   return (
     <button
@@ -38,7 +39,7 @@ export default function OrganismCard({
       disabled={disabled}
     >
       <div className={cn(styles.image, imageContain && styles.imageContain)}>
-        {imageUrl ? (
+        {imageUrl !== null ? (
           <img
             src={imageUrl}
             alt={showLabels ? commonName : scientificName}
@@ -52,7 +53,7 @@ export default function OrganismCard({
         <div className={styles.info}>
           {showLabels ? (
             <div className={styles.commonName}>
-              {mapColor && (
+              {mapColor !== undefined && (
                 <span
                   className={styles.mapColorDot}
                   style={{ backgroundColor: mapColor }}
@@ -61,7 +62,7 @@ export default function OrganismCard({
               {capitalize(commonName)}
             </div>
           ) : (
-            mapColor && (
+            mapColor !== undefined && (
               <span
                 className={styles.mapColorDot}
                 style={{ backgroundColor: mapColor }}

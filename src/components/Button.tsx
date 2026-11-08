@@ -22,7 +22,7 @@ export default function Button({
   children,
 }: Props) {
   const cls = cn('btn', `btn-${variant}`, className)
-  if (href && !disabled) {
+  if (href !== undefined && disabled !== true) {
     return (
       <a href={href} className={cls} title={title}>
         {children}

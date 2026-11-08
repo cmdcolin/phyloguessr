@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 
+import { getCurrentUser, signOut } from '../firebase.ts'
 import OnlinePlayers from './OnlinePlayers.tsx'
 import TreeIcon from './TreeIcon.tsx'
-import { getCurrentUser, signOut } from '../firebase.ts'
 
 export default function Header() {
   const [showMenu, setShowMenu] = useState(false)
@@ -10,22 +10,28 @@ export default function Header() {
   const menuRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    getCurrentUser().then(user => {
+    void getCurrentUser().then(user => {
       setSignedIn(user !== null)
     })
   }, [])
 
   useEffect(() => {
-    if (!showMenu) {
-      return
-    }
-    const handleClickOutside = (e: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
-        setShowMenu(false)
+    if (showMenu) {
+      const handleClickOutside = (e: MouseEvent) => {
+        if (
+          menuRef.current &&
+          e.target instanceof Node &&
+          !menuRef.current.contains(e.target)
+        ) {
+          setShowMenu(false)
+        }
+      }
+      document.addEventListener('mousedown', handleClickOutside)
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside)
       }
     }
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => document.removeEventListener('mousedown', handleClickOutside)
+    return undefined
   }, [showMenu])
 
   return (
@@ -103,7 +109,7 @@ export default function Header() {
                   <button
                     className="site-hamburger-item"
                     onClick={() => {
-                      signOut().then(() => {
+                      void signOut().then(() => {
                         setSignedIn(false)
                         setShowMenu(false)
                       })

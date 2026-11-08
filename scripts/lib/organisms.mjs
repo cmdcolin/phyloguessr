@@ -14,9 +14,7 @@ export function loadCuratedOrganisms() {
   return readdirSync(ORGANISMS_DIR)
     .filter(f => f.endsWith('.json'))
     .sort()
-    .flatMap(f =>
-      JSON.parse(readFileSync(join(ORGANISMS_DIR, f), 'utf8')),
-    )
+    .flatMap(f => JSON.parse(readFileSync(join(ORGANISMS_DIR, f), 'utf8')))
 }
 
 export function loadCuratedTaxIds() {

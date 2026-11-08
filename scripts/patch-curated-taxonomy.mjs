@@ -103,7 +103,9 @@ async function main() {
     console.log('All curated/scenario taxIds already present in parents.json')
     return
   }
-  console.log(`${missing.length} taxId(s) missing — fetching lineages from NCBI`)
+  console.log(
+    `${missing.length} taxId(s) missing — fetching lineages from NCBI`,
+  )
 
   let added = 0
   for (const taxId of missing) {

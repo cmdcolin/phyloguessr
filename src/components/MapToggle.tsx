@@ -2,8 +2,8 @@ import { useState } from 'react'
 
 import SpeciesMap, { MAP_COLORS } from './SpeciesMap.tsx'
 
-import type { Difficulty } from './gameUtils.ts'
 import type { Organism } from '../data/organisms.ts'
+import type { Difficulty } from './gameUtils.ts'
 
 export function MapToggle({
   organisms,
@@ -16,7 +16,7 @@ export function MapToggle({
 }) {
   const [show, setShow] = useState(false)
   const sorted = organismColors
-    ? [...organisms].sort(
+    ? organisms.toSorted(
         (a, b) =>
           MAP_COLORS.indexOf(organismColors[a.ncbiTaxId]) -
           MAP_COLORS.indexOf(organismColors[b.ncbiTaxId]),

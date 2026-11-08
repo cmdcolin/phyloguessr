@@ -1,16 +1,19 @@
 import { useCallback, useState } from 'react'
 
-import { comboKey } from './gameUtils.ts'
 import { sessionStorageGetItem } from '../utils/storage.ts'
 import { fetchWikipediaAbstract } from '../utils/wikipedia.ts'
+import { comboKey } from './gameUtils.ts'
 
 import type { Organism } from '../data/organisms.ts'
 
 export function useSeenCombos(storageKey: string) {
   const [seenCombos, setSeenCombos] = useState<Set<string>>(() => {
-    const saved = sessionStorageGetItem(storageKey)
-    if (saved) return new Set(JSON.parse(saved) as string[])
-    return new Set()
+    const saved: unknown = JSON.parse(sessionStorageGetItem(storageKey) ?? '[]')
+    return new Set(
+      Array.isArray(saved)
+        ? saved.filter((key): key is string => typeof key === 'string')
+        : [],
+    )
   })
 
   const recordCombo = useCallback(
@@ -56,5 +59,12 @@ export function useHints() {
     setHintLoading(false)
   }, [])
 
-  return { hints, hintLoading, hintUsed, showHintPenalty, resetHints, loadHints }
+  return {
+    hints,
+    hintLoading,
+    hintUsed,
+    showHintPenalty,
+    resetHints,
+    loadHints,
+  }
 }

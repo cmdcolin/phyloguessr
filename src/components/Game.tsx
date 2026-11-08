@@ -1,28 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
 
-import AdvancedTaxonSearch from './AdvancedTaxonSearch.tsx'
-import Button from './Button.tsx'
-import GameOverScreen from './GameOverScreen.tsx'
-import Header from './Header.tsx'
-import { MapToggle } from './MapToggle.tsx'
-import OrganismCard from './OrganismCard.tsx'
-import ResultScreen from './ResultScreen.tsx'
-import SkipButton from './SkipButton.tsx'
-import { MAP_COLORS } from './SpeciesMap.tsx'
-import { TaxLink } from './TaxLink.tsx'
-import Timer from './Timer.tsx'
-import { useHints, useSeenCombos } from './gameHooks.ts'
-import {
-  buildRetryUrl,
-  buildShareUrl,
-  buildTimedOutUrl,
-  comboKey,
-  getDifficulty,
-  parseSharedIds,
-  resolveOrganism,
-  toggleSelect,
-  updateUrlWithQuestion,
-} from './gameUtils.ts'
 import { loadSurprisingScenarios } from '../data/surprisingFacts.ts'
 import { DISPLAY_TREE } from '../utils/cladePresets.ts'
 import { shuffled } from '../utils/format.ts'
@@ -39,8 +16,30 @@ import {
   pickThreeHardModeDistance,
   pickThreeMicrobialCrossKingdom,
 } from '../utils/taxonomy.ts'
+import AdvancedTaxonSearch from './AdvancedTaxonSearch.tsx'
+import Button from './Button.tsx'
+import { useHints, useSeenCombos } from './gameHooks.ts'
+import GameOverScreen from './GameOverScreen.tsx'
+import {
+  buildRetryUrl,
+  buildShareUrl,
+  buildTimedOutUrl,
+  comboKey,
+  getDifficulty,
+  parseSharedIds,
+  resolveOrganism,
+  toggleSelect,
+  updateUrlWithQuestion,
+} from './gameUtils.ts'
+import Header from './Header.tsx'
+import { MapToggle } from './MapToggle.tsx'
+import OrganismCard from './OrganismCard.tsx'
+import ResultScreen from './ResultScreen.tsx'
+import SkipButton from './SkipButton.tsx'
+import { MAP_COLORS } from './SpeciesMap.tsx'
+import { TaxLink } from './TaxLink.tsx'
+import Timer from './Timer.tsx'
 
-import type { RoundResult } from './GameOverScreen.tsx'
 import type { Organism } from '../data/organisms.ts'
 import type { SurprisingScenario } from '../data/surprisingFacts.ts'
 import type {
@@ -49,6 +48,7 @@ import type {
   SpeciesPoolEntry,
   TaxonomyData,
 } from '../utils/taxonomy.ts'
+import type { RoundResult } from './GameOverScreen.tsx'
 
 type GameState =
   | 'customizing'
@@ -116,11 +116,14 @@ export default function Game({ mode }: { mode: GameMode }) {
   >(undefined)
   const [shownScenarioIndices, setShownScenarioIndices] = useState<Set<number>>(
     () => {
-      const saved = sessionStorageGetItem(shownScenariosKey)
-      if (saved) {
-        return new Set(JSON.parse(saved) as number[])
-      }
-      return new Set()
+      const saved: unknown = JSON.parse(
+        sessionStorageGetItem(shownScenariosKey) ?? '[]',
+      )
+      return new Set(
+        Array.isArray(saved)
+          ? saved.filter((i): i is number => typeof i === 'number')
+          : [],
+      )
     },
   )
 
@@ -253,8 +256,8 @@ export default function Game({ mode }: { mode: GameMode }) {
           | undefined
 
         if (isMicroMode) {
-          const result = pickThreeMicrobialCrossKingdom(pool, data)
-          if (!result) {
+          const microPicks = pickThreeMicrobialCrossKingdom(pool, data)
+          if (!microPicks) {
             if (mode === 'custom') {
               setLoadingMessage('Not enough microorganisms in the pool')
               return
@@ -262,11 +265,11 @@ export default function Game({ mode }: { mode: GameMode }) {
             setCladeFilter('')
             continue
           }
-          picks = result
+          picks = microPicks
           attemptClade = { taxId: 0, name: 'Microorganisms', rank: '' }
         } else if (cladeTaxId !== undefined) {
-          const result = pickThreeFromClade(cladeTaxId, pool, data)
-          if (!result) {
+          const cladePicks = pickThreeFromClade(cladeTaxId, pool, data)
+          if (!cladePicks) {
             const label = data.names[String(cladeTaxId)] ?? cladeFilter.trim()
             setLoadingMessage(
               `Not enough species in "${label}" — try a broader group`,
@@ -274,14 +277,14 @@ export default function Game({ mode }: { mode: GameMode }) {
             setLoadingAction('back')
             return
           }
-          picks = result
+          picks = cladePicks
           const name = data.names[String(cladeTaxId)] ?? cladeFilter.trim()
           const rank = data.ranks[String(cladeTaxId)] ?? ''
           attemptClade = { taxId: cladeTaxId, name, rank }
         } else {
-          const result = pickThreeHardModeDistance(pool, data)
-          picks = result.picks
-          attemptClade = result.clade
+          const hardPick = pickThreeHardModeDistance(pool, data)
+          picks = hardPick.picks
+          attemptClade = hardPick.clade
         }
 
         const orgs: Organism[] = picks.map(
@@ -368,7 +371,7 @@ export default function Game({ mode }: { mode: GameMode }) {
         const org = resolveOrganism(id, pool, data)
         if (!org) {
           setLoadingMessage('Could not find one of the shared species.')
-          startRound()
+          void startRound()
           return
         }
         orgs.push(org)
@@ -390,20 +393,20 @@ export default function Game({ mode }: { mode: GameMode }) {
 
     if (isTimedOut && sharedIds) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
-      loadSharedQuestion(sharedIds, {
+      void loadSharedQuestion(sharedIds, {
         isShared: false,
         targetState: 'timedOut',
       })
     } else if (isRetry && sharedIds) {
-      loadSharedQuestion(sharedIds, { isShared: false })
+      void loadSharedQuestion(sharedIds, { isShared: false })
     } else if (sharedIds) {
-      loadSharedQuestion(sharedIds)
+      void loadSharedQuestion(sharedIds)
     } else if (mode === 'custom') {
-      loadTaxonomyData().then(setTaxonomyData)
+      void loadTaxonomyData().then(setTaxonomyData)
     } else {
-      startRound()
+      void startRound()
     }
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps, react/exhaustive-effect-dependencies
 
   useEffect(() => {
     const handler = () => {
@@ -468,7 +471,7 @@ export default function Game({ mode }: { mode: GameMode }) {
     if (scenario) {
       resultData.funFact = scenario.funFact
       resultData.sources = scenario.sources
-      if (scenario.activelyDebated) {
+      if (scenario.activelyDebated === true) {
         resultData.activelyDebated = true
         resultData.correct = true
       }
@@ -527,7 +530,7 @@ export default function Game({ mode }: { mode: GameMode }) {
       setState('gameOver')
     } else {
       setQuestionNumber(prev => prev + 1)
-      startRound()
+      void startRound()
     }
   }, [isLastQuestion, isSharedQuestion, startRound])
 
@@ -536,7 +539,7 @@ export default function Game({ mode }: { mode: GameMode }) {
     setTotalScore(0)
     setRoundResults([])
     setIsSharedQuestion(false)
-    startRound()
+    void startRound()
   }, [startRound])
 
   return (
@@ -585,11 +588,11 @@ export default function Game({ mode }: { mode: GameMode }) {
                   >
                     <span className="clade-tree-prefix">{entry.prefix}</span>
                     <span className="clade-tree-node">
-                      {entry.emoji && (
+                      {entry.emoji !== undefined && (
                         <span className="clade-tree-emoji">{entry.emoji}</span>
                       )}
                       <span
-                        className={`clade-tree-label${entry.emoji ? '' : ' clade-tree-label-muted'}`}
+                        className={`clade-tree-label${entry.emoji !== undefined ? '' : ' clade-tree-label-muted'}`}
                       >
                         {entry.label}
                       </span>
@@ -623,7 +626,7 @@ export default function Game({ mode }: { mode: GameMode }) {
                 setShownScenarioIndices(new Set())
                 sessionStorage.removeItem(shownScenariosKey)
                 clearSeenCombos()
-                startRound()
+                void startRound()
               }}
             >
               Restart {mode === 'easy' ? 'Easy' : 'Tricky'} Mode
@@ -641,7 +644,7 @@ export default function Game({ mode }: { mode: GameMode }) {
           {loadingAction === 'retry' && (
             <Button
               onClick={() => {
-                startRound()
+                void startRound()
               }}
             >
               Retry
@@ -714,7 +717,7 @@ export default function Game({ mode }: { mode: GameMode }) {
                 <button
                   className="hint-btn"
                   onClick={() => {
-                    handleHint()
+                    void handleHint()
                   }}
                   title="Show hints for all organisms (-50% pts)"
                 >
@@ -736,7 +739,7 @@ export default function Game({ mode }: { mode: GameMode }) {
             </Button>
             <SkipButton
               onClick={() => {
-                startRound()
+                void startRound()
               }}
             />
           </div>
@@ -753,7 +756,7 @@ export default function Game({ mode }: { mode: GameMode }) {
             </a>
             <SkipButton
               onClick={() => {
-                startRound()
+                void startRound()
               }}
             />
           </div>

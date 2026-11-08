@@ -1,24 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
 
-import Button from './Button.tsx'
-import GameOverScreen from './GameOverScreen.tsx'
-import Header from './Header.tsx'
-import MultiResultScreen from './MultiResultScreen.tsx'
-import OrganismCard from './OrganismCard.tsx'
-import SkipButton from './SkipButton.tsx'
-import { TaxLink } from './TaxLink.tsx'
-import Timer from './Timer.tsx'
-import { useHints, useSeenCombos } from './gameHooks.ts'
-import {
-  buildRetryUrl,
-  buildShareUrl,
-  buildTimedOutUrl,
-  comboKey,
-  getDifficulty,
-  parseSharedIds,
-  resolveOrganism,
-  toggleSelect,
-} from './gameUtils.ts'
 import { shuffled } from '../utils/format.ts'
 import { TOTAL_QUESTIONS } from '../utils/scoring.ts'
 import {
@@ -30,11 +11,30 @@ import {
   pickNFromClade,
   pickNHardModeDistance,
 } from '../utils/taxonomy.ts'
+import Button from './Button.tsx'
+import { useHints, useSeenCombos } from './gameHooks.ts'
+import GameOverScreen from './GameOverScreen.tsx'
+import {
+  buildRetryUrl,
+  buildShareUrl,
+  buildTimedOutUrl,
+  comboKey,
+  getDifficulty,
+  parseSharedIds,
+  resolveOrganism,
+  toggleSelect,
+} from './gameUtils.ts'
+import Header from './Header.tsx'
+import MultiResultScreen from './MultiResultScreen.tsx'
+import OrganismCard from './OrganismCard.tsx'
+import SkipButton from './SkipButton.tsx'
+import { TaxLink } from './TaxLink.tsx'
+import Timer from './Timer.tsx'
 
-import type { RoundResult } from './GameOverScreen.tsx'
-import type { MultiResultData } from './MultiResultScreen.tsx'
 import type { Organism } from '../data/organisms.ts'
 import type { SpeciesPoolEntry, TaxonomyData } from '../utils/taxonomy.ts'
+import type { RoundResult } from './GameOverScreen.tsx'
+import type { MultiResultData } from './MultiResultScreen.tsx'
 
 type GameState = 'loading' | 'selecting' | 'timedOut' | 'result' | 'gameOver'
 
@@ -58,8 +58,14 @@ export default function MultiGame() {
   const [loadingAction, setLoadingAction] = useState<
     'retry' | 'back' | undefined
   >(undefined)
-  const { hints, hintLoading, hintUsed, showHintPenalty, resetHints, loadHints } =
-    useHints()
+  const {
+    hints,
+    hintLoading,
+    hintUsed,
+    showHintPenalty,
+    resetHints,
+    loadHints,
+  } = useHints()
   const [hintsVisible, setHintsVisible] = useState(false)
   const [questionNumber, setQuestionNumber] = useState(1)
   const [totalScore, setTotalScore] = useState(0)
@@ -106,8 +112,8 @@ export default function MultiGame() {
     for (let attempt = 0; attempt < 20; attempt++) {
       let picks: SpeciesPoolEntry[]
       if (cladeTaxId !== undefined) {
-        const result = pickNFromClade(SPECIES_COUNT, cladeTaxId, pool, data)
-        if (!result) {
+        const cladePicks = pickNFromClade(SPECIES_COUNT, cladeTaxId, pool, data)
+        if (!cladePicks) {
           const label = data.names[String(cladeTaxId)] ?? cladeQuery
           setLoadingMessage(
             `Not enough species in "${label}" — try a broader group`,
@@ -115,7 +121,7 @@ export default function MultiGame() {
           setLoadingAction('back')
           return
         }
-        picks = result
+        picks = cladePicks
         const name = data.names[String(cladeTaxId)] ?? cladeQuery
         const rank = data.ranks[String(cladeTaxId)] ?? ''
         finalClade = { taxId: cladeTaxId, name, rank }
@@ -172,7 +178,14 @@ export default function MultiGame() {
     setOrganisms(shuffledOrgs)
     history.pushState(null, '', buildShareUrl(shuffledOrgs))
     setState('selecting')
-  }, [taxonomyData, speciesPool, seenCombos, cladeFilter, resetHints, recordCombo])
+  }, [
+    taxonomyData,
+    speciesPool,
+    seenCombos,
+    cladeFilter,
+    resetHints,
+    recordCombo,
+  ])
 
   const loadSharedQuestion = useCallback(
     async (
@@ -201,7 +214,7 @@ export default function MultiGame() {
         const org = resolveOrganism(id, pool, data)
         if (!org) {
           setLoadingMessage('Could not find one of the shared species.')
-          startRound()
+          void startRound()
           return
         }
         orgs.push(org)
@@ -221,13 +234,13 @@ export default function MultiGame() {
 
     if (isTimedOut && sharedIds) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
-      loadSharedQuestion(sharedIds, 'timedOut')
+      void loadSharedQuestion(sharedIds, 'timedOut')
     } else if (sharedIds) {
-      loadSharedQuestion(sharedIds)
+      void loadSharedQuestion(sharedIds)
     } else {
-      startRound()
+      void startRound()
     }
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps, react/exhaustive-effect-dependencies
 
   useEffect(() => {
     const handler = () => {
@@ -261,7 +274,7 @@ export default function MultiGame() {
     await loadHints(organisms)
   }, [hintUsed, loadHints, organisms])
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     if (!taxonomyData || organisms.length === 0) {
       return
     }
@@ -322,7 +335,7 @@ export default function MultiGame() {
       setState('gameOver')
     } else {
       setQuestionNumber(prev => prev + 1)
-      startRound()
+      void startRound()
     }
   }, [isLastQuestion, startRound])
 
@@ -330,7 +343,7 @@ export default function MultiGame() {
     setQuestionNumber(1)
     setTotalScore(0)
     setRoundResults([])
-    startRound()
+    void startRound()
   }, [startRound])
 
   return (
@@ -343,7 +356,7 @@ export default function MultiGame() {
           {loadingAction === 'retry' && (
             <Button
               onClick={() => {
-                startRound()
+                void startRound()
               }}
             >
               Retry
@@ -410,7 +423,7 @@ export default function MultiGame() {
               <button
                 className="hint-btn"
                 onClick={() => {
-                  handleHint()
+                  void handleHint()
                 }}
                 title={
                   hintUsed
@@ -435,7 +448,7 @@ export default function MultiGame() {
             </Button>
             <SkipButton
               onClick={() => {
-                startRound()
+                void startRound()
               }}
             />
           </div>
@@ -451,7 +464,7 @@ export default function MultiGame() {
             </a>
             <SkipButton
               onClick={() => {
-                startRound()
+                void startRound()
               }}
             />
           </div>

@@ -19,10 +19,10 @@ function renderLines(
   const lines: TreeLine[] = []
   const connector = isRoot ? '' : isLast ? '└── ' : '├── '
   const isLeaf = !node.children || node.children.length === 0
-  const showArrow = isLeaf && !!node.highlight
+  const showArrow = isLeaf && node.highlight === true
   const isUserChoice =
     isLeaf &&
-    !!node.taxId &&
+    node.taxId !== undefined &&
     !!userSelectedTaxIds &&
     userSelectedTaxIds.has(node.taxId)
 
@@ -102,13 +102,14 @@ export default function DiagramTree({
               {'→ '}
             </span>
           )}
-          {line.taxId !== undefined && organismColors?.[line.taxId] && (
-            <span
-              className="map-color-dot"
-              style={{ backgroundColor: organismColors[line.taxId] }}
-            />
-          )}
-          {line.wikiLink ? (
+          {line.taxId !== undefined &&
+            organismColors?.[line.taxId] !== undefined && (
+              <span
+                className="map-color-dot"
+                style={{ backgroundColor: organismColors[line.taxId] }}
+              />
+            )}
+          {line.wikiLink !== undefined ? (
             <a
               href={line.wikiLink}
               target="_blank"

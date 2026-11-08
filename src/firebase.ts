@@ -100,7 +100,7 @@ export function startPresence() {
   const firstWrite = updatePresence()
   lastPresenceWrite = Date.now()
   heartbeatId = setInterval(() => {
-    updatePresence()
+    void updatePresence()
     lastPresenceWrite = Date.now()
   }, PRESENCE_INTERVAL_MS)
   visibilityHandler = () => {
@@ -108,7 +108,7 @@ export function startPresence() {
       document.visibilityState === 'visible' &&
       Date.now() - lastPresenceWrite >= PRESENCE_INTERVAL_MS
     ) {
-      updatePresence()
+      void updatePresence()
       lastPresenceWrite = Date.now()
     }
   }

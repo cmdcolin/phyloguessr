@@ -8,6 +8,7 @@
 import { readFileSync, writeFileSync, readdirSync } from 'fs'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
+
 import {
   fetchWikipediaThumbnail,
   isWikipediaUrl,

@@ -9,16 +9,28 @@ import {
 import type { SpeciesPoolEntry, TaxonomyData } from '../utils/taxonomy.ts'
 
 const STORAGE_KEY = 'phylo-flagged-species'
+const SORT_KEYS = ['name', 'kingdom', 'phylum'] as const
 const PAGE_SIZE = 60
 
 type FilterMode = 'all' | 'flagged' | 'unflagged' | 'broken-img'
 type NameSource = 'wikipedia' | 'ncbi' | 'scientific-only'
 
+function flaggedTaxId(entry: unknown) {
+  return typeof entry === 'number'
+    ? entry
+    : typeof entry === 'object' &&
+        entry !== null &&
+        'taxId' in entry &&
+        typeof entry.taxId === 'number'
+      ? entry.taxId
+      : undefined
+}
+
 function loadFlagged() {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY)
-    if (raw) {
-      return new Set<number>(JSON.parse(raw))
+    const saved: unknown = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? '[]')
+    if (Array.isArray(saved)) {
+      return new Set(saved.filter((id): id is number => typeof id === 'number'))
     }
   } catch {
     // ignore
@@ -84,7 +96,7 @@ function SpeciesCard({
       onClick={onToggle}
     >
       <div className="qc-card-img">
-        {imageUrl && !imgError ? (
+        {imageUrl !== undefined && !imgError ? (
           <img
             src={imageUrl}
             alt={scientificName}
@@ -128,17 +140,17 @@ export default function QualityControl() {
   const [filterMode, setFilterMode] = useState<FilterMode>('all')
   const [page, setPage] = useState(0)
   const [loading, setLoading] = useState(true)
-  const [sortBy, setSortBy] = useState<'name' | 'kingdom' | 'phylum'>('name')
+  const [sortBy, setSortBy] = useState<(typeof SORT_KEYS)[number]>('name')
   const [brokenImgs, setBrokenImgs] = useState<Set<number>>(new Set())
   const [saveStatus, setSaveStatus] = useState('')
   const containerRef = useRef<HTMLDivElement>(null)
 
   const [wpNames, setWpNames] = useState<
-    Record<string, { wpTitle: string; wdLabel: string }>
+    Partial<Record<string, { wpTitle: string; wdLabel: string }>>
   >({})
 
   useEffect(() => {
-    Promise.all([
+    void Promise.all([
       loadSpeciesPool(),
       loadTaxonomyData(),
       fetch('/taxonomy/wikipedia-names.json')
@@ -209,7 +221,7 @@ export default function QualityControl() {
     for (const v of taxonomyLookup.values()) {
       s.add(v.kingdom)
     }
-    return [...s].sort()
+    return [...s].toSorted()
   }, [taxonomyLookup])
 
   const phyla = useMemo(() => {
@@ -219,7 +231,7 @@ export default function QualityControl() {
         s.add(v.phylum)
       }
     }
-    return [...s].sort()
+    return [...s].toSorted()
   }, [taxonomyLookup, kingdomFilter])
 
   const filtered = useMemo(() => {
@@ -324,17 +336,20 @@ export default function QualityControl() {
     const input = document.createElement('input')
     input.type = 'file'
     input.accept = '.json'
-    input.onchange = () => {
+    input.addEventListener('change', () => {
       const file = input.files?.[0]
       if (file) {
         const reader = new FileReader()
-        reader.onload = () => {
+        reader.addEventListener('load', () => {
           try {
-            const parsed = JSON.parse(reader.result as string)
-            const ids: number[] = Array.isArray(parsed)
-              ? parsed.map((e: { taxId: number } | number) =>
-                  typeof e === 'number' ? e : e.taxId,
-                )
+            const parsed: unknown =
+              typeof reader.result === 'string'
+                ? JSON.parse(reader.result)
+                : null
+            const ids = Array.isArray(parsed)
+              ? parsed
+                  .map(flaggedTaxId)
+                  .filter((id): id is number => id !== undefined)
               : []
             const next = new Set<number>([...flagged, ...ids])
             setFlagged(next)
@@ -342,10 +357,10 @@ export default function QualityControl() {
           } catch {
             alert('Invalid JSON file')
           }
-        }
+        })
         reader.readAsText(file)
       }
-    }
+    })
     input.click()
   }, [flagged])
 
@@ -407,7 +422,7 @@ export default function QualityControl() {
           placeholder="Search by name or taxId..."
           value={search}
           onInput={e => {
-            setSearch((e.target as HTMLInputElement).value)
+            setSearch(e.currentTarget.value)
             setPage(0)
           }}
           className="qc-search"
@@ -416,7 +431,7 @@ export default function QualityControl() {
         <select
           value={kingdomFilter}
           onChange={e => {
-            setKingdomFilter((e.target as HTMLSelectElement).value)
+            setKingdomFilter(e.target.value)
             setPhylumFilter('all')
             setPage(0)
           }}
@@ -433,7 +448,7 @@ export default function QualityControl() {
         <select
           value={phylumFilter}
           onChange={e => {
-            setPhylumFilter((e.target as HTMLSelectElement).value)
+            setPhylumFilter(e.target.value)
             setPage(0)
           }}
           className="qc-select"
@@ -449,12 +464,10 @@ export default function QualityControl() {
         <select
           value={sortBy}
           onChange={e => {
-            setSortBy(
-              (e.target as HTMLSelectElement).value as
-                | 'name'
-                | 'kingdom'
-                | 'phylum',
-            )
+            const key = SORT_KEYS.find(k => k === e.target.value)
+            if (key !== undefined) {
+              setSortBy(key)
+            }
             setPage(0)
           }}
           className="qc-select"

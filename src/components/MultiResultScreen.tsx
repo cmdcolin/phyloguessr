@@ -1,9 +1,3 @@
-import { LineageBreadcrumbs } from './Breadcrumbs.tsx'
-import Button from './Button.tsx'
-import DiagramTree from './DiagramTree.tsx'
-import { MapToggle } from './MapToggle.tsx'
-import { ShareButton } from './ShareButton.tsx'
-import { TaxLink } from './TaxLink.tsx'
 import { capitalize, formatRank } from '../utils/format.ts'
 import {
   buildTreeFromLineages,
@@ -13,6 +7,12 @@ import {
   treeNodeToDiagramNode,
 } from '../utils/taxonomy.ts'
 import { buildClusterLayout } from '../utils/treeLayout.ts'
+import { LineageBreadcrumbs } from './Breadcrumbs.tsx'
+import Button from './Button.tsx'
+import DiagramTree from './DiagramTree.tsx'
+import { MapToggle } from './MapToggle.tsx'
+import { ShareButton } from './ShareButton.tsx'
+import { TaxLink } from './TaxLink.tsx'
 
 import type { Organism } from '../data/organisms.ts'
 import type { LcaResult, TaxonomyData, TreeNode } from '../utils/taxonomy.ts'
@@ -270,7 +270,7 @@ export default function MultiResultScreen({
   taxonomyData,
   shareUrl,
   onPlayAgain,
-  timedOut,
+  timedOut = false,
   questionLabel,
 }: MultiResultScreenProps) {
   const { score, rank, totalPairs, userPair, bestPair, organisms } = result
@@ -286,7 +286,7 @@ export default function MultiResultScreen({
 
   return (
     <div className="result-screen">
-      {questionLabel && (
+      {questionLabel !== undefined && (
         <div className="game-progress result-progress">
           <span>{questionLabel}</span>
         </div>

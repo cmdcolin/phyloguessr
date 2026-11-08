@@ -3,6 +3,8 @@ import { resolve } from 'path'
 
 import { describe, expect, it } from 'vitest'
 
+import { CURATED_MICROORGANISMS } from '../../scripts/curated-microorganisms.mjs'
+import { organisms } from '../data/organisms.ts'
 import {
   buildContextDiagram,
   buildTreeFromLineages,
@@ -10,22 +12,60 @@ import {
   getAllPairLcas,
   getLineageFromParents,
   lcaClosenessScore,
+  isCompactTaxonomyData,
   unpackTaxonomyData,
 } from './taxonomy.ts'
-import { CURATED_MICROORGANISMS } from '../../scripts/curated-microorganisms.mjs'
-import { organisms } from '../data/organisms.ts'
 
-import type { CompactTaxonomyData, TaxonomyData } from './taxonomy.ts'
+import type { CompactTaxonomyData, TaxonomyData, TreeNode } from './taxonomy.ts'
 
 function loadTaxonomyFile(path: string): TaxonomyData {
   try {
-    const raw = JSON.parse(readFileSync(path, 'utf8')) as
-      | CompactTaxonomyData
-      | TaxonomyData
-    return 'D' in raw ? unpackTaxonomyData(raw) : raw
+    const raw: unknown = JSON.parse(readFileSync(path, 'utf8'))
+    return isCompactTaxonomyData(raw)
+      ? unpackTaxonomyData(raw)
+      : { parents: {}, names: {}, ranks: {} }
   } catch {
     return { parents: {}, names: {}, ranks: {} }
   }
+}
+
+function findNode(node: TreeNode, label: string): boolean {
+  return node.label === label || node.children.some(c => findNode(c, label))
+}
+
+interface ScenarioOrganism {
+  ncbiTaxId: number
+  commonName: string
+}
+
+interface Scenario {
+  difficulty: unknown
+  organisms: ScenarioOrganism[]
+  correctPair?: string[]
+}
+
+function isScenarioOrganism(value: unknown): value is ScenarioOrganism {
+  return (
+    typeof value === 'object' &&
+    value !== null &&
+    'ncbiTaxId' in value &&
+    typeof value.ncbiTaxId === 'number' &&
+    'commonName' in value &&
+    typeof value.commonName === 'string'
+  )
+}
+
+function isScenario(value: unknown): value is Scenario {
+  return (
+    typeof value === 'object' &&
+    value !== null &&
+    'organisms' in value &&
+    Array.isArray(value.organisms) &&
+    value.organisms.every(isScenarioOrganism) &&
+    (!('correctPair' in value) ||
+      (Array.isArray(value.correctPair) &&
+        value.correctPair.every((name: unknown) => typeof name === 'string')))
+  )
 }
 
 // A small mock taxonomy tree:
@@ -381,24 +421,24 @@ describe('buildTreeFromLineages', () => {
   const data = makeMockData()
 
   it('builds a tree with correct structure', () => {
-    const organisms = [
+    const orgs = [
       { ncbiTaxId: 21, commonName: 'A', scientificName: 'Species A' },
       { ncbiTaxId: 22, commonName: 'B', scientificName: 'Species B' },
       { ncbiTaxId: 31, commonName: 'C', scientificName: 'Species C' },
     ]
     const nameMap: Record<number, { name: string; rank: string }> = {}
-    const tree = buildTreeFromLineages(organisms, nameMap, undefined, data)
+    const tree = buildTreeFromLineages(orgs, nameMap, undefined, data)
 
     // Root should be Eukaryota (domain) since single-child root gets collapsed
     expect(tree.label).toBe('Eukaryota')
     expect(tree.children.length).toBe(2)
 
-    const childLabels = tree.children.map(c => c.label).sort()
+    const childLabels = tree.children.map(c => c.label).toSorted()
     expect(childLabels).toEqual(['Animals', 'Plants'])
 
     const plants = tree.children.find(c => c.label === 'Plants')!
     expect(plants.children.length).toBe(2)
-    const plantSpecies = plants.children.map(c => c.label).sort()
+    const plantSpecies = plants.children.map(c => c.label).toSorted()
     expect(plantSpecies).toEqual(['Species A', 'Species B'])
   })
 
@@ -419,24 +459,12 @@ describe('buildTreeFromLineages', () => {
         '40': 'no rank',
       },
     }
-    const organisms = [
+    const orgs = [
       { ncbiTaxId: 31, commonName: 'C', scientificName: 'Species C' },
     ]
-    const tree = buildTreeFromLineages(organisms, {}, undefined, extData)
+    const tree = buildTreeFromLineages(orgs, {}, undefined, extData)
 
     // The unranked "Subgroup" node should be collapsed
-    function findNode(
-      node: {
-        label: string
-        children: { label: string; children: unknown[] }[]
-      },
-      label: string,
-    ): boolean {
-      if (node.label === label) {
-        return true
-      }
-      return node.children.some(c => findNode(c as typeof node, label))
-    }
     expect(findNode(tree, 'Subgroup')).toBe(false)
     expect(findNode(tree, 'Species C')).toBe(true)
   })
@@ -444,24 +472,27 @@ describe('buildTreeFromLineages', () => {
 
 describe('compact format round-trip', () => {
   it('unpacks compact format back to TaxonomyData correctly', () => {
-    const original: TaxonomyData = {
-      parents: { '10': 1, '20': 10, '21': 20 },
-      names: { '10': 'Eukaryota', '20': 'Plants', '21': 'Rose' },
-      ranks: { '10': 'domain', '20': 'kingdom', '21': 'species' },
+    const parents: Record<string, number> = { '10': 1, '20': 10, '21': 20 }
+    const names: Record<string, string> = {
+      '10': 'Eukaryota',
+      '20': 'Plants',
+      '21': 'Rose',
     }
+    const ranks: Record<string, string> = {
+      '10': 'domain',
+      '20': 'kingdom',
+      '21': 'species',
+    }
+    const original: TaxonomyData = { parents, names, ranks }
 
-    const rankList = [...new Set(Object.values(original.ranks))].sort()
+    const rankList = [...new Set(Object.values(ranks))].toSorted()
     const rankMap = Object.fromEntries(rankList.map((r, i) => [r, i]))
     const compact: CompactTaxonomyData = {
       R: rankList,
       D: Object.fromEntries(
-        Object.keys(original.parents).map(id => [
+        Object.keys(parents).map(id => [
           id,
-          [
-            original.parents[id],
-            original.names[id] ?? '',
-            rankMap[original.ranks[id]] ?? -1,
-          ],
+          [parents[id], names[id], rankMap[ranks[id]]],
         ]),
       ),
     }
@@ -520,12 +551,10 @@ describe('all curated organisms have valid taxonomy data', () => {
 })
 
 describe('curated microorganisms have valid taxonomy data', () => {
-  const microorganisms = CURATED_MICROORGANISMS as [number, string, string][]
-
   it('no duplicate tax IDs in microorganism list', () => {
-    const seen = new Set<number>()
-    const dupes: [number, string][] = []
-    for (const [taxId, name] of microorganisms) {
+    const seen = new Set<string | number>()
+    const dupes: (string | number)[][] = []
+    for (const [taxId, name] of CURATED_MICROORGANISMS) {
       if (seen.has(taxId)) {
         dupes.push([taxId, name])
       }
@@ -540,24 +569,23 @@ describe('easy-mode data consistency', () => {
     resolve(__dirname, '../../public/taxonomy/parents-easy.json'),
   )
 
-  type ScenarioOrganism = { ncbiTaxId: number; commonName: string }
-  type Scenario = {
-    difficulty: string
-    organisms: [ScenarioOrganism, ScenarioOrganism, ScenarioOrganism]
-    correctPair?: [string, string]
-  }
-
-  let scenarios: Scenario[] = []
+  let parsed: unknown = []
   try {
-    scenarios = JSON.parse(
+    parsed = JSON.parse(
       readFileSync(
         resolve(__dirname, '../../public/taxonomy/easy-scenarios.json'),
         'utf8',
       ),
-    ) as Scenario[]
+    )
   } catch {
     // file missing — tests below will pass vacuously, flagging in CI only when file exists
   }
+
+  const scenarios = Array.isArray(parsed) ? parsed.filter(isScenario) : []
+
+  it('every scenario has organisms and a well-formed correctPair', () => {
+    expect(scenarios.length).toBe(Array.isArray(parsed) ? parsed.length : 0)
+  })
 
   it('all organisms.ts taxIds present in easy taxonomy', () => {
     const missing = organisms
@@ -621,7 +649,7 @@ describe('easy-mode data consistency', () => {
     for (let i = 0; i < scenarios.length; i++) {
       const key = scenarios[i].organisms
         .map(o => o.ncbiTaxId)
-        .sort((a, b) => a - b)
+        .toSorted((a, b) => a - b)
         .join(',')
       if (seen.has(key)) {
         dupes.push(i)
@@ -632,47 +660,47 @@ describe('easy-mode data consistency', () => {
   })
 })
 
-describe('buildContextDiagram', () => {
-  // Amniota
-  // ├── Lepidosauria (order)
-  // │   └── Serpentes (suborder) → taxId 50
-  // └── Archelosauria (superorder)
-  //     ├── Testudines (order) → taxId 60
-  //     └── Archosauria (superorder)
-  //         └── Aves (class) → taxId 70
-  function makeReptileData(): TaxonomyData {
-    return {
-      parents: {
-        '100': 1,
-        '110': 100,
-        '120': 100,
-        '50': 110,
-        '60': 120,
-        '130': 120,
-        '70': 130,
-      },
-      names: {
-        '1': 'root',
-        '100': 'Amniota',
-        '110': 'Lepidosauria',
-        '120': 'Archelosauria',
-        '130': 'Archosauria',
-        '50': 'Serpentes',
-        '60': 'Testudines',
-        '70': 'Aves',
-      },
-      ranks: {
-        '100': 'class',
-        '110': 'order',
-        '120': 'superorder',
-        '130': 'superorder',
-        '50': 'suborder',
-        '60': 'order',
-        '70': 'class',
-      },
-    }
+// Amniota
+// ├── Lepidosauria (order)
+// │   └── Serpentes (suborder) → taxId 50
+// └── Archelosauria (superorder)
+//     ├── Testudines (order) → taxId 60
+//     └── Archosauria (superorder)
+//         └── Aves (class) → taxId 70
+function makeReptileData(): TaxonomyData {
+  return {
+    parents: {
+      '100': 1,
+      '110': 100,
+      '120': 100,
+      '50': 110,
+      '60': 120,
+      '130': 120,
+      '70': 130,
+    },
+    names: {
+      '1': 'root',
+      '100': 'Amniota',
+      '110': 'Lepidosauria',
+      '120': 'Archelosauria',
+      '130': 'Archosauria',
+      '50': 'Serpentes',
+      '60': 'Testudines',
+      '70': 'Aves',
+    },
+    ranks: {
+      '100': 'class',
+      '110': 'order',
+      '120': 'superorder',
+      '130': 'superorder',
+      '50': 'suborder',
+      '60': 'order',
+      '70': 'class',
+    },
   }
+}
 
+describe('buildContextDiagram', () => {
   it('builds a context diagram for bird+turtle vs snake', () => {
     const data = makeReptileData()
     const result = buildContextDiagram(

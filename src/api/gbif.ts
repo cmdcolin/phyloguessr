@@ -15,7 +15,10 @@ export async function getGbifTaxonKey(scientificName: string) {
     }
     const data: unknown = await res.json()
     const key =
-      data && typeof data === 'object' && 'usageKey' in data && typeof data.usageKey === 'number'
+      typeof data === 'object' &&
+      data !== null &&
+      'usageKey' in data &&
+      typeof data.usageKey === 'number'
         ? data.usageKey
         : null
     gbifKeyCache.set(scientificName, key)
