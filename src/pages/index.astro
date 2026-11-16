@@ -10,26 +10,26 @@ import '../index.css'
     <div class="start-screen">
       <h3 class="wordart-subtitle">The evolutionary guessing game</h3>
       <div class="difficulty-selector">
-        <button class="diff-btn" data-difficulty="normal"
-          >Show species labels</button
-        >
-        <button class="diff-btn" data-difficulty="nolabels"
-          >Don't show species labels</button
-        >
+        <button class="diff-btn" data-difficulty="normal">
+          Show species labels
+        </button>
+        <button class="diff-btn" data-difficulty="nolabels">
+          Don't show species labels
+        </button>
       </div>
       <div class="mode-selector">
-        <a class="mode-btn mode-btn-easy" id="easy-btn" href="/easy"
-          >Easy <span class="btn-emoji">🍿</span></a
-        >
-        <a class="mode-btn mode-btn-tricky" href="/tricky"
-          >Tricky <span class="btn-emoji">🧩</span></a
-        >
-        <a class="mode-btn mode-btn-random" id="random-btn" href="/random"
-          >Random <span class="btn-emoji">🎰</span></a
-        >
-        <a class="mode-btn mode-btn-custom" href="/custom"
-          >Custom <span class="btn-emoji">📠</span></a
-        >
+        <a class="mode-btn mode-btn-easy" id="easy-btn" href="/easy">
+          Easy <span class="btn-emoji">🍿</span>
+        </a>
+        <a class="mode-btn mode-btn-tricky" href="/tricky">
+          Tricky <span class="btn-emoji">🧩</span>
+        </a>
+        <a class="mode-btn mode-btn-random" id="random-btn" href="/random">
+          Random <span class="btn-emoji">🎰</span>
+        </a>
+        <a class="mode-btn mode-btn-custom" href="/custom">
+          Custom <span class="btn-emoji">📠</span>
+        </a>
       </div>
       <div
         class="mode-notice random-notice"
@@ -37,17 +37,20 @@ import '../index.css'
         style="display:none"
       >
         <p>
-          <strong>Warning:</strong> Completely random across all of life (bacteria,
-          fungi, obscure invertebrates). Very hard.
+          <strong>Warning:</strong> Completely random across all of life
+          (bacteria, fungi, obscure invertebrates). Very hard.
         </p>
         <p>
-          For a narrower random (e.g. birds only), try <a href="/custom"
-            >Custom mode</a
-          >.
+          For a narrower random (e.g. birds only), try{' '}
+          <a href="/custom">Custom mode</a>.
         </p>
         <div class="notice-actions">
-          <a class="notice-continue-btn" href="/random">Continue anyway</a>
-          <button class="notice-back-btn" id="random-back-btn">Go back</button>
+          <a class="notice-continue-btn" href="/random">
+            Continue anyway
+          </a>
+          <button class="notice-back-btn" id="random-back-btn">
+            Go back
+          </button>
         </div>
       </div>
     </div>
