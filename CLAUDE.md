@@ -15,5 +15,5 @@ recognizable names) or `"tricky"` (obscure species or surprising relatives). The
 To modify scenarios:
 
 1. Edit individual files in `scenarios/` directory
-2. Run `npm run build-easy-scenarios` to regenerate the bundle
-3. Or run `npm run update-all` which rebuilds everything
+2. Run `pnpm build-easy-scenarios` to regenerate the bundle
+3. Or run `pnpm update-data` which rebuilds everything

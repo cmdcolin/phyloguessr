@@ -13,6 +13,7 @@
     "format:check": "oxfmt --check && prettier --check \"src/**/*.astro\"",
     "preview": "astro preview",
     "build-taxonomy": "node scripts/build-taxonomy.mjs",
+    "build-easy-scenarios": "node scripts/build-easy-scenarios.mjs",
     "update-data": "node scripts/update-all.mjs",
     "typecheck": "astro sync && tsrs --noEmit",
     "check": "tsrs --noEmit && oxlint --deny-warnings --report-unused-disable-directives && vitest run",
