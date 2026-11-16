@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "astro dev",
     "clean": "rm -rf dist",
-    "prebuild": "yarn clean",
+    "prebuild": "pnpm clean",
     "build": "astro build",
     "lint": "oxlint --deny-warnings --report-unused-disable-directives",
     "format": "oxfmt && prettier --write \"src/**/*.astro\"",
