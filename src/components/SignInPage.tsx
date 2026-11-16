@@ -4,7 +4,7 @@ import { getCurrentUser, signInWithGoogle, signOut } from '../firebase.ts'
 
 export default function SignInPage() {
   const [signedIn, setSignedIn] = useState(false)
-  const [googleName, setGoogleName] = useState<string | null>(null)
+  const [googleName, setGoogleName] = useState('')
   const [signingIn, setSigningIn] = useState(false)
   const [error, setError] = useState('')
 
@@ -12,9 +12,7 @@ export default function SignInPage() {
     void getCurrentUser().then(user => {
       if (user) {
         setSignedIn(true)
-        if (user.displayName !== null) {
-          setGoogleName(user.displayName)
-        }
+        setGoogleName(user.displayName ?? '')
       }
     })
   }, [])
@@ -25,9 +23,7 @@ export default function SignInPage() {
     try {
       const user = await signInWithGoogle()
       setSignedIn(true)
-      if (user.displayName !== null) {
-        setGoogleName(user.displayName)
-      }
+      setGoogleName(user.displayName ?? '')
     } catch (err) {
       console.error(err)
       setError('Sign-in failed. Please try again.')
@@ -38,14 +34,14 @@ export default function SignInPage() {
   const handleSignOut = async () => {
     await signOut()
     setSignedIn(false)
-    setGoogleName(null)
+    setGoogleName('')
   }
 
   if (signedIn) {
     return (
       <div className="signin-status">
         <p className="signin-success">
-          Signed in with Google{googleName !== null ? ` (${googleName})` : ''}
+          Signed in with Google{googleName !== '' ? ` (${googleName})` : ''}
         </p>
         <div className="signin-actions">
           <a className="btn btn-primary" href="/">
