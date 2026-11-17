@@ -1679,6 +1679,46 @@
     "difficulty": "easy",
     "organisms": [
       {
+        "commonName": "Saffron crocus",
+        "scientificName": "Crocus sativus",
+        "ncbiTaxId": 82528,
+        "wikiTitle": "Crocus_sativus",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Crocus_sativus2.jpg/330px-Crocus_sativus2.jpg"
+      },
+      {
+        "commonName": "Iris",
+        "scientificName": "Iris germanica",
+        "ncbiTaxId": 34205,
+        "wikiTitle": "Iris_(plant)",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Iris_sanguinea_cultivar%2C_Wakehurst_Place%2C_UK_-_Diliff.jpg/330px-Iris_sanguinea_cultivar%2C_Wakehurst_Place%2C_UK_-_Diliff.jpg"
+      },
+      {
+        "commonName": "Onion",
+        "scientificName": "Allium cepa",
+        "ncbiTaxId": 4679,
+        "wikiTitle": "Onion",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Mixed_onions.jpg/330px-Mixed_onions.jpg"
+      }
+    ],
+    "funFact": "Saffron comes from a crocus, which is in the iris family. Each flower yields just three red threads (the stigmas), all picked by hand, so it takes around 150,000 flowers to make a kilogram. Saffron is the most expensive spice by weight.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Crocus_sativus",
+        "label": "Crocus sativus - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Iridaceae",
+        "label": "Iridaceae - Wikipedia"
+      }
+    ]
+  },
+  {
+    "difficulty": "easy",
+    "organisms": [
+      {
         "commonName": "Spotted hyena",
         "scientificName": "Crocuta crocuta",
         "ncbiTaxId": 9678,
@@ -1752,6 +1792,46 @@
       {
         "url": "https://www.mapress.com/pe/article/view/palaeoentomology.3.6.16",
         "label": "Palaeoentomology - Fleas are parasitic scorpionflies"
+      }
+    ]
+  },
+  {
+    "difficulty": "easy",
+    "organisms": [
+      {
+        "commonName": "Zucchini",
+        "scientificName": "Cucurbita pepo",
+        "ncbiTaxId": 3663,
+        "wikiTitle": "Zucchini",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/CSA-Striped-Zucchini.jpg/330px-CSA-Striped-Zucchini.jpg"
+      },
+      {
+        "commonName": "Butternut squash",
+        "scientificName": "Cucurbita moschata",
+        "ncbiTaxId": 3662,
+        "wikiTitle": "Butternut_squash",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Cucurbita_moschata_Butternut_2012_G2.jpg/330px-Cucurbita_moschata_Butternut_2012_G2.jpg"
+      },
+      {
+        "commonName": "Cucumber",
+        "scientificName": "Cucumis sativus",
+        "ncbiTaxId": 3659,
+        "wikiTitle": "Cucumber",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/ARS_cucumber.jpg/330px-ARS_cucumber.jpg"
+      }
+    ],
+    "funFact": "The zucchini looks like a cucumber, but it is a squash: the same species, Cucurbita pepo, as the Halloween pumpkin, and the same genus as the butternut squash. Cucumbers are in a different genus, Cucumis, with melons.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Zucchini",
+        "label": "Zucchini - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Cucurbita",
+        "label": "Cucurbita - Wikipedia"
       }
     ]
   },
@@ -1864,6 +1944,46 @@
       {
         "url": "https://lemur.duke.edu/discover/meet-the-lemurs/aye-aye/",
         "label": "Duke Lemur Center - Aye-aye"
+      }
+    ]
+  },
+  {
+    "difficulty": "easy",
+    "organisms": [
+      {
+        "commonName": "Carrot",
+        "scientificName": "Daucus carota",
+        "ncbiTaxId": 4039,
+        "wikiTitle": "Carrot",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Daucus_carota_May_2008-1_edit.jpg/330px-Daucus_carota_May_2008-1_edit.jpg"
+      },
+      {
+        "commonName": "Parsley",
+        "scientificName": "Petroselinum crispum",
+        "ncbiTaxId": 4043,
+        "wikiTitle": "Parsley",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Petroselinum.jpg/330px-Petroselinum.jpg"
+      },
+      {
+        "commonName": "Radish",
+        "scientificName": "Raphanus sativus",
+        "ncbiTaxId": 3726,
+        "wikiTitle": "Radish",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Radish_3371103037_4ab07db0bf_o.jpg/330px-Radish_3371103037_4ab07db0bf_o.jpg"
+      }
+    ],
+    "funFact": "Carrots and parsley are both in the family Apiaceae, along with celery, dill, fennel and cumin. Let a carrot flower and it produces the same flat umbrella of tiny flowers as parsley. The radish is in the mustard family.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Apiaceae",
+        "label": "Apiaceae - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Carrot",
+        "label": "Carrot - Wikipedia"
       }
     ]
   },
@@ -2231,6 +2351,46 @@
     "difficulty": "easy",
     "organisms": [
       {
+        "commonName": "Wasabi",
+        "scientificName": "Eutrema japonicum",
+        "ncbiTaxId": 75806,
+        "wikiTitle": "Wasabi",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Wasabia_japonica_4.JPG/330px-Wasabia_japonica_4.JPG"
+      },
+      {
+        "commonName": "Horseradish",
+        "scientificName": "Armoracia rusticana",
+        "ncbiTaxId": 3704,
+        "wikiTitle": "Horseradish",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Armoracia_rusticana.jpg/330px-Armoracia_rusticana.jpg"
+      },
+      {
+        "commonName": "Ginger",
+        "scientificName": "Zingiber officinale",
+        "ncbiTaxId": 94328,
+        "wikiTitle": "Ginger",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Koeh-146-no_text.jpg/330px-Koeh-146-no_text.jpg"
+      }
+    ],
+    "funFact": "Wasabi is in the mustard family (Brassicaceae) with horseradish, cabbage and broccoli. Real wasabi is expensive and hard to grow, so most 'wasabi' served outside Japan is actually horseradish dyed green. Ginger, the other pungent root at the sushi bar, is in the banana order.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Wasabi",
+        "label": "Wasabi - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Brassicaceae",
+        "label": "Brassicaceae - Wikipedia"
+      }
+    ]
+  },
+  {
+    "difficulty": "easy",
+    "organisms": [
+      {
         "commonName": "Peregrine falcon",
         "scientificName": "Falco peregrinus",
         "ncbiTaxId": 8954,
@@ -2264,6 +2424,46 @@
       {
         "url": "https://www.birdnote.org/explore/field-notes/2015/02/parrots-and-falcons-long-lost-cousins",
         "label": "BirdNote - Parrots and falcons: long-lost cousins"
+      }
+    ]
+  },
+  {
+    "difficulty": "easy",
+    "organisms": [
+      {
+        "commonName": "Fig",
+        "scientificName": "Ficus carica",
+        "ncbiTaxId": 3494,
+        "wikiTitle": "Common_fig",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Ficus_carica_L%2C_1771.jpg/330px-Ficus_carica_L%2C_1771.jpg"
+      },
+      {
+        "commonName": "Mulberry",
+        "scientificName": "Morus alba",
+        "ncbiTaxId": 3498,
+        "wikiTitle": "Morus_alba",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Rosales_-_Morus_alba_-_3.jpg/330px-Rosales_-_Morus_alba_-_3.jpg"
+      },
+      {
+        "commonName": "Date palm",
+        "scientificName": "Phoenix dactylifera",
+        "ncbiTaxId": 42345,
+        "wikiTitle": "Date_palm",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Dates005.jpg/330px-Dates005.jpg"
+      }
+    ],
+    "funFact": "Figs and mulberries are in the same family, Moraceae. A fig isn't really a fruit but an inside-out cluster of flowers, pollinated by tiny wasps that crawl in through a hole at the bottom. The date palm is a monocot, closer to grasses and bananas.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Moraceae",
+        "label": "Moraceae - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Common_fig",
+        "label": "Common fig - Wikipedia"
       }
     ]
   },
@@ -5785,6 +5985,46 @@
     ]
   },
   {
+    "difficulty": "easy",
+    "organisms": [
+      {
+        "commonName": "Sugarcane",
+        "scientificName": "Saccharum officinarum",
+        "ncbiTaxId": 4547,
+        "wikiTitle": "Saccharum_officinarum",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Saccharum_officinarum%2C_Mozambique.jpg/330px-Saccharum_officinarum%2C_Mozambique.jpg"
+      },
+      {
+        "commonName": "Corn",
+        "scientificName": "Zea mays",
+        "ncbiTaxId": 4577,
+        "wikiTitle": "Maize",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Zea_mays_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-283.jpg/330px-Zea_mays_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-283.jpg"
+      },
+      {
+        "commonName": "Bamboo",
+        "scientificName": "Phyllostachys edulis",
+        "ncbiTaxId": 38705,
+        "wikiTitle": "Phyllostachys_edulis",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Bamboo_forest.jpg/330px-Bamboo_forest.jpg"
+      }
+    ],
+    "funFact": "All three are grasses, and bamboo's tall jointed stalks look a lot like sugarcane. But sugarcane and corn are in the same grass tribe, Andropogoneae, and both use C4 photosynthesis, which suits hot climates. Bamboo is on a separate branch of the grass family.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Andropogoneae",
+        "label": "Andropogoneae - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Saccharum_officinarum",
+        "label": "Saccharum officinarum - Wikipedia"
+      }
+    ]
+  },
+  {
     "difficulty": "tricky",
     "organisms": [
       {
@@ -6704,6 +6944,46 @@
       {
         "url": "https://www.pnas.org/doi/10.1073/pnas.2319696121",
         "label": "Wu et al. 2024 - Genomes, fossils, and the concurrent rise of modern birds (PNAS)"
+      }
+    ]
+  },
+  {
+    "difficulty": "easy",
+    "organisms": [
+      {
+        "commonName": "Vanilla",
+        "scientificName": "Vanilla planifolia",
+        "ncbiTaxId": 51239,
+        "wikiTitle": "Vanilla_planifolia",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Vanilla_planifolia_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-278.jpg/330px-Vanilla_planifolia_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-278.jpg"
+      },
+      {
+        "commonName": "Orchid",
+        "scientificName": "Phalaenopsis equestris",
+        "ncbiTaxId": 78828,
+        "wikiTitle": "Orchidaceae",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Plant_Orchid_Cymbidium_aloifolium_P1110661_05_-_cropped.jpg/330px-Plant_Orchid_Cymbidium_aloifolium_P1110661_05_-_cropped.jpg"
+      },
+      {
+        "commonName": "Cinnamon",
+        "scientificName": "Cinnamomum verum",
+        "ncbiTaxId": 128608,
+        "wikiTitle": "Cinnamomum_verum",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Cinnamomum_verum1.jpg/330px-Cinnamomum_verum1.jpg"
+      }
+    ],
+    "funFact": "Vanilla is an orchid. The pods are the fruit of a climbing orchid vine from Mexico, and each flower opens for only a single day. Outside Mexico there are no natural pollinators, so commercial vanilla is pollinated by hand, one flower at a time.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Vanilla_planifolia",
+        "label": "Vanilla planifolia - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Orchidaceae",
+        "label": "Orchidaceae - Wikipedia"
       }
     ]
   },

@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Saffron crocus",
+      "scientificName": "Crocus sativus",
+      "ncbiTaxId": 82528,
+      "wikiTitle": "Crocus_sativus",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Crocus_sativus2.jpg/330px-Crocus_sativus2.jpg"
+    },
+    {
+      "commonName": "Iris",
+      "scientificName": "Iris germanica",
+      "ncbiTaxId": 34205,
+      "wikiTitle": "Iris_(plant)",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Iris_sanguinea_cultivar%2C_Wakehurst_Place%2C_UK_-_Diliff.jpg/330px-Iris_sanguinea_cultivar%2C_Wakehurst_Place%2C_UK_-_Diliff.jpg"
+    },
+    {
+      "commonName": "Onion",
+      "scientificName": "Allium cepa",
+      "ncbiTaxId": 4679,
+      "wikiTitle": "Onion",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Mixed_onions.jpg/330px-Mixed_onions.jpg"
+    }
+  ],
+  "funFact": "Saffron comes from a crocus, which is in the iris family. Each flower yields just three red threads (the stigmas), all picked by hand, so it takes around 150,000 flowers to make a kilogram. Saffron is the most expensive spice by weight.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Crocus_sativus",
+      "label": "Crocus sativus - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Iridaceae",
+      "label": "Iridaceae - Wikipedia"
+    }
+  ]
+}

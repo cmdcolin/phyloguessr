@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Wasabi",
+      "scientificName": "Eutrema japonicum",
+      "ncbiTaxId": 75806,
+      "wikiTitle": "Wasabi",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Wasabia_japonica_4.JPG/330px-Wasabia_japonica_4.JPG"
+    },
+    {
+      "commonName": "Horseradish",
+      "scientificName": "Armoracia rusticana",
+      "ncbiTaxId": 3704,
+      "wikiTitle": "Horseradish",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Armoracia_rusticana.jpg/330px-Armoracia_rusticana.jpg"
+    },
+    {
+      "commonName": "Ginger",
+      "scientificName": "Zingiber officinale",
+      "ncbiTaxId": 94328,
+      "wikiTitle": "Ginger",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Koeh-146-no_text.jpg/330px-Koeh-146-no_text.jpg"
+    }
+  ],
+  "funFact": "Wasabi is in the mustard family (Brassicaceae) with horseradish, cabbage and broccoli. Real wasabi is expensive and hard to grow, so most 'wasabi' served outside Japan is actually horseradish dyed green. Ginger, the other pungent root at the sushi bar, is in the banana order.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Wasabi",
+      "label": "Wasabi - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Brassicaceae",
+      "label": "Brassicaceae - Wikipedia"
+    }
+  ]
+}

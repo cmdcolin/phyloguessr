@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Sugarcane",
+      "scientificName": "Saccharum officinarum",
+      "ncbiTaxId": 4547,
+      "wikiTitle": "Saccharum_officinarum",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Saccharum_officinarum%2C_Mozambique.jpg/330px-Saccharum_officinarum%2C_Mozambique.jpg"
+    },
+    {
+      "commonName": "Corn",
+      "scientificName": "Zea mays",
+      "ncbiTaxId": 4577,
+      "wikiTitle": "Maize",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Zea_mays_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-283.jpg/330px-Zea_mays_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-283.jpg"
+    },
+    {
+      "commonName": "Bamboo",
+      "scientificName": "Phyllostachys edulis",
+      "ncbiTaxId": 38705,
+      "wikiTitle": "Phyllostachys_edulis",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Bamboo_forest.jpg/330px-Bamboo_forest.jpg"
+    }
+  ],
+  "funFact": "All three are grasses, and bamboo's tall jointed stalks look a lot like sugarcane. But sugarcane and corn are in the same grass tribe, Andropogoneae, and both use C4 photosynthesis, which suits hot climates. Bamboo is on a separate branch of the grass family.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Andropogoneae",
+      "label": "Andropogoneae - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Saccharum_officinarum",
+      "label": "Saccharum officinarum - Wikipedia"
+    }
+  ]
+}

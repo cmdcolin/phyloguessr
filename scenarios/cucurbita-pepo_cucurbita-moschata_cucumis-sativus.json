@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Zucchini",
+      "scientificName": "Cucurbita pepo",
+      "ncbiTaxId": 3663,
+      "wikiTitle": "Zucchini",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/CSA-Striped-Zucchini.jpg/330px-CSA-Striped-Zucchini.jpg"
+    },
+    {
+      "commonName": "Butternut squash",
+      "scientificName": "Cucurbita moschata",
+      "ncbiTaxId": 3662,
+      "wikiTitle": "Butternut_squash",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Cucurbita_moschata_Butternut_2012_G2.jpg/330px-Cucurbita_moschata_Butternut_2012_G2.jpg"
+    },
+    {
+      "commonName": "Cucumber",
+      "scientificName": "Cucumis sativus",
+      "ncbiTaxId": 3659,
+      "wikiTitle": "Cucumber",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/ARS_cucumber.jpg/330px-ARS_cucumber.jpg"
+    }
+  ],
+  "funFact": "The zucchini looks like a cucumber, but it is a squash: the same species, Cucurbita pepo, as the Halloween pumpkin, and the same genus as the butternut squash. Cucumbers are in a different genus, Cucumis, with melons.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Zucchini",
+      "label": "Zucchini - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Cucurbita",
+      "label": "Cucurbita - Wikipedia"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Vanilla",
+      "scientificName": "Vanilla planifolia",
+      "ncbiTaxId": 51239,
+      "wikiTitle": "Vanilla_planifolia",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Vanilla_planifolia_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-278.jpg/330px-Vanilla_planifolia_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-278.jpg"
+    },
+    {
+      "commonName": "Orchid",
+      "scientificName": "Phalaenopsis equestris",
+      "ncbiTaxId": 78828,
+      "wikiTitle": "Orchidaceae",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Plant_Orchid_Cymbidium_aloifolium_P1110661_05_-_cropped.jpg/330px-Plant_Orchid_Cymbidium_aloifolium_P1110661_05_-_cropped.jpg"
+    },
+    {
+      "commonName": "Cinnamon",
+      "scientificName": "Cinnamomum verum",
+      "ncbiTaxId": 128608,
+      "wikiTitle": "Cinnamomum_verum",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Cinnamomum_verum1.jpg/330px-Cinnamomum_verum1.jpg"
+    }
+  ],
+  "funFact": "Vanilla is an orchid. The pods are the fruit of a climbing orchid vine from Mexico, and each flower opens for only a single day. Outside Mexico there are no natural pollinators, so commercial vanilla is pollinated by hand, one flower at a time.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Vanilla_planifolia",
+      "label": "Vanilla planifolia - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Orchidaceae",
+      "label": "Orchidaceae - Wikipedia"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Fig",
+      "scientificName": "Ficus carica",
+      "ncbiTaxId": 3494,
+      "wikiTitle": "Common_fig",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Ficus_carica_L%2C_1771.jpg/330px-Ficus_carica_L%2C_1771.jpg"
+    },
+    {
+      "commonName": "Mulberry",
+      "scientificName": "Morus alba",
+      "ncbiTaxId": 3498,
+      "wikiTitle": "Morus_alba",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Rosales_-_Morus_alba_-_3.jpg/330px-Rosales_-_Morus_alba_-_3.jpg"
+    },
+    {
+      "commonName": "Date palm",
+      "scientificName": "Phoenix dactylifera",
+      "ncbiTaxId": 42345,
+      "wikiTitle": "Date_palm",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Dates005.jpg/330px-Dates005.jpg"
+    }
+  ],
+  "funFact": "Figs and mulberries are in the same family, Moraceae. A fig isn't really a fruit but an inside-out cluster of flowers, pollinated by tiny wasps that crawl in through a hole at the bottom. The date palm is a monocot, closer to grasses and bananas.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Moraceae",
+      "label": "Moraceae - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Common_fig",
+      "label": "Common fig - Wikipedia"
+    }
+  ]
+}

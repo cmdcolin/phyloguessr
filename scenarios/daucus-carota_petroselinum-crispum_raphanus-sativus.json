@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Carrot",
+      "scientificName": "Daucus carota",
+      "ncbiTaxId": 4039,
+      "wikiTitle": "Carrot",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Daucus_carota_May_2008-1_edit.jpg/330px-Daucus_carota_May_2008-1_edit.jpg"
+    },
+    {
+      "commonName": "Parsley",
+      "scientificName": "Petroselinum crispum",
+      "ncbiTaxId": 4043,
+      "wikiTitle": "Parsley",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Petroselinum.jpg/330px-Petroselinum.jpg"
+    },
+    {
+      "commonName": "Radish",
+      "scientificName": "Raphanus sativus",
+      "ncbiTaxId": 3726,
+      "wikiTitle": "Radish",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Radish_3371103037_4ab07db0bf_o.jpg/330px-Radish_3371103037_4ab07db0bf_o.jpg"
+    }
+  ],
+  "funFact": "Carrots and parsley are both in the family Apiaceae, along with celery, dill, fennel and cumin. Let a carrot flower and it produces the same flat umbrella of tiny flowers as parsley. The radish is in the mustard family.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Apiaceae",
+      "label": "Apiaceae - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Carrot",
+      "label": "Carrot - Wikipedia"
+    }
+  ]
+}
