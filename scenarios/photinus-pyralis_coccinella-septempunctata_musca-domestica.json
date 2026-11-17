@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Firefly",
+      "scientificName": "Photinus pyralis",
+      "ncbiTaxId": 7054,
+      "wikiTitle": "Photinus_pyralis",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Photinus_pyralis_Firefly_3.jpg/330px-Photinus_pyralis_Firefly_3.jpg"
+    },
+    {
+      "commonName": "Ladybug",
+      "scientificName": "Coccinella septempunctata",
+      "ncbiTaxId": 41139,
+      "wikiTitle": "Coccinella_septempunctata",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/7-Spotted-Ladybug-Coccinella-septempunctata-sq1.jpg/330px-7-Spotted-Ladybug-Coccinella-septempunctata-sq1.jpg"
+    },
+    {
+      "commonName": "Housefly",
+      "scientificName": "Musca domestica",
+      "ncbiTaxId": 7370,
+      "wikiTitle": "Housefly",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Common_house_fly%2C_Musca_domestica.jpg/330px-Common_house_fly%2C_Musca_domestica.jpg"
+    }
+  ],
+  "funFact": "Fireflies and ladybugs are both beetles, not flies or bugs. Beetles have hardened front wings (elytra) that cover the flying wings, while true flies such as the housefly have just one pair of wings.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Firefly",
+      "label": "Firefly - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Beetle",
+      "label": "Beetle - Wikipedia"
+    }
+  ]
+}

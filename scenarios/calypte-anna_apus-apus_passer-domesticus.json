@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Anna's hummingbird",
+      "scientificName": "Calypte anna",
+      "ncbiTaxId": 9244,
+      "wikiTitle": "Anna's_hummingbird",
+      "group": "bird",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Anna%27s_hummingbird_%28Calypte_anna%29_male_in_flight_Campbell_River.jpg/330px-Anna%27s_hummingbird_%28Calypte_anna%29_male_in_flight_Campbell_River.jpg"
+    },
+    {
+      "commonName": "Common swift",
+      "scientificName": "Apus apus",
+      "ncbiTaxId": 8895,
+      "wikiTitle": "Common_swift",
+      "group": "bird",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Common_Swift_2025_07_18_02_%28cropped%29.jpg/330px-Common_Swift_2025_07_18_02_%28cropped%29.jpg"
+    },
+    {
+      "commonName": "House sparrow",
+      "scientificName": "Passer domesticus",
+      "ncbiTaxId": 48849,
+      "wikiTitle": "House_sparrow",
+      "group": "bird",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/House_sparrow_male_in_Prospect_Park_%2853532%29.jpg/330px-House_sparrow_male_in_Prospect_Park_%2853532%29.jpg"
+    }
+  ],
+  "funFact": "Hummingbirds are closest to swifts. Together they form the order Apodiformes, which means 'footless' because both groups have tiny feet and spend most of their time in the air. Sparrows are songbirds, on a different branch.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Apodiformes",
+      "label": "Apodiformes - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Hummingbird",
+      "label": "Hummingbird - Wikipedia"
+    }
+  ]
+}

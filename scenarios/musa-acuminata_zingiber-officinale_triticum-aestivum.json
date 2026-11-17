@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Banana",
+      "scientificName": "Musa acuminata",
+      "ncbiTaxId": 4641,
+      "wikiTitle": "Banana",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Bananavarieties.jpg/330px-Bananavarieties.jpg"
+    },
+    {
+      "commonName": "Ginger",
+      "scientificName": "Zingiber officinale",
+      "ncbiTaxId": 94328,
+      "wikiTitle": "Ginger",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Koeh-146-no_text.jpg/330px-Koeh-146-no_text.jpg"
+    },
+    {
+      "commonName": "Wheat",
+      "scientificName": "Triticum aestivum",
+      "ncbiTaxId": 4565,
+      "wikiTitle": "Common_wheat",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Bl%C3%A9_tendre_%28GRAPELLI%29_AO-5-cliche_Jean_Weber_%285%29_%2823975019962%29.jpg/330px-Bl%C3%A9_tendre_%28GRAPELLI%29_AO-5-cliche_Jean_Weber_%285%29_%2823975019962%29.jpg"
+    }
+  ],
+  "funFact": "Bananas and ginger are both in the order Zingiberales, along with turmeric, cardamom and bird-of-paradise flowers. The banana 'tree' isn't a tree at all: it is a giant herb whose 'trunk' is made of tightly rolled leaf bases.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Zingiberales",
+      "label": "Zingiberales - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Banana",
+      "label": "Banana - Wikipedia"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "difficulty": "tricky",
+  "organisms": [
+    {
+      "commonName": "Slow worm",
+      "scientificName": "Anguis fragilis",
+      "ncbiTaxId": 102178,
+      "wikiTitle": "Anguis_fragilis",
+      "group": "reptile",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Anguidae.jpg/330px-Anguidae.jpg"
+    },
+    {
+      "commonName": "Komodo dragon",
+      "scientificName": "Varanus komodoensis",
+      "ncbiTaxId": 61221,
+      "wikiTitle": "Komodo_dragon",
+      "group": "reptile",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/202306_Varanus_komodoensis.jpg/330px-202306_Varanus_komodoensis.jpg"
+    },
+    {
+      "commonName": "Grass snake",
+      "scientificName": "Natrix natrix",
+      "ncbiTaxId": 100823,
+      "wikiTitle": "Grass_snake",
+      "group": "reptile",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Grass_snake_%28Natrix_natrix%29_Pieniny.jpg/330px-Grass_snake_%28Natrix_natrix%29_Pieniny.jpg"
+    }
+  ],
+  "funFact": "The slow worm looks like a snake, but it is a legless lizard. Unlike snakes, it has eyelids and can drop its tail. It is related to monitor lizards such as the Komodo dragon.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Anguis_fragilis",
+      "label": "Anguis fragilis - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Anguimorpha",
+      "label": "Anguimorpha - Wikipedia"
+    }
+  ]
+}

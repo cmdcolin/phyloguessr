@@ -1,0 +1,41 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Kiwi",
+      "scientificName": "Apteryx mantelli",
+      "ncbiTaxId": 2696672,
+      "wikiTitle": "North_Island_brown_kiwi",
+      "group": "bird",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/TeTuatahianui.jpg/330px-TeTuatahianui.jpg"
+    },
+    {
+      "commonName": "Emu",
+      "scientificName": "Dromaius novaehollandiae",
+      "ncbiTaxId": 8790,
+      "wikiTitle": "Emu",
+      "group": "bird",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Emu_1_-_Tidbinbilla.jpg/330px-Emu_1_-_Tidbinbilla.jpg"
+    },
+    {
+      "commonName": "Ostrich",
+      "scientificName": "Struthio camelus",
+      "ncbiTaxId": 8801,
+      "wikiTitle": "Common_ostrich",
+      "group": "bird",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Struthio_camelus_-_Etosha_2014_%283%29.jpg/330px-Struthio_camelus_-_Etosha_2014_%283%29.jpg"
+    }
+  ],
+  "correctPair": ["Kiwi", "Emu"],
+  "funFact": "The tiny kiwi of New Zealand is more closely related to the emu and cassowary of Australia (and to the extinct elephant birds of Madagascar) than to the ostrich. The ostrich lineage was the first to branch off from the other flightless ratites.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Kiwi_(bird)",
+      "label": "Kiwi (bird) - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Ratite",
+      "label": "Ratite - Wikipedia"
+    }
+  ]
+}

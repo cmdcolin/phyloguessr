@@ -243,6 +243,46 @@
     "difficulty": "easy",
     "organisms": [
       {
+        "commonName": "Pineapple",
+        "scientificName": "Ananas comosus",
+        "ncbiTaxId": 4615,
+        "wikiTitle": "Pineapple",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/%E0%B4%95%E0%B5%88%E0%B4%A4%E0%B4%9A%E0%B5%8D%E0%B4%9A%E0%B4%95%E0%B5%8D%E0%B4%95.jpg/330px-%E0%B4%95%E0%B5%88%E0%B4%A4%E0%B4%9A%E0%B5%8D%E0%B4%9A%E0%B4%95%E0%B5%8D%E0%B4%95.jpg"
+      },
+      {
+        "commonName": "Wheat",
+        "scientificName": "Triticum aestivum",
+        "ncbiTaxId": 4565,
+        "wikiTitle": "Common_wheat",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Bl%C3%A9_tendre_%28GRAPELLI%29_AO-5-cliche_Jean_Weber_%285%29_%2823975019962%29.jpg/330px-Bl%C3%A9_tendre_%28GRAPELLI%29_AO-5-cliche_Jean_Weber_%285%29_%2823975019962%29.jpg"
+      },
+      {
+        "commonName": "Banana",
+        "scientificName": "Musa acuminata",
+        "ncbiTaxId": 4641,
+        "wikiTitle": "Banana",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Bananavarieties.jpg/330px-Bananavarieties.jpg"
+      }
+    ],
+    "funFact": "The pineapple is in the order Poales, the same order as the grasses, so it is more closely related to wheat, rice and corn than to the banana. Bananas belong to Zingiberales, the ginger order.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Bromeliaceae",
+        "label": "Bromeliaceae - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Poales",
+        "label": "Poales - Wikipedia"
+      }
+    ]
+  },
+  {
+    "difficulty": "easy",
+    "organisms": [
+      {
         "commonName": "Dragonfly",
         "scientificName": "Anax junius",
         "ncbiTaxId": 214820,
@@ -276,6 +316,46 @@
       {
         "url": "https://www.scientificamerican.com/article/insect-metamorphosis-evolution/",
         "label": "Scientific American - How did insect metamorphosis evolve?"
+      }
+    ]
+  },
+  {
+    "difficulty": "tricky",
+    "organisms": [
+      {
+        "commonName": "Slow worm",
+        "scientificName": "Anguis fragilis",
+        "ncbiTaxId": 102178,
+        "wikiTitle": "Anguis_fragilis",
+        "group": "reptile",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Anguidae.jpg/330px-Anguidae.jpg"
+      },
+      {
+        "commonName": "Komodo dragon",
+        "scientificName": "Varanus komodoensis",
+        "ncbiTaxId": 61221,
+        "wikiTitle": "Komodo_dragon",
+        "group": "reptile",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/202306_Varanus_komodoensis.jpg/330px-202306_Varanus_komodoensis.jpg"
+      },
+      {
+        "commonName": "Grass snake",
+        "scientificName": "Natrix natrix",
+        "ncbiTaxId": 100823,
+        "wikiTitle": "Grass_snake",
+        "group": "reptile",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Grass_snake_%28Natrix_natrix%29_Pieniny.jpg/330px-Grass_snake_%28Natrix_natrix%29_Pieniny.jpg"
+      }
+    ],
+    "funFact": "The slow worm looks like a snake, but it is a legless lizard. Unlike snakes, it has eyelids and can drop its tail. It is related to monitor lizards such as the Komodo dragon.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Anguis_fragilis",
+        "label": "Anguis fragilis - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Anguimorpha",
+        "label": "Anguimorpha - Wikipedia"
       }
     ]
   },
@@ -404,6 +484,90 @@
     ]
   },
   {
+    "difficulty": "easy",
+    "organisms": [
+      {
+        "commonName": "Kiwi",
+        "scientificName": "Apteryx mantelli",
+        "ncbiTaxId": 2696672,
+        "wikiTitle": "North_Island_brown_kiwi",
+        "group": "bird",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/TeTuatahianui.jpg/330px-TeTuatahianui.jpg"
+      },
+      {
+        "commonName": "Emu",
+        "scientificName": "Dromaius novaehollandiae",
+        "ncbiTaxId": 8790,
+        "wikiTitle": "Emu",
+        "group": "bird",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Emu_1_-_Tidbinbilla.jpg/330px-Emu_1_-_Tidbinbilla.jpg"
+      },
+      {
+        "commonName": "Ostrich",
+        "scientificName": "Struthio camelus",
+        "ncbiTaxId": 8801,
+        "wikiTitle": "Common_ostrich",
+        "group": "bird",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Struthio_camelus_-_Etosha_2014_%283%29.jpg/330px-Struthio_camelus_-_Etosha_2014_%283%29.jpg"
+      }
+    ],
+    "correctPair": [
+      "Kiwi",
+      "Emu"
+    ],
+    "funFact": "The tiny kiwi of New Zealand is more closely related to the emu and cassowary of Australia (and to the extinct elephant birds of Madagascar) than to the ostrich. The ostrich lineage was the first to branch off from the other flightless ratites.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Kiwi_(bird)",
+        "label": "Kiwi (bird) - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Ratite",
+        "label": "Ratite - Wikipedia"
+      }
+    ]
+  },
+  {
+    "difficulty": "easy",
+    "organisms": [
+      {
+        "commonName": "Peanut",
+        "scientificName": "Arachis hypogaea",
+        "ncbiTaxId": 3818,
+        "wikiTitle": "Peanut",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Arachis_hypogaea_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-163.jpg/330px-Arachis_hypogaea_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-163.jpg"
+      },
+      {
+        "commonName": "Pea",
+        "scientificName": "Lathyrus oleraceus",
+        "ncbiTaxId": 3888,
+        "wikiTitle": "Pea",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Doperwt_rijserwt_peulen_Pisum_sativum.jpg/330px-Doperwt_rijserwt_peulen_Pisum_sativum.jpg"
+      },
+      {
+        "commonName": "Walnut",
+        "scientificName": "Juglans regia",
+        "ncbiTaxId": 51240,
+        "wikiTitle": "Juglans_regia",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Noyer_centenaire_en_automne.JPG/330px-Noyer_centenaire_en_automne.JPG"
+      }
+    ],
+    "funFact": "The peanut isn't a nut. It's a legume, in the same family as peas, beans and lentils. Peanut flowers bloom above ground and then push their stalks into the soil, so the pods ripen underground.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Peanut",
+        "label": "Peanut - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Fabaceae",
+        "label": "Fabaceae - Wikipedia"
+      }
+    ]
+  },
+  {
     "difficulty": "tricky",
     "organisms": [
       {
@@ -436,6 +600,46 @@
       {
         "url": "https://en.wikipedia.org/wiki/Woodlouse",
         "label": "Woodlouse - Wikipedia"
+      }
+    ]
+  },
+  {
+    "difficulty": "easy",
+    "organisms": [
+      {
+        "commonName": "Asparagus",
+        "scientificName": "Asparagus officinalis",
+        "ncbiTaxId": 4686,
+        "wikiTitle": "Asparagus",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Asparagus-Bundle.jpg/330px-Asparagus-Bundle.jpg"
+      },
+      {
+        "commonName": "Onion",
+        "scientificName": "Allium cepa",
+        "ncbiTaxId": 4679,
+        "wikiTitle": "Onion",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Mixed_onions.jpg/330px-Mixed_onions.jpg"
+      },
+      {
+        "commonName": "Lily",
+        "scientificName": "Lilium longiflorum",
+        "ncbiTaxId": 4690,
+        "wikiTitle": "Lilium",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Lilium_candidum_1.jpg/330px-Lilium_candidum_1.jpg"
+      }
+    ],
+    "funFact": "Asparagus and onions are both in the order Asparagales, along with orchids, irises and agave. Lilies look like they would belong there too, but they are in a separate order, Liliales.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Asparagales",
+        "label": "Asparagales - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Liliales",
+        "label": "Liliales - Wikipedia"
       }
     ]
   },
@@ -760,6 +964,46 @@
     ]
   },
   {
+    "difficulty": "easy",
+    "organisms": [
+      {
+        "commonName": "Anna's hummingbird",
+        "scientificName": "Calypte anna",
+        "ncbiTaxId": 9244,
+        "wikiTitle": "Anna's_hummingbird",
+        "group": "bird",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Anna%27s_hummingbird_%28Calypte_anna%29_male_in_flight_Campbell_River.jpg/330px-Anna%27s_hummingbird_%28Calypte_anna%29_male_in_flight_Campbell_River.jpg"
+      },
+      {
+        "commonName": "Common swift",
+        "scientificName": "Apus apus",
+        "ncbiTaxId": 8895,
+        "wikiTitle": "Common_swift",
+        "group": "bird",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Common_Swift_2025_07_18_02_%28cropped%29.jpg/330px-Common_Swift_2025_07_18_02_%28cropped%29.jpg"
+      },
+      {
+        "commonName": "House sparrow",
+        "scientificName": "Passer domesticus",
+        "ncbiTaxId": 48849,
+        "wikiTitle": "House_sparrow",
+        "group": "bird",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/House_sparrow_male_in_Prospect_Park_%2853532%29.jpg/330px-House_sparrow_male_in_Prospect_Park_%2853532%29.jpg"
+      }
+    ],
+    "funFact": "Hummingbirds are closest to swifts. Together they form the order Apodiformes, which means 'footless' because both groups have tiny feet and spend most of their time in the air. Sparrows are songbirds, on a different branch.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Apodiformes",
+        "label": "Apodiformes - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Hummingbird",
+        "label": "Hummingbird - Wikipedia"
+      }
+    ]
+  },
+  {
     "difficulty": "tricky",
     "organisms": [
       {
@@ -919,6 +1163,46 @@
     "difficulty": "easy",
     "organisms": [
       {
+        "commonName": "Guinea pig",
+        "scientificName": "Cavia porcellus",
+        "ncbiTaxId": 10141,
+        "wikiTitle": "Guinea_pig",
+        "group": "mammal",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/George_the_amazing_guinea_pig.jpg/330px-George_the_amazing_guinea_pig.jpg"
+      },
+      {
+        "commonName": "House mouse",
+        "scientificName": "Mus musculus",
+        "ncbiTaxId": 10090,
+        "wikiTitle": "House_mouse",
+        "group": "mammal",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/%D0%9C%D1%8B%D1%88%D1%8C_2.jpg/500px-%D0%9C%D1%8B%D1%88%D1%8C_2.jpg"
+      },
+      {
+        "commonName": "Pig",
+        "scientificName": "Sus scrofa",
+        "ncbiTaxId": 9823,
+        "wikiTitle": "Pig",
+        "group": "mammal",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Pig_farm_Vampula_1.jpg/330px-Pig_farm_Vampula_1.jpg"
+      }
+    ],
+    "funFact": "The guinea pig is neither a pig nor from Guinea. It is a South American rodent, related to chinchillas and capybaras. The name may come from its squeaky, pig-like noises.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Guinea_pig",
+        "label": "Guinea pig - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Caviidae",
+        "label": "Caviidae - Wikipedia"
+      }
+    ]
+  },
+  {
+    "difficulty": "easy",
+    "organisms": [
+      {
         "commonName": "Green sea turtle",
         "scientificName": "Chelonia mydas",
         "ncbiTaxId": 8469,
@@ -992,6 +1276,46 @@
       {
         "url": "https://bmcbiol.biomedcentral.com/articles/10.1186/1741-7007-10-65",
         "label": "BMC Biology - Turtles are sister group of birds and crocodiles"
+      }
+    ]
+  },
+  {
+    "difficulty": "tricky",
+    "organisms": [
+      {
+        "commonName": "Quinoa",
+        "scientificName": "Chenopodium quinoa",
+        "ncbiTaxId": 63459,
+        "wikiTitle": "Quinoa",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Reismelde.jpg/330px-Reismelde.jpg"
+      },
+      {
+        "commonName": "Spinach",
+        "scientificName": "Spinacia oleracea",
+        "ncbiTaxId": 3562,
+        "wikiTitle": "Spinach",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Spinacia_oleracea_Spinazie_bloeiend.jpg/330px-Spinacia_oleracea_Spinazie_bloeiend.jpg"
+      },
+      {
+        "commonName": "Rice",
+        "scientificName": "Oryza sativa",
+        "ncbiTaxId": 4530,
+        "wikiTitle": "Rice",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Mature_Rice_%28India%29_by_Augustus_Binu.jpg/330px-Mature_Rice_%28India%29_by_Augustus_Binu.jpg"
+      }
+    ],
+    "funFact": "Quinoa is eaten like a grain, but it is the seed of a leafy plant in the amaranth family, which also includes spinach. Rice, like wheat and corn, is a true grass. Quinoa is called a 'pseudocereal'.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Quinoa",
+        "label": "Quinoa - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Pseudocereal",
+        "label": "Pseudocereal - Wikipedia"
       }
     ]
   },
@@ -1423,6 +1747,46 @@
     "difficulty": "tricky",
     "organisms": [
       {
+        "commonName": "Electric eel",
+        "scientificName": "Electrophorus electricus",
+        "ncbiTaxId": 8005,
+        "wikiTitle": "Electric_eel",
+        "group": "fish",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Electric-eel.jpg/330px-Electric-eel.jpg"
+      },
+      {
+        "commonName": "Channel catfish",
+        "scientificName": "Ictalurus punctatus",
+        "ncbiTaxId": 7998,
+        "wikiTitle": "Channel_catfish",
+        "group": "fish",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Channel_Catfish_%28Ictalurus_punctatus%29_white_background.jpg/330px-Channel_Catfish_%28Ictalurus_punctatus%29_white_background.jpg"
+      },
+      {
+        "commonName": "Moray eel",
+        "scientificName": "Gymnothorax funebris",
+        "ncbiTaxId": 1182252,
+        "wikiTitle": "Green_moray",
+        "group": "fish",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/GreenMorayEel.JPG/330px-GreenMorayEel.JPG"
+      }
+    ],
+    "funFact": "The electric eel isn't an eel. It is a South American knifefish, more closely related to catfish and carp than to true eels like the moray. It can produce shocks of more than 800 volts.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Electric_eel",
+        "label": "Electric eel - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Gymnotiformes",
+        "label": "Gymnotiformes - Wikipedia"
+      }
+    ]
+  },
+  {
+    "difficulty": "tricky",
+    "organisms": [
+      {
         "commonName": "Elephant shrew",
         "scientificName": "Elephantulus edwardii",
         "ncbiTaxId": 28737,
@@ -1740,6 +2104,46 @@
       {
         "url": "https://en.wikipedia.org/wiki/Ericales",
         "label": "Ericales - Wikipedia"
+      }
+    ]
+  },
+  {
+    "difficulty": "easy",
+    "organisms": [
+      {
+        "commonName": "Atlantic puffin",
+        "scientificName": "Fratercula arctica",
+        "ncbiTaxId": 28701,
+        "wikiTitle": "Atlantic_puffin",
+        "group": "bird",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Puffin_%28Fratercula_arctica%29.jpg/330px-Puffin_%28Fratercula_arctica%29.jpg"
+      },
+      {
+        "commonName": "Emperor penguin",
+        "scientificName": "Aptenodytes forsteri",
+        "ncbiTaxId": 9233,
+        "wikiTitle": "Emperor_penguin",
+        "group": "bird",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Aptenodytes_forsteri_-Snow_Hill_Island%2C_Antarctica_-adults_and_juvenile-8.jpg/330px-Aptenodytes_forsteri_-Snow_Hill_Island%2C_Antarctica_-adults_and_juvenile-8.jpg"
+      },
+      {
+        "commonName": "Wandering albatross",
+        "scientificName": "Diomedea exulans",
+        "ncbiTaxId": 46550,
+        "wikiTitle": "Wandering_albatross",
+        "group": "bird",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Diomedea_exulans_-_SE_Tasmania.jpg/330px-Diomedea_exulans_-_SE_Tasmania.jpg"
+      }
+    ],
+    "funFact": "Puffins look like small flying penguins, but the resemblance is convergent evolution in diving seabirds. Puffins are auks, related to gulls and sandpipers, while penguins are closest to albatrosses and petrels.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Penguin",
+        "label": "Penguin - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Auk",
+        "label": "Auk - Wikipedia"
       }
     ]
   },
@@ -2451,6 +2855,46 @@
     "difficulty": "easy",
     "organisms": [
       {
+        "commonName": "Lettuce",
+        "scientificName": "Lactuca sativa",
+        "ncbiTaxId": 4236,
+        "wikiTitle": "Lettuce",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Iceberg_lettuce_in_SB.jpg/330px-Iceberg_lettuce_in_SB.jpg"
+      },
+      {
+        "commonName": "Sunflower",
+        "scientificName": "Helianthus annuus",
+        "ncbiTaxId": 4232,
+        "wikiTitle": "Common_sunflower",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Sunflower_sky_backdrop.jpg/330px-Sunflower_sky_backdrop.jpg"
+      },
+      {
+        "commonName": "Spinach",
+        "scientificName": "Spinacia oleracea",
+        "ncbiTaxId": 3562,
+        "wikiTitle": "Spinach",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Spinacia_oleracea_Spinazie_bloeiend.jpg/330px-Spinacia_oleracea_Spinazie_bloeiend.jpg"
+      }
+    ],
+    "funFact": "Lettuce is a daisy! It belongs to Asteraceae, the same family as sunflowers, dandelions and artichokes. Let a lettuce plant bolt and it sends up a stalk of small yellow daisy-like flowers. Spinach is in a different order entirely.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Lettuce",
+        "label": "Lettuce - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Asteraceae",
+        "label": "Asteraceae - Wikipedia"
+      }
+    ]
+  },
+  {
+    "difficulty": "easy",
+    "organisms": [
+      {
         "commonName": "Coelacanth",
         "scientificName": "Latimeria chalumnae",
         "ncbiTaxId": 7897,
@@ -2845,6 +3289,46 @@
     ]
   },
   {
+    "difficulty": "tricky",
+    "organisms": [
+      {
+        "commonName": "Northern elephant seal",
+        "scientificName": "Mirounga angustirostris",
+        "ncbiTaxId": 9716,
+        "wikiTitle": "Northern_elephant_seal",
+        "group": "mammal",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Mating_scene_with_elevated_Alpha_Male._Elephant_Seals_of_Piedras_Blancas.jpg/330px-Mating_scene_with_elevated_Alpha_Male._Elephant_Seals_of_Piedras_Blancas.jpg"
+      },
+      {
+        "commonName": "Walrus",
+        "scientificName": "Odobenus rosmarus",
+        "ncbiTaxId": 9707,
+        "wikiTitle": "Walrus",
+        "group": "mammal",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Walrus_in_the_Russian_Arctic_National_Park%2C_Novaya_Zemlya_2015-2.jpg/330px-Walrus_in_the_Russian_Arctic_National_Park%2C_Novaya_Zemlya_2015-2.jpg"
+      },
+      {
+        "commonName": "African elephant",
+        "scientificName": "Loxodonta africana",
+        "ncbiTaxId": 9785,
+        "wikiTitle": "African_elephant",
+        "group": "mammal",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/178_Male_African_bush_elephant_in_Etosha_National_Park_Photo_by_Giles_Laurent.jpg/330px-178_Male_African_bush_elephant_in_Etosha_National_Park_Photo_by_Giles_Laurent.jpg"
+      }
+    ],
+    "funFact": "The elephant seal is named for the male's trunk-like nose, which acts as a resonating chamber for its roars. It is a true seal, related to walruses and sea lions, and is no relative of elephants beyond both being mammals.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Elephant_seal",
+        "label": "Elephant seal - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Pinniped",
+        "label": "Pinniped - Wikipedia"
+      }
+    ]
+  },
+  {
     "difficulty": "easy",
     "organisms": [
       {
@@ -2917,6 +3401,46 @@
       {
         "url": "https://en.wikipedia.org/wiki/Monocotyledon",
         "label": "Monocotyledon - Wikipedia"
+      }
+    ]
+  },
+  {
+    "difficulty": "easy",
+    "organisms": [
+      {
+        "commonName": "Banana",
+        "scientificName": "Musa acuminata",
+        "ncbiTaxId": 4641,
+        "wikiTitle": "Banana",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Bananavarieties.jpg/330px-Bananavarieties.jpg"
+      },
+      {
+        "commonName": "Ginger",
+        "scientificName": "Zingiber officinale",
+        "ncbiTaxId": 94328,
+        "wikiTitle": "Ginger",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Koeh-146-no_text.jpg/330px-Koeh-146-no_text.jpg"
+      },
+      {
+        "commonName": "Wheat",
+        "scientificName": "Triticum aestivum",
+        "ncbiTaxId": 4565,
+        "wikiTitle": "Common_wheat",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Bl%C3%A9_tendre_%28GRAPELLI%29_AO-5-cliche_Jean_Weber_%285%29_%2823975019962%29.jpg/330px-Bl%C3%A9_tendre_%28GRAPELLI%29_AO-5-cliche_Jean_Weber_%285%29_%2823975019962%29.jpg"
+      }
+    ],
+    "funFact": "Bananas and ginger are both in the order Zingiberales, along with turmeric, cardamom and bird-of-paradise flowers. The banana 'tree' isn't a tree at all: it is a giant herb whose 'trunk' is made of tightly rolled leaf bases.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Zingiberales",
+        "label": "Zingiberales - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Banana",
+        "label": "Banana - Wikipedia"
       }
     ]
   },
@@ -3425,6 +3949,46 @@
     ]
   },
   {
+    "difficulty": "easy",
+    "organisms": [
+      {
+        "commonName": "Killer whale",
+        "scientificName": "Orcinus orca",
+        "ncbiTaxId": 9733,
+        "wikiTitle": "Orca",
+        "group": "mammal",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Killerwhales_jumping.jpg/330px-Killerwhales_jumping.jpg"
+      },
+      {
+        "commonName": "Bottlenose dolphin",
+        "scientificName": "Tursiops truncatus",
+        "ncbiTaxId": 9739,
+        "wikiTitle": "Common_bottlenose_dolphin",
+        "group": "mammal",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Tursiops_truncatus_01-cropped.jpg/330px-Tursiops_truncatus_01-cropped.jpg"
+      },
+      {
+        "commonName": "Great white shark",
+        "scientificName": "Carcharodon carcharias",
+        "ncbiTaxId": 13397,
+        "wikiTitle": "Great_white_shark",
+        "group": "fish",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/White_shark.jpg/330px-White_shark.jpg"
+      }
+    ],
+    "funFact": "The killer whale is the largest member of the dolphin family, Delphinidae. Orcas and great white sharks are both apex ocean predators, but one is a mammal and the other a cartilaginous fish.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Orca",
+        "label": "Orca - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Oceanic_dolphin",
+        "label": "Oceanic dolphin - Wikipedia"
+      }
+    ]
+  },
+  {
     "difficulty": "tricky",
     "organisms": [
       {
@@ -3704,6 +4268,46 @@
     "difficulty": "easy",
     "organisms": [
       {
+        "commonName": "Avocado",
+        "scientificName": "Persea americana",
+        "ncbiTaxId": 3435,
+        "wikiTitle": "Avocado",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Persea_americana_fruit_2.JPG/330px-Persea_americana_fruit_2.JPG"
+      },
+      {
+        "commonName": "Cinnamon",
+        "scientificName": "Cinnamomum verum",
+        "ncbiTaxId": 128608,
+        "wikiTitle": "Cinnamomum_verum",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Cinnamomum_verum1.jpg/330px-Cinnamomum_verum1.jpg"
+      },
+      {
+        "commonName": "Apple",
+        "scientificName": "Malus domestica",
+        "ncbiTaxId": 3750,
+        "wikiTitle": "Apple",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Pink_lady_and_cross_section.jpg/330px-Pink_lady_and_cross_section.jpg"
+      }
+    ],
+    "funFact": "Avocado and cinnamon are both in the laurel family, Lauraceae, along with the bay leaf. Cinnamon is the dried inner bark of a laurel tree, while the avocado is the fruit of another.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Lauraceae",
+        "label": "Lauraceae - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Avocado",
+        "label": "Avocado - Wikipedia"
+      }
+    ]
+  },
+  {
+    "difficulty": "easy",
+    "organisms": [
+      {
         "commonName": "Sugar glider",
         "scientificName": "Petaurus breviceps",
         "ncbiTaxId": 34899,
@@ -3820,6 +4424,50 @@
     "difficulty": "easy",
     "organisms": [
       {
+        "commonName": "Koala",
+        "scientificName": "Phascolarctos cinereus",
+        "ncbiTaxId": 38626,
+        "wikiTitle": "Koala",
+        "group": "mammal",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Koala_climbing_tree.jpg/330px-Koala_climbing_tree.jpg"
+      },
+      {
+        "commonName": "Common wombat",
+        "scientificName": "Vombatus ursinus",
+        "ncbiTaxId": 29139,
+        "wikiTitle": "Common_wombat",
+        "group": "mammal",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Vombatus_ursinus_-Maria_Island_National_Park.jpg/330px-Vombatus_ursinus_-Maria_Island_National_Park.jpg"
+      },
+      {
+        "commonName": "Red kangaroo",
+        "scientificName": "Osphranter rufus",
+        "ncbiTaxId": 9321,
+        "wikiTitle": "Red_kangaroo",
+        "group": "mammal",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Red_kangaroo_-_melbourne_zoo.jpg/330px-Red_kangaroo_-_melbourne_zoo.jpg"
+      }
+    ],
+    "correctPair": [
+      "Koala",
+      "Common wombat"
+    ],
+    "funFact": "The koala's closest living relatives are the wombats. Both have pouches that open backwards, which keeps dirt out when a wombat digs. Kangaroos are a separate branch of marsupials.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Vombatiformes",
+        "label": "Vombatiformes - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Koala",
+        "label": "Koala - Wikipedia"
+      }
+    ]
+  },
+  {
+    "difficulty": "easy",
+    "organisms": [
+      {
         "commonName": "Harbor seal",
         "scientificName": "Phoca vitulina",
         "ncbiTaxId": 9720,
@@ -3901,6 +4549,46 @@
       {
         "url": "https://www.10000birds.com/exploring-the-relationship-between-flamingos-and-grebes-the-wonderful-birds.htm",
         "label": "10,000 Birds - Flamingos and grebes relationship"
+      }
+    ]
+  },
+  {
+    "difficulty": "easy",
+    "organisms": [
+      {
+        "commonName": "Firefly",
+        "scientificName": "Photinus pyralis",
+        "ncbiTaxId": 7054,
+        "wikiTitle": "Photinus_pyralis",
+        "group": "arthropod",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Photinus_pyralis_Firefly_3.jpg/330px-Photinus_pyralis_Firefly_3.jpg"
+      },
+      {
+        "commonName": "Ladybug",
+        "scientificName": "Coccinella septempunctata",
+        "ncbiTaxId": 41139,
+        "wikiTitle": "Coccinella_septempunctata",
+        "group": "arthropod",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/7-Spotted-Ladybug-Coccinella-septempunctata-sq1.jpg/330px-7-Spotted-Ladybug-Coccinella-septempunctata-sq1.jpg"
+      },
+      {
+        "commonName": "Housefly",
+        "scientificName": "Musca domestica",
+        "ncbiTaxId": 7370,
+        "wikiTitle": "Housefly",
+        "group": "arthropod",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Common_house_fly%2C_Musca_domestica.jpg/330px-Common_house_fly%2C_Musca_domestica.jpg"
+      }
+    ],
+    "funFact": "Fireflies and ladybugs are both beetles, not flies or bugs. Beetles have hardened front wings (elytra) that cover the flying wings, while true flies such as the housefly have just one pair of wings.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Firefly",
+        "label": "Firefly - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Beetle",
+        "label": "Beetle - Wikipedia"
       }
     ]
   },
@@ -4293,6 +4981,86 @@
       {
         "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2464702/",
         "label": "PMC - Termites are eusocial cockroaches"
+      }
+    ]
+  },
+  {
+    "difficulty": "easy",
+    "organisms": [
+      {
+        "commonName": "Rhubarb",
+        "scientificName": "Rheum rhabarbarum",
+        "ncbiTaxId": 3621,
+        "wikiTitle": "Rhubarb",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Rheum_rhabarbarum.2006-04-27.uellue.jpg/330px-Rheum_rhabarbarum.2006-04-27.uellue.jpg"
+      },
+      {
+        "commonName": "Buckwheat",
+        "scientificName": "Fagopyrum esculentum",
+        "ncbiTaxId": 3617,
+        "wikiTitle": "Buckwheat",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Japanese_Buckwheat_Flower.JPG/330px-Japanese_Buckwheat_Flower.JPG"
+      },
+      {
+        "commonName": "Celery",
+        "scientificName": "Apium graveolens",
+        "ncbiTaxId": 4045,
+        "wikiTitle": "Celery",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Celery_1.jpg/330px-Celery_1.jpg"
+      }
+    ],
+    "funFact": "Rhubarb and buckwheat are both in the knotweed family, Polygonaceae. Buckwheat isn't wheat (it isn't even a grass), and rhubarb stalks, which look a lot like celery, come from a very different branch of the flowering plants.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Polygonaceae",
+        "label": "Polygonaceae - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Buckwheat",
+        "label": "Buckwheat - Wikipedia"
+      }
+    ]
+  },
+  {
+    "difficulty": "easy",
+    "organisms": [
+      {
+        "commonName": "Whale shark",
+        "scientificName": "Rhincodon typus",
+        "ncbiTaxId": 259920,
+        "wikiTitle": "Whale_shark",
+        "group": "fish",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Similan_Dive_Center_-_great_whale_shark.jpg/330px-Similan_Dive_Center_-_great_whale_shark.jpg"
+      },
+      {
+        "commonName": "Great white shark",
+        "scientificName": "Carcharodon carcharias",
+        "ncbiTaxId": 13397,
+        "wikiTitle": "Great_white_shark",
+        "group": "fish",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/White_shark.jpg/330px-White_shark.jpg"
+      },
+      {
+        "commonName": "Blue whale",
+        "scientificName": "Balaenoptera musculus",
+        "ncbiTaxId": 9771,
+        "wikiTitle": "Blue_whale",
+        "group": "mammal",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Anim1754_-_Flickr_-_NOAA_Photo_Library.jpg/330px-Anim1754_-_Flickr_-_NOAA_Photo_Library.jpg"
+      }
+    ],
+    "funFact": "The whale shark is a shark, the largest fish alive, and is not a whale. Like the blue whale, it feeds by filtering plankton from the water, which is why the two giants look and behave so alike.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Whale_shark",
+        "label": "Whale shark - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Filter_feeder",
+        "label": "Filter feeder - Wikipedia"
       }
     ]
   },
@@ -4721,6 +5489,46 @@
       {
         "url": "https://theconversation.com/not-a-lizard-nor-a-dinosaur-tuatara-is-the-sole-survivor-of-a-once-widespread-reptile-group-75921",
         "label": "The Conversation - Tuatara is the sole survivor of a once-widespread reptile group"
+      }
+    ]
+  },
+  {
+    "difficulty": "easy",
+    "organisms": [
+      {
+        "commonName": "Spinach",
+        "scientificName": "Spinacia oleracea",
+        "ncbiTaxId": 3562,
+        "wikiTitle": "Spinach",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Spinacia_oleracea_Spinazie_bloeiend.jpg/330px-Spinacia_oleracea_Spinazie_bloeiend.jpg"
+      },
+      {
+        "commonName": "Beet",
+        "scientificName": "Beta vulgaris",
+        "ncbiTaxId": 161934,
+        "wikiTitle": "Beetroot",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Detroitdarkredbeets.png/330px-Detroitdarkredbeets.png"
+      },
+      {
+        "commonName": "Lettuce",
+        "scientificName": "Lactuca sativa",
+        "ncbiTaxId": 4236,
+        "wikiTitle": "Lettuce",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Iceberg_lettuce_in_SB.jpg/330px-Iceberg_lettuce_in_SB.jpg"
+      }
+    ],
+    "funFact": "Spinach and beet are in the same family, Amaranthaceae, along with chard and quinoa. Lettuce, despite also being a leafy salad green, is a member of the daisy family and is only distantly related.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Amaranthaceae",
+        "label": "Amaranthaceae - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Spinach",
+        "label": "Spinach - Wikipedia"
       }
     ]
   },

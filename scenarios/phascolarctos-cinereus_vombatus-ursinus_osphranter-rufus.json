@@ -1,0 +1,41 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Koala",
+      "scientificName": "Phascolarctos cinereus",
+      "ncbiTaxId": 38626,
+      "wikiTitle": "Koala",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Koala_climbing_tree.jpg/330px-Koala_climbing_tree.jpg"
+    },
+    {
+      "commonName": "Common wombat",
+      "scientificName": "Vombatus ursinus",
+      "ncbiTaxId": 29139,
+      "wikiTitle": "Common_wombat",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Vombatus_ursinus_-Maria_Island_National_Park.jpg/330px-Vombatus_ursinus_-Maria_Island_National_Park.jpg"
+    },
+    {
+      "commonName": "Red kangaroo",
+      "scientificName": "Osphranter rufus",
+      "ncbiTaxId": 9321,
+      "wikiTitle": "Red_kangaroo",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Red_kangaroo_-_melbourne_zoo.jpg/330px-Red_kangaroo_-_melbourne_zoo.jpg"
+    }
+  ],
+  "correctPair": ["Koala", "Common wombat"],
+  "funFact": "The koala's closest living relatives are the wombats. Both have pouches that open backwards, which keeps dirt out when a wombat digs. Kangaroos are a separate branch of marsupials.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Vombatiformes",
+      "label": "Vombatiformes - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Koala",
+      "label": "Koala - Wikipedia"
+    }
+  ]
+}

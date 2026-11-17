@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Asparagus",
+      "scientificName": "Asparagus officinalis",
+      "ncbiTaxId": 4686,
+      "wikiTitle": "Asparagus",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Asparagus-Bundle.jpg/330px-Asparagus-Bundle.jpg"
+    },
+    {
+      "commonName": "Onion",
+      "scientificName": "Allium cepa",
+      "ncbiTaxId": 4679,
+      "wikiTitle": "Onion",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Mixed_onions.jpg/330px-Mixed_onions.jpg"
+    },
+    {
+      "commonName": "Lily",
+      "scientificName": "Lilium longiflorum",
+      "ncbiTaxId": 4690,
+      "wikiTitle": "Lilium",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Lilium_candidum_1.jpg/330px-Lilium_candidum_1.jpg"
+    }
+  ],
+  "funFact": "Asparagus and onions are both in the order Asparagales, along with orchids, irises and agave. Lilies look like they would belong there too, but they are in a separate order, Liliales.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Asparagales",
+      "label": "Asparagales - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Liliales",
+      "label": "Liliales - Wikipedia"
+    }
+  ]
+}

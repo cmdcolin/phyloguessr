@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Spinach",
+      "scientificName": "Spinacia oleracea",
+      "ncbiTaxId": 3562,
+      "wikiTitle": "Spinach",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Spinacia_oleracea_Spinazie_bloeiend.jpg/330px-Spinacia_oleracea_Spinazie_bloeiend.jpg"
+    },
+    {
+      "commonName": "Beet",
+      "scientificName": "Beta vulgaris",
+      "ncbiTaxId": 161934,
+      "wikiTitle": "Beetroot",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Detroitdarkredbeets.png/330px-Detroitdarkredbeets.png"
+    },
+    {
+      "commonName": "Lettuce",
+      "scientificName": "Lactuca sativa",
+      "ncbiTaxId": 4236,
+      "wikiTitle": "Lettuce",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Iceberg_lettuce_in_SB.jpg/330px-Iceberg_lettuce_in_SB.jpg"
+    }
+  ],
+  "funFact": "Spinach and beet are in the same family, Amaranthaceae, along with chard and quinoa. Lettuce, despite also being a leafy salad green, is a member of the daisy family and is only distantly related.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Amaranthaceae",
+      "label": "Amaranthaceae - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Spinach",
+      "label": "Spinach - Wikipedia"
+    }
+  ]
+}

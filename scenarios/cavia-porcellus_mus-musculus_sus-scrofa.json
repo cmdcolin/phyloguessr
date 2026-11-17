@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Guinea pig",
+      "scientificName": "Cavia porcellus",
+      "ncbiTaxId": 10141,
+      "wikiTitle": "Guinea_pig",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/George_the_amazing_guinea_pig.jpg/330px-George_the_amazing_guinea_pig.jpg"
+    },
+    {
+      "commonName": "House mouse",
+      "scientificName": "Mus musculus",
+      "ncbiTaxId": 10090,
+      "wikiTitle": "House_mouse",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/%D0%9C%D1%8B%D1%88%D1%8C_2.jpg/500px-%D0%9C%D1%8B%D1%88%D1%8C_2.jpg"
+    },
+    {
+      "commonName": "Pig",
+      "scientificName": "Sus scrofa",
+      "ncbiTaxId": 9823,
+      "wikiTitle": "Pig",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Pig_farm_Vampula_1.jpg/330px-Pig_farm_Vampula_1.jpg"
+    }
+  ],
+  "funFact": "The guinea pig is neither a pig nor from Guinea. It is a South American rodent, related to chinchillas and capybaras. The name may come from its squeaky, pig-like noises.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Guinea_pig",
+      "label": "Guinea pig - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Caviidae",
+      "label": "Caviidae - Wikipedia"
+    }
+  ]
+}

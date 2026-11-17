@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Peanut",
+      "scientificName": "Arachis hypogaea",
+      "ncbiTaxId": 3818,
+      "wikiTitle": "Peanut",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Arachis_hypogaea_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-163.jpg/330px-Arachis_hypogaea_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-163.jpg"
+    },
+    {
+      "commonName": "Pea",
+      "scientificName": "Lathyrus oleraceus",
+      "ncbiTaxId": 3888,
+      "wikiTitle": "Pea",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Doperwt_rijserwt_peulen_Pisum_sativum.jpg/330px-Doperwt_rijserwt_peulen_Pisum_sativum.jpg"
+    },
+    {
+      "commonName": "Walnut",
+      "scientificName": "Juglans regia",
+      "ncbiTaxId": 51240,
+      "wikiTitle": "Juglans_regia",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Noyer_centenaire_en_automne.JPG/330px-Noyer_centenaire_en_automne.JPG"
+    }
+  ],
+  "funFact": "The peanut isn't a nut. It's a legume, in the same family as peas, beans and lentils. Peanut flowers bloom above ground and then push their stalks into the soil, so the pods ripen underground.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Peanut",
+      "label": "Peanut - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Fabaceae",
+      "label": "Fabaceae - Wikipedia"
+    }
+  ]
+}

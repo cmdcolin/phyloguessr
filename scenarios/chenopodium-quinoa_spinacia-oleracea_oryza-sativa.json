@@ -1,0 +1,40 @@
+{
+  "difficulty": "tricky",
+  "organisms": [
+    {
+      "commonName": "Quinoa",
+      "scientificName": "Chenopodium quinoa",
+      "ncbiTaxId": 63459,
+      "wikiTitle": "Quinoa",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Reismelde.jpg/330px-Reismelde.jpg"
+    },
+    {
+      "commonName": "Spinach",
+      "scientificName": "Spinacia oleracea",
+      "ncbiTaxId": 3562,
+      "wikiTitle": "Spinach",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Spinacia_oleracea_Spinazie_bloeiend.jpg/330px-Spinacia_oleracea_Spinazie_bloeiend.jpg"
+    },
+    {
+      "commonName": "Rice",
+      "scientificName": "Oryza sativa",
+      "ncbiTaxId": 4530,
+      "wikiTitle": "Rice",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Mature_Rice_%28India%29_by_Augustus_Binu.jpg/330px-Mature_Rice_%28India%29_by_Augustus_Binu.jpg"
+    }
+  ],
+  "funFact": "Quinoa is eaten like a grain, but it is the seed of a leafy plant in the amaranth family, which also includes spinach. Rice, like wheat and corn, is a true grass. Quinoa is called a 'pseudocereal'.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Quinoa",
+      "label": "Quinoa - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Pseudocereal",
+      "label": "Pseudocereal - Wikipedia"
+    }
+  ]
+}

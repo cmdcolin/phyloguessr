@@ -1,0 +1,40 @@
+{
+  "difficulty": "tricky",
+  "organisms": [
+    {
+      "commonName": "Northern elephant seal",
+      "scientificName": "Mirounga angustirostris",
+      "ncbiTaxId": 9716,
+      "wikiTitle": "Northern_elephant_seal",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Mating_scene_with_elevated_Alpha_Male._Elephant_Seals_of_Piedras_Blancas.jpg/330px-Mating_scene_with_elevated_Alpha_Male._Elephant_Seals_of_Piedras_Blancas.jpg"
+    },
+    {
+      "commonName": "Walrus",
+      "scientificName": "Odobenus rosmarus",
+      "ncbiTaxId": 9707,
+      "wikiTitle": "Walrus",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Walrus_in_the_Russian_Arctic_National_Park%2C_Novaya_Zemlya_2015-2.jpg/330px-Walrus_in_the_Russian_Arctic_National_Park%2C_Novaya_Zemlya_2015-2.jpg"
+    },
+    {
+      "commonName": "African elephant",
+      "scientificName": "Loxodonta africana",
+      "ncbiTaxId": 9785,
+      "wikiTitle": "African_elephant",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/178_Male_African_bush_elephant_in_Etosha_National_Park_Photo_by_Giles_Laurent.jpg/330px-178_Male_African_bush_elephant_in_Etosha_National_Park_Photo_by_Giles_Laurent.jpg"
+    }
+  ],
+  "funFact": "The elephant seal is named for the male's trunk-like nose, which acts as a resonating chamber for its roars. It is a true seal, related to walruses and sea lions, and is no relative of elephants beyond both being mammals.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Elephant_seal",
+      "label": "Elephant seal - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Pinniped",
+      "label": "Pinniped - Wikipedia"
+    }
+  ]
+}

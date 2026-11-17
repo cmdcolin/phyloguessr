@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Atlantic puffin",
+      "scientificName": "Fratercula arctica",
+      "ncbiTaxId": 28701,
+      "wikiTitle": "Atlantic_puffin",
+      "group": "bird",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Puffin_%28Fratercula_arctica%29.jpg/330px-Puffin_%28Fratercula_arctica%29.jpg"
+    },
+    {
+      "commonName": "Emperor penguin",
+      "scientificName": "Aptenodytes forsteri",
+      "ncbiTaxId": 9233,
+      "wikiTitle": "Emperor_penguin",
+      "group": "bird",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Aptenodytes_forsteri_-Snow_Hill_Island%2C_Antarctica_-adults_and_juvenile-8.jpg/330px-Aptenodytes_forsteri_-Snow_Hill_Island%2C_Antarctica_-adults_and_juvenile-8.jpg"
+    },
+    {
+      "commonName": "Wandering albatross",
+      "scientificName": "Diomedea exulans",
+      "ncbiTaxId": 46550,
+      "wikiTitle": "Wandering_albatross",
+      "group": "bird",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Diomedea_exulans_-_SE_Tasmania.jpg/330px-Diomedea_exulans_-_SE_Tasmania.jpg"
+    }
+  ],
+  "funFact": "Puffins look like small flying penguins, but the resemblance is convergent evolution in diving seabirds. Puffins are auks, related to gulls and sandpipers, while penguins are closest to albatrosses and petrels.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Penguin",
+      "label": "Penguin - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Auk",
+      "label": "Auk - Wikipedia"
+    }
+  ]
+}

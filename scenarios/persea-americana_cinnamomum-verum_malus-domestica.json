@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Avocado",
+      "scientificName": "Persea americana",
+      "ncbiTaxId": 3435,
+      "wikiTitle": "Avocado",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Persea_americana_fruit_2.JPG/330px-Persea_americana_fruit_2.JPG"
+    },
+    {
+      "commonName": "Cinnamon",
+      "scientificName": "Cinnamomum verum",
+      "ncbiTaxId": 128608,
+      "wikiTitle": "Cinnamomum_verum",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Cinnamomum_verum1.jpg/330px-Cinnamomum_verum1.jpg"
+    },
+    {
+      "commonName": "Apple",
+      "scientificName": "Malus domestica",
+      "ncbiTaxId": 3750,
+      "wikiTitle": "Apple",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Pink_lady_and_cross_section.jpg/330px-Pink_lady_and_cross_section.jpg"
+    }
+  ],
+  "funFact": "Avocado and cinnamon are both in the laurel family, Lauraceae, along with the bay leaf. Cinnamon is the dried inner bark of a laurel tree, while the avocado is the fruit of another.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Lauraceae",
+      "label": "Lauraceae - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Avocado",
+      "label": "Avocado - Wikipedia"
+    }
+  ]
+}

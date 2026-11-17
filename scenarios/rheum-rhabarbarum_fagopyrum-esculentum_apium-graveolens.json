@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Rhubarb",
+      "scientificName": "Rheum rhabarbarum",
+      "ncbiTaxId": 3621,
+      "wikiTitle": "Rhubarb",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Rheum_rhabarbarum.2006-04-27.uellue.jpg/330px-Rheum_rhabarbarum.2006-04-27.uellue.jpg"
+    },
+    {
+      "commonName": "Buckwheat",
+      "scientificName": "Fagopyrum esculentum",
+      "ncbiTaxId": 3617,
+      "wikiTitle": "Buckwheat",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Japanese_Buckwheat_Flower.JPG/330px-Japanese_Buckwheat_Flower.JPG"
+    },
+    {
+      "commonName": "Celery",
+      "scientificName": "Apium graveolens",
+      "ncbiTaxId": 4045,
+      "wikiTitle": "Celery",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Celery_1.jpg/330px-Celery_1.jpg"
+    }
+  ],
+  "funFact": "Rhubarb and buckwheat are both in the knotweed family, Polygonaceae. Buckwheat isn't wheat (it isn't even a grass), and rhubarb stalks, which look a lot like celery, come from a very different branch of the flowering plants.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Polygonaceae",
+      "label": "Polygonaceae - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Buckwheat",
+      "label": "Buckwheat - Wikipedia"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "difficulty": "tricky",
+  "organisms": [
+    {
+      "commonName": "Electric eel",
+      "scientificName": "Electrophorus electricus",
+      "ncbiTaxId": 8005,
+      "wikiTitle": "Electric_eel",
+      "group": "fish",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Electric-eel.jpg/330px-Electric-eel.jpg"
+    },
+    {
+      "commonName": "Channel catfish",
+      "scientificName": "Ictalurus punctatus",
+      "ncbiTaxId": 7998,
+      "wikiTitle": "Channel_catfish",
+      "group": "fish",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Channel_Catfish_%28Ictalurus_punctatus%29_white_background.jpg/330px-Channel_Catfish_%28Ictalurus_punctatus%29_white_background.jpg"
+    },
+    {
+      "commonName": "Moray eel",
+      "scientificName": "Gymnothorax funebris",
+      "ncbiTaxId": 1182252,
+      "wikiTitle": "Green_moray",
+      "group": "fish",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/GreenMorayEel.JPG/330px-GreenMorayEel.JPG"
+    }
+  ],
+  "funFact": "The electric eel isn't an eel. It is a South American knifefish, more closely related to catfish and carp than to true eels like the moray. It can produce shocks of more than 800 volts.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Electric_eel",
+      "label": "Electric eel - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Gymnotiformes",
+      "label": "Gymnotiformes - Wikipedia"
+    }
+  ]
+}

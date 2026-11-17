@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Whale shark",
+      "scientificName": "Rhincodon typus",
+      "ncbiTaxId": 259920,
+      "wikiTitle": "Whale_shark",
+      "group": "fish",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Similan_Dive_Center_-_great_whale_shark.jpg/330px-Similan_Dive_Center_-_great_whale_shark.jpg"
+    },
+    {
+      "commonName": "Great white shark",
+      "scientificName": "Carcharodon carcharias",
+      "ncbiTaxId": 13397,
+      "wikiTitle": "Great_white_shark",
+      "group": "fish",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/White_shark.jpg/330px-White_shark.jpg"
+    },
+    {
+      "commonName": "Blue whale",
+      "scientificName": "Balaenoptera musculus",
+      "ncbiTaxId": 9771,
+      "wikiTitle": "Blue_whale",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Anim1754_-_Flickr_-_NOAA_Photo_Library.jpg/330px-Anim1754_-_Flickr_-_NOAA_Photo_Library.jpg"
+    }
+  ],
+  "funFact": "The whale shark is a shark, the largest fish alive, and is not a whale. Like the blue whale, it feeds by filtering plankton from the water, which is why the two giants look and behave so alike.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Whale_shark",
+      "label": "Whale shark - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Filter_feeder",
+      "label": "Filter feeder - Wikipedia"
+    }
+  ]
+}

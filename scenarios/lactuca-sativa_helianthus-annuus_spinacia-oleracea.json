@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Lettuce",
+      "scientificName": "Lactuca sativa",
+      "ncbiTaxId": 4236,
+      "wikiTitle": "Lettuce",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Iceberg_lettuce_in_SB.jpg/330px-Iceberg_lettuce_in_SB.jpg"
+    },
+    {
+      "commonName": "Sunflower",
+      "scientificName": "Helianthus annuus",
+      "ncbiTaxId": 4232,
+      "wikiTitle": "Common_sunflower",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Sunflower_sky_backdrop.jpg/330px-Sunflower_sky_backdrop.jpg"
+    },
+    {
+      "commonName": "Spinach",
+      "scientificName": "Spinacia oleracea",
+      "ncbiTaxId": 3562,
+      "wikiTitle": "Spinach",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Spinacia_oleracea_Spinazie_bloeiend.jpg/330px-Spinacia_oleracea_Spinazie_bloeiend.jpg"
+    }
+  ],
+  "funFact": "Lettuce is a daisy! It belongs to Asteraceae, the same family as sunflowers, dandelions and artichokes. Let a lettuce plant bolt and it sends up a stalk of small yellow daisy-like flowers. Spinach is in a different order entirely.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Lettuce",
+      "label": "Lettuce - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Asteraceae",
+      "label": "Asteraceae - Wikipedia"
+    }
+  ]
+}

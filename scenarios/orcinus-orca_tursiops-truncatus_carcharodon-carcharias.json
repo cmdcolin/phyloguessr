@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Killer whale",
+      "scientificName": "Orcinus orca",
+      "ncbiTaxId": 9733,
+      "wikiTitle": "Orca",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Killerwhales_jumping.jpg/330px-Killerwhales_jumping.jpg"
+    },
+    {
+      "commonName": "Bottlenose dolphin",
+      "scientificName": "Tursiops truncatus",
+      "ncbiTaxId": 9739,
+      "wikiTitle": "Common_bottlenose_dolphin",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Tursiops_truncatus_01-cropped.jpg/330px-Tursiops_truncatus_01-cropped.jpg"
+    },
+    {
+      "commonName": "Great white shark",
+      "scientificName": "Carcharodon carcharias",
+      "ncbiTaxId": 13397,
+      "wikiTitle": "Great_white_shark",
+      "group": "fish",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/White_shark.jpg/330px-White_shark.jpg"
+    }
+  ],
+  "funFact": "The killer whale is the largest member of the dolphin family, Delphinidae. Orcas and great white sharks are both apex ocean predators, but one is a mammal and the other a cartilaginous fish.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Orca",
+      "label": "Orca - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Oceanic_dolphin",
+      "label": "Oceanic dolphin - Wikipedia"
+    }
+  ]
+}

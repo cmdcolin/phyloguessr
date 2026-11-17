@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Pineapple",
+      "scientificName": "Ananas comosus",
+      "ncbiTaxId": 4615,
+      "wikiTitle": "Pineapple",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/%E0%B4%95%E0%B5%88%E0%B4%A4%E0%B4%9A%E0%B5%8D%E0%B4%9A%E0%B4%95%E0%B5%8D%E0%B4%95.jpg/330px-%E0%B4%95%E0%B5%88%E0%B4%A4%E0%B4%9A%E0%B5%8D%E0%B4%9A%E0%B4%95%E0%B5%8D%E0%B4%95.jpg"
+    },
+    {
+      "commonName": "Wheat",
+      "scientificName": "Triticum aestivum",
+      "ncbiTaxId": 4565,
+      "wikiTitle": "Common_wheat",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Bl%C3%A9_tendre_%28GRAPELLI%29_AO-5-cliche_Jean_Weber_%285%29_%2823975019962%29.jpg/330px-Bl%C3%A9_tendre_%28GRAPELLI%29_AO-5-cliche_Jean_Weber_%285%29_%2823975019962%29.jpg"
+    },
+    {
+      "commonName": "Banana",
+      "scientificName": "Musa acuminata",
+      "ncbiTaxId": 4641,
+      "wikiTitle": "Banana",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Bananavarieties.jpg/330px-Bananavarieties.jpg"
+    }
+  ],
+  "funFact": "The pineapple is in the order Poales, the same order as the grasses, so it is more closely related to wheat, rice and corn than to the banana. Bananas belong to Zingiberales, the ginger order.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Bromeliaceae",
+      "label": "Bromeliaceae - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Poales",
+      "label": "Poales - Wikipedia"
+    }
+  ]
+}
