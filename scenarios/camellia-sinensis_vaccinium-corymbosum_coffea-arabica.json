@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Tea",
+      "scientificName": "Camellia sinensis",
+      "ncbiTaxId": 4442,
+      "wikiTitle": "Camellia_sinensis",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Csinensis.jpg/330px-Csinensis.jpg"
+    },
+    {
+      "commonName": "Blueberry",
+      "scientificName": "Vaccinium corymbosum",
+      "ncbiTaxId": 69266,
+      "wikiTitle": "Vaccinium_corymbosum",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Vaccinium_corymbosum%2801%29.jpg/330px-Vaccinium_corymbosum%2801%29.jpg"
+    },
+    {
+      "commonName": "Coffee",
+      "scientificName": "Coffea arabica",
+      "ncbiTaxId": 13443,
+      "wikiTitle": "Coffea_arabica",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Coffee_Flowers.JPG/330px-Coffee_Flowers.JPG"
+    }
+  ],
+  "funFact": "Your morning tea is closer to blueberries than to coffee. The tea plant (a camellia) and the blueberry are both in the order Ericales, while coffee is in the gentian order, Gentianales. Tea and coffee plants evolved caffeine independently, as a natural insecticide.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Ericales",
+      "label": "Ericales - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Coffea",
+      "label": "Coffea - Wikipedia"
+    }
+  ]
+}

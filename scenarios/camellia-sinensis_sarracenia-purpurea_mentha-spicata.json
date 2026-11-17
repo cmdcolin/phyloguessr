@@ -1,0 +1,40 @@
+{
+  "difficulty": "tricky",
+  "organisms": [
+    {
+      "commonName": "Tea",
+      "scientificName": "Camellia sinensis",
+      "ncbiTaxId": 4442,
+      "wikiTitle": "Camellia_sinensis",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Csinensis.jpg/330px-Csinensis.jpg"
+    },
+    {
+      "commonName": "American pitcher plant",
+      "scientificName": "Sarracenia purpurea",
+      "ncbiTaxId": 45176,
+      "wikiTitle": "Sarracenia_purpurea",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Sarracenia_purpurea_Flowers.JPG/330px-Sarracenia_purpurea_Flowers.JPG"
+    },
+    {
+      "commonName": "Spearmint",
+      "scientificName": "Mentha spicata",
+      "ncbiTaxId": 29719,
+      "wikiTitle": "Spearmint",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Minze.jpg/330px-Minze.jpg"
+    }
+  ],
+  "funFact": "Tea and mint are both leaves we steep in hot water, but the tea plant's closer relative is the carnivorous American pitcher plant: both are in the order Ericales. Mint is in Lamiales with basil, lavender and olive. Tropical pitcher plants (Nepenthes) evolved their pitchers separately and are in yet another order, Caryophyllales.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Sarracenia",
+      "label": "Sarracenia - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Ericales",
+      "label": "Ericales - Wikipedia"
+    }
+  ]
+}

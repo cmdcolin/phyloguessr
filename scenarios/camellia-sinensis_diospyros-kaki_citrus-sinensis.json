@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Tea",
+      "scientificName": "Camellia sinensis",
+      "ncbiTaxId": 4442,
+      "wikiTitle": "Camellia_sinensis",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Csinensis.jpg/330px-Csinensis.jpg"
+    },
+    {
+      "commonName": "Persimmon",
+      "scientificName": "Diospyros kaki",
+      "ncbiTaxId": 35925,
+      "wikiTitle": "Diospyros_kaki",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Kaki_20041002.jpg/330px-Kaki_20041002.jpg"
+    },
+    {
+      "commonName": "Orange",
+      "scientificName": "Citrus sinensis",
+      "ncbiTaxId": 2711,
+      "wikiTitle": "Orange_(fruit)",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Oranges_-_whole-halved-segment.jpg/330px-Oranges_-_whole-halved-segment.jpg"
+    }
+  ],
+  "funFact": "The persimmon is in the ebony family, Ebenaceae (ebony wood comes from its relatives), which sits in Ericales with tea, kiwifruit and blueberries. The orange, another round orange fruit, is in Sapindales with maples, mangoes and cashews.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Diospyros_kaki",
+      "label": "Diospyros kaki - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Ebenaceae",
+      "label": "Ebenaceae - Wikipedia"
+    }
+  ]
+}

@@ -1084,6 +1084,126 @@
     ]
   },
   {
+    "difficulty": "easy",
+    "organisms": [
+      {
+        "commonName": "Tea",
+        "scientificName": "Camellia sinensis",
+        "ncbiTaxId": 4442,
+        "wikiTitle": "Camellia_sinensis",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Csinensis.jpg/330px-Csinensis.jpg"
+      },
+      {
+        "commonName": "Persimmon",
+        "scientificName": "Diospyros kaki",
+        "ncbiTaxId": 35925,
+        "wikiTitle": "Diospyros_kaki",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Kaki_20041002.jpg/330px-Kaki_20041002.jpg"
+      },
+      {
+        "commonName": "Orange",
+        "scientificName": "Citrus sinensis",
+        "ncbiTaxId": 2711,
+        "wikiTitle": "Orange_(fruit)",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Oranges_-_whole-halved-segment.jpg/330px-Oranges_-_whole-halved-segment.jpg"
+      }
+    ],
+    "funFact": "The persimmon is in the ebony family, Ebenaceae (ebony wood comes from its relatives), which sits in Ericales with tea, kiwifruit and blueberries. The orange, another round orange fruit, is in Sapindales with maples, mangoes and cashews.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Diospyros_kaki",
+        "label": "Diospyros kaki - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Ebenaceae",
+        "label": "Ebenaceae - Wikipedia"
+      }
+    ]
+  },
+  {
+    "difficulty": "tricky",
+    "organisms": [
+      {
+        "commonName": "Tea",
+        "scientificName": "Camellia sinensis",
+        "ncbiTaxId": 4442,
+        "wikiTitle": "Camellia_sinensis",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Csinensis.jpg/330px-Csinensis.jpg"
+      },
+      {
+        "commonName": "American pitcher plant",
+        "scientificName": "Sarracenia purpurea",
+        "ncbiTaxId": 45176,
+        "wikiTitle": "Sarracenia_purpurea",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Sarracenia_purpurea_Flowers.JPG/330px-Sarracenia_purpurea_Flowers.JPG"
+      },
+      {
+        "commonName": "Spearmint",
+        "scientificName": "Mentha spicata",
+        "ncbiTaxId": 29719,
+        "wikiTitle": "Spearmint",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Minze.jpg/330px-Minze.jpg"
+      }
+    ],
+    "funFact": "Tea and mint are both leaves we steep in hot water, but the tea plant's closer relative is the carnivorous American pitcher plant: both are in the order Ericales. Mint is in Lamiales with basil, lavender and olive. Tropical pitcher plants (Nepenthes) evolved their pitchers separately and are in yet another order, Caryophyllales.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Sarracenia",
+        "label": "Sarracenia - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Ericales",
+        "label": "Ericales - Wikipedia"
+      }
+    ]
+  },
+  {
+    "difficulty": "easy",
+    "organisms": [
+      {
+        "commonName": "Tea",
+        "scientificName": "Camellia sinensis",
+        "ncbiTaxId": 4442,
+        "wikiTitle": "Camellia_sinensis",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Csinensis.jpg/330px-Csinensis.jpg"
+      },
+      {
+        "commonName": "Blueberry",
+        "scientificName": "Vaccinium corymbosum",
+        "ncbiTaxId": 69266,
+        "wikiTitle": "Vaccinium_corymbosum",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Vaccinium_corymbosum%2801%29.jpg/330px-Vaccinium_corymbosum%2801%29.jpg"
+      },
+      {
+        "commonName": "Coffee",
+        "scientificName": "Coffea arabica",
+        "ncbiTaxId": 13443,
+        "wikiTitle": "Coffea_arabica",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Coffee_Flowers.JPG/330px-Coffee_Flowers.JPG"
+      }
+    ],
+    "funFact": "Your morning tea is closer to blueberries than to coffee. The tea plant (a camellia) and the blueberry are both in the order Ericales, while coffee is in the gentian order, Gentianales. Tea and coffee plants evolved caffeine independently, as a natural insecticide.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Ericales",
+        "label": "Ericales - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Coffea",
+        "label": "Coffea - Wikipedia"
+      }
+    ]
+  },
+  {
     "difficulty": "tricky",
     "organisms": [
       {
