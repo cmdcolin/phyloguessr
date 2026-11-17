@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Silverfish",
+      "scientificName": "Lepisma saccharinum",
+      "ncbiTaxId": 50586,
+      "wikiTitle": "Silverfish",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/LepismaSaccharina.jpg/330px-LepismaSaccharina.jpg"
+    },
+    {
+      "commonName": "Goldfish",
+      "scientificName": "Carassius auratus",
+      "ncbiTaxId": 7957,
+      "wikiTitle": "Goldfish",
+      "group": "fish",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Gold_fish1.jpg/330px-Gold_fish1.jpg"
+    },
+    {
+      "commonName": "American cockroach",
+      "scientificName": "Periplaneta americana",
+      "ncbiTaxId": 6978,
+      "wikiTitle": "American_cockroach",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/American-cockroach.jpg/330px-American-cockroach.jpg"
+    }
+  ],
+  "funFact": "The silverfish is a wingless insect, named for its silvery scales and the fishlike way it wiggles. Its lineage branched off before insects evolved wings, and it has barely changed in over 300 million years.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Silverfish",
+      "label": "Silverfish - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Zygentoma",
+      "label": "Zygentoma - Wikipedia"
+    }
+  ]
+}

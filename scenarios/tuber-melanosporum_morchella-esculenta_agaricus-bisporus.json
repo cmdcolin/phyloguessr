@@ -1,0 +1,40 @@
+{
+  "difficulty": "tricky",
+  "organisms": [
+    {
+      "commonName": "Black truffle",
+      "scientificName": "Tuber melanosporum",
+      "ncbiTaxId": 39416,
+      "wikiTitle": "Tuber_melanosporum",
+      "group": "microbe",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Truffe_nature.JPG/330px-Truffe_nature.JPG"
+    },
+    {
+      "commonName": "Morel",
+      "scientificName": "Morchella esculenta",
+      "ncbiTaxId": 39407,
+      "wikiTitle": "Morchella_esculenta",
+      "group": "microbe",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Morchella_esculenta_-_DE_-_TH_-_2013-05-01_-_01.JPG/330px-Morchella_esculenta_-_DE_-_TH_-_2013-05-01_-_01.JPG"
+    },
+    {
+      "commonName": "Button mushroom",
+      "scientificName": "Agaricus bisporus",
+      "ncbiTaxId": 5341,
+      "wikiTitle": "Agaricus_bisporus",
+      "group": "microbe",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/ChampignonMushroom.jpg/330px-ChampignonMushroom.jpg"
+    }
+  ],
+  "funFact": "Truffles and morels are both cup fungi (Pezizales), in the phylum Ascomycota with yeasts. The button mushroom looks like the most typical mushroom of the three, but it is in a different phylum, Basidiomycota. Truffles evolved underground fruiting bodies that rely on animals to dig them up and spread their spores.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Pezizales",
+      "label": "Pezizales - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Truffle",
+      "label": "Truffle - Wikipedia"
+    }
+  ]
+}

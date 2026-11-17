@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Kiwifruit",
+      "scientificName": "Actinidia chinensis",
+      "ncbiTaxId": 3625,
+      "wikiTitle": "Kiwifruit",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Actinidia_fruits.jpg/330px-Actinidia_fruits.jpg"
+    },
+    {
+      "commonName": "Tea",
+      "scientificName": "Camellia sinensis",
+      "ncbiTaxId": 4442,
+      "wikiTitle": "Camellia_sinensis",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Csinensis.jpg/330px-Csinensis.jpg"
+    },
+    {
+      "commonName": "Grape",
+      "scientificName": "Vitis vinifera",
+      "ncbiTaxId": 29760,
+      "wikiTitle": "Vitis_vinifera",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Cabernet_Sauvignon_Gaillac.jpg/330px-Cabernet_Sauvignon_Gaillac.jpg"
+    }
+  ],
+  "funFact": "Kiwifruit and the tea plant are both in the order Ericales, which also includes blueberries, persimmons and Brazil nuts. The fuzzy vine fruit looks like it should be close to the grape, but grapes sit on a distant branch of the flowering plants.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Ericales",
+      "label": "Ericales - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Kiwifruit",
+      "label": "Kiwifruit - Wikipedia"
+    }
+  ]
+}

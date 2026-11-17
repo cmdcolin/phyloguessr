@@ -1,0 +1,40 @@
+{
+  "difficulty": "tricky",
+  "organisms": [
+    {
+      "commonName": "Tasmanian tiger",
+      "scientificName": "Thylacinus cynocephalus",
+      "ncbiTaxId": 9275,
+      "wikiTitle": "Thylacine",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Thylacinus_cropped.png/330px-Thylacinus_cropped.png"
+    },
+    {
+      "commonName": "Tasmanian devil",
+      "scientificName": "Sarcophilus harrisii",
+      "ncbiTaxId": 9305,
+      "wikiTitle": "Tasmanian_devil",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Sarcophilus_harrisii_taranna.jpg/330px-Sarcophilus_harrisii_taranna.jpg"
+    },
+    {
+      "commonName": "Gray wolf",
+      "scientificName": "Canis lupus",
+      "ncbiTaxId": 9612,
+      "wikiTitle": "Wolf",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Huskiesatrest.jpg/500px-Huskiesatrest.jpg"
+    }
+  ],
+  "funFact": "The thylacine looked so much like a wolf that its skull is hard to tell apart from a dog's, yet it was a marsupial that carried its young in a pouch. Its closest living relatives are the Tasmanian devil and the numbat. The last known thylacine died in a zoo in 1936.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Thylacine",
+      "label": "Thylacine - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Dasyuromorphia",
+      "label": "Dasyuromorphia - Wikipedia"
+    }
+  ]
+}

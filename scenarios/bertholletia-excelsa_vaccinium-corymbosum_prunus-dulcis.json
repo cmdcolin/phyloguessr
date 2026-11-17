@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Brazil nut",
+      "scientificName": "Bertholletia excelsa",
+      "ncbiTaxId": 3645,
+      "wikiTitle": "Brazil_nut",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Bertholletia_excelsa_compose.jpg/330px-Bertholletia_excelsa_compose.jpg"
+    },
+    {
+      "commonName": "Blueberry",
+      "scientificName": "Vaccinium corymbosum",
+      "ncbiTaxId": 69266,
+      "wikiTitle": "Vaccinium_corymbosum",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Vaccinium_corymbosum%2801%29.jpg/330px-Vaccinium_corymbosum%2801%29.jpg"
+    },
+    {
+      "commonName": "Almond",
+      "scientificName": "Prunus dulcis",
+      "ncbiTaxId": 3755,
+      "wikiTitle": "Almond",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Almonds_-_in_shell%2C_shell_cracked_open%2C_shelled%2C_blanched.jpg/330px-Almonds_-_in_shell%2C_shell_cracked_open%2C_shelled%2C_blanched.jpg"
+    }
+  ],
+  "funFact": "The Brazil nut is closer to the blueberry than to the almond: both are in the order Ericales. The Brazil nut isn't botanically a nut, but a seed, and up to two dozen of them grow packed inside a hard, coconut-sized pod.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Brazil_nut",
+      "label": "Brazil nut - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Ericales",
+      "label": "Ericales - Wikipedia"
+    }
+  ]
+}

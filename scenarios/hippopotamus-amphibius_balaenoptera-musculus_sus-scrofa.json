@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Hippopotamus",
+      "scientificName": "Hippopotamus amphibius",
+      "ncbiTaxId": 9833,
+      "wikiTitle": "Hippopotamus",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Portrait_Hippopotamus_in_the_water.jpg/330px-Portrait_Hippopotamus_in_the_water.jpg"
+    },
+    {
+      "commonName": "Blue whale",
+      "scientificName": "Balaenoptera musculus",
+      "ncbiTaxId": 9771,
+      "wikiTitle": "Blue_whale",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Anim1754_-_Flickr_-_NOAA_Photo_Library.jpg/330px-Anim1754_-_Flickr_-_NOAA_Photo_Library.jpg"
+    },
+    {
+      "commonName": "Pig",
+      "scientificName": "Sus scrofa",
+      "ncbiTaxId": 9823,
+      "wikiTitle": "Pig",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Pig_farm_Vampula_1.jpg/330px-Pig_farm_Vampula_1.jpg"
+    }
+  ],
+  "funFact": "The hippo looks like a giant pig, but its closest living relatives are the whales. Whales and hippos share an ancestor that lived around 55 million years ago, and both give birth and nurse their young underwater.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Whippomorpha",
+      "label": "Whippomorpha - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Hippopotamus",
+      "label": "Hippopotamus - Wikipedia"
+    }
+  ]
+}

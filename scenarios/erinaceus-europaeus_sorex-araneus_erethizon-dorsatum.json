@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Hedgehog",
+      "scientificName": "Erinaceus europaeus",
+      "ncbiTaxId": 9365,
+      "wikiTitle": "European_hedgehog",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Erinaceus_europaeus_LC0119.jpg/330px-Erinaceus_europaeus_LC0119.jpg"
+    },
+    {
+      "commonName": "Common shrew",
+      "scientificName": "Sorex araneus",
+      "ncbiTaxId": 42254,
+      "wikiTitle": "Eurasian_shrew",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Sorex-araneus.jpg/330px-Sorex-araneus.jpg"
+    },
+    {
+      "commonName": "Porcupine",
+      "scientificName": "Erethizon dorsatum",
+      "ncbiTaxId": 34844,
+      "wikiTitle": "North_American_porcupine",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/North_American_porcupine_%28Erethizon_dorsatum_nigrescens%29_Yoho.jpg/330px-North_American_porcupine_%28Erethizon_dorsatum_nigrescens%29_Yoho.jpg"
+    }
+  ],
+  "funFact": "Spines evolved more than once. The hedgehog is closest to shrews and moles (Eulipotyphla), while the porcupine is a rodent. Their quills are modified hairs that the two lineages evolved independently.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Hedgehog",
+      "label": "Hedgehog - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Porcupine",
+      "label": "Porcupine - Wikipedia"
+    }
+  ]
+}

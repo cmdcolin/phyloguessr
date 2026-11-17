@@ -1,0 +1,40 @@
+{
+  "difficulty": "tricky",
+  "organisms": [
+    {
+      "commonName": "Harvestman",
+      "scientificName": "Phalangium opilio",
+      "ncbiTaxId": 118624,
+      "wikiTitle": "Phalangium_opilio",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Phalangium_opilio_MHNT_Male.jpg/330px-Phalangium_opilio_MHNT_Male.jpg"
+    },
+    {
+      "commonName": "Garden spider",
+      "scientificName": "Araneus diadematus",
+      "ncbiTaxId": 45920,
+      "wikiTitle": "Araneus_diadematus",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Araneus_diadematus_MHNT_Femelle_Fronton.jpg/330px-Araneus_diadematus_MHNT_Femelle_Fronton.jpg"
+    },
+    {
+      "commonName": "Crane fly",
+      "scientificName": "Tipula oleracea",
+      "ncbiTaxId": 312236,
+      "wikiTitle": "Crane_fly",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Tipulidae_April_2008-2.jpg/330px-Tipulidae_April_2008-2.jpg"
+    }
+  ],
+  "funFact": "'Daddy longlegs' is used for both the harvestman and the crane fly, and sometimes for cellar spiders too. The harvestman is an arachnid but not a spider: its body is a single oval with no waist, and it has no venom or silk. The crane fly is a true fly.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Opiliones",
+      "label": "Opiliones - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Crane_fly",
+      "label": "Crane fly - Wikipedia"
+    }
+  ]
+}

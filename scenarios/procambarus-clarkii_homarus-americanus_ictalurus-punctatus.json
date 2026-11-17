@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Crayfish",
+      "scientificName": "Procambarus clarkii",
+      "ncbiTaxId": 6728,
+      "wikiTitle": "Procambarus_clarkii",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Procambarus_clarkii.jpg/330px-Procambarus_clarkii.jpg"
+    },
+    {
+      "commonName": "American lobster",
+      "scientificName": "Homarus americanus",
+      "ncbiTaxId": 6706,
+      "wikiTitle": "American_lobster",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Nur01521_-_Flickr_-_NOAA_Photo_Library.jpg/330px-Nur01521_-_Flickr_-_NOAA_Photo_Library.jpg"
+    },
+    {
+      "commonName": "Channel catfish",
+      "scientificName": "Ictalurus punctatus",
+      "ncbiTaxId": 7998,
+      "wikiTitle": "Channel_catfish",
+      "group": "fish",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Channel_Catfish_%28Ictalurus_punctatus%29_white_background.jpg/330px-Channel_Catfish_%28Ictalurus_punctatus%29_white_background.jpg"
+    }
+  ],
+  "funFact": "The crayfish isn't a fish. It is a freshwater crustacean, essentially a small lobster. The name comes from the Old French 'crevice' (crab), which English speakers gradually turned into '-fish'.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Crayfish",
+      "label": "Crayfish - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Procambarus_clarkii",
+      "label": "Procambarus clarkii - Wikipedia"
+    }
+  ]
+}

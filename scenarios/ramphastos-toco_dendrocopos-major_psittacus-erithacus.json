@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Toco toucan",
+      "scientificName": "Ramphastos toco",
+      "ncbiTaxId": 95723,
+      "wikiTitle": "Toco_toucan",
+      "group": "bird",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/006_Toco_toucan_in_Encontro_das_%C3%81guas_State_Park_Photo_by_Giles_Laurent_%28cropped%29.jpg/330px-006_Toco_toucan_in_Encontro_das_%C3%81guas_State_Park_Photo_by_Giles_Laurent_%28cropped%29.jpg"
+    },
+    {
+      "commonName": "Great spotted woodpecker",
+      "scientificName": "Dendrocopos major",
+      "ncbiTaxId": 183177,
+      "wikiTitle": "Great_spotted_woodpecker",
+      "group": "bird",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Great_spotted_woodpecker_%28Dendrocopos_major%29_male_Drenthe.jpg/330px-Great_spotted_woodpecker_%28Dendrocopos_major%29_male_Drenthe.jpg"
+    },
+    {
+      "commonName": "African grey parrot",
+      "scientificName": "Psittacus erithacus",
+      "ncbiTaxId": 57247,
+      "wikiTitle": "African_grey_parrot",
+      "group": "bird",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Psittacus_erithacus_-perching_on_tray-8d.jpg/330px-Psittacus_erithacus_-perching_on_tray-8d.jpg"
+    }
+  ],
+  "funFact": "Toucans are in the woodpecker order, Piciformes. Both have zygodactyl feet (two toes forward, two back) and nest in tree holes. The parrot shares those feet and its tropical look, but is on another branch.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Piciformes",
+      "label": "Piciformes - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Toucan",
+      "label": "Toucan - Wikipedia"
+    }
+  ]
+}

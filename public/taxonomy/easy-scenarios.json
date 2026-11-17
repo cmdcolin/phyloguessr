@@ -3,6 +3,46 @@
     "difficulty": "easy",
     "organisms": [
       {
+        "commonName": "Kiwifruit",
+        "scientificName": "Actinidia chinensis",
+        "ncbiTaxId": 3625,
+        "wikiTitle": "Kiwifruit",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Actinidia_fruits.jpg/330px-Actinidia_fruits.jpg"
+      },
+      {
+        "commonName": "Tea",
+        "scientificName": "Camellia sinensis",
+        "ncbiTaxId": 4442,
+        "wikiTitle": "Camellia_sinensis",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Csinensis.jpg/330px-Csinensis.jpg"
+      },
+      {
+        "commonName": "Grape",
+        "scientificName": "Vitis vinifera",
+        "ncbiTaxId": 29760,
+        "wikiTitle": "Vitis_vinifera",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Cabernet_Sauvignon_Gaillac.jpg/330px-Cabernet_Sauvignon_Gaillac.jpg"
+      }
+    ],
+    "funFact": "Kiwifruit and the tea plant are both in the order Ericales, which also includes blueberries, persimmons and Brazil nuts. The fuzzy vine fruit looks like it should be close to the grape, but grapes sit on a distant branch of the flowering plants.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Ericales",
+        "label": "Ericales - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Kiwifruit",
+        "label": "Kiwifruit - Wikipedia"
+      }
+    ]
+  },
+  {
+    "difficulty": "easy",
+    "organisms": [
+      {
         "commonName": "Baobab",
         "scientificName": "Adansonia digitata",
         "ncbiTaxId": 69109,
@@ -884,6 +924,46 @@
       {
         "url": "https://oceanservice.noaa.gov/facts/barnacles.html",
         "label": "NOAA - What are barnacles?"
+      }
+    ]
+  },
+  {
+    "difficulty": "easy",
+    "organisms": [
+      {
+        "commonName": "Brazil nut",
+        "scientificName": "Bertholletia excelsa",
+        "ncbiTaxId": 3645,
+        "wikiTitle": "Brazil_nut",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Bertholletia_excelsa_compose.jpg/330px-Bertholletia_excelsa_compose.jpg"
+      },
+      {
+        "commonName": "Blueberry",
+        "scientificName": "Vaccinium corymbosum",
+        "ncbiTaxId": 69266,
+        "wikiTitle": "Vaccinium_corymbosum",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Vaccinium_corymbosum%2801%29.jpg/330px-Vaccinium_corymbosum%2801%29.jpg"
+      },
+      {
+        "commonName": "Almond",
+        "scientificName": "Prunus dulcis",
+        "ncbiTaxId": 3755,
+        "wikiTitle": "Almond",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Almonds_-_in_shell%2C_shell_cracked_open%2C_shelled%2C_blanched.jpg/330px-Almonds_-_in_shell%2C_shell_cracked_open%2C_shelled%2C_blanched.jpg"
+      }
+    ],
+    "funFact": "The Brazil nut is closer to the blueberry than to the almond: both are in the order Ericales. The Brazil nut isn't botanically a nut, but a seed, and up to two dozen of them grow packed inside a hard, coconut-sized pod.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Brazil_nut",
+        "label": "Brazil nut - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Ericales",
+        "label": "Ericales - Wikipedia"
       }
     ]
   },
@@ -1872,6 +1952,46 @@
     ]
   },
   {
+    "difficulty": "easy",
+    "organisms": [
+      {
+        "commonName": "Hedgehog",
+        "scientificName": "Erinaceus europaeus",
+        "ncbiTaxId": 9365,
+        "wikiTitle": "European_hedgehog",
+        "group": "mammal",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Erinaceus_europaeus_LC0119.jpg/330px-Erinaceus_europaeus_LC0119.jpg"
+      },
+      {
+        "commonName": "Common shrew",
+        "scientificName": "Sorex araneus",
+        "ncbiTaxId": 42254,
+        "wikiTitle": "Eurasian_shrew",
+        "group": "mammal",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Sorex-araneus.jpg/330px-Sorex-araneus.jpg"
+      },
+      {
+        "commonName": "Porcupine",
+        "scientificName": "Erethizon dorsatum",
+        "ncbiTaxId": 34844,
+        "wikiTitle": "North_American_porcupine",
+        "group": "mammal",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/North_American_porcupine_%28Erethizon_dorsatum_nigrescens%29_Yoho.jpg/330px-North_American_porcupine_%28Erethizon_dorsatum_nigrescens%29_Yoho.jpg"
+      }
+    ],
+    "funFact": "Spines evolved more than once. The hedgehog is closest to shrews and moles (Eulipotyphla), while the porcupine is a rodent. Their quills are modified hairs that the two lineages evolved independently.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Hedgehog",
+        "label": "Hedgehog - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Porcupine",
+        "label": "Porcupine - Wikipedia"
+      }
+    ]
+  },
+  {
     "difficulty": "tricky",
     "organisms": [
       {
@@ -2471,6 +2591,46 @@
     "difficulty": "easy",
     "organisms": [
       {
+        "commonName": "Griffon vulture",
+        "scientificName": "Gyps fulvus",
+        "ncbiTaxId": 36247,
+        "wikiTitle": "Griffon_vulture",
+        "group": "bird",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Gyps_fulvus_in_flight_-_Spain.jpg/330px-Gyps_fulvus_in_flight_-_Spain.jpg"
+      },
+      {
+        "commonName": "Bald eagle",
+        "scientificName": "Haliaeetus leucocephalus",
+        "ncbiTaxId": 52644,
+        "wikiTitle": "Bald_eagle",
+        "group": "bird",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Bald_eagle_about_to_fly_in_Alaska_%282016%29.jpg/330px-Bald_eagle_about_to_fly_in_Alaska_%282016%29.jpg"
+      },
+      {
+        "commonName": "Turkey vulture",
+        "scientificName": "Cathartes aura",
+        "ncbiTaxId": 43455,
+        "wikiTitle": "Turkey_vulture",
+        "group": "bird",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Turkey_vulture_%28Cathartes_aura%29_Orange_Walk.jpg/330px-Turkey_vulture_%28Cathartes_aura%29_Orange_Walk.jpg"
+      }
+    ],
+    "funFact": "Old World vultures, such as the griffon, are in the same family as eagles and hawks. The vultures of the Americas look and live alike but belong to a separate family, Cathartidae. Their bald heads and scavenging habits evolved independently.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Old_World_vulture",
+        "label": "Old World vulture - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/New_World_vulture",
+        "label": "New World vulture - Wikipedia"
+      }
+    ]
+  },
+  {
+    "difficulty": "easy",
+    "organisms": [
+      {
         "commonName": "Sunflower",
         "scientificName": "Helianthus annuus",
         "ncbiTaxId": 4232,
@@ -2576,6 +2736,46 @@
       {
         "url": "https://en.wikipedia.org/wiki/Osteichthyes",
         "label": "Osteichthyes - Wikipedia"
+      }
+    ]
+  },
+  {
+    "difficulty": "easy",
+    "organisms": [
+      {
+        "commonName": "Hippopotamus",
+        "scientificName": "Hippopotamus amphibius",
+        "ncbiTaxId": 9833,
+        "wikiTitle": "Hippopotamus",
+        "group": "mammal",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Portrait_Hippopotamus_in_the_water.jpg/330px-Portrait_Hippopotamus_in_the_water.jpg"
+      },
+      {
+        "commonName": "Blue whale",
+        "scientificName": "Balaenoptera musculus",
+        "ncbiTaxId": 9771,
+        "wikiTitle": "Blue_whale",
+        "group": "mammal",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Anim1754_-_Flickr_-_NOAA_Photo_Library.jpg/330px-Anim1754_-_Flickr_-_NOAA_Photo_Library.jpg"
+      },
+      {
+        "commonName": "Pig",
+        "scientificName": "Sus scrofa",
+        "ncbiTaxId": 9823,
+        "wikiTitle": "Pig",
+        "group": "mammal",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Pig_farm_Vampula_1.jpg/330px-Pig_farm_Vampula_1.jpg"
+      }
+    ],
+    "funFact": "The hippo looks like a giant pig, but its closest living relatives are the whales. Whales and hippos share an ancestor that lived around 55 million years ago, and both give birth and nurse their young underwater.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Whippomorpha",
+        "label": "Whippomorpha - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Hippopotamus",
+        "label": "Hippopotamus - Wikipedia"
       }
     ]
   },
@@ -2783,6 +2983,46 @@
     "difficulty": "easy",
     "organisms": [
       {
+        "commonName": "Sweet potato",
+        "scientificName": "Ipomoea batatas",
+        "ncbiTaxId": 4120,
+        "wikiTitle": "Sweet_potato",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Ipomoea_batatas_006.JPG/330px-Ipomoea_batatas_006.JPG"
+      },
+      {
+        "commonName": "Potato",
+        "scientificName": "Solanum tuberosum",
+        "ncbiTaxId": 4113,
+        "wikiTitle": "Potato",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Patates.jpg/330px-Patates.jpg"
+      },
+      {
+        "commonName": "Tomato",
+        "scientificName": "Solanum lycopersicum",
+        "ncbiTaxId": 4081,
+        "wikiTitle": "Tomato",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Tomato_je.jpg/330px-Tomato_je.jpg"
+      }
+    ],
+    "funFact": "The potato and the tomato are in the same genus, Solanum, so a potato plant's leaves and flowers look a lot like a tomato's. The sweet potato isn't a potato at all: it is a morning glory, and the part we eat is a swollen root rather than a tuber.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Solanum",
+        "label": "Solanum - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Sweet_potato",
+        "label": "Sweet potato - Wikipedia"
+      }
+    ]
+  },
+  {
+    "difficulty": "easy",
+    "organisms": [
+      {
         "commonName": "Iris",
         "scientificName": "Iris germanica",
         "ncbiTaxId": 34205,
@@ -2964,6 +3204,46 @@
       {
         "url": "https://en.wikipedia.org/wiki/Lemnoideae",
         "label": "Duckweed - Wikipedia"
+      }
+    ]
+  },
+  {
+    "difficulty": "easy",
+    "organisms": [
+      {
+        "commonName": "Silverfish",
+        "scientificName": "Lepisma saccharinum",
+        "ncbiTaxId": 50586,
+        "wikiTitle": "Silverfish",
+        "group": "arthropod",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/LepismaSaccharina.jpg/330px-LepismaSaccharina.jpg"
+      },
+      {
+        "commonName": "Goldfish",
+        "scientificName": "Carassius auratus",
+        "ncbiTaxId": 7957,
+        "wikiTitle": "Goldfish",
+        "group": "fish",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Gold_fish1.jpg/330px-Gold_fish1.jpg"
+      },
+      {
+        "commonName": "American cockroach",
+        "scientificName": "Periplaneta americana",
+        "ncbiTaxId": 6978,
+        "wikiTitle": "American_cockroach",
+        "group": "invertebrate",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/American-cockroach.jpg/330px-American-cockroach.jpg"
+      }
+    ],
+    "funFact": "The silverfish is a wingless insect, named for its silvery scales and the fishlike way it wiggles. Its lineage branched off before insects evolved wings, and it has barely changed in over 300 million years.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Silverfish",
+        "label": "Silverfish - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Zygentoma",
+        "label": "Zygentoma - Wikipedia"
       }
     ]
   },
@@ -4068,6 +4348,50 @@
     "difficulty": "easy",
     "organisms": [
       {
+        "commonName": "Chimpanzee",
+        "scientificName": "Pan troglodytes",
+        "ncbiTaxId": 9598,
+        "wikiTitle": "Chimpanzee",
+        "group": "mammal",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/015_Chimpanzee_at_Kibale_forest_National_Park_Photo_by_Giles_Laurent.jpg/330px-015_Chimpanzee_at_Kibale_forest_National_Park_Photo_by_Giles_Laurent.jpg"
+      },
+      {
+        "commonName": "Human",
+        "scientificName": "Homo sapiens",
+        "ncbiTaxId": 9606,
+        "wikiTitle": "Human",
+        "group": "mammal",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/68/Akha_cropped_hires.JPG"
+      },
+      {
+        "commonName": "Gorilla",
+        "scientificName": "Gorilla gorilla",
+        "ncbiTaxId": 9593,
+        "wikiTitle": "Western_gorilla",
+        "group": "mammal",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Male_gorilla_in_SF_zoo.jpg/330px-Male_gorilla_in_SF_zoo.jpg"
+      }
+    ],
+    "correctPair": [
+      "Chimpanzee",
+      "Human"
+    ],
+    "funFact": "Chimpanzees are more closely related to humans than to gorillas. The human and chimp lineages split about 6–7 million years ago, after the gorilla lineage had already branched off. Chimps and humans share about 98.8% of their DNA.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Chimpanzee",
+        "label": "Chimpanzee - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Hominini",
+        "label": "Hominini - Wikipedia"
+      }
+    ]
+  },
+  {
+    "difficulty": "easy",
+    "organisms": [
+      {
         "commonName": "Olive baboon",
         "scientificName": "Papio anubis",
         "ncbiTaxId": 9555,
@@ -4421,6 +4745,46 @@
     ]
   },
   {
+    "difficulty": "tricky",
+    "organisms": [
+      {
+        "commonName": "Harvestman",
+        "scientificName": "Phalangium opilio",
+        "ncbiTaxId": 118624,
+        "wikiTitle": "Phalangium_opilio",
+        "group": "arthropod",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Phalangium_opilio_MHNT_Male.jpg/330px-Phalangium_opilio_MHNT_Male.jpg"
+      },
+      {
+        "commonName": "Garden spider",
+        "scientificName": "Araneus diadematus",
+        "ncbiTaxId": 45920,
+        "wikiTitle": "Araneus_diadematus",
+        "group": "arthropod",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Araneus_diadematus_MHNT_Femelle_Fronton.jpg/330px-Araneus_diadematus_MHNT_Femelle_Fronton.jpg"
+      },
+      {
+        "commonName": "Crane fly",
+        "scientificName": "Tipula oleracea",
+        "ncbiTaxId": 312236,
+        "wikiTitle": "Crane_fly",
+        "group": "arthropod",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Tipulidae_April_2008-2.jpg/330px-Tipulidae_April_2008-2.jpg"
+      }
+    ],
+    "funFact": "'Daddy longlegs' is used for both the harvestman and the crane fly, and sometimes for cellar spiders too. The harvestman is an arachnid but not a spider: its body is a single oval with no waist, and it has no venom or silk. The crane fly is a true fly.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Opiliones",
+        "label": "Opiliones - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Crane_fly",
+        "label": "Crane fly - Wikipedia"
+      }
+    ]
+  },
+  {
     "difficulty": "easy",
     "organisms": [
       {
@@ -4709,6 +5073,46 @@
     ]
   },
   {
+    "difficulty": "easy",
+    "organisms": [
+      {
+        "commonName": "Pistachio",
+        "scientificName": "Pistacia vera",
+        "ncbiTaxId": 55513,
+        "wikiTitle": "Pistachio",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Pistachio_vera.jpg/330px-Pistachio_vera.jpg"
+      },
+      {
+        "commonName": "Mango",
+        "scientificName": "Mangifera indica",
+        "ncbiTaxId": 29780,
+        "wikiTitle": "Mango",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Mangoes_%28Magnifera_indica%29_from_India.jpg/330px-Mangoes_%28Magnifera_indica%29_from_India.jpg"
+      },
+      {
+        "commonName": "Almond",
+        "scientificName": "Prunus dulcis",
+        "ncbiTaxId": 3755,
+        "wikiTitle": "Almond",
+        "group": "plant",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Almonds_-_in_shell%2C_shell_cracked_open%2C_shelled%2C_blanched.jpg/330px-Almonds_-_in_shell%2C_shell_cracked_open%2C_shelled%2C_blanched.jpg"
+      }
+    ],
+    "funFact": "The pistachio is in the cashew family, Anacardiaceae, along with mango and poison ivy. The almond, which we think of as another nut, is a stone fruit in the rose family, closely related to peaches and cherries.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Anacardiaceae",
+        "label": "Anacardiaceae - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Pistachio",
+        "label": "Pistachio - Wikipedia"
+      }
+    ]
+  },
+  {
     "difficulty": "tricky",
     "organisms": [
       {
@@ -4745,6 +5149,46 @@
       {
         "url": "https://www.youtube.com/watch?v=4ejoVBcLP4U",
         "label": "PBS Eons - How Our Deadliest Parasite Turned To The Dark Side"
+      }
+    ]
+  },
+  {
+    "difficulty": "easy",
+    "organisms": [
+      {
+        "commonName": "Crayfish",
+        "scientificName": "Procambarus clarkii",
+        "ncbiTaxId": 6728,
+        "wikiTitle": "Procambarus_clarkii",
+        "group": "arthropod",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Procambarus_clarkii.jpg/330px-Procambarus_clarkii.jpg"
+      },
+      {
+        "commonName": "American lobster",
+        "scientificName": "Homarus americanus",
+        "ncbiTaxId": 6706,
+        "wikiTitle": "American_lobster",
+        "group": "arthropod",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Nur01521_-_Flickr_-_NOAA_Photo_Library.jpg/330px-Nur01521_-_Flickr_-_NOAA_Photo_Library.jpg"
+      },
+      {
+        "commonName": "Channel catfish",
+        "scientificName": "Ictalurus punctatus",
+        "ncbiTaxId": 7998,
+        "wikiTitle": "Channel_catfish",
+        "group": "fish",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Channel_Catfish_%28Ictalurus_punctatus%29_white_background.jpg/330px-Channel_Catfish_%28Ictalurus_punctatus%29_white_background.jpg"
+      }
+    ],
+    "funFact": "The crayfish isn't a fish. It is a freshwater crustacean, essentially a small lobster. The name comes from the Old French 'crevice' (crab), which English speakers gradually turned into '-fish'.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Crayfish",
+        "label": "Crayfish - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Procambarus_clarkii",
+        "label": "Procambarus clarkii - Wikipedia"
       }
     ]
   },
@@ -4901,6 +5345,46 @@
       {
         "url": "https://www.youtube.com/watch?v=ONVpFtiD-fo",
         "label": "Domain of Life - The Surprising Map of Plants"
+      }
+    ]
+  },
+  {
+    "difficulty": "easy",
+    "organisms": [
+      {
+        "commonName": "Toco toucan",
+        "scientificName": "Ramphastos toco",
+        "ncbiTaxId": 95723,
+        "wikiTitle": "Toco_toucan",
+        "group": "bird",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/006_Toco_toucan_in_Encontro_das_%C3%81guas_State_Park_Photo_by_Giles_Laurent_%28cropped%29.jpg/330px-006_Toco_toucan_in_Encontro_das_%C3%81guas_State_Park_Photo_by_Giles_Laurent_%28cropped%29.jpg"
+      },
+      {
+        "commonName": "Great spotted woodpecker",
+        "scientificName": "Dendrocopos major",
+        "ncbiTaxId": 183177,
+        "wikiTitle": "Great_spotted_woodpecker",
+        "group": "bird",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Great_spotted_woodpecker_%28Dendrocopos_major%29_male_Drenthe.jpg/330px-Great_spotted_woodpecker_%28Dendrocopos_major%29_male_Drenthe.jpg"
+      },
+      {
+        "commonName": "African grey parrot",
+        "scientificName": "Psittacus erithacus",
+        "ncbiTaxId": 57247,
+        "wikiTitle": "African_grey_parrot",
+        "group": "bird",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Psittacus_erithacus_-perching_on_tray-8d.jpg/330px-Psittacus_erithacus_-perching_on_tray-8d.jpg"
+      }
+    ],
+    "funFact": "Toucans are in the woodpecker order, Piciformes. Both have zygodactyl feet (two toes forward, two back) and nest in tree holes. The parrot shares those feet and its tropical look, but is on another branch.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Piciformes",
+        "label": "Piciformes - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Toucan",
+        "label": "Toucan - Wikipedia"
       }
     ]
   },
@@ -5626,6 +6110,46 @@
     "activelyDebated": true
   },
   {
+    "difficulty": "easy",
+    "organisms": [
+      {
+        "commonName": "Meerkat",
+        "scientificName": "Suricata suricatta",
+        "ncbiTaxId": 37032,
+        "wikiTitle": "Meerkat",
+        "group": "mammal",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Meerkat_%28Suricata_suricatta%29_Tswalu.jpg/330px-Meerkat_%28Suricata_suricatta%29_Tswalu.jpg"
+      },
+      {
+        "commonName": "Egyptian mongoose",
+        "scientificName": "Herpestes ichneumon",
+        "ncbiTaxId": 9700,
+        "wikiTitle": "Egyptian_mongoose",
+        "group": "mammal",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Herpestes_ichneumon_%D0%95%D0%B3%D0%B8%D0%BF%D0%B5%D1%82%D1%81%D0%BA%D0%B8%D0%B9_%D0%BC%D0%B0%D0%BD%D0%B3%D1%83%D1%81%D1%82%2C_%D0%B8%D0%BB%D0%B8_%D1%84%D0%B0%D1%80%D0%B0%D0%BE%D0%BD%D0%BE%D0%B2%D0%B0_%D0%BA%D1%80%D1%8B%D1%81%D0%B0%2C_%D0%B8%D0%BB%D0%B8_%D0%B8%D1%85%D0%BD%D0%B5%D0%B2%D0%BC%D0%BE%CC%81%D0%BD.jpg/330px-Herpestes_ichneumon_%D0%95%D0%B3%D0%B8%D0%BF%D0%B5%D1%82%D1%81%D0%BA%D0%B8%D0%B9_%D0%BC%D0%B0%D0%BD%D0%B3%D1%83%D1%81%D1%82%2C_%D0%B8%D0%BB%D0%B8_%D1%84%D0%B0%D1%80%D0%B0%D0%BE%D0%BD%D0%BE%D0%B2%D0%B0_%D0%BA%D1%80%D1%8B%D1%81%D0%B0%2C_%D0%B8%D0%BB%D0%B8_%D0%B8%D1%85%D0%BD%D0%B5%D0%B2%D0%BC%D0%BE%CC%81%D0%BD.jpg"
+      },
+      {
+        "commonName": "Black-tailed prairie dog",
+        "scientificName": "Cynomys ludovicianus",
+        "ncbiTaxId": 45480,
+        "wikiTitle": "Black-tailed_prairie_dog",
+        "group": "mammal",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Cynomys_ludovicianus_%2854906540630%29.jpg/330px-Cynomys_ludovicianus_%2854906540630%29.jpg"
+      }
+    ],
+    "funFact": "The meerkat is a mongoose, a carnivore related to cats and hyenas. Prairie dogs, which also live in burrows and stand upright to watch for predators, are rodents. The look-alike lifestyle evolved separately.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Meerkat",
+        "label": "Meerkat - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Mongoose",
+        "label": "Mongoose - Wikipedia"
+      }
+    ]
+  },
+  {
     "difficulty": "tricky",
     "organisms": [
       {
@@ -5815,6 +6339,46 @@
     ]
   },
   {
+    "difficulty": "tricky",
+    "organisms": [
+      {
+        "commonName": "Tasmanian tiger",
+        "scientificName": "Thylacinus cynocephalus",
+        "ncbiTaxId": 9275,
+        "wikiTitle": "Thylacine",
+        "group": "mammal",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Thylacinus_cropped.png/330px-Thylacinus_cropped.png"
+      },
+      {
+        "commonName": "Tasmanian devil",
+        "scientificName": "Sarcophilus harrisii",
+        "ncbiTaxId": 9305,
+        "wikiTitle": "Tasmanian_devil",
+        "group": "mammal",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Sarcophilus_harrisii_taranna.jpg/330px-Sarcophilus_harrisii_taranna.jpg"
+      },
+      {
+        "commonName": "Gray wolf",
+        "scientificName": "Canis lupus",
+        "ncbiTaxId": 9612,
+        "wikiTitle": "Wolf",
+        "group": "mammal",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Huskiesatrest.jpg/500px-Huskiesatrest.jpg"
+      }
+    ],
+    "funFact": "The thylacine looked so much like a wolf that its skull is hard to tell apart from a dog's, yet it was a marsupial that carried its young in a pouch. Its closest living relatives are the Tasmanian devil and the numbat. The last known thylacine died in a zoo in 1936.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Thylacine",
+        "label": "Thylacine - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Dasyuromorphia",
+        "label": "Dasyuromorphia - Wikipedia"
+      }
+    ]
+  },
+  {
     "difficulty": "easy",
     "organisms": [
       {
@@ -5894,6 +6458,46 @@
       }
     ],
     "activelyDebated": true
+  },
+  {
+    "difficulty": "tricky",
+    "organisms": [
+      {
+        "commonName": "Black truffle",
+        "scientificName": "Tuber melanosporum",
+        "ncbiTaxId": 39416,
+        "wikiTitle": "Tuber_melanosporum",
+        "group": "microbe",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Truffe_nature.JPG/330px-Truffe_nature.JPG"
+      },
+      {
+        "commonName": "Morel",
+        "scientificName": "Morchella esculenta",
+        "ncbiTaxId": 39407,
+        "wikiTitle": "Morchella_esculenta",
+        "group": "microbe",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Morchella_esculenta_-_DE_-_TH_-_2013-05-01_-_01.JPG/330px-Morchella_esculenta_-_DE_-_TH_-_2013-05-01_-_01.JPG"
+      },
+      {
+        "commonName": "Button mushroom",
+        "scientificName": "Agaricus bisporus",
+        "ncbiTaxId": 5341,
+        "wikiTitle": "Agaricus_bisporus",
+        "group": "microbe",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/ChampignonMushroom.jpg/330px-ChampignonMushroom.jpg"
+      }
+    ],
+    "funFact": "Truffles and morels are both cup fungi (Pezizales), in the phylum Ascomycota with yeasts. The button mushroom looks like the most typical mushroom of the three, but it is in a different phylum, Basidiomycota. Truffles evolved underground fruiting bodies that rely on animals to dig them up and spread their spores.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Pezizales",
+        "label": "Pezizales - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Truffle",
+        "label": "Truffle - Wikipedia"
+      }
+    ]
   },
   {
     "difficulty": "easy",

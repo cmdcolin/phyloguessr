@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Pistachio",
+      "scientificName": "Pistacia vera",
+      "ncbiTaxId": 55513,
+      "wikiTitle": "Pistachio",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Pistachio_vera.jpg/330px-Pistachio_vera.jpg"
+    },
+    {
+      "commonName": "Mango",
+      "scientificName": "Mangifera indica",
+      "ncbiTaxId": 29780,
+      "wikiTitle": "Mango",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Mangoes_%28Magnifera_indica%29_from_India.jpg/330px-Mangoes_%28Magnifera_indica%29_from_India.jpg"
+    },
+    {
+      "commonName": "Almond",
+      "scientificName": "Prunus dulcis",
+      "ncbiTaxId": 3755,
+      "wikiTitle": "Almond",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Almonds_-_in_shell%2C_shell_cracked_open%2C_shelled%2C_blanched.jpg/330px-Almonds_-_in_shell%2C_shell_cracked_open%2C_shelled%2C_blanched.jpg"
+    }
+  ],
+  "funFact": "The pistachio is in the cashew family, Anacardiaceae, along with mango and poison ivy. The almond, which we think of as another nut, is a stone fruit in the rose family, closely related to peaches and cherries.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Anacardiaceae",
+      "label": "Anacardiaceae - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Pistachio",
+      "label": "Pistachio - Wikipedia"
+    }
+  ]
+}

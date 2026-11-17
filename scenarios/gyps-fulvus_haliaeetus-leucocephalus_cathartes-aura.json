@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Griffon vulture",
+      "scientificName": "Gyps fulvus",
+      "ncbiTaxId": 36247,
+      "wikiTitle": "Griffon_vulture",
+      "group": "bird",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Gyps_fulvus_in_flight_-_Spain.jpg/330px-Gyps_fulvus_in_flight_-_Spain.jpg"
+    },
+    {
+      "commonName": "Bald eagle",
+      "scientificName": "Haliaeetus leucocephalus",
+      "ncbiTaxId": 52644,
+      "wikiTitle": "Bald_eagle",
+      "group": "bird",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Bald_eagle_about_to_fly_in_Alaska_%282016%29.jpg/330px-Bald_eagle_about_to_fly_in_Alaska_%282016%29.jpg"
+    },
+    {
+      "commonName": "Turkey vulture",
+      "scientificName": "Cathartes aura",
+      "ncbiTaxId": 43455,
+      "wikiTitle": "Turkey_vulture",
+      "group": "bird",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Turkey_vulture_%28Cathartes_aura%29_Orange_Walk.jpg/330px-Turkey_vulture_%28Cathartes_aura%29_Orange_Walk.jpg"
+    }
+  ],
+  "funFact": "Old World vultures, such as the griffon, are in the same family as eagles and hawks. The vultures of the Americas look and live alike but belong to a separate family, Cathartidae. Their bald heads and scavenging habits evolved independently.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Old_World_vulture",
+      "label": "Old World vulture - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/New_World_vulture",
+      "label": "New World vulture - Wikipedia"
+    }
+  ]
+}

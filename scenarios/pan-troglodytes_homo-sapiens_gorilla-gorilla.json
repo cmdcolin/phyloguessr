@@ -1,0 +1,41 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Chimpanzee",
+      "scientificName": "Pan troglodytes",
+      "ncbiTaxId": 9598,
+      "wikiTitle": "Chimpanzee",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/015_Chimpanzee_at_Kibale_forest_National_Park_Photo_by_Giles_Laurent.jpg/330px-015_Chimpanzee_at_Kibale_forest_National_Park_Photo_by_Giles_Laurent.jpg"
+    },
+    {
+      "commonName": "Human",
+      "scientificName": "Homo sapiens",
+      "ncbiTaxId": 9606,
+      "wikiTitle": "Human",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/68/Akha_cropped_hires.JPG"
+    },
+    {
+      "commonName": "Gorilla",
+      "scientificName": "Gorilla gorilla",
+      "ncbiTaxId": 9593,
+      "wikiTitle": "Western_gorilla",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Male_gorilla_in_SF_zoo.jpg/330px-Male_gorilla_in_SF_zoo.jpg"
+    }
+  ],
+  "correctPair": ["Chimpanzee", "Human"],
+  "funFact": "Chimpanzees are more closely related to humans than to gorillas. The human and chimp lineages split about 6–7 million years ago, after the gorilla lineage had already branched off. Chimps and humans share about 98.8% of their DNA.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Chimpanzee",
+      "label": "Chimpanzee - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Hominini",
+      "label": "Hominini - Wikipedia"
+    }
+  ]
+}

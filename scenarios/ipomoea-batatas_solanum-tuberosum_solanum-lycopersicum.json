@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Sweet potato",
+      "scientificName": "Ipomoea batatas",
+      "ncbiTaxId": 4120,
+      "wikiTitle": "Sweet_potato",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Ipomoea_batatas_006.JPG/330px-Ipomoea_batatas_006.JPG"
+    },
+    {
+      "commonName": "Potato",
+      "scientificName": "Solanum tuberosum",
+      "ncbiTaxId": 4113,
+      "wikiTitle": "Potato",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Patates.jpg/330px-Patates.jpg"
+    },
+    {
+      "commonName": "Tomato",
+      "scientificName": "Solanum lycopersicum",
+      "ncbiTaxId": 4081,
+      "wikiTitle": "Tomato",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Tomato_je.jpg/330px-Tomato_je.jpg"
+    }
+  ],
+  "funFact": "The potato and the tomato are in the same genus, Solanum, so a potato plant's leaves and flowers look a lot like a tomato's. The sweet potato isn't a potato at all: it is a morning glory, and the part we eat is a swollen root rather than a tuber.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Solanum",
+      "label": "Solanum - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Sweet_potato",
+      "label": "Sweet potato - Wikipedia"
+    }
+  ]
+}
