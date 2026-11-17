@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Baker's yeast",
+      "scientificName": "Saccharomyces cerevisiae",
+      "ncbiTaxId": 4932,
+      "wikiTitle": "Saccharomyces_cerevisiae",
+      "group": "microbe",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Saccharomyces_cerevisiae_SEM.jpg/330px-Saccharomyces_cerevisiae_SEM.jpg"
+    },
+    {
+      "commonName": "Yogurt bacterium",
+      "scientificName": "Lactobacillus delbrueckii subsp. bulgaricus",
+      "ncbiTaxId": 1585,
+      "wikiTitle": "Lactobacillus_delbrueckii_subsp._bulgaricus",
+      "group": "microbe",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/20101210_014809_LactobacillusBulgaricus.jpg/330px-20101210_014809_LactobacillusBulgaricus.jpg"
+    },
+    {
+      "commonName": "Penicillium",
+      "scientificName": "Penicillium chrysogenum",
+      "ncbiTaxId": 5076,
+      "wikiTitle": "Penicillium_chrysogenum",
+      "group": "microbe",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Penicillium_notatum.jpg/330px-Penicillium_notatum.jpg"
+    }
+  ],
+  "funFact": "Yeast and yogurt bacteria are both microscopic fermenters that end up in the kitchen, but yeast is a fungus. Baker's yeast and the Penicillium mold that gave us penicillin are both sac fungi (Ascomycota). Bacteria are a different domain of life, and a yeast cell has more in common with a human cell than with a bacterium.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Saccharomyces_cerevisiae",
+      "label": "Saccharomyces cerevisiae - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Lactobacillus_delbrueckii_subsp._bulgaricus",
+      "label": "Lactobacillus delbrueckii subsp. bulgaricus - Wikipedia"
+    }
+  ]
+}
