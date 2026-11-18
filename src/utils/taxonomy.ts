@@ -924,6 +924,7 @@ export interface DiagramNode {
   highlight?: boolean
   taxId?: number
   wikiLink?: string
+  shownHints?: string[]
   children?: DiagramNode[]
 }
 
@@ -1270,13 +1271,16 @@ function landmarkFor(name: string, taxId: number | undefined) {
   return pinned === undefined || pinned === taxId ? landmarks[name] : undefined
 }
 
-function generatedHintFor(taxId: number | undefined) {
+function generatedHintParts(
+  taxId: number | undefined,
+  children: DiagramNode[],
+) {
   const [commonName = '', ...examples] = generatedHints[String(taxId)] ?? []
-  const parts = [
+  const shownBelow = new Set(children.flatMap(c => c.shownHints ?? []))
+  return [
     commonName,
     examples.length > 0 ? `includes ${examples.join(', ')}` : '',
-  ].filter(part => part !== '')
-  return parts.length > 0 ? parts.join(' — ') : undefined
+  ].filter(part => part !== '' && !shownBelow.has(part))
 }
 
 function generatedCommonNameFor(taxId: number | undefined) {
@@ -1284,10 +1288,22 @@ function generatedCommonNameFor(taxId: number | undefined) {
   return commonName === '' ? undefined : commonName
 }
 
-function annotateLabel(name: string, taxId: number | undefined) {
+function annotateClade(
+  name: string,
+  taxId: number | undefined,
+  children: DiagramNode[] = [],
+) {
   const displayName = displayNameOverrides[name] ?? name
-  const hint = landmarkFor(name, taxId) ?? generatedHintFor(taxId)
-  return hint === undefined ? displayName : `${displayName} (${hint})`
+  const landmark = landmarkFor(name, taxId)
+  const parts =
+    landmark === undefined ? generatedHintParts(taxId, children) : [landmark]
+  const inherited = children.length === 1 ? (children[0].shownHints ?? []) : []
+  return {
+    label:
+      parts.length > 0 ? `${displayName} (${parts.join(' — ')})` : displayName,
+    wikiLink: wikiUrl(name),
+    shownHints: [...parts, ...inherited],
+  }
 }
 
 const contextRanks = new Set([
@@ -1347,16 +1363,16 @@ function makeLeafLabel(
   organism: { commonName: string },
   clade: { taxId: number; name: string } | undefined,
 ) {
-  if (clade) {
-    const hint =
-      landmarkFor(clade.name, clade.taxId) ??
-      generatedCommonNameFor(clade.taxId)
-    if (hint !== undefined) {
-      return `${clade.name} — ${hint} (${organism.commonName})`
-    }
-    return `${clade.name} (${organism.commonName})`
+  const hint =
+    clade &&
+    (landmarkFor(clade.name, clade.taxId) ??
+      generatedCommonNameFor(clade.taxId))
+  return {
+    label: clade
+      ? `${clade.name}${hint === undefined ? '' : ` — ${hint}`} (${organism.commonName})`
+      : organism.commonName,
+    shownHints: hint === undefined ? [] : [hint],
   }
-  return organism.commonName
 }
 
 const wikiNameOverrides: Record<string, string> = {
@@ -1378,9 +1394,8 @@ function makeBranchNode(
   highlight?: boolean,
 ): DiagramNode {
   const leafClade = clades.leaf ?? clades.branch
-  const leafLabel = makeLeafLabel(organism, leafClade)
   const leaf: DiagramNode = {
-    label: leafLabel,
+    ...makeLeafLabel(organism, leafClade),
     wikiLink: wikiUrl(leafClade?.name ?? organism.commonName),
     taxId: organism.ncbiTaxId,
   }
@@ -1393,8 +1408,7 @@ function makeBranchNode(
     clades.branch.taxId !== clades.leaf.taxId
   ) {
     const node: DiagramNode = {
-      label: annotateLabel(clades.branch.name, clades.branch.taxId),
-      wikiLink: wikiUrl(clades.branch.name),
+      ...annotateClade(clades.branch.name, clades.branch.taxId, [leaf]),
       children: [leaf],
     }
     if (highlight === true) {
@@ -1434,22 +1448,24 @@ export function buildContextDiagram(
 
   const outNode = makeBranchNode(outgroup, outClades)
 
-  const sisterName = getName(sisterLcaTaxId)
+  const sisterChildren = [
+    makeBranchNode(sister1, s1Clades, true),
+    makeBranchNode(sister2, s2Clades, true),
+  ]
   const sisterNode: DiagramNode = {
-    label: annotateLabel(sisterName, sisterLcaTaxId),
-    wikiLink: wikiUrl(sisterName),
+    ...annotateClade(getName(sisterLcaTaxId), sisterLcaTaxId, sisterChildren),
     highlight: true,
-    children: [
-      makeBranchNode(sister1, s1Clades, true),
-      makeBranchNode(sister2, s2Clades, true),
-    ],
+    children: sisterChildren,
   }
 
-  const overallName = getName(overallLcaTaxId)
+  const overallChildren = [outNode, sisterNode]
   return {
-    label: annotateLabel(overallName, overallLcaTaxId),
-    wikiLink: wikiUrl(overallName),
-    children: [outNode, sisterNode],
+    ...annotateClade(
+      getName(overallLcaTaxId),
+      overallLcaTaxId,
+      overallChildren,
+    ),
+    children: overallChildren,
   }
 }
 
@@ -1470,8 +1486,7 @@ export function expandDiagramUp(
     if (name !== undefined && rank !== undefined && contextRanks.has(rank)) {
       return {
         diagram: {
-          label: annotateLabel(name, taxId),
-          wikiLink: wikiUrl(name),
+          ...annotateClade(name, taxId, [diagram]),
           children: [diagram],
         },
         rootTaxId: taxId,
@@ -1483,8 +1498,7 @@ export function expandDiagramUp(
   const parentName = data.names[String(parentTaxId)] ?? String(parentTaxId)
   return {
     diagram: {
-      label: annotateLabel(parentName, parentTaxId),
-      wikiLink: wikiUrl(parentName),
+      ...annotateClade(parentName, parentTaxId, [diagram]),
       children: [diagram],
     },
     rootTaxId: parentTaxId,
@@ -1600,12 +1614,12 @@ export function treeNodeToDiagramNode(
   const isLeaf = node.children.length === 0
 
   if (isLeaf) {
-    const label = isOrganism
-      ? `${annotateLabel(node.label, node.taxId)} (${orgNames.get(node.taxId)})`
-      : annotateLabel(node.label, node.taxId)
+    const clade = annotateClade(node.label, node.taxId)
     return {
-      label,
-      wikiLink: wikiUrl(node.label),
+      ...clade,
+      label: isOrganism
+        ? `${clade.label} (${orgNames.get(node.taxId)})`
+        : clade.label,
       highlight: highlightTaxIds ? highlightTaxIds.has(node.taxId) : false,
       taxId: node.taxId,
     }
@@ -1615,8 +1629,7 @@ export function treeNodeToDiagramNode(
     treeNodeToDiagramNode(c, orgNames, highlightTaxIds),
   )
   return {
-    label: annotateLabel(node.label, node.taxId),
-    wikiLink: wikiUrl(node.label),
+    ...annotateClade(node.label, node.taxId, children),
     children,
   }
 }

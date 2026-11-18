@@ -14,12 +14,18 @@ import {
   getLineageFromParents,
   lcaClosenessScore,
   isCompactTaxonomyData,
+  treeNodeToDiagramNode,
   landmarkTaxIds,
   landmarks,
   unpackTaxonomyData,
 } from './taxonomy.ts'
 
-import type { CompactTaxonomyData, TaxonomyData, TreeNode } from './taxonomy.ts'
+import type {
+  CompactTaxonomyData,
+  DiagramNode,
+  TaxonomyData,
+  TreeNode,
+} from './taxonomy.ts'
 
 function loadTaxonomyFile(path: string): TaxonomyData {
   try {
@@ -34,6 +40,18 @@ function loadTaxonomyFile(path: string): TaxonomyData {
 
 function findNode(node: TreeNode, label: string): boolean {
   return node.label === label || node.children.some(c => findNode(c, label))
+}
+
+function labelsDown(node: DiagramNode): string[] {
+  return [node.label, ...(node.children ?? []).flatMap(labelsDown)]
+}
+
+function chainLabels(nodes: [number, string][]) {
+  const [top] = nodes.reduceRight<TreeNode[]>(
+    (children, [taxId, label]) => [{ taxId, label, rank: 'clade', children }],
+    [],
+  )
+  return labelsDown(treeNodeToDiagramNode(top, new Map()))
 }
 
 interface ScenarioOrganism {
@@ -838,5 +856,32 @@ describe('tree-level hints agree with the taxonomy', () => {
           .map(example => `${data.names[taxId]}: ${example}`),
     )
     expect(misplaced).toEqual([])
+  })
+
+  it('shows a chain of identical generated examples only once, lowest down', () => {
+    expect(
+      chainLabels([
+        [35493, 'Streptophyta'],
+        [131221, 'Streptophytina'],
+        [3193, 'Embryophyta'],
+      ]),
+    ).toEqual([
+      'Streptophyta',
+      'Streptophytina (includes blueberry, sphagnum moss, mango)',
+      'Embryophyta (land plants — colonized land ~470 million years ago)',
+    ])
+  })
+
+  it('does not repeat a hint across a bare level or a shared common name', () => {
+    const sharks = chainLabels([
+      [119203, 'Selachii'],
+      [119197, 'Galeomorphii'],
+      [119195, 'Galeoidea'],
+    ])
+    const rheas = chainLabels([
+      [8792, 'Rheiformes'],
+      [8793, 'Rheidae'],
+    ])
+    expect([sharks[0], rheas[0]]).toEqual(['Selachii (shark)', 'Rheiformes'])
   })
 })
