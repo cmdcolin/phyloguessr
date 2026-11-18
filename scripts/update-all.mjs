@@ -102,6 +102,12 @@ run('Step 5: Split taxonomy for easy mode', 'scripts/split-taxonomy.mjs')
 // Step 5b: Build easy-scenarios.json from scenarios/ source files
 run('Step 5b: Build easy-scenarios bundle', 'scripts/build-easy-scenarios.mjs')
 
+// Step 5c: Build tree-level hints from the taxonomy, scenarios and Wikidata
+run(
+  'Step 5c: Build clade hints',
+  'scripts/build-clade-hints.mjs' + (refresh ? ' --refresh' : ''),
+)
+
 // Step 6: Run tests
 runShell('Step 6: Run tests', 'npx vitest run')
 

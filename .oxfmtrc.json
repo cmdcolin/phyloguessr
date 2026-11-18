@@ -15,5 +15,10 @@
     ]
   },
   "sortPackageJson": false,
-  "ignorePatterns": ["pnpm-lock.yaml", "public/taxonomy/", "android"]
+  "ignorePatterns": [
+    "pnpm-lock.yaml",
+    "public/taxonomy/",
+    "src/data/clade-hints.json",
+    "android"
+  ]
 }

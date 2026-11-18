@@ -1,3 +1,4 @@
+import cladeHints from '../data/clade-hints.json'
 import { shuffled } from './format.ts'
 
 export interface LcaResult {
@@ -926,7 +927,7 @@ export interface DiagramNode {
   children?: DiagramNode[]
 }
 
-const landmarks: Record<string, string> = {
+export const landmarks: Record<string, string | undefined> = {
   // deep tree of life
   Metazoa: 'all animals',
   Bilateria: 'animals with left-right symmetry',
@@ -939,17 +940,16 @@ const landmarks: Record<string, string> = {
   Chordata: 'includes all vertebrates, plus sea squirts and lancelets',
   Vertebrata: 'animals with backbones',
   Gnathostomata: 'jawed vertebrates',
-  Osteichthyes: 'bony fish and technically all their descendants',
+  Euteleostomi: 'bony fish and technically all their descendants',
   Sarcopterygii: 'lobe-finned fish — includes all land animals too!',
   Tetrapoda: 'four-limbed vertebrates — includes snakes, which lost theirs!',
   Amniota: 'land-egg vertebrates — includes reptiles, birds, mammals',
 
   // mammals
-  Synapsida: 'the mammal lineage',
   Mammalia: 'includes humans, dogs, whales, bats, mice...',
   Theria: 'mammals that give live birth',
   Eutheria: 'placental mammals',
-  Marsupialia: 'pouched mammals, e.g. kangaroos, koalas, possums',
+  Metatheria: 'pouched mammals, e.g. kangaroos, koalas, possums',
   Monotremata: 'egg-laying mammals! just platypus + echidnas',
   Afrotheria: 'includes elephants, manatees, aardvarks',
   Xenarthra: 'sloths, armadillos, anteaters',
@@ -958,7 +958,7 @@ const landmarks: Record<string, string> = {
   Boreoeutheria: 'includes most placental mammals',
   Primates: 'includes monkeys, apes, lemurs, tarsiers',
   Strepsirrhini: 'wet-nosed primates — lemurs, lorises, galagos',
-  Haplorhini: 'dry-nosed primates — tarsiers, monkeys, apes',
+  Haplorrhini: 'dry-nosed primates — tarsiers, monkeys, apes',
   Simiiformes: 'monkeys and apes',
   Catarrhini: 'Old World monkeys + apes — baboons to humans',
   Hominidae: 'the great apes — includes humans!',
@@ -970,7 +970,7 @@ const landmarks: Record<string, string> = {
   Caniformia: 'dog-side — dogs, bears, seals, weasels, raccoons',
   Mustelidae: 'includes weasels, otters, wolverines, badgers',
   Cetacea: 'whales and dolphins — descended from land animals!',
-  Cetartiodactyla: 'hippos are the closest living relatives of whales!',
+  Whippomorpha: 'hippos are the closest living relatives of whales!',
   Chiroptera: 'bats — the only truly flying mammals',
   Perissodactyla: 'odd-toed ungulates — includes horses, rhinos, tapirs',
   Artiodactyla: 'even-toed ungulates — includes deer, pigs, cattle, hippos',
@@ -1004,7 +1004,7 @@ const landmarks: Record<string, string> = {
   Diprotodontia: 'includes kangaroos, koalas, wombats',
 
   // reptiles and birds
-  Sauropsida: 'the reptile + bird lineage',
+  Sauria: 'the reptile + bird lineage',
   Archelosauria: 'turtles are closer to birds than to lizards!',
   Archosauria: 'includes crocodilians + dinosaurs (including birds!)',
   Dinosauria: 'not extinct — birds are living dinosaurs!',
@@ -1021,7 +1021,8 @@ const landmarks: Record<string, string> = {
   Sphenisciformes: 'penguins',
   Pelecaniformes: 'includes pelicans, herons, ibises',
   Falconiformes: 'falcons — closer to parrots than to hawks!',
-  Caprimulgiformes: 'includes nightjars and hummingbirds — unlikely relatives!',
+  Caprimulgiformes: 'nightjars, frogmouths, owlet-nightjars, oilbird',
+  Apodiformes: 'swifts and hummingbirds',
   Columbiformes: 'pigeons and doves — one of the most widespread bird orders',
   Charadriiformes: 'shorebirds — gulls, sandpipers, auks, puffins',
   Piciformes: 'includes woodpeckers, toucans, and honeyguides',
@@ -1040,8 +1041,7 @@ const landmarks: Record<string, string> = {
   Chamaeleonidae: 'chameleons — mobile eyes, ballistic tongue',
   Testudines: 'turtles and tortoises — some live over 150 years',
   Crocodylia: 'crocodiles and alligators — closer to birds than to lizards!',
-  Reptilia: 'includes turtles, lizards, snakes, crocodilians',
-  Rhynchocephalia: 'tuatara — sole survivor of its entire order!',
+  Sphenodontia: 'tuatara — sole survivor of its entire order!',
 
   // amphibians
   Amphibia: 'frogs, salamanders, caecilians',
@@ -1054,9 +1054,9 @@ const landmarks: Record<string, string> = {
   Actinopterygii: 'ray-finned fishes — 99% of fish species',
   Teleostei: 'most living bony fishes — over 30,000 species',
   Ostariophysi: 'carps, catfish, characins, electric eels',
-  Acanthomorpha: 'spiny-rayed fishes — ~1/3 of all vertebrates',
+  Acanthomorphata: 'spiny-rayed fishes — ~1/3 of all vertebrates',
   Chondrichthyes: 'sharks, rays, skates — skeletons made of cartilage',
-  Dipnoi: 'lungfishes — can breathe air!',
+  Ceratodontiformes: 'lungfishes — can breathe air!',
   Perciformes: 'perch-like fishes',
   Cypriniformes: 'includes carps and minnows',
   Salmoniformes: 'includes salmon and trout',
@@ -1171,12 +1171,11 @@ const landmarks: Record<string, string> = {
   Embryophyta: 'land plants — colonized land ~470 million years ago',
   Tracheophyta: 'vascular plants — includes ferns, trees, grasses',
   Spermatophyta: 'seed plants',
-  Angiospermae: 'flowering plants — 90% of all plant species',
   Magnoliopsida: 'flowering plants',
-  eudicotyledons: 'eudicots — most flowering plants',
+  Gunneridae: 'core eudicots — most flowering plants',
   Liliopsida: 'monocots — includes grasses, orchids, palms',
-  Rosidae: 'includes roses, legumes, oaks, maples',
-  Asteridae: 'includes sunflowers, mints, carrots, tomatoes',
+  rosids: 'includes roses, legumes, oaks, maples',
+  asterids: 'includes sunflowers, mints, carrots, tomatoes',
   Fabales: 'includes legumes, peanuts, beans',
   Fabaceae: 'legumes — peanuts, beans; fix nitrogen from air',
   Rosaceae: 'includes roses, strawberries, almonds, apples, cherries',
@@ -1211,7 +1210,8 @@ const landmarks: Record<string, string> = {
   Ranunculales: 'includes buttercups, poppies, barberries, columbines',
   Pinopsida: 'conifers — pines, spruces, firs, tallest and oldest trees',
   Ginkgoopsida: 'ginkgo — sole survivor, unchanged for 200M years',
-  Gnetales: 'includes welwitschia — lives 1000+ years with just 2 leaves!',
+  Gnetidae: 'includes welwitschia — lives 1000+ years with just 2 leaves!',
+  Gnetales: 'Gnetum — tropical trees, shrubs and woody vines',
   Bryophyta: 'mosses — survive complete desiccation and rehydrate',
   Polypodiopsida: 'ferns — older than flowering plants',
   Magnoliidae: 'includes magnolias, avocados, black pepper',
@@ -1219,19 +1219,19 @@ const landmarks: Record<string, string> = {
   // fungi and microbes
   Fungi: 'mushrooms, yeasts, molds — closer to animals than plants!',
   Agaricomycetes: 'most gilled mushrooms — chanterelles, porcini, amanitas',
-  Glomeromycota: 'mycorrhizal fungi — in roots of 80% of land plants',
+  Glomeromycetes: 'mycorrhizal fungi — in roots of 80% of land plants',
   Chytridiomycota: 'chytrids — one species decimated dozens of frog species',
   Ascomycota: 'includes yeasts, morels, truffles, penicillium',
   Basidiomycota: 'includes mushrooms, puffballs, rusts',
   Saccharomycetes: "baker's yeast, brewer's yeast",
   Bacteria: 'single-celled organisms without nuclei',
-  Cyanobacteria: "produced Earth's oxygen 2.4 Bya; gave us chloroplasts",
-  Proteobacteria: 'largest bacterial phylum — E. coli, Salmonella, rhizobia',
+  Cyanobacteriota: "produced Earth's oxygen 2.4 Bya; gave us chloroplasts",
+  Pseudomonadota: 'largest bacterial phylum — E. coli, Salmonella, rhizobia',
   Actinomycetota: 'soil bacteria — source of most antibiotic drugs',
   Spirochaetota: 'spiral bacteria — Lyme disease, syphilis',
-  Dinoflagellata: 'cause red tides; some bioluminescent, some in coral',
+  Dinophyceae: 'cause red tides; some bioluminescent, some in coral',
   Archaea: 'single-celled organisms — not bacteria!',
-  Asgardarchaeota:
+  Promethearchaeati:
     'archaea closest to eukaryotes — our nearest prokaryotic relatives',
   Alveolata: 'includes ciliates, dinoflagellates, malaria parasites',
   Amoebozoa: 'amoebas and slime molds',
@@ -1248,17 +1248,40 @@ const landmarks: Record<string, string> = {
   Rhodophyta: 'red algae — used to make agar and nori',
   Chlorophyta: 'green algae — ancestors of all land plants',
   Haptophyta: 'coccolithophores — built White Cliffs of Dover',
-  Choanoflagellatea: 'closest unicellular relatives of animals',
+  Choanoflagellata: 'closest unicellular relatives of animals',
   Bacillota: 'gram-positive bacteria — Lactobacillus, Bacillus, Clostridium',
 }
 
-function annotateLabel(name: string) {
+export const landmarkTaxIds: Record<string, number | undefined> = {
+  Proboscidea: 9779,
+  Vertebrata: 7742,
+}
+
+const generatedHints: Record<string, string[] | undefined> = cladeHints
+
+function landmarkFor(name: string, taxId: number | undefined) {
+  const pinned = landmarkTaxIds[name]
+  return pinned === undefined || pinned === taxId ? landmarks[name] : undefined
+}
+
+function generatedHintFor(taxId: number | undefined) {
+  const [commonName = '', ...examples] = generatedHints[String(taxId)] ?? []
+  const parts = [
+    commonName,
+    examples.length > 0 ? `includes ${examples.join(', ')}` : '',
+  ].filter(part => part !== '')
+  return parts.length > 0 ? parts.join(' — ') : undefined
+}
+
+function generatedCommonNameFor(taxId: number | undefined) {
+  const commonName = generatedHints[String(taxId)]?.[0]
+  return commonName === '' ? undefined : commonName
+}
+
+function annotateLabel(name: string, taxId: number | undefined) {
   const displayName = displayNameOverrides[name] ?? name
-  const hint = landmarks[name]
-  if (hint) {
-    return `${displayName} (${hint})`
-  }
-  return displayName
+  const hint = landmarkFor(name, taxId) ?? generatedHintFor(taxId)
+  return hint === undefined ? displayName : `${displayName} (${hint})`
 }
 
 const contextRanks = new Set([
@@ -1316,11 +1339,13 @@ function findClades(
 
 function makeLeafLabel(
   organism: { commonName: string },
-  clade: { name: string } | undefined,
+  clade: { taxId: number; name: string } | undefined,
 ) {
   if (clade) {
-    const hint = landmarks[clade.name]
-    if (hint) {
+    const hint =
+      landmarkFor(clade.name, clade.taxId) ??
+      generatedCommonNameFor(clade.taxId)
+    if (hint !== undefined) {
       return `${clade.name} — ${hint} (${organism.commonName})`
     }
     return `${clade.name} (${organism.commonName})`
@@ -1362,7 +1387,7 @@ function makeBranchNode(
     clades.branch.taxId !== clades.leaf.taxId
   ) {
     const node: DiagramNode = {
-      label: annotateLabel(clades.branch.name),
+      label: annotateLabel(clades.branch.name, clades.branch.taxId),
       wikiLink: wikiUrl(clades.branch.name),
       children: [leaf],
     }
@@ -1405,7 +1430,7 @@ export function buildContextDiagram(
 
   const sisterName = getName(sisterLcaTaxId)
   const sisterNode: DiagramNode = {
-    label: annotateLabel(sisterName),
+    label: annotateLabel(sisterName, sisterLcaTaxId),
     wikiLink: wikiUrl(sisterName),
     highlight: true,
     children: [
@@ -1416,7 +1441,7 @@ export function buildContextDiagram(
 
   const overallName = getName(overallLcaTaxId)
   return {
-    label: annotateLabel(overallName),
+    label: annotateLabel(overallName, overallLcaTaxId),
     wikiLink: wikiUrl(overallName),
     children: [outNode, sisterNode],
   }
@@ -1439,7 +1464,7 @@ export function expandDiagramUp(
     if (name !== undefined && rank !== undefined && contextRanks.has(rank)) {
       return {
         diagram: {
-          label: annotateLabel(name),
+          label: annotateLabel(name, taxId),
           wikiLink: wikiUrl(name),
           children: [diagram],
         },
@@ -1452,7 +1477,7 @@ export function expandDiagramUp(
   const parentName = data.names[String(parentTaxId)] ?? String(parentTaxId)
   return {
     diagram: {
-      label: annotateLabel(parentName),
+      label: annotateLabel(parentName, parentTaxId),
       wikiLink: wikiUrl(parentName),
       children: [diagram],
     },
@@ -1570,8 +1595,8 @@ export function treeNodeToDiagramNode(
 
   if (isLeaf) {
     const label = isOrganism
-      ? `${annotateLabel(node.label)} (${orgNames.get(node.taxId)})`
-      : annotateLabel(node.label)
+      ? `${annotateLabel(node.label, node.taxId)} (${orgNames.get(node.taxId)})`
+      : annotateLabel(node.label, node.taxId)
     return {
       label,
       wikiLink: wikiUrl(node.label),
@@ -1584,7 +1609,7 @@ export function treeNodeToDiagramNode(
     treeNodeToDiagramNode(c, orgNames, highlightTaxIds),
   )
   return {
-    label: annotateLabel(node.label),
+    label: annotateLabel(node.label, node.taxId),
     wikiLink: wikiUrl(node.label),
     children,
   }

@@ -4,6 +4,7 @@ import { resolve } from 'path'
 import { describe, expect, it } from 'vitest'
 
 import { CURATED_MICROORGANISMS } from '../../scripts/curated-microorganisms.mjs'
+import cladeHints from '../data/clade-hints.json'
 import { organisms } from '../data/organisms.ts'
 import {
   buildContextDiagram,
@@ -13,6 +14,8 @@ import {
   getLineageFromParents,
   lcaClosenessScore,
   isCompactTaxonomyData,
+  landmarkTaxIds,
+  landmarks,
   unpackTaxonomyData,
 } from './taxonomy.ts'
 
@@ -767,5 +770,73 @@ describe('buildContextDiagram', () => {
     )
     expect(result!.children![1].label).toBe('Plants')
     expect(result!.children![1].highlight).toBe(true)
+  })
+})
+
+describe('tree-level hints agree with the taxonomy', () => {
+  const data = loadTaxonomyFile(
+    resolve(__dirname, '../../public/taxonomy/parents.json'),
+  )
+  const nameCounts = new Map<string, number>()
+  for (const name of Object.values(data.names)) {
+    if (name !== undefined) {
+      nameCounts.set(name, (nameCounts.get(name) ?? 0) + 1)
+    }
+  }
+
+  const parsed: unknown = JSON.parse(
+    readFileSync(
+      resolve(__dirname, '../../public/taxonomy/easy-scenarios.json'),
+      'utf8',
+    ),
+  )
+  const scenarioOrganisms = Array.isArray(parsed)
+    ? parsed.filter(isScenario).flatMap(s => s.organisms)
+    : []
+  const taxIdsByName = new Map<string, number[]>()
+  for (const { commonName, ncbiTaxId } of [
+    ...organisms,
+    ...scenarioOrganisms,
+  ]) {
+    const key = commonName.toLowerCase()
+    taxIdsByName.set(key, [...(taxIdsByName.get(key) ?? []), ncbiTaxId])
+  }
+
+  it('every landmark names a node in the tree', () => {
+    const missing = Object.keys(landmarks).filter(name => !nameCounts.has(name))
+    expect(missing).toEqual([])
+  })
+
+  it('landmarks on names shared by several nodes are pinned to a taxId', () => {
+    const unpinned = Object.keys(landmarks).filter(
+      name =>
+        (nameCounts.get(name) ?? 0) > 1 && landmarkTaxIds[name] === undefined,
+    )
+    const misPinned = Object.entries(landmarkTaxIds).filter(
+      ([name, taxId]) => data.names[String(taxId)] !== name,
+    )
+    expect({ unpinned, misPinned }).toEqual({ unpinned: [], misPinned: [] })
+  })
+
+  it('every generated hint is for a node in the tree', () => {
+    const missing = Object.keys(cladeHints).filter(
+      taxId => data.names[taxId] === undefined,
+    )
+    expect(missing).toEqual([])
+  })
+
+  it('every generated example sits under its node', () => {
+    const misplaced = Object.entries(cladeHints).flatMap(
+      ([taxId, [, ...examples]]) =>
+        examples
+          .filter(
+            example =>
+              !(taxIdsByName.get(example.toLowerCase()) ?? []).some(id =>
+                getLineageFromParents(id, data.parents).includes(Number(taxId)),
+              ),
+          )
+          .map(example => `${data.names[taxId]}: ${example}`),
+    )
+    expect(misplaced).toEqual([])
   })
 })
