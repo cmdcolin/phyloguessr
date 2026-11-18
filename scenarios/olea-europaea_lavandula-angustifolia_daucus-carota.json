@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Olive",
+      "scientificName": "Olea europaea",
+      "ncbiTaxId": 4146,
+      "wikiTitle": "Olive",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Olivesfromjordan.jpg/330px-Olivesfromjordan.jpg"
+    },
+    {
+      "commonName": "Lavender",
+      "scientificName": "Lavandula angustifolia",
+      "ncbiTaxId": 39329,
+      "wikiTitle": "Lavandula_angustifolia",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Lavandula_angustifolia_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-087.jpg/330px-Lavandula_angustifolia_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-087.jpg"
+    },
+    {
+      "commonName": "Carrot",
+      "scientificName": "Daucus carota",
+      "ncbiTaxId": 4039,
+      "wikiTitle": "Carrot",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Daucus_carota_May_2008-1_edit.jpg/330px-Daucus_carota_May_2008-1_edit.jpg"
+    }
+  ],
+  "funFact": "The olive tree belongs to the order Lamiales, the same order as lavender, mint, basil and snapdragons. Its own family, Oleaceae, also includes jasmine, lilac and ash trees. The carrot is in a different branch of the asterids, the order Apiales, alongside parsley and celery.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Oleaceae",
+      "label": "Oleaceae - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Lamiales",
+      "label": "Lamiales - Wikipedia"
+    }
+  ]
+}

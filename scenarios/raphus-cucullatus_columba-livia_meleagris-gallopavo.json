@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Dodo",
+      "scientificName": "Raphus cucullatus",
+      "ncbiTaxId": 187135,
+      "wikiTitle": "Dodo",
+      "group": "bird",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Oxford_Dodo_display.jpg/330px-Oxford_Dodo_display.jpg"
+    },
+    {
+      "commonName": "Rock pigeon",
+      "scientificName": "Columba livia",
+      "ncbiTaxId": 8932,
+      "wikiTitle": "Rock_dove",
+      "group": "bird",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Columba_livia_%28Rock_Dove%2C_wild%29%2C_Duncansby_Head%2C_Caithness%2C_Scotland_1.jpg/330px-Columba_livia_%28Rock_Dove%2C_wild%29%2C_Duncansby_Head%2C_Caithness%2C_Scotland_1.jpg"
+    },
+    {
+      "commonName": "Wild turkey",
+      "scientificName": "Meleagris gallopavo",
+      "ncbiTaxId": 9103,
+      "wikiTitle": "Wild_turkey",
+      "group": "bird",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/20260428_tom_wild_turkey_matthaei_botanical_gardens_PD08952.jpg/330px-20260428_tom_wild_turkey_matthaei_botanical_gardens_PD08952.jpg"
+    }
+  ],
+  "funFact": "The dodo was a giant, flightless pigeon from Mauritius, and its closest living relative is the Nicobar pigeon. The plump turkey looks more like a dodo, but it is a gamebird, closer to chickens and ducks than to any pigeon.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Dodo",
+      "label": "Dodo - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Columbidae",
+      "label": "Columbidae - Wikipedia"
+    }
+  ]
+}

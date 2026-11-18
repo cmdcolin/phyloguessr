@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Mallard",
+      "scientificName": "Anas platyrhynchos",
+      "ncbiTaxId": 8839,
+      "wikiTitle": "Mallard",
+      "group": "bird",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Anas_platyrhynchos_male_female_quadrat.jpg/330px-Anas_platyrhynchos_male_female_quadrat.jpg"
+    },
+    {
+      "commonName": "Chicken",
+      "scientificName": "Gallus gallus",
+      "ncbiTaxId": 9031,
+      "wikiTitle": "Chicken",
+      "group": "bird",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Red_jungle_fowl.png/330px-Red_jungle_fowl.png"
+    },
+    {
+      "commonName": "Herring gull",
+      "scientificName": "Larus argentatus",
+      "ncbiTaxId": 35669,
+      "wikiTitle": "European_herring_gull",
+      "group": "bird",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/European_herring_gull_vocalizing_%2800170%29.jpg/330px-European_herring_gull_vocalizing_%2800170%29.jpg"
+    }
+  ],
+  "funFact": "Ducks and chickens together form Galloanserae, the \"fowl\", which split from almost all other modern birds back in the Cretaceous. The gull may share the duck's pond, but it belongs to Neoaves, the huge group that holds most living birds, and its nearest kin are shorebirds like sandpipers and puffins.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Galloanserae",
+      "label": "Galloanserae - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Neoaves",
+      "label": "Neoaves - Wikipedia"
+    }
+  ]
+}

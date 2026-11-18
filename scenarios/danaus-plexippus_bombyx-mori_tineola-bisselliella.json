@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Monarch butterfly",
+      "scientificName": "Danaus plexippus",
+      "ncbiTaxId": 13037,
+      "wikiTitle": "Monarch_butterfly",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Monarch_Butterfly_Danaus_plexippus_Male_2664px.jpg/330px-Monarch_Butterfly_Danaus_plexippus_Male_2664px.jpg"
+    },
+    {
+      "commonName": "Domestic silk moth",
+      "scientificName": "Bombyx mori",
+      "ncbiTaxId": 7091,
+      "wikiTitle": "Bombyx_mori",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Pairedmoths.jpg/330px-Pairedmoths.jpg"
+    },
+    {
+      "commonName": "Clothes moth",
+      "scientificName": "Tineola bisselliella",
+      "ncbiTaxId": 93883,
+      "wikiTitle": "Common_clothes_moth",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Tineola.bisselliella.7218.jpg/330px-Tineola.bisselliella.7218.jpg"
+    }
+  ],
+  "funFact": "Butterflies are one branch of the moth family tree, not a separate group. A monarch is more closely related to the silk moth than the silk moth is to the clothes moth, whose family (Tineidae) branched off much earlier.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Butterfly",
+      "label": "Butterfly - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Lepidoptera",
+      "label": "Lepidoptera - Wikipedia"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Chili pepper",
+      "scientificName": "Capsicum annuum",
+      "ncbiTaxId": 4072,
+      "wikiTitle": "Capsicum_annuum",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Capsicum_annuum_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-027.jpg/330px-Capsicum_annuum_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-027.jpg"
+    },
+    {
+      "commonName": "Potato",
+      "scientificName": "Solanum tuberosum",
+      "ncbiTaxId": 4113,
+      "wikiTitle": "Potato",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Patates.jpg/330px-Patates.jpg"
+    },
+    {
+      "commonName": "Black pepper",
+      "scientificName": "Piper nigrum",
+      "ncbiTaxId": 13216,
+      "wikiTitle": "Black_pepper",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Piper_nigrum_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-107.jpg/330px-Piper_nigrum_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-107.jpg"
+    }
+  ],
+  "funFact": "Chili peppers are nightshades (Solanaceae), in the same family as potatoes, tomatoes and eggplants. Black pepper comes from a vine in a different family, Piperaceae, on an early branch of flowering plants. Europeans called chilies \"peppers\" because their heat reminded them of the black pepper spice.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Capsicum",
+      "label": "Capsicum - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Piperaceae",
+      "label": "Piperaceae - Wikipedia"
+    }
+  ]
+}

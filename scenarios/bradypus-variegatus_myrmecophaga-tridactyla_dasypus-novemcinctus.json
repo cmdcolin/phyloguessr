@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Three-toed sloth",
+      "scientificName": "Bradypus variegatus",
+      "ncbiTaxId": 9355,
+      "wikiTitle": "Brown-throated_sloth",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Bradypus.jpg/330px-Bradypus.jpg"
+    },
+    {
+      "commonName": "Giant anteater",
+      "scientificName": "Myrmecophaga tridactyla",
+      "ncbiTaxId": 71006,
+      "wikiTitle": "Giant_anteater",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Myresluger2.jpg/330px-Myresluger2.jpg"
+    },
+    {
+      "commonName": "Nine-banded armadillo",
+      "scientificName": "Dasypus novemcinctus",
+      "ncbiTaxId": 9361,
+      "wikiTitle": "Nine-banded_armadillo",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Nine-banded_Armadillo_%28Dasypus_novemcinctus%29_%2837649606094%29.jpg/330px-Nine-banded_Armadillo_%28Dasypus_novemcinctus%29_%2837649606094%29.jpg"
+    }
+  ],
+  "funFact": "Sloths and anteaters together make up the order Pilosa, even though one eats leaves in the treetops and the other licks up ants on the ground. Armadillos are their cousins in a separate order, Cingulata. All three belong to Xenarthra, a group of mammals that evolved in South America.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Pilosa",
+      "label": "Pilosa - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Xenarthra",
+      "label": "Xenarthra - Wikipedia"
+    }
+  ]
+}

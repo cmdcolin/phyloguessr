@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "European rabbit",
+      "scientificName": "Oryctolagus cuniculus",
+      "ncbiTaxId": 9986,
+      "wikiTitle": "European_rabbit",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Oryctolagus_cuniculus_Tasmania_2_%28cropped%29.jpg/330px-Oryctolagus_cuniculus_Tasmania_2_%28cropped%29.jpg"
+    },
+    {
+      "commonName": "Human",
+      "scientificName": "Homo sapiens",
+      "ncbiTaxId": 9606,
+      "wikiTitle": "Human",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/68/Akha_cropped_hires.JPG"
+    },
+    {
+      "commonName": "Gray wolf",
+      "scientificName": "Canis lupus",
+      "ncbiTaxId": 9612,
+      "wikiTitle": "Wolf",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Huskiesatrest.jpg/500px-Huskiesatrest.jpg"
+    }
+  ],
+  "funFact": "Rabbits sit with rodents in Glires, which pairs with primates in a branch called Euarchontoglires. Wolves belong to the other big branch, Laurasiatheria, along with cats, cows, whales and bats. So you are more closely related to a rabbit than a rabbit is to a wolf.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Euarchontoglires",
+      "label": "Euarchontoglires - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Laurasiatheria",
+      "label": "Laurasiatheria - Wikipedia"
+    }
+  ]
+}

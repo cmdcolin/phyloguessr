@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Ball python",
+      "scientificName": "Python regius",
+      "ncbiTaxId": 51751,
+      "wikiTitle": "Ball_python",
+      "group": "reptile",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Ball_python_lucy.JPG/330px-Ball_python_lucy.JPG"
+    },
+    {
+      "commonName": "Green iguana",
+      "scientificName": "Iguana iguana",
+      "ncbiTaxId": 8517,
+      "wikiTitle": "Green_iguana",
+      "group": "reptile",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Iguana_iguana_%28male_resting%29.jpg/330px-Iguana_iguana_%28male_resting%29.jpg"
+    },
+    {
+      "commonName": "Tokay gecko",
+      "scientificName": "Gekko gecko",
+      "ncbiTaxId": 36310,
+      "wikiTitle": "Tokay_gecko",
+      "group": "reptile",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gekko_gecko_192144834.jpg/330px-Gekko_gecko_192144834.jpg"
+    }
+  ],
+  "funFact": "Snakes are legless lizards that evolved from within the lizard family tree. DNA studies group snakes with iguanas and monitor lizards in a clade called Toxicofera, while geckos branched off much earlier. So an iguana is closer to a python than to a gecko.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Toxicofera",
+      "label": "Toxicofera - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Squamata",
+      "label": "Squamata - Wikipedia"
+    }
+  ]
+}

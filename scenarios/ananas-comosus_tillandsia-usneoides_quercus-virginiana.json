@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Pineapple",
+      "scientificName": "Ananas comosus",
+      "ncbiTaxId": 4615,
+      "wikiTitle": "Pineapple",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/%E0%B4%95%E0%B5%88%E0%B4%A4%E0%B4%9A%E0%B5%8D%E0%B4%9A%E0%B4%95%E0%B5%8D%E0%B4%95.jpg/330px-%E0%B4%95%E0%B5%88%E0%B4%A4%E0%B4%9A%E0%B5%8D%E0%B4%9A%E0%B4%95%E0%B5%8D%E0%B4%95.jpg"
+    },
+    {
+      "commonName": "Spanish moss",
+      "scientificName": "Tillandsia usneoides",
+      "ncbiTaxId": 49541,
+      "wikiTitle": "Spanish_moss",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Spanish_moss_at_the_Mcbryde_Garden_in_hawaii.jpg/330px-Spanish_moss_at_the_Mcbryde_Garden_in_hawaii.jpg"
+    },
+    {
+      "commonName": "Southern live oak",
+      "scientificName": "Quercus virginiana",
+      "ncbiTaxId": 58333,
+      "wikiTitle": "Quercus_virginiana",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/FL_Volusia_Oak03.jpg/330px-FL_Volusia_Oak03.jpg"
+    }
+  ],
+  "funFact": "Spanish moss is neither Spanish nor a moss. It is a flowering plant in the bromeliad family, the same family as the pineapple. It drapes over live oaks but is not a parasite: it takes its water and nutrients from rain and air.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Spanish_moss",
+      "label": "Spanish moss - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Bromeliaceae",
+      "label": "Bromeliaceae - Wikipedia"
+    }
+  ]
+}

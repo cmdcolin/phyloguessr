@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Rose",
+      "scientificName": "Rosa gallica",
+      "ncbiTaxId": 74632,
+      "wikiTitle": "Rosa_gallica",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Wild_Rosa_gallica_Romania.jpg/330px-Wild_Rosa_gallica_Romania.jpg"
+    },
+    {
+      "commonName": "Stinging nettle",
+      "scientificName": "Urtica dioica",
+      "ncbiTaxId": 3501,
+      "wikiTitle": "Urtica_dioica",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Fen_nettle_%28Urtica_dioica_ssp._galeopsifolia%29_-_geograph.org.uk_-_5423125.jpg/330px-Fen_nettle_%28Urtica_dioica_ssp._galeopsifolia%29_-_geograph.org.uk_-_5423125.jpg"
+    },
+    {
+      "commonName": "Dandelion",
+      "scientificName": "Taraxacum officinale",
+      "ncbiTaxId": 50225,
+      "wikiTitle": "Taraxacum_officinale",
+      "group": "plant",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Taraxacum_officinale_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-135.jpg/330px-Taraxacum_officinale_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-135.jpg"
+    }
+  ],
+  "funFact": "The stinging nettle belongs to the rose order, Rosales, along with figs, mulberries, hemp and elm trees. Its flowers are small and wind-pollinated, quite unlike a rose's. The dandelion, which has a showy flower, is in the daisy family, in the asterids.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Rosales",
+      "label": "Rosales - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Urtica_dioica",
+      "label": "Urtica dioica - Wikipedia"
+    }
+  ]
+}
