@@ -222,6 +222,11 @@ function firstFork(id, groups) {
     : id
 }
 
+function sameName(a, b) {
+  const squash = s => s.toLowerCase().replace(/[^a-z]/g, '')
+  return squash(a) === squash(b)
+}
+
 function pickExamples(byChild, commonName) {
   const queues = [...byChild.values()]
     .map(members =>
@@ -233,7 +238,7 @@ function pickExamples(byChild, commonName) {
     queues.filter(q => q.length > round).map(q => q[round].name),
   ).flat()
   return [...new Set(roundRobin)]
-    .filter(name => name.toLowerCase() !== commonName?.toLowerCase())
+    .filter(name => commonName === undefined || !sameName(name, commonName))
     .slice(0, MAX_EXAMPLES)
 }
 
