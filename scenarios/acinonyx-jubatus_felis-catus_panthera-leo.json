@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Cheetah",
+      "scientificName": "Acinonyx jubatus",
+      "ncbiTaxId": 32536,
+      "wikiTitle": "Cheetah",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Male_cheetah_facing_left_in_South_Africa.jpg/330px-Male_cheetah_facing_left_in_South_Africa.jpg"
+    },
+    {
+      "commonName": "Domestic cat",
+      "scientificName": "Felis catus",
+      "ncbiTaxId": 9685,
+      "wikiTitle": "Cat",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/330px-Cat_August_2010-4.jpg"
+    },
+    {
+      "commonName": "Lion",
+      "scientificName": "Panthera leo",
+      "ncbiTaxId": 9689,
+      "wikiTitle": "Lion",
+      "group": "mammal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/020_The_lion_king_Snyggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/330px-020_The_lion_king_Snyggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg"
+    }
+  ],
+  "funFact": "The cheetah belongs to Felinae, the subfamily of house cats, pumas and lynxes, and its closest living relatives are the puma and the jaguarundi. Lions are in a separate subfamily, Pantherinae, with tigers, leopards and jaguars. Like a house cat, a cheetah can purr but cannot roar.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Cheetah",
+      "label": "Cheetah - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Felinae",
+      "label": "Felinae - Wikipedia"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Praying mantis",
+      "scientificName": "Mantis religiosa",
+      "ncbiTaxId": 7507,
+      "wikiTitle": "Mantis_religiosa",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/European_praying_mantis_%28Mantis_religiosa%29_green_female_Dobruja.jpg/330px-European_praying_mantis_%28Mantis_religiosa%29_green_female_Dobruja.jpg"
+    },
+    {
+      "commonName": "American cockroach",
+      "scientificName": "Periplaneta americana",
+      "ncbiTaxId": 6978,
+      "wikiTitle": "American_cockroach",
+      "group": "invertebrate",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/American-cockroach.jpg/330px-American-cockroach.jpg"
+    },
+    {
+      "commonName": "Desert locust",
+      "scientificName": "Schistocerca gregaria",
+      "ncbiTaxId": 7010,
+      "wikiTitle": "Desert_locust",
+      "group": "arthropod",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/SGR_laying.jpg/330px-SGR_laying.jpg"
+    }
+  ],
+  "funFact": "Mantises, cockroaches and termites together form Dictyoptera, and both mantises and cockroaches lay their eggs in a hardened case called an ootheca. The locust shares the mantis's long legs and grassy look, but it is a grasshopper, in the separate order Orthoptera with crickets and katydids.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Dictyoptera",
+      "label": "Dictyoptera - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Ootheca",
+      "label": "Ootheca - Wikipedia"
+    }
+  ]
+}

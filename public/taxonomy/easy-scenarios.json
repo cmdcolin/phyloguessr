@@ -3,6 +3,46 @@
     "difficulty": "easy",
     "organisms": [
       {
+        "commonName": "Cheetah",
+        "scientificName": "Acinonyx jubatus",
+        "ncbiTaxId": 32536,
+        "wikiTitle": "Cheetah",
+        "group": "mammal",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Male_cheetah_facing_left_in_South_Africa.jpg/330px-Male_cheetah_facing_left_in_South_Africa.jpg"
+      },
+      {
+        "commonName": "Domestic cat",
+        "scientificName": "Felis catus",
+        "ncbiTaxId": 9685,
+        "wikiTitle": "Cat",
+        "group": "mammal",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/330px-Cat_August_2010-4.jpg"
+      },
+      {
+        "commonName": "Lion",
+        "scientificName": "Panthera leo",
+        "ncbiTaxId": 9689,
+        "wikiTitle": "Lion",
+        "group": "mammal",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/020_The_lion_king_Snyggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/330px-020_The_lion_king_Snyggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg"
+      }
+    ],
+    "funFact": "The cheetah belongs to Felinae, the subfamily of house cats, pumas and lynxes, and its closest living relatives are the puma and the jaguarundi. Lions are in a separate subfamily, Pantherinae, with tigers, leopards and jaguars. Like a house cat, a cheetah can purr but cannot roar.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Cheetah",
+        "label": "Cheetah - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Felinae",
+        "label": "Felinae - Wikipedia"
+      }
+    ]
+  },
+  {
+    "difficulty": "easy",
+    "organisms": [
+      {
         "commonName": "Kiwifruit",
         "scientificName": "Actinidia chinensis",
         "ncbiTaxId": 3625,
@@ -3263,6 +3303,46 @@
     "difficulty": "easy",
     "organisms": [
       {
+        "commonName": "Seahorse",
+        "scientificName": "Hippocampus kuda",
+        "ncbiTaxId": 103715,
+        "wikiTitle": "Seahorse",
+        "group": "fish",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Hippocampus_hippocampus_%28on_Ascophyllum_nodosum%29.jpg/330px-Hippocampus_hippocampus_%28on_Ascophyllum_nodosum%29.jpg"
+      },
+      {
+        "commonName": "Atlantic bluefin tuna",
+        "scientificName": "Thunnus thynnus",
+        "ncbiTaxId": 8237,
+        "wikiTitle": "Atlantic_bluefin_tuna",
+        "group": "fish",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Bluefin-big.jpg/330px-Bluefin-big.jpg"
+      },
+      {
+        "commonName": "Atlantic salmon",
+        "scientificName": "Salmo salar",
+        "ncbiTaxId": 8030,
+        "wikiTitle": "Atlantic_salmon",
+        "group": "fish",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Wst_atlantischer_lachs_stoer_001.jpg/330px-Wst_atlantischer_lachs_stoer_001.jpg"
+      }
+    ],
+    "funFact": "Despite its horse-like head and upright swimming, the seahorse is a bony fish in Percomorpha, the huge group of spiny-finned fishes that also holds tuna, perch and pufferfish. Salmon and tuna are both sleek, fast swimmers, but salmon branched off earlier, so a tuna is closer to a seahorse than to a salmon.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Seahorse",
+        "label": "Seahorse - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Percomorpha",
+        "label": "Percomorpha - Wikipedia"
+      }
+    ]
+  },
+  {
+    "difficulty": "easy",
+    "organisms": [
+      {
         "commonName": "Hippopotamus",
         "scientificName": "Hippopotamus amphibius",
         "ncbiTaxId": 9833,
@@ -3961,6 +4041,46 @@
       {
         "url": "https://www.scientificamerican.com/blog/tetrapod-zoology/surprises-from-placental-mammal-phylogeny-1-pangolins-are-close-kin-of-carnivorans/",
         "label": "Pangolins Are Close Kin of Carnivorans - Scientific American"
+      }
+    ]
+  },
+  {
+    "difficulty": "easy",
+    "organisms": [
+      {
+        "commonName": "Praying mantis",
+        "scientificName": "Mantis religiosa",
+        "ncbiTaxId": 7507,
+        "wikiTitle": "Mantis_religiosa",
+        "group": "arthropod",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/European_praying_mantis_%28Mantis_religiosa%29_green_female_Dobruja.jpg/330px-European_praying_mantis_%28Mantis_religiosa%29_green_female_Dobruja.jpg"
+      },
+      {
+        "commonName": "American cockroach",
+        "scientificName": "Periplaneta americana",
+        "ncbiTaxId": 6978,
+        "wikiTitle": "American_cockroach",
+        "group": "invertebrate",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/American-cockroach.jpg/330px-American-cockroach.jpg"
+      },
+      {
+        "commonName": "Desert locust",
+        "scientificName": "Schistocerca gregaria",
+        "ncbiTaxId": 7010,
+        "wikiTitle": "Desert_locust",
+        "group": "arthropod",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/SGR_laying.jpg/330px-SGR_laying.jpg"
+      }
+    ],
+    "funFact": "Mantises, cockroaches and termites together form Dictyoptera, and both mantises and cockroaches lay their eggs in a hardened case called an ootheca. The locust shares the mantis's long legs and grassy look, but it is a grasshopper, in the separate order Orthoptera with crickets and katydids.",
+    "sources": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Dictyoptera",
+        "label": "Dictyoptera - Wikipedia"
+      },
+      {
+        "url": "https://en.wikipedia.org/wiki/Ootheca",
+        "label": "Ootheca - Wikipedia"
       }
     ]
   },

@@ -1,0 +1,40 @@
+{
+  "difficulty": "easy",
+  "organisms": [
+    {
+      "commonName": "Seahorse",
+      "scientificName": "Hippocampus kuda",
+      "ncbiTaxId": 103715,
+      "wikiTitle": "Seahorse",
+      "group": "fish",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Hippocampus_hippocampus_%28on_Ascophyllum_nodosum%29.jpg/330px-Hippocampus_hippocampus_%28on_Ascophyllum_nodosum%29.jpg"
+    },
+    {
+      "commonName": "Atlantic bluefin tuna",
+      "scientificName": "Thunnus thynnus",
+      "ncbiTaxId": 8237,
+      "wikiTitle": "Atlantic_bluefin_tuna",
+      "group": "fish",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Bluefin-big.jpg/330px-Bluefin-big.jpg"
+    },
+    {
+      "commonName": "Atlantic salmon",
+      "scientificName": "Salmo salar",
+      "ncbiTaxId": 8030,
+      "wikiTitle": "Atlantic_salmon",
+      "group": "fish",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Wst_atlantischer_lachs_stoer_001.jpg/330px-Wst_atlantischer_lachs_stoer_001.jpg"
+    }
+  ],
+  "funFact": "Despite its horse-like head and upright swimming, the seahorse is a bony fish in Percomorpha, the huge group of spiny-finned fishes that also holds tuna, perch and pufferfish. Salmon and tuna are both sleek, fast swimmers, but salmon branched off earlier, so a tuna is closer to a seahorse than to a salmon.",
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Seahorse",
+      "label": "Seahorse - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Percomorpha",
+      "label": "Percomorpha - Wikipedia"
+    }
+  ]
+}
